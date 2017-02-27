@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * SD card host support.  This is the API that host drivers access.
@@ -104,13 +107,20 @@ sda_host_attach(sda_host_t *h)
 	 * Attach slots.
 	 */
 	for (int i = 0; i < h->h_nslot; i++) {
-
-		sda_slot_attach(&h->h_slots[i]);
+		sda_slot_t *slot = &h->h_slots[i];
+		sda_slot_attach(slot);
 
 		/*
 		 * Initiate card detection.
 		 */
-		sda_host_detect(h, i);
+		sda_slot_handle_detect(slot);
+		sda_slot_enter(slot);
+		while (slot->s_intransit) {
+			sda_slot_exit(slot);
+			delay(drv_usectohz(1000));
+			sda_slot_enter(slot);
+		}
+		sda_slot_exit(slot);
 	}
 
 	return (DDI_SUCCESS);

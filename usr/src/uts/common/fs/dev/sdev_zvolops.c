@@ -24,6 +24,9 @@
  * Copyright 2013, 2016 Joyent, Inc.  All rights reserved.
  * Copyright (c) 2014 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /* vnode ops for the /dev/zvol directory */
 
@@ -378,7 +381,7 @@ devzvol_update_zclist_cb(void *arg)
 {
 	zfs_cmd_t	*zc;
 	int		rc;
-	size_t		size;
+	size_t		size = 0;
 
 	zc = kmem_zalloc(sizeof (zfs_cmd_t), KM_SLEEP);
 	mutex_enter(&devzvol_mtx);

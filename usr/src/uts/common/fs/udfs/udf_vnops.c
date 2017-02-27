@@ -27,6 +27,10 @@
  * Copyright 2015, Joyent, Inc.
  */
 
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+
 #include <sys/types.h>
 #include <sys/t_lock.h>
 #include <sys/param.h>
@@ -1272,7 +1276,7 @@ udf_symlink(
 	struct ud_inode *ip, *dip = VTOI(dvp);
 
 	struct path_comp *pc;
-	int8_t *dname = NULL, *uname = NULL, *sp;
+	char *dname = NULL, *uname = NULL, *sp;
 
 	ud_printf("udf_symlink\n");
 
@@ -1359,7 +1363,7 @@ udf_symlink(
 				ioflag |= FDSYNC;
 			}
 			error = ud_rdwri(UIO_WRITE, ioflag, ip,
-			    uname, ((int8_t *)pc) - uname,
+			    uname, ((char *)pc) - uname,
 			    (offset_t)0, UIO_SYSSPACE, (int32_t *)0, cr);
 		}
 		if (error) {

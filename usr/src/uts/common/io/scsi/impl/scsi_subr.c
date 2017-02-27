@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/scsi/scsi.h>
 #include <sys/file.h>
@@ -57,10 +60,10 @@ static char scsi_log_buffer[MAXPATHLEN + 1];
 extern ddi_dma_attr_t scsi_alloc_attr;
 
 /*PRINTFLIKE4*/
-static void impl_scsi_log(dev_info_t *dev, char *label, uint_t level,
+static void impl_scsi_log(dev_info_t *dev, const char *label, uint_t level,
     const char *fmt, ...) __KPRINTFLIKE(4);
 /*PRINTFLIKE4*/
-static void v_scsi_log(dev_info_t *dev, char *label, uint_t level,
+static void v_scsi_log(dev_info_t *dev, const char *label, uint_t level,
     const char *fmt, va_list ap) __KVPRINTFLIKE(4);
 
 static int
@@ -1248,7 +1251,7 @@ scsi_errmsg(struct scsi_device *devp, struct scsi_pkt *pkt, char *label,
 
 /*PRINTFLIKE4*/
 void
-scsi_log(dev_info_t *dev, char *label, uint_t level,
+scsi_log(dev_info_t *dev, const char *label, uint_t level,
     const char *fmt, ...)
 {
 	va_list ap;
@@ -1262,7 +1265,7 @@ scsi_log(dev_info_t *dev, char *label, uint_t level,
 
 /*PRINTFLIKE4*/
 static void
-impl_scsi_log(dev_info_t *dev, char *label, uint_t level,
+impl_scsi_log(dev_info_t *dev, const char *label, uint_t level,
     const char *fmt, ...)
 {
 	va_list ap;
@@ -1279,7 +1282,7 @@ char *ddi_pathname(dev_info_t *dip, char *path);
 
 /*PRINTFLIKE4*/
 static void
-v_scsi_log(dev_info_t *dev, char *label, uint_t level,
+v_scsi_log(dev_info_t *dev, const char *label, uint_t level,
     const char *fmt, va_list ap)
 {
 	static char name[256];

@@ -22,6 +22,9 @@
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_INET_NCALOGD_H
 #define	_INET_NCALOGD_H
@@ -37,7 +40,7 @@ extern "C" {
 #define	NCA_DEFAULT_LOG_BUF_SIZE (65536)
 
 typedef struct log_buf {
-	int8_t			buffer[NCA_DEFAULT_LOG_BUF_SIZE];
+	char			buffer[NCA_DEFAULT_LOG_BUF_SIZE];
 	uint32_t		size;
 	uint32_t		cur_pos;
 	struct log_buf		*next;

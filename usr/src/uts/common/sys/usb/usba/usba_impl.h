@@ -25,6 +25,9 @@
  * Copyright 2014 Garrett D'Amore <garrett@damore.org>
  * Copyright 2019, Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_USB_USBA_USBA_IMPL_H
 #define	_SYS_USB_USBA_USBA_IMPL_H
@@ -445,7 +448,7 @@ typedef struct usb_dev_cap {
 	usb_dev_driver_callback_t	usba_dev_driver_cb;
 } usb_dev_cap_t;
 
-usb_dev_cap_t usb_cap;
+extern usb_dev_cap_t usb_cap;
 _NOTE(SCHEME_PROTECTS_DATA("unique device capture data", usb_cap))
 
 #ifdef __cplusplus

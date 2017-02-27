@@ -29,6 +29,9 @@
  * Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
  * Copyright (c) 2012 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * NFS LockManager, start/stop, support functions, etc.
@@ -116,7 +119,7 @@ struct nlm_knc {
 #define	ARRSIZE(arr)	(sizeof (arr) / sizeof ((arr)[0]))
 #define	NLM_KNCS	ARRSIZE(nlm_netconfigs)
 
-krwlock_t lm_lck;
+extern krwlock_t lm_lck;
 
 /*
  * Zero timeout for asynchronous NLM RPC operations

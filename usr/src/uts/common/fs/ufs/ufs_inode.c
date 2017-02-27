@@ -22,6 +22,9 @@
  * Copyright (c) 1983, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016, 2017 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -128,6 +131,7 @@ int	ufs_idle_max;	/* # of allowable idle inodes */
 ulong_t	ufs_inode_max;	/* hard limit of allowable idle inodes */
 #define	UFS_IDLE_MAX	(16)	/* min # of allowable idle inodes */
 
+struct timeval32 iuniqtime;
 /*
  * Tunables for ufs write throttling.
  * These are validated in ufs_iinit() since improper settings

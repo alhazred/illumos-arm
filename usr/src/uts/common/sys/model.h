@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_MODEL_H
 #define	_SYS_MODEL_H
@@ -80,7 +83,7 @@ typedef unsigned int model_t;
  * on the originating user-mode program's data model.  See the STRUCT_DECL(9F)
  * man page.
  */
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 
 #define	STRUCT_HANDLE(struct_type, handle)				\
 	struct {							\
@@ -193,10 +196,15 @@ typedef unsigned int model_t;
 
 #if defined(_LP64) || defined(__lint)
 
+#if !defined _MULTI_DATAMODEL
+#define	lwp_getdatamodel(t)		DATAMODEL_LP64
+#define	get_udatamodel()		DATAMODEL_LP64
+#else
 struct _klwp;
 
 extern	model_t lwp_getdatamodel(struct _klwp *);
 extern	model_t get_udatamodel(void);
+#endif
 
 #else
 

@@ -23,6 +23,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All rights reserved.	*/
@@ -91,8 +94,14 @@ systeminfo(int command, char *buf, long count)
 		kstr = architecture;
 		break;
 	case SI_ARCHITECTURE_32:
-	case SI_ARCHITECTURE:
 		kstr = architecture_32;
+		break;
+	case SI_ARCHITECTURE:
+#ifdef _MULTI_DATAMODEL
+		kstr = architecture_32;
+#else
+		kstr = architecture;
+#endif
 		break;
 	case SI_ARCHITECTURE_NATIVE:
 		kstr = get_udatamodel() == DATAMODEL_NATIVE ?

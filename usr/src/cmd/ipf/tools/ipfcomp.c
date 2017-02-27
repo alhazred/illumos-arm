@@ -7,6 +7,9 @@
  * Use is subject to license terms.
  * Copyright 2017 Gary Mills
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include "ipf.h"
 

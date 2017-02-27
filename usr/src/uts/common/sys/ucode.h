@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_UCODE_H
 #define	_SYS_UCODE_H
@@ -74,7 +77,7 @@ struct ucode_write_struct {
 	ucode_errno_t uw_errno;	/* EUC error code */
 };
 
-#if defined(_SYSCALL32_IMPL)
+#if defined(_SYSCALL32)
 
 #include <sys/types32.h>
 

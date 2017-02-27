@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/file.h>
 #include <sys/stat.h>
@@ -1361,7 +1364,7 @@ mntfs_import_addr(char *uaddr, char *ubufp, char *kbufp, size_t bufsize)
  * These 32-bit versions are to support STRUCT_DECL(9F) etc. in
  * mntfs_copyout_element() and mntioctl().
  */
-#ifdef _SYSCALL32_IMPL
+#ifdef _SYSCALL32
 typedef struct extmnttab32 {
 	uint32_t	mnt_special;
 	uint32_t	mnt_mountp;

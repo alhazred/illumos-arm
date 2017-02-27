@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/kmem.h>
 #include <sys/errno.h>
@@ -438,7 +441,7 @@ brand_plat_interposition_disable(void)
  * to manage the brand.
  */
 
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 static void
 Ehdr32to64(Elf32_Ehdr *src, Ehdr *dst)
 {
@@ -506,7 +509,7 @@ brand_solaris_cmd(int cmd, uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
 			if (copyin((void *)arg1, &reg, sizeof (reg)) != 0)
 				return (EFAULT);
 		}
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 		else {
 			brand_common_reg32_t reg32;
 
@@ -528,7 +531,7 @@ brand_solaris_cmd(int cmd, uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
 			    sizeof (brand_elf_data_t)) != 0)
 				return (EFAULT);
 		}
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 		else {
 			brand_elf_data32_t sed32;
 
@@ -638,7 +641,7 @@ brand_solaris_elfexec(vnode_t *vp, execa_t *uap, uarg_t *args,
 		args->emulator = brandlib;
 		linker = brandlinker;
 	}
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 	else {
 		args->emulator = brandlib32;
 		linker = brandlinker32;
@@ -675,7 +678,7 @@ brand_solaris_elfexec(vnode_t *vp, execa_t *uap, uarg_t *args,
 		err = elfexec(nvp, uap, args, idatap, INTP_MAXDEPTH + 1, execsz,
 		    setid, exec_file, cred, brand_action);
 	}
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 	else {
 		err = elf32exec(nvp, uap, args, idatap, INTP_MAXDEPTH + 1,
 		    execsz, setid, exec_file, cred, brand_action);
@@ -727,7 +730,7 @@ brand_solaris_elfexec(vnode_t *vp, execa_t *uap, uarg_t *args,
 		    &voffset, exec_file, &interp, &env.ex_bssbase,
 		    &env.ex_brkbase, &env.ex_brksize, NULL);
 	}
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 	else {
 		Elf32_Ehdr ehdr32;
 		Elf32_Addr uphdr_vaddr32;
@@ -788,7 +791,7 @@ brand_solaris_elfexec(vnode_t *vp, execa_t *uap, uarg_t *args,
 			    &uphdr_vaddr, &voffset, exec_file, &interp,
 			    NULL, NULL, NULL, &lddata);
 		}
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 		else {
 			Elf32_Ehdr ehdr32;
 			Elf32_Addr uphdr_vaddr32;
@@ -884,7 +887,7 @@ brand_solaris_elfexec(vnode_t *vp, execa_t *uap, uarg_t *args,
 		    sizeof (auxflags_auxv)) != 0)
 			return (EFAULT);
 	}
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 	else {
 		auxv32_t	auxflags_auxv32;
 
@@ -916,7 +919,7 @@ brand_solaris_elfexec(vnode_t *vp, execa_t *uap, uarg_t *args,
 		    sizeof (brand_auxv)) != 0)
 			return (EFAULT);
 	}
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 	else {
 		auxv32_t brand_auxv32[] = {
 		    { AT_SUN_BRAND_AUX1, 0 },

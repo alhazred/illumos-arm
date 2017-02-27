@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_SDCARD_SDA_IMPL_H
 #define	_SYS_SDCARD_SDA_IMPL_H
@@ -260,6 +263,7 @@ void sda_slot_fault(sda_slot_t *, sda_fault_t);
 void sda_slot_err(sda_slot_t *, const char *, ...);
 /*PRINTFLIKE2*/
 void sda_slot_log(sda_slot_t *, const char *, ...);
+void sda_slot_handle_detect(sda_slot_t *);
 
 #ifdef	DEBUG
 #define	sda_slot_debug(...)	sda_slot_log(__VA_ARGS__)

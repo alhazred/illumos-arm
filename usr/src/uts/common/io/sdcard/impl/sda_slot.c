@@ -24,6 +24,9 @@
  * Copyright 2019 Western Digital Corporation.
  * Copyright 2019 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * SD card slot support.
@@ -43,7 +46,6 @@
 
 static void sda_slot_insert(void *);
 static sda_err_t sda_slot_check_response(sda_cmd_t *);
-static void sda_slot_handle_detect(sda_slot_t *);
 static void sda_slot_handle_transfer(sda_slot_t *, sda_err_t);
 static void sda_slot_handle_fault(sda_slot_t *, sda_fault_t);
 static void sda_slot_abort(sda_slot_t *, sda_err_t);

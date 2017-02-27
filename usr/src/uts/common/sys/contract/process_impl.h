@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_CONTRACT_PROCESS_IMPL_H
 #define	_SYS_CONTRACT_PROCESS_IMPL_H
@@ -72,8 +75,8 @@ struct cont_process {
 /*
  * Kernel APIs
  */
-ctmpl_process_t *sys_process_tmpl;
-ct_type_t *process_type;
+extern ctmpl_process_t *sys_process_tmpl;
+extern ct_type_t *process_type;
 
 struct proc;
 void contract_process_init(void);

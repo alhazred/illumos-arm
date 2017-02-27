@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 2003, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  *	Copyright (c) 1983,1984,1985,1986,1987,1988,1989  AT&T.

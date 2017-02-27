@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 1983, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -518,7 +521,7 @@ extern int		vttoif_tab[];
  * (Note that UFS's concept of time only keeps 32 bits of seconds
  * in the on-disk format).
  */
-struct timeval32 iuniqtime;
+extern struct timeval32 iuniqtime;
 extern kmutex_t ufs_iuniqtime_lock;
 
 #define	ITIMES_NOLOCK(ip) ufs_itimes_nolock(ip)

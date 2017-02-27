@@ -23,6 +23,9 @@
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_FS_UFS_PANIC_H
 #define	_SYS_FS_UFS_PANIC_H
@@ -33,6 +36,7 @@
 #include <sys/vfs.h>
 #include <sys/fs/ufs_inode.h>
 #include <sys/fs/ufs_fs.h>
+#include <sys/cmn_err.h>
 
 #ifdef	__cplusplus
 extern "C" {

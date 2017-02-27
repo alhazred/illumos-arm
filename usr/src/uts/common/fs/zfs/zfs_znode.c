@@ -23,6 +23,9 @@
  * Copyright (c) 2012, 2018 by Delphix. All rights reserved.
  * Copyright (c) 2014 Integros [integros.com]
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /* Portions Copyright 2007 Jeremy Teo */
 
@@ -410,12 +413,12 @@ zfs_znode_fini(void)
 	rw_destroy(&zfsvfs_lock);
 }
 
-struct vnodeops *zfs_dvnodeops;
-struct vnodeops *zfs_fvnodeops;
-struct vnodeops *zfs_symvnodeops;
-struct vnodeops *zfs_xdvnodeops;
-struct vnodeops *zfs_evnodeops;
-struct vnodeops *zfs_sharevnodeops;
+extern struct vnodeops *zfs_dvnodeops;
+extern struct vnodeops *zfs_fvnodeops;
+extern struct vnodeops *zfs_symvnodeops;
+extern struct vnodeops *zfs_xdvnodeops;
+extern struct vnodeops *zfs_evnodeops;
+extern struct vnodeops *zfs_sharevnodeops;
 
 void
 zfs_remove_op_tables()

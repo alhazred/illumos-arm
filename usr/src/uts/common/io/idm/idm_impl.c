@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/conf.h>
 #include <sys/file.h>
@@ -46,6 +49,7 @@ extern idm_transport_t  idm_transport_list[];
  * others - NA
  */
 static int iscsi_crc32_hd = -1;
+idm_global_t idm;
 
 void
 idm_pdu_rx(idm_conn_t *ic, idm_pdu_t *pdu)

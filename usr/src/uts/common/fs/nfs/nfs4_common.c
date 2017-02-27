@@ -61,6 +61,8 @@ struct modlfs modlfs4 = {
 	&vfw4
 };
 
+rfs4_db_mem_cache_t rfs4_db_mem_cache_table[RFS4_DB_MEM_CACHE_NUM];
+
 uint_t nfs4_max_transfer_size = 32 * 1024;
 uint_t nfs4_max_transfer_size_cots = 1024 * 1024;
 uint_t nfs4_max_transfer_size_rdma = 1024 * 1024;

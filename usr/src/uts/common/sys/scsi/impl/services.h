@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_SCSI_IMPL_SERVICES_H
 #define	_SYS_SCSI_IMPL_SERVICES_H
@@ -85,7 +88,7 @@ void	scsi_errmsg(struct scsi_device *devp, struct scsi_pkt *pkt,
 
 
 /*PRINTFLIKE4*/
-void	scsi_log(dev_info_t *dev, char *label,
+void	scsi_log(dev_info_t *dev, const char *label,
 	    uint_t level, const char *fmt, ...) __KPRINTFLIKE(4);
 
 extern char *scsi_state_bits;

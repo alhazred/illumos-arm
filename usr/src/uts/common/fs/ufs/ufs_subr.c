@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -74,7 +77,7 @@
 #else  /* _KERNEL */
 
 #define	ASSERT(x)		/* don't use asserts for fsck et al */
-
+extern void cmn_err(int, const char *, ...);
 #endif  /* _KERNEL */
 
 #ifdef _KERNEL

@@ -22,6 +22,8 @@
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Copyright 2017 Hayashi Naoyuki
+#
 # ident	"%Z%%M%	%I%	%E% SMI"
 #
 
@@ -714,6 +716,7 @@ sub eventEnd {
     	my $class = $kid->getClass;
     	next unless ($class =~ /title|program|see/);
 	my $content = $kid->getContent;
+	$content = '' unless defined $content;
 	if ($class eq 'title') {
 	    $event{$id}->{$class} = $content;
 	} else {

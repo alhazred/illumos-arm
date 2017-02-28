@@ -30,6 +30,9 @@
  * Copyright (c) 2017, Intel Corporation.
  * Copyright 2020 Joshua M. Clulow <josh@sysmgr.org>
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_SPA_H
 #define	_SYS_SPA_H

@@ -42,9 +42,9 @@ extern "C" {
  * General-purpose 32-bit and 64-bit bitfield encodings.
  */
 #define	BF32_DECODE(x, low, len)	P2PHASE((x) >> (low), 1U << (len))
-#define	BF64_DECODE(x, low, len)	P2PHASE((x) >> (low), 1ULL << (len))
+#define	BF64_DECODE(x, low, len)	P2PHASE((uint64_t)(x) >> (low), 1ULL << (len))
 #define	BF32_ENCODE(x, low, len)	(P2PHASE((x), 1U << (len)) << (low))
-#define	BF64_ENCODE(x, low, len)	(P2PHASE((x), 1ULL << (len)) << (low))
+#define	BF64_ENCODE(x, low, len)	(P2PHASE((uint64_t)(x), 1ULL << (len)) << (low))
 
 #define	BF32_GET(x, low, len)		BF32_DECODE(x, low, len)
 #define	BF64_GET(x, low, len)		BF64_DECODE(x, low, len)

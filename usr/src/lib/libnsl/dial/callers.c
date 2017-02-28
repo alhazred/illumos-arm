@@ -27,6 +27,10 @@
  * Use is subject to license terms.
  */
 
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+
 #include "mt.h"
 #include "uucp.h"
 
@@ -173,7 +177,7 @@ static void ttygenbrk(int);
  *	FAIL  -  failed
  */
 static int
-processdev(char *flds[], char *dev[])
+processdev(char *flds[], char *_dev[])
 {
 	int dcf = -1;
 	struct caller	*ca;
@@ -183,7 +187,8 @@ processdev(char *flds[], char *dev[])
 	char *phonecl;			/* clear phone string */
 	char phoneex[2*(MAXPH+2)];	/* expanded phone string */
 	struct termio tty_orig;
-	int ret_orig = -1;
+	volatile int ret_orig = -1;
+	char **volatile dev = _dev;
 
 	sdev = dev;
 	/*	set up default "break" routine	*/
@@ -473,7 +478,7 @@ tlicall(char *flds[], char *dev[])
 	int		i, j;
 	struct t_bind	*bind_ret = 0;
 	struct t_info	tinfo;
-	struct t_call	*sndcall = 0, *rcvcall = 0;
+	struct t_call	* volatile sndcall = 0, * volatile rcvcall = 0;
 
 
 	if (dev[D_LINE][0] != '/') {

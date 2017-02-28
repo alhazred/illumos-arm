@@ -27,6 +27,10 @@
  * Use is subject to license terms.
  */
 
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+
 #include "mt.h"
 #include "uucp.h"
 static char _ProtoSys[40];	/* protocol string from Systems file entry */
@@ -470,7 +474,7 @@ static int
 expect_str(char *str, int fn)
 {
 	static char rdvec[MR];
-	char *rp = rdvec;
+	char *volatile rp = rdvec;
 	int kr, c;
 	char nextch;
 

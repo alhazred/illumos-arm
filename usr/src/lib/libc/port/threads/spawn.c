@@ -28,6 +28,10 @@
  * Copyright (c) 2011 by Delphix. All rights reserved.
  */
 
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+
 #include "lint.h"
 #include "thr_uberdata.h"
 #include <sys/libc_kernel.h>
@@ -252,13 +256,13 @@ forkflags(spawn_attr_t *sap)
  */
 
 static int
-set_error(int *errp, int err)
+set_error(volatile int *errp, int err)
 {
 	return (*errp = err);
 }
 
 static int
-get_error(int *errp)
+get_error(volatile int *errp)
 {
 	return (*errp);
 }
@@ -283,10 +287,10 @@ posix_spawn(
 	char *const *argv,
 	char *const *envp)
 {
-	spawn_attr_t *sap = attrp? attrp->__spawn_attrp : NULL;
-	file_attr_t *fap = file_actions? file_actions->__file_attrp : NULL;
-	void *dirbuf = NULL;
-	int error;		/* this will be set by the child */
+	spawn_attr_t *volatile sap = attrp? attrp->__spawn_attrp : NULL;
+	file_attr_t *volatile fap = file_actions? file_actions->__file_attrp : NULL;
+	void *volatile dirbuf = NULL;
+	volatile int error;		/* this will be set by the child */
 	pid_t pid;
 
 	if (attrp != NULL && sap == NULL)
@@ -377,12 +381,12 @@ posix_spawnp(
 	char *const *argv,
 	char *const *envp)
 {
-	spawn_attr_t *sap = attrp? attrp->__spawn_attrp : NULL;
-	file_attr_t *fap = file_actions? file_actions->__file_attrp : NULL;
-	void *dirbuf = NULL;
+	spawn_attr_t *volatile sap = attrp? attrp->__spawn_attrp : NULL;
+	file_attr_t *volatile fap = file_actions? file_actions->__file_attrp : NULL;
+	void *volatile dirbuf = NULL;
 	const char *pathstr = (strchr(file, '/') == NULL)? getenv("PATH") : "";
 	int xpg4 = libc__xpg4;
-	int error = 0;		/* this will be set by the child */
+	volatile int error = 0;		/* this will be set by the child */
 	char path[PATH_MAX+4];
 	const char *cp;
 	pid_t pid;

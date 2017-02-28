@@ -24,6 +24,10 @@
  * Use is subject to license terms.
  */
 
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
 #include "lint.h"
@@ -1028,7 +1032,7 @@ _aio_do_request(void *arglist)
 	ulwp_t *self = curthread;
 	struct aio_args *arg;
 	aio_req_t *reqp;		/* current AIO request */
-	ssize_t retval;
+	volatile ssize_t retval;
 	int append;
 	int error;
 

@@ -23,6 +23,9 @@
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+#
+# Copyright 2017 Hayashi Naoyuki
+#
 
 # auditxml takes the audit record description (.xml file) and
 # generates the files needed for the C audit api. 
@@ -53,16 +56,16 @@ my $appDebug = 0; # used after return from "new auditxml";
 
 # Process command-line options
 our ($opt_d, $opt_e, $opt_i, $opt_o);
-$opt_e = "";
-$opt_i = "";
-$opt_o = "";
+#$opt_e = "";
+#$opt_i = "";
+#$opt_o = "";
 if (!getopts('de:i:o:') || $#ARGV != 0) {
     die $usage;
 }
-my $outdir = $opt_o || ".";
-my $pfx_adt = lc($opt_i) || "adt";
+my $outdir = defined ($opt_o) ? $opt_o : ".";
+my $pfx_adt = defined ($opt_i) ? lc($opt_i) : "adt";
 my $pfx_ADT = uc($pfx_adt);
-my $pfx_AUE = uc($opt_e) || "AUE";
+my $pfx_AUE = defined ($opt_e) ? uc($opt_e) : "AUE";
 
 $appDebug = $opt_d;
 
@@ -767,6 +770,7 @@ sub formatTableEntry {
     my ($id, $token, $eventId, $type, $required, $tsol, $sequence, $format,
 	$enumGroup, $omitEntry) = @_;
 
+    $omitEntry = defined ($omitEntry) ? $omitEntry : "";
 
     # does this map belong in the xml source?  (at least the defaults?)
     # fill in the default value only if it is other than zero.

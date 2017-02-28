@@ -23,6 +23,8 @@
 # Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Copyright 2017 Hayashi Naoyuki
+#
 # Executed from appropriate arch build directory, e.g. {intel,sparc}/sockfs,
 # to generate the nl7ctokgen.h file from nl7ctok*.txt file(s).
 #
@@ -33,7 +35,7 @@ while [ "$1" != "" ]
 do
 NAME=$1
 shift
-<$NAME sort -f +1 |{
+<$NAME sort -f -k 2 |{
 
 while read IDN STR FLG BAD
 do

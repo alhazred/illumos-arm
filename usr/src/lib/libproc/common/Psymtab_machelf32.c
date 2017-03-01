@@ -27,6 +27,9 @@
 /*
  * Copyright (c) 2015, Joyent, Inc. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <assert.h>
 #include <stdio.h>
@@ -258,7 +261,7 @@ fake_elf32(struct ps_prochandle *P, file_info_t *fptr, uintptr_t addr,
 	uint_t i;
 	Off off;
 	size_t pltsz = 0, pltentries = 0;
-	uintptr_t hptr = (uintptr_t)NULL;
+	uintptr_t hptr = 0;
 	Word hnchains = 0, hnbuckets = 0;
 
 	if (ehdr->e_type == ET_DYN)

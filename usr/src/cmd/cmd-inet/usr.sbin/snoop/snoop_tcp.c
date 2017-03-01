@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
@@ -44,6 +47,8 @@
 #include "snoop.h"
 
 extern char *dlc_header;
+extern int reservedport(int proto, int port);
+extern int interpret_rpc(int flags, char *rpc, int fraglen, int type);
 
 #define	TCPOPT_HEADER_LEN	2
 #define	TCPOPT_TSTAMP_LEN	10

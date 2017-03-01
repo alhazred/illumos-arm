@@ -23,6 +23,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 /* Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T */
 /* All Rights Reserved */
 
@@ -69,6 +72,7 @@ struct fsquot *fsqlist = NULL;
 typedef struct authunix_parms *authp;
 
 static int request_pending;		/* Request in progress ? */
+int quotactl(int cmd, char *mountp, uid_t uid, struct dqblk *dqp);
 
 void closedown();
 void dispatch();

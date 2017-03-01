@@ -27,6 +27,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
 /*
@@ -62,6 +65,7 @@ void **root = NULL;
 
 void output(void);
 void enter(struct ptmp *);
+char * uidtonam(uid_t uid);
 
 int
 main(int argc, char **argv)

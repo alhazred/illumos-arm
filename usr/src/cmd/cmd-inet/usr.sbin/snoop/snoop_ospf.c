@@ -23,6 +23,9 @@
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -89,6 +92,7 @@ static int interpret_ospf_hello(int, struct ospfhdr *, int);
 static void ospf_print_ls_type(int, uint32_t, struct in_addr, struct in_addr);
 static void interpret_ospf_lsa_hdr(int, struct lsa_hdr *);
 static int interpret_ospf_lsa(int flags, struct lsa *lsa, uchar_t *);
+extern int interpret_ospf6(int flags, struct ospf6hdr *ospf, int iplen, int fraglen);
 
 char *
 ospf_print_bits(const struct bits *bp, uchar_t options)

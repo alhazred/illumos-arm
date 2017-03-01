@@ -23,6 +23,9 @@
  * Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
  * Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <rpc/rpc.h>
@@ -43,6 +46,9 @@
 #include <stdlib.h>
 #include "../lib/sharetab.h"
 #include "mountd.h"
+
+extern struct share *findentry(char *);
+extern void sharefree(share_t *sh);
 
 /*
  * The following codesets must match what is in libshare_nfs.c until we can

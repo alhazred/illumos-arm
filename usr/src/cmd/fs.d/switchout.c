@@ -27,6 +27,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -44,7 +47,7 @@
 #include	<libdiskmgt.h>
 #include	"fslib.h"
 
-
+extern void fssnap_show_status(char *mountpoint, char *opts, int labels, int brief);
 static int match(char **opts, char *s);
 static int has_Nflag(char *opts);
 

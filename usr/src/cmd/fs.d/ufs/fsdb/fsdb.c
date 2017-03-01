@@ -2,6 +2,9 @@
  * Copyright 2015 Gary Mills
  * Copyright (c) 1988, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright (c) 1988 Regents of the University of California.
@@ -336,6 +339,9 @@ static void		getshadowdata(long *, int);
 static void		syncshadowscan(int);
 static void		log_display_header(void);
 static void		log_show(enum log_enum);
+
+int
+log_lodb(u_offset_t off, diskaddr_t *pblk);
 
 #ifdef sun
 static void		err();

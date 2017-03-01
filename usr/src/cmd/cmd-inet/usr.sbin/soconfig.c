@@ -22,6 +22,9 @@
  * Copyright (c) 1995, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2015 Nexenta Systems, Inc. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <ctype.h>
 #include <dirent.h>
@@ -82,6 +85,7 @@ static int	parse_int(char *str);
 static void	usage(void);
 
 static int	parse_filter_params(int argc, char **argv);
+int _sockconfig (int cmd, void *arg1, void *arg2, void *arg3, void *arg4);
 
 static int	print_socktable();
 

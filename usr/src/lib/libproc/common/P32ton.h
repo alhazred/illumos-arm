@@ -23,6 +23,9 @@
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_P32TON_H
 #define	_P32TON_H
@@ -44,7 +47,7 @@ extern "C" {
 extern dev_t prexpldev(dev32_t);
 extern dev32_t prcmpldev(dev_t);
 
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 
 extern void timestruc_32_to_n(const timestruc32_t *, timestruc_t *);
 extern void stack_32_to_n(const stack32_t *, stack_t *);

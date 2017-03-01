@@ -23,6 +23,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/isa_defs.h>
 #include <stdlib.h>
@@ -35,7 +38,7 @@
 #include <sys/sysmacros.h>
 #include "libproc.h"
 
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 /*
  * in case of 64-bit *stat() and *stat64 library call and 32-bit subject
  * process convert 64-bit struct stat/stat64 into 32-bit struct stat64
@@ -73,7 +76,7 @@ pr_stat(struct ps_prochandle *Pr, const char *path, struct stat *buf)
 	argdes_t *adp = &argd[0];	/* first argument */
 	int syscall;			/* SYS_fstatat or SYS_fstatat64 */
 	int error;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	struct stat64_32 statb64_32;
 #endif	/* _LP64 */
 
@@ -104,7 +107,7 @@ pr_stat(struct ps_prochandle *Pr, const char *path, struct stat *buf)
 	adp->arg_value = 0;
 	adp->arg_type = AT_BYREF;
 	adp->arg_inout = AI_OUTPUT;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32) {
 		adp->arg_object = &statb64_32;
 		adp->arg_size = sizeof (statb64_32);
@@ -130,7 +133,7 @@ pr_stat(struct ps_prochandle *Pr, const char *path, struct stat *buf)
 		errno = (error > 0)? error : ENOSYS;
 		return (-1);
 	}
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32)
 		stat64_32_to_n(&statb64_32, buf);
 #endif	/* _LP64 */
@@ -148,7 +151,7 @@ pr_lstat(struct ps_prochandle *Pr, const char *path, struct stat *buf)
 	argdes_t *adp = &argd[0];	/* first argument */
 	int syscall;			/* SYS_fstatat or SYS_fstatat64 */
 	int error;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	struct stat64_32 statb64_32;
 #endif	/* _LP64 */
 
@@ -179,7 +182,7 @@ pr_lstat(struct ps_prochandle *Pr, const char *path, struct stat *buf)
 	adp->arg_value = 0;
 	adp->arg_type = AT_BYREF;
 	adp->arg_inout = AI_OUTPUT;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32) {
 		adp->arg_object = &statb64_32;
 		adp->arg_size = sizeof (statb64_32);
@@ -205,7 +208,7 @@ pr_lstat(struct ps_prochandle *Pr, const char *path, struct stat *buf)
 		errno = (error > 0)? error : ENOSYS;
 		return (-1);
 	}
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32)
 		stat64_32_to_n(&statb64_32, buf);
 #endif	/* _LP64 */
@@ -223,7 +226,7 @@ pr_fstat(struct ps_prochandle *Pr, int fd, struct stat *buf)
 	argdes_t *adp = &argd[0];	/* first argument */
 	int syscall;			/* SYS_fstatat or SYS_fstatat64 */
 	int error;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	struct stat64_32 statb64_32;
 #endif	/* _LP64 */
 
@@ -254,7 +257,7 @@ pr_fstat(struct ps_prochandle *Pr, int fd, struct stat *buf)
 	adp->arg_value = 0;
 	adp->arg_type = AT_BYREF;
 	adp->arg_inout = AI_OUTPUT;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32) {
 		adp->arg_object = &statb64_32;
 		adp->arg_size = sizeof (statb64_32);
@@ -280,7 +283,7 @@ pr_fstat(struct ps_prochandle *Pr, int fd, struct stat *buf)
 		errno = (error > 0)? error : ENOSYS;
 		return (-1);
 	}
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32)
 		stat64_32_to_n(&statb64_32, buf);
 #endif	/* _LP64 */
@@ -298,7 +301,7 @@ pr_stat64(struct ps_prochandle *Pr, const char *path, struct stat64 *buf)
 	argdes_t *adp = &argd[0];	/* first argument */
 	int syscall;			/* SYS_fstatat or SYS_fstatat64 */
 	int error;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	struct stat64_32 statb64_32;
 #endif	/* _LP64 */
 
@@ -333,7 +336,7 @@ pr_stat64(struct ps_prochandle *Pr, const char *path, struct stat64 *buf)
 	adp->arg_value = 0;
 	adp->arg_type = AT_BYREF;
 	adp->arg_inout = AI_OUTPUT;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32) {
 		adp->arg_object = &statb64_32;
 		adp->arg_size = sizeof (statb64_32);
@@ -359,7 +362,7 @@ pr_stat64(struct ps_prochandle *Pr, const char *path, struct stat64 *buf)
 		errno = (error > 0)? error : ENOSYS;
 		return (-1);
 	}
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32)
 		stat64_32_to_n(&statb64_32, (struct stat *)buf);
 #endif	/* _LP64 */
@@ -377,7 +380,7 @@ pr_lstat64(struct ps_prochandle *Pr, const char *path, struct stat64 *buf)
 	argdes_t *adp = &argd[0];	/* first argument */
 	int syscall;			/* SYS_fstatat or SYS_fstatat64 */
 	int error;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	struct stat64_32 statb64_32;
 #endif	/* _LP64 */
 
@@ -412,7 +415,7 @@ pr_lstat64(struct ps_prochandle *Pr, const char *path, struct stat64 *buf)
 	adp->arg_value = 0;
 	adp->arg_type = AT_BYREF;
 	adp->arg_inout = AI_OUTPUT;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32) {
 		adp->arg_object = &statb64_32;
 		adp->arg_size = sizeof (statb64_32);
@@ -438,7 +441,7 @@ pr_lstat64(struct ps_prochandle *Pr, const char *path, struct stat64 *buf)
 		errno = (error > 0)? error : ENOSYS;
 		return (-1);
 	}
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32)
 		stat64_32_to_n(&statb64_32, (struct stat *)buf);
 #endif	/* _LP64 */
@@ -456,7 +459,7 @@ pr_fstat64(struct ps_prochandle *Pr, int fd, struct stat64 *buf)
 	argdes_t *adp = &argd[0];	/* first argument */
 	int syscall;			/* SYS_fstatat or SYS_fstatat64 */
 	int error;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	struct stat64_32 statb64_32;
 #endif	/* _LP64 */
 
@@ -491,7 +494,7 @@ pr_fstat64(struct ps_prochandle *Pr, int fd, struct stat64 *buf)
 	adp->arg_value = 0;
 	adp->arg_type = AT_BYREF;
 	adp->arg_inout = AI_OUTPUT;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32) {
 		adp->arg_object = &statb64_32;
 		adp->arg_size = sizeof (statb64_32);
@@ -517,7 +520,7 @@ pr_fstat64(struct ps_prochandle *Pr, int fd, struct stat64 *buf)
 		errno = (error > 0)? error : ENOSYS;
 		return (-1);
 	}
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32)
 		stat64_32_to_n(&statb64_32, (struct stat *)buf);
 #endif	/* _LP64 */

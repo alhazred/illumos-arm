@@ -25,6 +25,9 @@
  * Copyright 2014, OmniTI Computer Consulting, Inc. All rights reserved.
  * Copyright 2018, Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _CRYPTOUTIL_H
 #define	_CRYPTOUTIL_H
@@ -49,7 +52,7 @@ extern "C" {
 
 /* $ISA substitution for parsing pkcs11.conf data */
 #define	PKCS11_ISA	"/$ISA/"
-#if defined(_LP64)
+#if defined _LP64 && defined _MULTI_DATAMODEL
 #define	PKCS11_ISA_DIR	"/64/"
 #else	/* !_LP64 */
 #define	PKCS11_ISA_DIR	"/"

@@ -27,6 +27,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <pkglib.h>
 
@@ -737,7 +740,7 @@ pkggetentry_named(PKGserver server, const char *path, int *len, int *pathlen)
 	int plen = strlen(path);
 	pkgfilter_t *pcmd = alloca(sizeof (*pcmd) + plen);
 	char *result;
-	unsigned int rlen;
+	size_t rlen;
 
 	pcmd->cmd = PKG_FINDFILE;
 	*pathlen = pcmd->len = plen;

@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Simple-minded raw event publication from user context.  See extensive
@@ -449,13 +452,14 @@ _i_fmev_publish_nvl(
     fmev_pri_t pri, nvlist_t *attr)
 {
 	fmev_err_t rc;
+	va_list ap;
 
 	if ((rc = vrfy(&ruleset, &class, &subclass, &pri)) != FMEV_OK)
 		return (rc);		/* any attr not freed */
 
 	return (do_publish(file, func, line,
 	    ruleset, class, subclass,
-	    pri, attr, 0, NULL));	/* any attr freed iff success */
+	    pri, attr, 0, ap));	/* any attr freed iff success */
 }
 
 fmev_err_t

@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_PAM_IMPL_H
 #define	_PAM_IMPL_H
@@ -39,7 +42,7 @@ extern "C" {
 #define	PAM_CONFIG	"/etc/pam.conf"
 #define	PAM_ISA		"/$ISA/"
 #define	PAM_LIB_DIR	"/usr/lib/security/"
-#ifdef	_LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 #define	PAM_ISA_DIR	"/64/"
 #else	/* !_LP64 */
 #define	PAM_ISA_DIR	"/"

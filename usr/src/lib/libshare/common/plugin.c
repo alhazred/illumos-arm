@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -95,7 +98,7 @@ proto_plugin_init()
 	struct stat st;
 	char isa[MAXISALEN];
 
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 	if (sysinfo(SI_ARCHITECTURE_64, isa, MAXISALEN) == -1)
 		isa[0] = '\0';
 #else

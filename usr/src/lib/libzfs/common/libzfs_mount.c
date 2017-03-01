@@ -31,6 +31,9 @@
  * Copyright 2017 RackTop Systems.
  * Copyright 2018 OmniOS Community Edition (OmniOSce) Association.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Routines to manage ZFS mounts.  We separate all the nasty routines that have
@@ -643,7 +646,7 @@ _zfs_init_libshare(void)
 	char path[MAXPATHLEN];
 	char isa[MAXISALEN];
 
-#if defined(_LP64)
+#if defined(_LP64) && defined(_MULTI_DATAMODEL)
 	if (sysinfo(SI_ARCHITECTURE_64, isa, MAXISALEN) == -1)
 		isa[0] = '\0';
 #else

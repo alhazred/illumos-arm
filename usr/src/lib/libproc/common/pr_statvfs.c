@@ -23,6 +23,9 @@
  * Copyright (c) 1998-2000 by Sun Microsystems, Inc.
  * All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -36,7 +39,7 @@
 #include <sys/sysmacros.h>
 #include "libproc.h"
 
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 static void
 statvfs_32_to_n(statvfs32_t *src, statvfs_t *dest)
 {
@@ -68,7 +71,7 @@ pr_statvfs(struct ps_prochandle *Pr, const char *path, statvfs_t *buf)
 	argdes_t argd[2];		/* arg descriptors for statvfs() */
 	argdes_t *adp = &argd[0];	/* first argument */
 	int error;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	statvfs32_t statvfs32;
 #endif	/* _LP64 */
 
@@ -85,7 +88,7 @@ pr_statvfs(struct ps_prochandle *Pr, const char *path, statvfs_t *buf)
 	adp->arg_value = 0;
 	adp->arg_type = AT_BYREF;
 	adp->arg_inout = AI_OUTPUT;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32) {
 		adp->arg_object = &statvfs32;
 		adp->arg_size = sizeof (statvfs32);
@@ -104,7 +107,7 @@ pr_statvfs(struct ps_prochandle *Pr, const char *path, statvfs_t *buf)
 		errno = (error > 0)? error : ENOSYS;
 		return (-1);
 	}
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32)
 		statvfs_32_to_n(&statvfs32, buf);
 #endif	/* _LP64 */
@@ -121,7 +124,7 @@ pr_fstatvfs(struct ps_prochandle *Pr, int fd, statvfs_t *buf)
 	argdes_t argd[2];		/* arg descriptors for fstatvfs() */
 	argdes_t *adp = &argd[0];	/* first argument */
 	int error;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	statvfs32_t statvfs32;
 #endif	/* _LP64 */
 
@@ -138,7 +141,7 @@ pr_fstatvfs(struct ps_prochandle *Pr, int fd, statvfs_t *buf)
 	adp->arg_value = 0;
 	adp->arg_type = AT_BYREF;
 	adp->arg_inout = AI_OUTPUT;
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32) {
 		adp->arg_object = &statvfs32;
 		adp->arg_size = sizeof (statvfs32);
@@ -157,7 +160,7 @@ pr_fstatvfs(struct ps_prochandle *Pr, int fd, statvfs_t *buf)
 		errno = (error > 0)? error : ENOSYS;
 		return (-1);
 	}
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 	if (Pstatus(Pr)->pr_dmodel == PR_MODEL_ILP32)
 		statvfs_32_to_n(&statvfs32, buf);
 #endif	/* _LP64 */

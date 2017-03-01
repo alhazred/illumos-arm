@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -112,7 +115,7 @@ _nss_dns_init(void)
 	void		*reslib, (*f_void_ptr)();
 
 	/* If no libresolv library, then load one */
-	if (res_gethostbyname == 0) {
+	if (dlsym(RTLD_PROBE, "res_gethostbyname") == 0) {
 		if ((reslib =
 		    dlopen(NSS_DNS_LIBRESOLV, RTLD_LAZY|RTLD_GLOBAL)) != 0) {
 			/* Turn off /etc/hosts fall back in libresolv */

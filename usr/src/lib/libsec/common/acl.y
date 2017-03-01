@@ -22,12 +22,18 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <acl_common.h>
 #include <aclutils.h>
+#include <stdlib.h>
 
 extern int yyinteractive;
 extern acl_t *yyacl;
+extern int yylex(void);
+static void bad_entry_type(int toketype, char *str);
 %}
 
 %union {

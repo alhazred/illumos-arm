@@ -24,6 +24,9 @@
  * Copyright (c) 2013 RackTop Systems.
  * Copyright 2019 Nexenta by DDN, Inc. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdlib.h>
 #include <strings.h>

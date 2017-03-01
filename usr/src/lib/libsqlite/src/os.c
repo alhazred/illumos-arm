@@ -1651,7 +1651,9 @@ int sqliteOsRandomSeed(char *zBuf){
 #if OS_UNIX && !defined(SQLITE_TEST)
   {
     int pid;
-    time((time_t*)zBuf);
+    time_t tbuf = 0;
+    time(&tbuf);
+    memcpy(zBuf, &tbuf, sizeof(time_t));
     pid = getpid();
     memcpy(&zBuf[sizeof(time_t)], &pid, sizeof(pid));
   }
@@ -1777,6 +1779,7 @@ char *sqliteOsFullPathname(const char *zRelative){
     sqliteSetString(&zFull, zRelative, (char*)0);
   }else{
     char zBuf[5000];
+    zBuf[0] = 0;
     sqliteSetString(&zFull, getcwd(zBuf, sizeof(zBuf)), "/", zRelative,
                     (char*)0);
   }

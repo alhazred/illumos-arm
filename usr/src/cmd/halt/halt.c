@@ -28,6 +28,9 @@
  * Copyright 2016 Toomas Soome <tsoome@me.com>
  * Copyright 2018 OmniOS Community Edition (OmniOSce) Association.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -474,7 +477,7 @@ halt_zones()
 {
 	pid_t pid;
 	zoneid_t *zones;
-	size_t nz = 0, old_nz;
+	uint_t nz = 0, old_nz;
 	int i;
 	char zname[ZONENAME_MAX];
 
@@ -560,7 +563,7 @@ static void
 check_zones_haltedness()
 {
 	int t = 0, t_prog = 0;
-	size_t nz = 0, last_nz;
+	uint_t nz = 0, last_nz;
 
 	do {
 		last_nz = nz;

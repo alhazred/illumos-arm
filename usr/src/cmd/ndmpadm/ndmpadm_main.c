@@ -3,6 +3,9 @@
  * Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
  * Copyright (c) 2018, Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * BSD 3 Clause License
@@ -397,7 +400,7 @@ ndmp_show_sessions(int argc, char **argv, ndmp_command_t *cur_cmd)
 {
 	ndmp_session_info_t *sinfo = NULL;
 	ndmp_session_info_t *sp = NULL;
-	uint_t num;
+	size_t num;
 	int c, ret, i, j;
 	int statarg = 0;
 	char *value;

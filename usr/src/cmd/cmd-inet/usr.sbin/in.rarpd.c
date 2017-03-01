@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 /*	Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
 
@@ -403,7 +406,7 @@ init_rarpdev(struct rarpdev *rdev)
 	struct ifdev 	*ifdev;
 	int		retval;
 	char		*str = NULL;
-	uint_t		physaddrlen = DLPI_PHYSADDR_MAX;
+	size_t		physaddrlen = DLPI_PHYSADDR_MAX;
 	char		linkname[DLPI_LINKNAME_MAX];
 	dlpi_handle_t	dh;
 
@@ -481,7 +484,7 @@ do_rarp(void *buf)
 	char	*cause;
 	struct arphdr *ans;
 	uchar_t *shost;
-	uint_t	saddrlen;
+	size_t	saddrlen;
 	size_t	anslen = rdev->ifrarplen;
 	char	*str = NULL;
 	int	retval;

@@ -24,6 +24,9 @@
  * Copyright 2014 Nexenta Systems, Inc. All rights reserved.
  * Copyright (c) 2015 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * zoneadm is a command interpreter for zone administration.  It is all in
@@ -106,7 +109,7 @@ typedef struct zone_entry {
 #define	CLUSTER_BRAND_NAME	"cluster"
 
 static zone_entry_t *zents;
-static size_t nzents;
+static uint_t nzents;
 
 #define	LOOPBACK_IF	"lo0"
 #define	SOCKET_AF(af)	(((af) == AF_UNSPEC) ? AF_INET : (af))

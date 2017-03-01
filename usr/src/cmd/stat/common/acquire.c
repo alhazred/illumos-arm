@@ -22,6 +22,9 @@
  * Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2012 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include "statcommon.h"
 #include "dsr.h"
@@ -119,7 +122,7 @@ acquire_psets(struct snapshot *ss)
 {
 	psetid_t *pids = NULL;
 	struct pset_snapshot *ps;
-	size_t pids_nr;
+	uint_t pids_nr;
 	size_t i, j;
 
 	/*

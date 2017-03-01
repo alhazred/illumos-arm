@@ -25,6 +25,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,7 +55,7 @@ static int verbose;		/* -v on command line */
 struct attach_data {
 	ppptun_lname appstr;    /* String to append to interface name (PPA) */
 	ppptun_atype localaddr; /* Local interface address */
-	uint_t locallen;	/* Length of local address */
+	size_t locallen;	/* Length of local address */
 	uint_t sap;		/* SAP for PPPoE */
 };
 

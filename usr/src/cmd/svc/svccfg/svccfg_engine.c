@@ -22,6 +22,9 @@
 /*
  *  Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 /*
@@ -48,7 +51,7 @@
 #define	MS_PER_US		1000
 
 engine_state_t *est;
-
+extern int yyparse(void);
 /*
  * Replacement lex(1) character retrieval routines.
  */

@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 1988, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -130,7 +133,7 @@ void	uid_bcom(struct uid_blk *), add_ublk(uid_t, struct uid_blk *),
 	file_error(void), bad_news(void), no_lock(void), add_uid(uid_t),
 	rid_tmpf(void), ck_p_sz(struct passwd *), ck_s_sz(struct spwd *),
 	bad_name(char *), bad_uattr(void);
-
+int rec_pwd(void);
 void file_copy(FILE *spf, long NIS_pos);
 
 static FILE *fp_ptemp, *fp_stemp, *fp_uatemp;

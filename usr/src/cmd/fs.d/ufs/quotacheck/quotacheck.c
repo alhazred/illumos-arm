@@ -22,6 +22,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -88,6 +91,9 @@ int fi;
 ino_t ino;
 struct	dinode	*ginode();
 char *mntopt(), *hasvfsopt(), *hasmntopt();
+int preen_addev(char *devnm);
+int preen_getdev(char *devnm);
+int preen_releasedev(char *devnm);
 
 extern int	optind;
 extern char	*optarg;

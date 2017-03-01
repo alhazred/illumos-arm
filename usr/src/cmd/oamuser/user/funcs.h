@@ -23,6 +23,9 @@
  * Copyright 1999,2002-2003 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_FUNCS_H
 #define	_FUNCS_H
@@ -46,6 +49,10 @@ int is_role(char *usertype);
 void change_key(const char *, char *);
 void addkey_args(char **, int *);
 char *getsetdefval(const char *, char *);
+int edit_project(char *login, char *new_login, projid_t projids[], int overwrite);
+gid_t *valid_lgroup(char *list, gid_t gid);
+projid_t *valid_lproject(char *list);
+void putprojent(struct project *projstr, FILE *to);
 
 extern int nkeys;
 

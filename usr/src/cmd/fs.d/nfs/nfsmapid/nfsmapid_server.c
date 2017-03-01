@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 /*
@@ -85,7 +88,15 @@ extern int	 extract_domain(char *, char **, char **);
 extern void	 update_diag_file(char *);
 extern void	*cb_update_domain(void *);
 extern int	 cur_domain_null(void);
-
+int
+decode_args(xdrproc_t xdrfunc, refd_door_args_t *argp, caddr_t *xdrargs,
+    int size);
+int
+encode_res(
+	xdrproc_t xdrfunc,
+	refd_door_res_t **results,
+	caddr_t resp,
+	int *size);
 void
 nfsmapid_str_uid(struct mapid_arg *argp, size_t arg_size)
 {

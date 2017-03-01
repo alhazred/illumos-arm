@@ -24,6 +24,9 @@
 /*
  * Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 /* Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T */
 /* All Rights Reserved */
 /*
@@ -159,6 +162,10 @@ uid_t rpcb_caller_uid(SVCXPRT *);
 
 /* XDR functions */
 bool_t xdr_rpcblist_ptr_ptr(XDR *, rpcblist_ptr **);
+
+int	del_pmaplist(RPCB *);
+void	delete_rbl(rpcblist_ptr);
+
 
 /* For different getaddr semantics */
 #define	RPCB_ALLVERS 0

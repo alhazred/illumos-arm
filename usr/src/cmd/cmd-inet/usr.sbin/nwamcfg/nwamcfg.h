@@ -24,6 +24,9 @@
  * Use is subject to license terms.
  * Copyright (c) 2016, Chris Fraire <cfraire@me.com>.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _NWAMCFG_H
 #define	_NWAMCFG_H
@@ -176,7 +179,8 @@ extern void properr(const char *);
 extern boolean_t saw_error;
 
 extern FILE *yyin;
-
+void help_wrap();
+void command_usage(int command);
 #ifdef __cplusplus
 }
 #endif

@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 1988, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	All Rights Reserved	*/
@@ -265,7 +268,7 @@ extern long	lrand48();
 
 extern int	optind;
 extern char	*optarg;
-
+extern int fsgetmaxphys(int *maxphys, int *error);
 
 /*
  * The size of a cylinder group is calculated by CGSIZE. The maximum size

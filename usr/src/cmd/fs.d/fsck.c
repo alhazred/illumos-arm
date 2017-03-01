@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -66,6 +69,9 @@
 		}\
 		break
 
+extern int preen_addev(char *devnm);
+extern int preen_getdev(char *devnm);
+extern int preen_releasedev(char *name);
 
 int	nrun, ndisks;
 int	maxrun = 8;	/* should be based on the machine resources */
@@ -112,6 +118,8 @@ static void startdisk(struct devlist *dp);
 static void do_exec(char *fstype, char *nargv[]);
 static void prnt_cmd(FILE *fd, char *fstype);
 static void vfserror(int flag);
+static int execute(char *fsckdev, char *fstype, int Vflg, FILE *fd);
+static int numbers(char *yp);
 
 static int
 vfdup(struct vfstab *vp)
@@ -755,7 +763,7 @@ getdev(char *name, struct devlist **list)
 }
 
 /* see if all numbers */
-int
+static int
 numbers(char *yp)
 {
 	if (yp == NULL)
@@ -767,7 +775,7 @@ numbers(char *yp)
 	return (1);
 }
 
-int
+static int
 execute(char *fsckdev, char *fstype, int Vflg, FILE *fd)
 {
 	int	st;

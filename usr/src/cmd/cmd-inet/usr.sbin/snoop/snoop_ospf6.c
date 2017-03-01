@@ -23,6 +23,9 @@
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -50,6 +53,7 @@ static char *sum_line;
 extern const struct bits ospf_db_flags_bits[];
 extern const struct bits ospf_rla_flag_bits[];
 extern const struct bits ospf_option_bits[];
+extern int interpret_ospf(int flags, struct ospfhdr *ospf, int iplen, int fraglen);
 
 const struct bits ospf6_option_bits[] = {
 	{ OSPF_OPTION_V6,	"V6" },

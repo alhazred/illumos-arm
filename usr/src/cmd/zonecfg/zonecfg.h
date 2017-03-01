@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 2003, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _ZONECFG_H
 #define	_ZONECFG_H
@@ -237,7 +240,7 @@ extern char *prop_types[];
  */
 extern void assert_no_unclaimed_tokens(void);
 extern char *claim_token(char *);
-
+void short_usage(int command);
 #ifdef __cplusplus
 }
 #endif

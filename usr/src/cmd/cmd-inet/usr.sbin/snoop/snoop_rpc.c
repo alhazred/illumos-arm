@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/errno.h>
@@ -61,6 +64,7 @@ static void rpc_detail_reply(int, int, struct cache_struct *, char *, int len);
 static void print_creds(int);
 static void print_verif(int);
 static void stash_xid(ulong_t, int, int, int, int);
+void extract_rpcsec_gss_cred_info(int xid);
 
 #define	LAST_FRAG ((ulong_t)1 << 31)
 

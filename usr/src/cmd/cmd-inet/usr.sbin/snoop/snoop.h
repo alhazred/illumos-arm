@@ -25,6 +25,9 @@
  *
  * Copyright 2011 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SNOOP_H
 #define	_SNOOP_H
@@ -281,7 +284,7 @@ extern char *printether(struct ether_addr *);
 extern char *print_ethertype(int);
 extern const char *arp_htype(int);
 extern int valid_rpc(char *, int);
-
+extern void interpret_igmp(int flags, char *data, int iplen, int ilen);
 /*
  * Describes characteristics of the Media Access Layer.
  * The mac_type is one of the supported DLPI media

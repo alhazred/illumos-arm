@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -81,6 +84,13 @@ extern char	*optarg;
 #if	!defined(TEXT_DOMAIN)   /* Should be defined by cc -D */
 #define	TEXT_DOMAIN "SYS_TEST"  /* Use this only if it weren't */
 #endif
+int quotactl(int cmd, char *mountp, uid_t uid, caddr_t addr);
+int alldigits(char *s);
+int showname(char *name);
+int getdiskquota(struct mnttab *mntp, uid_t uid, struct dqblk *dqp);
+int hasopt(char *opt, char *optlist);
+int callaurpc(char *host, int prognum, int versnum, int procnum,
+    xdrproc_t inproc, char *in, xdrproc_t outproc, char *out);
 
 static void zexit(int);
 static int getzfsquota(char *, char *, struct dqblk *);
@@ -272,7 +282,7 @@ showquotas(uid_t uid, char *name)
 		} else if (strcmp(mnt.mnt_fstype, MNTTYPE_UFS) == 0) {
 			if (nolocalquota ||
 			    (quotactl(Q_GETQUOTA,
-			    mnt.mnt_mountp, uid, &dqblk) != 0 &&
+			    mnt.mnt_mountp, uid, (caddr_t)&dqblk) != 0 &&
 			    !(vflag && getdiskquota(&mnt, uid, &dqblk))))
 				continue;
 		} else if (strcmp(mnt.mnt_fstype, MNTTYPE_NFS) == 0) {
@@ -771,7 +781,7 @@ getnfsquota(char *hostp, char *path, uid_t uid, struct dqblk *dqp)
 	gq_args.gqa_uid = uid;
 	rpc_err = callaurpc(hostp, RQUOTAPROG, RQUOTAVERS,
 	    (vflag? RQUOTAPROC_GETQUOTA: RQUOTAPROC_GETACTIVEQUOTA),
-	    xdr_getquota_args, &gq_args, xdr_getquota_rslt, &gq_rslt);
+	    xdr_getquota_args, (char *)&gq_args, xdr_getquota_rslt, (char *)&gq_rslt);
 	if (rpc_err != RPC_SUCCESS) {
 		return (rpc_err);
 	}

@@ -22,6 +22,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 /* Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T */
 /* All Rights Reserved */
 /*
@@ -78,6 +81,7 @@ struct utmpidlearr utmpidlearr;
 static void free_ua_entry(rusers_utmp *uap);
 static int findidle(char *name, int ln, time_t	now);
 static void usys5to_ru(struct utmpx *s5, struct ru_utmp *bss);
+static int console_idle(time_t now);
 
 int
 main(int argc, char *argv[])

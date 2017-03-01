@@ -27,6 +27,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include	<stdio.h>
 #include	<stdlib.h>
@@ -71,6 +74,7 @@ struct 	commands *c_ptr;
 static void usage(char *cmd, char *usg);
 static void exec_specific(void);
 static void lookup(void);
+static int numbers(char *yp);
 
 int
 main(int argc, char *argv[])
@@ -244,7 +248,7 @@ main(int argc, char *argv[])
 }
 
 /* see if all numbers */
-int
+static int
 numbers(char *yp)
 {
 	if (yp == NULL)

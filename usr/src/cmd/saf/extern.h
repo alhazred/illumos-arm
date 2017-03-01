@@ -25,6 +25,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_EXTERN_H
 #define	_EXTERN_H
@@ -87,6 +90,12 @@ extern	char	Comment[];
 extern	int	Saferrno;
 
 extern	char	**environ;
+extern int sendsig(struct sactab *sp, int signo);
+extern int check_version(int ver, char *fname);
+extern int startpm(struct sactab *);
+extern int do_config(char *script, char *basename);
+extern int find_pm(FILE *fp, char *pmtag);
+extern int copy_file(FILE *fp, FILE *tfp, int start, int finish);
 
 #ifdef	__cplusplus
 }

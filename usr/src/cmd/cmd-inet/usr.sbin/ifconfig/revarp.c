@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
 
@@ -326,7 +329,7 @@ rarp_recv(dlpi_handle_t dh, struct arphdr *ans, size_t msglen,
 void
 dlpi_print_address(const char *linkname)
 {
-	uint_t	physaddrlen = DLPI_PHYSADDR_MAX;
+	size_t	physaddrlen = DLPI_PHYSADDR_MAX;
 	uchar_t	physaddr[DLPI_PHYSADDR_MAX];
 	char	*str;
 	int	retv;

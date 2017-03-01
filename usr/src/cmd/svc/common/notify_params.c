@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <libintl.h>
 #include <libnvpair.h>
@@ -287,7 +290,7 @@ listnotify_print(nvlist_t *nvl, const char *event)
 {
 	char *fmri;
 	nvlist_t **params;
-	size_t n;
+	uint_t n;
 	int32_t tset;
 	int i;
 

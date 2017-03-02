@@ -2,6 +2,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright (c) 1983 Regents of the University of California.
@@ -751,7 +754,7 @@ deswrite_compat(int fd, char *buf, int len, int secondary)
 
 	if (krb5_c_encrypt_length(kcmd_context, final_enctype,
 			use_ivecs ? (size_t)len + 4 : (size_t)len, &ret)) {
-		desoutbuf.length = ((size_t)-1);
+		desoutbuf.length = ((unsigned int)-1);
 		goto err;
 	} else {
 		desoutbuf.length = ret;

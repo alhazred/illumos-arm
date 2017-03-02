@@ -23,6 +23,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright (c) 2015, Joyent, Inc. All rights reserved.
@@ -707,7 +710,7 @@ int rc_node_delete(rc_node_ptr_t *);
 int rc_node_next_snaplevel(rc_node_ptr_t *, rc_node_ptr_t *);
 
 int rc_node_setup_iter(rc_node_ptr_t *, rc_node_iter_t **, uint32_t,
-    size_t, const char *);
+    uint32_t, const char *);
 
 int rc_iter_next(rc_node_iter_t *, rc_node_ptr_t *, uint32_t);
 int rc_iter_next_value(rc_node_iter_t *, struct rep_protocol_value_response *,

@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2012 Milan Jurik. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <string.h>
@@ -60,7 +63,7 @@ struct ohdr {
 	int	o_msglen;
 	int	o_totlen;
 	/* nit_head */
-	struct timeval o_time;
+	struct timeval32 o_time;
 	int	o_drops;
 	int	o_len;
 };
@@ -327,7 +330,7 @@ scan(char *buf, int len, int filter, int cap, int old, void (*proc)(),
 	volatile struct sb_hdr *hdrp;
 	volatile struct sb_hdr nhdr, *nhdrp;
 	volatile char *pktp;
-	volatile struct timeval last_timestamp;
+	volatile struct timeval32 last_timestamp;
 	volatile int header_okay;
 	extern int count, maxcount;
 	extern int snoop_nrecover;

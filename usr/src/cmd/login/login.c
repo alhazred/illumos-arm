@@ -23,6 +23,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -2454,7 +2457,8 @@ static void
 display_last_login_time(void)
 {
 	if (lastlogok) {
-		(void) printf("Last login: %.*s ", 24-5, ctime(&ll.ll_time));
+		time_t tm = ll.ll_time;
+		(void) printf("Last login: %.*s ", 24-5, ctime(&tm));
 
 		if (*ll.ll_host != '\0')
 			(void) printf("from %.*s\n", sizeof (ll.ll_host),

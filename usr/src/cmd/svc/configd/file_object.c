@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright (c) 2016 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -1448,7 +1451,7 @@ static object_info_t info[] = {
 		propertygrp_delete_start,
 	},
 	{REP_PROTOCOL_ENTITY_PROPERTY},
-	{-1UL}
+	{-1U}
 };
 #define	NUM_INFO (sizeof (info) / sizeof (*info))
 

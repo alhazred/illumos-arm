@@ -24,6 +24,9 @@
  * Copyright (c) 2013, Joyent, Inc.  All rights reserved.
  * Copyright (c) 2016 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * rc_node.c - In-memory SCF object management
@@ -415,7 +418,7 @@ static rc_type_info_t rc_types[] = {
 	{REP_PROTOCOL_ENTITY_CPROPERTYGRP, 0, UU_NAME_DOMAIN,
 	    {REP_PROTOCOL_ENTITY_PROPERTY}},
 	{REP_PROTOCOL_ENTITY_PROPERTY, 7, UU_NAME_DOMAIN},
-	{-1UL}
+	{-1U}
 };
 #define	NUM_TYPES	((sizeof (rc_types) / sizeof (*rc_types)))
 

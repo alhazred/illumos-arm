@@ -419,7 +419,7 @@ static char checkopt(char *optim);
 static char checkmtb(char *mtbarg);
 static void range_check(long *varp, char *name, long minimum,
     long maximum, long def_val, int user_supplied);
-static void range_check_64(uint64_t *varp, char *name, uint64_t minimum,
+static void range_check_64(diskaddr_t *varp, char *name, uint64_t minimum,
     uint64_t maximum, uint64_t def_val, int user_supplied);
 static daddr32_t alloc(int size, int mode);
 static diskaddr_t get_max_size(int fd);
@@ -3123,7 +3123,7 @@ wait_for_write(int block)
 			wtfs_breakup(transp->bno, transp->size, transp->buffer);
 		} else {
 			(void) fprintf(stderr, gettext(
-			    "short write (%d of %d bytes) on sector %lld\n"),
+			    "short write (%lx of %lx bytes) on sector %lld\n"),
 			    resultp->aio_return, transp->size,
 			    transp->bno);
 			/*
@@ -5415,7 +5415,7 @@ range_check(long *varp, char *name, long minimum, long maximum,
  * When testing, can compare user_supplied to RC_KEYWORD or RC_POSITIONAL.
  */
 static void
-range_check_64(uint64_t *varp, char *name, uint64_t minimum, uint64_t maximum,
+range_check_64(diskaddr_t *varp, char *name, uint64_t minimum, uint64_t maximum,
     uint64_t def_val, int user_supplied)
 {
 	if ((*varp < minimum) || (*varp > maximum)) {

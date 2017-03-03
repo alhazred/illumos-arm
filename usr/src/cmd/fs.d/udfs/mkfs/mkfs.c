@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -175,7 +178,7 @@ static uint32_t oldfssize;
 static char *oldlabel;
 
 int
-main(int32_t argc, int8_t *argv[])
+main(int argc, char *argv[])
 {
 	long i;
 	FILE *mnttab;

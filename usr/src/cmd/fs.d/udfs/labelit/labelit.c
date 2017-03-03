@@ -22,6 +22,9 @@
  * Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -76,7 +79,7 @@ static int32_t convert_string(int8_t *, int8_t *, int32_t, int32_t, int8_t *);
 static int32_t ud_convert2unicode(int8_t *, int8_t *, int32_t);
 
 
-int8_t *labelit_subopts[] = {
+char *labelit_subopts[] = {
 #define	LVINFO1	0x00
 	"lvinfo1",
 #define	LVINFO2	0x01
@@ -92,8 +95,8 @@ main(int32_t argc, char *argv[])
 	int32_t		opt = 0;
 	int32_t		flags = 0;
 	int32_t		ret = 0;
-	int8_t		*options = NULL;
-	int8_t		*value = NULL;
+	char		*options = NULL;
+	char		*value = NULL;
 	uint32_t	set_flags = 0;
 	ud_handle_t	udh;
 

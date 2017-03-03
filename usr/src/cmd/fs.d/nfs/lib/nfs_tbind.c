@@ -25,6 +25,9 @@
  * Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
  * Copyright 2014 Gary Mills
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 /*
@@ -1748,7 +1751,7 @@ set_addrmask(int fd,
 		 */
 		/* LINTED pointer alignment */
 		((struct sockaddr_in *)mask->buf)->sin_addr.s_addr =
-		    (ulong_t)~0;
+								(in_addr_t)~0;
 		/* LINTED pointer alignment */
 		((struct sockaddr_in *)mask->buf)->sin_family =
 		    (ushort_t)~0;

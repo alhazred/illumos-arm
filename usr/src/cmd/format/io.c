@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2015 Nexenta Systems, Inc. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains I/O related functions.
@@ -689,7 +692,7 @@ reprompt:
 				/*
 				 * Duplicate and return the default string
 				 */
-				return ((int)alloc_string((char *)deflt));
+				return ((intptr_t)alloc_string((char *)deflt));
 			} else if (type == FIO_SLIST) {
 				/*
 				 * If we can find a match for the default
@@ -997,7 +1000,7 @@ reprompt:
 		/*
 		 * alloc a copy of the string and return it
 		 */
-		return ((int)alloc_string(token));
+		return ((intptr_t)alloc_string(token));
 
 	/*
 	 * Expecting a blank line.

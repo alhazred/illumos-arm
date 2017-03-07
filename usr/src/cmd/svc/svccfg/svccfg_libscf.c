@@ -26,6 +26,9 @@
  * Copyright 2017 RackTop Systems.
  * Copyright 2018 OmniOS Community Edition (OmniOSce) Association.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #include <alloca.h>
@@ -12604,7 +12607,7 @@ lscf_service_delete(scf_service_t *svc, int force)
 static int
 delete_callback(void *data, scf_walkinfo_t *wip)
 {
-	int force = (int)data;
+	int force = (int)(intptr_t)data;
 
 	if (wip->inst != NULL)
 		(void) lscf_instance_delete(wip->inst, force);
@@ -12684,7 +12687,7 @@ lscf_delete(const char *fmri, int force)
 	 * Match FMRI to entity.
 	 */
 	if ((ret = scf_walk_fmri(g_hndl, 1, (char **)&fmri, SCF_WALK_SERVICE,
-	    delete_callback, (void *)force, NULL, semerr)) != 0) {
+	    delete_callback, (void *)(intptr_t)force, NULL, semerr)) != 0) {
 		semerr(gettext("Failed to walk instances: %s\n"),
 		    scf_strerror(ret));
 	}

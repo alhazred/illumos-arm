@@ -2,6 +2,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -629,7 +632,7 @@ linkup(fsck_ino_t orphan, fsck_ino_t parentdir, caddr_t name)
 	 */
 noconnect:
 	if (lostdir) {
-		intree = tsearch((void *)orphan, &limbo_dirs,
+		intree = tsearch((void *)(intptr_t)orphan, &limbo_dirs,
 		    ino_t_cmp);
 		if (intree == NULL)
 			errexit("linkup: out of memory");
@@ -739,7 +742,7 @@ do_reconnect(fsck_ino_t orphan, fsck_ino_t parentdir, caddr_t name)
 	 */
 noconnect:
 	if (lostdir) {
-		intree = tsearch((void *)orphan, &limbo_dirs,
+		intree = tsearch((void *)(intptr_t)orphan, &limbo_dirs,
 		    ino_t_cmp);
 		if (intree == NULL)
 		errexit("linkup: out of memory");

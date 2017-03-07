@@ -376,7 +376,7 @@ parse_params(char *famstr, char *typestr, char *protostr, char *path,
 	printf("not calling sockconfig(%d, %d, %d, %d, %s)\n",
 	    cmd, fam, type, protocol, path == NULL ? "(null)" : path);
 #else
-	if (_sockconfig(cmd, fam, type, protocol, path) == -1) {
+	if (_sockconfig(cmd, (void *)(intptr_t)fam, (void *)(intptr_t)type, (void *)(intptr_t)protocol, path) == -1) {
 		char *s;
 
 		switch (errno) {

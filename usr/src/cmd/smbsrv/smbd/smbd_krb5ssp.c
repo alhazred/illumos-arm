@@ -12,6 +12,9 @@
 /*
  * Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * SPNEGO back-end for Kerberos.  See [MS-KILE]
@@ -155,7 +158,7 @@ smbd_krb5ssp_work(authsvc_context_t *ctx)
 	if (GSS_ERROR(major)) {
 		smbd_report("krb5ssp: gss_accept_sec_context, "
 		    "mech=0x%x, major=0x%x, minor=0x%x",
-		    (int)mech_type, major, minor);
+		    (int)(intptr_t)mech_type, major, minor);
 		smbd_report(" krb5: %s",
 		    krb5_get_error_message(be->be_kctx, minor));
 		return (NT_STATUS_WRONG_PASSWORD);

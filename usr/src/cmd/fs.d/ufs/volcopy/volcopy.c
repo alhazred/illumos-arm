@@ -794,7 +794,7 @@ mem_setup(void)
 	(void) signal(SIGSYS, sigsys);
 	errno = 0;
 	if (Ipc) {
-		if ((int)shmat(0, (char *)NULL, 0) < 0 && errno != EINVAL)
+		if ((int)(intptr_t)shmat(0, (char *)NULL, 0) < 0 && errno != EINVAL)
 			Ipc = 0; /* something went wrong */
 	}
 	if (Ipc) { /* ipc is available */
@@ -895,7 +895,7 @@ align(int size)
 {
 	int pad;
 
-	if ((pad = ((int)malloc(0) & (PAGESIZE-1))) > 0) {
+	if ((pad = ((int)(intptr_t)malloc(0) & (PAGESIZE-1))) > 0) {
 		pad = PAGESIZE - pad;
 		if (malloc(pad) == (char *)NULL)
 			return ((char *)NULL);

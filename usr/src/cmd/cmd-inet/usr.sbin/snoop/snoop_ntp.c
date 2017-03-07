@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -212,7 +215,7 @@ interpret_ntp(int flags, struct ntpdata *ntp_pkt, int fraglen)
 				 */
 				break;
 		    }
-		    (void) sprintf(get_line((char *)ntp->keyid -
+		    (void) sprintf(get_line((char *)(uintptr_t)ntp->keyid -
 			dlc_header, 1),
 			"Key ID  = %8lu", ntohl(ntp->keyid));
 

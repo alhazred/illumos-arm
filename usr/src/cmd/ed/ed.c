@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 1988, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -1496,7 +1499,7 @@ append(int (*f)(void), LINE a)
 	dot = a;
 	while ((*f)() == 0) {
 		if (dol >= endcore) {
-			if ((int)sbrk(512 * sizeof (struct lin)) == -1) {
+			if ((intptr_t)sbrk(512 * sizeof (struct lin)) == -1) {
 				lastc = '\n';
 				(void) error(30);
 			}

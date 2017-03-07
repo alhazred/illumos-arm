@@ -22,6 +22,9 @@
 /*
  * Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
@@ -1520,7 +1523,7 @@ pr_name(char *name, int flag)
 		mutex_lock(&record_table[hash].lock);
 		nl = record_table[hash].sm_rechdp;
 		while (nl != NULL) {
-			(void) printf("(%x), ", (int)nl);
+			(void) printf("(%x), ", (int)(intptr_t)nl);
 			nl = nl->nxt;
 		}
 		mutex_unlock(&record_table[hash].lock);
@@ -1529,7 +1532,7 @@ pr_name(char *name, int flag)
 		mutex_lock(&recov_q.lock);
 		nl = recov_q.sm_recovhdp;
 		while (nl != NULL) {
-			(void) printf("(%x), ", (int)nl);
+			(void) printf("(%x), ", (int)(intptr_t)nl);
 			nl = nl->nxt;
 		}
 		mutex_unlock(&recov_q.lock);

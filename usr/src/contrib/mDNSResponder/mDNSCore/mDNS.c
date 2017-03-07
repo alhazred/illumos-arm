@@ -3039,7 +3039,7 @@ mDNSlocal void SendResponses(mDNS *const m)
         {
             if (rr->ARType != AuthRecordLocalOnly && rr->ARType != AuthRecordP2P)
                 LogInfo("SendResponses: No active interface %d to send: %d %02X %s",
-                     (uint32_t)rr->SendRNow, (uint32_t)rr->resrec.InterfaceID, rr->resrec.RecordType, ARDisplayString(m, rr));
+                     (uint32_t)(uintptr_t)rr->SendRNow, (uint32_t)(uintptr_t)rr->resrec.InterfaceID, rr->resrec.RecordType, ARDisplayString(m, rr));
             rr->SendRNow = mDNSNULL;
         }
 
@@ -4012,7 +4012,7 @@ mDNSlocal void SendQueries(mDNS *const m)
         {
             if (ar->ARType != AuthRecordLocalOnly && ar->ARType != AuthRecordP2P)
                 LogInfo("SendQueries: No active interface %d to send probe: %d %s",
-                    (uint32_t)ar->SendRNow, (uint32_t)ar->resrec.InterfaceID, ARDisplayString(m, ar));
+                    (uint32_t)(uintptr_t)ar->SendRNow, (uint32_t)(uintptr_t)ar->resrec.InterfaceID, ARDisplayString(m, ar));
             ar->SendRNow = mDNSNULL;
         }
 
@@ -4047,7 +4047,7 @@ mDNSlocal void SendQueries(mDNS *const m)
             // so don't log the warning in that case.
             if (q->InterfaceID != mDNSInterface_BLE)
                 LogInfo("SendQueries: No active interface %d to send %s question: %d %##s (%s)",
-                    (uint32_t)q->SendQNow, x ? "new" : "old", (uint32_t)q->InterfaceID, q->qname.c, DNSTypeName(q->qtype));
+                    (uint32_t)(uintptr_t)q->SendQNow, x ? "new" : "old", (uint32_t)(uintptr_t)q->InterfaceID, q->qname.c, DNSTypeName(q->qtype));
             q->SendQNow = mDNSNULL;
         }
         q->CachedAnswerNeedsUpdate = mDNSfalse;
@@ -11774,7 +11774,7 @@ mDNSlocal mStatus ValidateParameters(mDNS *const m, DNSQuestion *const question)
         NetworkInterfaceInfo *intf = FirstInterfaceForID(m, question->InterfaceID);
         if (!intf)
             LogInfo("ValidateParameters: Note: InterfaceID %d for question %##s (%s) not currently found in active interface list",
-                    (uint32_t)question->InterfaceID, question->qname.c, DNSTypeName(question->qtype));
+                    (uint32_t)(uintptr_t)question->InterfaceID, question->qname.c, DNSTypeName(question->qtype));
     }
 
     return(mStatus_NoError);
@@ -13063,7 +13063,7 @@ mDNSexport mStatus mDNS_RegisterInterface(mDNS *const m, NetworkInterfaceInfo *s
         AdvertiseInterface(m, set);
 
     LogInfo("mDNS_RegisterInterface: InterfaceID %d %s (%#a) %s",
-            (uint32_t)set->InterfaceID, set->ifname, &set->ip,
+            (uint32_t)(uintptr_t)set->InterfaceID, set->ifname, &set->ip,
             set->InterfaceActive ?
             "not represented in list; marking active and retriggering queries" :
             "already represented in list; marking inactive for now");
@@ -13229,7 +13229,7 @@ mDNSexport void mDNS_DeregisterInterface(mDNS *const m, NetworkInterfaceInfo *se
         if (intf)
         {
             LogInfo("mDNS_DeregisterInterface: Another representative of InterfaceID %d %s (%#a) exists;"
-                    " making it active", (uint32_t)set->InterfaceID, set->ifname, &set->ip);
+                    " making it active", (uint32_t)(uintptr_t)set->InterfaceID, set->ifname, &set->ip);
             if (intf->InterfaceActive)
                 LogMsg("mDNS_DeregisterInterface: ERROR intf->InterfaceActive already set for %s (%#a)", set->ifname, &set->ip);
             intf->InterfaceActive = mDNStrue;
@@ -13252,7 +13252,7 @@ mDNSexport void mDNS_DeregisterInterface(mDNS *const m, NetworkInterfaceInfo *se
             DNSQuestion *q;
 
             LogInfo("mDNS_DeregisterInterface: Last representative of InterfaceID %d %s (%#a) deregistered;"
-                    " marking questions etc. dormant", (uint32_t)set->InterfaceID, set->ifname, &set->ip);
+                    " marking questions etc. dormant", (uint32_t)(uintptr_t)set->InterfaceID, set->ifname, &set->ip);
 
             m->mDNSStats.InterfaceDown++;
 

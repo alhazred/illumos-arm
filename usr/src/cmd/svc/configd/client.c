@@ -24,6 +24,9 @@
  * Copyright 2015 RackTop Systems.
  * Copyright 2019 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This is the client layer for svc.configd.  All direct protocol interactions
@@ -2300,7 +2303,7 @@ client_switcher(void *cookie, char *argp, size_t arg_size, door_desc_t *desc_in,
 	thread_info_t *ti = thread_self();
 
 	repcache_client_t *cp;
-	uint32_t id = (uint32_t)cookie;
+	uint32_t id = (uint32_t)(intptr_t)cookie;
 	enum rep_protocol_requestid request_code;
 
 	rep_protocol_responseid_t result = INVALID_RESULT;
@@ -2467,7 +2470,7 @@ create_client(pid_t pid, uint32_t debugflags, int privileged, int *out_fd)
 	start_audit_session(cp);
 #endif
 
-	cp->rc_doorfd = door_create(client_switcher, (void *)cp->rc_id,
+	cp->rc_doorfd = door_create(client_switcher, (void *)(intptr_t)cp->rc_id,
 	    door_flags);
 
 	if (cp->rc_doorfd < 0) {

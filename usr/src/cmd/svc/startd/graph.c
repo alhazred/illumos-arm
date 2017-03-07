@@ -26,6 +26,9 @@
  * Copyright 2016 Toomas Soome <tsoome@me.com>
  * Copyright 2016 RackTop Systems.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * graph.c - master restarter graph engine
@@ -5450,7 +5453,7 @@ mark_subgraph(graph_edge_t *e, void *arg)
 {
 	graph_vertex_t *v;
 	int r;
-	int optional = (int)arg;
+	int optional = (int)(intptr_t)arg;
 
 	v = e->ge_vertex;
 
@@ -5479,7 +5482,7 @@ mark_subgraph(graph_edge_t *e, void *arg)
 		return (UU_WALK_NEXT);
 
 	r = uu_list_walk(v->gv_dependencies, (uu_walk_fn_t *)mark_subgraph,
-	    (void *)optional, 0);
+	    (void *)(intptr_t)optional, 0);
 	assert(r == 0);
 	return (UU_WALK_NEXT);
 }

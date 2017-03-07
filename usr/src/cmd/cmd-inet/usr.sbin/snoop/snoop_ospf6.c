@@ -316,7 +316,7 @@ interpret_ospf6_lsa_hdr(int flags, struct lsa6_hdr *lsah)
 
 }
 
-#define	TRUNC(addr)	((uchar_t *)(addr) > fragend)
+#define	TRUNC(addr)	((uchar_t *)(uintptr_t)(addr) > fragend)
 static int
 interpret_ospf6_lsa(int flags, struct lsa6 *lsa, uchar_t *fragend)
 {

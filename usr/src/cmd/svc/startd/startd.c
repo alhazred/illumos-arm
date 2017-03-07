@@ -23,6 +23,9 @@
  * Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2015, Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * startd.c - the master restarter
@@ -907,7 +910,7 @@ startup(void)
 	 */
 	utmpx_init();
 
-	(void) startd_thread_create(fork_configd_thread, (void *)configd_ctid);
+	(void) startd_thread_create(fork_configd_thread, (void *)(intptr_t)configd_ctid);
 
 	/*
 	 * Await, if necessary, configd's initial arrival.

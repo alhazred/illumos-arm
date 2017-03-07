@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * lsvcrun - run an rc?.d script, modifying appropriate data in the
@@ -763,7 +766,7 @@ set_legacy_service(scf_propertygroup_t *pg, const char *script, ino_t inode)
 	}
 
 	if (add_new_property(h, tx, SCF_PROPERTY_CONTRACT, SCF_TYPE_COUNT,
-	    (void *)ctid) != 0)
+	    (void *)(uintptr_t)ctid) != 0)
 		goto err;
 
 	for (;;) {

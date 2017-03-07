@@ -32,6 +32,7 @@
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
+#include <stddef.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -219,7 +220,7 @@ do_readdir(autofs_rddirargs *rda, autofs_rddirres *rd)
 
 #define	roundtoint(x)	(((x) + sizeof (int) - 1) & ~(sizeof (int) - 1))
 #define	DIRENT64_RECLEN(namelen)	\
-	(((int)(((dirent64_t *)0)->d_name) + 1 + (namelen) + 7) & ~ 7)
+	((offsetof(dirent64_t, d_name) + 1 + (namelen) + 7) & ~ 7ul)
 
 static int
 create_dirents(

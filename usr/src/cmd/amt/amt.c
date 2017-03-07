@@ -23,6 +23,9 @@
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Abstract Machine Test; executes memory access tests to show
@@ -333,7 +336,7 @@ static void
 probe_text_area()
 {
 	handler_exit_code = FAIL_SEGV;
-	*(caddr_t)probe_text_area = 0xff;
+	*(volatile caddr_t)probe_text_area = 0xff;
 	exit(EXIT_FAILURE);
 }
 

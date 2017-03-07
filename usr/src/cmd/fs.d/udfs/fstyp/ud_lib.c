@@ -22,6 +22,10 @@
  * Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -587,8 +591,8 @@ begin:
 				(SWAP_32(lvd->lvd_vdsn) > v->lvd_vdsn)) {
 				v->lvd_vdsn = SWAP_32(lvd->lvd_vdsn);
 				v->lvd_loc = vds_loc;
-				v->lvd_len = ((uint32_t)
-					&((struct log_vol_desc *)0)->lvd_pmaps);
+				v->lvd_len =
+					offsetof(struct log_vol_desc, lvd_pmaps);
 				v->lvd_len =
 					lb_roundup(v->lvd_len, h->udfs.lbsize);
 			}
@@ -601,8 +605,8 @@ begin:
 			/* LINTED */
 			usd = (struct unall_spc_desc *)taddr;
 			v->usd_loc = vds_loc;
-			v->usd_len = ((uint32_t)
-			&((unall_spc_desc_t *)0)->ua_al_dsc) +
+			v->usd_len =
+			offsetof(unall_spc_desc_t, ua_al_dsc) +
 				SWAP_32(usd->ua_nad) *
 				sizeof (struct extent_ad);
 			v->usd_len = lb_roundup(v->usd_len, h->udfs.lbsize);
@@ -807,8 +811,8 @@ begin:
 			/* LINTED */
 			lvid = (struct log_vol_int_desc *)taddr;
 			h->udfs.lvid_loc = lvds_loc;
-			h->udfs.lvid_len = ((uint32_t)
-			&((struct log_vol_int_desc *)0)->lvid_fst) +
+			h->udfs.lvid_len =
+			offsetof(struct log_vol_int_desc, lvid_fst) +
 				SWAP_32(lvid->lvid_npart) * 8 +
 				SWAP_32(lvid->lvid_liu);
 			h->udfs.lvid_len = lb_roundup(h->udfs.lvid_len,

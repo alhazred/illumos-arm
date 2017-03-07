@@ -22,6 +22,9 @@
  * Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _RCM_IMPL_H
 #define	_RCM_IMPL_H
@@ -32,6 +35,7 @@
 extern "C" {
 #endif
 
+#include <stddef.h>
 #include <assert.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -103,7 +107,7 @@ typedef struct rcm_queue {
 
 #define	RCM_STRUCT_BASE_ADDR(struct_type, x, y)		\
 	((struct_type *) ((void *)(((char *)(x)) -	\
-			(int)(&((struct_type *)0)->y))))
+			offsetof(struct_type, y))))
 
 /*
  * Struct for client loadable module

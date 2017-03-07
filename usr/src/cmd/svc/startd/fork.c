@@ -27,6 +27,9 @@
 /*
  * Copyright (c) 2013, Joyent, Inc. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * fork.c - safe forking for svc.startd
@@ -494,7 +497,7 @@ void *
 fork_configd_thread(void *vctid)
 {
 	int fd, err;
-	ctid_t configd_ctid = (ctid_t)vctid;
+	ctid_t configd_ctid = (ctid_t)(intptr_t)vctid;
 
 	if (configd_ctid == -1) {
 		log_framework(LOG_DEBUG,

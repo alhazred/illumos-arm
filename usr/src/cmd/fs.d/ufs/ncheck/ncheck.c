@@ -22,6 +22,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -666,7 +669,7 @@ extend_strngtab(unsigned int size)
 	strngtab_size += size;
 	strngtab = (char *)realloc(strngtab, strngtab_size);
 
-	return ((int)strngtab);
+	return ((int)(intptr_t)strngtab);
 }
 
 /*

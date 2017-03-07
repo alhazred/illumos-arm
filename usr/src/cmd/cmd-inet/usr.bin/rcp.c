@@ -2,6 +2,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright (c) 1983 The Regents of the University of California.
@@ -1827,7 +1830,7 @@ notzero(char *p, int n)
 {
 	register int result = 0;
 
-	while ((int)p & 3 && --n >= 0)
+	while ((intptr_t)p & 3 && --n >= 0)
 		result |= *p++;
 
 	while ((n -= 4 * sizeof (int)) >= 0) {

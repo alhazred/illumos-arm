@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 1989, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -369,7 +372,7 @@ getfile()
 		/* check for suffix length overflow */
 		if (strlen(fptr) > fiwidth) {
 			fatal("Suffix longer than %ld chars; increase -n\n",
-			    (char *)fiwidth);
+			    (char *)(intptr_t)fiwidth);
 		}
 
 		/* check for filename length overflow */

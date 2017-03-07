@@ -23,6 +23,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /* Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T */
 /* All Rights Reserved */
@@ -278,7 +281,7 @@ follow(char *path)
 
 	if (pt = strchr(path, '=')) {
 		*pt++ = '\0';
-		n = ((unsigned int)pt - (unsigned int)path - 1);
+		n = ((uintptr_t)pt - (uintptr_t)path - 1);
 		if (n >= PATH_MAX) {
 			progerr(gettext(ERR_PATHLONG));
 			errflg++;

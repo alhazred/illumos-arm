@@ -621,7 +621,7 @@ cap_open_read(const char *name)
 
 	cap_buffp = mmap(0, cap_len, PROT_READ, MAP_PRIVATE, capfile_in, 0);
 	(void) close(capfile_in);
-	if ((int)cap_buffp == -1)
+	if (cap_buffp == (caddr_t)-1)
 		pr_err("couldn't mmap %s: %m", name);
 
 	/* Check if new snoop capture file format */

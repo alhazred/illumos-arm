@@ -22,6 +22,9 @@
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  *	autod_readdir.c
@@ -306,7 +309,7 @@ create_dirents(
 		(void) strcpy(dp->d_name, l->name);
 		dp->d_reclen = (ushort_t)this_reclen;
 		outcount += dp->d_reclen;
-		dp = (struct dirent64 *)((int)dp + dp->d_reclen);
+		dp = (struct dirent64 *)((intptr_t)dp + dp->d_reclen);
 		assert(outcount <= total_bytes_wanted);
 		l = l->next;
 	}

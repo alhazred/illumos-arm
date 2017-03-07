@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright (c) 2016 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -770,7 +773,7 @@ sigsetmask(uint_t omask)
 
 	for (i = 0; i < 32; i++)
 		if (omask & (1 << i)) {
-			if (sigignore(1 << i) == (int)SIG_ERR) {
+			if (sigignore(1 << i) == (int)(intptr_t)SIG_ERR) {
 				(void) fprintf(stderr,
 				    "Bad signal 0x%x\n", (1 << i));
 				exit(31+1);
@@ -787,7 +790,7 @@ sigblock(uint_t omask)
 
 	for (i = 0; i < 32; i++)
 		if (omask & (1 << i)) {
-			if ((temp = sigignore(1 << i)) == (int)SIG_ERR) {
+			if ((temp = sigignore(1 << i)) == (int)(intptr_t)SIG_ERR) {
 				(void) fprintf(stderr,
 				    "Bad signal 0x%x\n", (1 << i));
 				exit(31+1);

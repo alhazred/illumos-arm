@@ -2,6 +2,9 @@
  * Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -2291,8 +2294,8 @@ init_inodesc(struct inodesc *idesc)
 int
 ino_t_cmp(const void *left, const void *right)
 {
-	const fsck_ino_t lino = (const fsck_ino_t)left;
-	const fsck_ino_t rino = (const fsck_ino_t)right;
+	const fsck_ino_t lino = (const fsck_ino_t)(intptr_t)left;
+	const fsck_ino_t rino = (const fsck_ino_t)(intptr_t)right;
 
 	return (lino - rino);
 }
@@ -2629,7 +2632,7 @@ fileerror(fsck_ino_t cwd, fsck_ino_t ino, caddr_t fmt, ...)
 void
 add_orphan_dir(fsck_ino_t ino)
 {
-	if (tsearch((void *)ino, &limbo_dirs, ino_t_cmp) == NULL)
+	if (tsearch((void *)(intptr_t)ino, &limbo_dirs, ino_t_cmp) == NULL)
 		errexit("add_orphan_dir: out of memory");
 }
 
@@ -2640,7 +2643,7 @@ add_orphan_dir(fsck_ino_t ino)
 void
 remove_orphan_dir(fsck_ino_t ino)
 {
-	(void) tdelete((void *)ino, &limbo_dirs, ino_t_cmp);
+	(void) tdelete((void *)(intptr_t)ino, &limbo_dirs, ino_t_cmp);
 }
 
 /*

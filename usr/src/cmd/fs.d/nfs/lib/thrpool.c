@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <thread.h>
 #include <stdlib.h>
@@ -44,7 +47,7 @@ extern	int	_nfssys(int, void *);
 static void *
 svcstart(void *arg)
 {
-	int id = (int)arg;
+	int id = (int)(intptr_t)arg;
 
 	/*
 	 * Create a kernel worker thread to service
@@ -87,7 +90,7 @@ svc_rdma_creator(void *arg)
 static void *
 svcblock(void *arg)
 {
-	int id = (int)arg;
+	int id = (int)(intptr_t)arg;
 
 	/* CONSTCOND */
 	while (1) {
@@ -119,7 +122,7 @@ svcblock(void *arg)
 		 * lives in the kernel. So, user portion of the thread
 		 * should have the smallest stack possible.
 		 */
-		(void) thr_create(NULL, THR_MIN_STACK, svcstart, (void *)id,
+		(void) thr_create(NULL, THR_MIN_STACK, svcstart, (void *)(intptr_t)id,
 		    THR_BOUND | THR_DETACHED, &tid);
 	}
 
@@ -202,7 +205,7 @@ svcwait(int id)
 	 * need to be created. This thread also has little need
 	 * of stackspace, so should be created with that in mind.
 	 */
-	if (thr_create(NULL, THR_MIN_STACK * 2, svcblock, (void *)id,
+	if (thr_create(NULL, THR_MIN_STACK * 2, svcblock, (void *)(intptr_t)id,
 	    THR_BOUND | THR_DETACHED, &tid))
 		return (1);
 

@@ -22,6 +22,9 @@
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016-2017, Chris Fraire <cfraire@me.com>.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <stdlib.h>
@@ -427,7 +430,7 @@ accept_event(iu_eh_t *ehp, int fd, short events, iu_event_id_t id, void *arg)
 	}
 
 	if (iu_register_event(eh, client_fd, POLLIN, ipc_event,
-	    (void *)is_priv) == -1) {
+	    (void *)(intptr_t)is_priv) == -1) {
 		dhcpmsg(MSG_ERROR, "accept_event: cannot register ipc socket "
 		    "for callback");
 	}
@@ -450,7 +453,7 @@ ipc_event(iu_eh_t *ehp, int fd, short events, iu_event_id_t id, void *arg)
 {
 	ipc_action_t		ia, *iap;
 	dhcp_smach_t		*dsmp;
-	int			error, is_priv = (int)arg;
+	int			error, is_priv = (int)(intptr_t)arg;
 	const char		*ifname;
 	boolean_t		isv6;
 	boolean_t		dsm_created = B_FALSE;

@@ -19,6 +19,9 @@
  * CDDL HEADER END
  */
 /*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+/*
  * Copyright 2017 Joyent Inc
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
  */
@@ -175,7 +178,7 @@ gssd_setup(char *arg)
 		gssd_ctx_slot_tbl[i].inuse = FALSE;
 		gssd_ctx_slot_tbl[i].verf = 0;
 		gssd_ctx_slot_tbl[i].create_time = 0;
-		gssd_ctx_slot_tbl[i].rpcctx = (gss_ctx_id_t)(i + 1);
+		gssd_ctx_slot_tbl[i].rpcctx = (gss_ctx_id_t)(intptr_t)(i + 1);
 	}
 
 	gssd_ctx_slot_tbl[max_contexts - 1].lru_next = &gssd_ctx_slot_tbl[0];

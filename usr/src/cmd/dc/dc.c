@@ -23,6 +23,9 @@
  * Copyright 2003 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -2308,7 +2311,7 @@ garbage(char *s)
 			if (i < ARRAYST) {
 				do {
 					p = tmps->val;
-					if (((int)p->beg & 01) != 0) {
+					if (((intptr_t)p->beg & 01) != 0) {
 						printf(gettext(
 						    "string %o\n"), i);
 						sdump("odd beg", p);
@@ -2325,7 +2328,7 @@ garbage(char *s)
 					while ((q = getwd(p)) != NULL) {
 						ct++;
 						if (q != 0) {
-							if (((int)q->beg & 01)
+							if (((intptr_t)q->beg & 01)
 							    != 0) {
 								printf(G1,
 								    i - ARRAYST,
@@ -2351,7 +2354,7 @@ redef(struct blk *p)
 	char *newp;
 	char *dcmalloc();
 
-	if ((int)p->beg & 01) {
+	if ((intptr_t)p->beg & 01) {
 		printf(gettext("odd ptr %o hdr %o\n"), p->beg, p);
 		ospace("redef-bad");
 	}

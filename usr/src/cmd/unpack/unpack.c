@@ -26,6 +26,9 @@
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -492,7 +495,7 @@ int
 expand()
 {
 	int tp, bit;
-	short word;
+	volatile short word;
 	int keysize, i, *t;
 
 	outp = outbuff;

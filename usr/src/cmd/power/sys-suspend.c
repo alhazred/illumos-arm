@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2012 Milan Jurik. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This code has a lot in common with the original sys-suspend
@@ -37,7 +40,6 @@
 #include <unistd.h>
 #include <libintl.h>
 #include <locale.h>
-#include <utility.h>
 #include <signal.h>
 #include <errno.h>
 #include <setjmp.h>

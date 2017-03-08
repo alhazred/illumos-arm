@@ -2,6 +2,9 @@
  * Copyright 2000 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -71,7 +74,7 @@ int scrw[4];
 
 void setmode(int newmode);
 void outc(wchar_t c);
-int outchar(char c);
+int outchar(int c);
 void initcap(void);
 void reverse(void);
 void fwd(void);
@@ -571,7 +574,7 @@ printf("so %s se %s us %s ue %s me %s\n",
 }
 
 int
-outchar(char c)
+outchar(int c)
 {
 	(void) putchar(c&0177);
 	return (0);

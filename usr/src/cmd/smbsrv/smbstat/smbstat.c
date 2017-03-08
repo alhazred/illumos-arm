@@ -23,6 +23,9 @@
  * Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * smbstat: Server Message Block File System statistics
@@ -94,7 +97,6 @@
 #include <errno.h>
 #include <inttypes.h>
 #include <strings.h>
-#include <utility.h>
 #include <libintl.h>
 #include <zone.h>
 #include <termios.h>

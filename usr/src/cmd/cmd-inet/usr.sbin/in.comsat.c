@@ -70,7 +70,7 @@
 int	debug = 0;
 #define	dsyslog	if (debug) syslog
 
-struct	sockaddr_in sin = { AF_INET };
+static struct	sockaddr_in sin = { AF_INET };
 
 char	hostname[MAXHOSTNAMELEN];
 struct	utmpx *utmp = NULL;

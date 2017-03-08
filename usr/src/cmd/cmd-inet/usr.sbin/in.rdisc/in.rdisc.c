@@ -2,6 +2,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright (c) 1987 Regents of the University of California.
@@ -2237,8 +2240,7 @@ initlog(void)
 
 /* VARARGS1 */
 void
-logerr(fmt, a, b, c, d, e, f, g, h)
-	char *fmt;
+logerr(char *fmt, int a, int b, int c, int d, int e, int f, int g, int h)
 {
 	if (logging)
 		syslog(LOG_ERR, fmt, a, b, c, d, e, f, g, h);
@@ -2248,8 +2250,7 @@ logerr(fmt, a, b, c, d, e, f, g, h)
 
 /* VARARGS1 */
 void
-logtrace(fmt, a, b, c, d, e, f, g, h)
-	char *fmt;
+logtrace(char *fmt, int a, int b, int c, int d, int e, int f, int g, int h)
 {
 	if (logging)
 		syslog(LOG_INFO, fmt, a, b, c, d, e, f, g, h);
@@ -2259,8 +2260,7 @@ logtrace(fmt, a, b, c, d, e, f, g, h)
 
 /* VARARGS1 */
 void
-logdebug(fmt, a, b, c, d, e, f, g, h)
-	char *fmt;
+logdebug(char *fmt, int a, int b, int c, int d, int e, int f, int g, int h)
 {
 	if (logging)
 		syslog(LOG_DEBUG, fmt, a, b, c, d, e, f, g, h);
@@ -2269,8 +2269,7 @@ logdebug(fmt, a, b, c, d, e, f, g, h)
 }
 
 void
-logperror(str)
-	char *str;
+logperror(char *str)
 {
 	if (logging)
 		syslog(LOG_ERR, "%s: %s\n", str, strerror(errno));

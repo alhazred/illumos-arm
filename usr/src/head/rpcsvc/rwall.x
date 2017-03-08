@@ -22,7 +22,10 @@
 % *
 % * CDDL HEADER END
 % */
-
+%/*
+% * Copyright 2017 Hayashi Naoyuki
+% */
+%
 %/* from rwall.x */
 %
 %/*
@@ -36,6 +39,7 @@
 %/*
 % *  Server side stub routines for the rpc.rwalld daemon
 % */
+%#include <unistd.h>
 %
 #elif RPC_CLNT
 %

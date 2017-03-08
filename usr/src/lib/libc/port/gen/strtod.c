@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -56,7 +59,7 @@ strtod(const char *cp, char **ptr)
 		*ptr = (char *)cp;
 	if (form == invalid_form)
 		return (0.0);	/* Shameful kluge for SVID's sake. */
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 	mr.rd = _QgetRD();
 #elif defined(__i386) || defined(__amd64)
 	mr.rd = __xgetRD();
@@ -87,7 +90,7 @@ strtof(const char *cp, char **ptr)
 		*ptr = (char *)cp;
 	if (form == invalid_form)
 		return (0.0f);
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 	mr.rd = _QgetRD();
 #elif defined(__i386) || defined(__amd64)
 	mr.rd = __xgetRD();
@@ -118,12 +121,18 @@ strtold(const char *cp, char **ptr)
 		*ptr = (char *)cp;
 	if (form == invalid_form)
 		return (0.0L);
-#if defined(__sparc)
+#if defined(__sparc) || (defined(__alpha) && defined(__LONG_DOUBLE_128__)) || defined(__aarch64)
 	mr.rd = _QgetRD();
 	if ((int)form < 0)
 		__hex_to_quadruple(&dr, mr.rd, &x, &fs);
 	else
 		decimal_to_quadruple(&x, &mr, &dr, &fs);
+#elif defined(__alpha)
+	mr.rd = _QgetRD();
+	if ((int)form < 0)
+		__hex_to_double(&dr, mr.rd, (double *)&x, &fs);
+	else
+		decimal_to_double((double *)&x, &mr, &dr, &fs);
 #elif defined(__i386) || defined(__amd64)
 	mr.rd = __xgetRD();
 	if ((int)form < 0)

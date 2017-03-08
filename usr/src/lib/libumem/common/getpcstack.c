@@ -24,6 +24,9 @@
  * Use is subject to license terms.
  * Copyright (c) 2016 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include "misc.h"
 #include <ucontext.h>
@@ -41,6 +44,12 @@ extern void flush_windows(void);
  * dereference the entire frame structure.
  */
 #define	UMEM_FRAMESIZE	(sizeof (struct frame))
+
+#elif defined(__alpha)
+#define	UMEM_FRAMESIZE	MINFRAME
+
+#elif defined(__aarch64)
+#define	UMEM_FRAMESIZE	MINFRAME
 
 #else
 #error needs update for new architecture

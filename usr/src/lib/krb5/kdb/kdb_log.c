@@ -2,6 +2,9 @@
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -600,7 +603,7 @@ ulog_map(krb5_context context, kadm5_config_params *params, int caller)
 		    PROT_READ+PROT_WRITE, MAP_SHARED, ulogfd, 0);
 	}
 
-	if ((int)(ulog) == -1) {
+	if ((int)(intptr_t)(ulog) == -1) {
 		/*
 		 * Can't map update log file to memory
 		 */

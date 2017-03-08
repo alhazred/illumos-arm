@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -40,7 +43,7 @@
 #include <floatingpoint.h>
 #include "libc.h"
 
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 
 int
 __flt_rounds(void)

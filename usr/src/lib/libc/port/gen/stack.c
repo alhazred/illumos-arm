@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -97,7 +100,7 @@ stack_violation(int sig, const siginfo_t *sip, const ucontext_t *ucp)
 	 */
 	base = (uintptr_t)ucp->uc_stack.ss_sp;
 	size = ucp->uc_stack.ss_size;
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 	addr = ucp->uc_mcontext.gregs[REG_SP] + STACK_BIAS;
 #elif defined(__amd64) || defined(__i386)
 	addr = ucp->uc_mcontext.gregs[REG_SP];

@@ -436,7 +436,11 @@ fake_elf32(struct ps_prochandle *P, file_info_t *fptr, uintptr_t addr,
 		 * Now that we know the number of plt relocation entries
 		 * we can calculate the size of the plt.
 		 */
+#if defined(__alpha) || defined(__aarch64)
+		pltsz = pltentries* M_PLT_ENTSIZE + M_PLT_RESERVSZ;
+#else
 		pltsz = (pltentries + M_PLT_XNumber) * M_PLT_ENTSIZE;
+#endif
 #if defined(__sparc)
 		/* The sparc PLT always has a (delay slot) nop at the end */
 		pltsz += 4;

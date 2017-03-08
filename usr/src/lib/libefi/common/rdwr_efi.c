@@ -26,6 +26,9 @@
  * Copyright 2018 OmniOS Community Edition (OmniOSce) Association.
  * Copyright 2019 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -104,7 +107,7 @@ struct dk_map2  default_vtoc_map[NDKMAP] = {
 
 #if defined(_SUNOS_VTOC_16)
 
-#if defined(i386) || defined(__amd64)
+#if defined(__i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64)
 	{	V_BOOT,		V_UNMNT	},		/* i - 8 */
 	{	V_ALTSCTR,	0	},		/* j - 9 */
 

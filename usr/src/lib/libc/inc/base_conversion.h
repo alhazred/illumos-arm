@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	BASE_CONVERSION_H
 #define	BASE_CONVERSION_H
@@ -32,6 +35,7 @@
 #include <errno.h>
 #include <floatingpoint.h>
 #include <sys/isa_defs.h>
+#include <sys/types.h>
 
 /*
  * Common constants, types, and declarations for floating point
@@ -333,8 +337,18 @@ extern double __mul_set(double, double, int *);
 extern double __div_set(double, double, int *);
 extern double __dabs(double *);
 
-#if defined(sparc) || defined(__sparc)
+#if defined(sparc) || defined(__sparc) || defined(__alpha) || defined(__aarch64)
 extern enum fp_direction_type _QgetRD(void);
+#endif
+
+#if defined(__alpha) || defined(__aarch64)
+#define	HIWORD		1
+#define	LOWORD		0
+
+#define	HIXWORD		3
+#define	MHXWORD		2
+#define	MLXWORD		1
+#define	LOXWORD		0
 #endif
 
 #include "base_inlines.h"

@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -153,7 +156,7 @@ __hex_to_double(decimal_record *pd, enum fp_direction_type rd, double *px,
 	}
 }
 
-#if defined(__sparc)
+#if defined(__sparc) || (defined(__alpha) && defined(__LONG_DOUBLE_128__)) || defined(__aarch64)
 
 void
 __hex_to_quadruple(decimal_record *pd, enum fp_direction_type rd, quadruple *px,
@@ -205,6 +208,7 @@ __hex_to_extended(decimal_record *pd, enum fp_direction_type rd, extended *px,
 	}
 }
 
+#elif defined(__alpha)
 #else
 #error Unknown architecture
 #endif

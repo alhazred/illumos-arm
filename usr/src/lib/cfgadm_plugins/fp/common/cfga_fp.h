@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _CFGA_FP_H
 #define	_CFGA_FP_H
@@ -219,8 +222,10 @@ typedef struct {
 #define	htonll(x)	(x)
 #define	ntohll(x)	(x)
 #else
+#ifndef htonll
 #define	htonll(x)   ((((unsigned long long)htonl(x)) << 32) + htonl(x >> 32))
 #define	ntohll(x)   ((((unsigned long long)ntohl(x)) << 32) + ntohl(x >> 32))
+#endif
 #endif
 
 typedef struct report_lun_resp {

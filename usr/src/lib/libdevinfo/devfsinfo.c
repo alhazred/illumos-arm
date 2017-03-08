@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #include <stdio.h>
@@ -771,7 +774,7 @@ get_boot_dev_var(struct openpromio *opp)
 	return (0);
 }
 
-#ifndef __sparc
+#if defined(__x86)
 static FILE *
 open_diskmap(void)
 {
@@ -853,7 +856,7 @@ devfs_bootdev_get_list(const char *default_root,
 	}
 
 	/* get the boot-device variable */
-#if defined(sparc)
+#if !defined(__x86)
 	i = get_boot_dev_var(opp);
 #else
 	i = find_x86_boot_device(opp);
@@ -984,10 +987,10 @@ static int
 process_minor_name(char *dev_path, const char *root)
 {
 	char *cp;
-#if defined(sparc)
-	const char *default_minor_name = "a";
-#else
+#if defined(__x86)
 	const char *default_minor_name = "q";
+#else
+	const char *default_minor_name = "a";
 #endif
 	int n;
 	struct stat stat_buf;
@@ -2328,7 +2331,7 @@ prom_child_node(int fd, uint_t node_id)
 int
 devfs_bootdev_modifiable(void)
 {
-#if defined(sparc)
+#if defined(__sparc)
 	return (0);
 #else
 	return (DEVFS_NOTSUP);

@@ -29,6 +29,9 @@
 /*
  * Copyright (c) 2013 RackTop Systems.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #include	<sys/types.h>
@@ -47,7 +50,7 @@ static gid_t *grplist;
 static int ngroups_max = 0;
 
 /* Validate a list of groups */
-int	**
+gid_t	*
 valid_lgroup(char *list, gid_t gid)
 {
 	int n_invalid = 0, i = 0, j;
@@ -57,7 +60,7 @@ valid_lgroup(char *list, gid_t gid)
 	int dup_prim = 0; /* we don't duplicate our primary as a supplemental */
 
 	if( !list || !*list )
-		return( (int **) NULL );
+		return( NULL );
 
 	if (ngroups_max == 0) {
 		ngroups_max = sysconf(_SC_NGROUPS_MAX);
@@ -117,5 +120,5 @@ valid_lgroup(char *list, gid_t gid)
 	if( n_invalid )
 		exit( EX_BADARG );
 
-	return( (int **)grplist );
+	return( (gid_t *)grplist );
 }

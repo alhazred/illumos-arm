@@ -47,7 +47,7 @@ static projid_t projlist[NPROJECTS_MAX + 1];
 static int nproj_max = NPROJECTS_MAX;
 
 /* Validate a list of projects */
-int **
+projid_t *
 valid_lproject(char *list)
 {
 	int n_invalid = 0;
@@ -59,7 +59,7 @@ valid_lproject(char *list)
 	char mybuf[PROJECT_BUFSZ];
 
 	if (!list || !*list)
-		return ((int **)NULL);
+		return (NULL);
 
 	while ((ptr = strtok((i || n_invalid) ? NULL : list, ","))) {
 
@@ -108,5 +108,5 @@ valid_lproject(char *list)
 	if (n_invalid)
 		exit(EX_BADARG);
 
-	return ((int **)projlist);
+	return (projlist);
 }

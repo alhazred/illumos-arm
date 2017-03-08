@@ -26,6 +26,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -226,7 +229,7 @@ main(int argc, char **argv)
  * Now, remove this user from all project entries
  */
 
-	rc = edit_project(logname, (char *)0, (projid_t **)0, 1);
+	rc = edit_project(logname, (char *)0, (projid_t *)0, 1);
 	if (rc != EX_SUCCESS) {
 		errmsg(M_UPDATE, "modified");
 		exit(rc);

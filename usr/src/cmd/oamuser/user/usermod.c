@@ -31,6 +31,9 @@
 /*
  * Copyright (c) 2013 RackTop Systems.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -83,10 +86,9 @@
  *
  */
 
-extern int **valid_lgroup(), isbusy(), get_default_zfs_flags();
+extern int isbusy(), get_default_zfs_flags();
 extern int valid_uid(), check_perm(), create_home(), move_dir();
 extern int valid_expire(), edit_group(), call_passmgmt();
-extern projid_t **valid_lproject();
 
 static uid_t uid;		/* new uid */
 static gid_t gid;			/* gid of new login */
@@ -147,7 +149,8 @@ int argc;
 char **argv;
 {
 	int ch, ret = EX_SUCCESS, call_pass = 0, oflag = 0, zfs_flags = 0;
-	int tries, mflag = 0, inact, **gidlist, flag = 0, zflag = 0, Zflag = 0;
+	int tries, mflag = 0, inact, flag = 0, zflag = 0, Zflag = 0;
+	gid_t *gidlist = NULL;
 	boolean_t fail_if_busy = B_FALSE;
 	char *ptr;
 	struct passwd *pstruct;		/* password struct for login */
@@ -158,7 +161,7 @@ char **argv;
 	FILE *pwf;		/* fille ptr for opened passwd file */
 #endif
 	int warning;
-	projid_t **projlist;
+	projid_t *projlist;
 	char **nargv;			/* arguments for execvp of passmgmt */
 	int argindex;			/* argument index into nargv */
 	userattr_t *ua;
@@ -478,13 +481,13 @@ char **argv;
 		if (!(gidlist = valid_lgroup(grps, gid)))
 			exit(EX_BADARG);
 	} else
-		gidlist = (int **)0;
+		gidlist = (gid_t *)0;
 
 	if (projects && *projects) {
 		if (! (projlist = valid_lproject(projects)))
 			exit(EX_BADARG);
 	} else
-		projlist = (projid_t **)0;
+		projlist = (projid_t *)0;
 
 	if (dir) {
 		if (REL_PATH(dir)) {

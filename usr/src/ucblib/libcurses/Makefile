@@ -31,10 +31,10 @@ SUBDIRS = $(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
 # conditional assignments
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
+install :	TARGET= install
+clean :		TARGET= clean
+clobber :	TARGET= clobber
+lint :		TARGET= lint
 
 .KEEP_STATE:
 

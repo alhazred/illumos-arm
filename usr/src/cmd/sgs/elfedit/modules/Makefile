@@ -29,13 +29,13 @@ include		$(SRC)/Makefile.master
 
 SUBDIRS=	$(MACH)
 
-all:=		TARGET=	all
-chkmsg:=	TARGET=	chkmsg
-catalog:=	TARGET=	catalog
-install:=	TARGET=	install
-package:=	TARGET=	package
-clean:=		TARGET=	clean
-clobber:=	TARGET=	clobber
+all: 		TARGET=	all
+chkmsg: 	TARGET=	chkmsg
+catalog: 	TARGET=	catalog
+install: 	TARGET=	install
+package: 	TARGET=	package
+clean: 		TARGET=	clean
+clobber: 	TARGET=	clobber
 
 .KEEP_STATE:
 

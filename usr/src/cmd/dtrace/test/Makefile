@@ -37,7 +37,7 @@ install: $(ROOTOPTPKG)/README $(SUBDIRS)
 pkg: install
 	@cd $(SRC)/pkg; pwd; $(MAKE) SUNWdtrt.pub
 
-$(ROOTOPTPKG)/% := FILEMODE = 0444
+$(ROOTOPTPKG)/% :  FILEMODE = 0444
 
 $(ROOTOPTPKG):
 	$(INS.dir)

@@ -46,19 +46,19 @@ ROOTOPTPROGS = $(PROGS32:%=$(ROOTOPTDIR)/%) \
 	$(PROGS64:%=$(ROOTOPTDIR)/%) \
 	$(SCRIPTS:%=$(ROOTOPTDIR)/%)
 
-odirectory.32 :=	LDLIBS += -lsocket
-odirectory.64 :=	LDLIBS64 += -lsocket
+odirectory.32 : 	LDLIBS += -lsocket
+odirectory.64 : 	LDLIBS64 += -lsocket
 
-writev.32 :=		CPPFLAGS += -D_FILE_OFFSET_BITS=64
-writev.32 :=		CSTD = $(CSTD_GNU99)
-writev.64 :=		CSTD = $(CSTD_GNU99)
+writev.32 : 		CPPFLAGS += -D_FILE_OFFSET_BITS=64
+writev.32 : 		CSTD = $(CSTD_GNU99)
+writev.64 : 		CSTD = $(CSTD_GNU99)
 
 include $(SRC)/cmd/Makefile.cmd
 
-all     :=      TARGET = all
-install :=      TARGET = install
-clean   :=      TARGET = clean
-clobber :=      TARGET = clobber
+all     :       TARGET = all
+install :       TARGET = install
+clean   :       TARGET = clean
+clobber :       TARGET = clobber
 
 .KEEP_STATE:
 

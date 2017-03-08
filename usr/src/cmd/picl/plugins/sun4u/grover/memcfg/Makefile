@@ -58,11 +58,11 @@ PLATFORM=	SUNW,Sun-Blade-100
 
 SUBDIRS=
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 POFILE=	piclmemcfg.po
 

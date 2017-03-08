@@ -40,7 +40,7 @@ CONFS		+= fru_HDD3.conf
 CONFS		+= fru_FT0.conf fru_FT1.conf fru_FT2.conf fru_FT3.conf
 CONFS		+= fru_SC.conf
 ROOTCONF=	$(CONFS:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 MAININFO=	$(CONFS:%.conf=%.info)
 OTHERINFOS	= fru_PS0_data.info fru_PS1_data.info
 OTHERINFOS	+= fru_PSU0_data.info fru_PSU1_data.info fru_PSU2_data.info fru_PSU3_data.info
@@ -52,10 +52,10 @@ OTHERINFOS	+= fru_SC_data.info SB-tables.info
 
 SUBDIRS =
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 all: $(LIBS) $(LIBLINKS) $(CONFS)
 

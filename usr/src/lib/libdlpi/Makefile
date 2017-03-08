@@ -34,10 +34,10 @@ $(BUILD64)SUBDIRS += $(MACH64)
 POFILE =	libdlpi.po
 MSGFILES =	common/libdlpi.c
 
-all :=		TARGET = all
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-install :=	TARGET = install
+all : 		TARGET = all
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+install : 	TARGET = install
 
 .KEEP_STATE:
 

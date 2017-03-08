@@ -51,7 +51,7 @@ include ../../../../Makefile.cmd.64
 include ../../Makefile.sparcv9
 include ../../../Makefile.module
 
-dmod/$(MODULE) := LDLIBS += -lm -lproc
+dmod/$(MODULE) :  LDLIBS += -lm -lproc
 
 #
 # We are not actually hardwiring some dependency on sun4u, we just need to

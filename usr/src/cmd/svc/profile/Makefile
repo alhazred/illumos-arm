@@ -74,10 +74,10 @@ all:	$(CHECK_OPEN) $(CHECK_LMTD)
 #
 #	Enforce consistency between open and limited profiles per README
 #
-$(CHECK_OPEN) :=	PROFILES_CHECKED = open
-$(CHECK_OPEN) :=	PROFILES_COVERING = limited
-$(CHECK_LMTD) :=	PROFILES_CHECKED = limited
-$(CHECK_LMTD) :=	PROFILES_COVERING = open
+$(CHECK_OPEN) : 	PROFILES_CHECKED = open
+$(CHECK_OPEN) : 	PROFILES_COVERING = limited
+$(CHECK_LMTD) : 	PROFILES_CHECKED = limited
+$(CHECK_LMTD) : 	PROFILES_COVERING = open
 $(CHECK_OPEN) $(CHECK_LMTD): \
 	$(LISTSVCS) $(PROFILES_open) $(PROFILES_limited)
 	@$(ECHO) Check for enabled $(PROFILES_CHECKED) services \

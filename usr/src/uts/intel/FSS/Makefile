@@ -66,7 +66,7 @@ LINTTAGS	+= -erroff=E_ASSIGN_NARROW_CONV
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/fss.o := SMOFF += deref_check
+$(OBJS_DIR)/fss.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

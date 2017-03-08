@@ -43,23 +43,23 @@ MANLINKS=	calloc.3malloc			\
 		umem_zalloc.3malloc		\
 		valloc.3malloc
 
-calloc.3malloc			:= LINKSRC = malloc.3malloc
-free.3malloc			:= LINKSRC = malloc.3malloc
-mallinfo.3malloc		:= LINKSRC = malloc.3malloc
-mallopt.3malloc			:= LINKSRC = malloc.3malloc
-memalign.3malloc		:= LINKSRC = malloc.3malloc
-realloc.3malloc			:= LINKSRC = malloc.3malloc
-valloc.3malloc			:= LINKSRC = malloc.3malloc
+calloc.3malloc			:  LINKSRC = malloc.3malloc
+free.3malloc			:  LINKSRC = malloc.3malloc
+mallinfo.3malloc		:  LINKSRC = malloc.3malloc
+mallopt.3malloc			:  LINKSRC = malloc.3malloc
+memalign.3malloc		:  LINKSRC = malloc.3malloc
+realloc.3malloc			:  LINKSRC = malloc.3malloc
+valloc.3malloc			:  LINKSRC = malloc.3malloc
 
-mallocctl.3malloc		:= LINKSRC = mtmalloc.3malloc
+mallocctl.3malloc		:  LINKSRC = mtmalloc.3malloc
 
-umem_free.3malloc		:= LINKSRC = umem_alloc.3malloc
-umem_nofail_callback.3malloc	:= LINKSRC = umem_alloc.3malloc
-umem_zalloc.3malloc		:= LINKSRC = umem_alloc.3malloc
+umem_free.3malloc		:  LINKSRC = umem_alloc.3malloc
+umem_nofail_callback.3malloc	:  LINKSRC = umem_alloc.3malloc
+umem_zalloc.3malloc		:  LINKSRC = umem_alloc.3malloc
 
-umem_cache_alloc.3malloc	:= LINKSRC = umem_cache_create.3malloc
-umem_cache_destroy.3malloc	:= LINKSRC = umem_cache_create.3malloc
-umem_cache_free.3malloc		:= LINKSRC = umem_cache_create.3malloc
+umem_cache_alloc.3malloc	:  LINKSRC = umem_cache_create.3malloc
+umem_cache_destroy.3malloc	:  LINKSRC = umem_cache_create.3malloc
+umem_cache_free.3malloc		:  LINKSRC = umem_cache_create.3malloc
 
 .KEEP_STATE:
 

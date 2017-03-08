@@ -50,8 +50,8 @@ include $(SRC)/test/Makefile.com
 
 CMDS = $(PROGS:%=$(TESTDIR)/%) $(SCRIPTS:%=$(TESTDIR)/%)
 OUTFILES = $(DIFF_PROGS:%=$(TESTDIR)/%.out)
-$(CMDS) := FILEMODE = 0555
-$(OUTFILES) := FILEMODE = 0444
+$(CMDS) :  FILEMODE = 0555
+$(OUTFILES) :  FILEMODE = 0444
 
 CPPFLAGS += -I$(SRC)/lib/libsff/common
 
@@ -59,12 +59,12 @@ CPPFLAGS += -I$(SRC)/lib/libsff/common
 # Different tests require different sets of libraries. If we try and use
 # the same set, we'll get guidance errors from ld.
 #
-$(ERR_PROGS)	:= LDLIBS += -lsff
-$(DIFF_PROGS)	:= LDLIBS += -lsff -lnvpair
-libsff_strings	:= LDLIBS += -lsff -lnvpair
-$(ERR_PROGS).ln	:= LDLIBS += -lsff
-$(DIFF_PROGS).ln	:= LDLIBS += -lsff -lnvpair
-libsff_strings.ln	:= LDLIBS += -lsff -lnvpair
+$(ERR_PROGS)	:  LDLIBS += -lsff
+$(DIFF_PROGS)	:  LDLIBS += -lsff -lnvpair
+libsff_strings	:  LDLIBS += -lsff -lnvpair
+$(ERR_PROGS).ln	:  LDLIBS += -lsff
+$(DIFF_PROGS).ln	:  LDLIBS += -lsff -lnvpair
+libsff_strings.ln	:  LDLIBS += -lsff -lnvpair
 
 all: $(PROGS)
 

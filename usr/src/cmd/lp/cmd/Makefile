@@ -36,7 +36,7 @@ LIBLINKS =	$(SBINPROG)
 
 PROG =		$(LOCALPROG) $(SBINPROG) 
 
-OBJS=	$(SBINPROG:=.o)
+OBJS=	$(SBINPROG: .o)
 
 SRCS=          $(OBJS:.o=.c)
 
@@ -53,12 +53,12 @@ LDFLAGS +=	$(MAPFILE.NGB:%=-M%)
 
 # conditional assignments
 #
-lpfilter:=	LDLIBS += $(LIBFLT) $(LIBMSG) $(LIBACC) $(LIBOAM) $(LIBLP) \
+lpfilter: 	LDLIBS += $(LIBFLT) $(LIBMSG) $(LIBACC) $(LIBOAM) $(LIBLP) \
 			-lgen -lsecdb
-lpforms:=	LDLIBS += $(LIBFRM) $(LIBMSG) $(LIBREQ) $(LIBOAM) \
+lpforms: 	LDLIBS += $(LIBFRM) $(LIBMSG) $(LIBREQ) $(LIBOAM) \
 			$(LIBACC) $(LIBLP) -lsecdb
-lpshut:=	LDLIBS += $(LIBMSG) $(LIBOAM) $(LIBLP)
-lpusers:=	LDLIBS += $(LIBMSG) $(LIBACC) $(LIBOAM) $(LIBUSR) $(LIBLP)
+lpshut: 	LDLIBS += $(LIBMSG) $(LIBOAM) $(LIBLP)
+lpusers: 	LDLIBS += $(LIBMSG) $(LIBACC) $(LIBOAM) $(LIBUSR) $(LIBLP)
 
 .KEEP_STATE:
 

@@ -39,7 +39,7 @@ CERRWARN	+= $(CNOWARN_UNINIT)
 
 LDLIBS	+= -lproc
 
-lint	:= LINTFLAGS64 = -x -m64
+lint	:  LINTFLAGS64 = -x -m64
 
 CPPFLAGS += -D_LARGEFILE64_SOURCE=1
 

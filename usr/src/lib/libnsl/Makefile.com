@@ -181,8 +181,8 @@ SRCDIR=		../common
 GOTHOGS =	dial.o print_obj.o clnt_perror.o nsl_stdio_prv.o netdir.o \
 		algs.o netselect.o
 BIGPICS =	$(GOTHOGS:%=pics/%)
-$(BIGPICS) :=	sparc_C_PICFLAGS = $(C_BIGPICFLAGS)
-$(BIGPICS) :=	i386_C_PICFLAGS = $(C_BIGPICFLAGS)
+$(BIGPICS) : 	sparc_C_PICFLAGS = $(C_BIGPICFLAGS)
+$(BIGPICS) : 	i386_C_PICFLAGS = $(C_BIGPICFLAGS)
 
 CPPFLAGS +=	-I$(SRC)/lib/libnsl/include -D_REENTRANT
 CPPFLAGS +=	-I$(SRC)/lib/libnsl/dial

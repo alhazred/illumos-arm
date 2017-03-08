@@ -29,7 +29,7 @@ SRCS=		$(OBJS:.o=.c)
 
 include	../../../Makefile.cmd
 
-$(ROOTUSRSBIN)/traceroute	:=	FILEMODE= 04555
+$(ROOTUSRSBIN)/traceroute	: 	FILEMODE= 04555
 
 # Traceroute uses the ancillary data feature which is available only through
 # UNIX 98 standards version of Socket interface. This interface is supposed to

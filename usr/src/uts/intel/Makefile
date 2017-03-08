@@ -49,23 +49,23 @@ DRV_KMODS	+= dprov
 
 #
 #
-def		:=	TARGET= def
-def.prereq	:=	TARGET= def
-all		:=	TARGET= all
-all.prereq	:=	TARGET= all
-install		:=	TARGET= install
-install.prereq	:=	TARGET= install
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
-lint.prereq	:=	TARGET= lint
-modlintlib	:=	TARGET= modlintlib
-modlist		:=	TARGET= modlist
-modlist		:=	NO_STATE= -K $$MODSTATE$$$$
-clean.lint	:=	TARGET= clean.lint
-check		:=	TARGET= check
-install_h	:=	TARGET= install_h
-install_h.prereq	:=	TARGET= install_h
+def		: 	TARGET= def
+def.prereq	: 	TARGET= def
+all		: 	TARGET= all
+all.prereq	: 	TARGET= all
+install		: 	TARGET= install
+install.prereq	: 	TARGET= install
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
+lint.prereq	: 	TARGET= lint
+modlintlib	: 	TARGET= modlintlib
+modlist		: 	TARGET= modlist
+modlist		: 	NO_STATE= -K $$MODSTATE$$$$
+clean.lint	: 	TARGET= clean.lint
+check		: 	TARGET= check
+install_h	: 	TARGET= install_h
+install_h.prereq	: 	TARGET= install_h
 
 .KEEP_STATE:
 
@@ -158,7 +158,7 @@ LGREP.intel =	grep -v 'intel/io/acpica'
 LINT_TARGET	= globallint
 
 # workaround for multiply defined errors
-globallint := LINTFLAGS += -erroff=E_NAME_MULTIPLY_DEF2
+globallint :  LINTFLAGS += -erroff=E_NAME_MULTIPLY_DEF2
 
 globallint:
 	@pwd

@@ -68,7 +68,7 @@ CERRWARN	+= -_gcc=-Wno-switch
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/eib_ibt.o := SMOFF += deref_check
+$(OBJS_DIR)/eib_ibt.o :  SMOFF += deref_check
 
 #
 # Depends on misc/ibtl

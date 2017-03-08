@@ -36,7 +36,7 @@ ROOTMANIFESTDIR=	$(ROOTSVCNETWORK)
 ROOTCFGDIR=		$(ROOTETC)/dladm
 ROOTCFGFILES=		$(CFGFILES:%=$(ROOTCFGDIR)/%)
 
-$(ROOTCFGDIR)/datalink.conf	:= FILEMODE= 644
+$(ROOTCFGDIR)/datalink.conf	:  FILEMODE= 644
 
 LDLIBS += -ldladm -ldlpi -lavl -lnvpair -lsysevent -lcontract
 
@@ -48,7 +48,7 @@ CERRWARN += $(CNOWARN_UNINIT)
 #
 CTFCONVERT_HOOK = && $(CTFCONVERT_O)
 CTFMERGE_HOOK = && $(CTFMERGE) -L VERSION -o $@ $(OBJS)
-$(OBJS) := CFLAGS += $(CTF_FLAGS)
+$(OBJS) :  CFLAGS += $(CTF_FLAGS)
 
 
 .KEEP_STATE:

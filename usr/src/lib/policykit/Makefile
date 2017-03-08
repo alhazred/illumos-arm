@@ -29,11 +29,11 @@ include		$(SRC)/lib/policykit/Makefile.policykit
 SUBDIRS =	libpolkit
 HDRSUBDIRS =	libpolkit
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-install_h :=	TARGET= install_h
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
+install_h : 	TARGET= install_h
 
 .KEEP_STATE:
 

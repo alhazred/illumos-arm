@@ -72,7 +72,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE)
 #	Overrides and depends_on
 #
 MODSTUBS_DIR	 = $(OBJS_DIR)
-$(MODSTUBS_O)	:= AS_CPPFLAGS += -DUFS_MODULE
+$(MODSTUBS_O)	:  AS_CPPFLAGS += -DUFS_MODULE
 CLEANFILES	+= $(MODSTUBS_O)
 CFLAGS		+= $(CCVERBOSE)
 LDFLAGS		+= -dy -Nfs/specfs -Nmisc/fssnap_if

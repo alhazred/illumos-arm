@@ -29,7 +29,7 @@ SRCS=		$(OBJS:.o=.c)
 
 include	../../../Makefile.cmd
 
-$(ROOTUSRSBIN)/ping	:=	FILEMODE= 04555
+$(ROOTUSRSBIN)/ping	: 	FILEMODE= 04555
 
 # Ping uses the ancillary data feature which is available only through
 # UNIX 98 standards version of Socket interface. This interface is supposed to

@@ -27,10 +27,10 @@ include ../Makefile.lib
 
 SUBDIRS=	sparc svc
 
-all	:= TARGET= all
-install	:= TARGET= install
-clean	:= TARGET= clean
-clobber	:= TARGET= clobber
+all	:  TARGET= all
+install	:  TARGET= install
+clean	:  TARGET= clean
+clobber	:  TARGET= clobber
 
 # definitions for install_h target
 HDRS=		libdscp.h

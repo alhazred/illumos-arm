@@ -33,12 +33,12 @@ include		$(SRC)/cmd/Makefile.cmd
 
 SUBDIRS =	com bin
 
-all	:=	TARGET= all
-install	:=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-lint	:=	TARGET= lint
-_msg	:=	TARGET= _msg
+all	: 	TARGET= all
+install	: 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+lint	: 	TARGET= lint
+_msg	: 	TARGET= _msg
 
 ROOTDIRS =	$(ROOT)/usr/sadm/admin \
 		$(ROOT)/usr/sadm/admin/printmgr \
@@ -47,7 +47,7 @@ ROOTDIRS =	$(ROOT)/usr/sadm/admin \
 ROOTBIN =	$(ROOT)/usr/sadm/admin/printmgr/classes
 ROOTBINPROG =   $(PROG:%=$(ROOTBIN)/%)
 
-$(ROOTBINPROG):= FILEMODE	= 644
+$(ROOTBINPROG):  FILEMODE	= 644
 
 .KEEP_STATE:
 

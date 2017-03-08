@@ -27,10 +27,10 @@ MANLINKS=	intro.9 \
 		phymap.9 \
 		tgtmap.9
 
-intro.9		:= LINKSRC = Intro.9
-iportmap.9	:= LINKSRC = iport.9
-phymap.9	:= LINKSRC = iport.9
-tgtmap.9	:= LINKSRC = iport.9
+intro.9		:  LINKSRC = Intro.9
+iportmap.9	:  LINKSRC = iport.9
+phymap.9	:  LINKSRC = iport.9
+tgtmap.9	:  LINKSRC = iport.9
 
 .KEEP_STATE:
 

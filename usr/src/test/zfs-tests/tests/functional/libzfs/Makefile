@@ -28,7 +28,7 @@ SRCS = $(OBJS:%.o=%.c)
 LDLIBS += -lzfs
 
 CMDS = $(PROG:%=$(TESTDIR)/%) $(SCRIPTS:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all: $(PROG)
 

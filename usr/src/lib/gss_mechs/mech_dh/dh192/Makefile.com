@@ -44,10 +44,10 @@ CPPFLAGS += -I../../backend/mech -I../../backend/crypto
 CPPFLAGS += -I$(SRC)/lib/libnsl/include
 CPPFLAGS += -I$(SRC)/uts/common/gssapi/include
 
-$(PICS) :=	CFLAGS += $(XFFLAG)
-$(PICS) :=	CCFLAGS += $(XFFLAG)
-$(PICS) :=	CFLAGS64 += $(XFFLAG)
-$(PICS) :=	CCFLAGS64 += $(XFFLAG)
+$(PICS) : 	CFLAGS += $(XFFLAG)
+$(PICS) : 	CCFLAGS += $(XFFLAG)
+$(PICS) : 	CFLAGS64 += $(XFFLAG)
+$(PICS) : 	CCFLAGS64 += $(XFFLAG)
 
 DYNFLAGS +=	$(ZIGNORE)
 

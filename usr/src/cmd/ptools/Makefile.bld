@@ -101,8 +101,8 @@ CPPFLAGS +=	$(CPPFLAGS_$(PROG))
 OBJS +=		$(OBJS_$(PROG))
 SRCS +=		$(SRCS_$(PROG))
 
-$(OBJS_ptree) :=	CSTD = $(CSTD_GNU99)
-ptree :=		CSTD = $(CSTD_GNU99)
+$(OBJS_ptree) : 	CSTD = $(CSTD_GNU99)
+ptree : 		CSTD = $(CSTD_GNU99)
 
 INSTALL_NEW=
 INSTALL_LEGACY=$(RM) $(ROOTPROCBINSYMLINK) ; \

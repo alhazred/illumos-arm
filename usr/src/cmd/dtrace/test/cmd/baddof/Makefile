@@ -44,7 +44,7 @@ CERRWARN += -_gcc=-Wno-implicit-function-declaration
 # not linted
 SMATCH=off
 
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all: $(SRCS)
 

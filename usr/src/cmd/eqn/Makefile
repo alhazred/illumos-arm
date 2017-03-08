@@ -36,17 +36,17 @@ SUBDIRS =       $(SUBDIR1) $(SUBDIR2)
 
 
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-strip :=	TARGET= strip
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+strip : 	TARGET= strip
 
 #
 # for message catalog
 #
-_msg :=         TARGET= catalog
+_msg :          TARGET= catalog
 POFILE= eqn.po
 POFILES= $(SUBDIR2:%=%/%.po)
 

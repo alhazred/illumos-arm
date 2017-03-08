@@ -38,7 +38,7 @@ CERRWARN += -_gcc=-Wno-clobbered
 CERRWARN += $(CNOWARN_UNINIT)
 XGETFLAGS += -a -x logadm.xcl
 
-$(ROOTETC)/$(CONFIGFILE):= FILEMODE= 644
+$(ROOTETC)/$(CONFIGFILE):  FILEMODE= 644
 
 CLOBBERFILES += $(TESTS)
 
@@ -47,12 +47,12 @@ LOGADMDIR = $(ROOT)/etc/logadm.d
 MFSTFILES =	logadm-upgrade.xml
 MANIFESTDIR =	$(ROOT)/lib/svc/manifest/system
 MANIFEST =	$(MFSTFILES:%=$(MANIFESTDIR)/%)
-$(MANIFEST) :=	FILEMODE = 0444
+$(MANIFEST) : 	FILEMODE = 0444
 
 METHODFILES =	logadm-upgrade
 METHODDIR =	$(ROOT)/lib/svc/method
 METHOD =	$(METHODFILES:%=$(METHODDIR)/%)
-$(METHOD) :=	FILEMODE = 0555
+$(METHOD) : 	FILEMODE = 0555
 
 .KEEP_STATE:
 

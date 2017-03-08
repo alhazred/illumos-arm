@@ -38,7 +38,7 @@ CPPFLAGS  += -I$(SRC)/lib/libfru/include
 LINTFLAGS += -u
 LDLIBS    += $(FRULIBS) -lm
 
-lint      := FRULIBS =
+lint      :  FRULIBS =
 
 FILEMODE = 755
 

@@ -29,10 +29,10 @@ include		$(SRC)/lib/Makefile.lib
 $(SPARC_BLD)SUBDIRS =	sun4u sun4v
 $(INTEL_BLD)SUBDIRS =
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

@@ -29,7 +29,7 @@
 include		../Makefile.com
 
 $(ONLIBS) \
-$(CCSLIBS) :=	CFLAGS +=	$(C_PICFLAGS) $(NO_ASM_WARN)
+$(CCSLIBS) : 	CFLAGS +=	$(C_PICFLAGS) $(NO_ASM_WARN)
 
 .KEEP_STATE:
 

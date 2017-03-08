@@ -29,17 +29,17 @@ SUBDIRS =	$(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
 # conditional assignments
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
 
 #definitions for install_h target
 HDRS=		com.h writer.h probe.h
 ROOTHDRDIR=	$(ROOT)/usr/include/tnf
 ROOTHDRS=	$(HDRS:%=$(ROOTHDRDIR)/%)
 CHECKHDRS=	$(HDRS:%.h=%.check)
-$(ROOTHDRS) :=	FILEMODE = 0644
+$(ROOTHDRS) : 	FILEMODE = 0644
 CHECKHDRS =	$(HDRS:%.h=%.check)
 
 .KEEP_STATE:

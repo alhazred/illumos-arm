@@ -66,7 +66,7 @@ LDFLAGS += -dy -Nfs/sockfs -Ndrv/ip
 LINTTAGS	+= -erroff=E_BAD_PTR_CAST_ALIGN
 
 # needs work
-$(OBJS_DIR)/ncaddi.o := SMOFF += index_overflow
+$(OBJS_DIR)/ncaddi.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

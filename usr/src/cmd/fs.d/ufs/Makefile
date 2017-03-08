@@ -41,12 +41,12 @@ SUBDIR2= 	df fssnap mkfs mount newfs volcopy
 ROLLDIR=	roll_log
 SUBDIRS=	$(ROLLDIR) $(SUBDIR1) $(SUBDIR2)
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-catalog:=       TARGET= catalog
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+catalog:        TARGET= catalog
 
 # for messaging catalog
 #

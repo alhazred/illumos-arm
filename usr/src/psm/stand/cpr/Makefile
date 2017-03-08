@@ -35,12 +35,12 @@ sparcv9_ARCHITECTURES = sparcv9
 sparc_ARCHITECTURES = $(sparcv9_ARCHITECTURES)
 SUBDIRS = $($(MACH)_ARCHITECTURES)
 
-all		:=	TARGET= all
-install		:=	TARGET= install
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
-clean.lint	:=	TARGET= clean.lint
+all		: 	TARGET= all
+install		: 	TARGET= install
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
+clean.lint	: 	TARGET= clean.lint
 
 .KEEP_STATE:
 

@@ -41,8 +41,8 @@ DEST_FILES = $(ETC_FILES:%=$(ROOTLIBAPPCERT)/%)
 
 CLEANFILES=	$(MESSAGES) $(ETC_FILES)
 
-install :=	FILEMODE=	0444
-install :=	DIRMODE=	0755
+install : 	FILEMODE=	0444
+install : 	DIRMODE=	0755
 
 all: $(ETC_FILES) 
 

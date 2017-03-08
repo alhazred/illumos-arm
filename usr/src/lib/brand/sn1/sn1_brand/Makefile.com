@@ -71,7 +71,7 @@ DYNFLAGS +=	$(BLOCAL) $(ZNOVERSION) -Wl,-e_start
 LDLIBS +=	-lmapmalloc -lc
 
 ZGUIDANCE =	-zguidance=nounused
-$(LIBS):= PICS += $(SHAREDOBJS)
+$(LIBS):  PICS += $(SHAREDOBJS)
 
 .KEEP_STATE:
 

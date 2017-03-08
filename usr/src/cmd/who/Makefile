@@ -35,7 +35,7 @@ include ../Makefile.cmd
 
 SED= sed
 
-$(ROOTUTMPS):= FILEMODE= 644
+$(ROOTUTMPS):  FILEMODE= 644
 
 $(ROOTADM)/%: %
 	$(INS.file)
@@ -43,7 +43,7 @@ $(ROOTADM)/%: %
 .KEEP_STATE:
 
 CFLAGS += $(CCVERBOSE)
-$(XPG4):= CPPFLAGS += -DXPG4
+$(XPG4):  CPPFLAGS += -DXPG4
 
 all: $(PROG) $(UTMPS) $(XPG4)
 

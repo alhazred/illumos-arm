@@ -87,7 +87,7 @@ CERRWARN	+= $(CNOWARN_UNINIT)
 SMOFF += indenting,deref_check,all_func_returns,index_overflow
 
 # seems definitely wrong
-$(OBJS_DIR)/emlxs_fcf.o := SMOFF += logical_instead_of_bitwise
+$(OBJS_DIR)/emlxs_fcf.o :  SMOFF += logical_instead_of_bitwise
 
 #
 #	Default build targets.

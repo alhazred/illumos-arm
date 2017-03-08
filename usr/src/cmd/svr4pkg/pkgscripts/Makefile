@@ -42,7 +42,7 @@ ADMINFILE =		default
 ROOTPKGMNFSTDIR=$(ROOT)/lib/svc/manifest/system
 ROOTPKGMNFST=   $(ROOTPKGMNFSTDIR)/pkgserv.xml
 
-$(ROOTPKGMNFST) := FILEMODE = 0444
+$(ROOTPKGMNFST) :  FILEMODE = 0444
 
 # cmdexec also installed in usr/sadm/install/scripts
 SCRIPTS = $(CLASS_ACTION_SCRIPTS) $(PROG)

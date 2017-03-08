@@ -27,11 +27,11 @@
 
 .KEEP_STATE:
 
-all := TARGET = all
-clean := TARGET = clean
-clean.lint := TARGET = clean.lint
-clobber := TARGET = clobber
-lint := TARGET = lint
+all :  TARGET = all
+clean :  TARGET = clean
+clean.lint :  TARGET = clean.lint
+clobber :  TARGET = clobber
+lint :  TARGET = lint
 
 MACH :sh= uname -p
 SUBDIRS_sparc = sparc sparcv9

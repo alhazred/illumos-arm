@@ -29,8 +29,8 @@ SHARED=	common.ksh query uninstall.ksh
 include $(SRC)/cmd/Makefile.cmd
 include ../../Makefile.brand
 
-$(ROOTSHAREDDIR)/common.ksh := FILEMODE = 0444
-$(ROOTSHAREDDIR)/uninstall.ksh := FILEMODE = 0444
+$(ROOTSHAREDDIR)/common.ksh :  FILEMODE = 0444
+$(ROOTSHAREDDIR)/uninstall.ksh :  FILEMODE = 0444
 
 POFILES=	common.po query.po uninstall.po
 POFILE=		shared.po

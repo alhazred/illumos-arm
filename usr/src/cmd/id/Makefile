@@ -36,7 +36,7 @@ CERRWARN += $(CNOWARN_UNINIT)
 
 CFLAGS +=	$(CCVERBOSE)
 LDLIBS += -lproject
-$(XPG4) := CFLAGS += -DXPG4
+$(XPG4) :  CFLAGS += -DXPG4
 
 all: $(PROG) $(XPG4)
 

@@ -32,8 +32,8 @@
 # Conditional assignment of default group/owner/permissions for SMF
 # manifests and method scripts.
 #
-$(ROOTMANIFEST) :=	FILEMODE= 444
-$(ROOTSVCBIN) :=	FILEMODE= 544
+$(ROOTMANIFEST) : 	FILEMODE= 444
+$(ROOTSVCBIN) : 	FILEMODE= 544
 
 clobber: clean
 	-$(RM) $(PROG) $(CLOBBERFILES)

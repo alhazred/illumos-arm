@@ -296,7 +296,7 @@ SYMHDRFLOAT = $(ROOT)/usr/include/iso/float_iso.h
 SYMHDRISO646 = $(ROOT)/usr/include/iso/iso646_iso.h
 
 RPCGENFLAGS = -C -h
-rpcsvc/rwall.h :=	RPCGENFLAGS += -M
+rpcsvc/rwall.h : 	RPCGENFLAGS += -M
 
 # rpcsvc rpcgen source (.x files)
 #
@@ -379,7 +379,7 @@ CHECKHDRS= $(HDRS:%.h=%.check)  \
 # Hence the trailing guard is not the last thing in the file nor can it
 # be without playing silly games.
 
-assert.check	:= HDRCHK_TAIL = | grep -v "end guard wrong" | true
+assert.check	:  HDRCHK_TAIL = | grep -v "end guard wrong" | true
 
 # install rules
 

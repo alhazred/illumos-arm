@@ -14,7 +14,7 @@
 #
 
 ROOTTESTS=	$(TESTS:%=$(ROOTTESTDIR)/%)
-$(ROOTTESTS) :=	FILEMODE = 0555
+$(ROOTTESTS) : 	FILEMODE = 0555
 
 all lint clean clobber:
 

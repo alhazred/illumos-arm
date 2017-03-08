@@ -40,7 +40,7 @@ include ../Makefile.cmd
 
 ROOTCMDDIR=		$(ROOTLIB)
 ROOTMANIFESTDIR=	$(ROOTSVCSYSTEM)
-$(ROOTMANIFEST)		:= FILEMODE= 444
+$(ROOTMANIFEST)		:  FILEMODE= 444
 
 CPPFLAGS += -I$(SRC)/lib/libhotplug/common
 CERRWARN += -_gcc=-Wno-parentheses

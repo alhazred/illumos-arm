@@ -51,7 +51,7 @@ HDRS=		com.h writer.h probe.h
 ROOTHDRDIR=	$(ROOT)/usr/include/tnf
 ROOTHDRS=	$(HDRS:%=$(ROOTHDRDIR)/%)
 CHECKHDRS=	$(HDRS:%.h=%.check)
-$(ROOTHDRS) :=	FILEMODE = 0644
+$(ROOTHDRS) : 	FILEMODE = 0644
 CHECKHDRS =	$(HDRS:%.h=%.check)
 
 # Include .. first to pick up tnf_trace.h in current dir, Include UFSDIR to
@@ -66,7 +66,7 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 # not linted
 SMATCH=off
 
-$(ROOTHDRS) :=	FILEMODE = 644
+$(ROOTHDRS) : 	FILEMODE = 644
 
 LDLIBS += -lc
 

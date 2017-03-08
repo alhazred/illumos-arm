@@ -37,7 +37,7 @@ LINKVALUEOFF=	../lib/fs/$(FSTYPE)/$(QUOTAOFF)
 
 include		../../Makefile.fstype
 
-$(ROOTINIT_SCRIPT) :=	FILEMODE = 0744
+$(ROOTINIT_SCRIPT) : 	FILEMODE = 0744
 
 CPPFLAGS +=	-D_LARGEFILE64_SOURCE
 CERRWARN +=	-_gcc=-Wno-unused-variable

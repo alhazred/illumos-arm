@@ -35,10 +35,10 @@ POFILE =	libraidcfg.po
 MSGSRCS :sh =	echo */*.c
 MSGFILES =	$(MSGSRCS:%.c=%.i)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

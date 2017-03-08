@@ -44,16 +44,16 @@ OBJS= 		$(PROG:%=%.o)
 
 SRCS= 		$(PROG:%=%.c)
 
-editmap :=	LDLIBS += -lldap
-mail.local :=	LDLIBS += -lsocket -lnsl -lmail -lldap
-mailq :=	LDLIBS += -lsecdb
-mailstats :=	LDLIBS += -lldap
-makemap :=	LDLIBS += -lldap
-mconnect :=	LDLIBS += -lsocket -lnsl
-praliases :=	LDLIBS += -lldap
-smrsh :=	LDLIBS += -lldap
-vacation :=	LDLIBS += -lldap
-$(ROOTLIBSMTPSM)/mailq :=	FILEMODE = 4555
+editmap : 	LDLIBS += -lldap
+mail.local : 	LDLIBS += -lsocket -lnsl -lmail -lldap
+mailq : 	LDLIBS += -lsecdb
+mailstats : 	LDLIBS += -lldap
+makemap : 	LDLIBS += -lldap
+mconnect : 	LDLIBS += -lsocket -lnsl
+praliases : 	LDLIBS += -lldap
+smrsh : 	LDLIBS += -lldap
+vacation : 	LDLIBS += -lldap
+$(ROOTLIBSMTPSM)/mailq : 	FILEMODE = 4555
 
 INCPATH=	-I../src -I../db -I../include
 

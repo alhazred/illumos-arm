@@ -79,13 +79,13 @@ LIBNPRT =       -L$(ROOT)/usr/lib -lprint
 
 LINTFLAGS	+=	-L $(SRC)/lib/print -lprint -lnsl -lsocket 
 
-all	:=TARGET= all
-install	:=TARGET= install
-clean	:=TARGET= clean
-clobber	:=TARGET= clobber
-lint	:=TARGET= lint
-strip	:=TARGET= strip
-_msg	:=TARGET= _msg
+all	: TARGET= all
+install	: TARGET= install
+clean	: TARGET= clean
+clobber	: TARGET= clobber
+lint	: TARGET= lint
+strip	: TARGET= strip
+_msg	: TARGET= _msg
 
 ROOTLIBLPPROG=	$(PROG:%=$(ROOTLIBLP)/%)
 ROOTBINLPPROG=	$(PROG:%=$(ROOTBINLP)/%)

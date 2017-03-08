@@ -39,12 +39,12 @@ SAMPDIR= $(ROOT)/usr/$(SAMPSUBDIR)
 DEMODIR= $(ROOT)/usr/demo/SOUND
 SOUNDLINK= $(DEMODIR)/$(SOUNDS)
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+_msg : 		TARGET= _msg
 
 .KEEP_STATE:
 

@@ -36,7 +36,7 @@ COMMON_DIR=	../common
 
 MANIFEST = rcap.xml
 ROOTMANIFESTDIR = $(ROOTSVCSYSTEM)
-$(ROOTSVCSYSTEM)/rcap.xml := FILEMODE = 0444
+$(ROOTSVCSYSTEM)/rcap.xml :  FILEMODE = 0444
 
 
 SRCS =	rcapd_main.c \
@@ -76,6 +76,7 @@ CLOBBERFILES +=		$(POFILES) $(POFILE)
 
 include ../Makefile.com
 
+.NOTPARALLEL:
 .NO_PARALLEL:
 .PARALLEL: $(OBJS)
 

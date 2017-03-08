@@ -73,7 +73,7 @@ CERRWARN	+= -_gcc=-Wno-unused-label
 CERRWARN	+= -_gcc=-Wno-switch
 
 # needs work
-$(OBJS_DIR)/aac.o := SMOFF += shift_to_zero
+$(OBJS_DIR)/aac.o :  SMOFF += shift_to_zero
 
 #
 #	Default build targets.

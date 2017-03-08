@@ -42,7 +42,7 @@ include ../../Makefile.cmd
 CFLAGS += $(CCVERBOSE)
 CFLAGS64 += $(CCVERBOSE)
 
-$(XPG4) := CPPFLAGS += -DXPG4
+$(XPG4) :  CPPFLAGS += -DXPG4
 
 # not needed for xpg4/nohup
 EXTRALIBS = -lproc

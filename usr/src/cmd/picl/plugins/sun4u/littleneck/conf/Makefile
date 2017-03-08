@@ -35,7 +35,7 @@ include $(SRC)/cmd/picl/plugins/Makefile.com
 UTSBASE= $(SRC)/uts
 
 PLATFORM=SUNW,Sun-Fire-280R
-install	:= FILEMODE = 0444
+install	:  FILEMODE = 0444
 
 CONF=		platsvcd.conf psvcobj.conf
 ROOTCONF=	$(CONF:%=$(USR_PSM_LIB_DIR)/%)
@@ -50,10 +50,10 @@ ZDEFS	=
 
 SUBDIRS=
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 all:
 

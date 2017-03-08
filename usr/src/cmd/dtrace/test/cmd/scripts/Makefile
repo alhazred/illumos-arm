@@ -34,7 +34,7 @@ ROOTBIN = $(ROOTOPTPKG)/bin
 SRCS = dtest itest dstyle dtfailures
 CMDS = $(SRCS:%=$(ROOTBIN)/%)
 
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all clean clobber lint:
 

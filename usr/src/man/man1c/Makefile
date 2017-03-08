@@ -33,12 +33,12 @@ MANLINKS=	uudecode.1c	\
 		uuname.1c	\
 		uupick.1c
 
-uulog.1c	:= LINKSRC = uucp.1c
-uuname.1c	:= LINKSRC = uucp.1c
+uulog.1c	:  LINKSRC = uucp.1c
+uuname.1c	:  LINKSRC = uucp.1c
 
-uudecode.1c	:= LINKSRC = uuencode.1c
+uudecode.1c	:  LINKSRC = uuencode.1c
 
-uupick.1c	:= LINKSRC = uuto.1c
+uupick.1c	:  LINKSRC = uuto.1c
 
 .KEEP_STATE:
 

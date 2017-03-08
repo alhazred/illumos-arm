@@ -59,9 +59,9 @@ LINKED_DIRS	= $(PLATLINKS:%=$(USR_PLAT_DIR)/%)
 LINKED_LIB_DIRS	= $(PLATLINKS:%=$(USR_PLAT_DIR)/%/lib)
 LINKED_LIB_FS_DIRS	= $(PLATLINKS:%=$(USR_PLAT_DIR)/%/lib/fs)
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
 
 TARG_MACH =	sparcv9
 TARG_MACH_DIR =	sparcv9

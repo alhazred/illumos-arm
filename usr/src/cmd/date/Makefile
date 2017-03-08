@@ -32,7 +32,7 @@ include ../Makefile.cmd
 
 CFLAGS += $(CCVERBOSE)
 
-clean $(XPG4) := OBJS += values-xpg4.o
+clean $(XPG4) :  OBJS += values-xpg4.o
 XGETFLAGS += -a -x $(PROG).xcl
 
 .KEEP_STATE:

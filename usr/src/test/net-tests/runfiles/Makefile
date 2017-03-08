@@ -18,7 +18,7 @@ SRCS = default.run
 ROOTOPTPKG = $(ROOT)/opt/net-tests
 RUNFILES = $(ROOTOPTPKG)/runfiles
 CMDS = $(SRCS:%=$(RUNFILES)/%)
-$(CMDS) := FILEMODE = 0444
+$(CMDS) :  FILEMODE = 0444
 
 include $(SRC)/test/Makefile.com
 

@@ -64,12 +64,12 @@ CRYPTDIR=	$(SRC)/common/crypto
 ST_DIR=		$(SRC)/lib/pkcs11/pkcs11_softtoken/common
 
 lint \
-pics/kernelAttributeUtil.o := \
+pics/kernelAttributeUtil.o :  \
 	CPPFLAGS += -I$(AESDIR) -I$(BLOWFISHDIR) -I$(ARCFOURDIR) -I$(DESDIR) \
 	-I$(ECCDIR) -I$(CRYPTDIR)
-pics/kernelKeys.o := \
+pics/kernelKeys.o :  \
 	CPPFLAGS += -I$(ECCDIR)
-pics/kernelSoftCommon.o := \
+pics/kernelSoftCommon.o :  \
 	CPPFLAGS = -I$(ST_DIR) $(CPPFLAGS.master)
 
 include $(SRC)/lib/Makefile.lib

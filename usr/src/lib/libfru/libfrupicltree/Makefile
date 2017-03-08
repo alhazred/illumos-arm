@@ -28,11 +28,11 @@ include	$(SRC)/lib/Makefile.lib
 
 SUBDIRS = .WAIT $(MACH)
 
-all :=		TARGET= all
-install :=      TARGET= install
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-_msg :=         TARGET= _msg
+all : 		TARGET= all
+install :       TARGET= install
+clean :         TARGET= clean
+clobber :       TARGET= clobber
+_msg :          TARGET= _msg
 
 sparc_HDRS=
 sparcv9_HDRS=

@@ -637,108 +637,108 @@ MANLINKS=	acctcon1.1m			\
 
 MANFILES=	$(_MANFILES) $($(MACH)_MANFILES)
 
-intro.1m			:= LINKSRC = Intro.1m
+intro.1m			:  LINKSRC = Intro.1m
 
-uutry.1m			:= LINKSRC = Uutry.1m
+uutry.1m			:  LINKSRC = Uutry.1m
 
-reject.1m			:= LINKSRC = accept.1m
+reject.1m			:  LINKSRC = accept.1m
 
-acctdisk.1m			:= LINKSRC = acct.1m
-acctdusg.1m			:= LINKSRC = acct.1m
-accton.1m			:= LINKSRC = acct.1m
-acctwtmp.1m			:= LINKSRC = acct.1m
-closewtmp.1m			:= LINKSRC = acct.1m
-utmp2wtmp.1m			:= LINKSRC = acct.1m
+acctdisk.1m			:  LINKSRC = acct.1m
+acctdusg.1m			:  LINKSRC = acct.1m
+accton.1m			:  LINKSRC = acct.1m
+acctwtmp.1m			:  LINKSRC = acct.1m
+closewtmp.1m			:  LINKSRC = acct.1m
+utmp2wtmp.1m			:  LINKSRC = acct.1m
 
-acctcon1.1m			:= LINKSRC = acctcon.1m
-acctcon2.1m			:= LINKSRC = acctcon.1m
+acctcon1.1m			:  LINKSRC = acctcon.1m
+acctcon2.1m			:  LINKSRC = acctcon.1m
 
-acctprc1.1m			:= LINKSRC = acctprc.1m
-acctprc2.1m			:= LINKSRC = acctprc.1m
+acctprc1.1m			:  LINKSRC = acctprc.1m
+acctprc2.1m			:  LINKSRC = acctprc.1m
 
-chargefee.1m			:= LINKSRC = acctsh.1m
-ckpacct.1m			:= LINKSRC = acctsh.1m
-dodisk.1m			:= LINKSRC = acctsh.1m
-lastlogin.1m			:= LINKSRC = acctsh.1m
-monacct.1m			:= LINKSRC = acctsh.1m
-nulladm.1m			:= LINKSRC = acctsh.1m
-prctmp.1m			:= LINKSRC = acctsh.1m
-prdaily.1m			:= LINKSRC = acctsh.1m
-prtacct.1m			:= LINKSRC = acctsh.1m
-shutacct.1m			:= LINKSRC = acctsh.1m
-startup.1m			:= LINKSRC = acctsh.1m
-turnacct.1m			:= LINKSRC = acctsh.1m
+chargefee.1m			:  LINKSRC = acctsh.1m
+ckpacct.1m			:  LINKSRC = acctsh.1m
+dodisk.1m			:  LINKSRC = acctsh.1m
+lastlogin.1m			:  LINKSRC = acctsh.1m
+monacct.1m			:  LINKSRC = acctsh.1m
+nulladm.1m			:  LINKSRC = acctsh.1m
+prctmp.1m			:  LINKSRC = acctsh.1m
+prdaily.1m			:  LINKSRC = acctsh.1m
+prtacct.1m			:  LINKSRC = acctsh.1m
+shutacct.1m			:  LINKSRC = acctsh.1m
+startup.1m			:  LINKSRC = acctsh.1m
+turnacct.1m			:  LINKSRC = acctsh.1m
 
-dcopy.1m			:= LINKSRC = clri.1m
+dcopy.1m			:  LINKSRC = clri.1m
 
-audlinks.1m			:= LINKSRC = devfsadm.1m
-devfsadmd.1m			:= LINKSRC = devfsadm.1m
+audlinks.1m			:  LINKSRC = devfsadm.1m
+devfsadmd.1m			:  LINKSRC = devfsadm.1m
 
-fcadm.1m			:= LINKSRC = fcinfo.1m
+fcadm.1m			:  LINKSRC = fcinfo.1m
 
-wtmpfix.1m			:= LINKSRC = fwtmp.1m
+wtmpfix.1m			:  LINKSRC = fwtmp.1m
 
-hal-find-by-capability.1m	:= LINKSRC = hal-find.1m
-hal-find-by-property.1m		:= LINKSRC = hal-find.1m
+hal-find-by-capability.1m	:  LINKSRC = hal-find.1m
+hal-find-by-property.1m		:  LINKSRC = hal-find.1m
 
-hal-set-property.1m		:= LINKSRC = hal-get-property.1m
+hal-set-property.1m		:  LINKSRC = hal-get-property.1m
 
-poweroff.1m			:= LINKSRC = halt.1m
+poweroff.1m			:  LINKSRC = halt.1m
 
 
-comsat.1m			:= LINKSRC = in.comsat.1m
-fingerd.1m			:= LINKSRC = in.fingerd.1m
-rarpd.1m			:= LINKSRC = in.rarpd.1m
-rdisc.1m			:= LINKSRC = in.rdisc.1m
-rexecd.1m			:= LINKSRC = in.rexecd.1m
-rlogind.1m			:= LINKSRC = in.rlogind.1m
-routed.1m			:= LINKSRC = in.routed.1m
-rshd.1m				:= LINKSRC = in.rshd.1m
-rwhod.1m			:= LINKSRC = in.rwhod.1m
-talkd.1m			:= LINKSRC = in.talkd.1m
-telnetd.1m			:= LINKSRC = in.telnetd.1m
-tftpd.1m			:= LINKSRC = in.tftpd.1m
-uucpd.1m			:= LINKSRC = in.uucpd.1m
+comsat.1m			:  LINKSRC = in.comsat.1m
+fingerd.1m			:  LINKSRC = in.fingerd.1m
+rarpd.1m			:  LINKSRC = in.rarpd.1m
+rdisc.1m			:  LINKSRC = in.rdisc.1m
+rexecd.1m			:  LINKSRC = in.rexecd.1m
+rlogind.1m			:  LINKSRC = in.rlogind.1m
+routed.1m			:  LINKSRC = in.routed.1m
+rshd.1m				:  LINKSRC = in.rshd.1m
+rwhod.1m			:  LINKSRC = in.rwhod.1m
+talkd.1m			:  LINKSRC = in.talkd.1m
+telnetd.1m			:  LINKSRC = in.telnetd.1m
+tftpd.1m			:  LINKSRC = in.tftpd.1m
+uucpd.1m			:  LINKSRC = in.uucpd.1m
 
-telinit.1m			:= LINKSRC = init.1m
+telinit.1m			:  LINKSRC = init.1m
 
-kadmin.local.1m			:= LINKSRC = kadmin.1m
+kadmin.local.1m			:  LINKSRC = kadmin.1m
 
-unlink.1m			:= LINKSRC = link.1m
+unlink.1m			:  LINKSRC = link.1m
 
-umount.1m			:= LINKSRC = mount.1m
+umount.1m			:  LINKSRC = mount.1m
 
-umount_smbfs.1m			:= LINKSRC = mount_smbfs.1m
+umount_smbfs.1m			:  LINKSRC = mount_smbfs.1m
 
-umountall.1m			:= LINKSRC = mountall.1m
+umountall.1m			:  LINKSRC = mountall.1m
 
-grpck.1m			:= LINKSRC = pwck.1m
+grpck.1m			:  LINKSRC = pwck.1m
 
-quotaoff.1m			:= LINKSRC = quotaon.1m
+quotaoff.1m			:  LINKSRC = quotaon.1m
 
-bootparamd.1m			:= LINKSRC = rpc.bootparamd.1m
-rstatd.1m			:= LINKSRC = rpc.rstatd.1m
-rusersd.1m			:= LINKSRC = rpc.rusersd.1m
-rwalld.1m			:= LINKSRC = rpc.rwalld.1m
-sprayd.1m			:= LINKSRC = rpc.sprayd.1m
-yppasswdd.1m			:= LINKSRC = rpc.yppasswdd.1m
-ypupdated.1m			:= LINKSRC = rpc.ypupdated.1m
+bootparamd.1m			:  LINKSRC = rpc.bootparamd.1m
+rstatd.1m			:  LINKSRC = rpc.rstatd.1m
+rusersd.1m			:  LINKSRC = rpc.rusersd.1m
+rwalld.1m			:  LINKSRC = rpc.rwalld.1m
+sprayd.1m			:  LINKSRC = rpc.sprayd.1m
+yppasswdd.1m			:  LINKSRC = rpc.yppasswdd.1m
+ypupdated.1m			:  LINKSRC = rpc.ypupdated.1m
 
-restricted_shell.1m		:= LINKSRC = rsh.1m
+restricted_shell.1m		:  LINKSRC = rsh.1m
 
-sa1.1m				:= LINKSRC = sar.1m
-sa2.1m				:= LINKSRC = sar.1m
-sadc.1m				:= LINKSRC = sar.1m
+sa1.1m				:  LINKSRC = sar.1m
+sa2.1m				:  LINKSRC = sar.1m
+sadc.1m				:  LINKSRC = sar.1m
 
-unshareall.1m			:= LINKSRC = shareall.1m
+unshareall.1m			:  LINKSRC = shareall.1m
 
-ypxfrd.1m			:= LINKSRC = ypserv.1m
+ypxfrd.1m			:  LINKSRC = ypserv.1m
 
-ypstop.1m			:= LINKSRC = ypstart.1m
+ypstop.1m			:  LINKSRC = ypstart.1m
 
-ypxfr_1perday.1m		:= LINKSRC = ypxfr.1m
-ypxfr_1perhour.1m		:= LINKSRC = ypxfr.1m
-ypxfr_2perday.1m		:= LINKSRC = ypxfr.1m
+ypxfr_1perday.1m		:  LINKSRC = ypxfr.1m
+ypxfr_1perhour.1m		:  LINKSRC = ypxfr.1m
+ypxfr_2perday.1m		:  LINKSRC = ypxfr.1m
 
 
 .KEEP_STATE:

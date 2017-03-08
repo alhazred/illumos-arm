@@ -151,13 +151,13 @@ mdb_grammar.h mdb_grammar.c: ../../../common/mdb/mdb_grammar.y
 	@$(MV) y.tab.h mdb_grammar.h
 	@$(MV) y.tab.c mdb_grammar.c
 
-mdb_lex.o mdb_grammar.o := CCVERBOSE =
+mdb_lex.o mdb_grammar.o :  CCVERBOSE =
 
-mdb_conf.o := CPPFLAGS += -DMDB_VERSION='$(MDB_VERSION)'
+mdb_conf.o :  CPPFLAGS += -DMDB_VERSION='$(MDB_VERSION)'
 
-inet_ntop.o := CPPFLAGS += -Dsnprintf=mdb_snprintf
+inet_ntop.o :  CPPFLAGS += -Dsnprintf=mdb_snprintf
 
-ffs.o ffs.ln := CPPFLAGS += -Dffs=mdb_ffs
+ffs.o ffs.ln :  CPPFLAGS += -Dffs=mdb_ffs
 
 %.o: ../../../common/mdb/%.c
 	$(COMPILE.c) $<

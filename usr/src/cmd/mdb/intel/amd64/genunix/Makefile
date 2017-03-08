@@ -55,7 +55,7 @@ include ../../../../Makefile.cmd.64
 include ../../Makefile.amd64
 include ../../../Makefile.module
 
-dmod/$(MODULE) := LDLIBS += -lm -lproc
+dmod/$(MODULE) :  LDLIBS += -lm -lproc
 
 #
 # We are not actually hardwiring some dependency on i86pc, we just need to

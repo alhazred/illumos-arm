@@ -67,9 +67,9 @@ ROOTDOCDIRS=	\
 # Generic documentation rules
 DOCFILESRCDIR=         common
 ROOTDOCFILES=  $(DOCFILES:%=$(ROOTDOCDIRBASE)/%)
-$(ROOTDOCDIRS) :=      OWNER =         root
-$(ROOTDOCDIRS) :=      GROUP =         bin
-$(ROOTDOCDIRS) :=      DIRMODE =       755
+$(ROOTDOCDIRS) :       OWNER =         root
+$(ROOTDOCDIRS) :       GROUP =         bin
+$(ROOTDOCDIRS) :       DIRMODE =       755
 
 $(ROOTDOCDIRS):
 	$(INS.dir)

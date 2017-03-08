@@ -32,12 +32,12 @@ include ../Makefile.cmd
 CFLAGS += $(CCVERBOSE)
 CERRWARN += -_gcc=-Wno-parentheses
 CERRWARN += $(CNOWARN_UNINIT)
-$(XPG4) := CFLAGS += -DXPG4
+$(XPG4) :  CFLAGS += -DXPG4
 CPPFLAGS += -D_FILE_OFFSET_BITS=64
 POFILE = du_cmd.po
 POFILES = du.po
 POFILES_XPG4 = du.po.xpg4
-$(POFILES_XPG4)	:= CFLAGS += -DXPG4
+$(POFILES_XPG4)	:  CFLAGS += -DXPG4
 CLOBBERFILES += $(POFILES_XPG4)
 LDLIBS += -lcmdutils
 

@@ -23,7 +23,7 @@ TESTDIR = $(ROOTOPTPKG)/tests/functional/channel_program
 PROGS = channel_common.kshlib
 
 CMDS = $(PROGS:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all lint clean clobber:
 

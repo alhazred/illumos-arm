@@ -91,7 +91,7 @@ CONSTCLEAN=
 
 include ../../Makefile.cmd
 ROOTMANIFESTDIR=	$(ROOTSVCNETWORK)
-$(ROOTMANIFEST)		:= FILEMODE= 444
+$(ROOTMANIFEST)		:  FILEMODE= 444
 include ../Makefile.cmd-inet
 
 ROOTSBINPROG = $(ROOTFS_PROG:%=$(ROOTSBIN)/%)
@@ -120,12 +120,12 @@ POFILES=	6to4relay.po if_mpadm.po in.comsat.po ipaddrsel.po route.po \
 		soconfig.po
 POFILE=		usr.sbin.po
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-_msg:=		TARGET= _msg
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+_msg: 		TARGET= _msg
 
 CLOBBERFILES +=	$(ROOTFS_PROG) $(PROG)
 CLEANFILES += $(COMMONOBJS) $(K5RLOGINOBJS) $(K5RSHDOBJS) $(TFTPDOBJS) \
@@ -138,34 +138,34 @@ K5LIBS=
 
 # Eventually just plain CFLAGS should be += -v, but not until all in
 # PROGS are lint clean.
-$(LINTCLEAN)		:=	CFLAGS += $(CCVERBOSE)
-$(CONSTCLEAN)		:=	CFLAGS += $(XSTRCONST)
+$(LINTCLEAN)		: 	CFLAGS += $(CCVERBOSE)
+$(CONSTCLEAN)		: 	CFLAGS += $(XSTRCONST)
 
-$(SYNCPROG)		:=	LDLIBS += -ldlpi
-$(SOCKETPROG)		:=	LDLIBS += -lsocket
-$(NSLPROG)		:=	LDLIBS += -lnsl
-$(AUDITPROG)		:=	LDLIBS += -lbsm
-$(PAMPROG)		:=	LDLIBS += -lpam
-$(RPCSVCPROG)		:=	LDLIBS += -lrpcsvc
-$(K5PROGS)		:=	LDFLAGS += $(KRUNPATH) \
+$(SYNCPROG)		: 	LDLIBS += -ldlpi
+$(SOCKETPROG)		: 	LDLIBS += -lsocket
+$(NSLPROG)		: 	LDLIBS += -lnsl
+$(AUDITPROG)		: 	LDLIBS += -lbsm
+$(PAMPROG)		: 	LDLIBS += -lpam
+$(RPCSVCPROG)		: 	LDLIBS += -lrpcsvc
+$(K5PROGS)		: 	LDFLAGS += $(KRUNPATH) \
 				-L$(ROOT)$(KLIBDIR_DO) -L$(ROOT)$(KLIBDIR_GL)
-$(K5PROGS)		:=	K5LIBS=  -lmech_krb5
-$(K5PROGS)		:=	CPPFLAGS += -I$(SRC)/head \
+$(K5PROGS)		: 	K5LIBS=  -lmech_krb5
+$(K5PROGS)		: 	CPPFLAGS += -I$(SRC)/head \
 				-I$(SRC)/uts/common/ \
 				-I$(SRC)/uts/common/gssapi/mechs/krb5/include \
 				-I$(SRC)/lib/gss_mechs/mech_krb5/include \
 				-I$(SRC)/lib/pam_modules/krb5
 LDLIBS +=	$(K5LIBS)
-$(TSNETPROG)		:=	LDLIBS += -ltsnet
-$(DLADMPROG)		:=	LDLIBS += -ldladm
+$(TSNETPROG)		: 	LDLIBS += -ltsnet
+$(DLADMPROG)		: 	LDLIBS += -ldladm
 
-in.rarpd		:=	LDLIBS += -linetutil -ldlpi
-if_mpadm		:=	LDLIBS += -linetutil -lipmp
-if_mpadm.po		:=	XGETFLAGS += -a
-route			:=	CPPFLAGS += -DNDEBUG
-ndd			:=	LDLIBS += -ldladm -lipadm
-$(RELEASE_BUILD)ndd	:=	CERRWARN += -_gcc=-Wno-unused
-in.comsat		:=	LDFLAGS += $(MAPFILE.NGB:%=-M%)
+in.rarpd		: 	LDLIBS += -linetutil -ldlpi
+if_mpadm		: 	LDLIBS += -linetutil -lipmp
+if_mpadm.po		: 	XGETFLAGS += -a
+route			: 	CPPFLAGS += -DNDEBUG
+ndd			: 	LDLIBS += -ldladm -lipadm
+$(RELEASE_BUILD)ndd	: 	CERRWARN += -_gcc=-Wno-unused
+in.comsat		: 	LDFLAGS += $(MAPFILE.NGB:%=-M%)
 
 .KEEP_STATE:
 

@@ -26,14 +26,14 @@
 
 .KEEP_STATE:
 
-all := TARGET += all
-clean := TARGET += clean
-clobber := TARGET += clobber
-install := TARGET += install
-install_h := TARGET += install_h
-lint := TARGET += lint
-_msg := TARGET += _msg
-check := TARGET += check
+all :  TARGET += all
+clean :  TARGET += clean
+clobber :  TARGET += clobber
+install :  TARGET += install
+install_h :  TARGET += install_h
+lint :  TARGET += lint
+_msg :  TARGET += _msg
+check :  TARGET += check
 
 all clean clobber install install_h lint: $(SUBDIRS)
 

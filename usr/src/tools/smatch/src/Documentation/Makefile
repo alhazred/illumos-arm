@@ -8,7 +8,7 @@ SPHINXPROJ    = sparse
 SOURCEDIR     = .
 BUILDDIR      = build
 
-targets := help
+targets :  help
 targets += html
 targets += man
 

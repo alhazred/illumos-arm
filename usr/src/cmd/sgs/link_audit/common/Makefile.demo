@@ -50,10 +50,10 @@ LIBS32=		$($(MACH)_LIBS32)
 
 ALLIBS=		$(LIBS32) $(LIBS64)
 
-$(LIBS32):=	CFLAGS += $($(MACH)_XARCH) $(C_PICFLAGS)
-$(LIBS32):=	LDLIBS += -lmapmalloc -ldl -lc
-$(LIBS64):=	CFLAGS += $($(MACH)64_XARCH) $(C_PICFLAGS64)
-$(LIBS64):=	LDLIBS += -lmapmalloc -ldl -lc
+$(LIBS32): 	CFLAGS += $($(MACH)_XARCH) $(C_PICFLAGS)
+$(LIBS32): 	LDLIBS += -lmapmalloc -ldl -lc
+$(LIBS64): 	CFLAGS += $($(MACH)64_XARCH) $(C_PICFLAGS64)
+$(LIBS64): 	LDLIBS += -lmapmalloc -ldl -lc
 
 CPPFLAGS +=	-Isrc -D__EXTENSIONS__
 LDFLAGS =	$(ZDEFS) $(ZTEXT) $(ZIGNORE)

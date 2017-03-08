@@ -32,9 +32,9 @@ FILES=
 
 install: $(DIRS) $(FILES)
 
-$(FILES):=	FILEMODE=444
+$(FILES): 	FILEMODE=444
 
-$(DIRS):=	DIRMODE=755
+$(DIRS): 	DIRMODE=755
 
 $(DIRS):
 	$(INS.dir)

@@ -76,7 +76,7 @@ CERRWARN	+= -_gcc=-Wno-unused-label
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/bpf.o := SMOFF += all_func_returns
+$(OBJS_DIR)/bpf.o :  SMOFF += all_func_returns
 
 #
 #	Default build targets.

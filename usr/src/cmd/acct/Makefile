@@ -52,17 +52,17 @@ INITPROG=	acct
 
 include		../Makefile.cmd
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
 
-acctcom := LDLIBS += lib/a.a
-acctcms acctcon acctcon1 acctmerg acctprc1 acctprc := LDLIBS += lib/a.a
+acctcom :  LDLIBS += lib/a.a
+acctcms acctcon acctcon1 acctmerg acctprc1 acctprc :  LDLIBS += lib/a.a
 
-acctdusg:= CPPFLAGS += -D_FILE_OFFSET_BITS=64
-acctdusg:= LDLIBS += -lcmdutils
+acctdusg:  CPPFLAGS += -D_FILE_OFFSET_BITS=64
+acctdusg:  LDLIBS += -lcmdutils
 
 LIBACCTD=	$(ROOTLIB)/acct
 ETCACCTD=	$(ROOTETC)/acct
@@ -81,12 +81,12 @@ LIBACCTPROG=	$(LIBPROG:%=$(LIBACCTD)/%)
 ETCACCTPROG=	$(ETCPROG:%=$(ETCACCTD)/%)
 ETCINITPROG=	$(INITPROG:%=$(ETCINITD)/%)
 
-$(LIBACCTD) :=		DIRMODE=	755
-$(ETCACCTD) :=		DIRMODE=	755
-$(WKDIRS) :=		DIRMODE=	775
-$(LIBACCTD)/accton :=	FILEMODE=	04755
-$(ETCINITPROG) :=	FILEMODE=	0744
-$(ETCACCTPROG) :=	FILEMODE=	0644
+$(LIBACCTD) : 		DIRMODE=	755
+$(ETCACCTD) : 		DIRMODE=	755
+$(WKDIRS) : 		DIRMODE=	775
+$(LIBACCTD)/accton : 	FILEMODE=	04755
+$(ETCINITPROG) : 	FILEMODE=	0744
+$(ETCACCTPROG) : 	FILEMODE=	0644
 
 CERRWARN +=	-_gcc=-Wno-implicit-function-declaration
 CERRWARN +=	-_gcc=-Wno-parentheses

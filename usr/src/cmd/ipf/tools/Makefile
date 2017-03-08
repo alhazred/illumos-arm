@@ -38,13 +38,13 @@ USRLIBIPFLICENCE=	$(LICENCE:%=$(USRLIBIPF)/%)
 
 FILEMODE= 0755
 
-$(USRLIBIPFLICENCE):=FILEMODE= 0644
+$(USRLIBIPFLICENCE): FILEMODE= 0644
 
-all:=           TARGET= all
-install:=       TARGET= install
-clean:=         TARGET= clean
-clobber:=       TARGET= clobber
-lint:=          TARGET= lint
+all:            TARGET= all
+install:        TARGET= install
+clean:          TARGET= clean
+clobber:        TARGET= clobber
+lint:           TARGET= lint
 
 $(USRLIBIPF):
 	$(INS.dir)

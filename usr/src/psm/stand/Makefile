@@ -30,12 +30,12 @@ include ../../Makefile.master
 # note: the x86 needs the "bootblks" target for installboot
 SUBDIRS= lib bootblks boot cpr bootlst
 
-all		:=	TARGET= all
-install		:=	TARGET= install
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
-clean.lint	:=	TARGET= clean.lint
+all		: 	TARGET= all
+install		: 	TARGET= install
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
+clean.lint	: 	TARGET= clean.lint
 
 .KEEP_STATE:
 

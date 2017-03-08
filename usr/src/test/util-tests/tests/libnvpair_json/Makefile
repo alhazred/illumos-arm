@@ -39,7 +39,7 @@ OBJS = $(PROG:%=%.o)
 SRCS = $(OBJS:%.o=%.c)
 
 CMDS = $(PROG:%=$(ROOTBINDIR)/%) $(SCRIPTS:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 LDLIBS += -lnvpair
 

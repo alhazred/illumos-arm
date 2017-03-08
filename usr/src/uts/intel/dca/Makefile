@@ -71,7 +71,7 @@ LINTTAGS	+= -erroff=E_ASSIGN_NARROW_CONV
 CERRWARN	+= -_gcc=-Wno-parentheses
 
 # needs work
-$(OBJS_DIR)/dca_rsa.o := SMOFF += deref_check
+$(OBJS_DIR)/dca_rsa.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

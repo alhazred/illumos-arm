@@ -61,19 +61,19 @@ LINT_LIBS	 = $(LINT_LIB) \
 		   $(CLOSED_LINT_KMODS:%=$(LINT_LIB_DIR)/llib-l%.ln) \
 		   $(SPARC_LINTS:%=$(SPARC_LIB_DIR)/llib-l%.ln)
 
-def		:=	TARGET= def
-all		:=	TARGET= all
-install		:=	TARGET= install
-install_h	:=	TARGET= install_h
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
-lintlib		:=	TARGET= lintlib
-modlintlib	:=	TARGET= modlintlib
-modlist		:=	TARGET= modlist
-modlist	modlist.sparc :=	NO_STATE= -K $$MODSTATE$$$$
-clean.lint	:=	TARGET= clean.lint
-check		:=	TARGET= check
+def		: 	TARGET= def
+all		: 	TARGET= all
+install		: 	TARGET= install
+install_h	: 	TARGET= install_h
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
+lintlib		: 	TARGET= lintlib
+modlintlib	: 	TARGET= modlintlib
+modlist		: 	TARGET= modlist
+modlist	modlist.sparc : 	NO_STATE= -K $$MODSTATE$$$$
+clean.lint	: 	TARGET= clean.lint
+check		: 	TARGET= check
 
 .KEEP_STATE:
 

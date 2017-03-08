@@ -71,7 +71,7 @@ CERRWARN	+= $(CNOWARN_UNINIT)
 CERRWARN	+= -_gcc=-Wno-unused-value
 
 # needs work
-$(OBJS_DIR)/tmp_vnops.o := SMOFF += signed
+$(OBJS_DIR)/tmp_vnops.o :  SMOFF += signed
 
 #
 #	Default build targets.

@@ -45,7 +45,7 @@ include ../../../../Makefile.psm
 
 
 USRPSMPROG=	$(USR_PSM_LIB_DIR)/$(PROG)
-$(USRPSMPROG) :=	FILEMODE =	0755
+$(USRPSMPROG) : 	FILEMODE =	0755
 
 
 #

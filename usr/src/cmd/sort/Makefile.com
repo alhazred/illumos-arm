@@ -92,14 +92,14 @@ CERRWARN +=	-_gcc=-Wno-unused-function
 # not linted
 SMATCH=off
 
-$(XPG4)	:=	CFLAGS += -DXPG4
+$(XPG4)	: 	CFLAGS += -DXPG4
 
-debug :=	SORT_DEBUG = $(CCGDEBUG) -DDEBUG $(ILDOFF)
-debug :=	COPTFLAG =
-debug :=	COPTFLAG64 =
-stats	:=	SORT_DEBUG = $(CCGDEBUG) -DSTATS -DDEBUG $(ILDOFF)
-stats	:=	COPTFLAG =
-stats	:=	COPTFLAG64 =
+debug : 	SORT_DEBUG = $(CCGDEBUG) -DDEBUG $(ILDOFF)
+debug : 	COPTFLAG =
+debug : 	COPTFLAG64 =
+stats	: 	SORT_DEBUG = $(CCGDEBUG) -DSTATS -DDEBUG $(ILDOFF)
+stats	: 	COPTFLAG =
+stats	: 	COPTFLAG64 =
 
 .KEEP_STATE :
 

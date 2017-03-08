@@ -21,7 +21,7 @@ READMES = README
 ROOTOPTPKG = $(ROOT)/opt/crypto-tests
 
 FILES = $(READMES:%=$(ROOTOPTPKG)/%)
-$(FILES) := FILEMODE = 0444
+$(FILES) :  FILEMODE = 0444
 
 all: $(READMES)
 

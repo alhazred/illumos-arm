@@ -65,7 +65,7 @@ NATIVE_LIBS +=	libcurses.so libl.so
 all:	$(PROG)
 
 # because of goto's in the scanner
-scanner.o := CCVERBOSE=
+scanner.o :  CCVERBOSE=
 
 $(PROG): $(OBJS)
 	$(LINK.c) -o $@ $(OBJS) $(LDLIBS)

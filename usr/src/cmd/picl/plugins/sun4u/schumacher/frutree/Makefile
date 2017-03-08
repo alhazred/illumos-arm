@@ -37,18 +37,18 @@ ROOTLIBDIR	= $(ROOT_PLAT_PLUGINDIR)
 
 CONF=           piclfrutree.conf
 ROOTCONF=       $(CONF:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 INFOS=          piclfrutree.info system-board.info
 
 .KEEP_STATE:
 
 SUBDIRS=
 
-all	:=	TARGET= all
-install :=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-lint	:=	TARGET= lint
+all	: 	TARGET= all
+install : 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+lint	: 	TARGET= lint
 
 all:	$(CONF) 
 

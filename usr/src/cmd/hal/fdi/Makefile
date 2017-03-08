@@ -30,7 +30,7 @@ DTDS =		fdi.dtd.1
 XMLDIR =	$(ROOT)/usr/share/lib/xml/dtd
 ROOTDTDS =	$(DTDS:%=$(XMLDIR)/%)
 
-$(ROOTDTDS) :=	FILEMODE = 444
+$(ROOTDTDS) : 	FILEMODE = 444
 
 FDIS =		information/10freedesktop/10-camera-ptp.fdi \
 		information/10freedesktop/10-cd-dvd-burner.fdi \
@@ -53,7 +53,7 @@ FDIS =		information/10freedesktop/10-camera-ptp.fdi \
 FDIDIR =	$(ROOT_HAL_FDI)
 ROOTFDIS =	$(FDIS:%=$(FDIDIR)/%)
 
-$(ROOTFDIS) :=	FILEMODE = 444
+$(ROOTFDIS) : 	FILEMODE = 444
 
 all:
 

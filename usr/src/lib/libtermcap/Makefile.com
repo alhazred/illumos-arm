@@ -22,9 +22,9 @@ include ../../Makefile.rootfs
 COMPATLINKS +=	usr/ccs/lib/libtermcap.so
 COMPATLINKS64 += usr/ccs/lib/$(MACH64)/libtermcap.so
 
-$(ROOT)/usr/ccs/lib/libtermcap.so := \
+$(ROOT)/usr/ccs/lib/libtermcap.so :  \
 	COMPATLINKTARGET=../../../lib/libtermcap.so.1
-$(ROOT)/usr/ccs/lib/$(MACH64)/libtermcap.so := \
+$(ROOT)/usr/ccs/lib/$(MACH64)/libtermcap.so :  \
 	COMPATLINKTARGET=../../../../lib/$(MACH64)/libtermcap.so.1
 
 DYNFLAGS +=	$(ZLOADFLTR)

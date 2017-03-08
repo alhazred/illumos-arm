@@ -32,7 +32,7 @@ $(COMSRC):	../common/libsys.sh libsys.list
 $(MACHSRC):	libsys.sh libsyss.list
 		sh ./libsys.sh
 
-pics/%.o :=	ASFLAGS += $(AS_PICFLAGS)
+pics/%.o : 	ASFLAGS += $(AS_PICFLAGS)
 
 pics/%.o:	%.s
 		$(COMPILE.s) -o $@ $<

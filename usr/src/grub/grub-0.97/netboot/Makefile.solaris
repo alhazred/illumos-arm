@@ -21,7 +21,7 @@ LIB_OBJS	= libdrivers_a-basemem.o	\
 		  libdrivers_a-pci_io.o		\
 		  libdrivers_a-pic8259.o	\
 		  libdrivers_a-timer.o
-$(LIB_OBJS)	:= CFLAGS = $(BASE_CFLAGS) -Os -fno-builtin -nostdinc \
+$(LIB_OBJS)	:  CFLAGS = $(BASE_CFLAGS) -Os -fno-builtin -nostdinc \
 			-DFSYS_TFTP=1 $(NET_CFLAGS) $(NET_EXTRAFLAGS)
 
 #
@@ -58,54 +58,54 @@ DRIVER_OBJS	= undi.o
 
 NET_CFLAGS	= -DINCLUDE_UNDI=1
 
-$(DRIVER_OBJS)	:= CFLAGS = $(BASE_CFLAGS) -Os -fno-builtin -nostdinc \
+$(DRIVER_OBJS)	:  CFLAGS = $(BASE_CFLAGS) -Os -fno-builtin -nostdinc \
 			$(NET_EXTRAFLAGS) $(DRIVER_DEFS)
 
-3c595.o		:= DRIVER_DEFS = -DINCLUDE_3C595=1
-3c90x.o		:= DRIVER_DEFS = -DINCLUDE_3C90X=1
-davicom.o	:= DRIVER_DEFS = -DINCLUDE_DAVICOM=1
-e1000.o		:= DRIVER_DEFS = -DINCLUDE_E1000=1
-eepro100.o	:= DRIVER_DEFS = -DINCLUDE_EEPRO100=1
-epic100.o	:= DRIVER_DEFS = -DINCLUDE_EPIC100=1
-forcedeth.o	:= DRIVER_DEFS = -DINCLUDE_FORCEDETH=1
-natsemi.o	:= DRIVER_DEFS = -DINCLUDE_NATSEMI=1
-ns83820.o	:= DRIVER_DEFS = -DINCLUDE_NS83820=1
-ns8390.o	:= DRIVER_DEFS = -DINCLUDE_NS8390=1
-pcnet32.o	:= DRIVER_DEFS = -DINCLUDE_PCNET32=1
-pnic.o		:= DRIVER_DEFS = -DINCLUDE_PNIC=1
-r8169.o		:= DRIVER_DEFS = -DINCLUDE_R8169=1
-rtl8139.o	:= DRIVER_DEFS = -DINCLUDE_RTL8139=1
-sis900.o	:= DRIVER_DEFS = -DINCLUDE_SIS900=1
-sundance.o	:= DRIVER_DEFS = -DINCLUDE_SUNDANCE=1
-tg3.o		:= DRIVER_DEFS = -DINCLUDE_TG3=1
-tlan.o		:= DRIVER_DEFS = -DINCLUDE_TLAN=1
-tulip.o		:= DRIVER_DEFS = -DINCLUDE_TULIP=1
-undi.o		:= DRIVER_DEFS = -DINCLUDE_UNDI=1
-via-rhine.o	:= DRIVER_DEFS = -DINCLUDE_VIA_RHINE=1
-w89c840.o	:= DRIVER_DEFS = -DINCLUDE_W89C840=1
+3c595.o		:  DRIVER_DEFS = -DINCLUDE_3C595=1
+3c90x.o		:  DRIVER_DEFS = -DINCLUDE_3C90X=1
+davicom.o	:  DRIVER_DEFS = -DINCLUDE_DAVICOM=1
+e1000.o		:  DRIVER_DEFS = -DINCLUDE_E1000=1
+eepro100.o	:  DRIVER_DEFS = -DINCLUDE_EEPRO100=1
+epic100.o	:  DRIVER_DEFS = -DINCLUDE_EPIC100=1
+forcedeth.o	:  DRIVER_DEFS = -DINCLUDE_FORCEDETH=1
+natsemi.o	:  DRIVER_DEFS = -DINCLUDE_NATSEMI=1
+ns83820.o	:  DRIVER_DEFS = -DINCLUDE_NS83820=1
+ns8390.o	:  DRIVER_DEFS = -DINCLUDE_NS8390=1
+pcnet32.o	:  DRIVER_DEFS = -DINCLUDE_PCNET32=1
+pnic.o		:  DRIVER_DEFS = -DINCLUDE_PNIC=1
+r8169.o		:  DRIVER_DEFS = -DINCLUDE_R8169=1
+rtl8139.o	:  DRIVER_DEFS = -DINCLUDE_RTL8139=1
+sis900.o	:  DRIVER_DEFS = -DINCLUDE_SIS900=1
+sundance.o	:  DRIVER_DEFS = -DINCLUDE_SUNDANCE=1
+tg3.o		:  DRIVER_DEFS = -DINCLUDE_TG3=1
+tlan.o		:  DRIVER_DEFS = -DINCLUDE_TLAN=1
+tulip.o		:  DRIVER_DEFS = -DINCLUDE_TULIP=1
+undi.o		:  DRIVER_DEFS = -DINCLUDE_UNDI=1
+via-rhine.o	:  DRIVER_DEFS = -DINCLUDE_VIA_RHINE=1
+w89c840.o	:  DRIVER_DEFS = -DINCLUDE_W89C840=1
 
-3c595.o		:= DRIVER_SRC = 3c595.c
-3c90x.o		:= DRIVER_SRC = 3c90x.c
-davicom.o	:= DRIVER_SRC = davicom.c
-e1000.o		:= DRIVER_SRC = e1000.c
-eepro100.o	:= DRIVER_SRC = eepro100.c
-epic100.o	:= DRIVER_SRC = epic100.c
-forcedeth.o	:= DRIVER_SRC = forcedeth.c
-natsemi.o	:= DRIVER_SRC = natsemi.c
-ns83820.o	:= DRIVER_SRC = ns83820.c
-ns8390.o	:= DRIVER_SRC = ns8390.c
-pcnet32.o	:= DRIVER_SRC = pcnet32.c
-pnic.o		:= DRIVER_SRC = pnic.c
-r8169.o		:= DRIVER_SRC = r8169.c
-rtl8139.o	:= DRIVER_SRC = rtl8139.c
-sis900.o	:= DRIVER_SRC = sis900.c
-sundance.o	:= DRIVER_SRC = sundance.c
-tg3.o		:= DRIVER_SRC = tg3.c
-tlan.o		:= DRIVER_SRC = tlan.c
-tulip.o		:= DRIVER_SRC = tulip.c
-undi.o		:= DRIVER_SRC = undi.c
-via-rhine.o	:= DRIVER_SRC = via-rhine.c
-w89c840.o	:= DRIVER_SRC = w89c840.c
+3c595.o		:  DRIVER_SRC = 3c595.c
+3c90x.o		:  DRIVER_SRC = 3c90x.c
+davicom.o	:  DRIVER_SRC = davicom.c
+e1000.o		:  DRIVER_SRC = e1000.c
+eepro100.o	:  DRIVER_SRC = eepro100.c
+epic100.o	:  DRIVER_SRC = epic100.c
+forcedeth.o	:  DRIVER_SRC = forcedeth.c
+natsemi.o	:  DRIVER_SRC = natsemi.c
+ns83820.o	:  DRIVER_SRC = ns83820.c
+ns8390.o	:  DRIVER_SRC = ns8390.c
+pcnet32.o	:  DRIVER_SRC = pcnet32.c
+pnic.o		:  DRIVER_SRC = pnic.c
+r8169.o		:  DRIVER_SRC = r8169.c
+rtl8139.o	:  DRIVER_SRC = rtl8139.c
+sis900.o	:  DRIVER_SRC = sis900.c
+sundance.o	:  DRIVER_SRC = sundance.c
+tg3.o		:  DRIVER_SRC = tg3.c
+tlan.o		:  DRIVER_SRC = tlan.c
+tulip.o		:  DRIVER_SRC = tulip.c
+undi.o		:  DRIVER_SRC = undi.c
+via-rhine.o	:  DRIVER_SRC = via-rhine.c
+w89c840.o	:  DRIVER_SRC = w89c840.c
 
 
 INCLUDES	= -I. -I.. -I../stage2 -I../stage1

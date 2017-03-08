@@ -63,9 +63,9 @@ MANFILES=	stmfAddToHostGroup.3stmf		\
 MANLINKS=	stmfGetLuProp.3stmf			\
 		stmfModifyLuByFname.3stmf
 
-stmfModifyLuByFname.3stmf	:= LINKSRC = stmfModifyLu.3stmf
+stmfModifyLuByFname.3stmf	:  LINKSRC = stmfModifyLu.3stmf
 
-stmfGetLuProp.3stmf		:= LINKSRC = stmfSetLuProp.3stmf
+stmfGetLuProp.3stmf		:  LINKSRC = stmfSetLuProp.3stmf
 
 .KEEP_STATE:
 

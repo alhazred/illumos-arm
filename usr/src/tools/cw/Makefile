@@ -51,7 +51,7 @@ $(__GNUC)ZFATALWARNINGS = -Wl,-zfatal-warnings
 $(__GNUC)ZGUIDANCE = -Wl,-zguidance
 LDFLAGS += -Wl,$(ZDIRECT)
 
-$(ROOTONBLDMAN1ONBLDFILES) := FILEMODE=      644
+$(ROOTONBLDMAN1ONBLDFILES) :  FILEMODE=      644
 CSTD=	$(CSTD_GNU99)
 
 # Assume we don't have the install.bin available yet

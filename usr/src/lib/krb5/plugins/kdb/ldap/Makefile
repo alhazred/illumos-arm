@@ -29,11 +29,11 @@ include $(SRC)/lib/gss_mechs/mech_krb5/Makefile.mech_krb5
 
 SUBDIRS= libkdb_ldap $(MACH)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
+_msg : 		TARGET= _msg
 
 .KEEP_STATE:
 

@@ -64,7 +64,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE)
 #	Overrides.
 #
 MODSTUBS_DIR	 = $(OBJS_DIR)
-$(MODSTUBS_O)	:= AS_CPPFLAGS +=
+$(MODSTUBS_O)	:  AS_CPPFLAGS +=
 CLEANFILES	+= $(MODSTUBS_O)
 
 #
@@ -78,7 +78,7 @@ CERRWARN	+= $(CNOWARN_UNINIT)
 CERRWARN	+= -_gcc=-Wno-parentheses
 
 # needs work
-$(OBJS_DIR)/port_fop.o := SMOFF += deref_check
+$(OBJS_DIR)/port_fop.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

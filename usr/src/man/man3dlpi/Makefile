@@ -43,9 +43,9 @@ MANFILES= 	dlpi_arptype.3dlpi	\
 MANLINKS=	dlpi_disabmulti.3dlpi	\
 		dlpi_promiscoff.3dlpi
 
-dlpi_disabmulti.3dlpi	:= LINKSRC = dlpi_enabmulti.3dlpi
+dlpi_disabmulti.3dlpi	:  LINKSRC = dlpi_enabmulti.3dlpi
 
-dlpi_promiscoff.3dlpi	:= LINKSRC = dlpi_promiscon.3dlpi
+dlpi_promiscoff.3dlpi	:  LINKSRC = dlpi_promiscon.3dlpi
 
 .KEEP_STATE:
 

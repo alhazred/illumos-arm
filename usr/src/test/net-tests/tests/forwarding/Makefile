@@ -46,7 +46,7 @@ DOC = $(TESTDIR)/README
 
 CMDS = $(PROG:%=$(TESTDIR)/%)
 FILEMODE=0444
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 include $(SRC)/test/Makefile.com
 

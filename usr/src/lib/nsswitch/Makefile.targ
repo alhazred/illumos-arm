@@ -29,10 +29,10 @@ all:		$(LIBS)
 include		$(SRC)/lib/Makefile.targ
 
 
-$(ROOT32DYNLIB) := FILEMODE= 755
-$(ROOT64DYNLIB) := FILEMODE= 755
+$(ROOT32DYNLIB) :  FILEMODE= 755
+$(ROOT64DYNLIB) :  FILEMODE= 755
 
-$(DYNLIB1) :=	CTFMERGE_POST = $(CTFMERGE_LIB)
+$(DYNLIB1) : 	CTFMERGE_POST = $(CTFMERGE_LIB)
 
 # DYNLIB1 is used rather than DYNLIB to prevent the automagic expansion and
 # creation of a libXXXX.so$(VERS) target.

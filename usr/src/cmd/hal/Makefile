@@ -36,12 +36,12 @@ ROOT_HAL_CONF =		$(HAL_CONF:%=$(ROOT_DBUS_CONF_DIR)/%)
 
 CLOBBERFILES +=	$(HAL_CONF)
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
-$(ROOT_HAL_CONF) :=	FILEMODE = 644
+$(ROOT_HAL_CONF) : 	FILEMODE = 644
 
 .KEEP_STATE:
 

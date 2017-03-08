@@ -111,20 +111,20 @@ YACC_C_FILES = aslcompilerparse.c dtparserparse.c prparserparse.c
 YACC_H_FILES = aslcompiler.y.h dtparser.y.h prparser.y.h
 YACC_FILES = $(YACC_C_FILES) $(YACC_H_FILES)
 
-aslcompilerlex.c aslcompilerparse.c aslcompiler.y.h := PARSER = AslCompiler
-aslcompilerlex.c aslcompilerparse.c aslcompiler.y.h := LY_BASE = aslcompiler
+aslcompilerlex.c aslcompilerparse.c aslcompiler.y.h :  PARSER = AslCompiler
+aslcompilerlex.c aslcompilerparse.c aslcompiler.y.h :  LY_BASE = aslcompiler
 
-dtparserlex.c dtparserparse.c dtparser.y.h := PARSER = DtParser
-dtparserlex.c dtparserparse.c dtparser.y.h := LY_BASE = dtparser
+dtparserlex.c dtparserparse.c dtparser.y.h :  PARSER = DtParser
+dtparserlex.c dtparserparse.c dtparser.y.h :  LY_BASE = dtparser
 
-prparserlex.c prparserparse.c prparser.y.h := PARSER = PrParser
-prparserlex.c prparserparse.c prparser.y.h := LY_BASE = prparser
+prparserlex.c prparserparse.c prparser.y.h :  PARSER = PrParser
+prparserlex.c prparserparse.c prparser.y.h :  LY_BASE = prparser
 
-$(LEX_C_FILES) := LEXFILE = $(LY_BASE).l
-$(LEX_C_FILES) := LEXFILE = $(LY_BASE).l
-$(YACC_FILES) := YTABC = $(LY_BASE)parse.c
+$(LEX_C_FILES) :  LEXFILE = $(LY_BASE).l
+$(LEX_C_FILES) :  LEXFILE = $(LY_BASE).l
+$(YACC_FILES) :  YTABC = $(LY_BASE)parse.c
 
-$(YACC_C_FILES:.c=.o) := CERRWARN += -_gcc=-Wno-char-subscripts
+$(YACC_C_FILES:.c=.o) :  CERRWARN += -_gcc=-Wno-char-subscripts
 
 OBJS += $(LEX_C_FILES:.c=.o) $(YACC_C_FILES:.c=.o)
 

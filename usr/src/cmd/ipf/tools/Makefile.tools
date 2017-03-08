@@ -62,15 +62,15 @@ LDFLAGS		+= $(MAPFILE.NGB:%=-M%)
 
 CPPFLAGS	+= -I. -DIPFILTER_LOOKUP -DIPFILTER_LOG
 
-ipfstat.o	:=	CPPFLAGS += -DSTATETOP
-ipfstat		:=	LDLIBS += -lcurses
+ipfstat.o	: 	CPPFLAGS += -DSTATETOP
+ipfstat		: 	LDLIBS += -lcurses
 
-ipf		:=	LDLIBS += -lsocket -lnsl
-ipftest		:=	LDLIBS += -lsocket -lnsl -lmd
-ipfstat		:=	LDLIBS += -lsocket -lnsl -lkvm -lelf
-ipmon		:=	LDLIBS += -lsocket -lnsl
-ipnat		:=	LDLIBS += -lsocket -lnsl -lkvm -lelf
-ippool		:=	LDLIBS += -lsocket -lnsl -lkvm -lelf
+ipf		: 	LDLIBS += -lsocket -lnsl
+ipftest		: 	LDLIBS += -lsocket -lnsl -lmd
+ipfstat		: 	LDLIBS += -lsocket -lnsl -lkvm -lelf
+ipmon		: 	LDLIBS += -lsocket -lnsl
+ipnat		: 	LDLIBS += -lsocket -lnsl -lkvm -lelf
+ippool		: 	LDLIBS += -lsocket -lnsl -lkvm -lelf
 
 CLEANFILES	+= $(OBJS)
 CLOBBERFILES	+= $(IPFPROG)

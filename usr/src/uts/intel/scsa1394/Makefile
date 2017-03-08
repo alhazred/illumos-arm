@@ -68,7 +68,7 @@ CERRWARN	+= -_gcc=-Wno-parentheses
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/sbp2_driver.o := SMOFF += indenting
+$(OBJS_DIR)/sbp2_driver.o :  SMOFF += indenting
 
 #	Default build targets.
 #

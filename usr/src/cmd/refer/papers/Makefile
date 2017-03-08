@@ -16,7 +16,7 @@ ROOTPAPERS =	$(PAPERS:%=$(ROOTDIRS)/%)
 
 FILEMODE =	644
 
-$(ROOTDIRS)/runinv := FILEMODE = 755
+$(ROOTDIRS)/runinv :  FILEMODE = 755
 
 # install rule
 $(ROOTDIRS)/% :	%

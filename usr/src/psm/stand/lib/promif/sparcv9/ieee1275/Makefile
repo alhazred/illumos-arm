@@ -28,11 +28,11 @@
 
 SUBDIRS	= common sun4 sun4u sun4v
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
-lint	:=	TARGET = lint
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
+lint	: 	TARGET = lint
 
 all install clean clobber lint: $(SUBDIRS)
 

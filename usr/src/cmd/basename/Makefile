@@ -31,8 +31,8 @@ XPG4PROG= basename
 
 include ../Makefile.cmd
 
-$(XPG4) := CFLAGS += -DXPG4 $(CCVERBOSE)
-lint_PROG_XPG4 := CPPFLAGS += -DXPG4
+$(XPG4) :  CFLAGS += -DXPG4 $(CCVERBOSE)
+lint_PROG_XPG4 :  CPPFLAGS += -DXPG4
 
 .KEEP_STATE:
 

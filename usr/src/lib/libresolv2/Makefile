@@ -30,24 +30,24 @@ MANIFEST=	client.xml install.xml
 MANIFESTDIR=	$(ROOT)/lib/svc/manifest/network/dns
 ROOTMANIFEST=	$(MANIFEST:%=$(MANIFESTDIR)/%)
 
-$(ROOTMANIFEST) :=	FILEMODE = 444
+$(ROOTMANIFEST) : 	FILEMODE = 444
 
 SVCMETHOD=	dns-install
 SVCMETHODDIR=	$(ROOT)/lib/svc/method
 ROOTSVCMETHOD=	$(SVCMETHOD:%=$(SVCMETHODDIR)/%)
 
-$(ROOTSVCMETHOD) :=	FILEMODE = 0555
+$(ROOTSVCMETHOD) : 	FILEMODE = 0555
 
 CHKMANIFEST=	$(MANIFEST:%.xml=%.xmlchk)
 
 SUBDIRS=	include $(MACH)
 $(BUILD64)SUBDIRS +=	$(MACH64)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
+_msg : 		TARGET= _msg
 
 LIBRARY=	libresolv.a
 TEXT_DOMAIN=	SUNW_OST_OSLIB

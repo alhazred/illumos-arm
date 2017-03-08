@@ -26,10 +26,10 @@
 
 SUBDIRS =	mpxu
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 all clean clobber install: $(SUBDIRS)
 

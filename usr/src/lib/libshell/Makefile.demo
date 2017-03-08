@@ -167,9 +167,9 @@ DEMOFILES= \
 	tests/vartree2.sh
 
 # Rules for executables
-$(ROOTDEMODIRBASE)/tests/shtests := FILEMODE= 755
-$(ROOTDEMODIRBASE)/fun/%	 := FILEMODE= 755
-$(ROOTDEMODIRBASE)/bin/%	 := FILEMODE= 755
+$(ROOTDEMODIRBASE)/tests/shtests :  FILEMODE= 755
+$(ROOTDEMODIRBASE)/fun/%	 :  FILEMODE= 755
+$(ROOTDEMODIRBASE)/bin/%	 :  FILEMODE= 755
 
 $(ROOTDEMODIRBASE)/bin/%: common/scripts/%.sh
 	/usr/bin/shcomp "$<" >"$(@F)"

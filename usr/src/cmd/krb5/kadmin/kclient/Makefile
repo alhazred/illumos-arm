@@ -39,7 +39,7 @@ KRB5SBINSHFILES=$(SHFILES:%=$(KRB5SBIN)/%)
 
 USRLIBSEC=	$(ROOT)/usr/lib/security
 SEC=		$(SECFILES:%=$(USRLIBSEC)/%)
-$(SEC):=	FILEMODE = $(LIBFILEMODE)
+$(SEC): 	FILEMODE = $(LIBFILEMODE)
 
 KS_OBJS=	ksetpw.o
 KD_OBJS=	kdyndns.o
@@ -68,10 +68,10 @@ CERRWARN += -_gcc=-Wno-unused-function
 # not linted
 SMATCH=off
 
-ksetpw:=	LDFLAGS += $(KRUNPATH)
-kdyndns:=	LDFLAGS += -R/usr/lib/smbsrv
-ksmb:=		LDFLAGS += -R/usr/lib/smbsrv
-kconf:=		LDFLAGS += $(KRUNPATH)
+ksetpw: 	LDFLAGS += $(KRUNPATH)
+kdyndns: 	LDFLAGS += -R/usr/lib/smbsrv
+ksmb: 		LDFLAGS += -R/usr/lib/smbsrv
+kconf: 		LDFLAGS += $(KRUNPATH)
 
 KS_LDLIBS =	$(LDLIBS) $(KMECHLIB)
 KD_LDLIBS =	$(LDLIBS) -L$(ROOT)/usr/lib/smbsrv -lsmbns

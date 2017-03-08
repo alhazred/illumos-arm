@@ -42,7 +42,7 @@ LDLIBS	+= -lproc
 
 .KEEP_STATE:
 
-lint	:= LINTFLAGS = -x
+lint	:  LINTFLAGS = -x
 
 %.o:	../%.c
 	$(COMPILE.c) $<

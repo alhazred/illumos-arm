@@ -50,8 +50,8 @@ LDLIBS += -lgen
 DIRMODE = 0755
 FILEMODE = 0555
 
-install := TARGET = install
-clobber := TARGET = clobber
+install :  TARGET = install
+clobber :  TARGET = clobber
 
 CLEANFILES += $(PROG) $(OBJS) ucode_errno.c $(POFILES) $(POFILE)
 
@@ -82,7 +82,7 @@ include	../Makefile.targ
 ucode_errno.c: $(COMMON_SRCDIR)/mkerrno.sh $(ERROR_HEADER)
 	sh $(COMMON_SRCDIR)/mkerrno.sh $(ERROR_HEADER) > $@
 
-ucode_errno.po := XGETFLAGS += -a
+ucode_errno.po :  XGETFLAGS += -a
 
 $(POFILE): $(POFILES)
 	$(RM) $@

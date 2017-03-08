@@ -35,7 +35,7 @@ ROOTMANIFESTDIR = $(ROOTSVCNETWORK)
 
 LDLIBS +=	-ldladm -ldlpi
 NATIVE_LIBS +=	libcrypto.so
-all install := LDLIBS += -lcrypto
+all install :  LDLIBS += -lcrypto
 
 SMOFF += all_func_returns
 

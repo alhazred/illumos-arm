@@ -41,10 +41,10 @@ XGETFLAGS =	-a -x libdhcputil.xcl
 # Override HDRSRCS so check only local headers
 HDRSRCS =	$(LOCHDRS:%=$(HDRDIR)/%)
 
-all :=		TARGET = all
-clean :=	TARGET = clean
-clobber	:=	TARGET = clobber
-install	:=	TARGET = install
+all : 		TARGET = all
+clean : 	TARGET = clean
+clobber	: 	TARGET = clobber
+install	: 	TARGET = install
 
 .KEEP_STATE:
 

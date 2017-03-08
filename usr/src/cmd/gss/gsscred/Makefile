@@ -52,7 +52,7 @@ SMATCH=off
 
 LDLIBS += -lgss
 
-$(GPROGS) := CPPFLAGS += -DSYSV -DSunOS=50
+$(GPROGS) :  CPPFLAGS += -DSYSV -DSunOS=50
 
 .KEEP_STATE:
 

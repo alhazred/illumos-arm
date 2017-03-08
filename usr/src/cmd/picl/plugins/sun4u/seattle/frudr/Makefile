@@ -52,7 +52,7 @@ CONFS		+= fru_FT0.conf fru_FT1.conf fru_FT2.conf
 CONFS		+= fru_FT3.conf fru_FT4.conf fru_FT5.conf
 CONFS		+= fru_FT6.conf
 ROOTCONF=	$(CONFS:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 MAININFO=	$(CONFS:%.conf=%.info)
 OTHERINFOS	= fru_PS0_data.info fru_PS1_data.info
 OTHERINFOS	+= fru_HDD0_data.info fru_HDD1_data.info

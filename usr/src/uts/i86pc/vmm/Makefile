@@ -49,10 +49,10 @@ CERRWARN	+= -_gcc=-Wno-empty-body
 SMOFF += all_func_returns
 
 # needs work
-$(OBJS_DIR)/vmm_sol_dev.o := SMOFF += signed_integer_overflow_check
+$(OBJS_DIR)/vmm_sol_dev.o :  SMOFF += signed_integer_overflow_check
 
 # a can't happen: vmx_setcap() warn: variable dereferenced before check 'pptr'
-$(OBJS_DIR)/vmx.o := SMOFF += deref_check
+$(OBJS_DIR)/vmx.o :  SMOFF += deref_check
 
 ALL_BUILDS	= $(ALL_BUILDSONLY64)
 DEF_BUILDS	= $(DEF_BUILDSONLY64)
@@ -67,10 +67,10 @@ CFLAGS		+= -_gcc=-Wno-format
 # enable collection of VMM statistics
 CFLAGS		+= -DVMM_KEEP_STATS
 
-$(OBJS_DIR)/vmm.o := CERRWARN += -_gcc=-Wno-pointer-sign -_gcc=-Wno-type-limits
-$(OBJS_DIR)/svm.o := CERRWARN += -_gcc=-Wno-pointer-sign -_gcc=-Wno-type-limits
-$(OBJS_DIR)/vmx.o := CERRWARN += -_gcc=-Wno-unused-variable
-$(OBJS_DIR)/iommu.o := CERRWARN += -_gcc=-Wno-unused-variable
+$(OBJS_DIR)/vmm.o :  CERRWARN += -_gcc=-Wno-pointer-sign -_gcc=-Wno-type-limits
+$(OBJS_DIR)/svm.o :  CERRWARN += -_gcc=-Wno-pointer-sign -_gcc=-Wno-type-limits
+$(OBJS_DIR)/vmx.o :  CERRWARN += -_gcc=-Wno-unused-variable
+$(OBJS_DIR)/iommu.o :  CERRWARN += -_gcc=-Wno-unused-variable
 
 LDFLAGS         += -N misc/acpica -N misc/pcie -N fs/dev
 LDFLAGS         += -z type=kmod -M $(MAPFILE)

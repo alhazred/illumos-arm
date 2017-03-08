@@ -33,7 +33,7 @@ MANIFEST = npiv_config.xml
 SVCMETHOD = npivconfig
 PRODUCT = $(PROG)
 
-$(ROOT_PROG_LINK) := FILEMODE = 0555
+$(ROOT_PROG_LINK) :  FILEMODE = 0555
 
 LOCAL_OBJS = fcinfo.o fcinfo-list.o fcadm-list.o printAttrs.o fcoeadm.o
 COMMON_OBJS = cmdparse.o

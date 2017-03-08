@@ -28,11 +28,11 @@ include $(SRC)/Makefile.master
 SUBDIRS =       $(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
-all :=          TARGET = all
-clean :=        TARGET = clean
-clobber :=      TARGET = clobber
-install :=      TARGET = install
-echo :=         TARGET = echo
+all :           TARGET = all
+clean :         TARGET = clean
+clobber :       TARGET = clobber
+install :       TARGET = install
+echo :          TARGET = echo
 
 .KEEP_STATE:
 

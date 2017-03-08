@@ -67,7 +67,7 @@ CERRWARN	+= -_gcc=-Wno-parentheses
 CERRWARN	+= -_gcc=-Wno-clobbered
 
 # needs work
-$(OBJS_DIR)/devinfo.o := SMOFF += deref_check,strcpy_overflow
+$(OBJS_DIR)/devinfo.o :  SMOFF += deref_check,strcpy_overflow
 
 #
 #	Default build targets.

@@ -32,11 +32,11 @@ include		../Makefile.lib
 SUBDIRS =	$(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
-all :=          TARGET= all
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-install :=      TARGET= install
-_msg :=		TARGET= _msg
+all :           TARGET= all
+clean :         TARGET= clean
+clobber :       TARGET= clobber
+install :       TARGET= install
+_msg : 		TARGET= _msg
 
 .KEEP_STATE:
 

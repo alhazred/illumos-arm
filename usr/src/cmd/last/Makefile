@@ -35,7 +35,7 @@ include ../Makefile.cmd
 # not linted
 SMATCH=off
 
-$(ROOTUTMPS):= FILEMODE= 644
+$(ROOTUTMPS):  FILEMODE= 644
 
 $(ROOTADM)/%: %
 	$(INS.file)

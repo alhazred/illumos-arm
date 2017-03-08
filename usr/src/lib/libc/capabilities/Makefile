@@ -35,10 +35,10 @@ $(SPARC_BLD)SUBDIRS = \
 		sun4v-hwcap2
 $(INTEL_BLD)SUBDIRS =
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

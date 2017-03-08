@@ -18,7 +18,7 @@ include ../Makefile.com
 SRCS =		bhyvetest
 SCRIPTS =	$(SRCS:%=$(ROOTBIN)/%)
 
-SCRIPTS :=	FILEMODE = 0555
+SCRIPTS : 	FILEMODE = 0555
 CLOBBERFILES =	$(SCRIPTS)
 
 install: $(SCRIPTS)

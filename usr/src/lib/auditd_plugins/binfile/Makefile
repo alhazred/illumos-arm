@@ -32,10 +32,10 @@ TEXT_DOMAIN=	SUNW_OST_OSCMD
 POFILE=		audit_binfile.po
 MSGFILES=	binfile.c
 
-all	:=	TARGET= all
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-install	:=	TARGET= install
+all	: 	TARGET= all
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+install	: 	TARGET= install
 
 .KEEP_STATE:
 

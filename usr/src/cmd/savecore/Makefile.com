@@ -65,7 +65,7 @@ $(PROG): $(OBJS) $(BZIP2OBJS)
 clean:
 	$(RM) $(OBJS) $(BZIP2OBJS)
 
-lint := CPPFLAGS += -I$(SRC)/common
+lint :  CPPFLAGS += -I$(SRC)/common
 
 #
 # Linting the usr/src/common/bzip2 source produces reams of complaints.
@@ -73,11 +73,11 @@ lint := CPPFLAGS += -I$(SRC)/common
 # related to bz_internal_error.
 #
 
-lint := BZ2LINTCOPOUTS = -erroff=E_NAME_USED_NOT_DEF2
-lint := BZ2LINTCOPOUTS += -erroff=E_NAME_DEF_NOT_USED2
+lint :  BZ2LINTCOPOUTS = -erroff=E_NAME_USED_NOT_DEF2
+lint :  BZ2LINTCOPOUTS += -erroff=E_NAME_DEF_NOT_USED2
 
-lint := LINTFLAGS += $(BZ2LINTCOPOUTS)
-lint := LINTFLAGS64 += $(BZ2LINTCOPOUTS)
+lint :  LINTFLAGS += $(BZ2LINTCOPOUTS)
+lint :  LINTFLAGS64 += $(BZ2LINTCOPOUTS)
 
 lint:	$(LINTSRCS)
 	$(LINT.c) $(SRCS) $(LDLIBS)

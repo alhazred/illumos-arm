@@ -31,11 +31,11 @@ i386_SUBDIRS=           \
 sparc_SUBDIRS=		\
 	sparc
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-check:=		TARGET= check
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+check: 		TARGET= check
 
 .KEEP_STATE:
 

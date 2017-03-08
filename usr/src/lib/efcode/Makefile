@@ -31,10 +31,10 @@ TESTDIRS = fcode_test
 
 EFCODEDIRS= $(ROOTLIBDIR)/efcode $(ROOTLIBDIR)/efcode/$(MACH64)
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
 
 .PARALLEL: $(SUBDIRS)
 .KEEP_STATE:

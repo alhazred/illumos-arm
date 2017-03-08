@@ -45,8 +45,8 @@ DYNLIB1 =	nss_compat.so$(VERS)
 COMPATLINKS=	usr/lib/$(DYNLIB1)
 COMPATLINKS64=	usr/lib/$(MACH64)/$(DYNLIB1)
 
-$(ROOT)/usr/lib/$(DYNLIB1) := COMPATLINKTARGET=../../lib/$(DYNLIB1)
-$(ROOT)/usr/lib/$(MACH64)/$(DYNLIB1):= \
+$(ROOT)/usr/lib/$(DYNLIB1) :  COMPATLINKTARGET=../../lib/$(DYNLIB1)
+$(ROOT)/usr/lib/$(MACH64)/$(DYNLIB1):  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/$(DYNLIB1)
 
 LDLIBS +=	-lnsl

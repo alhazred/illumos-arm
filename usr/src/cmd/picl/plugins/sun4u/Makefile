@@ -38,12 +38,12 @@ MSGSUBDIRS=	lib frudata grover excalibur psvc littleneck daktari \
 	cherrystone lw2plus lw8 taco enchilada chicago envmon mpxu ents \
 	silverstone sebring
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+_msg : 		TARGET= _msg
 
 .KEEP_STATE:
 

@@ -95,7 +95,7 @@ CHECKHDRS= \
 # by giving shorter names to the formal parameters, but the right fix is to
 # fix cpp.  (Also, /* CSTYLED */ doesn't seem to fix this.
 #
-devops.check    := CSTYLE_TAIL = | grep -v "line > 80 characters" | true
+devops.check    :  CSTYLE_TAIL = | grep -v "line > 80 characters" | true
 
 .KEEP_STATE:
 

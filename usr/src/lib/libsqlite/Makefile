@@ -23,10 +23,10 @@ CLOBBERFILES +=	sqlite.h
 
 .KEEP_STATE:
 
-all	:= TARGET= all
-clean	:= TARGET= clean
-clobber	:= TARGET= clobber
-install	:= TARGET= install
+all	:  TARGET= all
+clean	:  TARGET= clean
+clobber	:  TARGET= clobber
+install	:  TARGET= install
 
 
 # This is the default Makefile target.  The objects listed here

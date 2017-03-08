@@ -34,10 +34,10 @@ POFILE =	libtsol.po
 MSGFILES =	common/btos.c common/private.c common/stob.c
 XGETFLAGS =	-a
 
-all :=		TARGET = all
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-install	:=	TARGET = install
+all : 		TARGET = all
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+install	: 	TARGET = install
 
 .KEEP_STATE:
 

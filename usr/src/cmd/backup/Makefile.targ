@@ -26,8 +26,8 @@
 #
 
 # support for debugging
-debug:=		DUMPLIB= libdump_g.a
-debug:=		CFLAGS= $(CCGDEBUG) $(XESS) -DDEBUG -DFDEBUG -DTDEBUG ${SBFLAGS}
+debug: 		DUMPLIB= libdump_g.a
+debug: 		CFLAGS= $(CCGDEBUG) $(XESS) -DDEBUG -DFDEBUG -DTDEBUG ${SBFLAGS}
 CFLAGS +=	$(XSTRCONST)
 DEBUGDIR=	.debug
 DEBUGOBJS=	$(OBJECTS:%=$(DEBUGDIR)/%)

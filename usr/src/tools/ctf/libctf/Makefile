@@ -30,11 +30,11 @@ HDRDIR = common
 
 SUBDIRS = $(MACH)
 
-all := TARGET = all
-clean := TARGET = clean
-clobber := TARGET = clobber
-install := TARGET = install
-lint := TARGET = lint
+all :  TARGET = all
+clean :  TARGET = clean
+clobber :  TARGET = clobber
+install :  TARGET = install
+lint :  TARGET = lint
 
 .KEEP_STATE:
 

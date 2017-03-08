@@ -51,7 +51,7 @@ include $(UTSBASE)/sun4u/Makefile.sun4u
 #	Override defaults to build a unique, local modstubs.o.
 #
 MODSTUBS_DIR	 = $(OBJS_DIR)
-$(MODSTUBS_O)	:= AS_CPPFLAGS += -DZS_MODULE
+$(MODSTUBS_O)	:  AS_CPPFLAGS += -DZS_MODULE
 
 CLEANFILES	+= $(MODSTUBS_O)
 

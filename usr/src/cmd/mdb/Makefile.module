@@ -128,11 +128,11 @@ AS_CPPFLAGS		+= -D_ASM
 SMOFF += all_func_returns,index_overflow
 
 # Module type-specific compiler flags
-$(MODOBJS) :=			CFLAGS += $(C_BIGPICFLAGS) $(XREGSFLAG)
-$(MODOBJS) :=			CFLAGS64 += $(C_BIGPICFLAGS) $(XREGSFLAG)
-$(KMODOBJS) $(KLINTOBJS) :=	CPPFLAGS += -D_KMDB
-$(KMODOBJS) :=			V9CODESIZE = $(CCABS32)
-$(KMODOBJS) :=			DTS_ERRNO =
+$(MODOBJS) : 			CFLAGS += $(C_BIGPICFLAGS) $(XREGSFLAG)
+$(MODOBJS) : 			CFLAGS64 += $(C_BIGPICFLAGS) $(XREGSFLAG)
+$(KMODOBJS) $(KLINTOBJS) : 	CPPFLAGS += -D_KMDB
+$(KMODOBJS) : 			V9CODESIZE = $(CCABS32)
+$(KMODOBJS) : 			DTS_ERRNO =
 
 # Modules aren't allowed to export symbols
 MAPFILE		= $(SRC)/cmd/mdb/common/modules/conf/mapfile
@@ -143,7 +143,7 @@ MAPFILE-EXT	= $(SRC)/cmd/mdb/common/modules/conf/mapfile-extern
 
 #
 # kmdb is a kernel module, so we'll use the kernel's build flags.
-$(KMODOBJS) := CFLAGS64 += $(STAND_FLAGS_64)
+$(KMODOBJS) :  CFLAGS64 += $(STAND_FLAGS_64)
 
 #
 # Override this to pull source files from another directory

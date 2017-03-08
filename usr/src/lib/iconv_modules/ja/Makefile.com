@@ -41,10 +41,10 @@ SMATCH=off
 INSTALL_MODULES = .modules_installed
 CLEANFILES += $(INSTALL_MODULES)
 
-install		:=	TARGET = install
-all		:=	TARGET = all
-clean		:=	TARGET = clean
-clobber		:=	TARGET = clobber
+install		: 	TARGET = install
+all		: 	TARGET = all
+clean		: 	TARGET = clean
+clobber		: 	TARGET = clobber
 
 LINKS= \
 	eucJP_TO_ISO-2022-JP.RFC1468.c \

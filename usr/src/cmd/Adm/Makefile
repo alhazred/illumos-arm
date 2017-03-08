@@ -31,11 +31,11 @@ SUBDIRS= sun
 
 include ../Makefile.cmd
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
 
 CROND= $(ROOT)/var/spool/cron
 CRONTABD= $(ROOT)/var/spool/cron/crontabs
@@ -50,10 +50,10 @@ ZISPECIALS=	$(ETCZONESD)/index
 
 FILEMODE= 0644
 
-$(CRONLIBD)/.proto :=	FILEMODE =	0744
-$(CRONTABD)/adm :=	FILEMODE =	0600
-$(CRONTABD)/sys :=	FILEMODE =	0600
-$(CRONTABD)/root :=	FILEMODE =	0600
+$(CRONLIBD)/.proto : 	FILEMODE =	0744
+$(CRONTABD)/adm : 	FILEMODE =	0600
+$(CRONTABD)/sys : 	FILEMODE =	0600
+$(CRONTABD)/root : 	FILEMODE =	0600
 
 .KEEP_STATE:
 

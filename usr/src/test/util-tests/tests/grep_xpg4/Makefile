@@ -25,7 +25,7 @@ TESTDIR = $(ROOTOPTPKG)/tests
 PROGS = grep_test
 
 CMDS = $(PROGS:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all lint clean clobber:
 

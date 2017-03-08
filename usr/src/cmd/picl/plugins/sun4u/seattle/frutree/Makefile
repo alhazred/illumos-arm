@@ -42,7 +42,7 @@ INCDIR2		= ../frudr
 INCS		= -I$(INCDIR1) -I$(INCDIR2)
 CONFS		= piclfrutree.conf
 ROOTCONF	= $(CONFS:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 MAININFO	= $(CONFS:%.conf=%.info)
 OTHERINFOS	= $(INCDIR1)/system-board.info
 OTHERINFOS	+= $(INCDIR2)/fru_HDD0_data.info
@@ -68,10 +68,10 @@ OTHERINFOS	+= $(INCDIR2)/fru_FT6_data.info
 
 SUBDIRS=
 
-all	:=	TARGET= all
-install :=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
+all	: 	TARGET= all
+install : 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
 
 all:	$(CONFS)
 

@@ -54,9 +54,9 @@ ROOTMANIFESTDIR	= $(ROOTSVCSMB)
 ROOTVARSMBDLLDIR = $(ROOTVARSMB)/cvol/windows/system32
 ROOTVARSMBDLL= $(LOGDLL:%=$(ROOTVARSMBDLLDIR)/%)
 
-$(ROOTMANIFEST):= FILEMODE = 0444
-$(ROOTSVCMETHOD):= FILEMODE = 0555
-$(ROOTVARSMBDLL):= FILEMODE = 0755
+$(ROOTMANIFEST):  FILEMODE = 0444
+$(ROOTSVCMETHOD):  FILEMODE = 0555
+$(ROOTVARSMBDLL):  FILEMODE = 0755
 
 LINTFLAGS += -xerroff=E_NAME_DEF_NOT_USED2
 LINTFLAGS += -xerroff=E_NAME_USED_NOT_DEF2
@@ -81,7 +81,7 @@ LDLIBS += -L$(ROOT)/usr/lib/smbsrv
 # prefer to keep libs ordered by dependence
 LDLIBS += -lmlsvc -lmlrpc -lsmbns -lsmb -lsmbfs -lgss
 LDLIBS += -lzfs -lbsm -lscf -lcmdutils -lsocket -lnsl -lumem
-$(PROG) := LDLIBS += -lkrb5
+$(PROG) :  LDLIBS += -lkrb5
 
 $(ENABLE_SMB_PRINTING) CPPFLAGS += -DHAVE_CUPS
 
@@ -89,7 +89,7 @@ ROOTSMBDDIR = $(ROOTLIB)/smbsrv
 ROOTSMBDFILE = $(PROG:%=$(ROOTSMBDDIR)/%)
 
 FILEMODE = 0444
-$(ROOTSMBDFILE):= FILEMODE = 0555
+$(ROOTSMBDFILE):  FILEMODE = 0555
 
 $(ROOTSMBDDIR)/%: %
 	$(INS.file)

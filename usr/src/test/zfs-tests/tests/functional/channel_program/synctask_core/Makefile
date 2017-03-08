@@ -25,8 +25,8 @@ FILES :sh= ls *.zcp *.out *.err 2>/dev/null; true
 INSTPROGS = $(PROGS:%=$(TESTDIR)/%)
 INSTFILES = $(FILES:%=$(TESTDIR)/%)
 
-$(INSTPROGS) := FILEMODE = 0555
-$(INSTFILES) := FILEMODE = 0444
+$(INSTPROGS) :  FILEMODE = 0555
+$(INSTFILES) :  FILEMODE = 0444
 
 all lint clean clobber:
 

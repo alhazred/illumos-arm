@@ -64,7 +64,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE) $(ROOT_CONFFILE)
 #	Override defaults to build a unique, local modstubs.o.
 #
 MODSTUBS_DIR	 = $(OBJS_DIR)
-$(MODSTUBS_O)	:= AS_CPPFLAGS += -DBOFI_MODULE
+$(MODSTUBS_O)	:  AS_CPPFLAGS += -DBOFI_MODULE
 CLEANFILES	+= $(MODSTUBS_O)
 
 CPPFLAGS	+= -I../../sun4
@@ -72,7 +72,7 @@ CPPFLAGS	+= -I../../sun4
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/bofi.o := SMOFF += signed_integer_overflow_check,deref_check
+$(OBJS_DIR)/bofi.o :  SMOFF += signed_integer_overflow_check,deref_check
 
 #
 # For now, disable these lint checks; maintainers should endeavor

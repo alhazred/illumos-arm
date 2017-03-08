@@ -61,7 +61,7 @@ LINTTAGS	+= -erroff=E_STATIC_UNUSED
 CERRWARN	+= -_gcc=-Wno-unused-variable
 
 # needs work
-$(OBJS_DIR)/gen_drv.o := SMOFF += indenting,deref_check
+$(OBJS_DIR)/gen_drv.o :  SMOFF += indenting,deref_check
 
 #
 #	Default build targets.

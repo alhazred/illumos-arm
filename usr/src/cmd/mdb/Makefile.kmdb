@@ -119,24 +119,24 @@ MAPFILE_SOURCES_COMMON = \
 	../../../common/mdb/mdb_param.h \
 	../../../common/mdb/mdb_whatis.h
 
-mdb_lex.o mdb_grammar.o := CCVERBOSE =
+mdb_lex.o mdb_grammar.o :  CCVERBOSE =
 
-kmdb_ctf_open.o kmdb_ctf_open.ln	:= CPPFLAGS += -I$(SRC)/common/ctf
+kmdb_ctf_open.o kmdb_ctf_open.ln	:  CPPFLAGS += -I$(SRC)/common/ctf
 
 PROMTGTS	= $(PROMOBJS) $(PROMOBJS:%.o=%.ln)
 VERSTGTS	= $(VERSOBJS) $(VERSOBJS:%.o=%.ln)
 KCTLTGTS	= $(KCTLOBJS) $(KCTLOBJS:%.o=%.ln)
 
-$(PROMTGTS) := CPPFLAGS += -D_BOOT -D_KERNEL -D_MACHDEP $(PROMINCDIRS:%=-I%) \
+$(PROMTGTS) :  CPPFLAGS += -D_BOOT -D_KERNEL -D_MACHDEP $(PROMINCDIRS:%=-I%) \
 	-Dassfail=kmdb_prom_assfail
 
-$(VERSTGTS) := CPPFLAGS += -DKMDB_VERSION='$(KMDB_VERSION)'
+$(VERSTGTS) :  CPPFLAGS += -DKMDB_VERSION='$(KMDB_VERSION)'
 
-$(KCTLTGTS) := CPPFLAGS += -D_KERNEL
-$(KCTLTGTS) := ASFLAGS += -D_KERNEL
+$(KCTLTGTS) :  CPPFLAGS += -D_KERNEL
+$(KCTLTGTS) :  ASFLAGS += -D_KERNEL
 
-ffs.o ffs.ln := CPPFLAGS += -Dffs=mdb_ffs
+ffs.o ffs.ln :  CPPFLAGS += -Dffs=mdb_ffs
 
-$(ROOTMISC) $(ROOTMISC64) := FILEMODE = 0755
+$(ROOTMISC) $(ROOTMISC64) :  FILEMODE = 0755
 
 include ../../../Makefile.kmdb.targ

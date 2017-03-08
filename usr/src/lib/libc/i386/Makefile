@@ -34,7 +34,7 @@ LIBRARY =	libc.a
 # Special postprocessing for 32-bit fpcw.o: strip the SSE HWCAP attribute
 # from the object file; the internal functions with SSE instructions are
 # called conditionally on systems which have SSE instruction support
-pics/fpcw.o := POST_PROCESS_O += ; \
+pics/fpcw.o :  POST_PROCESS_O += ; \
 	if $(ELFDUMP) -H $@ | grep " SSE "; then \
 		$(ELFEDIT) -e 'cap:hw1 -and -cmp SSE' $@; \
 	fi

@@ -17,6 +17,6 @@ include ../Makefile.com
 
 ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
 
-$(ICONV_LINK_TARGETS) :=      FILEMODE= 755
+$(ICONV_LINK_TARGETS) :       FILEMODE= 755
 
 install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS) $(CREATE_LINKS)

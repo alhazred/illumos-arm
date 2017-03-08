@@ -59,17 +59,17 @@ NEW_SUBDIRS =	\
 
 SUBDIRS = $(LEGACY_SUBDIRS) $(NEW_SUBDIRS)
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
-lint	:=	TARGET = lint
-_msg	:=	TARGET = _msg
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
+lint	: 	TARGET = lint
+_msg	: 	TARGET = _msg
 
 
 # pmadvise depends on pmap components
 PMAP =			$(SRC)/cmd/ptools/pmap
-pmadvise/pmadvise.po :=	CPPFLAGS +=	-I$(PMAP)
+pmadvise/pmadvise.po : 	CPPFLAGS +=	-I$(PMAP)
 
 #
 # Commands with messages support

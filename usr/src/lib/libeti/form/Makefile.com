@@ -80,8 +80,8 @@ CERRWARN +=	-_gcc=-Wno-char-subscripts
 COMPATLINKS=	usr/ccs/lib/libform.so
 COMPATLINKS64=	usr/ccs/lib/$(MACH64)/libform.so
 
-$(ROOT)/usr/ccs/lib/libform.so := COMPATLINKTARGET= ../../lib/libform.so.1
-$(ROOT)/usr/ccs/lib/$(MACH64)/libform.so := \
+$(ROOT)/usr/ccs/lib/libform.so :  COMPATLINKTARGET= ../../lib/libform.so.1
+$(ROOT)/usr/ccs/lib/$(MACH64)/libform.so :  \
 	COMPATLINKTARGET= ../../../lib/$(MACH64)/libform.so.1
 
 .KEEP_STATE:

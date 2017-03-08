@@ -45,7 +45,7 @@ $(ROOTONBLDLIBMACH)/$(LIBLINKS): $(ROOTONBLDLIBMACH)/$(LIBLINKS)$(VERS)
 # Just like with libdwarf, we can't actually add ctf to ourselves,
 # because we're part of the tools for creating CTF.
 #
-$(DYNLIB) := CTFMERGE_POST= :
+$(DYNLIB) :  CTFMERGE_POST= :
 CTFCONVERT_O= :
 
 include $(SRC)/lib/Makefile.targ

@@ -24,10 +24,10 @@ SUBDIRS = \
 	contrib/Sun/Solaris/Task \
 	contrib/Sun/Solaris/Utils
 
-all :=		TARGET = all
-install :=	TARGET = install
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
+all : 		TARGET = all
+install : 	TARGET = install
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
 
 all install clean clobber: $(SUBDIRS)
 

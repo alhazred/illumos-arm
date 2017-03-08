@@ -43,10 +43,10 @@ KRB5HINST =	$(KRB5INCDIR)/krb5.h
 
 KRB5HDRS =	$(INSTALLED_HDRS:%=$(KRB5INCDIR)/%)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

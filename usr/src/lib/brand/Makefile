@@ -33,11 +33,11 @@ include ../../Makefile.master
 SUBDIRS= shared .WAIT sn1 solaris10 ipkg labeled $($(MACH)_SUBDIRS)
 MSGSUBDIRS= solaris10 shared $($(MACH)_MSGSUBDIRS)
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 .KEEP_STATE:
 

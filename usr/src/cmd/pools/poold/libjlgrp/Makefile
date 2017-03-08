@@ -28,11 +28,11 @@ include $(SRC)/lib/Makefile.lib
 SUBDIRS =	$(MACH)
 $(BLD_JAVA_8)SUBDIRS = $(MACH64)
 
-all :=		TARGET = all
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-install :=	TARGET = install
-lint :=		TARGET = lint
+all : 		TARGET = all
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+install : 	TARGET = install
+lint : 		TARGET = lint
 
 JNI_CLASSES = \
 	com.sun.solaris.service.locality.LocalityDomain \

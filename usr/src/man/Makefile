@@ -105,11 +105,11 @@ SUBDIRS=	man1		\
 
 .PARALLEL: $(SUBDIRS)
 
-all		:= TARGET = all
-clean		:= TARGET = clean
-clobber		:= TARGET = clobber
-install		:= TARGET = install
-check		:= TARGET = check
+all		:  TARGET = all
+clean		:  TARGET = clean
+clobber		:  TARGET = clobber
+install		:  TARGET = install
+check		:  TARGET = check
 
 all check clean clobber install: $(SUBDIRS)
 

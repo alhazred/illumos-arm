@@ -30,13 +30,13 @@ COMMON_SUBDIRS=	$(MACH)
 
 SUBDIRS=	$(COMMON_SUBDIRS)
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-_msg :=		TARGET= _msg
-msg :=		TARGET= msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+_msg : 		TARGET= _msg
+msg : 		TARGET= msg
 
 
 .KEEP_STATE:

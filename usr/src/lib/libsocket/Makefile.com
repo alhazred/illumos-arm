@@ -53,7 +53,7 @@ CFLAGS +=	$(XSTRCONST)
 CFLAGS64 +=	$(XSTRCONST)
 
 CPPFLAGS +=	-DSYSV -D_REENTRANT -I../../common/inc
-%/rcmd.o :=	CPPFLAGS += -DNIS
+%/rcmd.o : 	CPPFLAGS += -DNIS
 
 CERRWARN +=	-_gcc=-Wno-type-limits
 CERRWARN +=	$(CNOWARN_UNINIT)

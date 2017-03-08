@@ -31,10 +31,10 @@ SUBDIRS=	$(MACH)
 
 CSRC=		common/errusage.c common/tsort.c
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 # for messaging catalog
 #

@@ -519,14 +519,14 @@ sparc_HDRSUBDIRS=	\
 	libv12n		\
 	storage
 
-all :=		TARGET= all
-check :=	TARGET= check
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-install_h :=	TARGET= install_h
-_dc :=		TARGET= _dc
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+check : 	TARGET= check
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
+install_h : 	TARGET= install_h
+_dc : 		TARGET= _dc
+_msg : 		TARGET= _msg
 
 .KEEP_STATE:
 
@@ -575,7 +575,7 @@ libnvpair:	libc libnsl
 libsocket:	libc libnsl
 
 basedeps:	libc libm libmd libmp libnsl libnvpair libsocket
-basedeps :=	TARGET=install
+basedeps : 	TARGET=install
 
 # The following dependencies are currently required by libdbus-1 and should
 # be used for anything linking against it.

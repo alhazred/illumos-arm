@@ -25,7 +25,7 @@ CONFS=	\
 		seqread.prof
 
 ROOTCONFS=	$(CONFS:%=$(ROOTCONFDIR)/%)
-$(ROOTCONFS) :=	FILEMODE = 0444
+$(ROOTCONFS) : 	FILEMODE = 0444
 
 all lint clean clobber:
 

@@ -54,7 +54,7 @@ CERRWARN	+= -_gcc=-Wno-parentheses
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/ipw2100.o := SMOFF += deref_check
+$(OBJS_DIR)/ipw2100.o :  SMOFF += deref_check
 
 #
 #	Define targets

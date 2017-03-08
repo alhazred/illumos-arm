@@ -37,7 +37,7 @@ CERRWARN += -_gcc=-Wno-switch
 CERRWARN += -_gcc=-Wno-parentheses
 FILEMODE= 0555
 
-lint := LINTFLAGS = -muxs -I$(STATCOMMONDIR)
+lint :  LINTFLAGS = -muxs -I$(STATCOMMONDIR)
 
 .KEEP_STATE:
 

@@ -56,7 +56,7 @@ LDFLAGS		+= -dy -Nmisc/scsi
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/megaraid_sas.o := SMOFF += snprintf_overflow,all_func_returns,index_overflow
+$(OBJS_DIR)/megaraid_sas.o :  SMOFF += snprintf_overflow,all_func_returns,index_overflow
 
 #
 #	Default build targets.

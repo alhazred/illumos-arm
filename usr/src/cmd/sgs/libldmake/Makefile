@@ -36,4 +36,4 @@ include		../Makefile.sub
 #	% cd $(MACH); make -e install
 #
 
-install:=	TARGET= all
+install: 	TARGET= all

@@ -52,8 +52,8 @@ EXES += $(SSRCS:%.s=%.exe)
 ROOT_TSTS = $(TSTS:%=$(TSTDIR)/%)
 ROOT_EXES = $(EXES:%=$(TSTDIR)/%)
 
-$(ROOT_TSTS) := FILEMODE = 0444
-$(ROOT_EXES) := FILEMODE = 0555
+$(ROOT_TSTS) :  FILEMODE = 0444
+$(ROOT_EXES) :  FILEMODE = 0555
 
 # The DTrace tests rely on "normal" behaviour from the compiler which
 # agressive optimization of small, simple, one compilation-unit programs may

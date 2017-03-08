@@ -49,7 +49,7 @@ SMOFF += signed
 
 LDLIBS +=	-lelf $(CONVLIBDIR) -lconv -lsendfile
 
-$(XPG4) :=	CPPFLAGS += -DXPG4
+$(XPG4) : 	CPPFLAGS += -DXPG4
 
 BLTDEFS =	msg.h
 BLTDATA =	msg.c

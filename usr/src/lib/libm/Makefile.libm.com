@@ -68,7 +68,7 @@ CFLAGS64	+= -_gcc=-fno-strict-overflow
 CFLAGS		+= -_smatch=off
 CFLAGS64	+= -_smatch=off
 
-$(DYNLIB)	:= LDLIBS += -lc
+$(DYNLIB)	:  LDLIBS += -lc
 
 
 CLEANFILES	+= pics/*.s pics/*.S

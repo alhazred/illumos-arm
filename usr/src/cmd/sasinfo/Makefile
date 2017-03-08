@@ -31,7 +31,7 @@ COMMONBASE = ../../common
 PROG = sasinfo
 PRODUCT = $(PROG)
 
-$(ROOT_PROG_LINK) := FILEMODE = 0555
+$(ROOT_PROG_LINK) :  FILEMODE = 0555
 
 LOCAL_OBJS = sasinfo.o sasinfo-list.o printAttrs.o
 COMMON_OBJS = cmdparse.o

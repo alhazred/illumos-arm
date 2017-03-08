@@ -31,11 +31,11 @@ include		$(SRC)/cmd/hal/Makefile.hal
 SUBDIRS =	libhal libhal-storage
 HDRSUBDIRS =	libhal libhal-storage
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-install_h :=	TARGET= install_h
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
+install_h : 	TARGET= install_h
 
 .KEEP_STATE:
 

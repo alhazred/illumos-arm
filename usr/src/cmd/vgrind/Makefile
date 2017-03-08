@@ -91,8 +91,8 @@ ROOTTMACPROG= $(TMACPROG:%=$(ROOTTMAC)/%)
 #
 # Conditional assignments pertinent to installation.
 #
-$(ROOTLIB)/$(LANGDEFS)	:= FILEMODE= $(LIBFILEMODE)
-$(ROOTTMACPROG)		:= FILEMODE= 0644
+$(ROOTLIB)/$(LANGDEFS)	:  FILEMODE= $(LIBFILEMODE)
+$(ROOTTMACPROG)		:  FILEMODE= 0644
 
 #
 # The standard set of rules doesn't know about installing into
@@ -146,7 +146,7 @@ clean:
 #
 # Don't worry about linting retest.
 #
-lint:=	SRCS = $(VFONTEDPROBJS:%.o=%.c)
+lint: 	SRCS = $(VFONTEDPROBJS:%.o=%.c)
 lint: lint_SRCS
 
 include ../Makefile.targ

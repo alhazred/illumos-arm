@@ -29,12 +29,12 @@ include		$(SRC)/Makefile.master
 SUBDIRS=	gen common $(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-package:=	TARGET= package
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+package: 	TARGET= package
 
 .KEEP_STATE:
 

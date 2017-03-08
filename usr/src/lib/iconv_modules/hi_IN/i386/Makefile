@@ -19,6 +19,6 @@ CFLAGS +=  -I.. -I../common/ -I../include/
 
 ICONV_LIBS      = $(PROGS:%=$(ICONV_DIR)/%)
 
-$(ICONV_LIBS) := FILEMODE= 755
+$(ICONV_LIBS) :  FILEMODE= 755
 
 install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)

@@ -52,18 +52,18 @@ LDLIBS +=	-lxnet
 # these #defines are required to use UNIX 98 interfaces
 _D_UNIX98_EXTN= -D_XOPEN_SOURCE=500 -D__EXTENSIONS__
 
-$(OBJS)		:= CPPFLAGS +=	$(_D_UNIX98_EXTN)
+$(OBJS)		:  CPPFLAGS +=	$(_D_UNIX98_EXTN)
 
 LINTFLAGS +=	$(_D_UNIX98_EXTN)
 
-$(ROOTCFGDIR)/ipadm.conf := FILEMODE= 644
+$(ROOTCFGDIR)/ipadm.conf :  FILEMODE= 644
 
 #
 # Instrument ipadm with CTF data to ease debugging.
 #
 CTFCONVERT_HOOK = && $(CTFCONVERT_O)
 CTFMERGE_HOOK = && $(CTFMERGE) -L VERSION -o $@ $(OBJS)
-$(OBJS) := CFLAGS += $(CTF_FLAGS)
+$(OBJS) :  CFLAGS += $(CTF_FLAGS)
 
 .KEEP_STATE:
 

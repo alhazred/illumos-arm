@@ -73,8 +73,8 @@ CERRWARN	+= -_gcc=-Wno-type-limits
 SMOFF += index_overflow
 
 # need work still
-$(OBJS_DIR)/igmp.o := SMOFF += shift_to_zero
-$(OBJS_DIR)/tnet.o := SMOFF += shift_to_zero
+$(OBJS_DIR)/igmp.o :  SMOFF += shift_to_zero
+$(OBJS_DIR)/tnet.o :  SMOFF += shift_to_zero
 SMOFF += signed,all_func_returns
 SMOFF += signed_integer_overflow_check
 

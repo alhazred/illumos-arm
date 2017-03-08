@@ -28,14 +28,14 @@ SUBDIRS = \
 	scsi \
 	floppy
 
-def             :=      TARGET= def
-all             :=      TARGET= all
-install         :=      TARGET= install
-clean           :=      TARGET= clean
-clobber         :=      TARGET= clobber
-check           :=      TARGET= check
-install_h       :=      TARGET= install_h
-catalog		:=	TARGET= catalog
+def             :       TARGET= def
+all             :       TARGET= all
+install         :       TARGET= install
+clean           :       TARGET= clean
+clobber         :       TARGET= clobber
+check           :       TARGET= check
+install_h       :       TARGET= install_h
+catalog		: 	TARGET= catalog
 
 all install install_h clean clobber catalog: $(SUBDIRS)
 

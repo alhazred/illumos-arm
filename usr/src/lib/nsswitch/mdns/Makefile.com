@@ -38,4 +38,4 @@ CSTD=		$(CSTD_GNU99)
 LDLIBS +=	-ldns_sd -lscf
 DYNLIB1 =	nss_mdns.so$(VERS)
 
-lint	:=  LDLIBS = $(LDLIBS.lib) -lc -lscf -ldns_sd
+lint	:   LDLIBS = $(LDLIBS.lib) -lc -lscf -ldns_sd

@@ -9,10 +9,10 @@
 include ../Makefile.master
 include Makefile.grub
 
-all	:= TARGET = all
-install	:= TARGET = install
-clean	:= TARGET = clean
-clobber	:= TARGET = clobber
+all	:  TARGET = all
+install	:  TARGET = install
+clean	:  TARGET = clean
+clobber	:  TARGET = clobber
 
 GRUB	= grub-0.97
 
@@ -30,8 +30,8 @@ INST_TARGETS += $(ROOT_BOOT_GRUB)/$(INSTALL_MENU)
 INST_TARGETS += $(ROOT_BOOT_GRUB)/$(GRUB_DEFAULT)
 INST_TARGETS += $(ROOT_BOOT_GRUB)/$(CAPABILITY)
 
-$(ROOT_BOOT_GRUB)/$(GRUB_DEFAULT)   := FILEMODE = 444
-$(ROOT_BOOT_GRUB)/$(CAPABILITY)   := FILEMODE = 444
+$(ROOT_BOOT_GRUB)/$(GRUB_DEFAULT)   :  FILEMODE = 444
+$(ROOT_BOOT_GRUB)/$(CAPABILITY)   :  FILEMODE = 444
 
 all: $(SUBDIRS)
 

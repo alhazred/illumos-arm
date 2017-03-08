@@ -41,10 +41,10 @@ INCS += -I. -I../../../lib/libadutils/common
 LINTFLAGS += -xerroff=E_NAME_DEF_NOT_USED2
 
 CFLAGS += $(CCVERBOSE)
-$(OBJS) :=	CPPFLAGS += $(INCS) -D_REENTRANT
-$(POFILE) :=	CPPFLAGS += $(INCS)
+$(OBJS) : 	CPPFLAGS += $(INCS) -D_REENTRANT
+$(POFILE) : 	CPPFLAGS += $(INCS)
 
-lint_SRCS :=	CPPFLAGS += $(INCS)
+lint_SRCS : 	CPPFLAGS += $(INCS)
 
 .KEEP_STATE:
 

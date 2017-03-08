@@ -22,7 +22,7 @@ ROOTBIN = $(ROOTOPTPKG)/bin
 PROGS = ostest
 
 CMDS = $(PROGS:%=$(ROOTBIN)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all lint clean clobber:
 

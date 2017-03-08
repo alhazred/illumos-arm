@@ -52,7 +52,7 @@ include $(SRC)/lib/Makefile.rootfs
 
 SRCDIR = ../src
 TOOLDIR = ../tool
-$(DYNLIB) := LDLIBS += -lc
+$(DYNLIB) :  LDLIBS += -lc
 LIBS = $(DYNLIB) $(NATIVERELOC)
 
 
@@ -148,30 +148,30 @@ NATIVEOBJS = $(OBJS:%.o=%-native.o)
 
 NATIVETARGETS = $(NATIVEPROGS) $(NATIVEOBJS) $(NATIVERELOC)
 
-$(NATIVETARGETS) :=	CC = $(NATIVECC)
-$(NATIVETARGETS) :=	LD = $(NATIVELD)
-$(NATIVETARGETS) :=	CFLAGS = $(NATIVE_CFLAGS)
-$(NATIVETARGETS) :=	CPPFLAGS = $(MYCPPFLAGS)
-$(NATIVETARGETS) :=	LDFLAGS =
-$(NATIVETARGETS) :=	LDLIBS = -lc
+$(NATIVETARGETS) : 	CC = $(NATIVECC)
+$(NATIVETARGETS) : 	LD = $(NATIVELD)
+$(NATIVETARGETS) : 	CFLAGS = $(NATIVE_CFLAGS)
+$(NATIVETARGETS) : 	CPPFLAGS = $(MYCPPFLAGS)
+$(NATIVETARGETS) : 	LDFLAGS =
+$(NATIVETARGETS) : 	LDLIBS = -lc
 
-$(OBJS) :=		CFLAGS += $(CTF_FLAGS)
-$(OBJS) :=		CTFCONVERT_POST = $(CTFCONVERT_O)
-$(NATIVEOBJS) :=	CFLAGS += $(CTF_FLAGS)
-$(NATIVEOBJS) :=	CTFCONVERT_POST = $(CTFCONVERT_O)
+$(OBJS) : 		CFLAGS += $(CTF_FLAGS)
+$(OBJS) : 		CTFCONVERT_POST = $(CTFCONVERT_O)
+$(NATIVEOBJS) : 	CFLAGS += $(CTF_FLAGS)
+$(NATIVEOBJS) : 	CTFCONVERT_POST = $(CTFCONVERT_O)
 
 TCLBASE = /usr/sfw
 TCLVERS = tcl8.3
 
-testfixture := MYCPPFLAGS += -I$(TCLBASE)/include -DTCLSH -DSQLITE_TEST=1
+testfixture :  MYCPPFLAGS += -I$(TCLBASE)/include -DTCLSH -DSQLITE_TEST=1
 #
 # work around compiler issues
 #
-testfixture := CFLAGS += \
+testfixture :  CFLAGS += \
 	-erroff=E_ARRAY_OF_INCOMPLETE \
 	-erroff=E_ARG_INCOMPATIBLE_WITH_ARG
 
-testfixture := LDLIBS += -R$(TCLBASE)/lib -L$(TCLBASE)/lib -l$(TCLVERS) -lm -ldl
+testfixture :  LDLIBS += -R$(TCLBASE)/lib -L$(TCLBASE)/lib -l$(TCLVERS) -lm -ldl
 
 CLEANFILES += \
 	$(NATIVETARGETS) \
@@ -205,7 +205,7 @@ install:	all \
 
 all_h: $(GENHDR)
 
-$(ROOTLIBDIR)/$(NATIVERELOC)	:= FILEMODE= 644
+$(ROOTLIBDIR)/$(NATIVERELOC)	:  FILEMODE= 644
 
 $(ROOTLINK): $(ROOTLIBDIR) $(ROOTLIBDIR)/$(DYNLIB)
 	$(INS.liblink)
@@ -242,7 +242,7 @@ testfixture: FRC
 		exit 1; \
 	fi
 
-# Prevent Makefile.lib $(PICS) := from adding PICFLAGS
+# Prevent Makefile.lib $(PICS) :  from adding PICFLAGS
 # by building lemon in a recursive make invocation.
 # Otherwise, this target causes a rebuild every time after
 # the PICS target builds this one way, then lint the other.

@@ -45,20 +45,20 @@ MANLINKS=	DNSServiceAddRecord.3dns_sd		\
 		TXTRecordRemoveValue.3dns_sd		\
 		TXTRecordSetValue.3dns_sd
 
-DNSServiceAddRecord.3dns_sd	:= LINKSRC = DNSServiceCreateConnection.3dns_sd
-DNSServiceRegisterRecord.3dns_sd:= LINKSRC = DNSServiceCreateConnection.3dns_sd
-DNSServiceRemoveRecord.3dns_sd	:= LINKSRC = DNSServiceCreateConnection.3dns_sd
-DNSServiceUpdateRecord.3dns_sd	:= LINKSRC = DNSServiceCreateConnection.3dns_sd
+DNSServiceAddRecord.3dns_sd	:  LINKSRC = DNSServiceCreateConnection.3dns_sd
+DNSServiceRegisterRecord.3dns_sd:  LINKSRC = DNSServiceCreateConnection.3dns_sd
+DNSServiceRemoveRecord.3dns_sd	:  LINKSRC = DNSServiceCreateConnection.3dns_sd
+DNSServiceUpdateRecord.3dns_sd	:  LINKSRC = DNSServiceCreateConnection.3dns_sd
 
-TXTRecordContainsKey.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
-TXTRecordDeallocate.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
-TXTRecordGetBytesPtr.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
-TXTRecordGetCount.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
-TXTRecordGetItemAtIndex.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
-TXTRecordGetLength.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
-TXTRecordGetValuePtr.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
-TXTRecordRemoveValue.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
-TXTRecordSetValue.3dns_sd	:= LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordContainsKey.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordDeallocate.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordGetBytesPtr.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordGetCount.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordGetItemAtIndex.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordGetLength.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordGetValuePtr.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordRemoveValue.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
+TXTRecordSetValue.3dns_sd	:  LINKSRC = TXTRecordCreate.3dns_sd
 
 .KEEP_STATE:
 

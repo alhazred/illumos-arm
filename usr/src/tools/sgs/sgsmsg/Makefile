@@ -42,7 +42,7 @@ include		$(SRC)/cmd/Makefile.cmd
 PROG=	sgsmsg
 
 MAN1ONBLDFILES =	sgsmsg.1onbld
-$(ROOTONBLDMAN1ONBLDFILES) := FILEMODE=	644
+$(ROOTONBLDMAN1ONBLDFILES) :  FILEMODE=	644
 
 OBJS=	assfail.o \
 	avl.o \

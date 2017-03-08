@@ -75,7 +75,7 @@ CERRWARN	+= -_gcc=-Wno-unused-label
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/scsa2usb.o := SMOFF += deref_check
+$(OBJS_DIR)/scsa2usb.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

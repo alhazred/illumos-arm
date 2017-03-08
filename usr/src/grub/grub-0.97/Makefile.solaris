@@ -26,15 +26,15 @@ INST_FILES	= $(SRC_FILES:%=$(SRC_DIR)/%)
 SRC_EXECS	= compile config.guess config.sub configure depcomp \
 		  install-sh missing mkinstalldirs
 INST_EXECS	= $(SRC_EXECS:%=$(SRC_DIR)/%)
-$(INST_EXECS)	:= FILEMODE = 755
+$(INST_EXECS)	:  FILEMODE = 755
 
 
 INSTALL_TARGETS	= $(INST_FILES) $(INST_EXECS)
 
-all	:= TARGET = all
-install	:= TARGET = install
-clean	:= TARGET = clean
-clobber	:= TARGET = clobber
+all	:  TARGET = all
+install	:  TARGET = install
+clean	:  TARGET = clean
+clobber	:  TARGET = clobber
 
 
 all install clean clobber: $(SUBDIRS)

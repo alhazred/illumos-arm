@@ -34,10 +34,10 @@ CFLAGS += -I$(SRC)/lib/fm/topo/libtopo/
 CSTD= $(CSTD_GNU99)
 
 CMDS = $(PROGS:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 FILES = $(XML:%=$(TESTDIR)/%)
-$(FILES) := FILEMODE = 0444
+$(FILES) :  FILEMODE = 0444
 
 all: $(PROGS)
 

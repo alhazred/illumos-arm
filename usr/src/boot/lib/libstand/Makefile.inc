@@ -83,11 +83,11 @@ OBJS += uuid_create_nil.o uuid_equal.o uuid_from_string.o uuid_is_nil.o \
 # NOTE: to actually test this functionality after libbz2 upgrade compile
 # loader(8) with LOADER_BZIP2_SUPPORT defined
 _bzlib.o _crctable.o _decompress.o _huffman.o _randtable.o bzipfs.o \
-:= CFLAGS += -DBZ_LOADER -DBZ_NO_STDIO -DBZ_NO_COMPRESS
+:  CFLAGS += -DBZ_LOADER -DBZ_NO_STDIO -DBZ_NO_COMPRESS
 SRCS +=	libstand_bzlib_private.h
 
 # too hairy
-_inflate.o := SMATCH=off
+_inflate.o :  SMATCH=off
 
 SRCS +=	_bzlib.c _crctable.c _decompress.c _huffman.c _randtable.c
 OBJS +=	_bzlib.o _crctable.o _decompress.o _huffman.o _randtable.o
@@ -114,7 +114,7 @@ libstand_bzlib_private.h: $(SRC)/common/bzip2/bzlib_private.h
 
 # decompression functionality from zlib
 adler32.o crc32.o _infback.o _inffast.o _inflate.o _inftrees.o _zutil.o \
-gzipfs.o gzip.o := CPPFLAGS += -I$(ZLIB)
+gzipfs.o gzip.o :  CPPFLAGS += -I$(ZLIB)
 SRCS +=	$(ZLIB)/adler32.c $(ZLIB)/crc32.c \
 	libstand_zutil.h libstand_gzguts.h
 OBJS +=	adler32.o crc32.o
@@ -164,7 +164,7 @@ libstand_gzguts.h: $(ZLIB)/gzguts.h
 CLEANFILES += libstand_zutil.h libstand_gzguts.h
 
 # lz4 decompression functionality
-lz4.o := CPPFLAGS += -I$(LZ4)
+lz4.o :  CPPFLAGS += -I$(LZ4)
 SRCS += $(LZ4)/lz4.c
 OBJS += lz4.o
 

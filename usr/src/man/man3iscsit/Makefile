@@ -40,25 +40,25 @@ MANLINKS=	it_config_commit.3iscsit	\
 		it_tpgt_delete.3iscsit		\
 		it_tpgt_free.3iscsit
 
-it_config_commit.3iscsit	:= LINKSRC = it_config_load.3iscsit
-it_config_free.3iscsit		:= LINKSRC = it_config_load.3iscsit
-it_config_setprop.3iscsit	:= LINKSRC = it_config_load.3iscsit
+it_config_commit.3iscsit	:  LINKSRC = it_config_load.3iscsit
+it_config_free.3iscsit		:  LINKSRC = it_config_load.3iscsit
+it_config_setprop.3iscsit	:  LINKSRC = it_config_load.3iscsit
 
-it_ini_delete.3iscsit		:= LINKSRC = it_ini_create.3iscsit
-it_ini_free.3iscsit		:= LINKSRC = it_ini_create.3iscsit
-it_ini_setprop.3iscsit		:= LINKSRC = it_ini_create.3iscsit
+it_ini_delete.3iscsit		:  LINKSRC = it_ini_create.3iscsit
+it_ini_free.3iscsit		:  LINKSRC = it_ini_create.3iscsit
+it_ini_setprop.3iscsit		:  LINKSRC = it_ini_create.3iscsit
 
-it_portal_delete.3iscsit	:= LINKSRC = it_portal_create.3iscsit
+it_portal_delete.3iscsit	:  LINKSRC = it_portal_create.3iscsit
 
-it_tgt_delete.3iscsit		:= LINKSRC = it_tgt_create.3iscsit
-it_tgt_free.3iscsit		:= LINKSRC = it_tgt_create.3iscsit
-it_tgt_setprop.3iscsit		:= LINKSRC = it_tgt_create.3iscsit
-it_tpgt_create.3iscsit		:= LINKSRC = it_tgt_create.3iscsit
-it_tpgt_delete.3iscsit		:= LINKSRC = it_tgt_create.3iscsit
-it_tpgt_free.3iscsit		:= LINKSRC = it_tgt_create.3iscsit
+it_tgt_delete.3iscsit		:  LINKSRC = it_tgt_create.3iscsit
+it_tgt_free.3iscsit		:  LINKSRC = it_tgt_create.3iscsit
+it_tgt_setprop.3iscsit		:  LINKSRC = it_tgt_create.3iscsit
+it_tpgt_create.3iscsit		:  LINKSRC = it_tgt_create.3iscsit
+it_tpgt_delete.3iscsit		:  LINKSRC = it_tgt_create.3iscsit
+it_tpgt_free.3iscsit		:  LINKSRC = it_tgt_create.3iscsit
 
-it_tpg_delete.3iscsit		:= LINKSRC = it_tpg_create.3iscsit
-it_tpg_free.3iscsit		:= LINKSRC = it_tpg_create.3iscsit
+it_tpg_delete.3iscsit		:  LINKSRC = it_tpg_create.3iscsit
+it_tpg_free.3iscsit		:  LINKSRC = it_tpg_create.3iscsit
 
 .KEEP_STATE:
 

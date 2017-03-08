@@ -100,17 +100,17 @@ OBJS =		$(PROGallocOBJS) \
 
 SRCS =		$(OBJS:%.o=%.c)
 
-$(ROOTUSRSBIN)/% :=	FILEMODE = 555
-$(ROOTUSRSBIN)/allocate :=	FILEMODE = 4555
-$(ROOTSECDEV)/% :=	FILEMODE = 0400
-$(ROOTSECLIB)/% :=	FILEMODE = 0555
+$(ROOTUSRSBIN)/% : 	FILEMODE = 555
+$(ROOTUSRSBIN)/allocate : 	FILEMODE = 4555
+$(ROOTSECDEV)/% : 	FILEMODE = 0400
+$(ROOTSECLIB)/% : 	FILEMODE = 0555
 
-lint :=			LDLIBS += -lbsm -lsec -lsecdb -ldevinfo -ltsol
+lint : 			LDLIBS += -lbsm -lsec -lsecdb -ldevinfo -ltsol
 
-$(PROGalloc) :=		LDLIBS += -lbsm -lsec -lsecdb -ldevinfo -ltsol
-$(PROGmkdevalloc) :=	LDLIBS += -lbsm
-$(PROGdminfo) :=	LDLIBS += -lbsm
-$(PROGaddalloc) :=	LDLIBS += -lbsm -lsecdb -ltsol
+$(PROGalloc) : 		LDLIBS += -lbsm -lsec -lsecdb -ldevinfo -ltsol
+$(PROGmkdevalloc) : 	LDLIBS += -lbsm
+$(PROGdminfo) : 	LDLIBS += -lbsm
+$(PROGaddalloc) : 	LDLIBS += -lbsm -lsecdb -ltsol
 
 CLOBBERFILES +=	$(SCRIPTS)
 

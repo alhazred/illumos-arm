@@ -39,7 +39,7 @@ MODCOMMONSRC = $(MODCOMMONOBJ:%.o=../%.c)
 PLCYOBJ = plcysubr.o
 PLCYSRC = $(PLCYOBJ:%.o=../%.c)
 
-$(PLCYOBJ) := CPPFLAGS += -D_REENTRANT
+$(PLCYOBJ) :  CPPFLAGS += -D_REENTRANT
 
 ROOTDRVPROG = $(DRVPROG:%=$(ROOTUSRSBIN)/%)
 
@@ -55,11 +55,11 @@ CLOBBERFILES = $(PROG)
 
 # install specifics
 
-$(ROOTDRVPROG) := FILEMODE = 0555
+$(ROOTDRVPROG) :  FILEMODE = 0555
 
-add_drv			:= LDLIBS += -ldevinfo -lelf
-rem_drv			:= LDLIBS += -ldevinfo
-update_drv		:= LDLIBS += -ldevinfo
+add_drv			:  LDLIBS += -ldevinfo -lelf
+rem_drv			:  LDLIBS += -ldevinfo
+update_drv		:  LDLIBS += -ldevinfo
 
 .KEEP_STATE:
 

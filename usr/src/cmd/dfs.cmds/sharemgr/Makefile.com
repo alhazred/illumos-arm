@@ -42,7 +42,7 @@ CPPFLAGS += $(MYCPPFLAGS)
 LDLIBS += -lshare -lscf -lsecdb -lumem
 NATIVE_LIBS += libxml2.so
 
-all install := LDLIBS += -lxml2
+all install :  LDLIBS += -lxml2
 
 CERRWARN	+= $(CNOWARN_UNINIT)
 

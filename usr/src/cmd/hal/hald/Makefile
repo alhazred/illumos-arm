@@ -45,18 +45,18 @@ LDLIBS +=	-lc -lm -ldbus-1 -ldbus-glib-1 -lglib-2.0 -lgobject-2.0 \
 NATIVE_LIBS +=	libdbus-1.so libdbus-glib-1.so libglib-2.0.so \
 		libgobject-2.0.so libexpat.so
 
-all install $(PROG) :=	LDLIBS += -lexpat
+all install $(PROG) : 	LDLIBS += -lexpat
 
 CPPFLAGS +=	$(HAL_DBUS_CPPFLAGS) $(HAL_GLIB_CPPFLAGS) $(HAL_CONFIG_CPPFLAGS)
 CSTD =	$(CSTD_GNU99)
 
 CLOBBERFILES += hald_marshal.c hald_marshal.h
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-$(PROG) :=	TARGET= all
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+$(PROG) : 	TARGET= all
 
 .KEEP_STATE:
 

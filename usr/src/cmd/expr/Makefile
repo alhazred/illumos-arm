@@ -41,8 +41,8 @@ CERRWARN += $(CNOWARN_UNINIT)
 CERRWARN += -_gcc=-Wno-extra
 # "missing type for func"
 SMATCH=off
-$(XPG4) := CFLAGS += -DXPG4
-$(XPG6) := CFLAGS += -DXPG6
+$(XPG4) :  CFLAGS += -DXPG4
+$(XPG6) :  CFLAGS += -DXPG6
 
 XGETFLAGS += -a -x expr.xcl
 

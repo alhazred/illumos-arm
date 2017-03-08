@@ -30,7 +30,7 @@ SPARSE_LOCAL_CONFIG ?= local.mk
 ########################################################################
 
 
-LIB_OBJS :=
+LIB_OBJS : 
 LIB_OBJS += allocate.o
 LIB_OBJS += builtin.o
 LIB_OBJS += char.o
@@ -72,7 +72,7 @@ LIB_OBJS += macro_table.o
 LIB_OBJS += token_store.o
 LIB_OBJS += cwchash/hashtable.o
 
-PROGRAMS :=
+PROGRAMS : 
 PROGRAMS += compile
 PROGRAMS += ctags
 PROGRAMS += example
@@ -97,15 +97,15 @@ all:
 cflags = -fno-strict-aliasing
 cflags += -Wall -Wwrite-strings -Wno-switch -Wno-psabi
 
-GCC_BASE := $(shell $(CC) --print-file-name=)
+GCC_BASE :  $(shell $(CC) --print-file-name=)
 cflags += -DGCC_BASE=\"$(GCC_BASE)\"
 
-MULTIARCH_TRIPLET := $(shell $(CC) -print-multiarch 2>/dev/null)
+MULTIARCH_TRIPLET :  $(shell $(CC) -print-multiarch 2>/dev/null)
 cflags += -DMULTIARCH_TRIPLET=\"$(MULTIARCH_TRIPLET)\"
 
 
-bindir := $(DESTDIR)$(BINDIR)
-man1dir := $(DESTDIR)$(MANDIR)/man1
+bindir :  $(DESTDIR)$(BINDIR)
+man1dir :  $(DESTDIR)$(MANDIR)/man1
 
 ########################################################################
 # target specificities
@@ -114,7 +114,7 @@ compile: compile-i386.o
 EXTRA_OBJS += compile-i386.o
 
 # Can we use GCC's generated dependencies?
-HAVE_GCC_DEP:=$(shell touch .gcc-test.c && 				\
+HAVE_GCC_DEP: $(shell touch .gcc-test.c && 				\
 		$(CC) -c -Wp,-MP,-MMD,.gcc-test.d .gcc-test.c 2>/dev/null && \
 		echo 'yes'; rm -f .gcc-test.d .gcc-test.o .gcc-test.c)
 ifeq ($(HAVE_GCC_DEP),yes)
@@ -122,30 +122,30 @@ cflags += -Wp,-MP,-MMD,$(@D)/.$(@F).d
 endif
 
 # Can we use libxml (needed for c2xml)?
-HAVE_LIBXML:=$(shell $(PKG_CONFIG) --exists libxml-2.0 2>/dev/null && echo 'yes')
+HAVE_LIBXML: $(shell $(PKG_CONFIG) --exists libxml-2.0 2>/dev/null && echo 'yes')
 ifeq ($(HAVE_LIBXML),yes)
 PROGRAMS+=c2xml
 INST_PROGRAMS+=c2xml
-c2xml-ldlibs := $(shell $(PKG_CONFIG) --libs libxml-2.0)
-c2xml-cflags := $(shell $(PKG_CONFIG) --cflags libxml-2.0)
+c2xml-ldlibs :  $(shell $(PKG_CONFIG) --libs libxml-2.0)
+c2xml-cflags :  $(shell $(PKG_CONFIG) --cflags libxml-2.0)
 else
 $(warning Your system does not have libxml, disabling c2xml)
 endif
 
 # Can we use gtk (needed for test-inspect)
-GTK_VERSION:=3.0
-HAVE_GTK:=$(shell $(PKG_CONFIG) --exists gtk+-$(GTK_VERSION) 2>/dev/null && echo 'yes')
+GTK_VERSION: 3.0
+HAVE_GTK: $(shell $(PKG_CONFIG) --exists gtk+-$(GTK_VERSION) 2>/dev/null && echo 'yes')
 ifneq ($(HAVE_GTK),yes)
-GTK_VERSION:=2.0
-HAVE_GTK:=$(shell $(PKG_CONFIG) --exists gtk+-$(GTK_VERSION) 2>/dev/null && echo 'yes')
+GTK_VERSION: 2.0
+HAVE_GTK: $(shell $(PKG_CONFIG) --exists gtk+-$(GTK_VERSION) 2>/dev/null && echo 'yes')
 endif
 ifeq ($(HAVE_GTK),yes)
-GTK_CFLAGS := $(shell $(PKG_CONFIG) --cflags gtk+-$(GTK_VERSION))
-ast-view-cflags := $(GTK_CFLAGS)
-ast-model-cflags := $(GTK_CFLAGS)
-ast-inspect-cflags := $(GTK_CFLAGS)
-test-inspect-cflags := $(GTK_CFLAGS)
-test-inspect-ldlibs := $(shell $(PKG_CONFIG) --libs gtk+-$(GTK_VERSION))
+GTK_CFLAGS :  $(shell $(PKG_CONFIG) --cflags gtk+-$(GTK_VERSION))
+ast-view-cflags :  $(GTK_CFLAGS)
+ast-model-cflags :  $(GTK_CFLAGS)
+ast-inspect-cflags :  $(GTK_CFLAGS)
+test-inspect-cflags :  $(GTK_CFLAGS)
+test-inspect-ldlibs :  $(shell $(PKG_CONFIG) --libs gtk+-$(GTK_VERSION))
 test-inspect: ast-model.o ast-view.o ast-inspect.o
 EXTRA_OBJS += ast-model.o ast-view.o ast-inspect.o
 PROGRAMS += test-inspect
@@ -155,28 +155,28 @@ $(warning Your system does not have gtk3/gtk2, disabling test-inspect)
 endif
 
 # Can we use LLVM (needed for ... sparse-llvm)?
-LLVM_CONFIG:=llvm-config
-HAVE_LLVM:=$(shell $(LLVM_CONFIG) --version >/dev/null 2>&1 && echo 'yes')
+LLVM_CONFIG: llvm-config
+HAVE_LLVM: $(shell $(LLVM_CONFIG) --version >/dev/null 2>&1 && echo 'yes')
 ifeq ($(HAVE_LLVM),yes)
-arch := $(shell uname -m)
+arch :  $(shell uname -m)
 ifeq (${MULTIARCH_TRIPLET},x86_64-linux-gnux32)
-arch := x32
+arch :  x32
 endif
 ifneq ($(filter ${arch},i386 i486 i586 i686 x86_64 amd64),)
-LLVM_VERSION:=$(shell $(LLVM_CONFIG) --version)
+LLVM_VERSION: $(shell $(LLVM_CONFIG) --version)
 ifeq ($(shell expr "$(LLVM_VERSION)" : '[3-9]\.'),2)
-LLVM_PROGS := sparse-llvm
-$(LLVM_PROGS): LD := g++
-LLVM_LDFLAGS := $(shell $(LLVM_CONFIG) --ldflags)
-LLVM_CFLAGS := -I$(shell $(LLVM_CONFIG) --includedir)
-LLVM_LIBS := $(shell $(LLVM_CONFIG) --libs)
+LLVM_PROGS :  sparse-llvm
+$(LLVM_PROGS): LD :  g++
+LLVM_LDFLAGS :  $(shell $(LLVM_CONFIG) --ldflags)
+LLVM_CFLAGS :  -I$(shell $(LLVM_CONFIG) --includedir)
+LLVM_LIBS :  $(shell $(LLVM_CONFIG) --libs)
 LLVM_LIBS += $(shell $(LLVM_CONFIG) --system-libs 2>/dev/null)
 LLVM_LIBS += $(shell $(LLVM_CONFIG) --cxxflags | grep -F -q -e '-stdlib=libc++' && echo -lc++)
 PROGRAMS += $(LLVM_PROGS)
 INST_PROGRAMS += sparse-llvm sparsec
-sparse-llvm-cflags := $(LLVM_CFLAGS) -D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS
-sparse-llvm-ldflags := $(LLVM_LDFLAGS)
-sparse-llvm-ldlibs := $(LLVM_LIBS)
+sparse-llvm-cflags :  $(LLVM_CFLAGS) -D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS
+sparse-llvm-ldflags :  $(LLVM_LDFLAGS)
+sparse-llvm-ldlibs :  $(LLVM_LIBS)
 else
 $(warning LLVM 3.0 or later required. Your system has version $(LLVM_VERSION) installed.)
 endif
@@ -188,18 +188,18 @@ $(warning Your system does not have llvm, disabling sparse-llvm)
 endif
 
 ########################################################################
-LIBS := libsparse.a
-OBJS := $(LIB_OBJS) $(EXTRA_OBJS) $(PROGRAMS:%=%.o)
+LIBS :  libsparse.a
+OBJS :  $(LIB_OBJS) $(EXTRA_OBJS) $(PROGRAMS:%=%.o)
 
 # Pretty print
-V := @
-Q := $(V:1=)
+V :  @
+Q :  $(V:1=)
 
 ########################################################################
 
 SMATCHDATADIR=$(INSTALL_PREFIX)/share/smatch
 
-SMATCH_OBJS :=
+SMATCH_OBJS : 
 SMATCH_OBJS += avl.o
 SMATCH_OBJS += smatch_about_fn_ptr_arg.o
 SMATCH_OBJS += smatch_address.o
@@ -308,7 +308,7 @@ SMATCH_SCRIPTS=smatch_scripts/add_gfp_to_allocations.sh \
 	smatch_scripts/trace_params.pl smatch_scripts/unlocked_paths.pl \
 	smatch_scripts/whitespace_only.sh smatch_scripts/wine_checker.sh \
 
-SMATCH_LDFLAGS := -lsqlite3  -lssl -lcrypto -lm
+SMATCH_LDFLAGS :  -lsqlite3  -lssl -lcrypto -lm
 
 smatch: smatch.o $(SMATCH_OBJS) $(SMATCH_CHECKS) $(LIBS)
 	$(Q)$(LD) -o $@ $< $(SMATCH_OBJS) $(SMATCH_CHECKS) $(LIBS) $(SMATCH_LDFLAGS)
@@ -347,7 +347,7 @@ cflags   += $($(*)-cflags) $(CPPFLAGS) $(CFLAGS)
 selfcheck: $(OBJS:.o=.sc)
 
 
-SPARSE_VERSION:=$(shell git describe --dirty 2>/dev/null || echo '$(VERSION)')
+SPARSE_VERSION: $(shell git describe --dirty 2>/dev/null || echo '$(VERSION)')
 lib.o: version.h
 version.h: FORCE
 	@echo '#define SPARSE_VERSION "$(SPARSE_VERSION)"' > version.h.tmp

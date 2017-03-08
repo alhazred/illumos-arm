@@ -59,7 +59,7 @@ CSTD=	$(CSTD_GNU99)
 
 CLEANFILES +=	$(BLTSRCS)
 
-m4objs.xpg4/%.o := CPPFLAGS += -DXPG4
+m4objs.xpg4/%.o :  CPPFLAGS += -DXPG4
 
 m4objs/%.o m4objs.xpg4/%.o: ../common/%.c
 		$(COMPILE.c) -o $@ $<

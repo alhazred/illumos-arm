@@ -76,7 +76,7 @@ CERRWARN	+= -_gcc=-Wno-parentheses
 CERRWARN	+= -_gcc=-Wno-type-limits
 
 # needs work
-$(OBJS_DIR)/av1394_isoch.o := SMOFF += signed
+$(OBJS_DIR)/av1394_isoch.o :  SMOFF += signed
 
 #
 # depends on misc/s1394

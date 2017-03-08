@@ -46,9 +46,9 @@ POFILE =	lp_filter_postscript_font.po
 NATIVEDIR =		native
 NATIVEPROG =		$(NATIVEDIR)/$(PROG)
 NATIVE_LIBS +=		libc.so
-$(NATIVEPROG) :=	CC=$(NATIVECC)
-$(NATIVEPROG) :=	LDLIBS=
-$(NATIVEPROG) :=	CPPFLAGS.master=
+$(NATIVEPROG) : 	CC=$(NATIVECC)
+$(NATIVEPROG) : 	LDLIBS=
+$(NATIVEPROG) : 	CPPFLAGS.master=
 
 .KEEP_STATE:
 

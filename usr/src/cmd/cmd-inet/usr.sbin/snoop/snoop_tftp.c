@@ -55,7 +55,7 @@ interpret_tftp(int flags, void *data, int fraglen)
 	switch (ntohs(tftp->th_opcode)) {
 	case RRQ:
 	case WRQ:
-		add_transient(src_port, interpret_tftp);
+		add_transient(src_port, (int (*)(int, char *, int))interpret_tftp);
 		break;
 	case ERROR:
 		del_transient(src_port);

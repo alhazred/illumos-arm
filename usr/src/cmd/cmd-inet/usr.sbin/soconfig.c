@@ -605,7 +605,7 @@ print_socktable()
 	(void) memset(&sc_table, 0, sizeof (sockconfig_socktable_t));
 
 	/* get number of entries */
-	if (_sockconfig(SOCKCONFIG_GET_SOCKTABLE, &sc_table) == -1) {
+	if (_sockconfig(SOCKCONFIG_GET_SOCKTABLE, &sc_table, 0, 0, 0) == -1) {
 		fprintf(stderr,
 		    gettext("cannot get in-kernel socket table: %s\n"),
 		    strerror(errno));
@@ -622,7 +622,7 @@ print_socktable()
 	}
 
 	/* get socket table entries */
-	if (_sockconfig(SOCKCONFIG_GET_SOCKTABLE, &sc_table) == -1) {
+	if (_sockconfig(SOCKCONFIG_GET_SOCKTABLE, &sc_table, 0, 0, 0) == -1) {
 		fprintf(stderr,
 		    gettext("cannot get in-kernel socket table: %s\n"),
 		    strerror(errno));

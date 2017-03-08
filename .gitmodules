@@ -1,0 +1,27 @@
+[submodule "extra/binutils"]
+	path = extra/binutils
+	url = ../binutils-gdb.git
+[submodule "extra/gcc"]
+	path = extra/gcc
+	url = ../gcc.git
+[submodule "extra/dtc"]
+	path = extra/dtc
+	url = ../dtc.git
+[submodule "extra/nss"]
+	path = extra/nss
+	url = ../nss.git
+[submodule "extra/msun"]
+	path = extra/msun
+	url = ../msun.git
+[submodule "extra/bash"]
+	path = extra/bash
+	url = ../bash.git
+[submodule "extra/vim"]
+	path = extra/vim
+	url = ../vim.git
+[submodule "extra/distfiles"]
+	path = extra/distfiles
+	url = ../distfiles.git
+[submodule "extra/nspr"]
+	path = extra/nspr
+	url = ../nspr.git

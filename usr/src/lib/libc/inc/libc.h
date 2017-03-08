@@ -23,6 +23,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This is where all the interfaces that are internal to libc
@@ -112,7 +115,7 @@ extern uint64_t __umul64(uint64_t, uint64_t);
  */
 #if defined(__i386) || defined(__amd64)
 extern enum fp_direction_type __xgetRD(void);
-#elif defined(__sparc)
+#elif defined(__sparc) || defined(__alpha) || defined(__aarch64)
 extern enum fp_direction_type _QgetRD(void);
 #else
 #error Unknown architecture!
@@ -133,7 +136,7 @@ extern void __hex_to_single(decimal_record *, enum fp_direction_type,
 	single *, fp_exception_field_type *);
 extern void __hex_to_double(decimal_record *, enum fp_direction_type,
 	double *, fp_exception_field_type *);
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 extern void __hex_to_quadruple(decimal_record *, enum fp_direction_type,
 	quadruple *, fp_exception_field_type *);
 #elif defined(__i386) || defined(__amd64)

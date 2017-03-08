@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 # Copyright (c) 1992, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 # Automagically generate the audit_uevents.h header file.
@@ -76,7 +77,7 @@ extern "C" {
 
 EOF
 
-nawk -F: '{if ((NF == 4) && substr($1,0,1) != "#")
+gawk -F: '{if ((NF == 4) && substr($1,0,1) != "#")
 		if ($1 >= 2048) {
 			tlen = length($2);
 

@@ -21,6 +21,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file provides a general purpose mechanism
@@ -147,6 +150,7 @@
 #define	CHECK_FOR_SIGFRAME(fp, oldctx) ((((fp) + sizeof (struct frame)) + \
 	3 * sizeof (int) == (oldctx)) && \
 	(((struct frame *)fp)->fr_savpc == (greg_t)-1))
+#elif defined(__alpha) || defined(__aarch64)
 #else
 #error no arch defined
 #endif
@@ -189,6 +193,9 @@ int
 walkcontext(const ucontext_t *uptr, int (*operate_func)(uintptr_t, int, void *),
     void *usrarg)
 {
+#if defined(__alpha) || defined(__aarch64)
+	return -1;
+#else
 	ucontext_t *oldctx = uptr->uc_link;
 
 	int	fd;
@@ -319,6 +326,7 @@ walkcontext(const ucontext_t *uptr, int (*operate_func)(uintptr_t, int, void *),
 
 	(void) close(fd);
 	return (0);
+#endif
 }
 
 /*
@@ -376,12 +384,16 @@ display_stack_info(uintptr_t pc, int signo, void *arg)
 int
 printstack(int dofd)
 {
+#if defined(__alpha) || defined(__aarch64)
+	return -1;
+#else
 	ucontext_t u;
 
 	if (getcontext(&u) < 0)
 		return (-1);
 
 	return (walkcontext(&u, display_stack_info, (void*)(intptr_t)dofd));
+#endif
 }
 
 /*
@@ -415,6 +427,9 @@ callback(uintptr_t pc, int signo, void *arg)
 int
 backtrace(void **buffer, int count)
 {
+#if defined(__alpha) || defined(__aarch64)
+	return -1;
+#else
 	backtrace_t	bt;
 	ucontext_t	u;
 
@@ -428,6 +443,7 @@ backtrace(void **buffer, int count)
 	(void) walkcontext(&u, callback, &bt);
 
 	return (bt.bt_actcount);
+#endif
 }
 
 /*

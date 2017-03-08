@@ -24,6 +24,9 @@
  * Use is subject to license terms.
  * Copyright (c) 2015, Joyent, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /* Copyright (c) 2013, OmniTI Computer Consulting, Inc. All rights reserved. */
 
@@ -82,8 +85,8 @@
 /*
  * These are SUNWprivate, but they are being used by Sun Studio libcollector.
  */
-#pragma weak _fork1 = fork1
-#pragma weak _forkall = forkall
+//#pragma weak _fork1 = fork1
+//#pragma weak _forkall = forkall
 
 /*
  * atfork_lock protects the pthread_atfork() data structures.

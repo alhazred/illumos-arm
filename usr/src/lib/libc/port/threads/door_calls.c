@@ -23,6 +23,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include "lint.h"
 #include "thr_uberdata.h"
@@ -50,7 +53,7 @@ static door_server_func_t door_create_server;
  */
 static mutex_t		door_state_lock = DEFAULTMUTEX;
 door_server_func_t	*door_server_func = door_create_server;
-pid_t			door_create_pid = 0;
+pid_t			door_create_pid __attribute__ ((visibility("hidden"))) = 0;
 static pid_t		door_create_first_pid = 0;
 static pid_t		door_create_unref_pid = 0;
 
@@ -419,6 +422,10 @@ door_return(char *data_ptr, size_t data_size,
 #if defined(__sparc)
 	reserve = SA(MINFRAME);
 #elif defined(__x86)
+	reserve = SA(512);
+#elif defined(__alpha)
+	reserve = SA(512);
+#elif defined(__aarch64)
 	reserve = SA(512);
 #else
 #error need to define stack base reserve

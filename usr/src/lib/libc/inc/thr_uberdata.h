@@ -27,6 +27,9 @@
  * Copyright 2016 Joyent, Inc.
  * Copyright 2018 Nexenta Systems, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _THR_UBERDATA_H
 #define	_THR_UBERDATA_H
@@ -122,7 +125,7 @@
 #define	WAITERMASK64	0x00000000000000ffULL
 #define	SPINNERMASK64	0x0000000000ff0000ULL
 
-#elif defined(__x86)
+#elif defined(__x86) || defined(__alpha) || defined(__aarch64)
 
 /* lock.lock64.pad[x]	   7 6 5 4 */
 #define	LOCKMASK	0xff000000
@@ -249,6 +252,27 @@ typedef struct {
 	greg32_t	fsr;
 	greg32_t	fpu_en;
 } fpuenv32_t;
+#endif	/* _SYSCALL32 */
+
+#elif defined(__alpha)
+
+typedef struct {	/* structure returned by fnstenv */
+	uint64_t	fctrl;		/* control word */
+} fpuenv_t;
+
+#ifdef _SYSCALL32
+typedef fpuenv_t fpuenv32_t;
+#endif	/* _SYSCALL32 */
+
+#elif defined(__aarch64)
+
+typedef struct {	/* structure returned by fnstenv */
+	uint32_t	fctrl;		/* control word */
+	uint32_t	fstat;		/* control word */
+} fpuenv_t;
+
+#ifdef _SYSCALL32
+typedef fpuenv_t fpuenv32_t;
 #endif	/* _SYSCALL32 */
 
 #endif	/* __x86 */
@@ -1242,14 +1266,18 @@ typedef	struct	_rwlattr {
 } rwlattr_t;
 
 /* _curthread() is inline for speed */
+#if !defined(__GNUC__)
 extern	ulwp_t		*_curthread(void);
-#define	curthread	(_curthread())
 
 /* this version (also inline) can be tested for NULL */
 extern	ulwp_t		*__curthread(void);
 
 /* get the current stack pointer (also inline) */
 extern	greg_t		stkptr(void);
+
+#endif
+
+#define	curthread	(_curthread())
 
 /*
  * Suppress __attribute__((...)) if we are not compiling with gcc
@@ -1533,6 +1561,7 @@ extern	int	___lwp_private(int, int, void *);
 /*
  * inlines
  */
+#if !defined(__GNUC__)
 extern	int		set_lock_byte(volatile uint8_t *);
 extern	uint32_t	atomic_swap_32(volatile uint32_t *, uint32_t);
 extern	uint32_t	atomic_cas_32(volatile uint32_t *, uint32_t, uint32_t);
@@ -1544,6 +1573,7 @@ extern	void		atomic_or_32(volatile uint32_t *, uint32_t);
 extern	ulong_t		caller(void);
 extern	ulong_t		getfp(void);
 #endif	/* __sparc */
+#endif
 
 #include "thr_inlines.h"
 

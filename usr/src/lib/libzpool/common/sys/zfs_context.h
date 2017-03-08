@@ -25,6 +25,9 @@
  * Copyright 2019 Joyent, Inc.
  * Copyright 2017 RackTop Systems.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_ZFS_CONTEXT_H
 #define	_SYS_ZFS_CONTEXT_H
@@ -95,7 +98,9 @@ extern "C" {
 #include <sys/pset.h>
 #include <sys/kobj.h>
 #include <sys/fm/util.h>
+#if !defined __alpha && !defined __arm && !defined __aarch64
 #include "zfs.h"
+#endif
 
 /*
  * ZFS debugging
@@ -120,6 +125,20 @@ extern void dprintf_setup(int *argc, char **argv);
  * zfs$target:::probe2 /copyinstr(arg0) == "zfs__probe_name"/
  *     {printf("%u %p\n", arg1, arg2);}
  */
+#if defined __alpha || defined __arm || defined __aarch64
+#undef	DTRACE_PROBE
+#define	DTRACE_PROBE(a)	((void)0)
+#undef	DTRACE_PROBE1
+#define	DTRACE_PROBE1(a, b, c)	((void)0)
+#undef	DTRACE_PROBE2
+#define	DTRACE_PROBE2(a, b, c, d, e)	((void)0)
+#undef	DTRACE_PROBE3
+#define	DTRACE_PROBE3(a, b, c, d, e, f, g)	((void)0)
+#undef	DTRACE_PROBE4
+#define	DTRACE_PROBE4(a, b, c, d, e, f, g, h, i)	((void)0)
+#undef	SET_ERROR
+#define	SET_ERROR(err)	(err)
+#else
 
 #ifdef DTRACE_PROBE
 #undef	DTRACE_PROBE
@@ -160,6 +179,8 @@ extern void dprintf_setup(int *argc, char **argv);
  * "return (SET_ERROR(log_error(EINVAL, info)));" would log the error twice).
  */
 #define	SET_ERROR(err) (ZFS_SET_ERROR(err), err)
+
+#endif
 
 /*
  * Threads

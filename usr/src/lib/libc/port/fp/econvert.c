@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -60,7 +63,7 @@ econvert(double arg, int ndigits, int *decpt, int *sign, char *buf)
 	fp_exception_field_type ef;
 	int		i;
 
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 	dm.rd = _QgetRD();
 #elif defined(__i386) || defined(__amd64)
 	dm.rd = __xgetRD();
@@ -105,7 +108,7 @@ seconvert(single *arg, int ndigits, int *decpt, int *sign, char *buf)
 	fp_exception_field_type ef;
 	int		i;
 
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 	dm.rd = _QgetRD();
 #elif defined(__i386) || defined(__amd64)
 	dm.rd = __xgetRD();
@@ -150,7 +153,7 @@ qeconvert(quadruple *arg, int ndigits, int *decpt, int *sign, char *buf)
 	fp_exception_field_type ef;
 	int		i;
 
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 	dm.rd = _QgetRD();
 #elif defined(__i386) || defined(__amd64)
 	dm.rd = __xgetRD();
@@ -163,7 +166,7 @@ qeconvert(quadruple *arg, int ndigits, int *decpt, int *sign, char *buf)
 	else if (ndigits >= DECIMAL_STRING_LENGTH)
 		ndigits = DECIMAL_STRING_LENGTH - 1;
 	dm.ndigits = ndigits;	/* Number of significant digits. */
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
 	quadruple_to_decimal(arg, &dm, &dr, &ef);
 #elif defined(__i386) || defined(__amd64)
 	extended_to_decimal((extended *)arg, &dm, &dr, &ef);

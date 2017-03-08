@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains functions to initialize the gssapi library and
@@ -77,6 +80,9 @@
 
 #define	MECH_LIB_PREFIX2	"amd64/"
 
+#elif defined(__alpha) || defined(__aarch64)
+
+#define	MECH_LIB_PREFIX2	""
 #else	/* __sparc */
 
 you need to define where under /usr the LP64 libraries live for this platform

@@ -34,6 +34,9 @@
  * Use is subject to license terms.
  * Copyright (c) 2016 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Standard headers.
@@ -100,7 +103,7 @@
  * function is declared as void, whereas it is declared as int on
  * other systems.
  */
-#if defined __sun && defined __SVR4 && !defined _XOPEN_CURSES
+#if defined __sun && defined __SVR4 && !defined _XOPEN_CURSES && !defined NCURSES_VERSION
 typedef int TputsRetType;
 typedef char TputsArgType;              /* int tputs(char c, FILE *fp) */
 #define TPUTS_RETURNS_VALUE 1

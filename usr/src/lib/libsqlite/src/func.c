@@ -39,7 +39,7 @@ static void minmaxFunc(sqlite_func *context, int argc, const char **argv){
   int mask;    /* 0 for min() or 0xffffffff for max() */
 
   if( argc==0 ) return;
-  mask = (int)sqlite_user_data(context);
+  mask = (int)(intptr_t)sqlite_user_data(context);
   zBest = argv[0];
   if( zBest==0 ) return;
   if( argv[1][0]=='n' ){
@@ -629,7 +629,7 @@ static void minmaxStep(sqlite_func *context, int argc, const char **argv){
   }else{
     xCompare = strcmp;
   }
-  mask = (int)sqlite_user_data(context);
+  mask = (int)(intptr_t)sqlite_user_data(context);
   assert( mask==0 || mask==-1 );
   p = sqlite_aggregate_context(context, sizeof(*p));
   if( p==0 || argc<1 ) return;

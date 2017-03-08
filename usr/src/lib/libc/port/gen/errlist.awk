@@ -21,6 +21,9 @@
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Copyright 2017 Hayashi Naoyuki
+#
+#
 # ident	"%Z%%M%	%I%	%E% SMI"
 #
 # Create two files from a list of input strings;
@@ -111,8 +114,6 @@ END	{
 
 		print "const int _sys_num_err = " hi + 1 ";\n" >newfile
 		print "#undef sys_nerr" >newfile
-		print "#ifndef _LP64" >newfile
 		print "#pragma weak _sys_nerr = _sys_num_err" >newfile
 		print "#pragma weak sys_nerr = _sys_num_err" >newfile
-		print "#endif /* _LP64 */" >newfile
 	}

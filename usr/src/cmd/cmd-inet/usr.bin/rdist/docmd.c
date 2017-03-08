@@ -2,6 +2,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright (c) 1983 Regents of the University of California.
@@ -70,7 +73,7 @@ static char *errstring = "regcmp failed for some unknown reason";
 char *
 re_comp(char *s)
 {
-	if ((int)recomp != 0)
+	if (recomp != NULL)
 		free(recomp);
 	recomp = regcmp(s, (char *)0);
 	if (recomp == NULL)
@@ -83,7 +86,7 @@ re_comp(char *s)
 static int
 re_exec(char *s)
 {
-	if ((int)recomp == 0)
+	if (recomp == NULL)
 		return (-1);
 	if (regex(recomp, s) == NULL)
 		return (0);

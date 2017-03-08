@@ -291,7 +291,7 @@ struct utmpx *utp;
 	char tty[sizeof (utmp[0].ut_line) + 5];
 	char name[sizeof (utmp[0].ut_name) + 1];
 	struct stat stb, stl;
-	time_t timep[2];
+	struct utimbuf utimbuf;
 	struct passwd *pwd;
 	int fd, mbox;
 
@@ -400,10 +400,10 @@ struct utmpx *utp;
 		exit(1);
 	}
 
-	timep[0] = stb.st_atime;
-	timep[1] = stb.st_mtime;
+	utimbuf.actime = stb.st_atime;
+	utimbuf.modtime = stb.st_mtime;
 	jkfprintf(tp, name, mbox, offset);
-	utime(name, timep);
+	utime(name, &utimbuf);
 	exit(0);
 }
 

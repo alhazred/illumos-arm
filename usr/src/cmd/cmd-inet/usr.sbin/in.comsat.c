@@ -285,6 +285,7 @@ char	*cr;
 void
 notify(utp, offset)
 struct utmpx *utp;
+int offset;
 {
 	FILE *tp;
 	struct sgttyb gttybuf;
@@ -412,6 +413,7 @@ jkfprintf(tp, name, mbox, offset)
 register FILE *tp;
 char *name;
 int mbox;
+int offset;
 {
 	register FILE *fi;
 	register int linecnt, charcnt;

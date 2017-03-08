@@ -22,6 +22,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 /* Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T */
 /* All Rights Reserved */
 /*
@@ -168,6 +171,7 @@ sprayproc_spray_1nd(argp, clnt)
 /* A cheap milliseconds sleep call */
 static void
 slp(usecs)
+	int usecs;
 {
 	static struct pollfd pfds[1] = {
 		0, POLLIN, 0

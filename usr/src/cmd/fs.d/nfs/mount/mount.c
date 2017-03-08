@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 1989, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -149,11 +152,11 @@ static int getaddr_nfs(struct nfs_args *, char *, struct netconfig **,
 		    bool_t, char *, ushort_t, err_ret_t *, bool_t);
 static void pr_err(const char *fmt, ...);
 static void usage(void);
-static struct netbuf *get_addr(char *, rpcprog_t, rpcvers_t,
+static struct netbuf *get_addr(char *, ulong_t, ulong_t,
 	struct netconfig **, char *, ushort_t, struct t_info *,
 	caddr_t *, bool_t, char *, err_ret_t *);
 
-static struct netbuf *get_the_addr(char *, rpcprog_t, rpcvers_t,
+static struct netbuf *get_the_addr(char *, ulong_t, ulong_t,
 	struct netconfig *, ushort_t, struct t_info *, caddr_t *,
 	bool_t, char *, err_ret_t *);
 

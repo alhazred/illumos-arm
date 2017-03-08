@@ -22,7 +22,10 @@
 %/*
 % * Copyright (c) 1987, 1991 by Sun Microsystems, Inc.
 % */
-
+%/*
+% * Copyright 2017 Hayashi Naoyuki
+% */
+%
 %/* from spray.x */
 
 #ifdef RPC_HDR
@@ -30,6 +33,7 @@
 %#pragma ident	"%Z%%M%	%I%	%E% SMI"
 %
 #endif
+%#include <unistd.h>
 
 /*
  * Spray a server with packets

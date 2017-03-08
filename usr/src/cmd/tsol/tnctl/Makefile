@@ -33,7 +33,7 @@ include ../../Makefile.cmd
 MANIFEST= tnctl.xml
 ROOTMANIFESTDIR = $(ROOTSVCNETWORK)
 SVCMETHOD= svc-tnctl
-$(ROOTMANIFEST) :=	FILEMODE= 444
+$(ROOTMANIFEST) : 	FILEMODE= 444
 
 LDLIBS += -lnsl -ltsnet
 

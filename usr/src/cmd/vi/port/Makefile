@@ -72,10 +72,10 @@ POFILES= $(EXOBJS:%.o=%.po) expreserve.po exrecover.po
 POFILE= port.po
 
 # Include all XPG4 and XPG4ONLY changes in the XPG4 version
-$(XPG4) := CFLAGS += -DXPG4 -DXPG4ONLY
+$(XPG4) :  CFLAGS += -DXPG4 -DXPG4ONLY
 
 # Include all XPG4 changes, but don't include XPG4ONLY in the XPG6 version
-$(XPG6) := CFLAGS += -DXPG4 -DXPG6 -I$(SRC)/lib/libc/inc
+$(XPG6) :  CFLAGS += -DXPG4 -DXPG6 -I$(SRC)/lib/libc/inc
 
 CPPFLAGS +=  -DUSG -DSTDIO -DVMUNIX -DTABS=8 -DSINGLE -DTAG_STACK
 
@@ -84,10 +84,10 @@ CPPFLAGS +=  -DUSG -DSTDIO -DVMUNIX -DTABS=8 -DSINGLE -DTAG_STACK
 LDFLAGS +=	$(MAPFILE.NGB:%=-Wl,-M%)
 
 CLOBBERFILES += $(LIBPROGS)
-ex :=		LDLIBS += -lmapmalloc -lcurses -lgen -lcrypt_i
-$(XPG4) :=	LDLIBS += -lmapmalloc -lcurses -lgen -lcrypt_i
-$(XPG6) :=	LDLIBS += -lmapmalloc -lcurses -lgen -lcrypt_i
-exrecover :=	LDLIBS += -lmapmalloc -lcrypt_i
+ex : 		LDLIBS += -lmapmalloc -lcurses -lgen -lcrypt_i
+$(XPG4) : 	LDLIBS += -lmapmalloc -lcurses -lgen -lcrypt_i
+$(XPG6) : 	LDLIBS += -lmapmalloc -lcurses -lgen -lcrypt_i
+exrecover : 	LDLIBS += -lmapmalloc -lcrypt_i
 
 ROOTLIBPROGS= $(LIBPROGS:%=$(ROOTLIB)/%)
 

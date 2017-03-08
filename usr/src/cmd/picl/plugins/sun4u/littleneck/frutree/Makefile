@@ -46,7 +46,7 @@ ROOTLIBDIR =	$(ROOT_PLAT_PLUGINDIR)
 
 CONF=		piclfrutree.conf
 ROOTCONF=	$(CONF:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 INFOS=		$(CONF:%.conf=%.info)
 
 CLOBBERFILES += $(LIBLINKS)
@@ -69,11 +69,11 @@ SUBDIRS=
 POFILE=	piclfrutree.po
 POFILE_RENAME=	piclfrutree_lneck.po
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 all: $(LIBS) $(LIBLINKS) $(CONF)
 

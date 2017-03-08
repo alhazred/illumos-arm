@@ -142,7 +142,7 @@ LDLIBS += -lgen -lproc -lrtld_db -lnsl -lsocket -lctf -lelf -lc
 DRTILDLIBS = $(LDLIBS.lib) -lc
 LIBDAUDITLIBS = $(LDLIBS.lib) -lmapmalloc -lc -lproc
 
-yydebug := YYCFLAGS += -DYYDEBUG
+yydebug :  YYCFLAGS += -DYYDEBUG
 
 LFLAGS = -t -v
 YFLAGS = -d -v
@@ -154,11 +154,11 @@ ROOTDLIBS = $(DLIBSRCS:%=$(ROOTDLIBDIR)/%)
 ROOTDOBJS = $(ROOTDLIBDIR)/$(DRTIOBJ) $(ROOTDLIBDIR)/$(LIBDAUDIT)
 ROOTDOBJS64 = $(ROOTDLIBDIR64)/$(DRTIOBJ) $(ROOTDLIBDIR64)/$(LIBDAUDIT)
 
-$(ROOTDLIBDIR)/%.d := FILEMODE=444
-$(ROOTDLIBDIR)/%.o := FILEMODE=444
-$(ROOTDLIBDIR64)/%.o :=	FILEMODE=444
-$(ROOTDLIBDIR)/%.so := FILEMODE=555
-$(ROOTDLIBDIR64)/%.so := FILEMODE=555
+$(ROOTDLIBDIR)/%.d :  FILEMODE=444
+$(ROOTDLIBDIR)/%.o :  FILEMODE=444
+$(ROOTDLIBDIR64)/%.o : 	FILEMODE=444
+$(ROOTDLIBDIR)/%.so :  FILEMODE=555
+$(ROOTDLIBDIR64)/%.so :  FILEMODE=555
 
 .KEEP_STATE:
 
@@ -173,11 +173,11 @@ dt_grammar.c dt_grammar.h: $(SRCDIR)/dt_grammar.y
 	@mv y.tab.h dt_grammar.h
 	@mv y.tab.c dt_grammar.c
 
-pics/dt_lex.o pics/dt_grammar.o := CFLAGS += $(YYCFLAGS)
-pics/dt_lex.o pics/dt_grammar.o := CFLAGS64 += $(YYCFLAGS)
+pics/dt_lex.o pics/dt_grammar.o :  CFLAGS += $(YYCFLAGS)
+pics/dt_lex.o pics/dt_grammar.o :  CFLAGS64 += $(YYCFLAGS)
 
-pics/dt_lex.o pics/dt_grammar.o := CERRWARN += -erroff=E_STATEMENT_NOT_REACHED
-pics/dt_lex.o pics/dt_grammar.o := CCVERBOSE =
+pics/dt_lex.o pics/dt_grammar.o :  CERRWARN += -erroff=E_STATEMENT_NOT_REACHED
+pics/dt_lex.o pics/dt_grammar.o :  CCVERBOSE =
 
 ../common/dt_errtags.c: ../common/mkerrtags.sh ../common/dt_errtags.h
 	sh ../common/mkerrtags.sh < ../common/dt_errtags.h > $@

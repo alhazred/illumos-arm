@@ -33,11 +33,11 @@ include ../../../../../Makefile.master
 
 SUBDIRS	= ieee1275
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
-lint	:=	TARGET = lint
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
+lint	: 	TARGET = lint
 
 all install clean clobber lint: $(SUBDIRS)
 

@@ -28,12 +28,12 @@ include ../Makefile.lib
 SUBDIRS=	$(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
-all :=		TARGET = all
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-debug :=	TARGET = debug
-delete :=	TARGET = delete
-install :=	TARGET = install
+all : 		TARGET = all
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+debug : 	TARGET = debug
+delete : 	TARGET = delete
+install : 	TARGET = install
 
 #
 # Definitions for header files
@@ -43,7 +43,7 @@ HDRS =		pool.h
 ROOTHDRDIR =	$(ROOT)/usr/include
 ROOTHDRS =	$(HDRS:%=$(ROOTHDRDIR)/%)
 CHECKHDRS =	$(HDRS:%.h=common/%.check)
-$(ROOTHDRS) :=	FILEMODE= 644
+$(ROOTHDRS) : 	FILEMODE= 644
 
 $(ROOTHDRDIR)/%: common/%
 	$(INS.file)
@@ -61,7 +61,7 @@ DTDS =		dtd/rm_pool.dtd.1
 XMLDIR =	$(ROOT)/usr/share/lib/xml
 ROOTDTDS=	$(DTDS:%=$(XMLDIR)/%)
 
-$(ROOTDTDS) :=	FILEMODE = 444
+$(ROOTDTDS) : 	FILEMODE = 444
 
 $(XMLDIR)/%: %
 	$(INS.file)

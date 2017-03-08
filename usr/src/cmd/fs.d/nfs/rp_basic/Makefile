@@ -30,11 +30,11 @@ $(BUILD64)SUBDIRS += $(MACH64)
 MSGFILES = 	libnfs_basic.c
 POFILE  =	rp_basic.po
 
-all	:=	TARGET= all
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-install	:=	TARGET= install
-lint	:=	TARGET= lint
+all	: 	TARGET= all
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+install	: 	TARGET= install
+lint	: 	TARGET= lint
 
 .KEEP_STATE:
 

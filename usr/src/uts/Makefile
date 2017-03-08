@@ -70,18 +70,18 @@ sparc_PARALLEL = $(sparc_ARCHITECTURES)
 PREREQ_TARGET = $($(MACH)_PREREQ:%=%.prereq)
 
 
-def		:=	TARGET= def
-all		:=	TARGET= all
-install		:=	TARGET= install
-install_h	:=	TARGET= install_h
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-clobber_h	:=	TARGET= clobber
-lint		:=	TARGET= lint
-clean.lint	:=	TARGET= clean.lint
-check		:=	TARGET= check
-modlist		:=	TARGET= modlist
-modlist		:=	NO_STATE= -K $$MODSTATE$$$$
+def		: 	TARGET= def
+all		: 	TARGET= all
+install		: 	TARGET= install
+install_h	: 	TARGET= install_h
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+clobber_h	: 	TARGET= clobber
+lint		: 	TARGET= lint
+clean.lint	: 	TARGET= clean.lint
+check		: 	TARGET= check
+modlist		: 	TARGET= modlist
+modlist		: 	NO_STATE= -K $$MODSTATE$$$$
 
 .KEEP_STATE:
 

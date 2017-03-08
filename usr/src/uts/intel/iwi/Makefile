@@ -53,7 +53,7 @@ CPPFLAGS	+= -I. -D_KERNEL
 LDFLAGS         += -dy -Nmisc/mac -Nmisc/net80211 -Ndrv/random -Ndrv/ip
 
 # needs work
-$(OBJS_DIR)/ipw2200.o := SMOFF += deref_check
+$(OBJS_DIR)/ipw2200.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

@@ -29,10 +29,10 @@ include $(SRC)/Makefile.master
 
 SUBDIRS= files nis compat dns ldap user mdns ad
 
-all:=		TARGET= all
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-install:=	TARGET= install
+all: 		TARGET= all
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+install: 	TARGET= install
 
 .KEEP_STATE:
 

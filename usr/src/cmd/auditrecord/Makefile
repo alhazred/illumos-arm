@@ -29,7 +29,7 @@ ATTR =			audit_record_attr
 ROOTAUDITDIR =		$(ROOT)/usr/lib/audit
 
 SECURITYFILES = 	$(ATTR:%=$(ROOTAUDITDIR)/%)
-$(SECURITYFILES) :=	FILEMODE = $(LIBFILEMODE)
+$(SECURITYFILES) : 	FILEMODE = $(LIBFILEMODE)
 
 PROG		= auditrecord
 

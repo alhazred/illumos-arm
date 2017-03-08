@@ -13,11 +13,11 @@
 # Copyright (c) 2012 by Delphix. All rights reserved.
 #
 
-all     :=      TARGET = all
-install :=      TARGET = install
-clean   :=      TARGET = clean
-clobber :=      TARGET = clobber
-lint    :=      TARGET = lint
+all     :       TARGET = all
+install :       TARGET = install
+clean   :       TARGET = clean
+clobber :       TARGET = clobber
+lint    :       TARGET = lint
 
 .KEEP_STATE:
 

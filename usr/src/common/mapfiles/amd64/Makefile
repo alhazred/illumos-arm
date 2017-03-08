@@ -33,9 +33,9 @@ FILES=
 
 install: $(DIRS) $(FILES) map.link
 
-$(FILES):=	FILEMODE=444
+$(FILES): 	FILEMODE=444
 
-$(DIRS):=	DIRMODE=755
+$(DIRS): 	DIRMODE=755
 
 map.link:
 	$(RM) $(ROOTDIR64)/map.default \

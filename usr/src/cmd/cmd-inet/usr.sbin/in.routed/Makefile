@@ -52,8 +52,8 @@ CLOBBERFILES +=	$(ROUTEDPROG) $(RTQUERYPROG)
 POFILE=		in.routed.po
 POFILES=  $(POFILEOBJS:.o=.po)
 #
-$(ROUTEDPROG):=	LDLIBS += -lkstat
-lint	:=	LDLIBS += -lkstat
+$(ROUTEDPROG): 	LDLIBS += -lkstat
+lint	: 	LDLIBS += -lkstat
 
 # This needs to be done because of SPARC/x86 differences.  On x86,
 # double has required alignment of only 4 bytes, but on SPARC it's 8
@@ -64,8 +64,8 @@ LINTFLAGS +=	-erroff=E_SUPPRESSION_DIRECTIVE_UNUSED
 
 CTFCONVERT_HOOK = && $(CTFCONVERT_O)
 CTFMERGE_HOOK = && $(CTFMERGE) -L VERSION -o $@ $(ROUTEDOBJS)
-$(ROUTEDOBJS) := CFLAGS += $(CTF_FLAGS)
-$(RTQUERYOBJS) := CFLAGS += $(CTF_FLAGS)
+$(ROUTEDOBJS) :  CFLAGS += $(CTF_FLAGS)
+$(RTQUERYOBJS) :  CFLAGS += $(CTF_FLAGS)
 
 .KEEP_STATE:
 

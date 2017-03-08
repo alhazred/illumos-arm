@@ -51,13 +51,13 @@ SUBDIRS =	libjkstat \
 
 ROOTMANIFESTDIR=	$(ROOTSVCSYSTEM)
 
-all :=		TARGET = all
-install :=	TARGET = install
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-msg :=		TARGET = msg
+all : 		TARGET = all
+install : 	TARGET = install
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+msg : 		TARGET = msg
 
-$(ROOTMANIFEST):=	FILEMODE= 444
+$(ROOTMANIFEST): 	FILEMODE= 444
 JARFILE =	JPool.jar
 
 JAVA_LIB_PATH =	$(JAVA_ROOT)/jre/lib/$(MACH64)/server
@@ -103,7 +103,7 @@ POFILES =	$(OBJS:.o=.po)
 JFILES =	poold.properties $(JARFILE)
 ROOTJAVA =	$(JFILES:%=$(ROOTUSRLIBDRP)/%)
 
-$(ROOTJAVA) :=	FILEMODE = 444
+$(ROOTJAVA) : 	FILEMODE = 444
 
 all:	$(PROG) $(JAVA_SUBDIRS) $(JARFILE) \
 		    .WAIT $(SUBDIRS)

@@ -35,7 +35,7 @@ ETCTSOLFILES=relabel
 
 include ../../Makefile.cmd
 
-$(ROOTETCTSOL)/relabel := FILEMODE= 0755
+$(ROOTETCTSOL)/relabel :  FILEMODE= 0755
 
 .KEEP_STATE:
 

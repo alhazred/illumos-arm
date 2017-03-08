@@ -31,7 +31,7 @@ LINTFLAGS += -ux
 
 include ../Makefile.tools
 
-$(ROOTONBLDMAN1ONBLDFILES) := FILEMODE=      644
+$(ROOTONBLDMAN1ONBLDFILES) :  FILEMODE=      644
 
 EXCEPTION_SRC= common open
 EXCEPTION_LISTS=	$(EXCEPTION_SRC:%=exception_list.%)

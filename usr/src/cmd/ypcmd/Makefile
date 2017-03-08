@@ -55,13 +55,13 @@ ROOTDIRS =	$(ROOT) $(ROOTUSR) $(ROOTLIB) $(ROOTETC) $(ROOTVAR) \
 		$(NETSVC) $(NETYP) $(ROOTVAR_YP) $(ROOTBINDING) \
 		$(ROOTUSRSBIN) $(ROOTBIN)
 
-$(LNSLPROG) :=	LDLIBS += -lnsl
-$(NIS2LDAPPROG) := LDLIBS += -lc -lnsl -lnisdb
-stdethers :=	LDLIBS += -lsocket
-makedbm :=	MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
-makedbm :=	LDFLAGS += $(MAPFILES:%=-Wl,-M%)
+$(LNSLPROG) : 	LDLIBS += -lnsl
+$(NIS2LDAPPROG) :  LDLIBS += -lc -lnsl -lnisdb
+stdethers : 	LDLIBS += -lsocket
+makedbm : 	MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
+makedbm : 	LDFLAGS += $(MAPFILES:%=-Wl,-M%)
 
-$(ROOTVAR_YP)/aliases :=	FILEMODE=555
+$(ROOTVAR_YP)/aliases : 	FILEMODE=555
 
 YPFILES = Makefile aliases nicknames updaters
 ETCFILES =  publickey
@@ -108,9 +108,9 @@ OBJS = $(NETYPOBJ) $(MKALIASOBJ) $(COMMONOBJ) $(SHAREDOBJ) \
 	$(YPPUSHOBJ) $(YPMATOBJ) $(YPWHIOBJ) $(YPCATOBJ) \
 	$(STDETHERSOBJ) $(STDHOSTSOBJ) makedbm.o ypalias.o pong.o
 
-BINSRC = $(BINPROG:=.c)
+BINSRC = $(BINPROG: .c)
 
-SBINSRC = $(SBINPROG:=.c)
+SBINSRC = $(SBINPROG: .c)
 
 NETYPSRC = $(NETYPOBJ:.o=.c)
 
@@ -160,27 +160,27 @@ SMATCH =	off
 ZGUIDANCE = -Wl,-zguidance=nounused
 
 #conditional assignments
-ypalias.o :=	CPPFLAGS= -DMAIN $(CPPFLAGS.master)
-makedbm.o :=	CPPFLAGS= $(CPPFLAGS.master)
-yp_b_svc.o :=	CPPFLAGS += -DINIT_DEFAULT
-ypxfrd_svc.o := CPPFLAGS += -Dmain=_main
-ypxfr.o := CPPFLAGS += $(NIS2LDAPINC)
-yppush.o := CPPFLAGS += $(NIS2LDAPINC)
-$(NIS2LDAPPROG) := CPPFLAGS += $(NIS2LDAPINC)
-$(SHAREDOBJ) := CPPFLAGS += -I$(SRC)/lib/libnisdb/yptol
-$(ROOTVAR_YP)/Makefile := FILEMODE= 555
-$(ROOTVAR_YP)/nicknames := FILEMODE= 644
-$(ROOTVAR_YP)/updaters := FILEMODE= 500
-$(ROOTETC)/publickey := FILEMODE= 644
+ypalias.o : 	CPPFLAGS= -DMAIN $(CPPFLAGS.master)
+makedbm.o : 	CPPFLAGS= $(CPPFLAGS.master)
+yp_b_svc.o : 	CPPFLAGS += -DINIT_DEFAULT
+ypxfrd_svc.o :  CPPFLAGS += -Dmain=_main
+ypxfr.o :  CPPFLAGS += $(NIS2LDAPINC)
+yppush.o :  CPPFLAGS += $(NIS2LDAPINC)
+$(NIS2LDAPPROG) :  CPPFLAGS += $(NIS2LDAPINC)
+$(SHAREDOBJ) :  CPPFLAGS += -I$(SRC)/lib/libnisdb/yptol
+$(ROOTVAR_YP)/Makefile :  FILEMODE= 555
+$(ROOTVAR_YP)/nicknames :  FILEMODE= 644
+$(ROOTVAR_YP)/updaters :  FILEMODE= 500
+$(ROOTETC)/publickey :  FILEMODE= 644
 # non-default file attributes to avoid conflict with rpcsrc
 NETYP =		$(NETSVC)/yp
 
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-cstyle :=	TARGET= cstyle
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+cstyle : 	TARGET= cstyle
 
 all: $(SHAREDOBJ) $(SUBDIRS) $(PROG) $(TXTS)
 

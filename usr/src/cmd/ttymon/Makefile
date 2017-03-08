@@ -61,14 +61,14 @@ include ../Makefile.cmd
 # If debug is needed, then:  CPPFLAGS += -DDEBUG
 # fix for 1111333 - turn on SYS_NAME so /etc/issue will be read if it exists
 CPPFLAGS += -DSYS_NAME
-$(XPG4):= CPPFLAGS += -DXPG4
-sttydefs := LDLIBS += -lnsl
-ttymon := LDLIBS += -lnsl -lsec -ldevinfo
+$(XPG4):  CPPFLAGS += -DXPG4
+sttydefs :  LDLIBS += -lnsl
+ttymon :  LDLIBS += -lnsl -lsec -ldevinfo
 
 # Only stty can be built with -DEUC.  ttymon will dump core unless further
 # changes are made to it.
-$(STTYOBJ) := CPPFLAGS += -DEUC
-$(XPG4STTYOBJ) := CPPFLAGS += -DEUC
+$(STTYOBJ) :  CPPFLAGS += -DEUC
+$(XPG4STTYOBJ) :  CPPFLAGS += -DEUC
 
 CFLAGS += $(CCVERBOSE)
 LDFLAGS += $(MAPFILE.NGB:%=-Wl,-M%)
@@ -96,8 +96,8 @@ BINF= stty
 ROOTLIBF= $(LIBSAF:%=$(LIBSAFD)/%)
 ROOTUSRSBINF= $(USRSBINF:%=$(ROOTUSRSBIN)/%)
 ROOTBINF= $(BINF:%=$(ROOTBIN)/%)
-$(ROOTLIBF) :=			FILEMODE =	0555
-$(ROOTUSRSBINF) :=		FILEMODE =	0755
+$(ROOTLIBF) : 			FILEMODE =	0555
+$(ROOTUSRSBINF) : 		FILEMODE =	0755
 
 $(LIBSAFD)/% : %
 	$(INS.file)

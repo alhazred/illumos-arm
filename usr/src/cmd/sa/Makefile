@@ -45,7 +45,7 @@ TIMEX=		timex
 SA1=		sa1
 SA2=		sa2
 
-sadc :=		LDLIBS += -lkstat
+sadc : 		LDLIBS += -lkstat
 
 # Executables produced
 BINPROG=	$(TIMEX)
@@ -87,7 +87,7 @@ ENTRY3=		'$(POUND_SIGN) 5 18 * * 1-5 /usr/lib/sa/sa2 -s 8:00 -e 18:01 -i 1200 -A
 CLOBBERFILES=	$(PROGS) $(SHELLS)
 
 # Conditionals
-$(LIBSAD)/$(SADC) 	:= FILEMODE = 0555
+$(LIBSAD)/$(SADC) 	:  FILEMODE = 0555
 
 .KEEP_STATE:
 

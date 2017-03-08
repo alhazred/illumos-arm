@@ -63,11 +63,11 @@ CSTD =      $(CSTD_GNU99)
 POFILE =        $(ILBD).po
 POFILES =       $(ILBD_SRCS:%.c=%.po)
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
 
 
 LDLIBS +=	-lcmdutils -lsocket -lsecdb -lnsl -lilb -lscf -linetutil -lbsm

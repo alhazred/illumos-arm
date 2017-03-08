@@ -60,9 +60,9 @@ DTDDIR=		$(ROOT)/usr/share/lib/xml/dtd
 ROOTDTDS=	$(DTDDIR)/kmfpolicy.dtd
 ROOTXML=	$(XMLDIR)/kmfpolicy.xml
 
-$(ROOTDTDS) :=	FILEMODE = 444
+$(ROOTDTDS) : 	FILEMODE = 444
 
-$(ROOTXML)  :=	FILEMODE = 644
+$(ROOTXML)  : 	FILEMODE = 644
 
 all:	$(PROG) $(ROOTDTDS)
 

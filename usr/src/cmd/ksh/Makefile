@@ -44,12 +44,12 @@ ARCH32= $(ARCH32_$(MACH))
 # and 64bit in parallel
 .NO_PARALLEL: $(SUBDIRS)
 
-all		:=	TARGET = all
-install		:=	TARGET = install
-clean		:=	TARGET = clean
-clobber 	:=	TARGET = clobber
-lint		:=	TARGET = lint
-testshell	:=	TARGET = testshell
+all		: 	TARGET = all
+install		: 	TARGET = install
+clean		: 	TARGET = clean
+clobber 	: 	TARGET = clobber
+lint		: 	TARGET = lint
+testshell	: 	TARGET = testshell
 
 .KEEP_STATE:
 

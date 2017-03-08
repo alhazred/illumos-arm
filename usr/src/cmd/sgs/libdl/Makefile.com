@@ -29,4 +29,4 @@ VERS =		.1
 include		$(SRC)/lib/Makefile.rootfs
 
 COMPATLINKS +=	etc/lib/libdl.so.1
-$(ROOT)/etc/lib/libdl.so.1 := COMPATLINKTARGET=../../lib/libdl.so.1
+$(ROOT)/etc/lib/libdl.so.1 :  COMPATLINKTARGET=../../lib/libdl.so.1

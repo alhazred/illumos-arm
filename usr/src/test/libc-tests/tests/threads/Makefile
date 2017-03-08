@@ -26,7 +26,7 @@ include $(SRC)/test/Makefile.com
 CPPFLAGS += -D_REENTRANT
 
 CMDS = $(PROGS:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all: $(PROGS)
 

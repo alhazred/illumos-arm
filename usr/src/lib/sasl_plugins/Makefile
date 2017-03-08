@@ -31,10 +31,10 @@ include	../Makefile.lib
 
 SUBDIRS =	cram digestmd5 gssapi plain login
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

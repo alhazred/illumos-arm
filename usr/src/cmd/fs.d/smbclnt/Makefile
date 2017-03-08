@@ -41,12 +41,12 @@ POFILES=        smbutil/smbutil_all.po mount/mount.po umount/umount.po \
 		share/share.po share/unshare.po
 POFILE=         smbclnt.po
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-catalog:=       TARGET= catalog
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+catalog:        TARGET= catalog
 
 .KEEP_STATE:
 

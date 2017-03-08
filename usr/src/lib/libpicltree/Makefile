@@ -28,11 +28,11 @@ include	$(SRC)/lib/Makefile.lib
 SUBDIRS = $(MACH)
 
 # conditional assignments
-all :=		TARGET= all
-install :=      TARGET= install
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-test :=         TARGET= test
+all : 		TARGET= all
+install :       TARGET= install
+clean :         TARGET= clean
+clobber :       TARGET= clobber
+test :          TARGET= test
 
 # definitions for install_h target
 HDRS=           picltree.h

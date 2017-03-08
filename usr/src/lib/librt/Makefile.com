@@ -39,17 +39,17 @@ COMPATLINKS64 +=	lib/$(MACH64)/libposix4.so.1 \
 			usr/lib/$(MACH64)/libposix4.so.1 \
 			usr/lib/$(MACH64)/libposix4.so
 
-$(ROOT)/lib/libposix4.so.1 := COMPATLINKTARGET=librt.so.1
-$(ROOT)/lib/libposix4.so := COMPATLINKTARGET=libposix4.so.1
-$(ROOT)/usr/lib/libposix4.so.1 := COMPATLINKTARGET=../../lib/librt.so.1
-$(ROOT)/usr/lib/libposix4.so := COMPATLINKTARGET=../../lib/librt.so.1
-$(ROOT)/lib/$(MACH64)/libposix4.so.1 := COMPATLINKTARGET=librt.so.1
-$(ROOT)/lib/$(MACH64)/libposix4.so := COMPATLINKTARGET=libposix4.so.1
-$(ROOT)/usr/lib/$(MACH64)/libposix4.so.1:= \
+$(ROOT)/lib/libposix4.so.1 :  COMPATLINKTARGET=librt.so.1
+$(ROOT)/lib/libposix4.so :  COMPATLINKTARGET=libposix4.so.1
+$(ROOT)/usr/lib/libposix4.so.1 :  COMPATLINKTARGET=../../lib/librt.so.1
+$(ROOT)/usr/lib/libposix4.so :  COMPATLINKTARGET=../../lib/librt.so.1
+$(ROOT)/lib/$(MACH64)/libposix4.so.1 :  COMPATLINKTARGET=librt.so.1
+$(ROOT)/lib/$(MACH64)/libposix4.so :  COMPATLINKTARGET=libposix4.so.1
+$(ROOT)/usr/lib/$(MACH64)/libposix4.so.1:  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/librt.so.1
-$(ROOT)/usr/lib/$(MACH64)/libposix4.so:= \
+$(ROOT)/usr/lib/$(MACH64)/libposix4.so:  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/librt.so.1
-$(ROOT)/usr/lib/$(MACH64)/librt.so.1:= \
+$(ROOT)/usr/lib/$(MACH64)/librt.so.1:  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/librt.so.1
-$(ROOT)/usr/lib/$(MACH64)/librt.so:= \
+$(ROOT)/usr/lib/$(MACH64)/librt.so:  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/librt.so.1

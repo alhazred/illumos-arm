@@ -10,9 +10,9 @@ include ../Makefile.solaris.defs
 
 GRUB		= grub
 GRUB_OBJS	= asmstub.o main.o
-$(GRUB)		:= LIBS = ../stage2/libgrub.a ../lib/libcommon.a -lcurses
-$(GRUB)		:= LDFLAGS += $(LDLIBS.cmd)
-$(GRUB)		:= CCLD = $(CC)
+$(GRUB)		:  LIBS = ../stage2/libgrub.a ../lib/libcommon.a -lcurses
+$(GRUB)		:  LDFLAGS += $(LDLIBS.cmd)
+$(GRUB)		:  CCLD = $(CC)
 
 #
 # The grub shell interposes on the getopt() family.  Should direct bindings be
@@ -35,7 +35,7 @@ PROGRAMS	= $(GRUB)
 INSTALL_DIR	= $(ROOT_BOOT_GRUB)/bin
 INSTALL_TARGETS	= $(PROGRAMS:%=$(INSTALL_DIR)/%)
 
-$(INSTALL_DIR)/% := FILEMODE = 0555
+$(INSTALL_DIR)/% :  FILEMODE = 0555
 
 #
 # Source files to be installed in $(SRC_DIR).

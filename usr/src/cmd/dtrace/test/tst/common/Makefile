@@ -49,13 +49,13 @@ RPCSVCSRCS = ${RPCSVCOBJS:%o=%c}
 CLOBBERFILES += nfs/$(RPCSVCOBJS) $(RPCSVCDIR)/$(RPCSVCSRCS)
 CLOBBERFILES += usdt/forker.h usdt/lazyprobe.h
 
-fasttrap/tst.fasttrap.exe := LDLIBS += -ldtrace
-fasttrap/tst.stack.exe := LDLIBS += -ldtrace
+fasttrap/tst.fasttrap.exe :  LDLIBS += -ldtrace
+fasttrap/tst.stack.exe :  LDLIBS += -ldtrace
 
-sysevent/tst.post.exe := LDLIBS += -lsysevent
-sysevent/tst.post_chan.exe := LDLIBS += -lsysevent
+sysevent/tst.post.exe :  LDLIBS += -lsysevent
+sysevent/tst.post_chan.exe :  LDLIBS += -lsysevent
 
-ustack/tst.bigstack.exe := COPTFLAG += -xO1
+ustack/tst.bigstack.exe :  COPTFLAG += -xO1
 
 CSTD = $(CSTD_GNU99)
 

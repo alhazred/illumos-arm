@@ -38,15 +38,15 @@ MANLINKS =				\
 		avl_remove.3avl	
 
 # avl_add.3avl
-avl_remove.3avl		:= LINKSRC = avl_add.3avl
+avl_remove.3avl		:  LINKSRC = avl_add.3avl
 
 # avl_first.3avl
-AVL_NEXT.3avl		:= LINKSRC = avl_first.3avl
-AVL_PREV.3avl		:= LINKSRC = avl_first.3avl
-avl_last.3avl		:= LINKSRC = avl_first.3avl
+AVL_NEXT.3avl		:  LINKSRC = avl_first.3avl
+AVL_PREV.3avl		:  LINKSRC = avl_first.3avl
+avl_last.3avl		:  LINKSRC = avl_first.3avl
 
 # avl_insert.3avl
-avl_insert_here.3avl	:= LINKSRC = avl_insert.3avl
+avl_insert_here.3avl	:  LINKSRC = avl_insert.3avl
 
 .KEEP_STATE:
 

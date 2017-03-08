@@ -39,7 +39,7 @@ LDLIBS += -lpicl -lkstat
 #PLATFORM=$(IMPLEMENTED_PLATFORM)
 PLATFORM	= SUNW,SPARC-Enterprise
 
-$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 := FILEMODE= 0755
+$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 :  FILEMODE= 0755
 
 .KEEP_STATE:
 

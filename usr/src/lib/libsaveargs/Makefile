@@ -28,13 +28,13 @@ include ../Makefile.lib
 
 $(BUILD64)SUBDIRS += $(MACH64)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-delete :=	TARGET= delete
-install :=	TARGET= install
-_msg :=		TARGET= _msg
-package :=	TARGET= package
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+delete : 	TARGET= delete
+install : 	TARGET= install
+_msg : 		TARGET= _msg
+package : 	TARGET= package
 
 LIBRARY=	libsaveargs.a
 
@@ -44,7 +44,7 @@ ROOTHDRDIR=	$(ROOT)/usr/include
 ROOTHDRS=	$(HDRS:%=$(ROOTHDRDIR)/%)
 CHECKHDRS=	$(HDRS:%.h=common/%.check)
 
-$(ROOTHDRS) :=  FILEMODE= 644
+$(ROOTHDRS) :   FILEMODE= 644
 
 # install rule for install_h target
 $(ROOTHDRDIR)/%: common/%

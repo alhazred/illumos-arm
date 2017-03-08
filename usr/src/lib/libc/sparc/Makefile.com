@@ -1134,7 +1134,7 @@ CFLAGS += $(XSTRCONST)
 
 ALTPICS= $(TRACEOBJS:%=pics/%)
 
-$(DYNLIB) := BUILD.SO = $(LD) -o $@ $(GSHARED) $(DYNFLAGS) $(PICS) $(ALTPICS) $(EXTPICS)
+$(DYNLIB) :  BUILD.SO = $(LD) -o $@ $(GSHARED) $(DYNFLAGS) $(PICS) $(ALTPICS) $(EXTPICS)
 
 MAPFILES =	$(LIBCDIR)/port/mapfile-vers
 
@@ -1197,8 +1197,8 @@ CLEANFILES=			\
 CLOBBERFILES +=	$(LIB_PIC)
 
 # conditional assignments
-$(DYNLIB) := CRTI = crti.o
-$(DYNLIB) := CRTN = crtn.o
+$(DYNLIB) :  CRTI = crti.o
+$(DYNLIB) :  CRTN = crtn.o
 
 # Files which need the threads .il inline template
 TIL=				\
@@ -1241,10 +1241,10 @@ TIL=				\
 	tsd.o			\
 	unwind.o
 
-$(TIL:%=pics/%) := CFLAGS += $(LIBCBASE)/threads/sparc.il
+$(TIL:%=pics/%) :  CFLAGS += $(LIBCBASE)/threads/sparc.il
 
 # special kludge for inlines with 'cas':
-pics/rwlock.o pics/synch.o pics/lwp.o pics/door_calls.o := \
+pics/rwlock.o pics/synch.o pics/lwp.o pics/door_calls.o :  \
 	sparc_CFLAGS += -_gcc=-Wa,-xarch=v8plus
 
 # Files in port/fp subdirectory that need base.il inline template
@@ -1252,7 +1252,7 @@ IL=				\
 	__flt_decim.o		\
 	decimal_bin.o
 
-$(IL:%=pics/%) := CFLAGS += $(LIBCBASE)/fp/base.il
+$(IL:%=pics/%) :  CFLAGS += $(LIBCBASE)/fp/base.il
 
 # Files in fp subdirectory which need __quad.il inline template
 QIL=				\
@@ -1271,50 +1271,50 @@ QIL=				\
 	_Q_stoq.o		\
 	_Q_sub.o
 
-$(QIL:%=pics/%) := CFLAGS += $(LIBCDIR)/$(MACH)/fp/__quad.il
-pics/_Q%.o := sparc_COPTFLAG = -xO4 -dalign
-pics/__quad%.o := sparc_COPTFLAG = -xO4 -dalign
+$(QIL:%=pics/%) :  CFLAGS += $(LIBCDIR)/$(MACH)/fp/__quad.il
+pics/_Q%.o :  sparc_COPTFLAG = -xO4 -dalign
+pics/__quad%.o :  sparc_COPTFLAG = -xO4 -dalign
 
 # large-file-aware components that should be built large
 
-$(COMSYSOBJS64:%=pics/%) := \
+$(COMSYSOBJS64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(SYSOBJS64:%=pics/%) := \
+$(SYSOBJS64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTGEN64:%=pics/%) := \
+$(PORTGEN64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTREGEX64:%=pics/%) := \
+$(PORTREGEX64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTSTDIO64:%=pics/%) := \
+$(PORTSTDIO64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTSYS64:%=pics/%) := \
+$(PORTSYS64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTSTDIO_W:%=pics/%) := \
+$(PORTSTDIO_W:%=pics/%) :  \
 	CPPFLAGS += -D_WIDE
 
-$(PORTPRINT_W:%=pics/%) := \
+$(PORTPRINT_W:%=pics/%) :  \
 	CPPFLAGS += -D_WIDE
 
 # printf/scanf functions to support c89-sized intmax_t variables
-$(PORTPRINT_C89:%=pics/%) := \
+$(PORTPRINT_C89:%=pics/%) :  \
 	CPPFLAGS += -D_C89_INTMAX32
 
-$(PORTSTDIO_C89:%=pics/%) := \
+$(PORTSTDIO_C89:%=pics/%) :  \
 	CPPFLAGS += -D_C89_INTMAX32
 
-$(PORTI18N_COND:%=pics/%) := \
+$(PORTI18N_COND:%=pics/%) :  \
 	CPPFLAGS += -D_WCS_LONGLONG
 
-pics/arc4random.o :=	CPPFLAGS += -I$(SRC)/common/crypto/chacha
+pics/arc4random.o : 	CPPFLAGS += -I$(SRC)/common/crypto/chacha
 
 # Files which need extra optimization
-pics/getenv.o := sparc_COPTFLAG = -xO4
+pics/getenv.o :  sparc_COPTFLAG = -xO4
 
 .KEEP_STATE:
 
@@ -1329,7 +1329,7 @@ $(QIL:%=pics/%): $(LIBCDIR)/$(MACH)/fp/__quad.il
 include $(LIBCDIR)/Makefile.targ
 
 # We need to strip out all CTF and DOF data from the static library
-$(LIB_PIC) := DIR = pics
+$(LIB_PIC) :  DIR = pics
 $(LIB_PIC): pics $$(PICS)
 	$(BUILD.AR)
 	$(MCS) -d -n .SUNW_ctf $@ > /dev/null 2>&1
@@ -1363,13 +1363,13 @@ ASSYMDEP_OBJS=			\
 	unwind_frame.o		\
 	vforkx.o
 
-$(ASSYMDEP_OBJS:%=pics/%)	:=	CPPFLAGS += -I.
+$(ASSYMDEP_OBJS:%=pics/%)	: 	CPPFLAGS += -I.
 
 $(ASSYMDEP_OBJS:%=pics/%): assym.h
 
 # assym.h build rules
 
-assym.h := CFLAGS += $(CCGDEBUG)
+assym.h :  CFLAGS += $(CCGDEBUG)
 
 GENASSYM_C = $(LIBCDIR)/$(MACH)/genassym.c
 LDFLAGS.native = $(LDASSERTS) $(ZASSERTDEFLIB)=libc.so $(BDIRECT)

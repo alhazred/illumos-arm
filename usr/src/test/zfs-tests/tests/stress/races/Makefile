@@ -21,7 +21,7 @@ TESTDIR = $(ROOTOPTPKG)/tests/stress/races
 PROGS =	remove_file_while_remap
 
 CMDS = $(PROGS:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all lint clean clobber:
 

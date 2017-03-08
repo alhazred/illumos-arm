@@ -68,12 +68,12 @@ CERRWARN += -_gcc=-Wno-unused-function
 SMATCH=off
 
 LDLIBS += -lnsl
-rusers :=	CFLAGS += $(CCVERBOSE)
-$(BINPROG) :=	LDLIBS += -lrpcsvc
-$(RPROG) :=	LDLIBS += -lrpcsvc
-$(SPROG) :=	LDLIBS += -lrpcsvc
-$(TPROG) :=	LDLIBS += -lrpcsvc
-spray :=	LDLIBS += -lrpcsvc
+rusers : 	CFLAGS += $(CCVERBOSE)
+$(BINPROG) : 	LDLIBS += -lrpcsvc
+$(RPROG) : 	LDLIBS += -lrpcsvc
+$(SPROG) : 	LDLIBS += -lrpcsvc
+$(TPROG) : 	LDLIBS += -lrpcsvc
+spray : 	LDLIBS += -lrpcsvc
 
 
 SUBDIRS= rpc.bootparamd
@@ -108,17 +108,17 @@ ITPROG=			$(TPROG:%=$(RSTAT)/%)
 IETCFILES=		$(ETCFILES:%=$(ROOTETC)/%)
 
 # non-default file attributes
-$(ROOTETC)/rpc :=				FILEMODE=	0644
+$(ROOTETC)/rpc : 				FILEMODE=	0644
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
 
-rpc.rstatd:=	LDLIBS += -lkstat
-rwall:=		CPPFLAGS += -D_REENTRANT
-rpc.rwalld:=	CPPFLAGS += -D_REENTRANT
+rpc.rstatd: 	LDLIBS += -lkstat
+rwall: 		CPPFLAGS += -D_REENTRANT
+rpc.rwalld: 	CPPFLAGS += -D_REENTRANT
 
 # install rules
 

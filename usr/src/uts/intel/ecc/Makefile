@@ -73,8 +73,8 @@ CERRWARN	+= -_gcc=-Wno-unused-variable
 CERRWARN	+= -_gcc=-Wno-parentheses
 
 # false positive
-$(OBJS_DIR)/ecdecode.o := SMOFF += assign_vs_compare
-$(OBJS_DIR)/ec.o := SMOFF += assign_vs_compare
+$(OBJS_DIR)/ecdecode.o :  SMOFF += assign_vs_compare
+$(OBJS_DIR)/ec.o :  SMOFF += assign_vs_compare
 
 SMOFF += indenting,all_func_returns
 

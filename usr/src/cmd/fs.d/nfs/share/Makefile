@@ -29,8 +29,8 @@ SHARETAB=	sharetab
 
 include		../../Makefile.fstype
 
-$(ROOTETC)/dfs/fstypes :=	FILEMODE= 644
-$(ROOTETC)/dfs/sharetab :=	FILEMODE= 444
+$(ROOTETC)/dfs/fstypes : 	FILEMODE= 644
+$(ROOTETC)/dfs/sharetab : 	FILEMODE= 444
 
 $(SHARETAB):
 	touch $(SHARETAB)

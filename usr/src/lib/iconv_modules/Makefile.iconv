@@ -29,10 +29,10 @@
 
 include $(SRC)/Makefile.master
 
-all:=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all: 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 OBJS		= $(SRCS:%.c=%.o)
 PROGS		= $(OBJS:%.o=%.so)
@@ -59,9 +59,9 @@ ICONV_LIBS	= $(PROGS:%=$(ICONV_DIR)/%)
 
 ICONV_LIBS_64	= $(PROGS:%=$(ICONV_DIR_64)/%)
 
-$(ICONV_LIBS) :=      FILEMODE= 755
+$(ICONV_LIBS) :       FILEMODE= 755
 
-$(ICONV_LIBS_64) :=      FILEMODE= 755
+$(ICONV_LIBS_64) :       FILEMODE= 755
 
 $(ICONV_DIR) $(ICONV_DIR_64):
 	$(INS.dir) $@

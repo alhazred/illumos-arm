@@ -60,15 +60,15 @@ include ../../Makefile.cmd
 include ../Makefile.hal
 
 NATIVE_LIBS +=		libdbus-1.so libdbus-glib-1.so libglib-2.0.so
-$(HAL_PROG) :=		LDLIBS += -lc -ldbus-1 -lhal
+$(HAL_PROG) : 		LDLIBS += -lc -ldbus-1 -lhal
 
-lshal :=		LDLIBS += -ldbus-glib-1 -lglib-2.0
+lshal : 		LDLIBS += -ldbus-glib-1 -lglib-2.0
 
-$(HAL_LIB) :=	LDLIBS += -lc -ldbus-1 -lpolkit $(ZIGNORE) -lglib-2.0
+$(HAL_LIB) : 	LDLIBS += -lc -ldbus-1 -lpolkit $(ZIGNORE) -lglib-2.0
 
-$(STORAGE_PROG)	:=	LDLIBS += -lc -ldbus-1 -lglib-2.0 -lhal -lhal-storage -lbsm
+$(STORAGE_PROG)	: 	LDLIBS += -lc -ldbus-1 -lglib-2.0 -lhal -lhal-storage -lbsm
 
-$(STORAGE_METHOD_PROG) := LDLIBS += -lpolkit
+$(STORAGE_METHOD_PROG) :  LDLIBS += -lpolkit
 
 CPPFLAGS += $(HAL_DBUS_CPPFLAGS) $(HAL_GLIB_CPPFLAGS) $(HAL_CONFIG_CPPFLAGS)
 CPPFLAGS += -I$(ROOT)/usr/include/hal
@@ -83,10 +83,10 @@ ROOTCMD =		$(STORAGE_PROG:%=$(ROOTCMDDIR)/%) \
 			$(HAL_LIB:%=$(ROOTCMDDIR)/%) \
 			$(SCRIPT_LIB:%=$(ROOTCMDDIR)/%)
 
-all :=          TARGET= all
-install :=      TARGET= install
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
+all :           TARGET= all
+install :       TARGET= install
+clean :         TARGET= clean
+clobber :       TARGET= clobber
 
 .KEEP_STATE:
 

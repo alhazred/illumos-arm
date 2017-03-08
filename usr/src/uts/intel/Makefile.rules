@@ -295,7 +295,7 @@ $(OBJS_DIR)/%.o:	$(UTSBASE)/intel/$(SUBARCH_DIR)/krtld/%.c
 #
 # _DBOOT indicates that krtld is called from a dboot ELF section
 #
-$(OBJS_DIR)/kobj.o		:= CPPFLAGS += -D_DBOOT
+$(OBJS_DIR)/kobj.o		:  CPPFLAGS += -D_DBOOT
 
 $(DBOOT_OBJS_DIR)/%.o:		$(UTSBASE)/intel/ia32/ml/%.s
 	$(DBOOT_AS) -P -D_ASM $(DBOOT_DEFS) $(DBOOT_AS_INCL) -o $@ $<

@@ -98,8 +98,8 @@ CPPFLAGS += -I$(PNGLITE)
 SRCS +=	$(COMMON)/gfx_fb.c $(PNGLITE)/pnglite.c
 OBJS +=	gfx_fb.o pnglite.o
 
-gfx_fb.o := CPPFLAGS += $(DEFAULT_CONSOLE_COLOR) -I$(LZ4)
-pnglite.o := CPPFLAGS += -I$(ZLIB)
+gfx_fb.o :  CPPFLAGS += $(DEFAULT_CONSOLE_COLOR) -I$(LZ4)
+pnglite.o :  CPPFLAGS += -I$(ZLIB)
 
 SRCS +=	$(ZFSSRC)/devicename_stubs.c
 OBJS +=	devicename_stubs.o
@@ -114,9 +114,9 @@ CFLAGS +=	-DCOMSPEED=${BOOT_COMCONSOLE_SPEED}
 # CFLAGS+= -DDISK_DEBUG
 
 # Export serial numbers, UUID, and asset tag from loader.
-smbios.o := CFLAGS += -DSMBIOS_SERIAL_NUMBERS
+smbios.o :  CFLAGS += -DSMBIOS_SERIAL_NUMBERS
 # Use little-endian UUID format as defined in SMBIOS 2.6.
-smbios.o := CFLAGS += -DSMBIOS_LITTLE_ENDIAN_UUID
+smbios.o :  CFLAGS += -DSMBIOS_LITTLE_ENDIAN_UUID
 # Use network-endian UUID format for backward compatibility.
 #CFLAGS += -DSMBIOS_NETWORK_ENDIAN_UUID
 

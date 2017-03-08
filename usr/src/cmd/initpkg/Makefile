@@ -54,16 +54,16 @@ ROOTDFSTAB=	$(DFSTAB:%=$(ETCDFSD)/%)
 SYMSBINF=	$(SBINETC:%=$(ROOTETC)/%)
 SYMUSRSBINF=	$(USRSBINETC:%=$(ROOTETC)/%)
 
-$(ROOTETC)/inittab		:= FILEMODE =	0644
-$(ROOTETC)/vfstab		:= FILEMODE =	0644
-$(ROOTETC)/nscd.conf		:= FILEMODE =	0644
-$(ROOTETC)/security/crypt.conf	:= FILEMODE =	0644
-$(ROOTDFSTAB)			:= FILEMODE =	0644
-$(ROOTSBIN)/mountall		:= FILEMODE =	0555
-$(ROOTUSRSBIN)/mountall		:= FILEMODE =	0555
-$(ROOTSBIN)/umountall		:= FILEMODE =	0555
-$(ROOTUSRSBIN)/umountall	:= FILEMODE =	0555
-$(ROOTUSRSBIN)/shutdown		:= FILEMODE =	0755
+$(ROOTETC)/inittab		:  FILEMODE =	0644
+$(ROOTETC)/vfstab		:  FILEMODE =	0644
+$(ROOTETC)/nscd.conf		:  FILEMODE =	0644
+$(ROOTETC)/security/crypt.conf	:  FILEMODE =	0644
+$(ROOTDFSTAB)			:  FILEMODE =	0644
+$(ROOTSBIN)/mountall		:  FILEMODE =	0555
+$(ROOTUSRSBIN)/mountall		:  FILEMODE =	0555
+$(ROOTSBIN)/umountall		:  FILEMODE =	0555
+$(ROOTUSRSBIN)/umountall	:  FILEMODE =	0555
+$(ROOTUSRSBIN)/shutdown		:  FILEMODE =	0755
 
 $(ETCDFSD)/% : %
 	$(INS.file)

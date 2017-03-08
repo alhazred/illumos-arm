@@ -40,15 +40,15 @@ UTSBASE	= ../..
 #
 include $(UTSBASE)/sun4u/excalibur/Makefile.excalibur
 
-def		:=	TARGET= def
-all		:=	TARGET= all
-install		:=	TARGET= install
-install_h	:=	TARGET= install_h
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-modlist		:=	TARGET= modlist
-modlist		:=	NO_STATE= -K $$MODSTATE$$$$
-check		:=	TARGET= check
+def		: 	TARGET= def
+all		: 	TARGET= all
+install		: 	TARGET= install
+install_h	: 	TARGET= install_h
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+modlist		: 	TARGET= modlist
+modlist		: 	NO_STATE= -K $$MODSTATE$$$$
+check		: 	TARGET= check
 
 #
 #	Default build targets.

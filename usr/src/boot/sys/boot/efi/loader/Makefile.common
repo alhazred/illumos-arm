@@ -20,7 +20,7 @@ CFLAGS += -DLOADER_DISK_SUPPORT
 CFLAGS += -DLOADER_GPT_SUPPORT
 CFLAGS += -DLOADER_MBR_SUPPORT
 
-part.o := CPPFLAGS += -I$(ZLIB)
+part.o :  CPPFLAGS += -I$(ZLIB)
 
 SRCS +=  bcache.c
 OBJS +=  bcache.o

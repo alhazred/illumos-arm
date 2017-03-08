@@ -804,13 +804,13 @@ AUDITSUBDIRS=		\
 BWOSDIRS=
 
 
-all :=		TARGET = all
-install :=	TARGET = install
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-lint :=		TARGET = lint
-_msg :=		TARGET = _msg
-_dc :=		TARGET = _dc
+all : 		TARGET = all
+install : 	TARGET = install
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+lint : 		TARGET = lint
+_msg : 		TARGET = _msg
+_dc : 		TARGET = _dc
 
 .KEEP_STATE:
 

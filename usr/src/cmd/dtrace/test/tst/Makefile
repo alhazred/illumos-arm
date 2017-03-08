@@ -30,7 +30,7 @@ include $(SRC)/Makefile.master
 SUBDIRS= common $(MACH:i386=i386 i86xpv)
 include ../Makefile.subdirs
 
-dstyle := TARGET += dstyle
+dstyle :  TARGET += dstyle
 
 check: FRC
 	@$(ECHO) "checking dstyle"

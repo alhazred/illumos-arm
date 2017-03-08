@@ -50,19 +50,19 @@ MAPFILES= ../vendor/mapfile-vers
 LDLIBS += -lc
 FILEMODE = 0755
 
-$(HERMON-MELLANOX_LIB):= PICS= pics/$(HERMON-MELLANOX_LIB:%.so=%.o)
-$(TAVOR-MELLANOX_LIB):=	PICS = pics/$(TAVOR-MELLANOX_LIB:%.so=%.o)
-$(SD-GENERIC_LIB):= PICS= pics/$(SD-GENERIC_LIB:%.so=%.o)
+$(HERMON-MELLANOX_LIB):  PICS= pics/$(HERMON-MELLANOX_LIB:%.so=%.o)
+$(TAVOR-MELLANOX_LIB): 	PICS = pics/$(TAVOR-MELLANOX_LIB:%.so=%.o)
+$(SD-GENERIC_LIB):  PICS= pics/$(SD-GENERIC_LIB:%.so=%.o)
 
-$(HERMON-MELLANOX_LIB):= SONAME = $(HERMON-MELLANOX_LIB)
-$(TAVOR-MELLANOX_LIB):=	SONAME = $(TAVOR-MELLANOX_LIB)
-$(SD-GENERIC_LIB):= SONAME = $(SD-GENERIC_LIB)
+$(HERMON-MELLANOX_LIB):  SONAME = $(HERMON-MELLANOX_LIB)
+$(TAVOR-MELLANOX_LIB): 	SONAME = $(TAVOR-MELLANOX_LIB)
+$(SD-GENERIC_LIB):  SONAME = $(SD-GENERIC_LIB)
 
-$(HERMON-MELLANOX_LIB):= DYNFLAGS += -R/usr/lib/fwflash/identify 
-$(HERMON-MELLANOX_LIB):= LDLIBS += -L. $(ROOT)/usr/lib/fwflash/identify/hermon.so
+$(HERMON-MELLANOX_LIB):  DYNFLAGS += -R/usr/lib/fwflash/identify 
+$(HERMON-MELLANOX_LIB):  LDLIBS += -L. $(ROOT)/usr/lib/fwflash/identify/hermon.so
 
-$(SD-GENERIC_LIB):= LDLIBS += -L$(ROOT)/usr/lib/scsi -lscsi
-$(SD-GENERIC_LIB):= DYNFLAGS += -R/usr/lib/scsi
+$(SD-GENERIC_LIB):  LDLIBS += -L$(ROOT)/usr/lib/scsi -lscsi
+$(SD-GENERIC_LIB):  DYNFLAGS += -R/usr/lib/scsi
 
 
 .KEEP STATE:

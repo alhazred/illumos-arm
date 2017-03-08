@@ -34,7 +34,7 @@ ROOT_PLATFORM = $(USR_PLAT_DIR)/SUNW,Sun-Fire-V890
 
 ROOTLIBDIR	= $(ROOT_PLAT_PLUGINDIR)
 
-install		:= FILEMODE = 0444
+install		:  FILEMODE = 0444
 
 CONF=           picldevtree.conf
 ROOTCONF=       $(CONF:%=$(ROOTLIBDIR)/%)
@@ -43,10 +43,10 @@ ROOTCONF=       $(CONF:%=$(ROOTLIBDIR)/%)
 
 SUBDIRS=
 
-all	:=	TARGET= all
-install :=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
+all	: 	TARGET= all
+install : 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
 
 all:
 

@@ -122,19 +122,19 @@ CERRWARN += -_gcc=-Wno-unused-function
 SMATCH=off
 
 MAPFILES = ../common/mapfile-intf $(MAPFILE.NGB)
-rcm_daemon := LDFLAGS += $(MAPFILES:%=-Wl,-M%)
+rcm_daemon :  LDFLAGS += $(MAPFILES:%=-Wl,-M%)
 
 LDLIBS_MODULES =
-SUNW_pool_rcm.so := LDLIBS_MODULES += -L$(ROOT)/usr/lib -lpool -lnvpair
-SUNW_network_rcm.so := LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair -ldevinfo
-SUNW_vlan_rcm.so := LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
-SUNW_vnic_rcm.so := LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
-SUNW_ibpart_rcm.so := LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
-SUNW_aggr_rcm.so := LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
-SUNW_ip_rcm.so := LDLIBS_MODULES += -L$(ROOT)/lib -linetutil -ldladm -lipmp -lipadm -lnvpair -lsocket -lgen
-SUNW_ip_anon_rcm.so := LDLIBS_MODULES += -L$(ROOT)/lib -linetutil
-SUNW_bridge_rcm.so := LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
-SUNW_mpxio_rcm.so := LDLIBS_MODULES += -ldevinfo
+SUNW_pool_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/usr/lib -lpool -lnvpair
+SUNW_network_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair -ldevinfo
+SUNW_vlan_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
+SUNW_vnic_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
+SUNW_ibpart_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
+SUNW_aggr_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
+SUNW_ip_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/lib -linetutil -ldladm -lipmp -lipadm -lnvpair -lsocket -lgen
+SUNW_ip_anon_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/lib -linetutil
+SUNW_bridge_rcm.so :  LDLIBS_MODULES += -L$(ROOT)/lib -ldladm -lnvpair
+SUNW_mpxio_rcm.so :  LDLIBS_MODULES += -ldevinfo
 LDLIBS_MODULES += -L$(ROOT)/lib -lrcm -lc
 
 LDLIBS += -lrcm -lnvpair
@@ -160,12 +160,12 @@ ROOTLIB_RCM_SCRIPTS = $(RCM_SCRIPTS:%=$(ROOTLIB_RCM_SCRIPT)/%)
 ROOTETC_RCM = $(ROOTETC)/$(RCM_DIR)
 ROOTETC_RCM_SCRIPT = $(ROOTETC_RCM)/$(SCRIPT_DIR)
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
-$(ROOTLIB_RCM_SCRIPTS) :=	FILEMODE = 555
+$(ROOTLIB_RCM_SCRIPTS) : 	FILEMODE = 555
 
 .KEEP_STATE:
 

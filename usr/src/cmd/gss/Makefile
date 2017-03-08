@@ -61,15 +61,15 @@ BSMSUBDIRS=
 #
 BWOSDIRS= 
 
-all :=		TARGET= all
-install :=	TARGET= install
-install_h :=	TARGET= install_h
-check :=	TARGET= check
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-_msg :=		TARGET= _msg
-_dc :=		TARGET= _dc
+all : 		TARGET= all
+install : 	TARGET= install
+install_h : 	TARGET= install_h
+check : 	TARGET= check
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+_msg : 		TARGET= _msg
+_dc : 		TARGET= _dc
 
 .KEEP_STATE:
 

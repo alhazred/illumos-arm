@@ -51,7 +51,7 @@ CERRWARN +=	-_gcc=-Wno-implicit-function-declaration
 SMOFF += all_func_returns
 
 # false positive
-zonecfg_lex.o := SMOFF += free
+zonecfg_lex.o :  SMOFF += free
 
 CLOBBERFILES += $(PROG).ln
 
@@ -71,7 +71,7 @@ zonecfg_lex.c:	zonecfg_lex.l zonecfg_grammar.tab.h zonecfg.h
 zonecfg_grammar.tab.h zonecfg_grammar.tab.c:	zonecfg_grammar.y zonecfg.h
 	$(YACC) $(YFLAGS) zonecfg_grammar.y
 
-zonecfg_lex.o zonecfg_grammar.tab.o := CCVERBOSE =
+zonecfg_lex.o zonecfg_grammar.tab.o :  CCVERBOSE =
 
 check:	$(PROG).c $(PROG).h
 	$(CSTYLE) -pP $(PROG).c $(PROG).h

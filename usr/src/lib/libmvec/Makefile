@@ -30,10 +30,10 @@ COMPONENTS64	= $(COMPS_$(MACH64))
 SUBDIRS		= $(MACH) $(COMPONENTS)
 $(BUILD64)SUBDIRS += $(MACH64) $(COMPONENTS64)
 
-all	:=	TARGET= all
-install	:=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
+all	: 	TARGET= all
+install	: 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
 
 .KEEP_STATE:
 

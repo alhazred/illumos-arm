@@ -35,7 +35,7 @@ PROGS = cout0 \
 	cout11
 
 CMDS = $(PROGS:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0444
+$(CMDS) :  FILEMODE = 0444
 
 all lint clean clobber:
 

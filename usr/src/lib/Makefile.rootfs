@@ -38,9 +38,9 @@ COMPATLINKS=	usr/lib/$(DYNLIB) \
 COMPATLINKS64=	usr/lib/$(MACH64)/$(DYNLIB) \
 		usr/lib/$(MACH64)/$(LIBLINKS)
 
-$(ROOT)/usr/lib/$(DYNLIB) := COMPATLINKTARGET=../../lib/$(DYNLIB)
-$(ROOT)/usr/lib/$(LIBLINKS) := COMPATLINKTARGET=../../lib/$(DYNLIB)
-$(ROOT)/usr/lib/$(MACH64)/$(DYNLIB):= \
+$(ROOT)/usr/lib/$(DYNLIB) :  COMPATLINKTARGET=../../lib/$(DYNLIB)
+$(ROOT)/usr/lib/$(LIBLINKS) :  COMPATLINKTARGET=../../lib/$(DYNLIB)
+$(ROOT)/usr/lib/$(MACH64)/$(DYNLIB):  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/$(DYNLIB)
-$(ROOT)/usr/lib/$(MACH64)/$(LIBLINKS) := \
+$(ROOT)/usr/lib/$(MACH64)/$(LIBLINKS) :  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/$(DYNLIB)

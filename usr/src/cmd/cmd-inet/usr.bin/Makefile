@@ -61,41 +61,41 @@ POFILE=		usr.bin.po
 CLOBBERFILES +=	$(ALL)
 CLEANFILES +=	kcmd.o rcp.o rlogin.o rsh.o
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-_msg:=		TARGET= _msg
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+_msg: 		TARGET= _msg
 
 ROOTSUIDPROG=	$(SUIDPROG:%=$(ROOTBIN)/%)
-$(ROOTSUIDPROG)	:=	FILEMODE=	04555
+$(ROOTSUIDPROG)	: 	FILEMODE=	04555
 
 CPPFLAGS +=	-DSYSV -DSTRNET -DBSD_COMP -I$(CMDINETCOMMONDIR)
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-unused-function
 
-ruptime :=     SMOFF += leaks
+ruptime :      SMOFF += leaks
 
 # Eventually just plain CFLAGS should be += -v, but not until all in
 # PROGS are lint clean.
-$(LINTCLEAN)	:=	CFLAGS += $(CCVERBOSE)
+$(LINTCLEAN)	: 	CFLAGS += $(CCVERBOSE)
 
-finger :=	CFLAGS += $(CCVERBOSE)
+finger : 	CFLAGS += $(CCVERBOSE)
 # Enable large file support for reading the lastlog file.
-finger :=	CPPFLAGS += -D_FILE_OFFSET_BITS=64
+finger : 	CPPFLAGS += -D_FILE_OFFSET_BITS=64
 
-finger :=		LDLIBS += -lnsl -lcurses -lsocket
-rcp lint-rcp :=		LDLIBS += -lsocket -lsec -lsendfile
-rdate lint-rdate:=	LDLIBS += -lsocket
-rlogin lint-rlogin :=	LDLIBS += -lnsl -lsocket
-rsh lint-rsh :=		LDLIBS += -lsocket
-whois lint-whois :=	LDLIBS += -lsocket
+finger : 		LDLIBS += -lnsl -lcurses -lsocket
+rcp lint-rcp : 		LDLIBS += -lsocket -lsec -lsendfile
+rdate lint-rdate: 	LDLIBS += -lsocket
+rlogin lint-rlogin : 	LDLIBS += -lnsl -lsocket
+rsh lint-rsh : 		LDLIBS += -lsocket
+whois lint-whois : 	LDLIBS += -lsocket
 
 include  $(SRC)/lib/gss_mechs/mech_krb5/Makefile.mech_krb5
-$(KCMDPROGS)	:=	LDLIBS += -lnsl -lmech_krb5
-$(KCMDPROGS)	:=	LDFLAGS += $(ZIGNORE) $(KRUNPATH) \
+$(KCMDPROGS)	: 	LDLIBS += -lnsl -lmech_krb5
+$(KCMDPROGS)	: 	LDFLAGS += $(ZIGNORE) $(KRUNPATH) \
 				-L$(ROOT)$(KLIBDIR_DO) \
 				-L$(ROOT)$(KLIBDIR_GL)
 KCMDLINTS=	$(KCMDPROGS:%=lint-%)
@@ -103,7 +103,7 @@ KCMDLINTS=	$(KCMDPROGS:%=lint-%)
 $(COMMONPOFILES) \
 rlogin.po rcp.po rsh.po \
 $(KCMDPROGS) \
-$(KCMDLINTS)	:=	CPPFLAGS += -DKERBEROS \
+$(KCMDLINTS)	: 	CPPFLAGS += -DKERBEROS \
 			-I$(CMDINETCOMMONDIR) \
 			-I$(SRC)/lib/gss_mechs/mech_krb5 \
 			-I$(SRC)/uts/common/gssapi/mechs/krb5/include \
@@ -112,13 +112,13 @@ $(KCMDLINTS)	:=	CPPFLAGS += -DKERBEROS \
 
 # "-erroff=E_NAME_USED_NOT_DEF2" and "-erroff=E_NAME_DEF_NOT_USED2"
 # are required because lint problems in the Kerberos 5 framework.
-$(KCMDLINTS)	:=	LINTFLAGS += -lnsl \
+$(KCMDLINTS)	: 	LINTFLAGS += -lnsl \
 			-erroff=E_NAME_USED_NOT_DEF2 \
 			-erroff=E_NAME_DEF_NOT_USED2
 
 # Extra source files to lint with
 LINTXTRA=
-$(KCMDLINTS)	:=	LINTXTRA += $(COMMONSRCS)
+$(KCMDLINTS)	: 	LINTXTRA += $(COMMONSRCS)
 
 ROOTSUNWRCP=	$(ROOT)/usr/lib/sunw,rcp
 ROOTRSHSYMLINK=	$(ROOT)/usr/ucb/rsh

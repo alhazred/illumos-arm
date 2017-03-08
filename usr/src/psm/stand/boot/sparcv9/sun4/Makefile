@@ -28,9 +28,9 @@ TOPDIR =	../../../../..
 
 include $(TOPDIR)/uts/Makefile.uts
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
 
 TARG_MACH =	sparcv9
 TARG_MACH_DIR =	sparcv9

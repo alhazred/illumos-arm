@@ -61,7 +61,7 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 SMATCH=off
 
 # DYNLIB libraries do not have lint libs and are not linted
-$(DYNLIB) :=	LDLIBS += -lkrb5
+$(DYNLIB) : 	LDLIBS += -lkrb5
 
 include ../../Makefile.targ
 include ../../../Makefile.targ

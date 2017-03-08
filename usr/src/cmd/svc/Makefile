@@ -31,12 +31,12 @@ SUBDIR_REPO=	milestone profile seed
 SUBDIR_MISC=	shell
 SUBDIRS=	$(SUBDIR_CMD) $(SUBDIR_DAEMON) $(SUBDIR_REPO) $(SUBDIR_MISC)
 
-all :=		TARGET = all
-install :=	TARGET = install
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-lint :=		TARGET = lint
-_msg :=		TARGET = _msg
+all : 		TARGET = all
+install : 	TARGET = install
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+lint : 		TARGET = lint
+_msg : 		TARGET = _msg
 
 .KEEP_STATE:
 
@@ -47,7 +47,7 @@ DTDS =		dtd/service_bundle.dtd.1
 XMLDIR =	$(ROOT)/usr/share/lib/xml
 ROOTDTDS =	$(DTDS:%=$(XMLDIR)/%)
 
-$(ROOTDTDS) :=	FILEMODE = 444
+$(ROOTDTDS) : 	FILEMODE = 444
 
 #
 # Definitions for class action scripts

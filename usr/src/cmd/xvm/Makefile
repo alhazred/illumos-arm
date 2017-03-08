@@ -26,13 +26,13 @@ include ../Makefile.cmd
 
 SUBDIRS=	ipagent
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
-lint	:=	TARGET = lint
-strip	:=	TARGET = strip
-_msg	:=	TARGET = _msg
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
+lint	: 	TARGET = lint
+strip	: 	TARGET = strip
+_msg	: 	TARGET = _msg
 
 .KEEP_STATE:
 

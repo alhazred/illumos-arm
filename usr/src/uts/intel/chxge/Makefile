@@ -109,7 +109,7 @@ CERRWARN	+= -_gcc=-Wno-parentheses
 SMOFF += indenting,all_func_returns,no_if_block
 
 # needs work
-$(OBJS_DIR)/sge.o := SMOFF += index_overflow
+$(OBJS_DIR)/sge.o :  SMOFF += index_overflow
 
 #
 #

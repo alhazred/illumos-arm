@@ -49,7 +49,7 @@ CERRWARN += -_gcc=-Wno-unused-variable
 
 PSMPROG = $(USR_PSM_LIB64_DIR)/$(PROG)
 
-$(PSMPROG) :=	FILEMODE = 0755
+$(PSMPROG) : 	FILEMODE = 0755
 
 .KEEP_STATE:
 

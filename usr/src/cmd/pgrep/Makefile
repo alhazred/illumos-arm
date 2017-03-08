@@ -31,7 +31,7 @@ ROOTLINKS = $(ROOTBIN)/$(PKILLFILE)
 OBJS = pgrep.o idtab.o psexp.o
 SRCS = $(OBJS:.o=.c)
 POFILES = $(OBJS:.o=.po)
-lint := LINTFLAGS = -ux
+lint :  LINTFLAGS = -ux
 
 include ../Makefile.cmd
 

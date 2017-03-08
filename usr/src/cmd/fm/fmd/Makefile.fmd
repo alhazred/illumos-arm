@@ -81,7 +81,7 @@ MAPFILE-DMOD = $(SRC)/cmd/mdb/common/modules/conf/mapfile-extern
 LOGADMFILE =	$(PROG).logadm.conf
 LOGADMDIR =	$(ROOT)/etc/logadm.d
 LOGADMENT =	$(LOGADMDIR)/$(LOGADMFILE)
-$(LOGADMENT) :=	FILEMODE = 444
+$(LOGADMENT) : 	FILEMODE = 444
 
 ROOTPDIR = $(ROOT)/usr/lib/fm/$(PROG)
 ROOTVDIR = $(ROOT)/var/fm/$(PROG)
@@ -107,9 +107,9 @@ ROOTCDIR = $(ROOT)/etc/fm/$(PROG)
 ROOTHDIR = $(ROOT)/usr/include/fm
 ROOTHDRS = $(HDRS:%=$(ROOTHDIR)/%)
 
-$(ROOTHDRS) := FILEMODE = 0644
-$(ROOTVSUB) := DIRMODE = 0755
-$(ROOTMANIFEST) := FILEMODE = 0444
+$(ROOTHDRS) :  FILEMODE = 0644
+$(ROOTVSUB) :  DIRMODE = 0755
+$(ROOTMANIFEST) :  FILEMODE = 0444
 
 $(NOT_RELEASE_BUILD)CPPFLAGS += -DDEBUG
 CPPFLAGS += -I. -I../common
@@ -125,19 +125,19 @@ CERRWARN += -_gcc=-Wno-unused-variable
 # not linted
 SMATCH=off
 
-$(PROG) := LDFLAGS += -R/usr/lib/fm
-$(PROG) := LDLIBS += -L$(ROOTLIB)/fm -ltopo -ldiagcode -lsysevent -lsmbios \
+$(PROG) :  LDFLAGS += -R/usr/lib/fm
+$(PROG) :  LDLIBS += -L$(ROOTLIB)/fm -ltopo -ldiagcode -lsysevent -lsmbios \
 		-luuid -lnvpair -lexacct -lnsl -lumem -ldevinfo -lfmd_msg
 
-$(DMOD) := CFLAGS += $(CC_PICFLAGS) $(GSHARED) $(XREGSFLAG)
-$(DMOD) := LDFLAGS += $(ZTEXT) $(ZDEFS) $(MAPFILE-DMOD:%=-Wl,-M%)
+$(DMOD) :  CFLAGS += $(CC_PICFLAGS) $(GSHARED) $(XREGSFLAG)
+$(DMOD) :  LDFLAGS += $(ZTEXT) $(ZDEFS) $(MAPFILE-DMOD:%=-Wl,-M%)
 
 #
 # rpcgen(1) produces code that wants to be in the foreground if we're compiled
 # DEBUG, which isn't appropriate for our daemon.  Forcibly undefine this code.
 #
-fmd_svc_adm.o fmd_svc_api.o := CPPFLAGS += -UDEBUG -URPC_SVC_FG
-fmd_xdr_adm.o fmd_xdr_api.o := CPPFLAGS += -UDEBUG -URPC_SVC_FG
+fmd_svc_adm.o fmd_svc_api.o :  CPPFLAGS += -UDEBUG -URPC_SVC_FG
+fmd_xdr_adm.o fmd_xdr_api.o :  CPPFLAGS += -UDEBUG -URPC_SVC_FG
 
 .NO_PARALLEL:
 .PARALLEL: $(OBJS)

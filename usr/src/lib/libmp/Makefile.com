@@ -35,7 +35,7 @@ include ../../Makefile.lib
 include ../../Makefile.rootfs
 
 COMPATLINKS += usr/lib/libmp.so.1
-$(ROOT)/usr/lib/libmp.so.1 := COMPATLINKTARGET=../../lib/libmp.so.1
+$(ROOT)/usr/lib/libmp.so.1 :  COMPATLINKTARGET=../../lib/libmp.so.1
 
 SRCDIR =	../common
 

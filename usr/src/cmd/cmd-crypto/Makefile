@@ -36,11 +36,11 @@ SUBDIRS2 = \
 	etc \
 	scripts
 
-all:=           TARGET= all
-install:=       TARGET= install
-clean:=         TARGET= clean
-clobber:=       TARGET= clobber
-_msg:=          TARGET= _msg
+all:            TARGET= all
+install:        TARGET= install
+clean:          TARGET= clean
+clobber:        TARGET= clobber
+_msg:           TARGET= _msg
 
 .KEEP_STATE:
 

@@ -62,7 +62,7 @@ nwamcfg_lex.c:	nwamcfg_lex.l nwamcfg_grammar.tab.h nwamcfg.h
 nwamcfg_grammar.tab.h + nwamcfg_grammar.tab.c:	nwamcfg_grammar.y nwamcfg.h
 	$(YACC) $(YFLAGS) nwamcfg_grammar.y
 
-nwamcfg_lex.o nwamcfg_grammar.tab.o := CCVERBOSE =
+nwamcfg_lex.o nwamcfg_grammar.tab.o :  CCVERBOSE =
 
 check:  $(PROG).c $(PROG).h
 	$(CSTYLE) -pP $(PROG).c $(PROG).h

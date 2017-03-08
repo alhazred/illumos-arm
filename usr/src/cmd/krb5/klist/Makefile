@@ -31,7 +31,7 @@ CERRWARN += -_gcc=-Wno-unused-function
 # not linted
 SMATCH=off
 
-$(GPROGS) := CPPFLAGS += -DSYSV -DSunOS=50 
+$(GPROGS) :  CPPFLAGS += -DSYSV -DSunOS=50 
 
 .KEEP_STATE:
 

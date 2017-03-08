@@ -54,7 +54,7 @@ include $(UTSBASE)/intel/Makefile.intel
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/hook.o := SMOFF += all_func_returns
+$(OBJS_DIR)/hook.o :  SMOFF += all_func_returns
 
 #
 #	Define targets

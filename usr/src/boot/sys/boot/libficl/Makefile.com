@@ -34,7 +34,7 @@ HEADERS= $(FICLDIR)/ficl.h $(FICLDIR)/ficlplatform/unix.h ../ficllocal.h
 #
 
 # disable inner loop variable 'fw' check
-vm.o := SMOFF += check_check_deref
+vm.o :  SMOFF += check_check_deref
 
 .PARALLEL:
 
@@ -43,7 +43,7 @@ MINOR = 1.0
 
 lib: libficl.a
 
-vm.o := CFLAGS += -_gcc=-Wno-clobbered
+vm.o :  CFLAGS += -_gcc=-Wno-clobbered
 
 # static library build
 libficl.a: $(OBJECTS)

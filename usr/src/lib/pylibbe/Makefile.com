@@ -49,7 +49,7 @@ NATIVE_LIBS +=	libpython$(PYVER)$(PYSUFFIX).so
 
 .KEEP_STATE:
 
-all install := LDLIBS += -lpython$(PYVER)$(PYSUFFIX)
+all install :  LDLIBS += -lpython$(PYVER)$(PYSUFFIX)
 
 all: $(PYOBJS) $(LIBS)
 

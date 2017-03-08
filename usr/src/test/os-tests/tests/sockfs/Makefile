@@ -34,15 +34,15 @@ CPPFLAGS += -D_XOPEN_SOURCE=600 -D__EXTENSIONS__
 # needs work
 SMOFF += all_func_returns
 
-nosignal := LDLIBS += -lnsl
-rights.32 := LDLIBS += -lproc
-rights.64 := LDLIBS64 += -lproc
+nosignal :  LDLIBS += -lnsl
+rights.32 :  LDLIBS += -lproc
+rights.64 :  LDLIBS64 += -lproc
 
 ROOTOPTPKG = $(ROOT)/opt/os-tests
 TESTDIR = $(ROOTOPTPKG)/tests/sockfs
 
 CMDS = $(PROG:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all: $(PROG)
 

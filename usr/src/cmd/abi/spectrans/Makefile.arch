@@ -32,11 +32,11 @@ sparc_ARCHITECTURES =	sparc
 ALL_ARCHITECTURES =	$(i386_ARCHITECTURES) \
 			$(sparc_ARCHITECTURES)
 
-all		:=	TARGET= all
-install		:=	TARGET= install
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
+all		: 	TARGET= all
+install		: 	TARGET= install
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
 
 .KEEP_STATE:
 

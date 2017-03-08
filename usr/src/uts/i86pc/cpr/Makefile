@@ -71,7 +71,7 @@ CERRWARN	+= -_gcc=-Wno-unused-variable
 CERRWARN	+= -_gcc=-Wno-unused-label
 CERRWARN	+= $(CNOWARN_UNINIT)
 CERRWARN	+= -_gcc=-Wno-parentheses
-$(OBJS_DIR)/cpr_impl.o :=	CERRWARN	+= -_gcc=-Wno-unused-function
+$(OBJS_DIR)/cpr_impl.o : 	CERRWARN	+= -_gcc=-Wno-unused-function
 
 #
 #	Default build targets.

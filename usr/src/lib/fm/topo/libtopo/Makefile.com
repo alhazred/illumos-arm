@@ -86,7 +86,7 @@ CERRWARN += $(CNOWARN_UNINIT)
 CERRWARN += -_gcc=-Wno-switch
 CERRWARN += -_gcc=-Wno-parentheses
 
-$(DYNLIB)  := LDLIBS += \
+$(DYNLIB)  :  LDLIBS += \
 	-lnvpair -lelf -lumem -lxml2 -lkstat -luuid -ldevinfo \
 	-lsmbios -lc -ldevid -lipmi -lscf -lpcidb
 NATIVE_LIBS +=	libxml2.so

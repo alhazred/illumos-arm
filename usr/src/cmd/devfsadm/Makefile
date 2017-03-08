@@ -36,22 +36,22 @@ include ../Makefile.cmd
 #
 SUBDIRS =	$(MACH)
 
-all	:=	TARGET= all
-install	:=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-_msg	:=	TARGET= _msg
-lint	:=	TARGET= lint
+all	: 	TARGET= all
+install	: 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+_msg	: 	TARGET= _msg
+lint	: 	TARGET= lint
 
 ROOTETCDEV=	$(ROOTETC)/dev
 ROOTETCDEVFILES=$(ETCDEVFILES:%=$(ROOTETCDEV)/%)
-$(ROOTETCDEV) :=	DIRMODE=	755
-$(ROOTETCDEVFILES) :=	FILEMODE = 0644
+$(ROOTETCDEV) : 	DIRMODE=	755
+$(ROOTETCDEVFILES) : 	FILEMODE = 0644
 
 USRINCLUDEFILES=devfsadm.h
 ROOTUSRINCLUDE= $(ROOT)/usr/include
 ROOTUSRINCLUDEFILES=$(USRINCLUDEFILES:%=$(ROOTUSRINCLUDE)/%)
-$(ROOTUSRINCLUDEFILES) :=	FILEMODE = 0644
+$(ROOTUSRINCLUDEFILES) : 	FILEMODE = 0644
 
 .KEEP_STATE:
 

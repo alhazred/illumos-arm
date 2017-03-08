@@ -47,7 +47,7 @@ LDLIBS	+= -lproc -lproject
 # I do not want to add these functions to /usr/lib/llib-project because we
 # ship it.  usr/src/cmd/newtask has similar lint errors, but I do not wish
 # to introduce more.
-lint:=	CPPFLAGS += -erroff=E_NAME_USED_NOT_DEF2 -u
+lint: 	CPPFLAGS += -erroff=E_NAME_USED_NOT_DEF2 -u
 
 CPPFLAGS += -D_LARGEFILE64_SOURCE=1
 

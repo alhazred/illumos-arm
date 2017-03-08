@@ -47,9 +47,9 @@ CPPFLAGS += -I../../../../../lib/libstand
 CPPFLAGS += -I$(ZFSSRC)
 CPPFLAGS += -I../../../../cddl/boot/zfs
 
-gfx_fb.o := CPPFLAGS += $(DEFAULT_CONSOLE_COLOR) -I$(LZ4)
-pnglite.o := CPPFLAGS += -I$(ZLIB)
-gfx_fb.o pnglite.o efi_console.o := CPPFLAGS += -I$(PNGLITE)
+gfx_fb.o :  CPPFLAGS += $(DEFAULT_CONSOLE_COLOR) -I$(LZ4)
+pnglite.o :  CPPFLAGS += -I$(ZLIB)
+gfx_fb.o pnglite.o efi_console.o :  CPPFLAGS += -I$(PNGLITE)
 
 # Pick up the bootstrap header for some interface items
 CPPFLAGS += -I../../../common

@@ -96,10 +96,10 @@ CFLAGS		+= -D_FILE_OFFSET_BITS=64
 # dump_expr() is too hairy
 SMATCH=off
 
-$(ITM) :=	CFLAGS += $(GSHARED) $(C_PICFLAGS) $(ZTEXT) -h$@
-$(ITM) :=	CPPFLAGS += -D_REENTRANT
-$(ITM) :=	sparc_CFLAGS += -xregs=no%appl
-$(ITM) :=	sparcv9_CFLAGS += -xregs=no%appl
+$(ITM) : 	CFLAGS += $(GSHARED) $(C_PICFLAGS) $(ZTEXT) -h$@
+$(ITM) : 	CPPFLAGS += -D_REENTRANT
+$(ITM) : 	sparc_CFLAGS += -xregs=no%appl
+$(ITM) : 	sparcv9_CFLAGS += -xregs=no%appl
 
 LDLIBS += -lgen
 

@@ -62,19 +62,19 @@ POFILE= troff.d.po
 
 # conditional assignments
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-strip :=	TARGET= strip
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+strip : 	TARGET= strip
 
-troff:=		POBJS=	$(COMMONOBJS) $(TROFFOBJS)
-ta:=		POBJS=	$(TAOBJS)
-makedev:=	POBJS=	$(MAKEDEVOBJS)
+troff: 		POBJS=	$(COMMONOBJS) $(TROFFOBJS)
+ta: 		POBJS=	$(TAOBJS)
+makedev: 	POBJS=	$(MAKEDEVOBJS)
 
-ta:=		LDLIBS += -lm
-troff:=		LDLIBS += -lmapmalloc
+ta: 		LDLIBS += -lm
+troff: 		LDLIBS += -lmapmalloc
 
 # build rule for common source above
 %.o: ../%.c

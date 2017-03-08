@@ -38,7 +38,7 @@ INCS += -I$(ADJUNCT_PROTO)/usr/include/libxml2
 #
 LDLIBS += -lzfs_jni -lnvpair -lzfs
 NATIVE_LIBS += libxml2.so
-all install := LDLIBS += -lxml2
+all install :  LDLIBS += -lxml2
 
 CPPFLAGS += $(INCS) -D_LARGEFILE64_SOURCE=1 -D_REENTRANT
 $(NOT_RELEASE_BUILD) CPPFLAGS += -DDEBUG

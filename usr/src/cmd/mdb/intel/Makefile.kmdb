@@ -54,9 +54,9 @@ CPPFLAGS += -DDIS_TEXT
 
 $(CTXOFFUSERS) $(CTXOFFUSERS:%.o=%.ln): kmdb_context_off.h
 
-kaif_activate.o kaif_activate.ln := CPPFLAGS += -D_MACHDEP -D_KMEMUSER
+kaif_activate.o kaif_activate.ln :  CPPFLAGS += -D_MACHDEP -D_KMEMUSER
 
-$(RELEASE_BUILD)kaif.o := CERRWARN += -_gcc=-Wno-unused
+$(RELEASE_BUILD)kaif.o :  CERRWARN += -_gcc=-Wno-unused
 
 STANDLIBS += \
 	../libstandctf/libstandctf.so \

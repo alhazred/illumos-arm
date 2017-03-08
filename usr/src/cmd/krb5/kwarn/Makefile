@@ -65,9 +65,9 @@ CPPFLAGS += -I../../lib/gss_mechs/mech_krb5/include \
                  -I$(SRC)/lib/gss_mechs/mech_krb5/include \
                  -I$(SRC)/uts/common/gssapi/mechs/krb5/include
 
-ktkt_warnd :=	MAPFILES =	$(MAPFILE.INT) $(MAPFILE.NGB)
-ktkt_warnd :=	LDFLAGS +=	$(KRUNPATH) $(MAPFILES:%=-Wl,-M%)
-ktkt_warnd :=	LDLIBS +=	-lnsl
+ktkt_warnd : 	MAPFILES =	$(MAPFILE.INT) $(MAPFILE.NGB)
+ktkt_warnd : 	LDFLAGS +=	$(KRUNPATH) $(MAPFILES:%=-Wl,-M%)
+ktkt_warnd : 	LDLIBS +=	-lnsl
 
 LDFLAGS +=	$(KRUNPATH)
 LDLIBS +=	$(KMECHLIB)

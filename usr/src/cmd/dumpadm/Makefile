@@ -31,7 +31,7 @@ OBJS = main.o dconf.o minfree.o utils.o swap.o
 SRCS = $(OBJS:.o=.c)
 
 
-lint := LINTFLAGS = -mx
+lint :  LINTFLAGS = -mx
 
 include ../Makefile.cmd
 

@@ -46,7 +46,7 @@ CERRWARN += -_gcc=-Wno-unused-variable
 # not linted
 SMATCH=off
 
-$(XPG4):= CPPFLAGS += -DXPG4
+$(XPG4):  CPPFLAGS += -DXPG4
 
 MAPFILE.INT =	../expr/mapfile-intf
 LDFLAGS +=	$(MAPFILE.INT:%=-Wl,-M%)

@@ -29,5 +29,5 @@ SUBDIRS = $(MACH)
 
 include ../Makefile.subdirs
 
-check := TARGET += check
+check :  TARGET += check
 check : $(SUBDIRS)

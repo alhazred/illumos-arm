@@ -58,8 +58,8 @@ OBJS=	\
 	tem.o \
 	vers.o
 
-module.o := CPPFLAGS += -I$(BOOTSRC)/libcrypto
-tem.o := CPPFLAGS += $(DEFAULT_CONSOLE_COLOR)
+module.o :  CPPFLAGS += -I$(BOOTSRC)/libcrypto
+tem.o :  CPPFLAGS += $(DEFAULT_CONSOLE_COLOR)
 
 CPPFLAGS += -I../../../../../include -I../../..../
 CPPFLAGS += -I../../../../../lib/libstand
@@ -80,9 +80,9 @@ CPPFLAGS +=	-I$(PNGLITE)
 CPPFLAGS +=	-DNO_PCI -DEFI
 
 # Export serial numbers, UUID, and asset tag from loader.
-smbios.o := CPPFLAGS += -DSMBIOS_SERIAL_NUMBERS
+smbios.o :  CPPFLAGS += -DSMBIOS_SERIAL_NUMBERS
 # Use little-endian UUID format as defined in SMBIOS 2.6.
-smbios.o := CPPFLAGS += -DSMBIOS_LITTLE_ENDIAN_UUID
+smbios.o :  CPPFLAGS += -DSMBIOS_LITTLE_ENDIAN_UUID
 # Use network-endian UUID format for backward compatibility.
 #CPPFLAGS += -DSMBIOS_NETWORK_ENDIAN_UUID
 

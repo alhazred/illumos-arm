@@ -41,7 +41,7 @@ POFILE=	ncab2clf.po
 # these #defines are required to use UNIX 98 interfaces
 _EXTN=		-D_REENTRANT
 
-$(OBJS)		:= CPPFLAGS +=  $(_EXTN)
+$(OBJS)		:  CPPFLAGS +=  $(_EXTN)
 
 LINTFLAGS +=	$(_EXTN)
 

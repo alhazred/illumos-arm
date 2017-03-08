@@ -32,11 +32,11 @@ CSRC=		common/y1.c common/y2.c common/y3.c common/y4.c
 
 # conditional statements
 
-all :=		TARGET= all
-install :=	TARGET= install
-install_lib :=	TARGET= install_lib
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+install_lib : 	TARGET= install_lib
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 # for messaging catalog
 #

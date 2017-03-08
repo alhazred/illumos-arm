@@ -93,7 +93,7 @@ MSGDIR =	$(ROOT)/usr/share/lib/locale/com/sun/admin/pm/client
 MSGJAVAFILES =	pmResources.java pmHelpResources.java
 MSGFILES =	$(MSGJAVAFILES:%=$(MSGDIR)/%)
 
-$(MSGFILES):=	FILEMODE = 644
+$(MSGFILES): 	FILEMODE = 644
 
 CLEANFILES=	*.class pmHelpResources.java pmCopyright.java \
 	    	helptools/*.class helptools/parsehelp

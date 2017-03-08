@@ -50,10 +50,10 @@ MSGFILES =	common/libdladm.c common/linkprop.c common/secobj.c	\
 
 XGETFLAGS =     -a -x libdladm.xcl
 
-all :=		TARGET = all
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-install :=	TARGET = install
+all : 		TARGET = all
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+install : 	TARGET = install
 
 .KEEP_STATE:
 

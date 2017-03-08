@@ -30,12 +30,12 @@ MSGSUBDIRS=	usr.bin usr.sbin usr.lib
 POFILES=	usr.bin/usr.bin.po usr.sbin/usr.sbin.po
 POFILE=		cmd-inet.po
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-_msg:=          TARGET= _msg
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+_msg:           TARGET= _msg
 
 .KEEP_STATE:
 

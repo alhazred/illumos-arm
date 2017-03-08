@@ -70,7 +70,7 @@ CERRWARN	+= -_gcc=-Wno-parentheses
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/auth_des.o := SMOFF += deref_check
+$(OBJS_DIR)/auth_des.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

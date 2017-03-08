@@ -106,7 +106,7 @@ SMATCH=off
 
 ASFLAGS= -P -D__STDC__ -DLOCORE -D_SYS_SYS_S -D_ASM $(CPPFLAGS)
 
-pics/%.o:= ASFLAGS += $(AS_PICFLAGS)
+pics/%.o:  ASFLAGS += $(AS_PICFLAGS)
 
 # libc method of building an archive, using AT&T ordering
 BUILD.AR= $(RM) $@ ; \

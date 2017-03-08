@@ -85,14 +85,14 @@ DOMAINS= \
 MSGDDIRS=       $(DOMAINS:%=$(MSGROOT)/%)
 MSGDIRS=        $(MSGROOT) $(MSGDDIRS) $(MSGROOT)/LC_TIME
 
-all :=			TARGET= all
-install :=		TARGET= install
-install1 :=		TARGET= install
-install2 :=		TARGET= install
-install_h :=		TARGET= install_h
-clean :=		TARGET= clean
-clobber :=		TARGET= clobber
-check :=		TARGET= check
+all : 			TARGET= all
+install : 		TARGET= install
+install1 : 		TARGET= install
+install2 : 		TARGET= install
+install_h : 		TARGET= install_h
+clean : 		TARGET= clean
+clobber : 		TARGET= clobber
+check : 		TARGET= check
 
 .KEEP_STATE:
 

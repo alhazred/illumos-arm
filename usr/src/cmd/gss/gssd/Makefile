@@ -78,10 +78,10 @@ SMATCH=off
 
 LDLIBS += -lgss -lnsl
 
-gssd :=	MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
-gssd :=	LDFLAGS += $(MAPFILES:%=-Wl,-M%)
+gssd : 	MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
+gssd : 	LDFLAGS += $(MAPFILES:%=-Wl,-M%)
 
-$(GPROGS) := CPPFLAGS += -DSYSV -DSunOS=50
+$(GPROGS) :  CPPFLAGS += -DSYSV -DSunOS=50
 
 .KEEP_STATE:
 

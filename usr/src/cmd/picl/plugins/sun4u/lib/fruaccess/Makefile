@@ -44,7 +44,7 @@ ROOTLIBDIR      = $(ROOT_PLATFORM)/lib
 
 CONF =		fru_container.conf
 ROOTCONF=       $(CONF:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 
 CLOBBERFILES += $(LIBLINKS)
 CSTYLE    = cstyle -p -P
@@ -64,11 +64,11 @@ LDLIBS +=	-Wl,-f/usr/platform/\$$PLATFORM/lib/$(DYNLIBPSR)
 
 SUBDIRS=
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 LN = ln -s
 

@@ -80,7 +80,7 @@ mdb_grammar.h mdb_grammar.c: ../../../common/mdb/mdb_grammar.y
 # dmake that'll cause it to get confused about dependencies if we do.
 #
 
-kaif_off.h := CPPFLAGS += $(SACPPCFLAGS)
+kaif_off.h :  CPPFLAGS += $(SACPPCFLAGS)
 
 kmdb_modlinktest.c: $(MAPFILE_INTERMEDIATE)
 	$(MAP2LINKTEST) <$(MAPFILE_INTERMEDIATE) >$@

@@ -75,7 +75,7 @@ LINTTAGS	+= -erroff=E_PTRDIFF_OVERFLOW
 LINTTAGS	+= -erroff=E_ASSIGN_NARROW_CONV
 
 # needs work
-$(OBJS_DIR)/rtsddi.o := SMOFF += index_overflow
+$(OBJS_DIR)/rtsddi.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

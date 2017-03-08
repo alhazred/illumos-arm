@@ -36,21 +36,21 @@ ifeq ($(shell ls /lib/modules/$(KVER)/build > /dev/null 2>&1 && echo build),)
         LINUXSRC=/usr/src/linux-$(_KVER)
     endif
 else
-    BCMPROC := $(__ARCH)
-    BCMCFGS := /lib/modules/$(KVER)/build \
+    BCMPROC :  $(__ARCH)
+    BCMCFGS :  /lib/modules/$(KVER)/build \
                /usr/src/kernels/$(KVER)-$(BCMPROC) \
                /usr/src/linux-$(shell echo $(KVER) | sed "s|\(.*\)-\([a-z]*\)|\1-obj/$(BCMPROC)/\2|") \
                /usr/src/linux
 
     # Delete any entries that do not exist.
     BCMTSTDIR = $(shell if ls $(DIR) > /dev/null 2>&1; then echo $(DIR); fi)
-    BCMCFGS := $(foreach DIR, $(BCMCFGS), $(BCMTSTDIR))
+    BCMCFGS :  $(foreach DIR, $(BCMCFGS), $(BCMTSTDIR))
 
     ifeq ($(BCMCFGS),)
             $(error Linux kernel config directory not found)
     else
         ifeq ($(KERNEL_DIR),)
-            KERNEL_DIR := $(firstword $(BCMCFGS))
+            KERNEL_DIR :  $(firstword $(BCMCFGS))
 	    ifeq ($(LINUXSRC),)
 	        ifneq ($(shell ls /lib/modules/$(KVER)/source > /dev/null 2>&1 && echo source),)
 		    LINUXSRC=/lib/modules/$(KVER)/source
@@ -79,7 +79,7 @@ else
     endif
 endif
 
-sles_distro := $(wildcard /etc/SuSE-release)
+sles_distro :  $(wildcard /etc/SuSE-release)
 ifneq ($(sles_distro),)
 SLES_VERSION = $(shell cat /etc/SuSE-release | grep VERSION | grep -o -P [0-9]+)
 SLES_PATCHLEVEL = $(shell cat /etc/SuSE-release | grep PATCHLEVEL | grep -o -P [0-9]+)

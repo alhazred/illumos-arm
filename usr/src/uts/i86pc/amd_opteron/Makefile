@@ -57,7 +57,7 @@ INSTALL_TARGET  = $(BINARY) $(ROOTMODULE)
 #
 #	Overrides and additions
 #
-$(OBJS_DIR)/ao_mca.o :=	CERRWARN	+= -_gcc=-Wno-unused-function
+$(OBJS_DIR)/ao_mca.o : 	CERRWARN	+= -_gcc=-Wno-unused-function
 CLEANFILES	+= $(AO_MCA_DISP_C)
 CPPFLAGS	+= -I$(SRCDIR) -I$(OBJS_DIR)
 ASFLAGS		+= -I$(SRCDIR) -I$(OBJS_DIR)

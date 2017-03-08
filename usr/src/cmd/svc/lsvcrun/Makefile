@@ -37,7 +37,7 @@ LDLIBS +=	-lcontract -lscf -luutil
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	$(CNOWARN_UNINIT)
 
-lint := LINTFLAGS = -ux
+lint :  LINTFLAGS = -ux
 
 .KEEP_STATE:
 

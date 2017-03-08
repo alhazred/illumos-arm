@@ -38,17 +38,17 @@
 include $(SRC)/Makefile.master
 include Makefile.conf
 
-$(SLPMANI) := JARFILES = $(UA_SA_SUBSET_CLASSES) $(PKGPATH)/$(CLIENT_MSGS)
-$(SLPMANI) := SPECTITLE = "Service Location Protocol API"
-$(SLPDMANI) := JARFILES:sh= cd "$CLASSES"; ls "$PKGPATH"/*.class $PKGPATH/*.properties | sed 's/\$/\\\$\$/g'
-$(SLPDMANI) := SPECTITLE = "Service Location Protocol Daemon"
+$(SLPMANI) :  JARFILES = $(UA_SA_SUBSET_CLASSES) $(PKGPATH)/$(CLIENT_MSGS)
+$(SLPMANI) :  SPECTITLE = "Service Location Protocol API"
+$(SLPDMANI) :  JARFILES:sh= cd "$CLASSES"; ls "$PKGPATH"/*.class $PKGPATH/*.properties | sed 's/\$/\\\$\$/g'
+$(SLPDMANI) :  SPECTITLE = "Service Location Protocol Daemon"
 SPECVERSION = 1.0
 SPECVENDOR = IETF
 IMPLTITLE = $(PKGNAME)
 IMPLVERS:sh=echo [`date`]
 IMPLVEND = "Sun Microsystems, Inc."
-$(SLPDMANI) := MAINCLASS = "Main-class: com.sun.slp.slpd\\n"
-$(SLPMANI) := MAINCLASS = ""
+$(SLPDMANI) :  MAINCLASS = "Main-class: com.sun.slp.slpd\\n"
+$(SLPMANI) :  MAINCLASS = ""
 all: $(MANIFESTS)
 
 $(MANIFESTS): Makefile.manifest Makefile.conf

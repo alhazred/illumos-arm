@@ -70,11 +70,11 @@ SUBDIRS=
 POFILE=	psvcpolicy.po
 POFILE_RENAME=	psvcpolicy_dak.po
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 all: $(LIBS) $(LIBLINKS)
 

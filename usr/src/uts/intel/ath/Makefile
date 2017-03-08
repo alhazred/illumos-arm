@@ -68,7 +68,7 @@ CERRWARN	+= -_gcc=-Wno-unused-variable
 CERRWARN	+= -_gcc=-Wno-empty-body
 
 # needs work
-$(OBJS_DIR)/ath_rate.o := SMOFF += index_overflow
+$(OBJS_DIR)/ath_rate.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

@@ -42,18 +42,18 @@ LINT_LIBS	= $(LINT_LIB) $(GEN_LINT_LIB) \
 
 DRV_KMODS	+= dprov
 
-def		:=	TARGET= def
-all		:=	TARGET= all
-install		:=	TARGET= install
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
-modlintlib	:=	TARGET= modlintlib
-modlist		:=	TARGET= modlist
-modlist		:=	NO_STATE= -K $$MODSTATE$$$$
-clean.lint	:=	TARGET= clean.lint
-check		:=	TARGET= check
-install_h	:=	TARGET= install_h
+def		: 	TARGET= def
+all		: 	TARGET= all
+install		: 	TARGET= install
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
+modlintlib	: 	TARGET= modlintlib
+modlist		: 	TARGET= modlist
+modlist		: 	NO_STATE= -K $$MODSTATE$$$$
+clean.lint	: 	TARGET= clean.lint
+check		: 	TARGET= check
+install_h	: 	TARGET= install_h
 
 .KEEP_STATE:
 

@@ -67,7 +67,7 @@ $(NOT_RELEASE_BUILD)DEBUG_DEFS	+= $(DEBUG_FLGS)
 LDFLAGS		+= -dy -N misc/acpica
 
 # needs work
-$(OBJS_DIR)/psm_common.o := SMOFF += deref_check
+$(OBJS_DIR)/psm_common.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

@@ -65,10 +65,10 @@ install: all $(ROOTBOOTPROG)
 OBJS =	mb_header.o zfsboot.o sio.o cons.o devopen.o \
 	part.o disk.o bcache.o zfs_cmd.o
 
-part.o := CPPFLAGS += -I$(ZLIB)
-smbios.o := CPPFLAGS += -DSMBIOS_SERIAL_NUMBERS
-smbios.o := CPPFLAGS += -DSMBIOS_LITTLE_ENDIAN_UUID
-gptldr.out := LD_FLAGS += -m elf_i386_sol2
+part.o :  CPPFLAGS += -I$(ZLIB)
+smbios.o :  CPPFLAGS += -DSMBIOS_SERIAL_NUMBERS
+smbios.o :  CPPFLAGS += -DSMBIOS_LITTLE_ENDIAN_UUID
+gptldr.out :  LD_FLAGS += -m elf_i386_sol2
 
 CLEANFILES=	gptzfsboot $(OBJS)
 

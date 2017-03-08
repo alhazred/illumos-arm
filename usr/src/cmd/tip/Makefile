@@ -54,9 +54,9 @@ ROOTETCREMOTE=	$(ROOTETC)/remote
 ROOTACULOGD=	$(ROOT)/var/adm
 ROOTACULOG=	$(ROOTACULOGD)/aculog
 
-$(ROOTPROG) :=		FILEMODE =	4511
-$(ROOTETCREMOTE) :=	FILEMODE =	644
-$(ROOTACULOG) :=	FILEMODE =	600
+$(ROOTPROG) : 		FILEMODE =	4511
+$(ROOTETCREMOTE) : 	FILEMODE =	644
+$(ROOTACULOG) : 	FILEMODE =	600
 
 LINTFLAGS +=	-u
 CPPFLAGS +=	-DDEFBR=300 -DDEFFS=BUFSIZ -DACULOG -DUSG
@@ -87,8 +87,8 @@ $(PROG):	$(OBJS) $(ACULIB)
 	$(POST_PROCESS)
 
 # special build rules
-remcap.o :=	CPPFLAGS += -DBUFSIZ=1024
-acutab.o :=	CPPFLAGS += $(CONFIG)
+remcap.o : 	CPPFLAGS += -DBUFSIZ=1024
+acutab.o : 	CPPFLAGS += $(CONFIG)
 
 # acutab is configuration dependent, and so depends on the makefile
 acutab.o: Makefile

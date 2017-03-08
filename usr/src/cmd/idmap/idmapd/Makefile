@@ -53,10 +53,10 @@ OBJS =		$(SERVEROBJS) $(GENOBJS)
 SRCS =		$(SERVERSRCS)
 POFILES =	$(OBJS:%.o=%.po)
 
-all :=		TARGET = all
-install :=	TARGET = install
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
+all : 		TARGET = all
+install : 	TARGET = install
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
 
 include ../../Makefile.cmd
 
@@ -79,7 +79,7 @@ POFILE =	$(PROG)_all.po
 RPC_MSGOUT_OPT = -DRPC_MSGOUT=idmap_rpc_msgout
 
 ROOTMANIFESTDIR = $(ROOTSVCSYSTEM)
-$(ROOTMANIFEST) := FILEMODE= 444
+$(ROOTMANIFEST) :  FILEMODE= 444
 RPCSVC= ../../../uts/common/rpcsvc
 ADS_CMN=../../../lib/libads/common
 
@@ -92,8 +92,8 @@ INCS += -I. -I../../../lib/libidmap/common \
 # Should not have to do this, but the Kerberos includes are a mess.
 INCS += -I $(ROOT)/usr/include/kerberosv5
 
-$(OBJS) := CPPFLAGS += $(INCS) -D_REENTRANT
-$(POFILE) := CPPFLAGS += $(INCS)
+$(OBJS) :  CPPFLAGS += $(INCS) -D_REENTRANT
+$(POFILE) :  CPPFLAGS += $(INCS)
 
 CFLAGS += $(CCVERBOSE)
 LDLIBS += \
@@ -114,10 +114,10 @@ LDLIBS += \
 	-L $(ROOT)/usr/lib/smbsrv \
 	-lsmb
 
-rpc_svc.o := CFLAGS += $(RPC_MSGOUT_OPT)
+rpc_svc.o :  CFLAGS += $(RPC_MSGOUT_OPT)
 
-$(PROG) := MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
-$(PROG) := LDFLAGS += $(MAPFILES:%=-Wl,-M%) \
+$(PROG) :  MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
+$(PROG) :  LDFLAGS += $(MAPFILES:%=-Wl,-M%) \
 	-R /usr/lib/smbsrv
 
 DIRMODE = 0755

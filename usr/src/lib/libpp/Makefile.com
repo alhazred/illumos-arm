@@ -107,17 +107,17 @@ CERRWARN	+= -_gcc=-Wno-unused-value
 # "pplex() parse error: turning off implications after 60 seconds"
 SMATCH		= off
 
-pics/ppcall.o		:= CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
-pics/ppcontrol.o	:= CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
-pics/ppcpp.o		:= CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
-pics/ppexpr.o		:= CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
-pics/pplex.o		:= CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
-pics/ppop.o		:= CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
-pics/ppsearch.o		:= CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
-pics/ppsearch.o		:= CERRWARN += -_gcc=-Wno-sequence-point
-pics/pplex.o		:= CERRWARN += -_gcc=-Wno-implicit-fallthrough
-pics/ppcpp.o		:= CERRWARN += -_gcc=-Wno-implicit-fallthrough
-pics/ppproto.o		:= CERRWARN += -_gcc=-Wno-implicit-fallthrough
+pics/ppcall.o		:  CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
+pics/ppcontrol.o	:  CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
+pics/ppcpp.o		:  CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
+pics/ppexpr.o		:  CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
+pics/pplex.o		:  CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
+pics/ppop.o		:  CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
+pics/ppsearch.o		:  CERRWARN += -erroff=E_INTEGER_OVERFLOW_DETECTED
+pics/ppsearch.o		:  CERRWARN += -_gcc=-Wno-sequence-point
+pics/pplex.o		:  CERRWARN += -_gcc=-Wno-implicit-fallthrough
+pics/ppcpp.o		:  CERRWARN += -_gcc=-Wno-implicit-fallthrough
+pics/ppproto.o		:  CERRWARN += -_gcc=-Wno-implicit-fallthrough
 
 .KEEP_STATE:
 

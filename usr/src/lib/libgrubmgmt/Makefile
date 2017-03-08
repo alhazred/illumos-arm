@@ -34,11 +34,11 @@ POFILES =	common/libgrub_errno.po
 SUBDIRS =	$(MACH)
 
 # conditional assignments
-all :=		TARGET= all
-install :=      TARGET= install
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-test :=         TARGET= test
+all : 		TARGET= all
+install :       TARGET= install
+clean :         TARGET= clean
+clobber :       TARGET= clobber
+test :          TARGET= test
 
 .KEEP_STATE:
 
@@ -60,6 +60,6 @@ $(SUBDIRS):	FRC
 include ../Makefile.targ
 include ../../Makefile.msg.targ
 
-common/libgrub_errno.po := XGETFLAGS += -a
+common/libgrub_errno.po :  XGETFLAGS += -a
 
 FRC:

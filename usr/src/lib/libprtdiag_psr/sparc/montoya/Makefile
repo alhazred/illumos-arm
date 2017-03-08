@@ -43,7 +43,7 @@ LDLIBS += -lpicl
 
 PLATFORM=SUNW,Netra-CP3060
 
-$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 := FILEMODE= 0755
+$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 :  FILEMODE= 0755
 
 .KEEP_STATE:
 

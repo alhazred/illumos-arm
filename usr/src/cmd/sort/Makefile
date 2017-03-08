@@ -42,21 +42,21 @@ CLOBBERFILES = $(DCFILE) $(POFILE) $(POFILES)
 
 .KEEP_STATE:
 
-$(XPG4) := CPPFLAGS += -DXPG4
+$(XPG4) :  CPPFLAGS += -DXPG4
 XGETFLAGS += -a -x sort.xcl
 
 SUBDIRS =        $(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
-all     :=      TARGET = all
-install :=      TARGET = install
-clean   :=      TARGET = clean
-clobber :=      TARGET = clobber
-lint    :=      TARGET = lint
-debug	:=	TARGET = debug
-convert :=      TARGET = convert
-invoke  :=      TARGET = invoke
-stats   :=      TARGET = stats
+all     :       TARGET = all
+install :       TARGET = install
+clean   :       TARGET = clean
+clobber :       TARGET = clobber
+lint    :       TARGET = lint
+debug	: 	TARGET = debug
+convert :       TARGET = convert
+invoke  :       TARGET = invoke
+stats   :       TARGET = stats
 
 all : $(SUBDIRS)
 

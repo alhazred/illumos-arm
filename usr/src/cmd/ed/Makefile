@@ -47,8 +47,8 @@ CERRWARN += $(CNOWARN_UNINIT)
 # not linted
 SMATCH=off
 
-$(XPG4) := CFLAGS += -DXPG4
-$(XPG6) := CFLAGS += -DXPG6 -I$(SRC)/lib/libc/inc
+$(XPG4) :  CFLAGS += -DXPG4
+$(XPG6) :  CFLAGS += -DXPG6 -I$(SRC)/lib/libc/inc
 LDLIBS += -lmapmalloc -lgen -lcrypt_i
 XGETFLAGS += -a -x ed.xcl
 

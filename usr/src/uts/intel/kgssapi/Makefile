@@ -69,7 +69,7 @@ CERRWARN	+= -_gcc=-Wno-unused-variable
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/gssd_clnt_stubs.o := SMOFF += indenting,deref_check
+$(OBJS_DIR)/gssd_clnt_stubs.o :  SMOFF += indenting,deref_check
 
 #
 #	Default build targets.

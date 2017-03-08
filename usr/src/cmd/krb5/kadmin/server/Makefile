@@ -75,7 +75,7 @@ iprop_xdr.c:	iprop.h $(KRB5IPROPDIR)/iprop.x
 # Explicitly state the dependancy on iprop.h
 $(OBJS): iprop.h
 
-$(KRB5LIBPROG):=	FILEMODE = 0500
+$(KRB5LIBPROG): 	FILEMODE = 0500
 
 install: $(KRB5LIBPROG) $(ROOTSVCMETHOD) $(ROOTMANIFEST)
 

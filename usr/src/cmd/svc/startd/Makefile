@@ -76,9 +76,9 @@ CERRWARN += $(CNOWARN_UNINIT)
 # these look like real bugs here, but ...
 SMOFF += impossible_mask,signed_integer_overflow_check
 
-$(OBJS) := CPPFLAGS += -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+$(OBJS) :  CPPFLAGS += -D_FILE_OFFSET_BITS=64 -D_REENTRANT
 
-proc.o := CPPFLAGS += -D_REENTRANT
+proc.o :  CPPFLAGS += -D_REENTRANT
 
 %.o:	../common/%.c
 	$(COMPILE.c) $(OUTPUT_OPTION) $<
@@ -106,8 +106,8 @@ FILEMODE = 0555
 
 # lint doesn't like the unused _umem_*_init()
 # And lint thinks uadmin() is undefined.
-lint_SRCS := LINTFLAGS += -U_FILE_OFFSET_BITS -xerroff=E_NAME_DEF_NOT_USED2 -u
-lint_SRCS := CPPFLAGS += \
+lint_SRCS :  LINTFLAGS += -U_FILE_OFFSET_BITS -xerroff=E_NAME_DEF_NOT_USED2 -u
+lint_SRCS :  CPPFLAGS += \
 	-I. -I../common -D_REENTRANT -D_FILE_OFFSET_BITS=64
 
 .KEEP_STATE:

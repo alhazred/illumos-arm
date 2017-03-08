@@ -266,26 +266,26 @@ i386_MANLINKS=	amdzen_stub.7d
 MANFILES =	$(_MANFILES) $($(MACH)_MANFILES)
 MANLINKS =	$(_MANLINKS) $($(MACH)_MANLINKS)
 
-amdzen_stub.7d	:= LINKSRC = amdzen.7d
+amdzen_stub.7d	:  LINKSRC = amdzen.7d
 
-drmach.7d	:= LINKSRC = dr.7d
+drmach.7d	:  LINKSRC = dr.7d
 
-fdc.7d		:= LINKSRC = fd.7d
+fdc.7d		:  LINKSRC = fd.7d
 
-1394.7d		:= LINKSRC = ieee1394.7d
-firewire.7d	:= LINKSRC = ieee1394.7d
+1394.7d		:  LINKSRC = ieee1394.7d
+firewire.7d	:  LINKSRC = ieee1394.7d
 
-lo0.7d		:= LINKSRC = ipnet.7d
+lo0.7d		:  LINKSRC = ipnet.7d
 
-allkmem.7d	:= LINKSRC = mem.7d
-kmem.7d		:= LINKSRC = mem.7d
+allkmem.7d	:  LINKSRC = mem.7d
+kmem.7d		:  LINKSRC = mem.7d
 
-urandom.7d	:= LINKSRC = random.7d
+urandom.7d	:  LINKSRC = random.7d
 
-ticots.7d	:= LINKSRC = ticlts.7d
-ticotsord.7d	:= LINKSRC = ticlts.7d
+ticots.7d	:  LINKSRC = ticlts.7d
+ticotsord.7d	:  LINKSRC = ticlts.7d
 
-usb.7d		:= LINKSRC = usba.7d
+usb.7d		:  LINKSRC = usba.7d
 
 .KEEP_STATE:
 

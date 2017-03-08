@@ -39,7 +39,7 @@ CERRWARN += $(CNOWARN_UNINIT)
 LDFLAGS += -R/usr/lib/efcode/$(MACH64) -Wl,-Mmapfile64
 
 LIBS	= fcode.so fcdriver.so
-$(PROG) := LDLIBS += -L$(ADJUNCT_PROTO)/usr/lib/efcode/$(MACH64) \
+$(PROG) :  LDLIBS += -L$(ADJUNCT_PROTO)/usr/lib/efcode/$(MACH64) \
 	$(LIBS:%=$(EFCODEDIR64)/%)
 
 all: $(PROG)

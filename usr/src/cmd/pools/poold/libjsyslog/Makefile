@@ -29,10 +29,10 @@ include $(SRC)/lib/Makefile.lib
 
 SUBDIRS = $(MACH64)
 
-all :=		TARGET = all
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-install :=	TARGET = install
+all : 		TARGET = all
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+install : 	TARGET = install
 
 all install: $(SUBDIRS)
 

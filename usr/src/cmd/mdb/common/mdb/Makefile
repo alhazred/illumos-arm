@@ -31,7 +31,7 @@ HDRS = mdb_modapi.h
 ROOTHDRDIR = $(ROOT)/usr/include/sys
 ROOTHDRS = $(HDRS:%=$(ROOTHDRDIR)/%)
 
-$(ROOTHDRS) := FILEMODE= 0644
+$(ROOTHDRS) :  FILEMODE= 0644
 
 $(ROOTHDRDIR)/%.h: %.h
 	$(INS.file)

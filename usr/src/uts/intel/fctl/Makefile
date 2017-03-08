@@ -66,7 +66,7 @@ LINTTAGS	+= -erroff=E_SUSPICIOUS_COMPARISON
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/fctl.o := SMOFF += all_func_returns,deref_check
+$(OBJS_DIR)/fctl.o :  SMOFF += all_func_returns,deref_check
 
 #
 #	Default build targets.

@@ -29,13 +29,13 @@ SUBDIR1=	fstyp
 SUBDIR2=	fsck fsdb labelit mkfs mount
 SUBDIRS=	$(SUBDIR1) $(SUBDIR2)
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-putback:=	TARGET= putback
-catalog:=       TARGET= catalog
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+putback: 	TARGET= putback
+catalog:        TARGET= catalog
 
 # for messaging catalog
 #

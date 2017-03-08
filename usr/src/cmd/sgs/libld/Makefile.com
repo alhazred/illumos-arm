@@ -113,8 +113,8 @@ LDLIBS +=	$(CONVLIBDIR) -lconv $(LDDBGLIBDIR) -llddbg \
 DYNFLAGS +=	$(VERSREF) '-R$$ORIGIN'
 
 # too hairy
-pics/sections32.o := SMATCH=off
-pics/sections64.o := SMATCH=off
+pics/sections32.o :  SMATCH=off
+pics/sections64.o :  SMATCH=off
 
 BLTDEFS =	msg.h
 BLTDATA =	msg.c

@@ -56,7 +56,7 @@ SMATCH=off
 
 CLOBBERFILES += $(PROG3)
 
-addbib.po :=	XGETFLAGS += -a -x addbib.xcl
+addbib.po : 	XGETFLAGS += -a -x addbib.xcl
 
 
 OTXTS =		tmac.bib
@@ -72,26 +72,26 @@ SUBDIRS =	papers
 REFDIRPROG =	$(PROG3:%=$(REFDIR)/%)
 IOTXTS =	$(OTXTS:%=$(TMACDIR)/%)
 
-$(IOTXTS):=	FILEMODE = 0644
+$(IOTXTS): 	FILEMODE = 0644
 
-all:=		TARGET=	all
-install:=	TARGET=	install
-clean:=		TARGET=	clean
-clobber:=	TARGET=	clobber
+all: 		TARGET=	all
+install: 	TARGET=	install
+clean: 		TARGET=	clean
+clobber: 	TARGET=	clobber
 
-mkey:=		POBJS=  mkey1.o mkey2.o mkey3.o deliv2.o
-inv:=		POBJS= inv1.o inv2.o inv3.o inv5.o inv6.o deliv2.o
-hunt:=		POBJS= hunt1.o hunt2.o hunt3.o hunt5.o hunt6.o		\
+mkey: 		POBJS=  mkey1.o mkey2.o mkey3.o deliv2.o
+inv: 		POBJS= inv1.o inv2.o inv3.o inv5.o inv6.o deliv2.o
+hunt: 		POBJS= hunt1.o hunt2.o hunt3.o hunt5.o hunt6.o		\
 			hunt7.o glue5.o refer3.o shell.o	\
 			deliv2.o hunt8.o glue4.o tick.o
-refer:=		POBJS= glue1.o refer1.o refer2.o refer4.o refer5.o	\
+refer: 		POBJS= glue1.o refer1.o refer2.o refer4.o refer5.o	\
 			refer6.o mkey3.o refer7.o refer8.o hunt2.o	\
 			hunt3.o deliv2.o hunt5.o hunt6.o hunt8.o	\
 			glue3.o hunt7.o glue2.o glue4.o		\
 			glue5.o refer0.o shell.o
-addbib:=	POBJS= addbib.o
-lookbib:=	POBJS= lookbib.o
-sortbib:=	POBJS= sortbib.o
+addbib: 	POBJS= addbib.o
+lookbib: 	POBJS= lookbib.o
+sortbib: 	POBJS= sortbib.o
 
 .KEEP_STATE :
 

@@ -24,12 +24,12 @@
 #
 
 SUBDIRS = plugins library
-def             :=      TARGET= def
-all             :=      TARGET= all
-install         :=      TARGET= install
-clean           :=      TARGET= clean
-clobber         :=      TARGET= clobber
-_msg		:=	TARGET= catalog
+def             :       TARGET= def
+all             :       TARGET= all
+install         :       TARGET= install
+clean           :       TARGET= clean
+clobber         :       TARGET= clobber
+_msg		: 	TARGET= catalog
 
 all install clean clobber _msg: $(SUBDIRS)
 

@@ -48,7 +48,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE) $(ROOT_CONFFILE)
 SMOFF += all_func_returns
 
 # needs work
-$(OBJS_DIR)/vmm_sol_dev.o := SMOFF += signed_integer_overflow_check
+$(OBJS_DIR)/vmm_sol_dev.o :  SMOFF += signed_integer_overflow_check
 
 ALL_BUILDS	= $(ALL_BUILDSONLY64)
 DEF_BUILDS	= $(DEF_BUILDSONLY64)

@@ -37,22 +37,22 @@ MANLINKS=	mp_gcd.3mp	\
 	 	mp_sdiv.3mp	\
 	 	mp_xtom.3mp
 
-mp_gcd.3mp	:= LINKSRC = mp.3mp
-mp_itom.3mp	:= LINKSRC = mp.3mp
-mp_madd.3mp	:= LINKSRC = mp.3mp
-mp_mcmp.3mp	:= LINKSRC = mp.3mp
-mp_mdiv.3mp	:= LINKSRC = mp.3mp
-mp_mfree.3mp	:= LINKSRC = mp.3mp
-mp_min.3mp	:= LINKSRC = mp.3mp
-mp_mout.3mp	:= LINKSRC = mp.3mp
-mp_msqrt.3mp	:= LINKSRC = mp.3mp
-mp_msub.3mp	:= LINKSRC = mp.3mp
-mp_mtox.3mp	:= LINKSRC = mp.3mp
-mp_mult.3mp	:= LINKSRC = mp.3mp
-mp_pow.3mp	:= LINKSRC = mp.3mp
-mp_rpow.3mp	:= LINKSRC = mp.3mp
-mp_sdiv.3mp	:= LINKSRC = mp.3mp
-mp_xtom.3mp	:= LINKSRC = mp.3mp
+mp_gcd.3mp	:  LINKSRC = mp.3mp
+mp_itom.3mp	:  LINKSRC = mp.3mp
+mp_madd.3mp	:  LINKSRC = mp.3mp
+mp_mcmp.3mp	:  LINKSRC = mp.3mp
+mp_mdiv.3mp	:  LINKSRC = mp.3mp
+mp_mfree.3mp	:  LINKSRC = mp.3mp
+mp_min.3mp	:  LINKSRC = mp.3mp
+mp_mout.3mp	:  LINKSRC = mp.3mp
+mp_msqrt.3mp	:  LINKSRC = mp.3mp
+mp_msub.3mp	:  LINKSRC = mp.3mp
+mp_mtox.3mp	:  LINKSRC = mp.3mp
+mp_mult.3mp	:  LINKSRC = mp.3mp
+mp_pow.3mp	:  LINKSRC = mp.3mp
+mp_rpow.3mp	:  LINKSRC = mp.3mp
+mp_sdiv.3mp	:  LINKSRC = mp.3mp
+mp_xtom.3mp	:  LINKSRC = mp.3mp
 
 .KEEP_STATE:
 

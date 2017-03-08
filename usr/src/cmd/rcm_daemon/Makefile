@@ -32,19 +32,19 @@ include ../Makefile.cmd
 #
 SUBDIRS=	$(MACH)
 
-all	:=	TARGET= all
-install	:=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-_msg	:=	TARGET= _msg
-install_h :=	TARGET= install_h
+all	: 	TARGET= all
+install	: 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+_msg	: 	TARGET= _msg
+install_h : 	TARGET= install_h
 
 #definitions for install_h target
 HDRS=		rcm_module.h
 ROOTHDRDIR=	$(ROOT)/usr/include
 ROOTHDRS=	$(HDRS:%=$(ROOTHDRDIR)/%)
 CHECKHDRS=	$(HDRS:%.h=common/%.check)
-$(ROOTHDRS) := FILEMODE = 644
+$(ROOTHDRS) :  FILEMODE = 644
 
 .KEEP_STATE:
 

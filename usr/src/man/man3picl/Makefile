@@ -41,12 +41,12 @@ MANLINKS=	picl_get_next_by_col.3picl	\
 		picl_get_propval_by_name.3picl	\
 		picl_set_propval_by_name.3picl
 
-picl_get_next_prop.3picl	:= LINKSRC = picl_get_first_prop.3picl
+picl_get_next_prop.3picl	:  LINKSRC = picl_get_first_prop.3picl
 
-picl_get_next_by_col.3picl	:= LINKSRC = picl_get_next_by_row.3picl
+picl_get_next_by_col.3picl	:  LINKSRC = picl_get_next_by_row.3picl
 
-picl_get_propval_by_name.3picl	:= LINKSRC = picl_get_propval.3picl
-picl_set_propval_by_name.3picl	:= LINKSRC = picl_set_propval.3picl
+picl_get_propval_by_name.3picl	:  LINKSRC = picl_get_propval.3picl
+picl_set_propval_by_name.3picl	:  LINKSRC = picl_set_propval.3picl
 
 .KEEP_STATE:
 

@@ -256,42 +256,42 @@ DEBUG_COND_OBJ64	= $(POUND_SIGN)
 DEBUG_COND_DBG64	=
 IF_DEBUG_OBJ		= $(DEBUG_COND_$(BUILD_TYPE))$(OBJS_DIR)/
 
-$(IF_DEBUG_OBJ)trap.o		:=	DEBUG_DEFS	+= -DTRAPDEBUG
-$(IF_DEBUG_OBJ)mach_trap.o	:=	DEBUG_DEFS	+= -DTRAPDEBUG
-$(IF_DEBUG_OBJ)syscall_trap.o	:=	DEBUG_DEFS	+= -DSYSCALLTRACE
-$(IF_DEBUG_OBJ)clock.o		:=	DEBUG_DEFS	+= -DKSLICE=0
+$(IF_DEBUG_OBJ)trap.o		: 	DEBUG_DEFS	+= -DTRAPDEBUG
+$(IF_DEBUG_OBJ)mach_trap.o	: 	DEBUG_DEFS	+= -DTRAPDEBUG
+$(IF_DEBUG_OBJ)syscall_trap.o	: 	DEBUG_DEFS	+= -DSYSCALLTRACE
+$(IF_DEBUG_OBJ)clock.o		: 	DEBUG_DEFS	+= -DKSLICE=0
 
 IF_TRAPTRACE_OBJ = $(IF_DEBUG_OBJ)
 # comment this out for a non-debug kernel with TRAPTRACE
 #IF_TRAPTRACE_OBJ = $(OBJS_DIR)/
 
-$(IF_TRAPTRACE_OBJ)mach_locore.o	:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)mlsetup.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)syscall_trap.o	:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)startup.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)mach_startup.o	:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)mp_startup.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)cpu_states.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)mach_cpu_states.o	:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)interrupt.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)mach_interrupt.o	:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)sfmmu_asm.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)trap_table.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)xc.o			:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)mach_xc.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)wbuf.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)trap.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)mach_trap.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
-$(IF_TRAPTRACE_OBJ)x_call.o		:=	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)mach_locore.o	: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)mlsetup.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)syscall_trap.o	: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)startup.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)mach_startup.o	: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)mp_startup.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)cpu_states.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)mach_cpu_states.o	: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)interrupt.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)mach_interrupt.o	: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)sfmmu_asm.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)trap_table.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)xc.o			: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)mach_xc.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)wbuf.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)trap.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)mach_trap.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
+$(IF_TRAPTRACE_OBJ)x_call.o		: 	DEBUG_DEFS	+= -DTRAPTRACE
 
 # Comment these out if you don't want dispatcher lock statistics.
 
-#$(IF_DEBUG_OBJ)lock_prim.o	:= DEBUG_DEFS	+= -DDISP_LOCK_STATS
-#$(IF_DEBUG_OBJ)disp.o		:= DEBUG_DEFS	+= -DDISP_LOCK_STATS
+#$(IF_DEBUG_OBJ)lock_prim.o	:  DEBUG_DEFS	+= -DDISP_LOCK_STATS
+#$(IF_DEBUG_OBJ)disp.o		:  DEBUG_DEFS	+= -DDISP_LOCK_STATS
 
 # Comment these out if you don't want dispatcher debugging
 
-#$(IF_DEBUG_OBJ)lock_prim.o	:= DEBUG_DEFS	+= -DDISP_DEBUG
+#$(IF_DEBUG_OBJ)lock_prim.o	:  DEBUG_DEFS	+= -DDISP_DEBUG
 
 #
 #	Collect the preprocessor definitions to be associated with *all*

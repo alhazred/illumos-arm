@@ -62,7 +62,7 @@ LDLIBS += -lrpcsvc -lnsl -lsocket -lscf
 CPPFLAGS += -I. -I../.. -I../lib
 CFLAGS += $(CCVERBOSE)
 
-nfs_sec.o :=	CPPFLAGS += -DWNFS_SEC_NEGO
+nfs_sec.o : 	CPPFLAGS += -DWNFS_SEC_NEGO
 
 ROOTETCPROG	= $(LIBPROG:%=$(ROOTETCFSTYPE)/%)
 CLOBBERFILES	+= $(LIBPROG)

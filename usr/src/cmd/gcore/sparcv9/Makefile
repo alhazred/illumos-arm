@@ -38,7 +38,7 @@ CFLAGS64	+= $(CCVERBOSE)
 
 LDLIBS	+= -lproc
 
-lint	:= LINTFLAGS64 = -x -m64
+lint	:  LINTFLAGS64 = -x -m64
 
 .KEEP_STATE:
 

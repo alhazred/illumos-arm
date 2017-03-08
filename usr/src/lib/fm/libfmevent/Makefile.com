@@ -66,10 +66,10 @@ CERRWARN += $(CNOWARN_UNINIT)
 FMLIBDIR=usr/lib/fm
 $(BUILD64)FMLIBDIR64=usr/lib/fm/$(MACH64)
 
-$(DYNLIB) := LDLIBS += -lumem -lnvpair -luutil -lsysevent \
+$(DYNLIB) :  LDLIBS += -lumem -lnvpair -luutil -lsysevent \
 	-L$(ROOT)/$(FMLIBDIR) -ltopo -lc
 
-$(BUILD64)$(DYNLIB) := LDLIBS64 += -lumem -lnvpair -luutil -lsysevent \
+$(BUILD64)$(DYNLIB) :  LDLIBS64 += -lumem -lnvpair -luutil -lsysevent \
 	-L$(ROOT)/$(FMLIBDIR64) -ltopo -lc
 
 
@@ -81,13 +81,13 @@ COMPATLINKS =	usr/lib/fm/$(DYNLIB) \
 COMPATLINKS64 =	usr/lib/fm/$(MACH64)/$(DYNLIB) \
 		usr/lib/fm/$(MACH64)/$(LIBLINKS)
 
-$(ROOT)/usr/lib/fm/libfmevent.so.1 := \
+$(ROOT)/usr/lib/fm/libfmevent.so.1 :  \
 	COMPATLINKTARGET=../../../lib/fm/libfmevent.so.1
-$(ROOT)/usr/lib/fm/libfmevent.so := \
+$(ROOT)/usr/lib/fm/libfmevent.so :  \
 	COMPATLINKTARGET=../../../lib/fm/libfmevent.so.1
-$(ROOT)/usr/lib/fm/$(MACH64)/libfmevent.so.1:= \
+$(ROOT)/usr/lib/fm/$(MACH64)/libfmevent.so.1:  \
 	COMPATLINKTARGET=../../../../lib/fm/$(MACH64)/libfmevent.so.1
-$(ROOT)/usr/lib/fm/$(MACH64)/libfmevent.so:= \
+$(ROOT)/usr/lib/fm/$(MACH64)/libfmevent.so:  \
 	COMPATLINKTARGET=../../../../lib/fm/$(MACH64)/libfmevent.so.1
 
 .KEEP_STATE:

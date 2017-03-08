@@ -39,9 +39,9 @@ MANLINKS=	stderr.7fs	\
 		stdin.7fs	\
 		stdout.7fs
 
-stderr.7fs	:= LINKSRC = fd.7fs
-stdin.7fs	:= LINKSRC = fd.7fs
-stdout.7fs	:= LINKSRC = fd.7fs
+stderr.7fs	:  LINKSRC = fd.7fs
+stdin.7fs	:  LINKSRC = fd.7fs
+stdout.7fs	:  LINKSRC = fd.7fs
 
 .KEEP_STATE:
 

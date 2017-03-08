@@ -31,7 +31,7 @@ SRCS=		$(OBJS:%.o=%.c)
 include		../../../Makefile.cmd
 
 ROOTMANIFESTDIR=	$(ROOTSVCNETWORK)
-$(ROOTMANIFEST)		:= FILEMODE= 444
+$(ROOTMANIFEST)		:  FILEMODE= 444
 
 CFLAGS +=	$(CCVERBOSE)
 CERRWARN +=	-_gcc=-Wno-parentheses

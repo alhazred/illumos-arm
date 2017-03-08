@@ -30,13 +30,13 @@ include ../Makefile.lib
 SUBDIRS=	$(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-delete :=	TARGET= delete
-install :=	TARGET= install
-_msg :=		TARGET= _msg
-package :=	TARGET= package
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+delete : 	TARGET= delete
+install : 	TARGET= install
+_msg : 		TARGET= _msg
+package : 	TARGET= package
 
 LIBRARY=	libproc.a
 TEXT_DOMAIN=	SUNW_OST_OSLIB
@@ -53,7 +53,7 @@ ROOTHDRDIR=	$(ROOT)/usr/include
 ROOTHDRS=	$(HDRS:%=$(ROOTHDRDIR)/%)
 CHECKHDRS=	$(HDRS:%.h=common/%.check)
 
-$(ROOTHDRS) :=  FILEMODE= 644
+$(ROOTHDRS) :   FILEMODE= 644
 
 # install rule for install_h target
 $(ROOTHDRDIR)/%: common/%

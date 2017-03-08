@@ -69,7 +69,7 @@ $(U_LIB_A):
 
 install: $(PROG_BIN)
 
-$(PROG_BIN) :=	FILEMODE = 755
+$(PROG_BIN) : 	FILEMODE = 755
 $(PROG_BIN): $(PROG)
 	$(INS.file) $(PROG)
 

@@ -22,10 +22,10 @@ include $(SRC)/Makefile.master
 SUBDIRS=	pmbr btx cdboot gptzfsboot libi386 loader pxeldr isoboot
 INSTDIRS=	pmbr cdboot gptzfsboot loader pxeldr isoboot
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
 
 .KEEP_STATE:
 

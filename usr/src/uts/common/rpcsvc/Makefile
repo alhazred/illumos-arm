@@ -48,10 +48,10 @@ ROOTDIRS=	$(ROOT)/usr/include/rpcsvc
 ROOTHDRS=	$(ALLHDRS:%=$(ROOTDIRS)/%)
 
 RPCGENFLAGS = -C
-idmap_prot.h :=	RPCGENFLAGS += -MN
-nlm_prot.h :=	RPCGENFLAGS += -M
-sm_inter.h :=	RPCGENFLAGS += -M
-nsm_addr.h :=	RPCGENFLAGS += -M
+idmap_prot.h : 	RPCGENFLAGS += -MN
+nlm_prot.h : 	RPCGENFLAGS += -M
+sm_inter.h : 	RPCGENFLAGS += -M
+nsm_addr.h : 	RPCGENFLAGS += -M
 
 $(ROOTDIRS)/%: %
 	$(INS.file)

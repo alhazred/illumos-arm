@@ -64,13 +64,13 @@ CERRWARN	+= $(CNOWARN_UNINIT)
 # needs work
 SMOFF += all_func_returns
 
-$(OBJS_DIR)/%.o			:= CPPFLAGS += -I$(OBJS_DIR)
-$(OBJS_DIR)/%.ln		:= CPPFLAGS += -I$(OBJS_DIR)
-$(OBJS_DIR)/emu10k_gpr.h	:= ASM10KFLAGS = -v -0 -P gpr
-$(OBJS_DIR)/emu10k1_dsp.h	:= ASM10KFLAGS = -v -1 -P emu10k1
-$(OBJS_DIR)/emu10k2_dsp.h	:= MODEL10K = SBLIVE
-$(OBJS_DIR)/emu10k2_dsp.h	:= ASM10KFLAGS = -v -2 -P emu10k2
-$(OBJS_DIR)/emu10k2_dsp.h	:= MODEL10K = AUDIGY
+$(OBJS_DIR)/%.o			:  CPPFLAGS += -I$(OBJS_DIR)
+$(OBJS_DIR)/%.ln		:  CPPFLAGS += -I$(OBJS_DIR)
+$(OBJS_DIR)/emu10k_gpr.h	:  ASM10KFLAGS = -v -0 -P gpr
+$(OBJS_DIR)/emu10k1_dsp.h	:  ASM10KFLAGS = -v -1 -P emu10k1
+$(OBJS_DIR)/emu10k2_dsp.h	:  MODEL10K = SBLIVE
+$(OBJS_DIR)/emu10k2_dsp.h	:  ASM10KFLAGS = -v -2 -P emu10k2
+$(OBJS_DIR)/emu10k2_dsp.h	:  MODEL10K = AUDIGY
 
 #
 #	Default build targets.

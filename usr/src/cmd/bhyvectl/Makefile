@@ -38,7 +38,7 @@ LDLIBS +=	-lvmmapi
 CERRWARN +=	-_gcc=-Wno-uninitialized
 
 # main() is too hairy for smatch
-bhyvectl.o := SMATCH=off
+bhyvectl.o :  SMATCH=off
 
 all: $(PROG)
 

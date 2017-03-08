@@ -79,7 +79,7 @@ CERRWARN	+= $(CNOWARN_UNINIT)
 CERRWARN	+= -_gcc=-Wno-parentheses
 
 # needs work
-$(OBJS_DIR)/blowfish_impl.o := SMOFF += precedence
+$(OBJS_DIR)/blowfish_impl.o :  SMOFF += precedence
 
 #
 #	Default build targets.

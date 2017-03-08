@@ -44,16 +44,16 @@ SUBDIRS = $(PRINT_SUBDIRS) $(JAVA_SUBDIRS)
 
 ROOTDIRS = 	$(ROOTLIB)/print 
 
-all	:=	TARGET= all
-install :=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-lint	:=	TARGET= lint
-strip	:=	TARGET= strip
-_msg	:=      TARGET = _msg
+all	: 	TARGET= all
+install : 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+lint	: 	TARGET= lint
+strip	: 	TARGET= strip
+_msg	:       TARGET = _msg
 
 # For testing message catalogs
-_msg_test:=	TARGET = _msg_test
+_msg_test: 	TARGET = _msg_test
 
 POFILE= print.po
 

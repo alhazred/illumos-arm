@@ -33,10 +33,10 @@ OBJS +=		memmem.o
 CPPFLAGS +=	-I$(SRC)/uts/common
 
 # needs work
-printf.o := SMOFF += 64bit_shift
+printf.o :  SMOFF += 64bit_shift
 
 # too hairy
-_inflate.o := SMATCH=off
+_inflate.o :  SMATCH=off
 
 # 64-bit smatch false positive :/
 SMOFF += uninitialized

@@ -28,11 +28,11 @@ PRTDIAG_PLATFORMS=	desktop tazmo javelin serengeti \
 			littleneck daktari cherrystone \
 			lw8 ontario schumacher opl montoya monza
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
+_msg : 		TARGET= _msg
 
 .KEEP_STATE:
 

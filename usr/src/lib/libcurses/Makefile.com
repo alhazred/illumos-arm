@@ -176,23 +176,23 @@ COMPATLINKS64 +=	usr/ccs/lib/$(MACH64)/libcurses.so \
 			lib/$(MACH64)/libtermlib.so \
 			lib/$(MACH64)/libtermlib.so.1
 
-$(ROOT)/usr/ccs/lib/libcurses.so := COMPATLINKTARGET=../../../lib/libcurses.so.1
-$(ROOT)/usr/ccs/lib/libtermlib.so := \
+$(ROOT)/usr/ccs/lib/libcurses.so :  COMPATLINKTARGET=../../../lib/libcurses.so.1
+$(ROOT)/usr/ccs/lib/libtermlib.so :  \
 	COMPATLINKTARGET=../../../lib/libcurses.so.1
-$(ROOT)/usr/ccs/lib/$(MACH64)/libcurses.so := \
+$(ROOT)/usr/ccs/lib/$(MACH64)/libcurses.so :  \
 	COMPATLINKTARGET=../../../../lib/$(MACH64)/libcurses.so.1
-$(ROOT)/usr/ccs/lib/$(MACH64)/libtermlib.so := \
+$(ROOT)/usr/ccs/lib/$(MACH64)/libtermlib.so :  \
 	COMPATLINKTARGET=../../../../lib/$(MACH64)/libcurses.so.1
-$(ROOT)/usr/lib/libtermlib.so.1 := COMPATLINKTARGET= ../../lib/libcurses.so.1
-$(ROOT)/usr/lib/libtermlib.so := COMPATLINKTARGET= ../../lib/libcurses.so.1
-$(ROOT)/usr/lib/$(MACH64)/libtermlib.so.1 := \
+$(ROOT)/usr/lib/libtermlib.so.1 :  COMPATLINKTARGET= ../../lib/libcurses.so.1
+$(ROOT)/usr/lib/libtermlib.so :  COMPATLINKTARGET= ../../lib/libcurses.so.1
+$(ROOT)/usr/lib/$(MACH64)/libtermlib.so.1 :  \
 	COMPATLINKTARGET= ../../../lib/$(MACH64)/libcurses.so.1
-$(ROOT)/usr/lib/$(MACH64)/libtermlib.so := \
+$(ROOT)/usr/lib/$(MACH64)/libtermlib.so :  \
 	COMPATLINKTARGET= ../../../lib/$(MACH64)/libcurses.so.1
-$(ROOT)/lib/libtermlib.so.1 := COMPATLINKTARGET= libcurses.so.1
-$(ROOT)/lib/libtermlib.so := COMPATLINKTARGET= libtermlib.so.1
-$(ROOT)/lib/$(MACH64)/libtermlib.so.1 := COMPATLINKTARGET= libcurses.so.1
-$(ROOT)/lib/$(MACH64)/libtermlib.so := COMPATLINKTARGET= libtermlib.so.1
+$(ROOT)/lib/libtermlib.so.1 :  COMPATLINKTARGET= libcurses.so.1
+$(ROOT)/lib/libtermlib.so :  COMPATLINKTARGET= libtermlib.so.1
+$(ROOT)/lib/$(MACH64)/libtermlib.so.1 :  COMPATLINKTARGET= libcurses.so.1
+$(ROOT)/lib/$(MACH64)/libtermlib.so :  COMPATLINKTARGET= libtermlib.so.1
 
 #
 # Include library targets

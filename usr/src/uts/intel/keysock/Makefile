@@ -77,7 +77,7 @@ LINTTAGS	+= -erroff=E_ASSIGN_NARROW_CONV
 CERRWARN	+= -_gcc=-Wno-unused-variable
 
 # needs work
-$(OBJS_DIR)/keysockddi.o := SMOFF += index_overflow
+$(OBJS_DIR)/keysockddi.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

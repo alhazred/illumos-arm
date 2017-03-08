@@ -70,18 +70,18 @@ all lint clean clobber:
 
 install: all $(ROOTFILES)
 
-$(TESTDIR)/examples/% := FILEMODE=0444
-$(TESTDIR)/data/% := FILEMODE=0444
-$(TESTDIR)/%.data := FILEMODE=0444
-$(TESTDIR)/%.awk := FILEMODE=0444
-$(TESTDIR)/%.in := FILEMODE=0444
-$(TESTDIR)/%.ok := FILEMODE=0444
-$(TESTDIR)/%.sh := FILEMODE=0555
+$(TESTDIR)/examples/% :  FILEMODE=0444
+$(TESTDIR)/data/% :  FILEMODE=0444
+$(TESTDIR)/%.data :  FILEMODE=0444
+$(TESTDIR)/%.awk :  FILEMODE=0444
+$(TESTDIR)/%.in :  FILEMODE=0444
+$(TESTDIR)/%.ok :  FILEMODE=0444
+$(TESTDIR)/%.sh :  FILEMODE=0555
 
-$(TESTDIR)/tests/lilly.progs := FILEMODE=0444
-$(TESTDIR)/tests/latin1 := FILEMODE=0444
-$(TESTDIR)/tests/T.% := FILEMODE=0555
-$(TESTDIR)/tests/%.p := FILEMODE=0444
+$(TESTDIR)/tests/lilly.progs :  FILEMODE=0444
+$(TESTDIR)/tests/latin1 :  FILEMODE=0444
+$(TESTDIR)/tests/T.% :  FILEMODE=0555
+$(TESTDIR)/tests/%.p :  FILEMODE=0444
 
 $(TESTDIR):
 	$(INS.dir)

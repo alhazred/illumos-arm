@@ -417,10 +417,10 @@ BUILD.SO		= \
 #
 # SONAME defaults for common fake shared libraries.
 #
-$(LIBGEN)		:= SONAME = $(MODULE)
-$(PLATLIB)		:= SONAME = misc/platmod
-$(CPULIB)		:= SONAME = 'cpu/$$CPU'
-$(DTRACESTUBS)		:= SONAME = dtracestubs
+$(LIBGEN)		:  SONAME = $(MODULE)
+$(PLATLIB)		:  SONAME = misc/platmod
+$(CPULIB)		:  SONAME = 'cpu/$$CPU'
+$(DTRACESTUBS)		:  SONAME = dtracestubs
 
 #
 #	Installation directories
@@ -658,20 +658,20 @@ LINT_KMODS = $(DRV_KMODS) $(EXEC_KMODS) $(FS_KMODS) $(SCHED_KMODS) \
 #       in unix_bb.o
 #
 BB_FILES =
-$(BB_FILES)	:= XAOPT = -xa
+$(BB_FILES)	:  XAOPT = -xa
 
 #
 #	The idea here is for unix_bb.o to be in all kernels except the
 #	kernel which actually gets shipped to customers.  In practice,
 #	$(RELEASE_BUILD) is on for a number of the late beta and fcs builds.
 #
-$(NOT_RELEASE_BUILD)$(OBJS_DIR)/unix_bb.o   := CPPFLAGS     += -DKCOV
-$(NOT_RELEASE_BUILD)$(OBJS_DIR)/unix_bb.ln  := CPPFLAGS     += -DKCOV
+$(NOT_RELEASE_BUILD)$(OBJS_DIR)/unix_bb.o   :  CPPFLAGS     += -DKCOV
+$(NOT_RELEASE_BUILD)$(OBJS_DIR)/unix_bb.ln  :  CPPFLAGS     += -DKCOV
 
 #
 #	Do not let unix_bb.o get compiled with -xa!
 #
-$(OBJS_DIR)/unix_bb.o	:= XAOPT =
+$(OBJS_DIR)/unix_bb.o	:  XAOPT =
 
 #
 # Privilege files

@@ -22,7 +22,7 @@ PROGS=		passwd.exp	\
 		smbutil.exp
 
 ROOTPROGS=	$(PROGS:%=$(ROOTBINDIR)/%)
-$(ROOTPROGS) :=	FILEMODE = 0555
+$(ROOTPROGS) : 	FILEMODE = 0555
 
 all lint clean clobber:
 

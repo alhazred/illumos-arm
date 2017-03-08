@@ -32,7 +32,7 @@ SVCMETHOD=	svc-tsol-zones
 include ../../Makefile.cmd
 
 ROOTMANIFESTDIR=	$(ROOTSVCSYSTEM)
-$(ROOTMANIFEST)		:= FILEMODE= 444
+$(ROOTMANIFEST)		:  FILEMODE= 444
 
 $(ROOTMANIFESTDIR)/%: %
 		$(INS.file)

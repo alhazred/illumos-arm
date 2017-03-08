@@ -44,7 +44,7 @@ IFLAGS += -I$(SRC)/cmd/picl/plugins/inc
 
 PLATFORM=	SUNW,Netra-T12
 
-$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 := FILEMODE= 0755
+$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 :  FILEMODE= 0755
 
 .KEEP_STATE:
 

@@ -29,11 +29,11 @@ SUBDIRS =	$(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
 # conditional assignments
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-test :=		TARGET= test
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+test : 		TARGET= test
 
 SCRFILES = screen/keycaps \
 	screen/curses.h \
@@ -62,7 +62,7 @@ CLEANFILES +=	$(SCRFILES)
 # limit.  maketerm.ed can probably be fixed to prevent this, but it is arguable
 # if this work would ever be worth it.
 #
-screen/term.check      := CSTYLE_TAIL = | grep -v "line > 80 characters" | true
+screen/term.check      :  CSTYLE_TAIL = | grep -v "line > 80 characters" | true
 
 .KEEP_STATE:
 

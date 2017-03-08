@@ -29,11 +29,11 @@ SUBDIRS =	$(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
 # conditional assignments
-all :=		TARGET= all
-install :=      TARGET= install
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-test :=         TARGET= test
+all : 		TARGET= all
+install :       TARGET= install
+clean :         TARGET= clean
+clobber :       TARGET= clobber
+test :          TARGET= test
 
 # definitions for install_h target
 HDRS=           libdevid.h

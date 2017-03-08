@@ -28,6 +28,6 @@
 include ../Makefile.com
 include ../../Makefile.cmd.64
 
-lint	:= LINTFLAGS64 = $(LINTFLAGS) -m64
+lint	:  LINTFLAGS64 = $(LINTFLAGS) -m64
 
 install: all $(ROOTPROG64)

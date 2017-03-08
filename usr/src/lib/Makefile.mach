@@ -32,8 +32,8 @@
 # set here and in Makefile.targ, instead of Makefile.lib, because ROOTLIBDIR
 # may be changed in the including makefile after it has included Makefile.lib.
 #
-$(ROOTLIBDIR)/$(DYNLIB)		:= FILEMODE= 755
-$(ROOTLIBDIR64)/$(DYNLIB)	:= FILEMODE= 755
+$(ROOTLIBDIR)/$(DYNLIB)		:  FILEMODE= 755
+$(ROOTLIBDIR64)/$(DYNLIB)	:  FILEMODE= 755
 
 # install rules
 $(ROOTLIBDIR)/%: $(MACH)/%

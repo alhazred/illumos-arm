@@ -110,7 +110,7 @@ ROOTMAKEDIRS = $(MAKEDIRS:%=$(TESTDIR)/%)
 
 FILEMODE = 0444
 
-$(TESTDIR)/mdbtest := FILEMODE = 0555
+$(TESTDIR)/mdbtest :  FILEMODE = 0555
 
 all:
 

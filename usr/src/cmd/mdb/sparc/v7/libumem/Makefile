@@ -47,7 +47,7 @@ CPPFLAGS += -I$(MODSRCS_DIR)
 include ../../Makefile.sparcv7
 include ../../../Makefile.module
 
-dmod/$(MODULE) := LDLIBS += -lproc -lm
+dmod/$(MODULE) :  LDLIBS += -lproc -lm
 
 CERRWARN += -_gcc=-Wno-unused-label
 CERRWARN += -_gcc=-Wno-parentheses

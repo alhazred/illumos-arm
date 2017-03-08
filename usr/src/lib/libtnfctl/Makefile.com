@@ -66,7 +66,7 @@ HDRS=		tnfctl.h
 ROOTHDRDIR=	$(ROOT)/usr/include/tnf
 ROOTHDRS=	$(HDRS:%=$(ROOTHDRDIR)/%)
 CHECKHDRS=	$(HDRS:%.h=%.check)
-$(ROOTHDRS) :=	FILEMODE = 0644
+$(ROOTHDRS) : 	FILEMODE = 0644
 CHECKHDRS =	$(HDRS:%.h=%.check)
 
 LDLIBS +=	-lc -lelf
@@ -83,7 +83,7 @@ SMATCH=off
 
 ASFLAGS +=	-P
 
-$(ROOTHDRS) :=	FILEMODE = 644
+$(ROOTHDRS) : 	FILEMODE = 644
 
 .KEEP_STATE:
 

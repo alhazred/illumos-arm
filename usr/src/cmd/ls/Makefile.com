@@ -35,11 +35,11 @@ include ../../Makefile.cmd
 
 LDLIBS += -lsec -lnvpair -lcmdutils -lcurses
 CFLAGS	+=	$(CCVERBOSE)
-$(XPG4) := CFLAGS += -DXPG4
+$(XPG4) :  CFLAGS += -DXPG4
 
 # Include all XPG4 changes in the XPG6 version
-$(XPG6) := CFLAGS += -DXPG4 -DXPG6
-$(XPG6) := CFLAGS64 += -DXPG4 -DXPG6
+$(XPG6) :  CFLAGS += -DXPG4 -DXPG6
+$(XPG6) :  CFLAGS64 += -DXPG4 -DXPG6
 
 CFLAGS64 +=	$(CCVERBOSE)
 CPPFLAGS += -D_FILE_OFFSET_BITS=64

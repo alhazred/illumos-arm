@@ -68,11 +68,11 @@ SUBDIRS= $(COMMON_SUBDIRS)
 # commands messaged
 MSGSUBDIRS = biff install.d mkstr rusage shutdown
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-_msg:=          TARGET= _msg
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+_msg:           TARGET= _msg
 
 # Since pre-5.0 system users were told to put /usr/5bin in their path to
 # get the 5.0 system behavior, we need this link so that the PATH of
@@ -137,16 +137,16 @@ ROOTBINLINKS = $(BINLINKS:%=$(ROOTBIN)/%)
 OTHERLINKS = $(ROOTETC)/termcap \
 		$(ROOTSHLIB)/zoneinfo/posixrules
 
-$(S5LINK) :=		LINKDEST= bin
-$(DICTLINK) :=		LINKDEST= share/lib/dict
-$(ROOTBIN)/e :=		LINKDEST= ../bin/edit
-$(ROOTBIN)/ex :=	LINKDEST= ../bin/edit
-$(ROOTBIN)/page :=	LINKDEST= ../bin/more
-$(ROOTBIN)/quota :=	LINKDEST= ../lib/fs/ufs/quota
-$(ROOTETC)/termcap :=	LINKDEST= ../usr/share/lib/termcap
-$(ROOTBIN)/vi :=	LINKDEST= ../bin/edit
-$(ROOTBIN)/view :=	LINKDEST= ../bin/edit
-$(ROOTSHLIB)/zoneinfo/posixrules := LINKDEST= US/Eastern
+$(S5LINK) : 		LINKDEST= bin
+$(DICTLINK) : 		LINKDEST= share/lib/dict
+$(ROOTBIN)/e : 		LINKDEST= ../bin/edit
+$(ROOTBIN)/ex : 	LINKDEST= ../bin/edit
+$(ROOTBIN)/page : 	LINKDEST= ../bin/more
+$(ROOTBIN)/quota : 	LINKDEST= ../lib/fs/ufs/quota
+$(ROOTETC)/termcap : 	LINKDEST= ../usr/share/lib/termcap
+$(ROOTBIN)/vi : 	LINKDEST= ../bin/edit
+$(ROOTBIN)/view : 	LINKDEST= ../bin/edit
+$(ROOTSHLIB)/zoneinfo/posixrules :  LINKDEST= US/Eastern
 
 .KEEP_STATE:
 

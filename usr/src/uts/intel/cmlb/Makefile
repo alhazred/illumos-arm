@@ -78,7 +78,7 @@ CERRWARN	+= -_gcc=-Wno-unused-function
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/cmlb.o := SMOFF += signed
+$(OBJS_DIR)/cmlb.o :  SMOFF += signed
 
 #
 #	Default build targets.

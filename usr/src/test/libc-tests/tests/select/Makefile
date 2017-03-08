@@ -32,7 +32,7 @@ select_test: select_test.c
 SCRIPTS=select.sh
 CMDS = $(PROGS:%=$(TESTDIR)/%) $(SCRIPTS:%=$(TESTDIR)/%)
 
-$(SCRIPTS) $(CMDS) := FILEMODE = 0555
+$(SCRIPTS) $(CMDS) :  FILEMODE = 0555
 
 $(CMDS): $(TESTDIR) $(PROGS)
 

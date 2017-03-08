@@ -50,7 +50,7 @@ LLOBJS=		$(OBJS:%.o=%.ll)
 #POFILES= $(OBJS:%.o=%.po)
 #POFILE= stmfproxy.po
 
-$(ROOTDEMODIR)/stmfproxy.xml	:= FILEMODE = 0444
+$(ROOTDEMODIR)/stmfproxy.xml	:  FILEMODE = 0444
 
 
 CCVERBOSE	=

@@ -35,7 +35,7 @@ CLEANFILES +=	pics/pics_mp.o
 CLOBBERFILES += $(OLIBRARY)
 
 # permissions for old library
-$(ROOTLIBDIR)/$(OLIBRARY) :=	FILEMODE= 755
+$(ROOTLIBDIR)/$(OLIBRARY) : 	FILEMODE= 755
 
 .KEEP_STATE:
 

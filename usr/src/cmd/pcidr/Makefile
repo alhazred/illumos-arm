@@ -48,11 +48,11 @@ CLOBBERFILES += $(PROGOBJECTS)
 LDLIBS += -lnvpair
 LINTFLAGS += -erroff=E_NAME_DEF_NOT_USED2
 
-all :=		TARGET = all
-install :=	TARGET = install
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-lint :=		TARGET = lint
+all : 		TARGET = all
+install : 	TARGET = install
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+lint : 		TARGET = lint
 
 .KEEP_STATE:
 #############################################################################

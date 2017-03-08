@@ -51,7 +51,7 @@ CERRWARN	+= -_gcc=-Wno-type-limits
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/dtrace.o := SMOFF += signed_integer_overflow_check,deref_check
+$(OBJS_DIR)/dtrace.o :  SMOFF += signed_integer_overflow_check,deref_check
 
 CPPFLAGS	+= -I$(SRC)/common/util
 

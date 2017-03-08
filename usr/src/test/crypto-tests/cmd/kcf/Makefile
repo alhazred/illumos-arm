@@ -32,7 +32,7 @@ CMDS = \
 	$(PROGS:%=$(ROOTDIGEST)/%) \
 	$(PROGS:%=$(ROOTHMAC)/%)
 
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all lint clean clobber:
 

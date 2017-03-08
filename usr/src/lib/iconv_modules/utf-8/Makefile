@@ -49,13 +49,13 @@ ICONV_DIR	= $(ROOT)/usr/lib/iconv
 BTS_DIR		= $(ICONV_DIR)/geniconvtbl/binarytables
 
 
-all :=          TARGET = all
-clean :=        TARGET = clean
-clobber :=      TARGET = clobber
-install :=      TARGET = install
-echo :=         TARGET = echo
+all :           TARGET = all
+clean :         TARGET = clean
+clobber :       TARGET = clobber
+install :       TARGET = install
+echo :          TARGET = echo
 
-$(ICONV_DIR)/alias:=	FILEMODE=0444
+$(ICONV_DIR)/alias: 	FILEMODE=0444
 
 .KEEP_STATE:
 

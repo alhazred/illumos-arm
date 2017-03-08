@@ -44,8 +44,8 @@ include ../../../../lib/Makefile.lib
 COMPATLINKS=	usr/ccs/lib/liby.so
 COMPATLINKS64=	usr/ccs/lib/$(MACH64)/liby.so
 
-$(ROOT)/usr/ccs/lib/liby.so := COMPATLINKTARGET=../../lib/liby.so.1
-$(ROOT)/usr/ccs/lib/$(MACH64)/liby.so:= \
+$(ROOT)/usr/ccs/lib/liby.so :  COMPATLINKTARGET=../../lib/liby.so.1
+$(ROOT)/usr/ccs/lib/$(MACH64)/liby.so:  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/liby.so.1
 
 SRCDIR =	../common
@@ -62,12 +62,12 @@ LIBS =          $(DYNLIB)
 # Tune ZDEFS to ignore undefined symbols for building the yacc shared library
 # since these symbols (mainly yyparse) are to be resolved elsewhere.
 #
-$(DYNLIB):= ZDEFS = $(ZNODEFS)
-$(DYNLIBCCC):= ZDEFS = $(ZNODEFS)
+$(DYNLIB):  ZDEFS = $(ZNODEFS)
+$(DYNLIBCCC):  ZDEFS = $(ZNODEFS)
 
 INCLIST=	-I../../include -I../../include/$(MACH)
 CPPFLAGS=	$(INCLIST) $(DEFLIST) $(CPPFLAGS.master)
-$(PROG):=	LDLIBS = $(LDLIBS.cmd)
+$(PROG): 	LDLIBS = $(LDLIBS.cmd)
 
 CSTD= $(CSTD_GNU99)
 CFLAGS += $(CCVERBOSE)
@@ -78,7 +78,7 @@ CERRWARN += $(CNOWARN_UNINIT)
 # not linted
 SMATCH=off
 
-$(ROOTPROG):= FILEMODE = 0555
+$(ROOTPROG):  FILEMODE = 0555
 
 ROOTYACCPAR=	$(YACCPAR:%=$(ROOTSHLIBCCS)/%)
 

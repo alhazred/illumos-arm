@@ -49,12 +49,12 @@ I18NDIRS= $(SUBDIR2)
 CLEANFILES +=	deffs.o df.o ff.o fsck.o fssnapsup.o \
 		mount.o preenlib.o switchout.o umount.o volcopy.o
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-_msg:=          TARGET= catalog
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+_msg:           TARGET= catalog
 
 USRSBINF=	df clri fsck volcopy ff
 USRSBINCLRI=	dcopy fsdb fssnap labelit mkfs
@@ -91,10 +91,10 @@ CERRWARN += -_gcc=-Wno-unused-function
 # not linted
 SMATCH=off
 
-$(DFPROG) :=	LDLIBS += -lcmdutils
-$(SPPROG) :=	LDLIBS += -lkstat
+$(DFPROG) : 	LDLIBS += -lcmdutils
+$(SPPROG) : 	LDLIBS += -lkstat
 
-$(ROOTETCMNTTAB) := FILEMODE = 444
+$(ROOTETCMNTTAB) :  FILEMODE = 444
 
 # for messaging catalog
 #
@@ -102,8 +102,8 @@ POFILE= fs.d.po
 POFILES1= $(PROG:%=%.po) $(ROOTFS_PROG:%=%.po) switchout.po fssnapsup.po
 POFILES2= $(I18NDIRS:%=%/%.po)
 POFILES=  $(POFILES1) $(POFILES2)
-volcopy.po :=   XGETFLAGS += -a -x volcopy.xcl
-$(DFPROG).po := XGETFLAGS += -a -x df.xcl
+volcopy.po :    XGETFLAGS += -a -x volcopy.xcl
+$(DFPROG).po :  XGETFLAGS += -a -x df.xcl
 
 .KEEP_STATE:
 

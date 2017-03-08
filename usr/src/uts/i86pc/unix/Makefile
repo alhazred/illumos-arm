@@ -112,14 +112,14 @@ CLEANFILES	+= \
 CLOBBERFILES	= $(CLEANFILES) $(UNIX_BIN)
 
 # instr_size needs a special header
-$(OBJS_DIR)/instr_size.o :=	EXTRA_OPTIONS	= -I$(SRC)/common/dis/i386
-$(OBJS_DIR)/instr_size.ln :=	EXTRA_OPTIONS	= -I$(SRC)/common/dis/i386
+$(OBJS_DIR)/instr_size.o : 	EXTRA_OPTIONS	= -I$(SRC)/common/dis/i386
+$(OBJS_DIR)/instr_size.ln : 	EXTRA_OPTIONS	= -I$(SRC)/common/dis/i386
 
 #
 # When performing shadow studio builds, the pre-processed comm page
 # output from gcc can end up confusing studio.
 #
-$(OBJS_DIR)/comm_page_ctf.o :=	CERRWARN += -_cc=-erroff=E_TKNS_IGNORED_AT_END_OF_DIR
+$(OBJS_DIR)/comm_page_ctf.o : 	CERRWARN += -_cc=-erroff=E_TKNS_IGNORED_AT_END_OF_DIR
 
 CFLAGS += -DDIS_MEM
 
@@ -145,12 +145,12 @@ SMOFF += index_overflow
 # needs work
 SMOFF += all_func_returns,deref_check,signed
 
-$(OBJS_DIR)/fmsmb.o := SMOFF += indenting
-$(OBJS_DIR)/zutil.o := SMOFF += indenting
-$(OBJS_DIR)/bootrd_cpio.o := SMOFF += allocating_enough_data
+$(OBJS_DIR)/fmsmb.o :  SMOFF += indenting
+$(OBJS_DIR)/zutil.o :  SMOFF += indenting
+$(OBJS_DIR)/bootrd_cpio.o :  SMOFF += allocating_enough_data
 
 # too hairy
-$(OBJS_DIR)/inflate.o := SMATCH=off
+$(OBJS_DIR)/inflate.o :  SMATCH=off
 
 #
 #	Default build targets.

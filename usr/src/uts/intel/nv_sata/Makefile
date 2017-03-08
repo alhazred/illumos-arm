@@ -78,7 +78,7 @@ LINTTAGS        += -erroff=E_BAD_PTR_CAST_ALIGN
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/nv_sata.o := SMOFF += deref_check
+$(OBJS_DIR)/nv_sata.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

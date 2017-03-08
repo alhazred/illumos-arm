@@ -65,24 +65,24 @@ OTHEROBJS =	utility.o cpmv.o expfile.o gename.o getpwinfo.o \
 		sysfiles.o strsave.o $(GETOPT)
 
 uucp \
-uucp.cat :=	POBJS =	uucpdefs.o uucp.o gwd.o permission.o getargs.o	\
+uucp.cat : 	POBJS =	uucpdefs.o uucp.o gwd.o permission.o getargs.o	\
 			getprm.o uucpname.o versys.o gtcfile.o grades.o	\
 			$(STRPBRK) chremdir.o mailst.o $(OTHEROBJS)
 
 uux \
-uux.cat :=	POBJS =	uucpdefs.o uux.o mailst.o gwd.o permission.o	\
+uux.cat : 	POBJS =	uucpdefs.o uux.o mailst.o gwd.o permission.o	\
 			getargs.o getprm.o uucpname.o versys.o gtcfile.o \
 			grades.o chremdir.o $(STRPBRK) $(OTHEROBJS)
 
 uuxqt \
-uuxqt.cat :=	POBJS =	uucpdefs.o uuxqt.o mailst.o getprm.o uucpname.o \
+uuxqt.cat : 	POBJS =	uucpdefs.o uuxqt.o mailst.o getprm.o uucpname.o \
 			permission.o getargs.o gtcfile.o grades.o	\
 			$(STRPBRK) shio.o chremdir.o account.o		\
 			perfstat.o statlog.o security.o limits.o	\
 			$(OTHEROBJS)
 
 uucico \
-uucico.cat :=	POBJS =	uucpdefs.o uucico.o conn.o callers.o cntrl.o	\
+uucico.cat : 	POBJS =	uucpdefs.o uucico.o conn.o callers.o cntrl.o	\
 			pk0.o pk1.o anlwrk.o permission.o getargs.o	\
 			gnxseq.o pkdefs.o imsg.o gtcfile.o grades.o	\
 			mailst.o uucpname.o line.o chremdir.o		\
@@ -90,64 +90,64 @@ uucico.cat :=	POBJS =	uucpdefs.o uucico.o conn.o callers.o cntrl.o	\
 			perfstat.o account.o security.o limits.o	\
 			$(STRPBRK) $(PROTOCOLOBJS) $(OTHEROBJS)		\
 			versys.o setmode.o
-uucico:=	PLIBS =	$(TLILIB) -lgen
+uucico: 	PLIBS =	$(TLILIB) -lgen
 
 uuname \
-uuname.cat :=	POBJS =	uuname.o uucpname.o uucpdefs.o getpwinfo.o	\
+uuname.cat : 	POBJS =	uuname.o uucpname.o uucpdefs.o getpwinfo.o	\
 			sysfiles.o strsave.o getargs.o
 
 uustat \
-uustat.cat :=	POBJS =	uustat.o gnamef.o expfile.o uucpdefs.o		\
+uustat.cat : 	POBJS =	uustat.o gnamef.o expfile.o uucpdefs.o		\
 			getpwinfo.o ulockf.o getargs.o utility.o	\
 			uucpname.o versys.o strsave.o sysfiles.o	\
 			cpmv.o mailst.o permission.o $(STRPBRK)	\
 			$(GETOPT)
 
 uusched \
-uusched.cat :=	POBJS =	uusched.o gnamef.o expfile.o uucpdefs.o		\
+uusched.cat : 	POBJS =	uusched.o gnamef.o expfile.o uucpdefs.o		\
 			getpwinfo.o ulockf.o systat.o getargs.o		\
 			utility.o limits.o permission.o uucpname.o	\
 			$(GETOPT)
 
 uucleanup \
-uucleanup.cat := POBJS = uucleanup.o gnamef.o expfile.o uucpdefs.o	\
+uucleanup.cat :  POBJS = uucleanup.o gnamef.o expfile.o uucpdefs.o	\
 			getpwinfo.o uucpname.o ulockf.o getargs.o	\
 			cpmv.o utility.o $(GETOPT)
 
 uuglist \
-uuglist.cat :=	POBJS =	grades.o cpmv.o getargs.o getpwinfo.o strsave.o	\
+uuglist.cat : 	POBJS =	grades.o cpmv.o getargs.o getpwinfo.o strsave.o	\
 			uuglist.o uucpdefs.o expfile.o uucpname.o $(GETOPT)
 
 bnuconvert \
-bnuconvert.cat := POBJS = bnuconvert.o uucpdefs.o grades.o strsave.o	\
+bnuconvert.cat :  POBJS = bnuconvert.o uucpdefs.o grades.o strsave.o	\
 			getpwinfo.o getargs.o cpmv.o chremdir.o		\
 			expfile.o gename.o gnamef.o gtcfile.o logent.o	\
 			systat.o ulockf.o utility.o uucpname.o $(GETOPT)
 
 remote.unknown \
-remote.unknown.cat := POBJS =	unknown.o
+remote.unknown.cat :  POBJS =	unknown.o
 
 cu \
-cu.cat :=	POBJS =	cu.o callers.o getargs.o line.o uucpdefs.o	\
+cu.cat : 	POBJS =	cu.o callers.o getargs.o line.o uucpdefs.o	\
 			ulockf.o conn.o interface.o strsave.o		\
 			sysfiles.o stoa.o setmode.o
-cu:=		PLIBS =	$(TLILIB) -lgen
+cu: 		PLIBS =	$(TLILIB) -lgen
 
 ct \
-ct.cat :=	POBJS =	ct.o callers.o getargs.o line.o uucpdefs.o	\
+ct.cat : 	POBJS =	ct.o callers.o getargs.o line.o uucpdefs.o	\
 			ulockf.o conn.o interface.o sysfiles.o		\
 			strsave.o stoa.o setmode.o
-ct:=		PLIBS =	$(TLILIB) -lgen
+ct: 		PLIBS =	$(TLILIB) -lgen
 
 uudecode \
-uudecode.cat :=	POBJS =	uudecode.o common.o
+uudecode.cat : 	POBJS =	uudecode.o common.o
 
 uuencode \
-uuencode.cat :=	POBJS =	uuencode.o
+uuencode.cat : 	POBJS =	uuencode.o
 
 uucheck \
-uucheck.cat :=	POBJS =	uucheck.o uucpname.o getargs.o $(GETOPT)
+uucheck.cat : 	POBJS =	uucheck.o uucpname.o getargs.o $(GETOPT)
 
 in.uucpd \
-in.uucpd.cat :=	POBJS = in.uucpd.o
-in.uucpd:=	PLIBS = $(TLILIB) $(PAMLIB)
+in.uucpd.cat : 	POBJS = in.uucpd.o
+in.uucpd: 	PLIBS = $(TLILIB) $(PAMLIB)

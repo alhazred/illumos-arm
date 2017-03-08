@@ -49,7 +49,7 @@ ISNS_SVC	= $(XML_DIR)/isns_server.xml
 
 MANIFEST	= isns_server.xml
 ROOTMANIFESTDIR	= $(ROOTSVCNETWORK)
-$(ROOTSVCNETWORK)/isns_server.xml	:= FILEMODE = 0444
+$(ROOTSVCNETWORK)/isns_server.xml	:  FILEMODE = 0444
 
 CFLAGS		+=	$(CCVERBOSE)
 CPPFLAGS	+= -I./ -I$(ADJUNCT_PROTO)/usr/include/libxml2
@@ -66,8 +66,8 @@ SMATCH=off
 
 CLOBBERFILES += $(DTRACE_HEADER)
 
-obj.o := CERRWARN += -erroff=E_CONST_OBJ_SHOULD_HAVE_INITIZR
-obj.o := CERRWARN += -erroff=E_IMPLICIT_DECL_FUNC_RETURN_INT
+obj.o :  CERRWARN += -erroff=E_CONST_OBJ_SHOULD_HAVE_INITIZR
+obj.o :  CERRWARN += -erroff=E_IMPLICIT_DECL_FUNC_RETURN_INT
 
 LDLIBS		+= -lsecdb -lsocket -lnsl -lscf -lxml2
 NATIVE_LIBS	+= libxml2.so

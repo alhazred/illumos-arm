@@ -35,7 +35,7 @@ include ../../Makefile.cmd
 CFLAGS	+= $(CCVERBOSE)
 CERRWARN += -_gcc=-Wno-parentheses
 
-lint	:= LINTFLAGS = -x
+lint	:  LINTFLAGS = -x
 
 ROOTLINK= $(ROOTBIN32)/uptime
 

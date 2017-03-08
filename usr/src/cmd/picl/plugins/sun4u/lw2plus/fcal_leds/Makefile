@@ -45,7 +45,7 @@ ROOTLIBDIR	= $(ROOT_PLAT_PLUGINDIR)
 
 CONF=		fcal_leds.conf
 ROOTCONF=	$(CONF:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 
 CPPFLAGS +=	-I$(SRC)/uts/sun4u/ -I$(SRC)/uts/common/
 CPPFLAGS +=	-D_POSIX_PTHREAD_SEMANTICS
@@ -72,11 +72,11 @@ LDLIBS +=	-ldevinfo -lc
 
 SUBDIRS=
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 POFILE =	piclfcal_leds_lw2plus.po
 POFILES =	$(SRCS:%.c=%.po)

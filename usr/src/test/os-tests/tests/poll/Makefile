@@ -21,15 +21,15 @@ PROG = poll_test epoll_test
 OBJS = $(PROG:%=%.o)
 SRCS = $(OBJS:%.o=%.c)
 
-poll_test := LDLIBS += -lsocket
-poll_test.ln := LDLIBS += -lsocket
+poll_test :  LDLIBS += -lsocket
+poll_test.ln :  LDLIBS += -lsocket
 CSTD = $(CSTD_GNU99)
 
 ROOTOPTPKG = $(ROOT)/opt/os-tests
 TESTDIR = $(ROOTOPTPKG)/tests
 
 CMDS = $(PROG:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 LINTS = $(PROG:%=%.ln)
 

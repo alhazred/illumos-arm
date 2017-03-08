@@ -39,17 +39,17 @@ ROOTLIBDIR	= $(ROOT_PLAT_PLUGINDIR)
 
 CONFS		= piclenvmon.conf
 ROOTCONF=       $(CONFS:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 MAININFO=       $(CONFS:%.conf=%.info)
 
 .KEEP_STATE:
 
 SUBDIRS=
 
-all	:=	TARGET= all
-install :=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
+all	: 	TARGET= all
+install : 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
 
 all:	$(CONFS)
 

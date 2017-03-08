@@ -38,8 +38,8 @@ include ../../../../Makefile.cmd
 include ../../Makefile.ia32
 include ../../../Makefile.module
 
-%.o := CPPFLAGS += $(PYCPPFLAGS)
-%.ln := CPPFLAGS += $(PYLNFLAGS)
+%.o :  CPPFLAGS += $(PYCPPFLAGS)
+%.ln :  CPPFLAGS += $(PYLNFLAGS)
 
 #
 # Why these? Well, the pyconfig.h header hard-codes _FILE_OFFSET_BITS
@@ -51,7 +51,7 @@ LINTFLAGS += -erroff=E_MACRO_REDEFINED
 # not linted
 SMATCH=off
 
-dmod/$(MODULE) := LDLIBS += -lproc
+dmod/$(MODULE) :  LDLIBS += -lproc
 
 %.o: $(MODSRCS_DIR)/%.c
 	$(COMPILE.c) $<

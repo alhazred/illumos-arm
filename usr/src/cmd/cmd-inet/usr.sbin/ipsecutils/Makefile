@@ -34,7 +34,7 @@ include ../../../Makefile.cmd
 MANIFEST=	ipsecalgs.xml policy.xml manual-key.xml
 
 ROOTMANIFESTDIR=	$(ROOTSVCNETWORKIPSEC)
-$(ROOTMANIFEST)		:= FILEMODE= 444
+$(ROOTMANIFEST)		:  FILEMODE= 444
 include ../../Makefile.cmd-inet
 
 COMMONSRCS=	$(CMDINETCOMMONDIR)/$(COMMONOBJS:.o=.c)
@@ -46,11 +46,11 @@ SRCS+=		$(COMMONSRCS)
 POFILES=	ikeadm.po ipsecalgs.po ipsecconf.po ipseckey.po
 POFILE=		ipsecutils.po
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
 
 CLOBBERFILES +=	$(PROG) $(POFILES)
 CLEANFILES += $(PROG) $(POFILES)
@@ -67,10 +67,10 @@ CFLAGS += $(XSTRCONST)
 LDLIBS += -lipsecutil -lnsl
 
 LAZYLIBS = $(ZLAZYLOAD) -ltsol $(ZNOLAZYLOAD)
-lint := LAZYLIBS = -ltsol
+lint :  LAZYLIBS = -ltsol
 
-$(TSOLPROG)	:=	LDLIBS += $(LAZYLIBS)
-$(SOCKETPROG)	:=      LDLIBS += -lsocket
+$(TSOLPROG)	: 	LDLIBS += $(LAZYLIBS)
+$(SOCKETPROG)	:       LDLIBS += -lsocket
 
 .KEEP_STATE:
 

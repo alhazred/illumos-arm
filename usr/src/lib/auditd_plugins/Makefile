@@ -31,13 +31,13 @@ SUBDIRS =	binfile		\
 		remote		\
 		syslog
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-delete :=	TARGET= delete
-install :=	TARGET= install
-package :=	TARGET= package
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+delete : 	TARGET= delete
+install : 	TARGET= install
+package : 	TARGET= package
+_msg : 		TARGET= _msg
 
 all package clean clobber install: $(SUBDIRS)
 
@@ -45,7 +45,7 @@ HDRS= auditd.h
 ROOTDIRS= $(ROOT)/usr/include/security
 
 ROOTHDRS= $(HDRS:%=$(ROOTDIRS)/%)
-$(ROOTHDRS) := FILEMODE = 644
+$(ROOTHDRS) :  FILEMODE = 644
 
 CHECKHDRS= $(HDRS:%.h=%.check)
 

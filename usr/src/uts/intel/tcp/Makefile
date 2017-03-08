@@ -74,7 +74,7 @@ CFLAGS		+= $(CINLINES)
 LDFLAGS		+= -dy -Ndrv/ip -Ncrypto/md5 -Nfs/sockfs
 
 # needs work
-$(OBJS_DIR)/tcpddi.o := SMOFF += index_overflow
+$(OBJS_DIR)/tcpddi.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

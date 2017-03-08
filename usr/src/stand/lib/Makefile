@@ -41,11 +41,11 @@ LINTSUBDIRS = $(SUBDIRS)
 
 .KEEP_STATE:
 
-all	:=	TARGET = all
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
-install	:=	TARGET = install
-lint	:=	TARGET = lint
+all	: 	TARGET = all
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
+install	: 	TARGET = install
+lint	: 	TARGET = lint
 
 all clean clobber install: $(SUBDIRS)
 

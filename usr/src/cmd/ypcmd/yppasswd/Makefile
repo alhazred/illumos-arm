@@ -78,9 +78,9 @@ OBJS =			$(RPCYPPASSWDDOBJ) \
 SRCS =			$(OBJS:%.o=%.c)
 
 #conditional assignments
-$(INETSVC)   := FILEMODE=555
+$(INETSVC)   :  FILEMODE=555
 
-$(ETCDFLTFILE) := FILEMODE=0444
+$(ETCDFLTFILE) :  FILEMODE=0444
 
 #install rules
 

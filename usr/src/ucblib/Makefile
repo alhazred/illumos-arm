@@ -29,11 +29,11 @@ SUBDIRS= libucb librpcsoc libdbm libtermcap
 # libcurses needs libtermcap and libucb
 SUBDIRS2= libcurses
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
 
 .KEEP_STATE:
 

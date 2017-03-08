@@ -65,7 +65,7 @@ XPG4SCRIPT =	batch.xpg4
 POFILE=		$(PROG1)_cmd.po
 POFILES1=	at.po crontab.po funcs.po batch.po
 POFILES=	$(POFILES1) atrm.po
-$(POFILES1) :=	XGETFLAGS= -a -x $(PROG1).xcl
+$(POFILES1) : 	XGETFLAGS= -a -x $(PROG1).xcl
 
 ROOTDIRS =	$(ROOTSPCRON) $(ROOTCROND) \
 		$(ROOTCRONTABS) $(ROOTATJOBS)
@@ -103,15 +103,15 @@ XPG4ATOBJS=	$(ATOBJS:%=objs.xpg4/%) $(XPG4OBJS:%=objs.xpg4/%)
 XPG6COMMONOBJS=	$(COMMONOBJS:%=objs.xpg6/%)
 XPG6CTOBJS=	$(CRONTABOBJS:%=objs.xpg6/%)
 
-cron :=		POBJS = $(CRONOBJS) $(COMMONOBJ2)
-at :=		POBJS = $(ATOBJS) $(COMMONOBJS)
-at.xpg4 :=	POBJS = $(XPG4ATOBJS) $(XPG4COMMONOBJS)
-atrm :=		POBJS = $(ATRMOBJS) $(COMMONOBJS)
-atq :=		POBJS = $(ATQOBJS) $(COMMONOBJS)
-crontab :=	POBJS = $(CRONTABOBJS) $(COMMONOBJS)
-crontab.xpg4 :=	POBJS = $(XPG4CTOBJS) $(XPG4COMMONOBJS)
-crontab.xpg6 :=	POBJS = $(XPG6CTOBJS) $(XPG6COMMONOBJS)
-parsetest :=	POBJS = $(PARSETESTOBJS)
+cron : 		POBJS = $(CRONOBJS) $(COMMONOBJ2)
+at : 		POBJS = $(ATOBJS) $(COMMONOBJS)
+at.xpg4 : 	POBJS = $(XPG4ATOBJS) $(XPG4COMMONOBJS)
+atrm : 		POBJS = $(ATRMOBJS) $(COMMONOBJS)
+atq : 		POBJS = $(ATQOBJS) $(COMMONOBJS)
+crontab : 	POBJS = $(CRONTABOBJS) $(COMMONOBJS)
+crontab.xpg4 : 	POBJS = $(XPG4CTOBJS) $(XPG4COMMONOBJS)
+crontab.xpg6 : 	POBJS = $(XPG6CTOBJS) $(XPG6COMMONOBJS)
+parsetest : 	POBJS = $(PARSETESTOBJS)
 
 CFLAGS += $(CCVERBOSE)
 
@@ -124,34 +124,46 @@ SRCS =		$(NOBJS:%.o=%.c) $(GETRESPSRC)
 
 CLOBBERFILES +=	$(SCRIPT) $(XPG4SCRIPT)
 
-$(ROOTLIBCRON) :=		SYMLNKDEST = ../../etc/cron.d
-$(ROOTETC)/cron :=		SYMLNKDEST = ../usr/sbin/cron
+$(ROOTLIBCRON) : 		SYMLNKDEST = ../../etc/cron.d
+$(ROOTETC)/cron : 		SYMLNKDEST = ../usr/sbin/cron
 
-$(ROOTBIN)/at :=		FILEMODE = 04755
-$(ROOTXPG4BIN)/at :=		FILEMODE = 04755
-$(ROOTBIN)/atrm :=		FILEMODE = 04755
-$(ROOTBIN)/atq :=		FILEMODE = 04755
-$(ROOTBIN)/crontab :=		FILEMODE = 04555
-$(ROOTXPG6BIN)/crontab :=	FILEMODE = 04555
-$(ROOTXPG4BIN)/crontab :=	FILEMODE = 04555
-$(ROOTUSRSBIN)/cron :=		FILEMODE = 0555
+$(ROOTBIN)/at : 		FILEMODE = 04755
+$(ROOTXPG4BIN)/at : 		FILEMODE = 04755
+$(ROOTBIN)/atrm : 		FILEMODE = 04755
+$(ROOTBIN)/atq : 		FILEMODE = 04755
+$(ROOTBIN)/crontab : 		FILEMODE = 04555
+$(ROOTXPG6BIN)/crontab : 	FILEMODE = 04555
+$(ROOTXPG4BIN)/crontab : 	FILEMODE = 04555
+$(ROOTUSRSBIN)/cron : 		FILEMODE = 0555
 
-at :=		LDLIBS += -lbsm -lproject -lsecdb
-at.xpg4 :=	LDLIBS += -lbsm -lproject -lsecdb
-atq :=		LDLIBS += -lbsm -lsecdb
-atrm :=		LDLIBS += -lbsm -lsecdb
-cron :=		LDLIBS += -lbsm -lpam -lproject -lcontract -lzoneinfo -lcustr
-crontab :=	LDLIBS += -lbsm -lsecdb -lpam -lzoneinfo -lcustr
-crontab.xpg6 :=	LDLIBS += -lbsm -lsecdb -lpam -lzoneinfo -lcustr
-crontab.xpg4 :=	LDLIBS += -lbsm -lsecdb -lpam -lzoneinfo -lcustr
-parsetest :=	LDLIBS += -lcustr
+$(ROOTLIBCRON) : 		SYMLNKDEST = ../../etc/cron.d
+$(ROOTETC)/cron : 		SYMLNKDEST = ../usr/sbin/cron
 
-$(XPG4) :=	CFLAGS += -DXPG4
-$(XPG6) :=	CFLAGS += -DXPG6
-parsetest :=	CFLAGS += -DPARSETEST
+$(ROOTBIN)/at : 		FILEMODE = 04755
+$(ROOTXPG4BIN)/at : 		FILEMODE = 04755
+$(ROOTBIN)/atrm : 		FILEMODE = 04755
+$(ROOTBIN)/atq : 		FILEMODE = 04755
+$(ROOTBIN)/crontab : 		FILEMODE = 04555
+$(ROOTXPG6BIN)/crontab : 	FILEMODE = 04555
+$(ROOTXPG4BIN)/crontab : 	FILEMODE = 04555
+$(ROOTUSRSBIN)/cron : 		FILEMODE = 0555
 
-$(ROOTSVCSYSTEM)/cron.xml := FILEMODE = 0444
-$(ROOTLIBSVCMETHOD)/svc-cron := FILEMODE = 0555
+at : 		LDLIBS += -lbsm -lproject -lsecdb
+at.xpg4 : 	LDLIBS += -lbsm -lproject -lsecdb
+atq : 		LDLIBS += -lbsm -lsecdb
+atrm : 		LDLIBS += -lbsm -lsecdb
+cron : 		LDLIBS += -lbsm -lpam -lproject -lcontract -lzoneinfo -lcustr
+crontab : 	LDLIBS += -lbsm -lsecdb -lpam -lzoneinfo -lcustr
+crontab.xpg6 : 	LDLIBS += -lbsm -lsecdb -lpam -lzoneinfo -lcustr
+crontab.xpg4 : 	LDLIBS += -lbsm -lsecdb -lpam -lzoneinfo -lcustr
+parsetest : 	LDLIBS += -lcustr
+
+$(XPG4) : 	CFLAGS += -DXPG4
+$(XPG6) : 	CFLAGS += -DXPG6
+parsetest : 	CFLAGS += -DPARSETEST
+
+$(ROOTSVCSYSTEM)/cron.xml :  FILEMODE = 0444
+$(ROOTLIBSVCMETHOD)/svc-cron :  FILEMODE = 0555
 
 
 .KEEP_STATE:

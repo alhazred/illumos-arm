@@ -65,14 +65,14 @@ $(UFSROOTUSRLIBFSTYPE)/%: $(UFSROOTUSRLIBFSTYPE) %
 	$(INS.file)
 
 # set up TARGET macro for all Makefile here
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-debug:=		TARGET= debug
-check:=		TARGET= check
-_msg:=		TARGET= _msg
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+debug: 		TARGET= debug
+check: 		TARGET= check
+_msg: 		TARGET= _msg
 
 # default dump library is the -O one
 DUMPLIB=	libdump.a

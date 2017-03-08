@@ -60,28 +60,28 @@ SYMDIR3 =	$(ROOTVARSP)/lp/logs
 SYMDIR4 =	$(ROOTETCLP)/logs
 SYMDIR5 =	$(ROOTVARSP)/lp/model
 
-$(SYMDIR1) :=	SYMLNKDEST =	../../../../etc/lp
-$(SYMDIR2) :=	SYMLNKDEST =	../../../usr/lib/lp/bin
-$(SYMDIR3) :=	SYMLNKDEST =	../../lp/logs
-$(SYMDIR4) :=	SYMLNKDEST =	../../var/lp/logs
-$(SYMDIR5) :=	SYMLNKDEST =	../../../usr/lib/lp/model
+$(SYMDIR1) : 	SYMLNKDEST =	../../../../etc/lp
+$(SYMDIR2) : 	SYMLNKDEST =	../../../usr/lib/lp/bin
+$(SYMDIR3) : 	SYMLNKDEST =	../../lp/logs
+$(SYMDIR4) : 	SYMLNKDEST =	../../var/lp/logs
+$(SYMDIR5) : 	SYMLNKDEST =	../../../usr/lib/lp/model
 
 ROOTSYMLINKDIRS =	$(SYMDIR1) $(SYMDIR2) $(SYMDIR3) $(SYMDIR4) $(SYMDIR5)
 
-$(ROOTVAR)/lp :=		DIRMODE = 775
-$(ROOTVAR)/lp/logs :=		DIRMODE = 775
-$(ROOTETCLP) :=			DIRMODE = 775
-$(ROOTETCLP)/classes :=		DIRMODE = 775
-$(ROOTETCLP)/forms :=		DIRMODE = 775
-$(ROOTETCLP)/interfaces :=	DIRMODE = 775
-$(ROOTETCLP)/printers :=	DIRMODE = 775
-$(ROOTETCLP)/pwheels :=		DIRMODE = 775
-$(ROOTETCLP)/ppd :=		DIRMODE = 775
-$(ROOTVARSP)/lp :=		DIRMODE = 775
-$(ROOTVARSP)/lp/admins :=	DIRMODE = 775
-$(ROOTVARSP)/lp/requests :=	DIRMODE = 775
-$(ROOTVARSP)/lp/system :=	DIRMODE = 775
-$(ROOTLIB)/print :=		DIRMODE = 0755
+$(ROOTVAR)/lp : 		DIRMODE = 775
+$(ROOTVAR)/lp/logs : 		DIRMODE = 775
+$(ROOTETCLP) : 			DIRMODE = 775
+$(ROOTETCLP)/classes : 		DIRMODE = 775
+$(ROOTETCLP)/forms : 		DIRMODE = 775
+$(ROOTETCLP)/interfaces : 	DIRMODE = 775
+$(ROOTETCLP)/printers : 	DIRMODE = 775
+$(ROOTETCLP)/pwheels : 		DIRMODE = 775
+$(ROOTETCLP)/ppd : 		DIRMODE = 775
+$(ROOTVARSP)/lp : 		DIRMODE = 775
+$(ROOTVARSP)/lp/admins : 	DIRMODE = 775
+$(ROOTVARSP)/lp/requests : 	DIRMODE = 775
+$(ROOTVARSP)/lp/system : 	DIRMODE = 775
+$(ROOTLIB)/print : 		DIRMODE = 0755
 
 POFILE= lp.po
 POFILES= lp_*.po

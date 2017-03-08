@@ -24,7 +24,7 @@ include ../Makefile.com
 EFI_TARGET=	pei-i386
 LDFLAGS +=	-znocombreloc
 
-efi_main.o := CPPFLAGS += -DLOADER_EFI=L\"loader32.efi\"
+efi_main.o :  CPPFLAGS += -DLOADER_EFI=L\"loader32.efi\"
 CFLAGS +=	-m32
 CCASFLAGS +=	-m32
 

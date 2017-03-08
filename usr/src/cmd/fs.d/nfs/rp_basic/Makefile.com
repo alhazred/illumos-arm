@@ -32,7 +32,7 @@ OBJECTS =	$(LIBOBJS) $(COMMON)
 
 include $(SRC)/lib/Makefile.lib
 
-lintcheck := SRCS = ../libnfs_basic.c ../../lib/ref_subr.c
+lintcheck :  SRCS = ../libnfs_basic.c ../../lib/ref_subr.c
 
 ROOTLIBDIR =	$(ROOT)/usr/lib/reparse
 ROOTLIBDIR64 =	$(ROOT)/usr/lib/reparse/$(MACH64)

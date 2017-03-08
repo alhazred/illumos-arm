@@ -86,7 +86,7 @@ LDLIBS +=	-lmapmalloc -lc
 
 CERRWARN +=	$(CNOWARN_UNINIT)
 
-$(LIBS):= PICS += $(SHAREDOBJS)
+$(LIBS):  PICS += $(SHAREDOBJS)
 
 .KEEP_STATE:
 

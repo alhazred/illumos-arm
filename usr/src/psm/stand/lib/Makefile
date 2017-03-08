@@ -33,11 +33,11 @@ SUBDIRS = boot names promif
 
 all install clean clobber lint: $(SUBDIRS)
 
-all	:=	TARGET = all
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
-lint	:=	TARGET = lint
-install	:=	TARGET = install
+all	: 	TARGET = all
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
+lint	: 	TARGET = lint
+install	: 	TARGET = install
 
 $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(MFLAGS) $(TARGET)

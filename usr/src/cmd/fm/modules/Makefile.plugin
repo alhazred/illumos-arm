@@ -80,8 +80,8 @@ LDFLAGS += $(ZDEFS) $(ZTEXT) $(ZIGNORE)
 MAPFILE-DMOD = $(SRC)/cmd/mdb/common/modules/conf/mapfile-extern
 
 
-$(PROG) := LDFLAGS += -Wl,-M$(APIMAP) -Wl,-M$(FMRIMAP)
-$(PROG) := LDLIBS += -lnvpair -lc
+$(PROG) :  LDFLAGS += -Wl,-M$(APIMAP) -Wl,-M$(FMRIMAP)
+$(PROG) :  LDLIBS += -lnvpair -lc
 
 all: $(PROG) $(DMODPROG)
 

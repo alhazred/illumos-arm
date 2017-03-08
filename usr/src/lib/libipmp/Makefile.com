@@ -41,7 +41,7 @@ CPPFLAGS +=	-D_REENTRANT -I$(SRCDIR)
 
 # ipmp_snap_take() generates false double free and dereferencing freed memory
 # errors
-pics/ipmp_query.o := SMOFF = check_free
+pics/ipmp_query.o :  SMOFF = check_free
 
 .KEEP_STATE:
 

@@ -17,10 +17,10 @@
 ALGS	= sha1 sha256 sha384 sha512 sha512_224 sha512_256 md5
 SUBDIRS	= data
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
 
 .KEEP_STATE:
 

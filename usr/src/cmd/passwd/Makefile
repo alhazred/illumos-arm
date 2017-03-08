@@ -28,8 +28,8 @@ DEFAULTFILES= passwd.dfl
 
 include ../Makefile.cmd
 
-passwd := LDLIBS += $(ROOT)/usr/lib/passwdutil.so.1 
-lint := LDLIBS += -lpasswdutil
+passwd :  LDLIBS += $(ROOT)/usr/lib/passwdutil.so.1 
+lint :  LDLIBS += -lpasswdutil
 LDFLAGS += $(ZIGNORE)
 LDLIBS += -lbsm -lpam -lnsl
 

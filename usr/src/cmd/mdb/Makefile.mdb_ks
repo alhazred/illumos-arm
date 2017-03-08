@@ -53,6 +53,6 @@ MAPFILE =
 # Calling _mdb_init and _mdb_fini directly seems vile, so we'll give them
 # sensible prefixes first.
 #
-kmod/mdb_ks.o := CPPFLAGS += -D_mdb_init=mdb_ks_init -D_mdb_fini=mdb_ks_fini
+kmod/mdb_ks.o :  CPPFLAGS += -D_mdb_init=mdb_ks_init -D_mdb_fini=mdb_ks_fini
 
 CERRWARN += -_gcc=-Wno-type-limits

@@ -24,6 +24,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Dynamic Host Configuration Protocol version 6, for IPv6.  Supports
@@ -42,6 +45,7 @@
 #include <arpa/inet.h>
 #include <dhcp_impl.h>
 #include <dhcp_inittab.h>
+#include <ctype.h>
 
 #include "snoop.h"
 

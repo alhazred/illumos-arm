@@ -40,6 +40,8 @@
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <signal.h>
 #include <sys/stat.h>
 #include <rpc/rpc.h>
@@ -51,7 +53,7 @@
 #include <rpcsvc/rusers.h>
 #include <sys/resource.h>
 #include <limits.h>
-
+#include <unistd.h>
 #ifdef	DEBUG
 #define	RPC_SVC_FG
 #endif

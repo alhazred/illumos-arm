@@ -26,6 +26,7 @@
 
 #include <fcntl.h>
 #include <arpa/tftp.h>
+#include <stdio.h>
 #include "snoop.h"
 
 struct tftp_options {

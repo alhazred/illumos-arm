@@ -26,6 +26,7 @@
 #include <krb5.h>
 #include "smbd.h"
 #include "smbd_authsvc.h"
+#include <../include/string.h>
 
 /* From krb5/krb/pac.c (should have been exported) */
 #define	PAC_LOGON_INFO		1

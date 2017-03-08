@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2012 Milan Jurik. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <stddef.h>
@@ -48,6 +51,7 @@
 #include <netdb.h>
 #include <rpc/rpc.h>
 #include <setjmp.h>
+#include <arpa/inet.h>
 
 #include <sys/pfmod.h>
 #include "snoop.h"

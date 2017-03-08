@@ -23,6 +23,9 @@
  * Copyright 2003 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
 #include <sys/types.h>
@@ -33,8 +36,11 @@
 #include <unistd.h>
 #include <userdefs.h>
 #include <errno.h>
+#include <string.h>
+#include <stdlib.h>
 #include <nss_dbdefs.h>
 #include "users.h"
+#include "funcs.h"
 #include "messages.h"
 
 int

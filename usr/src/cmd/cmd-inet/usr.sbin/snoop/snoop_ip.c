@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2012 Milan Jurik. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <string.h>
@@ -50,6 +53,10 @@
 #include <sys/tsol/label_macro.h>
 
 #include "snoop.h"
+#include "snoop_ospf.h"
+#include "snoop_ospf6.h"
+extern int interpret_ospf(int flags, struct ospfhdr *ospf, int iplen, int fraglen);
+extern int interpret_ospf6(int flags, struct ospf6hdr *ospf, int iplen, int fraglen);
 
 
 /*

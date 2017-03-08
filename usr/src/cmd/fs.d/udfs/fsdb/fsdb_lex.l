@@ -22,10 +22,14 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
 #include <locale.h>
+#include <stdint.h>
 #include "y.tab.h"
 
 extern int base;

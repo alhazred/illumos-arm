@@ -23,6 +23,9 @@
  * Copyright 1996 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -49,6 +52,7 @@
 #include <ctype.h>
 #include <limits.h>
 #include <signal.h>
+#include <sys/termio.h>
 
 #define	EQ(a, b)	(strcmp(a, b) == 0)
 /*	max # columns used (needed for GSI) */

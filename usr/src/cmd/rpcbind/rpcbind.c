@@ -25,6 +25,9 @@
 /*
  * Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 /* Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T */
 /* All Rights Reserved */
 /*
@@ -127,6 +130,7 @@
 #include <priv_utils.h>
 #include <libscf.h>
 #include <sys/ccompile.h>
+#include <tsol/label.h>
 #include <zone.h>
 #include <ctype.h>
 #include <limits.h>

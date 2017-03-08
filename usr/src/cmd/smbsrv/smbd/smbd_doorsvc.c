@@ -22,6 +22,9 @@
  * Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2019 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/list.h>
 #include <assert.h>
@@ -31,6 +34,7 @@
 #include <syslog.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <../include/string.h>
 #include <synch.h>
 #include <string.h>
 #include <stdlib.h>

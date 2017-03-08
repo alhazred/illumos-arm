@@ -22,6 +22,9 @@
  * Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2017 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <errno.h>
@@ -40,6 +43,7 @@
 #include <nss_dbdefs.h>
 #include <sys/idmap.h>
 #include "smbd.h"
+#include <../include/string.h>
 
 
 /*

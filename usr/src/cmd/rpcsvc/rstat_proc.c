@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -39,6 +42,7 @@
 #include <fcntl.h>
 #include <syslog.h>
 #include <kstat.h>
+#include <unistd.h>
 
 #include <rpc/rpc.h>
 
@@ -50,6 +54,7 @@
 #include <sys/stropts.h>
 #include <sys/tihdr.h>
 #include <sys/sysmacros.h>
+#include <stropts.h>
 
 #include <net/if.h>
 #include <inet/mib2.h>

@@ -22,6 +22,9 @@
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	All Rights Reserved	*/
@@ -34,6 +37,7 @@
 
 #include <widec.h>
 #include <wctype.h>
+#include <stdint.h>
 #include "sgs.h"
 
 #define	CHR wchar_t
@@ -189,8 +193,8 @@ extern int prev;	/* previous input character */
 extern int pres;	/* present input character */
 extern int peek;	/* next input character */
 extern int *name;
-extern int *left;
-extern int *right;
+extern intptr_t *left;
+extern intptr_t *right;
 extern int *parent;
 extern Boolean *nullstr;
 extern int tptr;
@@ -275,7 +279,7 @@ int lookup(CHR *s, CHR **t);
 int usescape(int c);
 int alpha(int c);
 int mn2(int a, int d, int c);
-int mn1(int a, int d);
+int mn1(intptr_t a, intptr_t d);
 int mn0(int a);
 int dupl(int n);
 

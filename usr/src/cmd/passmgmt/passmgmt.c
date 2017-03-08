@@ -284,7 +284,6 @@ struct uid_blk *uid_sp;
 char *prognamp;			/* program name */
 extern int errno;
 int optn_mask = 0, info_mask = 0;
-extern int getdate_err;
 
 int
 main(int argc, char **argv)

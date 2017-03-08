@@ -26,6 +26,9 @@
  * Use is subject to license terms.
  */
 /*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+/*
  * Copyright 2014 Garrett D'Amore <garrett@damore.org>
  */
 
@@ -339,6 +342,12 @@ extern float modff(float, float *);
 
 #if defined(__cplusplus) && defined(__GNUC__)
 #undef	exception
+#endif
+
+#if !defined(_STRICT_STDC)
+extern int finitef(float);
+extern int finite(double);
+
 #endif
 
 #ifdef __cplusplus

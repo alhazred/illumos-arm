@@ -203,12 +203,12 @@ singlehost(host)
 	sw_var.cp_time.cp_time_val = (int *)NULL;
 	sw_var.dk_xfer.dk_xfer_val = (int *)NULL;
 	err = (enum clnt_stat)callrpc(host, RSTATPROG, RSTATVERS_VAR,
-			RSTATPROC_STATS, xdr_void, 0, xdr_statsvar, &sw_var);
+			RSTATPROC_STATS, xdr_void, 0, xdr_statsvar, (char *)&sw_var);
 	if (err == RPC_SUCCESS) {
 		is_var_vers = TRUE;
 	} else if (err == RPC_PROGVERSMISMATCH) {
 		err = (enum clnt_stat)callrpc(host, RSTATPROG, RSTATVERS_TIME,
-			RSTATPROC_STATS, xdr_void, 0, xdr_statstime, &st);
+			RSTATPROC_STATS, xdr_void, 0, xdr_statstime, (char *)&st);
 		if (err != RPC_SUCCESS)
 			goto error;
 	} else

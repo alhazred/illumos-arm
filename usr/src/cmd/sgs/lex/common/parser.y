@@ -24,6 +24,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -307,6 +310,7 @@ yylex(void)
 	int ccs; /* Current CodeSet. */
 	CHR *ccp;
 	int exclusive_flag;	/* XCU4: exclusive start flag */
+	void *tmp;
 
 # ifdef DEBUG
 	yylval.i = 0;
@@ -336,17 +340,17 @@ yylex(void)
 						sectbegin = TRUE;
 						i = treesize*(sizeof(*name)+sizeof(*left)+
 							sizeof(*right)+sizeof(*nullstr)+sizeof(*parent))+ALITTLEEXTRA;
-						c = (int)myalloc(i,1);
-						if(c == 0)
+						tmp = (void *)myalloc(i,1);
+						if(tmp == 0)
 							error("Too little core for parse tree");
-						p = (CHR *)c;
+						p = (CHR *)tmp;
 						free(p);
 						/*LINTED: E_BAD_PTR_CAST_ALIGN*/
 						name = (int *)myalloc(treesize,sizeof(*name));
 						/*LINTED: E_BAD_PTR_CAST_ALIGN*/
-						left = (int *)myalloc(treesize,sizeof(*left));
+						left = (intptr_t *)myalloc(treesize,sizeof(*left));
 						/*LINTED: E_BAD_PTR_CAST_ALIGN*/
-						right = (int *)myalloc(treesize,sizeof(*right));
+						right = (intptr_t *)myalloc(treesize,sizeof(*right));
 						nullstr = myalloc(treesize,sizeof(*nullstr));
 						/*LINTED: E_BAD_PTR_CAST_ALIGN*/
 						parent = (int *)myalloc(treesize,sizeof(*parent));

@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -341,9 +344,9 @@ repbycgid(void)
 			while (ccp < ccptr && scomp(ccltoken, ccp) != 0)
 				ccp++;
 			if (ccp < ccptr) {  /* character class found in ccl */
-				left[i] = (int)ccp;
+				left[i] = (intptr_t)ccp;
 			} else { /* not in ccl, add it */
-				left[i] = (int)ccptr;
+				left[i] = (intptr_t)ccptr;
 				scopy(ccltoken, ccptr);
 				ccptr += slength(ccltoken) + 1;
 				if (ccptr > ccl + CCLSIZE)
@@ -375,7 +378,7 @@ repbycgid(void)
 			}
 			/* Mimic mn1(RCCL,psave)... */
 			name[i] = RCCL;
-			left[i] = (int)psave;
+			left[i] = (intptr_t)psave;
 			cclinter(1);
 		}
 	}

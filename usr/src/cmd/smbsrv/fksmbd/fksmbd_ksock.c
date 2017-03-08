@@ -12,6 +12,9 @@
 /*
  * Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * fork/exec a privileged helper to do the bind.
@@ -27,6 +30,7 @@
 #include <sys/note.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <../include/string.h>
 
 int
 ksocket_bind_helper(int fd, struct sockaddr *addr, uint_t addrlen)

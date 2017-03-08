@@ -27,9 +27,13 @@
 /*
  * Copyright (c) 2013 RackTop Systems.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include	<sys/types.h>
 #include	<stdio.h>
+#include	<stdlib.h>
 #include	<strings.h>
 #include	<sys/param.h>
 #include	<users.h>

@@ -12,6 +12,9 @@
 /*
  * Copyright 2017 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * SMB authentication service
@@ -30,6 +33,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <stdio.h>
+#include <../include/string.h>
 #include <note.h>
 #include <net/if.h>
 #include <net/route.h>

@@ -43,6 +43,7 @@
  * Disk quota reporting program.
  */
 #include <stdio.h>
+#include <synch.h>
 #include <sys/mnttab.h>
 #include <ctype.h>
 #include <pwd.h>
@@ -66,6 +67,9 @@
 #include "../../nfs/lib/replica.h"
 #include <dlfcn.h>
 #include <libzfs.h>
+#include <string.h>
+#include <unistd.h>
+#include <strings.h>
 
 int	vflag;
 int	nolocalquota;

@@ -42,6 +42,8 @@
 #include "misc.h"
 #include <sac.h>
 #include "structs.h"
+#include <ctype.h>
+#include <wait.h>
 
 #define	ADD		0x1	/* -a or other required options seen */
 #define	REMOVE		0x2	/* -r seen */

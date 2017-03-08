@@ -23,6 +23,9 @@
  * Copyright 1994 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -47,6 +50,7 @@
 #include "talk.h"
 #include <signal.h>
 #include <libintl.h>
+#include <sys/termios.h>
 
 #ifdef SYSV
 #define	signal(s, f)	sigset(s, f)

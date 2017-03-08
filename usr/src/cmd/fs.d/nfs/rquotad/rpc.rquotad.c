@@ -34,6 +34,7 @@
 #include <signal.h>
 #include <syslog.h>
 #include <string.h>
+#include <strings.h>
 #include <stropts.h>
 #include <errno.h>
 #include <sys/netconfig.h>

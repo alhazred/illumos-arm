@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * labelit [option=value ...] cdimage
@@ -46,6 +49,9 @@
 #include <sys/types.h>
 #include <sys/file.h>
 #include <dirent.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include <sys/fs/hsfs_isospec.h>
 #include <sys/fs/hsfs_spec.h>

@@ -25,6 +25,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -44,6 +47,7 @@
 #include <sac.h>
 #include "adm.h"
 #include "structs.h"
+#include <string.h>
 
 
 /*

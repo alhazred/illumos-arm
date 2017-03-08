@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include <strings.h>
 #include <unistd.h>
 #include <syslog.h>
 #include <stdarg.h>

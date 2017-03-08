@@ -22,6 +22,9 @@
  * Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/list.h>
 #include <assert.h>
@@ -39,6 +42,7 @@
 #include <pthread.h>
 #include <strings.h>
 #include <umem.h>
+#include <../include/string.h>
 
 #include <smbsrv/smb_door.h>
 #include <smbsrv/smb_xdr.h>

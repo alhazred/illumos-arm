@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -36,6 +39,7 @@
 #include <stropts.h>
 #include <netconfig.h>
 #include <syslog.h>
+#include <unistd.h>
 
 #ifdef __STDC__
 #define	SIG_PF void(*)(int)

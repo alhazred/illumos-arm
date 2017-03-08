@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -34,6 +37,9 @@
 #include 	<limits.h>
 #include	<errno.h>
 #include	<stdarg.h>
+#include	<string.h>
+#include	<unistd.h>
+#include	<stdlib.h>
 #include	<sys/vfstab.h>
 
 #include	<locale.h>

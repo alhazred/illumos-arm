@@ -45,6 +45,7 @@
 #include <rpc/svc.h>
 #include <rpcsvc/yp_prot.h>
 #include <rpc/pmap_prot.h>
+#include <string.h>
 #include "snoop.h"
 
 #ifndef MIN

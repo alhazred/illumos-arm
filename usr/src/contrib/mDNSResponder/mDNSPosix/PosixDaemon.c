@@ -37,6 +37,7 @@
 #include <fcntl.h>
 #include <pwd.h>
 #include <sys/types.h>
+#include <strings.h>
 
 #if __APPLE__
 #undef daemon

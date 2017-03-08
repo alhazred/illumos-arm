@@ -48,7 +48,7 @@
 #include "structs.h"
 #include "adm.h"
 #include "extern.h"
-
+#include <ctype.h>
 
 /*
  * functions

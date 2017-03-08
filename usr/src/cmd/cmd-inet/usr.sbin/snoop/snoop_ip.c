@@ -282,7 +282,7 @@ interpret_ip(int flags, const struct ip *ip, int fraglen)
 				break;
 
 			case IPPROTO_OSPF:
-				interpret_ospf(flags, data, iplen, fraglen);
+				interpret_ospf(flags, (struct ospfhdr *)data, iplen, fraglen);
 				break;
 
 			case IPPROTO_EGP:
@@ -483,7 +483,7 @@ interpret_ipv6(int flags, const ip6_t *ip6h, int fraglen)
 			    iplen, fraglen);
 			break;
 		case IPPROTO_OSPF:
-			interpret_ospf6(flags, data, iplen, fraglen);
+			interpret_ospf6(flags, (struct ospf6hdr *)data, iplen, fraglen);
 			break;
 		}
 	}

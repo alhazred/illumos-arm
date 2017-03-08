@@ -948,6 +948,7 @@ list_svcs(pmtag, type, svctag, oflag)
 char *pmtag;
 char *type;
 char *svctag;
+int oflag;
 {
 	FILE *fp;				/* scratch file pointer */
 	register struct taglist *tp;		/* pointer to PM list */

@@ -23,6 +23,9 @@
  * Copyright (c) 1989, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2019 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -93,7 +96,7 @@ struct plock	*proc_lock;	/* persistent array of p_lock's */
 static kmutex_t	pidlinklock;
 static struct pid **pidhash;
 static pid_t minpid;
-static pid_t mpid = FAMOUS_PIDS;	/* one more than the last famous pid */
+pid_t mpid = FAMOUS_PIDS;	/* one more than the last famous pid */
 static union procent *procdir;
 static union procent *procentfree;
 

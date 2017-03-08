@@ -23,6 +23,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/errno.h>
 #include <sys/cpuvar.h>
@@ -117,6 +120,12 @@ static int dcpc_aframes = 0;	/* override for artificial frame setting */
 #if defined(__x86)
 #define	DCPC_ARTIFICIAL_FRAMES	8
 #elif defined(__sparc)
+#define	DCPC_ARTIFICIAL_FRAMES	2
+#elif defined(__alpha)
+#define	DCPC_ARTIFICIAL_FRAMES	2
+#elif defined(__aarch64)
+#define	DCPC_ARTIFICIAL_FRAMES	2
+#elif defined(__riscv)
 #define	DCPC_ARTIFICIAL_FRAMES	2
 #endif
 

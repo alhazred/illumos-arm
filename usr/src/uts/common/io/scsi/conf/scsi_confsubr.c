@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Utility SCSI configuration routines
@@ -245,6 +248,51 @@ ddi_dma_attr_t scsi_alloc_attr = {
 };
 uint64_t scsi_max_phys_addr = 0xFFFFFFFFull;
 int scsi_sgl_size = 0xFF;
+#elif defined(__alpha)
+ddi_dma_attr_t scsi_alloc_attr = {
+	DMA_ATTR_V0,	/* version number */
+	0x0,		/* lowest usable address */
+	0x1FFFFFFFFFFull,	/* high DMA address range */
+	0xFFFFFFFFull,	/* DMA counter register */
+	1,		/* DMA address alignment */
+	1,		/* DMA burstsizes */
+	1,		/* min effective DMA size */
+	0xFFFFFFFFull,	/* max DMA xfer size */
+	0xFFFFFFFFull,	/* segment boundary */
+	1,		/* s/g list length */
+	512,		/* granularity of device */
+	0		/* DMA transfer flags */
+};
+#elif defined(__aarch64)
+ddi_dma_attr_t scsi_alloc_attr = {
+	DMA_ATTR_V0,	/* version number */
+	0x0,		/* lowest usable address */
+	0xFFFFFFFFFFFFull,	/* high DMA address range */
+	0xFFFFFFFFull,	/* DMA counter register */
+	1,		/* DMA address alignment */
+	1,		/* DMA burstsizes */
+	1,		/* min effective DMA size */
+	0xFFFFFFFFull,	/* max DMA xfer size */
+	0xFFFFFFFFull,	/* segment boundary */
+	1,		/* s/g list length */
+	512,		/* granularity of device */
+	0		/* DMA transfer flags */
+};
+#elif defined(__riscv)
+ddi_dma_attr_t scsi_alloc_attr = {
+	DMA_ATTR_V0,	/* version number */
+	0x0,		/* lowest usable address */
+	0xFFFFFFFFFFFFull,	/* high DMA address range */
+	0xFFFFFFFFull,	/* DMA counter register */
+	1,		/* DMA address alignment */
+	1,		/* DMA burstsizes */
+	1,		/* min effective DMA size */
+	0xFFFFFFFFull,	/* max DMA xfer size */
+	0xFFFFFFFFull,	/* segment boundary */
+	1,		/* s/g list length */
+	512,		/* granularity of device */
+	0		/* DMA transfer flags */
+};
 #endif
 
 ulong_t	*scsi_pkt_bad_alloc_bitmap;

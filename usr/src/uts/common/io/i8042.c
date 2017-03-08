@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/ddi.h>
@@ -86,7 +89,7 @@
 #if defined(__sparc)
 #define	I8042_CMD_DISABLE_ALL	0x34
 #define	I8042_CMD_ENABLE_ALL	0x07
-#elif defined(__i386) || defined(__amd64)
+#elif defined(__i386) || defined(__amd64) || defined(__alpha)
 #define	I8042_CMD_DISABLE_ALL	0x74
 #define	I8042_CMD_ENABLE_ALL	0x47
 #endif

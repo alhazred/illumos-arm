@@ -28,6 +28,9 @@
 /*
  * Copyright (c) 2018, Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #ifndef _SYS_USER_H
@@ -201,7 +204,7 @@ typedef struct {		/* kernel syscall set type */
  *
  * This value should not be changed in a patch.
  */
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 #define	__KERN_NAUXV_IMPL 20
 #elif defined(__i386) || defined(__amd64)
 #define	__KERN_NAUXV_IMPL 25

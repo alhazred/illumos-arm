@@ -23,6 +23,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_MACHELF_H
 #define	_SYS_MACHELF_H
@@ -35,6 +38,12 @@ extern "C" {
 #include <sys/elf_amd64.h>
 #elif defined(__i386)
 #include <sys/elf_386.h>
+#elif defined(__alpha)
+#include <sys/elf_alpha.h>
+#elif defined(__aarch64)
+#include <sys/elf_aarch64.h>
+#elif defined(__riscv)
+#include <sys/elf_riscv.h>
 #elif defined(__sparc)
 #include <sys/elf_SPARC.h>
 #endif

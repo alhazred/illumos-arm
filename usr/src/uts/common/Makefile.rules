@@ -26,6 +26,7 @@
 # Copyright 2019 Joyent, Inc.
 # Copyright 2018 Nexenta Systems, Inc.
 # Copyright (c) 2017 by Delphix. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2020 Oxide Computer Company
 #
 
@@ -1638,8 +1639,13 @@ $(OBJS_DIR)/%.o:		$(UTSBASE)/common/zmod/%.c
 	$(COMPILE.c) -o $@ $<
 	$(CTFCONVERT_O)
 
+ZLIB_OBJ_LDFLAGS_i386= -r $(BREDUCE) -M$(UTSBASE)/common/zmod/mapfile
+ZLIB_OBJ_LDFLAGS_sparc= -r $(BREDUCE) -M$(UTSBASE)/common/zmod/mapfile
+ZLIB_OBJ_LDFLAGS_aarch64= -r -d --version-script=$(UTSBASE)/common/zmod/mapfile
+ZLIB_OBJ_LDFLAGS_alpha= -r -d --version-script=$(UTSBASE)/common/zmod/mapfile
+ZLIB_OBJ_LDFLAGS= $(ZLIB_OBJ_LDFLAGS_$(MACH))
 $(OBJS_DIR)/zlib_obj.o:		$(ZLIB_OBJS:%=$(OBJS_DIR)/%)
-	$(LD) -r $(BREDUCE) -M$(UTSBASE)/common/zmod/mapfile -o $@ \
+	$(LD) $(ZLIB_OBJ_LDFLAGS) -o $@ \
 	    $(ZLIB_OBJS:%=$(OBJS_DIR)/%)
 	$(CTFMERGE) $(CTFMRGFLAGS) -o $@ $(ZLIB_OBJS:%=$(OBJS_DIR)/%)
 

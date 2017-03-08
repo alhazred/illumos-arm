@@ -25,6 +25,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_ATOMIC_H
 #define	_SYS_ATOMIC_H
@@ -36,6 +39,9 @@
 extern "C" {
 #endif
 
+#if defined(__GNUC__) && (defined(__alpha) || defined(__aarch64) || defined(__riscv))
+#include <asm/atomic.h>
+#else
 #if defined(_KERNEL) && defined(__GNUC__) && defined(_ASM_INLINES) && \
 	(defined(__i386) || defined(__amd64))
 #include <asm/atomic.h>
@@ -53,6 +59,7 @@ extern void atomic_inc_uint(volatile uint_t *);
 extern void atomic_inc_ulong(volatile ulong_t *);
 #if defined(_KERNEL) || defined(_INT64_TYPE)
 extern void atomic_inc_64(volatile uint64_t *);
+#endif
 
 /*
  * Decrement target
@@ -262,7 +269,7 @@ extern void membar_producer(void);
  * after the available flag has been seen, i.e. it imposes load ordering.
  */
 extern void membar_consumer(void);
-#endif
+#endif /* #if defined(__GNUC__) && (defined(__alpha) || defined(__aarch64) || defined(__riscv)) */
 
 #if defined(_KERNEL)
 

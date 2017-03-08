@@ -22,6 +22,9 @@
  * Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _ELF_ELF_IMPL_H
 #define	_ELF_ELF_IMPL_H
@@ -61,6 +64,9 @@ typedef	auxv_t		aux_entry_t;
 #define	USR_LIB_RTLD	"/usr/lib/amd64/ld.so.1"
 #endif
 
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
+#define	USR_LIB_RTLD	"/usr/lib/ld.so.1"
+#endif
 #endif	/* !_LP64 || _ELF32_COMPAT */
 
 /*

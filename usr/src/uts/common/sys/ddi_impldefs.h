@@ -24,6 +24,9 @@
  * Copyright 2016 Joyent, Inc.
  * Copyright (c) 2016 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_DDI_IMPLDEFS_H
 #define	_SYS_DDI_IMPLDEFS_H
@@ -929,6 +932,96 @@ typedef struct ddi_dma_impl {
 	void		(*dmai_fault_notify)(struct ddi_dma_impl *handle);
 	int		dmai_fault;
 	ndi_err_t	dmai_error;
+} ddi_dma_impl_t;
+
+#elif defined(__alpha)
+/*
+ * ddi_dma_impl portion that genunix (sunddi.c) depends on. alpha rootnex
+ * implementation specific state is in dmai_private.
+ */
+typedef struct ddi_dma_impl {
+	ulong_t		dmai_mapping;
+	uint_t		dmai_minxfer;
+	uint_t		dmai_burstsizes;
+	uint_t		dmai_ndvmapages;
+	uint_t		dmai_pool;
+	uint_t		dmai_rflags;
+	uint_t		dmai_inuse;
+	uint_t		dmai_nwin;
+	caddr_t		dmai_nexus_private;
+	void		*dmai_iopte;
+	uint_t		*dmai_sbi;
+	void		*dmai_minfo;
+	dev_info_t	*dmai_rdip;
+	ddi_dma_obj_t	dmai_object;
+	ddi_dma_attr_t	dmai_attr;
+	ddi_dma_cookie_t *dmai_cookie;
+
+	uint_t		dmai_window_index;
+
+	int		(*dmai_fault_check)(struct ddi_dma_impl *handle);
+	void		(*dmai_fault_notify)(struct ddi_dma_impl *handle);
+	int		dmai_fault;
+	ndi_err_t	dmai_error;
+
+} ddi_dma_impl_t;
+
+#elif defined(__aarch64)
+typedef struct ddi_dma_impl {
+	ulong_t		dmai_mapping;
+	void		*dmai_private;
+	uint_t		dmai_minxfer;
+	uint_t		dmai_burstsizes;
+	uint_t		dmai_ndvmapages;
+	uint_t		dmai_pool;
+	uint_t		dmai_rflags;
+	uint_t		dmai_inuse;
+	uint_t		dmai_nwin;
+	caddr_t		dmai_nexus_private;
+	void		*dmai_iopte;
+	uint_t		*dmai_sbi;
+	void		*dmai_minfo;
+	dev_info_t	*dmai_rdip;
+	ddi_dma_obj_t	dmai_object;
+	ddi_dma_attr_t	dmai_attr;
+	ddi_dma_cookie_t *dmai_cookie;
+
+	uint_t		dmai_window_index;
+
+	int		(*dmai_fault_check)(struct ddi_dma_impl *handle);
+	void		(*dmai_fault_notify)(struct ddi_dma_impl *handle);
+	int		dmai_fault;
+	ndi_err_t	dmai_error;
+
+} ddi_dma_impl_t;
+
+#elif defined(__riscv)
+typedef struct ddi_dma_impl {
+	ulong_t		dmai_mapping;
+	void		*dmai_private;
+	uint_t		dmai_minxfer;
+	uint_t		dmai_burstsizes;
+	uint_t		dmai_ndvmapages;
+	uint_t		dmai_pool;
+	uint_t		dmai_rflags;
+	uint_t		dmai_inuse;
+	uint_t		dmai_nwin;
+	caddr_t		dmai_nexus_private;
+	void		*dmai_iopte;
+	uint_t		*dmai_sbi;
+	void		*dmai_minfo;
+	dev_info_t	*dmai_rdip;
+	ddi_dma_obj_t	dmai_object;
+	ddi_dma_attr_t	dmai_attr;
+	ddi_dma_cookie_t *dmai_cookie;
+
+	uint_t		dmai_window_index;
+
+	int		(*dmai_fault_check)(struct ddi_dma_impl *handle);
+	void		(*dmai_fault_notify)(struct ddi_dma_impl *handle);
+	int		dmai_fault;
+	ndi_err_t	dmai_error;
+
 } ddi_dma_impl_t;
 
 #else

@@ -27,6 +27,9 @@
  * All rights reserved. Use is subject to license terms.
  * Copyright 2020 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Kernel's linker/loader
@@ -130,6 +133,9 @@ static struct kobjopen_tctl *kobjopen_alloc(char *filename);
 static void kobjopen_free(struct kobjopen_tctl *ltp);
 static void kobjopen_thread(struct kobjopen_tctl *ltp);
 static int kobj_is_compressed(intptr_t);
+
+static Sym * kobj_lookup_all_ex(struct module *, char *,
+    int, struct module **);
 
 extern int kcopy(const void *, void *, size_t);
 extern int elf_mach_ok(Ehdr *);
@@ -284,7 +290,7 @@ static caddr_t _data;
  * variable to modify it - within krtld, of course -
  * outside of krtld, e_data is used in all kernels.
  */
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 static caddr_t _edata;
 #else
 extern caddr_t _edata;
@@ -676,7 +682,13 @@ attr_val(val_t *bootaux)
 			dynseg = phdr->p_vaddr;
 			dynsize = phdr->p_memsz;
 #else
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
+			ASSERT(phdr->p_flags & PF_W);
+			_data = (caddr_t)phdr->p_vaddr;
+			_edata = _data + phdr->p_memsz;
+#else
 			ASSERT(phdr->p_vaddr == 0);
+#endif
 #endif
 		} else {
 			if (phdr->p_flags & PF_W) {
@@ -760,8 +772,13 @@ load_exec(val_t *bootaux, char *filename)
 			mp->symhdr->sh_addr = dyn->d_un.d_ptr;
 			break;
 		case DT_HASH:
+#ifndef __alpha
 			mp->nsyms = *((uint_t *)dyn->d_un.d_ptr + 1);
 			mp->hashsize = *(uint_t *)dyn->d_un.d_ptr;
+#else
+			mp->nsyms = *((uint64_t *)dyn->d_un.d_ptr + 1);
+			mp->hashsize = *(uint64_t *)dyn->d_un.d_ptr;
+#endif
 			break;
 		case DT_STRTAB:
 			mp->strings = (char *)dyn->d_un.d_ptr;
@@ -1177,6 +1194,9 @@ bind_primary(val_t *bootaux, int lmid)
 			Dyn *dyn;
 			Word relasz = 0, relaent = 0;
 			char *rela = NULL;
+			Word pltrelsz = 0;
+			char *jmprel = NULL;
+			Word pltrel;
 
 			for (dyn = (Dyn *)bootaux[BA_DYNAMIC].ba_ptr;
 			    dyn->d_tag != DT_NULL; dyn++) {
@@ -1195,7 +1215,25 @@ bind_primary(val_t *bootaux, int lmid)
 				case DT_REL:
 					rela = (char *)dyn->d_un.d_ptr;
 					break;
+				case DT_PLTRELSZ:
+					pltrelsz = dyn->d_un.d_val;
+					break;
+				case DT_JMPREL:
+					jmprel = (char *)dyn->d_un.d_ptr;
+					break;
+				case DT_PLTREL:
+					pltrel = dyn->d_un.d_val;
+					break;
 				}
+			}
+			if (relasz == 0 || relaent == 0 || rela == NULL) {
+				relasz = pltrelsz;
+				rela = jmprel;
+#if defined(_LP64)
+				relaent = (pltrel == DT_RELA? sizeof(Elf64_Rela): sizeof(Elf64_Rel));
+#else
+				relaent = (pltrel == DT_RELA? sizeof(Elf32_Rela): sizeof(Elf32_Rel));
+#endif
 			}
 			if (relasz == 0 ||
 			    relaent == 0 || rela == NULL) {
@@ -1338,6 +1376,8 @@ load_primary(struct module *mp, int lmid)
 			cp->mod_loaded = 0;
 			cp->mod_installed = 0;
 			cp->mod_loadcnt = 0;
+			KOBJ_MARK("dmp = cp->mod_mp == NULL");
+			KOBJ_MARK(cp->mod_filename);
 			return (-1);
 		}
 
@@ -1483,8 +1523,13 @@ kobj_getmodinfo(void *xmp, struct modinfo *modinfo)
 	struct module *mp;
 	mp = (struct module *)xmp;
 
-	modinfo->mi_base = mp->text;
-	modinfo->mi_size = mp->text_size + mp->data_size;
+	if (mp->dso) {
+		modinfo->mi_base = mp->dso;
+		modinfo->mi_size = mp->dso_size;
+	} else {
+		modinfo->mi_base = mp->text;
+		modinfo->mi_size = mp->text_size + mp->data_size;
+	}
 }
 
 /*
@@ -1613,16 +1658,18 @@ kobj_export_ksyms(struct module *mp)
 		uint_t	shn;
 		Shdr	*shp;
 
-		for (shn = 1; shn < omp->hdr.e_shnum; shn++) {
-			shp = (Shdr *)(omp->shdrs + shn * omp->hdr.e_shentsize);
-			switch (shp->sh_type) {
-			case SHT_RELA:
-			case SHT_REL:
-				if (shp->sh_addr != 0) {
-					kobj_free((void *)shp->sh_addr,
-					    shp->sh_size);
+		if (mp->dso == NULL) {
+			for (shn = 1; shn < omp->hdr.e_shnum; shn++) {
+				shp = (Shdr *)(omp->shdrs + shn * omp->hdr.e_shentsize);
+				switch (shp->sh_type) {
+				case SHT_RELA:
+				case SHT_REL:
+					if (shp->sh_addr != 0) {
+						kobj_free((void *)shp->sh_addr,
+						    shp->sh_size);
+					}
+					break;
 				}
-				break;
 			}
 		}
 		kobj_free(omp->shdrs, omp->hdr.e_shentsize * omp->hdr.e_shnum);
@@ -1849,6 +1896,291 @@ kobj_set_ctf(struct module *mp, caddr_t data, size_t size)
 	membar_producer();
 }
 
+static int kobj_suppress_warning(char *symname);
+static vmem_t *dso_arena;
+static int
+load_dso(struct modctl *modp, struct module *mp, struct _buf *file)
+{
+	int err = -1, n, i;
+	char *phdrbase = 0;
+	char *dynbase = 0;
+	Ehdr ehdr;
+	Phdr phdr_data = {0}, phdr_text = {0}, phdr_dyn = {0};
+	uintptr_t dso_start, dso_end;
+	uintptr_t pfn;
+	Dyn *dyn;
+	int lsize, osize, nsize, allocsize;
+	char *path, *tmp, *depstr;
+
+	n = mp->hdr.e_shentsize * mp->hdr.e_shnum;
+	mp->shdrs = kobj_alloc(n, KM_WAIT);
+	if (kobj_read_file(file, mp->shdrs, n, mp->hdr.e_shoff) < 0) {
+		_kobj_printf(ops, "load_dso: %s error reading "
+		    "section headers\n", mp->filename);
+		goto done;
+	}
+	kobj_notify(KOBJ_NOTIFY_MODLOADING, modp);
+	module_assign(modp, mp);
+
+	if (kobj_read_file(file, (char *)&ehdr, sizeof (ehdr), 0) < 0) {
+		_kobj_printf(ops, "load_dso: %s error reading "
+		    "elf headers\n", mp->filename);
+		goto done;
+	}
+
+	n = ehdr.e_phentsize * ehdr.e_phnum;
+	phdrbase = kobj_alloc(n, KM_WAIT | KM_TMP);
+	if (kobj_read_file(file, phdrbase, n, ehdr.e_phoff) < 0) {
+		_kobj_printf(ops, "load_dso: %s error reading "
+		    "program headers\n", mp->filename);
+		goto done;
+	}
+	dso_start = (uintptr_t)-1; dso_end = 0;
+	for (i = 0; i < ehdr.e_phnum; i++) {
+		Phdr *phdr = (Phdr *)(phdrbase + ehdr.e_phentsize * i);
+		if (phdr->p_type == PT_DYNAMIC) {
+			phdr_dyn = *phdr;
+		} else if (phdr->p_type == PT_LOAD && phdr->p_memsz != 0) {
+			if (dso_start == (uintptr_t)-1)
+				dso_start = phdr->p_vaddr;
+			if (phdr->p_vaddr + phdr->p_memsz > dso_end)
+				dso_end = phdr->p_vaddr + phdr->p_memsz;
+			if (phdr->p_flags & PF_W)
+				phdr_data = *phdr;
+			else
+				phdr_text = *phdr;
+		}
+	}
+
+	mp->dso_size = roundup(dso_end - dso_start, PAGESIZE);
+
+	if (dso_arena == NULL)
+		dso_arena = vmem_create("module_dso", NULL, 0, PAGESIZE,
+		    segkmem_alloc, segkmem_free, heap_arena, 0, VM_SLEEP);
+
+	mp->dso = vmem_xalloc(dso_arena, mp->dso_size, phdr_text.p_align, 0, 0, 0, 0, VM_SLEEP | VM_BESTFIT);
+
+	if (phdr_text.p_filesz)
+		if (kobj_read_file(file, mp->dso + phdr_text.p_vaddr, phdr_text.p_filesz, phdr_text.p_offset) < 0)
+			goto done;
+	if (phdr_text.p_memsz - phdr_text.p_filesz)
+		bzero(mp->dso + phdr_text.p_vaddr + phdr_text.p_filesz, phdr_text.p_memsz - phdr_text.p_filesz);
+
+	if (phdr_data.p_filesz)
+		if (kobj_read_file(file, mp->dso + phdr_data.p_vaddr, phdr_data.p_filesz, phdr_data.p_offset) < 0)
+			goto done;
+	if (phdr_data.p_memsz - phdr_data.p_filesz)
+		bzero(mp->dso + phdr_data.p_vaddr + phdr_data.p_filesz, phdr_data.p_memsz - phdr_data.p_filesz);
+
+	if (phdr_dyn.p_filesz == 0)
+		goto done;
+
+	dynbase = kobj_alloc(phdr_dyn.p_filesz, KM_WAIT);
+	if (kobj_read_file(file, dynbase, phdr_dyn.p_filesz, phdr_dyn.p_offset) < 0)
+		goto done;
+
+#ifdef	KOBJ_DEBUG
+	if (kobj_debug & D_LOADING)
+		_kobj_printf(ops, "load_dso: %s loading at %p\n", mp->filename, mp->dso);
+#endif
+
+	mp->symsize = sizeof(Shdr) * 2;
+	mp->symspace = kobj_zalloc(mp->symsize, KM_WAIT|KM_SCRATCH);
+	mp->symhdr = (Shdr *)mp->symspace;
+	mp->strhdr = (Shdr *)(mp->symhdr + 1);
+	mp->symhdr->sh_type = SHT_SYMTAB;
+	mp->strhdr->sh_type = SHT_STRTAB;
+	for (dyn = (Dyn *)dynbase; dyn->d_tag != DT_NULL; dyn++) {
+		switch (dyn->d_tag) {
+		case DT_HASH:
+#ifndef __alpha
+			mp->nsyms = *((uint_t *)(mp->dso + dyn->d_un.d_ptr) + 1);
+			mp->hashsize = *(uint_t *)(mp->dso + dyn->d_un.d_ptr);
+#else
+			mp->nsyms = *((uint64_t *)(mp->dso + dyn->d_un.d_ptr) + 1);
+			mp->hashsize = *(uint64_t *)(mp->dso + dyn->d_un.d_ptr);
+#endif
+			break;
+		case DT_STRSZ:
+			mp->strhdr->sh_size = dyn->d_un.d_val;
+			break;
+		case DT_SYMENT:
+			mp->symhdr->sh_entsize = dyn->d_un.d_val;
+			break;
+		case DT_SYMTAB:
+			mp->symtbl = mp->dso + dyn->d_un.d_ptr;
+			mp->symhdr->sh_addr = (uintptr_t)mp->dso + dyn->d_un.d_ptr;
+			break;
+		case DT_STRTAB:
+			mp->strings = mp->dso + dyn->d_un.d_ptr;
+			mp->strhdr->sh_addr = (uintptr_t)mp->dso + dyn->d_un.d_ptr;
+			break;
+		}
+	}
+	mp->symhdr->sh_size = mp->nsyms * mp->symhdr->sh_entsize;
+
+	mp->chains = kobj_zalloc(mp->nsyms * sizeof (symid_t), KM_WAIT);
+	mp->buckets = kobj_zalloc(mp->hashsize * sizeof (symid_t), KM_WAIT);
+
+	process_dynamic(mp, dynbase, mp->strings);
+
+	modp->mod_text = mp->dso + phdr_text.p_vaddr;
+	modp->mod_text_size = phdr_text.p_filesz;
+
+	/*
+	 * Insert symbols into the hash table.
+	 */
+	for (i = 1; i < mp->nsyms; i++) {
+		Sym *sp = (Sym *)(mp->symtbl + i * mp->symhdr->sh_entsize);
+		char *symname = mp->strings + sp->st_name;
+
+		if (sp->st_name == 0 || sp->st_shndx == SHN_UNDEF)
+			continue;
+
+		if (ELF_ST_BIND(sp->st_info) == STB_GLOBAL) {
+			Sym	*ksp;
+			struct module *mpp;
+			ksp = kobj_lookup_all_ex(mp, symname, 0, &mpp);
+			if (ksp && ELF_ST_BIND(ksp->st_info) == STB_GLOBAL &&
+			    !kobj_suppress_warning(symname) &&
+			    sp->st_shndx != SHN_UNDEF &&
+			    sp->st_shndx != SHN_COMMON &&
+			    ksp->st_shndx != SHN_UNDEF &&
+			    ksp->st_shndx != SHN_COMMON) {
+				/*
+				 * Unless this symbol is a stub, it's multiply
+				 * defined.  Multiply-defined symbols are
+				 * usually bad, but some objects (kmdb) have
+				 * a legitimate need to have their own
+				 * copies of common functions.
+				 */
+				if ((ksp->st_value < (uintptr_t)stubs_base ||
+					    ksp->st_value >= (uintptr_t)stubs_end) &&
+				    !(mp->flags & KOBJ_IGNMULDEF)) {
+					_kobj_printf(ops,
+					    "%s symbol ", file->_name);
+					_kobj_printf(ops,
+					    "%s multiply defined in %s\n",
+					    symname, mpp->filename);
+				}
+			}
+		}
+		sym_insert(mp, mp->strings + sp->st_name, i);
+	}
+
+	{
+		/* load all dependents */
+		char *dependent_modname = kobj_zalloc(MODMAXNAMELEN, KM_WAIT);
+		do_dependents(modp, dependent_modname, MODMAXNAMELEN);
+		kobj_free(dependent_modname, MODMAXNAMELEN);
+	}
+
+	int unresolved = 0;
+	for (i = 1; i < mp->nsyms; i++) {
+		Sym *sp = (Sym *)(mp->symtbl + i * mp->symhdr->sh_entsize);
+		char *symname = mp->strings + sp->st_name;
+		if (sp->st_shndx == SHN_UNDEF) {
+			struct module *mpp;
+			Sym *ksp;
+			if ((ksp = kobj_lookup_all_ex(mp, symname, 0, &mpp)) != NULL) {
+				sp->st_shndx = SHN_ABS;
+				sp->st_value = ksp->st_value;
+				if (ksp->st_shndx != SHN_ABS)
+					sp->st_value += (uintptr_t)mpp->dso;
+			} else if (strncmp(symname, sdt_prefix, strlen(sdt_prefix)) != 0) {
+				if (ELF_ST_BIND(sp->st_info) != STB_WEAK) {
+					_kobj_printf(ops, "%s: undefined symbol",
+					    mp->filename);
+					_kobj_printf(ops, " '%s'\n", symname);
+					unresolved = 1;
+				}
+			}
+		}
+	}
+	if (unresolved)
+		goto done;
+
+	Word relasz = 0, relaent = 0, pltrelsz = 0;
+	Word shtype;
+	char *rela = NULL;
+	char *jmprel = NULL;
+
+	for (dyn = (Dyn *)dynbase; dyn->d_tag != DT_NULL; dyn++) {
+		switch (dyn->d_tag) {
+		case DT_RELASZ:
+		case DT_RELSZ:
+			relasz = dyn->d_un.d_val;
+			break;
+		case DT_RELAENT:
+		case DT_RELENT:
+			relaent = dyn->d_un.d_val;
+			break;
+		case DT_RELA:
+			shtype = SHT_RELA;
+			rela = (char *)mp->dso + dyn->d_un.d_ptr;
+			break;
+		case DT_REL:
+			shtype = SHT_REL;
+			rela = (char *)mp->dso + dyn->d_un.d_ptr;
+			break;
+		case DT_JMPREL:
+			jmprel = (char *)mp->dso + dyn->d_un.d_ptr;
+			break;
+		case DT_PLTRELSZ:
+			pltrelsz = dyn->d_un.d_val;
+			break;
+		}
+	}
+
+	if (relasz && do_relocate(mp, rela, shtype, relasz/relaent, relaent, (Addr)mp->dso) < 0)
+		goto done;
+
+	if (pltrelsz && do_relocate(mp, jmprel, shtype, pltrelsz/relaent, relaent, (Addr)mp->dso) < 0)
+		goto done;
+
+	mp->flags |= KOBJ_RELOCATED;
+
+	/* sync_instruction_memory */
+	kobj_sync_instruction_memory(mp->dso, mp->dso_size);
+
+	/* protect */
+	as_setprot(&kas, mp->dso, mp->dso_size, PROT_READ | PROT_WRITE);
+	for (i = 0; i < ehdr.e_phnum; i++) {
+		Phdr *phdr = (Phdr *)(phdrbase + ehdr.e_phentsize * i);
+		if (phdr->p_type == PT_LOAD && phdr->p_memsz != 0) {
+			uint_t prot = 0;
+			if (phdr->p_flags & PF_X)
+				prot |= PROT_EXEC;
+			if (phdr->p_flags & PF_R)
+				prot |= PROT_READ;
+			if (phdr->p_flags & PF_W)
+				prot |= PROT_WRITE;
+			uintptr_t begin = P2ALIGN((uintptr_t)mp->dso + (uintptr_t)phdr->p_vaddr, PAGESIZE);
+			uintptr_t end = P2ROUNDUP((uintptr_t)mp->dso + (uintptr_t)phdr->p_vaddr + phdr->p_memsz, PAGESIZE);
+			as_setprot(&kas, (void *)begin, end - begin, prot);
+		}
+	}
+
+
+
+//	kobj_export_module(mp);
+	kobj_notify(KOBJ_NOTIFY_MODLOADED, modp);
+	err = 0;
+done:
+	if (phdrbase)
+		kobj_free(phdrbase, ehdr.e_phentsize * ehdr.e_phnum);
+	if (dynbase)
+		kobj_free(dynbase, phdr_dyn.p_filesz);
+
+	kobj_close_file(file);
+	if (err != 0) {
+		free_module_data(mp);
+		module_assign(modp, NULL);
+	}
+
+	return (err);
+}
+
 int
 kobj_load_module(struct modctl *modp, int use_path)
 {
@@ -1861,6 +2193,7 @@ kobj_load_module(struct modctl *modp, int use_path)
 #ifdef MODDIR_SUFFIX
 	int no_suffixdir_drv = 0;
 #endif
+	int is_dso = 0;
 
 	mp = kobj_zalloc(sizeof (struct module), KM_WAIT);
 
@@ -1937,6 +2270,10 @@ kobj_load_module(struct modctl *modp, int use_path)
 		}
 #endif
 		goto bad;
+	}
+
+	if (mp->hdr.e_type == ET_DYN) {
+		return load_dso(modp, mp, file);
 	}
 
 	/*
@@ -2229,15 +2566,17 @@ free_module_data(struct module *mp)
 		uint_t shn;
 		Shdr *shp;
 
-		for (shn = 1; shn < mp->hdr.e_shnum; shn++) {
-			shp = (Shdr *)(mp->shdrs + shn * mp->hdr.e_shentsize);
-			switch (shp->sh_type) {
-			case SHT_RELA:
-			case SHT_REL:
-				if (shp->sh_addr != 0)
-					kobj_free((void *)shp->sh_addr,
-					    shp->sh_size);
-				break;
+		if (mp->dso == NULL) {
+			for (shn = 1; shn < mp->hdr.e_shnum; shn++) {
+				shp = (Shdr *)(mp->shdrs + shn * mp->hdr.e_shentsize);
+				switch (shp->sh_type) {
+				case SHT_RELA:
+				case SHT_REL:
+					if (shp->sh_addr != 0)
+						kobj_free((void *)shp->sh_addr,
+						    shp->sh_size);
+					break;
+				}
 			}
 		}
 err_free_done:
@@ -2266,6 +2605,8 @@ err_free_done:
 			sdp = next;
 		}
 	}
+	if (mp->dso)
+		vmem_free(dso_arena, mp->dso, mp->dso_size);
 
 	if (mp->sdt_tab)
 		kobj_texthole_free(mp->sdt_tab, mp->sdt_size);
@@ -3204,7 +3545,10 @@ kobj_getelfsym(char *name, void *mp, int *size)
 		return (0);
 
 	*size = (int)sp->st_size;
-	return ((uintptr_t)sp->st_value);
+	return (sp->st_shndx != SHN_ABS) ?
+	    (uintptr_t)((struct module *)mp)->dso +
+	    (uintptr_t)sp->st_value:
+	    (uintptr_t)sp->st_value;
 }
 
 uintptr_t
@@ -3217,7 +3561,9 @@ kobj_lookup(struct module *mod, const char *name)
 	if (sp == NULL)
 		return (0);
 
-	return ((uintptr_t)sp->st_value);
+	return (sp->st_shndx != SHN_ABS) ?
+	    (uintptr_t)mod->dso + (uintptr_t)sp->st_value:
+	    (uintptr_t)sp->st_value;
 }
 
 char *
@@ -3290,21 +3636,27 @@ kobj_searchsym(struct module *mp, uintptr_t value, ulong_t *offset)
 	return (strtabptr + cursym->st_name);
 }
 
-Sym *
-kobj_lookup_all(struct module *mp, char *name, int include_self)
+static Sym *
+kobj_lookup_all_ex(struct module *mp, char *name, int include_self, struct module **mpp)
 {
 	Sym *sp;
 	struct module_list *mlp;
 	struct modctl_list *clp;
 	struct module *mmp;
 
-	if (include_self && (sp = lookup_one(mp, name)) != NULL)
+	if (include_self && (sp = lookup_one(mp, name)) != NULL) {
+		if (mpp)
+			*mpp = mp;
 		return (sp);
+	}
 
 	for (mlp = mp->head; mlp; mlp = mlp->next) {
 		if ((sp = lookup_one(mlp->mp, name)) != NULL &&
-		    ELF_ST_BIND(sp->st_info) != STB_LOCAL)
+		    ELF_ST_BIND(sp->st_info) != STB_LOCAL) {
+			if (mpp)
+				*mpp = mlp->mp;
 			return (sp);
+		}
 	}
 
 	/*
@@ -3317,10 +3669,19 @@ kobj_lookup_all(struct module *mp, char *name, int include_self)
 			continue;
 
 		if ((sp = lookup_one(mmp, name)) != NULL &&
-		    ELF_ST_BIND(sp->st_info) != STB_LOCAL)
+		    ELF_ST_BIND(sp->st_info) != STB_LOCAL) {
+			if (mpp)
+				*mpp = mmp;
 			return (sp);
+		}
 	}
 	return (NULL);
+}
+
+Sym *
+kobj_lookup_all(struct module *mp, char *name, int include_self)
+{
+	return kobj_lookup_all_ex(mp, name, include_self, NULL);
 }
 
 Sym *

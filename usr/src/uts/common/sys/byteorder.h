@@ -23,6 +23,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1983, 1984, 1985, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -65,6 +68,16 @@ extern "C" {
 #if !defined(_XPG4_2) || defined(__EXTENSIONS__)
 #define	ntohll(x)	(x)
 #define	htonll(x)	(x)
+#endif	/* !_XPG4_2 || __EXTENSIONS__ */
+
+#elif defined(__GNUC__) && !defined(ntohl) /* little-endian */
+#define	ntohl(x)	((uint32_t)__builtin_bswap32((uint32_t)(x)))
+#define	ntohs(x)	((uint16_t)__builtin_bswap16((uint16_t)(x)))
+#define	htonl(x)	((uint32_t)__builtin_bswap32((uint32_t)(x)))
+#define	htons(x)	((uint16_t)__builtin_bswap16((uint16_t)(x)))
+#if !defined(_XPG4_2) || defined(__EXTENSIONS__)
+#define	ntohll(x)	((uint64_t)__builtin_bswap64((uint64_t)(x)))
+#define	htonll(x)	((uint64_t)__builtin_bswap64((uint64_t)(x)))
 #endif	/* !_XPG4_2 || __EXTENSIONS__ */
 
 #elif !defined(ntohl) /* little-endian */

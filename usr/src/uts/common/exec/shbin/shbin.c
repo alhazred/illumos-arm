@@ -23,6 +23,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/param.h>
@@ -84,6 +87,9 @@ static char *shell_list[] =
 	"/usr/bin/i86/ksh93",
 #elif defined(__i386)
 	"/usr/bin/i86/ksh93",
+#elif defined(__alpha)
+#elif defined(__aarch64)
+#elif defined(__riscv)
 #else
 #error "Unrecognized platform/CPU (use /usr/bin/ksh93 when in doubt)."
 #endif

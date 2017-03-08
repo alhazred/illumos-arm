@@ -24,6 +24,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_CMLB_IMPL_H
 #define	_SYS_CMLB_IMPL_H
@@ -58,7 +61,7 @@ extern "C" {
 #define	WD_NODE			7
 #define	P0_RAW_DISK		(NDKMAP)
 
-#if defined(__i386) || defined(__amd64)
+#if defined(__i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 
 #define	FDISK_P1		(NDKMAP+1)
 #define	FDISK_P2		(NDKMAP+2)
@@ -190,7 +193,8 @@ typedef struct cmlb_lun {
 	int		cl_device_type;		/* DTYPE_DIRECT,.. */
 	int		cl_reserved;		/* reserved efi partition # */
 	cmlb_tg_ops_t 	*cmlb_tg_ops;
-#if defined(__i386) || defined(__amd64)
+#if defined(__i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
+
 	/*
 	 * Flag indicating whether extended partition nodes should be created
 	 * or not. Is set in cmlb_attach. After creating nodes in

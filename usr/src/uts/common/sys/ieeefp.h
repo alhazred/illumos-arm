@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_IEEEFP_H
 #define	_SYS_IEEEFP_H
@@ -101,6 +104,75 @@ enum fp_trap_enable_type {	/* trap enable bits according to bit number */
 	fp_trap_overflow	= 3,
 	fp_trap_underflow	= 4,
 	fp_trap_inexact	= 5
+};
+
+#elif defined(__alpha)
+
+enum fp_direction_type {	/* rounding direction */
+	fp_tozero	= 0,
+	fp_negative	= 1,
+	fp_nearest	= 2,
+	fp_positive	= 3
+};
+
+enum fp_exception_type {	/* exceptions according to bit number */
+	fp_invalid	= 52 - 32,
+	fp_division	= 53 - 32,
+	fp_overflow	= 54 - 32,
+	fp_underflow	= 55 - 32,
+	fp_inexact	= 56 - 32
+};
+
+enum fp_trap_disable_type {	/* trap enable bits according to bit number */
+	fp_trap_inexact_dis	= 62,
+	fp_trap_division_dis	= 50,
+	fp_trap_underflow_dis	= 61,
+	fp_trap_overflow_dis	= 51,
+	fp_trap_invalid_dis	= 49
+};
+
+#elif defined(__aarch64)
+
+enum fp_direction_type {	/* rounding direction */
+	fp_nearest	= 0,
+	fp_positive	= 1,
+	fp_negative	= 2,
+	fp_tozero	= 3
+};
+
+enum fp_exception_type {	/* exceptions according to bit number */
+	fp_invalid	= 0,
+	fp_division	= 1,
+	fp_overflow	= 2,
+	fp_underflow	= 3,
+	fp_inexact	= 4,
+	fp_denormalized	= 7
+};
+
+enum fp_trap_enable_type {	/* trap enable bits according to bit number */
+	fp_trap_invalid		= 0,
+	fp_trap_division	= 1,
+	fp_trap_overflow	= 2,
+	fp_trap_underflow	= 3,
+	fp_trap_inexact		= 4,
+	fp_trap_denormalized	= 7
+};
+
+#elif defined(__riscv)
+
+enum fp_direction_type {	/* rounding direction */
+	fp_nearest	= 0,
+	fp_tozero	= 1,
+	fp_negative	= 2,
+	fp_positive	= 3,
+};
+
+enum fp_exception_type {	/* exceptions according to bit number */
+	fp_inexact	= 0,
+	fp_underflow	= 1,
+	fp_overflow	= 2,
+	fp_division	= 3,
+	fp_invalid	= 4,
 };
 
 #endif	/* __i386 || __amd64 */

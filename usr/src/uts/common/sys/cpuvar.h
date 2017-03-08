@@ -27,6 +27,9 @@
  * Copyright 2017 RackTop Systems.
  * Copyright 2019 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_CPUVAR_H
 #define	_SYS_CPUVAR_H
@@ -48,7 +51,7 @@
 #include <sys/rwlock.h>
 #include <sys/msacct.h>
 #if defined(__GNUC__) && defined(_ASM_INLINES) && defined(_KERNEL) && \
-	(defined(__i386) || defined(__amd64))
+	(defined(__i386) || defined(__amd64) || defined(__alpha))
 #include <asm/cpuvar.h>
 #endif
 
@@ -523,7 +526,7 @@ extern struct cpu	*cpu_inmotion;	/* offline or partition move target */
 extern cpu_t		*clock_cpu_list;
 extern processorid_t	max_cpu_seqid_ever;	/* maximum seqid ever given */
 
-#if defined(__i386) || defined(__amd64)
+#if defined(__i386) || defined(__amd64) || defined(__alpha)
 extern struct cpu *curcpup(void);
 #define	CPU		(curcpup())	/* Pointer to current CPU */
 #else

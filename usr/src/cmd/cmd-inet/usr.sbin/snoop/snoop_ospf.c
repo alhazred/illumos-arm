@@ -613,7 +613,7 @@ interpret_ospf(int flags, struct ospfhdr *ospf, int iplen, int fraglen)
 			if (flags & F_DTAIL)
 				snprintf(get_line(0, 0), get_line_remain(),
 				    "ospfv3 packet in ipv4 header");
-			return (interpret_ospf6(flags, ospf, iplen, fraglen));
+			return (interpret_ospf6(flags, (struct ospf6hdr *)ospf, iplen, fraglen));
 		} else  {
 			return (fraglen);
 		}

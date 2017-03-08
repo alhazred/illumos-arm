@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <errno.h>
 #include <zone.h>
@@ -189,12 +192,12 @@ main(int argc, char *argv[])
 
 	/* check if is global zone */
 	if (getzoneid() != GLOBAL_ZONEID) {
-		(void *) fprintf(stdout, "%s %s\n",
+		(void) fprintf(stdout, "%s %s\n",
 		    cmdName, gettext("does not support non-global zone."));
 		return (1);
 	}
 
-	(void *) snprintf(versionString, sizeof (versionString), "%s.%s",
+	(void) snprintf(versionString, sizeof (versionString), "%s.%s",
 	    VERSION_STRING_MAJOR, VERSION_STRING_MINOR);
 	synTables.versionString = versionString;
 
@@ -204,11 +207,11 @@ main(int argc, char *argv[])
 	/* call the CLI parser */
 	ret = cmdParse(argc, argv, synTables, subcommandArgs, &funcRet);
 	if (ret == 1) {
-		(void *) fprintf(stdout, "%s %s(1M)\n",
+		(void) fprintf(stdout, "%s %s(1M)\n",
 		    gettext("For more information, please see"), cmdName);
 		return (1);
 	} else if (ret == -1) {
-		(void *) fprintf(stderr, "%s %s\n",
+		(void) fprintf(stderr, "%s %s\n",
 		    cmdName, strerror(errno));
 		return (1);
 	}

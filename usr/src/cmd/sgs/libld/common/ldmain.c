@@ -27,6 +27,9 @@
  *
  * Copyright 2020 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Processing of relocatable objects and shared objects.
@@ -59,7 +62,7 @@ Target		ld_targ;
  * line.  Note: these strings can not use MSG_ORIG() since they are modified as
  * part of the path processing.
  */
-#if	defined(_ELF64)
+#if	defined(_ELF64) && defined _MULTI_DATAMODEL
 static char	def_Plibpath[] = "/lib/64:/usr/lib/64";
 #else
 static char	def_Plibpath[] = "/usr/ccs/lib:/lib:/usr/lib";

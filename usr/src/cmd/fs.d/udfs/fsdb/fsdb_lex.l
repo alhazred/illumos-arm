@@ -132,7 +132,7 @@ WS	[ \t]
 %%
 
 void
-yyerror()
+yyerror(const char *s)
 {
 	fprintf(stderr,
 		gettext("Syntax error line : %d token : %s \n"),

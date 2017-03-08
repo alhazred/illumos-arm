@@ -24,6 +24,9 @@
  * Copyright (c) 1983, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2012 Milan Jurik. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/time.h>
@@ -84,7 +87,11 @@ proc_t *practive;		/* active process list */
 uint_t nproc;			/* current number of processes */
 proc_t p0;			/* process 0 */
 struct plock p0lock;		/* p0's p_lock */
+#if defined __alpha
+klwp_t lwp0 __attribute__((aligned(64)));/* t0's lwp */
+#else
 klwp_t lwp0;			/* t0's lwp */
+#endif
 task_t *task0p;			/* task 0 */
 kproject_t *proj0p;		/* location of project 0 */
 
@@ -544,6 +551,24 @@ char hw_provider[SYS_NMLN] = "";
 
 char architecture[] = "amd64";
 char architecture_32[] = "i386";
+char hw_provider[SYS_NMLN] = "";
+
+#elif defined(__alpha)
+
+char architecture[] = "alpha";
+char architecture_32[] = "alpha";
+char hw_provider[SYS_NMLN] = "";
+
+#elif defined(__aarch64)
+
+char architecture[] = "aarch64";
+char architecture_32[] = "aarch32";
+char hw_provider[SYS_NMLN] = "";
+
+#elif defined(__riscv)
+
+char architecture[] = "riscv64";
+char architecture_32[] = "riscv32";
 char hw_provider[SYS_NMLN] = "";
 
 #else

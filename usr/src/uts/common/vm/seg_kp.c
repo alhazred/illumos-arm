@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /* Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T */
 /*	All Rights Reserved   */
@@ -571,8 +574,13 @@ segkp_get_internal(
 		/*
 		 * Load and lock an MMU translation for the page.
 		 */
+#if defined __alpha || defined __aarch64 || defined __riscv
+		hat_memload(seg->s_as->a_hat, va, pp, (PROT_READ|PROT_WRITE|HAT_NOSYNC),
+		    ((flags & KPD_LOCKED) ? HAT_LOAD_LOCK : HAT_LOAD));
+#else
 		hat_memload(seg->s_as->a_hat, va, pp, (PROT_READ|PROT_WRITE),
 		    ((flags & KPD_LOCKED) ? HAT_LOAD_LOCK : HAT_LOAD));
+#endif
 
 		/*
 		 * Now, release lock on the page.
@@ -830,8 +838,13 @@ segkp_map_red(void)
 		 */
 		page_io_unlock(red_pp);
 
+#if defined __alpha || defined __aarch64 || defined __riscv
+		hat_memload(kas.a_hat, red_va, red_pp,
+		    (PROT_READ|PROT_WRITE|HAT_NOSYNC), HAT_LOAD_LOCK);
+#else
 		hat_memload(kas.a_hat, red_va, red_pp,
 		    (PROT_READ|PROT_WRITE), HAT_LOAD_LOCK);
+#endif
 		page_downgrade(red_pp);
 
 		/*
@@ -1152,8 +1165,13 @@ segkp_load(
 		/*
 		 * Load an MMU translation for the page.
 		 */
+#if defined __alpha || defined __aarch64 || defined __riscv
+		hat_memload(hat, va, pl[0], (PROT_READ|PROT_WRITE|HAT_NOSYNC),
+		    lock ? HAT_LOAD_LOCK : HAT_LOAD);
+#else
 		hat_memload(hat, va, pl[0], (PROT_READ|PROT_WRITE),
 		    lock ? HAT_LOAD_LOCK : HAT_LOAD);
+#endif
 
 		if (!lock) {
 			/*

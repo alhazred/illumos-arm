@@ -23,6 +23,9 @@
  *
  * Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_DDIDMAREQ_H
 #define	_SYS_DDIDMAREQ_H
@@ -381,6 +384,16 @@ typedef struct ddi_dma_lim {
 	 */
 	uint_t	dlim_reqsize;
 
+} ddi_dma_lim_t;
+
+#elif defined(__alpha) || defined(__aarch64) || defined(__riscv)
+typedef struct ddi_dma_lim {
+	uint_t	dlim_addr_lo;
+	uint_t	dlim_addr_hi;
+	uint_t	dlim_cntr_max;
+	uint_t	dlim_burstsizes;
+	uint_t	dlim_minxfer;
+	uint_t	dlim_dmaspeed;
 } ddi_dma_lim_t;
 
 #else

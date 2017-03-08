@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2018 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_PCI_IMPL_H
 #define	_SYS_PCI_IMPL_H
@@ -134,7 +137,26 @@ extern void memlist_merge(struct memlist **, struct memlist **);
 extern struct memlist *memlist_dup(struct memlist *);
 extern int memlist_count(struct memlist *);
 
+#elif defined(__aarch64)
+
+typedef struct 	pci_acc_cfblk {
+	uchar_t	c_busnum;		/* bus number */
+	uchar_t c_devnum;		/* device number */
+	uchar_t c_funcnum;		/* function number */
+	uchar_t c_fill;			/* reserve field */
+} pci_acc_cfblk_t;
+
+#elif defined(__riscv)
+
+typedef struct 	pci_acc_cfblk {
+	uchar_t	c_busnum;		/* bus number */
+	uchar_t c_devnum;		/* device number */
+	uchar_t c_funcnum;		/* function number */
+	uchar_t c_fill;			/* reserve field */
+} pci_acc_cfblk_t;
+
 #endif /* __i386 || __amd64 */
+
 
 /* Definitions for minor numbers */
 #define	PCI_MINOR_NUM(x, y)		(((uint_t)(x) << 8) | ((y) & 0xFF))

@@ -621,6 +621,9 @@ extern int upcount_get(uid_t, zoneid_t);
 extern selector_t setup_thrptr(proc_t *, uintptr_t);
 extern void deferred_singlestep_trap(caddr_t);
 #endif
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
+extern void deferred_singlestep_trap(caddr_t);
+#endif
 
 extern void sigcld(proc_t *, sigqueue_t *);
 extern void sigcld_delete(k_siginfo_t *);

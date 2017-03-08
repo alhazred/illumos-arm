@@ -1,6 +1,9 @@
 /*
  * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright (c) 1982, 1986 Regents of the University of California.
@@ -20,6 +23,8 @@
 #include <netinet/in.h>
 #if defined(_LP64)
 #include <sys/types32.h>
+#else
+#include <sys/time.h>
 #endif
 #endif
 

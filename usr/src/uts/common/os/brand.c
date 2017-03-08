@@ -46,6 +46,10 @@ static void brand_plat_interposition_disable(void);
 struct brand_mach_ops native_mach_ops  = {
 		NULL, NULL
 };
+#elif defined(__alpha) || defined(__aarch64) || defined(__riscv)
+struct brand_mach_ops native_mach_ops  = {
+		NULL
+};
 #else /* !__sparcv9 */
 struct brand_mach_ops native_mach_ops  = {
 		NULL, NULL, NULL, NULL

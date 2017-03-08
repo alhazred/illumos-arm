@@ -21,6 +21,7 @@
 
 #
 # Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 #
@@ -41,6 +42,10 @@ $mapfile_version 2
 
 SYMBOL_SCOPE {
 	global:
+		_init;
+		_fini;
+		_info;
+
 		# consolidation private nexus interfaces 
 		sda_host_init_ops;
 		sda_host_fini_ops;

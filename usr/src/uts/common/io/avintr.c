@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 1992, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Autovectored Interrupt Configuration and Deconfiguration
@@ -673,7 +676,11 @@ siron_poke_cpu(cpuset_t poke)
 			return;
 	}
 
+#if defined __aarch64 || defined __riscv
+	xc_call(0, 0, 0, poke, (xc_func_t)siron_poke_intr);
+#else
 	xc_call(0, 0, 0, CPUSET2BV(poke), (xc_func_t)siron_poke_intr);
+#endif
 }
 
 /*

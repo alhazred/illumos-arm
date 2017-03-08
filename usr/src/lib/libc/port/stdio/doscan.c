@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	  All Rights Reserved	*/
@@ -673,7 +676,7 @@ number(int *chcount, int *flag_eof, int stow, int type, int len, int size,
 				form = invalid_form;
 		}
 		if (stow && (form != invalid_form)) {
-#if defined(__sparc)
+#if defined(__sparc) || (defined(__alpha) && defined(__LONG_DOUBLE_128__)) || defined(__aarch64)
 			dm.rd = _QgetRD();
 			if (size == 'L') {		/* long double */
 				if ((int)form < 0)
@@ -682,6 +685,17 @@ number(int *chcount, int *flag_eof, int stow, int type, int len, int size,
 				else
 					decimal_to_quadruple(
 					    va_arg(*listp, quadruple *),
+					    &dm, &dr, &efs);
+			}
+#elif defined(__alpha)
+			dm.rd = _QgetRD();
+			if (size == 'L') {		/* long double */
+				if ((int)form < 0)
+					__hex_to_double(&dr, dm.rd,
+					    va_arg(*listp, double *), &efs);
+				else
+					decimal_to_double(
+					    va_arg(*listp, double *),
 					    &dm, &dr, &efs);
 			}
 #elif defined(__i386) || defined(__amd64)

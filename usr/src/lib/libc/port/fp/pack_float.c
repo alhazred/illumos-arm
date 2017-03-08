@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -97,7 +100,7 @@ overflow_to_infinity(int sign, enum fp_direction_type rd)
 }
 
 static void
-round(unpacked *pu, int roundword, enum fp_direction_type rd, int *ex)
+_round(unpacked *pu, int roundword, enum fp_direction_type rd, int *ex)
 /*
  * Round according to current rounding mode. pu must be shifted to so that
  * the roundbit is pu->significand[roundword] & 0x80000000
@@ -180,7 +183,7 @@ infinity:
 		if (pu->exponent <= 0) {
 			kluge.f.msw.exponent = 0;
 			__fp_rightshift(pu, 1 - pu->exponent);
-			round(pu, 1, rd, &e);
+			_round(pu, 1, rd, &e);
 			if (pu->significand[0] == 0x800000) {
 				/* rounded back up to normal */
 				kluge.f.msw.exponent = 1;
@@ -193,7 +196,7 @@ infinity:
 			kluge.f.msw.significand = 0x7fffff & pu->significand[0];
 			goto ret;
 		}
-		round(pu, 1, rd, &e);
+		_round(pu, 1, rd, &e);
 		if (pu->significand[0] == 0x1000000) {	/* rounding overflow */
 			pu->significand[0] = 0x800000;
 			pu->exponent += 1;
@@ -247,7 +250,7 @@ infinity:
 		pu->exponent += DOUBLE_BIAS;
 		if (pu->exponent <= 0) {	/* underflow */
 			__fp_rightshift(pu, 1 - pu->exponent);
-			round(pu, 2, rd, &e);
+			_round(pu, 2, rd, &e);
 			if (pu->significand[0] == 0x100000) {
 				/* rounded back up to normal */
 				kluge.f.msw.exponent = 1;
@@ -263,7 +266,7 @@ infinity:
 			kluge.f.significand2 = pu->significand[1];
 			goto ret;
 		}
-		round(pu, 2, rd, &e);
+		_round(pu, 2, rd, &e);
 		if (pu->significand[0] == 0x200000) {	/* rounding overflow */
 			pu->significand[0] = 0x100000;
 			pu->exponent += 1;
@@ -317,7 +320,7 @@ infinity:
 		pu->exponent += EXTENDED_BIAS;
 		if (pu->exponent <= 0) {	/* underflow */
 			__fp_rightshift(pu, 1 - pu->exponent);
-			round(pu, 2, rd, &e);
+			_round(pu, 2, rd, &e);
 			if (pu->significand[0] == 0x80000000u) {
 				/* rounded back up to normal */
 				kluge.f.msw.exponent = 1;
@@ -333,7 +336,7 @@ infinity:
 			kluge.f.significand2 = pu->significand[1];
 			goto ret;
 		}
-		round(pu, 2, rd, &e);
+		_round(pu, 2, rd, &e);
 		if (pu->exponent >= 0x7fff) {	/* overflow */
 			e |= (1 << fp_overflow) | (1 << fp_inexact);
 			if (overflow_to_infinity(pu->sign, rd))
@@ -394,7 +397,7 @@ infinity:
 		pu->exponent += QUAD_BIAS;
 		if (pu->exponent <= 0) {	/* underflow */
 			__fp_rightshift(pu, 1 - pu->exponent);
-			round(pu, 4, rd, &e);
+			_round(pu, 4, rd, &e);
 			if (pu->significand[0] == 0x10000) {
 				/* rounded back up to normal */
 				kluge.f.msw.exponent = 1;
@@ -414,7 +417,7 @@ infinity:
 			kluge.f.significand4 = pu->significand[3];
 			goto ret;
 		}
-		round(pu, 4, rd, &e);
+		_round(pu, 4, rd, &e);
 		if (pu->significand[0] == 0x20000) {	/* rounding overflow */
 			pu->significand[0] = 0x10000;
 			pu->exponent += 1;

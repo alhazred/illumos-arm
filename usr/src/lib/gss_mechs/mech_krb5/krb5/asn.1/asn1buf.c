@@ -2,6 +2,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /* Coding Buffer Implementation */
 
@@ -54,7 +57,9 @@
                      but no further.  (The bound should move out in response
 		     to being crossed by next.)) */
 
+#ifndef ASN1BUF_OMIT_INLINE_FUNCS
 #define ASN1BUF_OMIT_INLINE_FUNCS
+#endif
 #include "asn1buf.h"
 #undef ASN1BUF_OMIT_INLINE_FUNCS
 #include <stdio.h>

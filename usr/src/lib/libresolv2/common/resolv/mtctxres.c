@@ -2,6 +2,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #include <port_before.h>
@@ -23,7 +26,7 @@ static int		mt_key_initialized = 0;
 static int		__res_init_ctx(void);
 static void		__res_destroy_ctx(void *);
 
-#if defined(sun) && !defined(__GNUC__)
+#if defined(sun) // && !defined(__GNUC__)
 #pragma init	(_mtctxres_init)
 #endif
 #endif

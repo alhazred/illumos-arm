@@ -2,6 +2,9 @@
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -103,6 +106,8 @@
 #define PLUGINDIR "/usr/lib/sasl/sparcv9"
 #elif defined(__amd64)
 #define PLUGINDIR "/usr/lib/sasl/amd64"
+#elif defined(__alpha) || defined(__aarch64)
+#define PLUGINDIR "/usr/lib/sasl"
 #else
 #error Unsupported 64-bit architecture!
 #endif

@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include "lint.h"
 #include "thr_uberdata.h"
@@ -75,6 +78,16 @@ _t_cancel(void *fp)
 	__cleanup_t *head;
 	void (*fptr)(void (*func)(void *), void *arg);
 
+#if defined(__alpha) || defined(__aarch64)
+	while ((head = self->ul_clnup_hdr) != NULL) {
+		self->ul_clnup_hdr = head->next;
+		/* execute the cleanup handler */
+		(head->func)(head->arg);
+	}
+
+	_thrp_exit();
+	thr_panic("_t_cancel(): _thrp_exit() returned");
+#else
 	/* Do this once per thread exit, not once per unwind frame */
 	if (self->ul_ex_unwind == NULL &&
 	    (self->ul_ex_unwind = dlsym(RTLD_PROBE, "_ex_unwind")) == NULL)
@@ -111,4 +124,5 @@ _t_cancel(void *fp)
 		thr_panic("_t_cancel(): _thrp_exit() returned");
 	}
 	/* never returns here */
+#endif
 }

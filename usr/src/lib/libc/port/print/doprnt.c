@@ -23,6 +23,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -55,7 +58,7 @@
 static const char nullstr[] = "(null)";
 static const wchar_t widenullstr[] = L"(null)";
 
-#if defined(__i386) || defined(__amd64) || defined(__sparcv9)
+#if defined(__i386) || defined(__amd64) || defined(__sparcv9) || defined(__alpha) || defined(__aarch64)
 #define	GETQVAL(arg)	(va_arg(arg, long double))
 #else /* !defined(__i386) && !defined(__sparcv9) */
 #define	GETQVAL(arg)	*(va_arg(arg, long double *))
@@ -1280,8 +1283,10 @@ _ndoprnt(const char *format, va_list in_args, FILE *iop, int prflag)
 
 				/* establish default precision */
 				if (!(flagword & DOTSEEN))
-#if defined(__sparc)
+#if defined(__sparc) || (defined(__alpha) && defined(__LONG_DOUBLE_128__)) || defined(__aarch64)
 					prec = HEXFP_QUAD_DIG - 1;
+#elif defined(__alpha)
+					prec = HEXFP_DOUBLE_DIG - 1;
 #elif defined(__i386) || defined(__amd64)
 					prec = HEXFP_EXTENDED_DIG - 1;
 #else

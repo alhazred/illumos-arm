@@ -24,6 +24,9 @@
  * Use is subject to license terms.
  * Copyright (c) 2019, Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains routines for sending and receiving SCSI commands.  The
@@ -40,7 +43,7 @@
 #include <errno.h>
 #include <stdarg.h>
 #include <limits.h>
-#include <utility.h>
+//#include <utility.h>
 #include <unistd.h>
 #include <stropts.h>
 #include <alloca.h>
@@ -51,6 +54,8 @@
 #define	MSGBUFLEN 64
 #define	USCSI_DEFAULT_TIMEOUT	45
 #define	USCSI_TIMEOUT_MAX	INT_MAX
+
+#define	MIN(x, y)		((x) < (y) ? (x) : (y))
 
 static diskaddr_t scsi_extract_sense_info_descr(
     struct scsi_descr_sense_hdr *sdsp, int rqlen);

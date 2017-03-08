@@ -28,6 +28,9 @@
  * Copyright 2018 Joyent, Inc.
  * Copyright 2020 OmniOS Community Edition (OmniOSce) Association.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_PCONTROL_H
 #define	_PCONTROL_H
@@ -305,6 +308,10 @@ extern char	procfs_path[PATH_MAX];
 #define	BPT	((instr_t)0x91d02001)
 #elif defined(__i386) || defined(__amd64)
 #define	BPT	((instr_t)0xcc)
+#elif defined(__alpha)
+#define	BPT	((instr_t)0x00000080)
+#elif defined(__aarch64)
+#define	BPT	((instr_t)0xd4207d00)
 #endif
 
 /*

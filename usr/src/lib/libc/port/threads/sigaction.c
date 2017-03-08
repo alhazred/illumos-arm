@@ -23,6 +23,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include "lint.h"
 #include <sys/feature_tests.h>
@@ -566,6 +569,10 @@ setcontext(const ucontext_t *ucp)
 		uc.uc_mcontext.gregs[REG_FS] = (greg_t)0; /* null for fsbase */
 #elif defined(__i386)
 		uc.uc_mcontext.gregs[GS] = (greg_t)LWPGS_SEL;
+#elif defined(__alpha)
+		uc.uc_mcontext.gregs[REG_UQ] = (greg_t)self;
+#elif defined(__aarch64)
+		uc.uc_mcontext.gregs[REG_TP] = (greg_t)self;
 #else
 #error "none of __sparc, __amd64, __i386 defined"
 #endif

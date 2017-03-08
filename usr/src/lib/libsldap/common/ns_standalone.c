@@ -24,6 +24,9 @@
  * Copyright 2012 Milan Jurik. All rights reserved.
  * Copyright 2012 Nexenta Systems, Inc. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #define	__STANDALONE_MODULE__
 
@@ -50,7 +53,7 @@
 
 #include <nsswitch.h>
 #include <nss_dbdefs.h>
-#include <nss.h>
+#include <../include/nss.h>
 
 #include "ns_cache_door.h"
 #include "ns_internal.h"

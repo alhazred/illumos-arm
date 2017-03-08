@@ -2,6 +2,9 @@
  * Copyright 2001-2003 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
@@ -224,7 +227,7 @@ struct sockbuf {
 	     (((_l)&0xff0000)>>8) + (((_l)&0xff000000)>>24))
 #define LBER_NTOHL(_l) LBER_HTONL(_l)
 
-#elif !defined(__alpha) || defined(VMS)
+#elif !defined(__osf1__) || defined(VMS)
 
 #define LBER_HTONL( l )	htonl( l )
 #define LBER_NTOHL( l )	ntohl( l )

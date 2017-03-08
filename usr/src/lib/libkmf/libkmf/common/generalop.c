@@ -20,6 +20,9 @@
  *
  * Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <dlfcn.h>
@@ -169,6 +172,12 @@ static void DestroyPlugin(KMF_PLUGIN *);
 #define	ISA_PATH	"/"
 #elif defined(__amd64)
 #define	ISA_PATH	"/amd64"
+#elif defined(__alpha)
+#define	ISA_PATH	"/"
+#elif defined(__aarch64)
+#define	ISA_PATH	"/"
+#elif defined(__arm)
+#define	ISA_PATH	"/"
 #endif
 
 #define	DEFAULT_KEYSTORE_NUM	3

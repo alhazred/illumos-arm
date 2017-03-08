@@ -23,6 +23,9 @@
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright 2019 Joyent, Inc.
@@ -34,7 +37,12 @@
 #include <sys/ccompile.h>
 
 #if !defined(__lint) && defined(__GNUC__)
-
+#if defined(__alpha)
+#include <sys/pal.h>
+#endif
+#if defined(__aarch64)
+#include <sys/controlregs.h>
+#endif
 /* inlines for gcc */
 
 /*
@@ -48,7 +56,7 @@
 #define	SPARC_REG_SPEC	"#scratch"
 #endif
 
-extern __GNU_INLINE ulwp_t *
+static __inline__ ulwp_t *
 _curthread(void)
 {
 #if defined(__amd64)
@@ -59,16 +67,25 @@ _curthread(void)
 	__asm__ __volatile__("movl %%gs:0, %0" : "=r" (__value));
 #elif defined(__sparc)
 	register ulwp_t *__value __asm__("g7");
+#elif defined(__alpha)
+	ulwp_t *__value = (ulwp_t *)pal_rdunique();
+#elif defined(__aarch64)
+	ulwp_t *__value = (ulwp_t *)read_tpidr_el0();
 #else
 #error	"port me"
 #endif
 	return (__value);
 }
 
-extern __GNU_INLINE ulwp_t *
+static __inline__ ulwp_t *
 __curthread(void)
 {
 	ulwp_t *__value;
+#if defined(__alpha) || defined(__aarch64)
+	__value = _curthread();
+	if (__value)
+		__value = __value->ul_self;
+#else
 	__asm__ __volatile__(
 #if defined(__amd64)
 	    "movq %%fs:0, %0\n\t"
@@ -84,10 +101,12 @@ __curthread(void)
 #error	"port me"
 #endif
 	    : "=r" (__value));
+#endif
+
 	return (__value);
 }
 
-extern __GNU_INLINE greg_t
+static __inline__ greg_t
 stkptr(void)
 {
 #if defined(__amd64)
@@ -96,13 +115,18 @@ stkptr(void)
 	register greg_t __value __asm__("esp");
 #elif defined(__sparc)
 	register greg_t __value __asm__("sp");
+#elif defined(__alpha)
+	register greg_t __value __asm__("$30");
+#elif defined(__aarch64)
+	register greg_t __value __asm__("sp");
 #else
 #error	"port me"
 #endif
 	return (__value);
 }
 
-extern __GNU_INLINE hrtime_t
+#if !defined(__alpha) && !defined(__aarch64)
+static __inline__ hrtime_t
 gethrtime(void)		/* note: caller-saved registers are trashed */
 {
 #if defined(__amd64)
@@ -138,8 +162,9 @@ gethrtime(void)		/* note: caller-saved registers are trashed */
 #endif
 	return (__value);
 }
+#endif
 
-extern __GNU_INLINE int
+static __inline__ int
 set_lock_byte(volatile uint8_t *__lockp)
 {
 	int __value = 0;
@@ -153,13 +178,16 @@ set_lock_byte(volatile uint8_t *__lockp)
 	    "ldstub %1, %0\n\t"
 	    "membar #LoadLoad"
 	    : "=r" (__value), "+m" (*__lockp));
+#elif defined(__alpha) || defined(__aarch64)
+	__value = (uint8_t)__sync_lock_test_and_set(__lockp, 1);
 #else
 #error	"port me"
 #endif
 	return (__value);
 }
 
-extern __GNU_INLINE uint32_t
+#if !defined(__alpha) && !defined(__aarch64)
+static __inline__ uint32_t
 atomic_swap_32(volatile uint32_t *__memory, uint32_t __value)
 {
 #if defined(__x86)
@@ -186,7 +214,7 @@ atomic_swap_32(volatile uint32_t *__memory, uint32_t __value)
 #endif
 }
 
-extern __GNU_INLINE uint32_t
+static __inline__ uint32_t
 atomic_cas_32(volatile uint32_t *__memory, uint32_t __cmp, uint32_t __newvalue)
 {
 	uint32_t __oldvalue;
@@ -206,7 +234,7 @@ atomic_cas_32(volatile uint32_t *__memory, uint32_t __cmp, uint32_t __newvalue)
 	return (__oldvalue);
 }
 
-extern __GNU_INLINE void
+static __inline__ void
 atomic_inc_32(volatile uint32_t *__memory)
 {
 #if defined(__x86)
@@ -231,7 +259,7 @@ atomic_inc_32(volatile uint32_t *__memory)
 #endif
 }
 
-extern __GNU_INLINE void
+static __inline__ void
 atomic_dec_32(volatile uint32_t *__memory)
 {
 #if defined(__x86)
@@ -256,7 +284,7 @@ atomic_dec_32(volatile uint32_t *__memory)
 #endif
 }
 
-extern __GNU_INLINE void
+static __inline__ void
 atomic_and_32(volatile uint32_t *__memory, uint32_t __bits)
 {
 #if defined(__x86)
@@ -282,7 +310,7 @@ atomic_and_32(volatile uint32_t *__memory, uint32_t __bits)
 #endif
 }
 
-extern __GNU_INLINE void
+static __inline__ void
 atomic_or_32(volatile uint32_t *__memory, uint32_t __bits)
 {
 #if defined(__x86)
@@ -307,17 +335,18 @@ atomic_or_32(volatile uint32_t *__memory, uint32_t __bits)
 #error	"port me"
 #endif
 }
+#endif
 
 #if defined(__sparc)	/* only needed on sparc */
 
-extern __GNU_INLINE ulong_t
+static __inline__ ulong_t
 caller(void)
 {
 	register ulong_t __value __asm__("i7");
 	return (__value);
 }
 
-extern __GNU_INLINE ulong_t
+static __inline__ ulong_t
 getfp(void)
 {
 	register ulong_t __value __asm__("fp");
@@ -328,7 +357,7 @@ getfp(void)
 
 #if defined(__x86)	/* only needed on x86 */
 
-extern __GNU_INLINE void
+static __inline__ void
 ht_pause(void)
 {
 	__asm__ __volatile__("rep; nop");

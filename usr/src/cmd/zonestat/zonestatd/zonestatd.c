@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 #include <alloca.h>
 #include <assert.h>
 #include <dirent.h>
@@ -2666,7 +2669,7 @@ zsd_refresh_procs(zsd_ctl_t *ctl, boolean_t init)
 	(void) memset(dent, 0, ctl->zsctl_procfs_dent_size);
 
 	/* Walk all processes and compute each zone's usage on each pset. */
-	while (readdir_r(dir, dent) != 0) {
+	while ((dent = readdir(dir)) != NULL) {
 
 		if (strcmp(dent->d_name, ".") == 0 ||
 		    strcmp(dent->d_name, "..") == 0)

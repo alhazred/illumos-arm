@@ -31,6 +31,9 @@
  * Copyright 2015 Nexenta Systems, Inc. All rights reserved.
  * Copyright 2016 James S. Blachly, MD. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -800,8 +803,8 @@ show_disk(void *v1, void *v2, void *data)
 		knp = KSTAT_NAMED_PTR(&new->is_errors);
 		for (i = 0; i < NUMBER_OF_ERR_COUNTERS; i++) {
 			switch (knp[i].data_type) {
-				case KSTAT_DATA_ULONG:
-				case KSTAT_DATA_ULONGLONG:
+				case KSTAT_DATA_UINT32:
+				case KSTAT_DATA_UINT64:
 					err_counters[i] = knp[i].value.ui32;
 					toterrs += knp[i].value.ui32;
 					break;
@@ -1041,7 +1044,7 @@ show_disk_errors(void *v1, void *v2, void *d)
 					    KSTAT_NAMED_STR_BUFLEN(&knp[i]) - 1;
 				}
 				break;
-			case KSTAT_DATA_ULONG:
+			case KSTAT_DATA_UINT32:
 				push_out("%s: %u ", knp[i].name,
 				    knp[i].value.ui32);
 				col += 4;

@@ -24,11 +24,14 @@
 # Use is subject to license terms.
 # Copyright 2013 Garrett D'Amore <garrett@damore.org>
 # Copyright 2015 Igor Kozhukhov <ikozhukhov@gmail.com>
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2017 Nexenta Systems, Inc.
 #
 
 # include global definitions
 include ../Makefile.master
+
+.SECONDARY:
 
 sparc_HDRS=
 i386_HDRS=	stack_unwind.h

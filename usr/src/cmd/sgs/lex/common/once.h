@@ -22,6 +22,9 @@
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	All Rights Reserved	*/
@@ -108,8 +111,8 @@ int chset;	/* 1 = char set modified */
 FILE *fin, *fother;
 int fptr;
 int *name;
-int *left;
-int *right;
+intptr_t *left;
+intptr_t *right;
 int *parent;
 Boolean *nullstr;
 int tptr;

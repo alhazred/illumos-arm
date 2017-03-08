@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	All Rights Reserved	*/
@@ -719,7 +722,7 @@ mn2(int a, int d, int c)
 }
 
 int
-mn1(int a, int d)
+mn1(intptr_t a, intptr_t d)
 {
 	if (tptr >= treesize) {
 		tptr++;

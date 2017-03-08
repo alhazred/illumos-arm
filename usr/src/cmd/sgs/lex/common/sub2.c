@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	All Rights Reserved	*/
@@ -88,7 +91,7 @@ cfoll(int v)
 				if (pcptr > pchar + pchlen)
 					error(
 					"Too many packed character classes");
-				left[v] = (int)p;
+				left[v] = (intptr_t)p;
 				name[v] = RCCL;	/* RNCCL eliminated */
 #ifdef DEBUG
 				if (debug && *p) {

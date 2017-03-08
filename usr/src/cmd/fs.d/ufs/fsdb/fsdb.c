@@ -125,7 +125,7 @@
 #define	BITSPERCHAR	8			/* couldn't find it anywhere  */
 #define	CHAR		(sizeof (char))
 #define	SHORT		(sizeof (short))
-#define	LONG		(sizeof (long))
+#define	LONG		(sizeof (int32_t))
 #define	U_OFFSET_T	(sizeof (u_offset_t))	/* essentially "long long" */
 #define	INODE		(sizeof (struct dinode))
 #define	DIRECTORY	(sizeof (struct direct))
@@ -288,7 +288,7 @@ static long		expr();
 static long		term();
 static long		getnumb();
 static u_offset_t	getdirslot();
-static unsigned long	*print_check(unsigned long *, long *, short, int);
+static uint32_t	*print_check(uint32_t *, int32_t *, short, int);
 
 static void		usage(char *);
 static void		ungetachar(char);
@@ -335,7 +335,7 @@ static int		fcmp();
 static int		ffcmp();
 
 static int		getshadowslot(long);
-static void		getshadowdata(long *, int);
+static void		getshadowdata(int32_t *, int);
 static void		syncshadowscan(int);
 static void		log_display_header(void);
 static void		log_show(enum log_enum);
@@ -1529,7 +1529,7 @@ showbase:
 				continue;
 			}
 			if (match("log_otodb", 9)) {
-				if (log_lodb((u_offset_t)addr, &temp)) {
+				if (log_lodb((u_offset_t)addr, (diskaddr_t *)&temp)) {
 					addr = temp;
 					should_print = 1;
 					laststyle = '=';
@@ -2851,7 +2851,7 @@ fill()
 		switch (objsz) {
 		case LONG:
 			/*LINTED*/
-			*(long *)cptr = temp;
+			*(int32_t *)cptr = temp;
 			break;
 		case SHORT:
 			/*LINTED*/
@@ -2905,7 +2905,7 @@ get(short lngth)
 	case DIRECTORY:
 	case SHADOW_DATA:
 		/*LINTED*/
-		return ((offset_t)(*(long *)bptr));
+		return ((offset_t)(*(int32_t *)bptr));
 	case U_OFFSET_T:
 		/*LINTED*/
 		return (*(offset_t *)bptr);
@@ -3130,7 +3130,7 @@ getshadowslot(long shadow)
 	for (; cur_shad < shadow; cur_shad++) {
 		taddr = addr;
 		tcurbytes = cur_bytes;
-		getshadowdata((long *)&fsd, LONG + LONG);
+		getshadowdata((int32_t *)&fsd, LONG + LONG);
 		addr = taddr;
 		cur_bytes = tcurbytes;
 		if (cur_bytes + (long)fsd.fsd_size > filesize) {
@@ -3157,7 +3157,7 @@ getshadowslot(long shadow)
 }
 
 static void
-getshadowdata(long *buf, int len)
+getshadowdata(int32_t *buf, int len)
 {
 	long	tfsd;
 
@@ -3249,9 +3249,9 @@ put(u_offset_t item, short lngth)
 	case LONG:
 	case DIRECTORY:
 		/*LINTED*/
-		olditem = *(long *)bptr;
+		olditem = *(int32_t *)bptr;
 		/*LINTED*/
-		*(long *)bptr = item;
+		*(int32_t *)bptr = item;
 		break;
 	case SHORT:
 	case INODE:
@@ -3540,7 +3540,7 @@ puta()
 		switch (objsz) {
 		case LONG:
 			/*LINTED*/
-			item = *(long *)cptr;
+			item = *(int32_t *)cptr;
 			if (tcount < LONG) {
 				olditem <<= tcount * BITSPERCHAR;
 				temp = 1;
@@ -3610,11 +3610,11 @@ fprnt(char style, char po)
 	struct dinode	*ip;
 	int		tbase;
 	char		c, *cptr, *p;
-	long		tinode, tcount, temp;
+	int32_t		tinode, tcount, temp;
 	u_offset_t	taddr;
 	short		offset, mode, end = 0, eof = 0, eof_flag;
 	unsigned short	*sptr;
-	unsigned long	*lptr;
+	uint32_t	*lptr;
 	offset_t	curoff, curioff;
 
 	laststyle = style;
@@ -3708,7 +3708,7 @@ otx:
 				for (i = 0; tcount--; i++) {
 					sptr = (unsigned short *)print_check(
 							/*LINTED*/
-							(unsigned long *)sptr,
+							(uint32_t *)sptr,
 							&tcount, tbase, i);
 					switch (po) {
 					case 'o':
@@ -3757,7 +3757,7 @@ OTX:
 			cur_bytes -= taddr - addr;
 			cptr += blkoff(fs, addr);
 			/*LINTED*/
-			lptr = (unsigned long *)cptr;
+			lptr = (uint32_t *)cptr;
 			objsz = LONG;
 			tcount = check_addr(eof_flag, &end, &eof, 0);
 			if (tcount) {
@@ -4215,7 +4215,7 @@ empty:
 				taddr = addr;
 				tcur_bytes = cur_bytes;
 				index(base);
-				getshadowdata((long *)&fsd, LONG + LONG);
+				getshadowdata((int32_t *)&fsd, LONG + LONG);
 				printf("  type: ");
 				print((long)fsd.fsd_type, 8, -8, 0);
 				printf("  size: ");
@@ -4403,12 +4403,12 @@ check_addr(short eof_flag, short *end, short *eof, short keep_on)
  * print_check - check if the index needs to be printed and delete
  *	rows of zeros from the output.
  */
-unsigned long *
-print_check(unsigned long *lptr, long *tcount, short tbase, int i)
+uint32_t *
+print_check(uint32_t *lptr, int32_t *tcount, short tbase, int i)
 {
 	int		j, k, temp = BYTESPERLINE / objsz;
 	short		first_time = 0;
-	unsigned long	*tlptr;
+	uint32_t	*tlptr;
 	unsigned short	*tsptr, *sptr;
 
 	sptr = (unsigned short *)lptr;
@@ -4457,7 +4457,7 @@ print_check(unsigned long *lptr, long *tcount, short tbase, int i)
 	}
 	if (objsz == SHORT)
 		/*LINTED*/
-		return ((unsigned long *)sptr);
+		return ((uint32_t *)sptr);
 	else
 		return (lptr);
 }

@@ -23,6 +23,9 @@
  * Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2015, Joyent, Inc. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_CMD_SVCCFG_H
 #define	_CMD_SVCCFG_H
@@ -509,6 +512,24 @@ int32_t check_tokens(char **);
 const char *de_tag(const char *);
 const char *tset_to_string(int32_t);
 
+#include <string.h>
+extern int yylex(void);
+int lscf_profile_extract(const char *filename);
+void lscf_validate(const char *arg);
+void lscf_validate_fmri(const char *fmri);
+int lscf_service_export(char *fmri, const char *filename, int flags);
+int engine_apply(const char *file, int apply_changes);
+int lxml_inventory(const char *filename);
+void lscf_set_repository(const char *repfile, int force);
+int engine_set(uu_list_t *args);
+int lscf_setprop(const char *pgname, const char *type, const char *value, const uu_list_t *values);
+int lscf_editprop();
+int lscf_addpropvalue(const char *pgname, const char *type, const char *value);
+int lscf_delpropvalue(const char *pgname, const char *pattern, int isnotfoundok);
+int lscf_setenv(uu_list_t *args, int isunset);
+int yyerror(const char *);
+int lscf_archive(const char *filename, int flags);
+int engine_restore(const char *file);
 #ifdef	__cplusplus
 }
 #endif

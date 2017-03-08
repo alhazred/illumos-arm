@@ -23,6 +23,9 @@
  * Copyright (c) 2013 by Delphix. All rights reserved.
  * Copyright 2018 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_SDT_H
 #define	_SYS_SDT_H
@@ -34,6 +37,16 @@ extern "C" {
 #endif
 
 #ifndef _KERNEL
+
+#if defined __alpha || defined(__aarch64) || defined(__riscv)
+#define	DTRACE_PROBE(a, b)			((void)0)
+#define	DTRACE_PROBE1(a, b, c)			((void)0)
+#define	DTRACE_PROBE2(a, b, c, d)		((void)0)
+#define	DTRACE_PROBE3(a, b, c, d, e)		((void)0)
+#define	DTRACE_PROBE4(a, b, c, d, e, f)		((void)0)
+#define	DTRACE_PROBE5(a, b, c, d, e, f, g)	((void)0)
+
+#else
 
 #define	DTRACE_PROBE(provider, name) {					\
 	extern void __dtrace_##provider##___##name(void);		\
@@ -74,6 +87,7 @@ extern "C" {
 	    (unsigned long)arg2, (unsigned long)arg3,			\
 	    (unsigned long)arg4, (unsigned long)arg5);			\
 }
+#endif
 
 #else /* _KERNEL */
 

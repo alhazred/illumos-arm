@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2013 Joyent, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #include <sys/param.h>
@@ -174,6 +177,10 @@ kobj_boot_mountroot()
 		    "failed to get ramdisk from boot\n");
 		return (-1);
 	}
+#if defined __aarch64 || defined __alpha || defined __riscv
+	rd_start = ntohll(rd_start);
+	rd_end = ntohll(rd_end);
+#endif
 #ifdef KOBJ_DEBUG
 	_kobj_printf(ops,
 	    "ramdisk range: 0x%llx-%llx\n", rd_start, rd_end);

@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2014 Joyent, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/sysmacros.h>
@@ -214,6 +217,12 @@ struct mobj_stats {
 	((p->p_model == DATAMODEL_LP64) &&				\
 	(addr >= (p->p_usrstack - ((p->p_stk_ctl + PAGEOFFSET) & PAGEMASK))))
 #elif defined(__i386)
+#define	OVERLAPS_STACK(addr, p)	0
+#elif defined(__alpha)
+#define	OVERLAPS_STACK(addr, p)	0
+#elif defined(__aarch64)
+#define	OVERLAPS_STACK(addr, p)	0
+#elif defined(__riscv)
 #define	OVERLAPS_STACK(addr, p)	0
 #endif
 

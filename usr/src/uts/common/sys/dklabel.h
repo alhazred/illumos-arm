@@ -23,6 +23,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _SYS_DKLABEL_H
 #define	_SYS_DKLABEL_H
@@ -43,12 +46,16 @@ extern "C" {
 
 #if defined(_SUNOS_VTOC_16)
 #define	NDKMAP		16		/* # of logical partitions */
-#define	DK_LABEL_LOC	1		/* location of disk label */
 #elif defined(_SUNOS_VTOC_8)
 #define	NDKMAP		8		/* # of logical partitions */
-#define	DK_LABEL_LOC	0		/* location of disk label */
 #else
 #error "No VTOC format defined."
+#endif
+
+#if defined(__x86) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
+#define	DK_LABEL_LOC	1		/* location of disk label */
+#elif defined(__sparc)
+#define	DK_LABEL_LOC	0		/* location of disk label */
 #endif
 
 #define	LEN_DKL_ASCII	128		/* length of dkl_asciilabel */

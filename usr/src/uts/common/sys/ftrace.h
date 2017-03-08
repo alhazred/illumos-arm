@@ -22,6 +22,9 @@
  * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SYS_FTRACE_H
 #define	_SYS_FTRACE_H
@@ -96,7 +99,9 @@ extern void		ftrace_3_notick(char *, ulong_t, ulong_t, ulong_t,
 typedef	uintptr_t	ftrace_icookie_t;
 extern ftrace_icookie_t ftrace_interrupt_disable(void);
 extern void ftrace_interrupt_enable(ftrace_icookie_t);
+#if !defined(_ASM_INLINES) || !defined(__GNUC__)
 extern caddr_t caller(void);
+#endif
 
 #define	FTRACE_0(fmt)						\
 	{							\

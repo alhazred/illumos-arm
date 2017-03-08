@@ -24,6 +24,9 @@
 /*
  * Copyright 2012 Garrett D'Amore <garrett@damore.org>.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  *	PCI-IDE bus nexus driver
@@ -46,7 +49,9 @@
 #include <sys/pci.h>
 #include <sys/promif.h>
 #include <sys/pci_intr_lib.h>
+#if defined(__x86)
 #include <sys/apic.h>
+#endif
 
 int	pciide_attach(dev_info_t *dip, ddi_attach_cmd_t cmd);
 int	pciide_detach(dev_info_t *dip, ddi_detach_cmd_t cmd);
@@ -117,8 +122,10 @@ static int pciide_alloc_intr(dev_info_t *, dev_info_t *,
 static int pciide_free_intr(dev_info_t *, dev_info_t *,
     ddi_intr_handle_impl_t *);
 
+#if defined(__x86)
 extern int (*psm_intr_ops)(dev_info_t *, ddi_intr_handle_impl_t *,
     psm_intr_op_t, int *);
+#endif
 
 /*
  * Config information
@@ -756,6 +763,7 @@ pciide_intr_ops(dev_info_t *dip, dev_info_t *rdip, ddi_intr_op_t intr_op,
 		} else {	/* get ptr to the root node */
 			dip = ddi_root_node();
 		}
+		hdlp->ih_vector = ((ihdl_plat_t *)hdlp->ih_private)->ip_ispecp->intrspec_vec;
 
 		rc = (*(DEVI(dip)->devi_ops->devo_bus_ops->bus_intr_op))(dip,
 		    rdip, intr_op, hdlp, result);
@@ -782,14 +790,17 @@ pciide_alloc_intr(dev_info_t *dip, dev_info_t *rdip,
 	ddi_intr_handle_impl_t	info_hdl;
 	int			ret;
 	int			free_phdl = 0;
+#if defined(__x86)
 	apic_get_type_t		type_info;
 
 	if (psm_intr_ops == NULL)
 		return (DDI_FAILURE);
+#endif
 
 	if ((ispec = pciide_get_ispec(dip, rdip, hdlp->ih_inum)) == NULL)
 		return (DDI_FAILURE);
 
+#if defined(__x86)
 	/*
 	 * If the PSM module is "APIX" then pass the request for it
 	 * to allocate the vector now.
@@ -815,7 +826,10 @@ pciide_alloc_intr(dev_info_t *dip, dev_info_t *rdip,
 			free_phdl = 0;
 			i_ddi_free_intr_phdl(hdlp);
 		}
-	} else {
+	}
+	else
+#endif
+	{
 		/*
 		 * No APIX module; fall back to the old scheme where the
 		 * interrupt vector is allocated during ddi_enable_intr() call.
@@ -833,6 +847,7 @@ pciide_free_intr(dev_info_t *dip, dev_info_t *rdip,
 {
 	struct intrspec			*ispec;
 	ddi_intr_handle_impl_t		info_hdl;
+#if defined(__x86)
 	apic_get_type_t			type_info;
 
 	if (psm_intr_ops == NULL)
@@ -859,6 +874,7 @@ pciide_free_intr(dev_info_t *dip, dev_info_t *rdip,
 		return ((*psm_intr_ops)(rdip, hdlp,
 		    PSM_INTR_OP_FREE_VECTORS, NULL));
 	}
+#endif
 
 	/*
 	 * No APIX module; fall back to the old scheme where

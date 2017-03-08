@@ -22,6 +22,9 @@
  * Copyright (c) 2009-2010, Intel Corporation.
  * All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Introduction
@@ -67,7 +70,7 @@
 /* Define normal state for CPU on different platforms. */
 #if defined(__x86)
 #define	CPU_IDLE_STATE_NORMAL		IDLE_STATE_C0
-#elif defined(__sparc)
+#elif defined(__sparc) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 /*
  * At the time of this implementation IDLE_STATE_NORMAL is defined
  * in mach_startup.c, and not in a header file.  So if we find it is

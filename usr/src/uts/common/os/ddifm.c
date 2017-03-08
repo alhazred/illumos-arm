@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Fault Management for Device Drivers
@@ -351,7 +354,6 @@ fm_dev_ereport_postv(dev_info_t *dip, dev_info_t *eqdip,
 	char			class[ERPT_CLASS_SZ];
 	char			path[MAXPATHLEN];
 
-	ASSERT(ap != NULL);	/* must supply at least ereport version */
 	ASSERT(dip && eqdip && error_class);
 
 	/*

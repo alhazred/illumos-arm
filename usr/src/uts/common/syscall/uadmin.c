@@ -24,6 +24,9 @@
  * Use is subject to license terms.
  * Copyright 2013 Joyent, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/param.h>
 #include <sys/types.h>
@@ -311,7 +314,7 @@ kadmin(int cmd, int fcn, void *mdep, cred_t *credp)
 	case A_CONFIG:
 		switch (fcn) {
 		case AD_UPDATE_BOOT_CONFIG:
-#ifndef	__sparc
+#ifdef __x86
 		{
 			extern void fastboot_update_config(const char *);
 
@@ -382,7 +385,7 @@ kadmin(int cmd, int fcn, void *mdep, cred_t *credp)
 		} else
 			panic_bootstr = mdep;
 
-#ifndef	__sparc
+#ifdef __x86
 		extern void fastboot_update_and_load(int, char *);
 
 		fastboot_update_and_load(fcn, mdep);

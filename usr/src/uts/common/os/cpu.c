@@ -23,6 +23,9 @@
  * Copyright (c) 2012 by Delphix. All rights reserved.
  * Copyright 2019 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Architecture-independent CPU control functions.
@@ -2236,6 +2239,18 @@ static struct {
 	kstat_named_t ci_cacheid;
 	kstat_named_t ci_sktstr;
 #endif
+#if defined(__aarch64)
+	kstat_named_t ci_features;
+	kstat_named_t ci_implementer;
+	kstat_named_t ci_variant;
+	kstat_named_t ci_part;
+	kstat_named_t ci_revision;
+#endif
+#if defined(__riscv)
+	kstat_named_t ci_isa;
+	kstat_named_t ci_mmu;
+	kstat_named_t ci_uarch;
+#endif
 } cpu_info_template = {
 	{ "state",			KSTAT_DATA_CHAR },
 	{ "state_begin",		KSTAT_DATA_LONG },
@@ -2266,6 +2281,18 @@ static struct {
 	{ "current_cstate",		KSTAT_DATA_INT32 },
 	{ "cache_id",			KSTAT_DATA_INT32 },
 	{ "socket_type",		KSTAT_DATA_STRING },
+#endif
+#if defined(__aarch64)
+	{ "Features",			KSTAT_DATA_STRING },
+	{ "implementer",		KSTAT_DATA_STRING },
+	{ "variant",			KSTAT_DATA_STRING },
+	{ "part",			KSTAT_DATA_STRING },
+	{ "revision",			KSTAT_DATA_STRING },
+#endif
+#if defined(__riscv)
+	{ "isa",			KSTAT_DATA_STRING },
+	{ "mmu",			KSTAT_DATA_STRING },
+	{ "uarch",			KSTAT_DATA_STRING },
 #endif
 };
 
@@ -2329,6 +2356,18 @@ cpu_info_kstat_update(kstat_t *ksp, int rw)
 	cpu_info_template.ci_cacheid.value.i32 = cpuid_get_cacheid(cp);
 	kstat_named_setstr(&cpu_info_template.ci_sktstr,
 	    cpuid_getsocketstr(cp));
+#endif
+#if defined(__aarch64)
+	kstat_named_setstr(&cpu_info_template.ci_features, cp->cpu_features);
+	kstat_named_setstr(&cpu_info_template.ci_implementer, cp->cpu_implementer);
+	kstat_named_setstr(&cpu_info_template.ci_variant, cp->cpu_variant);
+	kstat_named_setstr(&cpu_info_template.ci_part, cp->cpu_partnum);
+	kstat_named_setstr(&cpu_info_template.ci_revision, cp->cpu_revision);
+#endif
+#if defined(__riscv)
+	kstat_named_setstr(&cpu_info_template.ci_isa, cp->cpu_isa);
+	kstat_named_setstr(&cpu_info_template.ci_mmu, cp->cpu_mmu);
+	kstat_named_setstr(&cpu_info_template.ci_uarch, cp->cpu_uarch);
 #endif
 
 	return (0);

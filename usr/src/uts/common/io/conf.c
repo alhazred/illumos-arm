@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #include <sys/types.h>
@@ -44,8 +47,6 @@
  * Might need to define no operation routines attach(), detach(),
  * reset(), probe(), identify() and get_dev_info().
  */
-
-extern int nopropop();
 
 struct cb_ops no_cb_ops = {
 	nodev,		/* open		*/
@@ -72,8 +73,8 @@ struct dev_ops nodev_ops = {
 	nulldev,		/* identify	*/
 	nulldev,		/* probe	*/
 	ddifail,		/* attach	*/
-	nodev,			/* detach	*/
-	nulldev,		/* reset	*/
+	(int (*)(dev_info_t *dip, ddi_detach_cmd_t cmd))nodev,		/* detach	*/
+	(int (*)(dev_info_t *dip, ddi_reset_cmd_t cmd))nulldev,		/* reset	*/
 	&no_cb_ops,		/* character/block driver operations */
 	(struct bus_ops *)0,	/* bus operations for nexus drivers */
 	NULL,			/* power */

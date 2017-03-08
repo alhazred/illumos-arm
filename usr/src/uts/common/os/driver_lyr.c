@@ -24,6 +24,9 @@
 /*
  * Copyright 2019 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Layered driver support.
@@ -1462,10 +1465,17 @@ ldi_ident_from_anon()
 
 	ASSERT(!servicing_interrupt());
 
+#if defined __alpha || defined __aarch64 || defined(__riscv)
+	lip = (ldi_ident_t)ident_alloc("unix", NULL, DDI_DEV_T_NONE, -1);
+
+	LDI_ALLOCFREE((CE_WARN, "%s: li=0x%p, mod=%s",
+	    "ldi_ident_from_anon", (void *)lip, "unix"));
+#else
 	lip = (ldi_ident_t)ident_alloc("genunix", NULL, DDI_DEV_T_NONE, -1);
 
 	LDI_ALLOCFREE((CE_WARN, "%s: li=0x%p, mod=%s",
 	    "ldi_ident_from_anon", (void *)lip, "genunix"));
+#endif
 
 	return (lip);
 }

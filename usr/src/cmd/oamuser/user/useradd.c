@@ -24,6 +24,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -93,8 +96,6 @@ extern int check_perm(), valid_expire();
 extern int putusrdef(), valid_uid();
 extern int call_passmgmt(), edit_group(), create_home();
 extern int edit_project();
-extern int **valid_lgroup();
-extern projid_t **valid_lproject();
 extern void update_def(struct userdefs *);
 extern void import_def(struct userdefs *);
 extern int get_default_zfs_flags();
@@ -140,8 +141,9 @@ int argc;
 char *argv[];
 {
 	int ch, ret, mflag = 0, oflag = 0, Dflag = 0;
-	int zflag = 0, Zflag = 0, **gidlist = NULL;
-	projid_t **projlist = NULL;
+    int zflag = 0, Zflag = 0;
+	gid_t *gidlist = NULL;
+	projid_t *projlist = NULL;
 	char *ptr;			/* loc in a str, may be set by strtol */
 	struct group *g_ptr;
 	struct project p_ptr;
@@ -718,7 +720,7 @@ char *argv[];
 		ret = create_home(homedir, skel_dir, uid, gid, zfs_flags);
 	}
 	if (ret != EX_SUCCESS) {
-		(void) edit_project(logname, (char *)NULL, (projid_t **)NULL,
+		(void) edit_project(logname, (char *)NULL, (projid_t *)NULL,
 		    0);
 		(void) edit_group(logname, (char *)0, (int **)0, 1);
 		cleanup(logname);

@@ -24,6 +24,9 @@
  * Copyright 2012 Milan Jurik. All rights reserved.
  * Copyright 2020 Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 
 #include <sys/contract/process.h>
@@ -3144,13 +3147,13 @@ update_fault_count(restarter_inst_t *inst, int type)
  */
 int
 libscf_unset_action(scf_handle_t *h, scf_propertygroup_t *pg,
-    admin_action_t a, hrtime_t ts)
+    admin_action_t a, int64_t ts)
 {
 	scf_transaction_t *t;
 	scf_transaction_entry_t *e;
 	scf_property_t *prop;
 	scf_value_t *val;
-	hrtime_t rep_ts;
+	int64_t rep_ts;
 	int ret = 0, r;
 
 	t = safe_scf_transaction_create(h);

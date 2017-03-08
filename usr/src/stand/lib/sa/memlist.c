@@ -22,6 +22,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/param.h>
@@ -138,6 +141,9 @@ add_to_freelist(struct memlist *ptr)
 {
 	struct memlist *tmp;
 
+	if (ptr) {
+		ptr->ml_next = NULL;
+	}
 	if (free_memlist_ptr == NULL) {
 		free_memlist_ptr = ptr;
 	} else {

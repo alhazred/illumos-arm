@@ -27,6 +27,9 @@
  *
  * From 4.1 : @(#)nis.x	1.61 Copyright 1989 Sun Microsystems
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /* This gets stuffed into the source files. */
 #if RPC_HDR
@@ -219,10 +222,7 @@ typedef struct nis_active_endpoint nis_active_endpoint;
 %#define OARIGHTS(d, n) (((d)->do_armask.do_armask_val+n)->oa_rights)
 %#define WORLD_DEFAULT (NIS_READ_ACC)
 %#define GROUP_DEFAULT (NIS_READ_ACC << 8)
-%#define OWNER_DEFAULT ((NIS_READ_ACC +\
-%			 NIS_MODIFY_ACC +\
-%			 NIS_CREATE_ACC +\
-%			 NIS_DESTROY_ACC) << 16)
+%#define OWNER_DEFAULT ((NIS_READ_ACC + NIS_MODIFY_ACC + NIS_CREATE_ACC + NIS_DESTROY_ACC) << 16)
 %#define DEFAULT_RIGHTS (WORLD_DEFAULT | GROUP_DEFAULT | OWNER_DEFAULT)
 %
 %/* Result manipulation defines ... */
@@ -251,10 +251,8 @@ typedef struct nis_active_endpoint nis_active_endpoint;
 % * these definitions they take an nis_object *, and an int and return
 % * a u_char * for Value, and an int for length.
 % */
-%#define ENTRY_VAL(obj, col) \
-%	(obj)->EN_data.en_cols.en_cols_val[col].ec_value.ec_value_val
-%#define ENTRY_LEN(obj, col) \
-%	(obj)->EN_data.en_cols.en_cols_val[col].ec_value.ec_value_len
+%#define ENTRY_VAL(obj, col) (obj)->EN_data.en_cols.en_cols_val[col].ec_value.ec_value_val
+%#define ENTRY_LEN(obj, col) (obj)->EN_data.en_cols.en_cols_val[col].ec_value.ec_value_len
 %
 %
 %

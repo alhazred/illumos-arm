@@ -101,7 +101,6 @@ int	re_read;	/* zero means first time	*/
 	unsigned scan_dbf();
 	extern dbf_t *Dbfhead;		/* Dbfentries (when allocated)	*/
 	extern dbf_t *Newdbf;		/* Dbfentries (on re-read)	*/
-	extern char *calloc();
 
 	DEBUG((9,"in read_dbf"));
 

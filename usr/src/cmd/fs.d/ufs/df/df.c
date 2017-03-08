@@ -969,7 +969,6 @@ char *
 xmalloc(unsigned int size)
 {
 	char *ret;
-	char *malloc();
 
 	if ((ret = (char *)malloc(size)) == NULL) {
 		(void) fprintf(stderr, gettext("umount: ran out of memory!\n"));

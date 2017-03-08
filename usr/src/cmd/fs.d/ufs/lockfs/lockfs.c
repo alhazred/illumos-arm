@@ -53,8 +53,6 @@ extern char	*optarg;
 extern int	optind;
 extern int	opterr;
 
-extern void exit();
-
 static void exitusage();
 static void printstatusline(char *, char *, char *);
 static void printstatus(char *);
@@ -125,7 +123,6 @@ int no_unlocks_printed	= 0;
 /*
  * forward reference
  */
-char	*malloc();
 
 int
 main(int argc, char *argv[])

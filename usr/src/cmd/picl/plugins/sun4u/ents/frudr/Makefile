@@ -46,7 +46,7 @@ CONFS		+= fru_SC.conf
 CONFS		+= fru_usb-a-1.conf fru_usb-a-2.conf
 CONFS		+= fru_usb-b-1.conf fru_usb-b-2.conf
 ROOTCONF=	$(CONFS:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 MAININFO=	$(CONFS:%.conf=%.info)
 OTHERINFOS	= fru_PS0_data.info fru_PS1_data.info
 OTHERINFOS	+= fru_HDD0_data.info fru_HDD1_data.info

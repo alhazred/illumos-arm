@@ -34,10 +34,10 @@ MSGFILES =	common/libipadm.c common/ipadm_prop.c common/ipadm_persist.c \
 		common/ipadm_addr.c common/ipadm_if.c common/ipadm_ndpd.c
 XGETFLAGS =     -a -x libipadm.xcl
 
-all :=		TARGET = all
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-install :=	TARGET = install
+all : 		TARGET = all
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+install : 	TARGET = install
 
 .KEEP_STATE:
 

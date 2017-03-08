@@ -49,8 +49,8 @@ CLEANFILES +=	$(EXTPICS) \
 		$(CAPFILES:%.o=%.o.objcap) \
 		$(CAPFILES:%.o=%.o.symcap)
 
-pics/sha1-ni.o.objcap		:= CAPFILE = capabilities/sha.cap
-pics/sha256-ni.o.objcap		:= CAPFILE = capabilities/sha.cap
+pics/sha1-ni.o.objcap		:  CAPFILE = capabilities/sha.cap
+pics/sha256-ni.o.objcap		:  CAPFILE = capabilities/sha.cap
 
 # This prevents <sys/asm_linkage.h> from including C source:
 AS_CPPFLAGS += -D_ASM

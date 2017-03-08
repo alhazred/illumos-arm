@@ -34,9 +34,9 @@ MANFILES= 	media_findname.3volmgt		\
 MANLINKS=	media_setattr.3volmgt		\
 		volmgt_symdev.3volmgt
 
-media_setattr.3volmgt	:= LINKSRC = media_getattr.3volmgt
+media_setattr.3volmgt	:  LINKSRC = media_getattr.3volmgt
 
-volmgt_symdev.3volmgt	:= LINKSRC = volmgt_symname.3volmgt
+volmgt_symdev.3volmgt	:  LINKSRC = volmgt_symname.3volmgt
 
 .KEEP_STATE:
 

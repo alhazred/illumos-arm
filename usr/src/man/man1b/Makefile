@@ -58,11 +58,11 @@ MANLINKS=	Mail.1b		\
 		fasthalt.1b	\
 		reset.1b
 
-Mail.1b		:= LINKSRC = mail.1b
+Mail.1b		:  LINKSRC = mail.1b
 
-fasthalt.1b	:= LINKSRC = fastboot.1b
+fasthalt.1b	:  LINKSRC = fastboot.1b
 
-reset.1b	:= LINKSRC = tset.1b
+reset.1b	:  LINKSRC = tset.1b
 
 .KEEP_STATE:
 

@@ -53,27 +53,27 @@ MANLINKS=	AH.7p		\
 		UDP.7p		\
 	 	if.7p
 
-ARP.7p		:= LINKSRC = arp.7p
+ARP.7p		:  LINKSRC = arp.7p
 
-ICMP.7p		:= LINKSRC = icmp.7p
+ICMP.7p		:  LINKSRC = icmp.7p
 
-if.7p		:= LINKSRC = if_tcp.7p
+if.7p		:  LINKSRC = if_tcp.7p
 
-IP.7p		:= LINKSRC = ip.7p
+IP.7p		:  LINKSRC = ip.7p
 
-AH.7p		:= LINKSRC = ipsecah.7p
+AH.7p		:  LINKSRC = ipsecah.7p
 
-ESP.7p		:= LINKSRC = ipsecesp.7p
+ESP.7p		:  LINKSRC = ipsecesp.7p
 
-NDP.7p		:= LINKSRC = ndp.7p
+NDP.7p		:  LINKSRC = ndp.7p
 
-RARP.7p 	:= LINKSRC = rarp.7p
+RARP.7p 	:  LINKSRC = rarp.7p
 
-SCTP.7p 	:= LINKSRC = sctp.7p
+SCTP.7p 	:  LINKSRC = sctp.7p
 
-TCP.7p		:= LINKSRC = tcp.7p
+TCP.7p		:  LINKSRC = tcp.7p
 
-UDP.7p		:= LINKSRC = udp.7p
+UDP.7p		:  LINKSRC = udp.7p
 
 .KEEP_STATE:
 

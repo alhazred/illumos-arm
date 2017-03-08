@@ -44,11 +44,11 @@ MANLINKS=	vuid2ps2.7m	\
 
 MANFILES=	$(_MANFILES) $($(MACH)_MANFILES)
 
-vuid2ps2.7m	:= LINKSRC = vuidmice.7m
-vuid3ps2.7m	:= LINKSRC = vuidmice.7m
-vuidm3p.7m	:= LINKSRC = vuidmice.7m
-vuidm4p.7m	:= LINKSRC = vuidmice.7m
-vuidm5p.7m	:= LINKSRC = vuidmice.7m
+vuid2ps2.7m	:  LINKSRC = vuidmice.7m
+vuid3ps2.7m	:  LINKSRC = vuidmice.7m
+vuidm3p.7m	:  LINKSRC = vuidmice.7m
+vuidm4p.7m	:  LINKSRC = vuidmice.7m
+vuidm5p.7m	:  LINKSRC = vuidmice.7m
 
 .KEEP_STATE:
 

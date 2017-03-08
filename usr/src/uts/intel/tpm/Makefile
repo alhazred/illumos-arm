@@ -64,7 +64,7 @@ CPPFLAGS	+= -I$(ADJUNCT_PROTO)/usr/include
 CERRWARN	+= -_gcc=-Wno-parentheses
 
 # needs work
-$(OBJS_DIR)/tpm.o := SMOFF += index_overflow
+$(OBJS_DIR)/tpm.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

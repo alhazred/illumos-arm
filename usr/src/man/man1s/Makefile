@@ -20,8 +20,8 @@ MANSECT= 	1s
 
 MANLINKS=	dmake.1s make.1s
 
-dmake.1s	:= LINKSRC = ../man1/make.1
-make.1s		:= LINKSRC = ../man1/make.1
+dmake.1s	:  LINKSRC = ../man1/make.1
+make.1s		:  LINKSRC = ../man1/make.1
 
 .KEEP_STATE:
 

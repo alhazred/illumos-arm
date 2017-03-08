@@ -62,11 +62,11 @@ SUBDIRS=
 POFILE=	psvcplugin.po
 POFILE_RENAME=	psvcplugin_lneck.po
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 all: $(LIBS) $(LIBLINKS)
 

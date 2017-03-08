@@ -58,8 +58,8 @@ include $(UTSBASE)/i86pc/Makefile.i86pc
 ALL_TARGET	= $(BINARY) $(SRC_CONFILE)
 INSTALL_TARGET	= $(BINARY) $(ROOTMODULE) $(ROOT_CONFFILE)
 
-$(OBJS_DIR)/acpippm.o :=	CERRWARN	+= -_gcc=-Wno-unused-function
-$(OBJS_DIR)/acpisleep.o :=	CERRWARN	+= -_gcc=-Wno-unused-function
+$(OBJS_DIR)/acpippm.o : 	CERRWARN	+= -_gcc=-Wno-unused-function
+$(OBJS_DIR)/acpisleep.o : 	CERRWARN	+= -_gcc=-Wno-unused-function
 
 CFLAGS += $(CCVERBOSE)
 

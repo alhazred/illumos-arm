@@ -31,15 +31,15 @@ MSGFILES=	dhkeys.c
 
 # BUILDPO runs the sourcefile through the pre-processor
 # make sure it can find what it needs.
-$(POFILE) := CPPFLAGS += -D_REENTRANT -I$(SRC)/lib/libnsl/include
+$(POFILE) :  CPPFLAGS += -D_REENTRANT -I$(SRC)/lib/libnsl/include
 
 SUBDIRS=	$(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

@@ -25,7 +25,7 @@ FILES = $(DIRS:%=%/Makefile) $(DIRS:%=%/make.rules)
 
 IDIRS = $(DIRS:%=$(TESTDIR)/%) $(LDIR:%=$(TESTDIR)/%)
 CMDS = $(FILES:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0444
+$(CMDS) :  FILEMODE = 0444
 
 all lint clean clobber:
 

@@ -102,7 +102,7 @@ FRC:
 
 # We can't provide CTF information for libdwarf, as the CTF tools themselves
 # depond upon it, and so aren't built yet.
-$(DYNLIB) := CTFMERGE_POST= :
+$(DYNLIB) :  CTFMERGE_POST= :
 CTFCONVERT_O= :
 
 include $(SRC)/lib/Makefile.targ

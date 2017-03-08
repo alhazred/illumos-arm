@@ -72,7 +72,7 @@ poolcfg_grammar.h poolcfg_grammar.c: poolcfg.y
 	@$(MV) y.tab.h poolcfg_grammar.h
 	@$(MV) y.tab.c poolcfg_grammar.c
 
-poolcfg_lex.o poolcfg_grammar.o := CCVERBOSE =
+poolcfg_lex.o poolcfg_grammar.o :  CCVERBOSE =
 
 clean:
 	$(RM) $(OBJS) $(COMMON_OBJS) $(POFILES)

@@ -30,10 +30,10 @@ default: all
 
 SUBDIRS = zone
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 all install clean clobber: $(SUBDIRS)
 

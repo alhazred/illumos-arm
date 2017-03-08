@@ -76,7 +76,7 @@ CERRWARN	+= -_gcc=-Wno-unused-function
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/daplt.o := SMOFF += all_func_returns,deref_check
+$(OBJS_DIR)/daplt.o :  SMOFF += all_func_returns,deref_check
 
 #
 #	Default build targets.

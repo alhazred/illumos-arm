@@ -29,12 +29,12 @@ SUBDIRS= $(MACH)
 
 include ../Makefile.cmd
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-check :=	TARGET= check
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+check : 	TARGET= check
 
 .KEEP_STATE:
 

@@ -30,7 +30,7 @@ include ../Makefile.com
 
 ASFLAGS += -P -D_ASM
 
-pid/tst.br.o := ASFLAGS += -xarch=v8plus
+pid/tst.br.o :  ASFLAGS += -xarch=v8plus
 
 all:	ustack/tst.helper.exe ustack/tst.annotated.exe
 

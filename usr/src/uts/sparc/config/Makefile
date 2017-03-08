@@ -69,7 +69,7 @@ install: all $(ROOTCONFIGFILES)
 #
 #     etc/path_to_inst has permissions different from the other config files
 #
-$(ROOTETC)/$(PATH2INST):= FILEMODE=444
+$(ROOTETC)/$(PATH2INST):  FILEMODE=444
 
 $(ROOTETC)/%: $(SRCDIR)/%
 	$(INS.file)

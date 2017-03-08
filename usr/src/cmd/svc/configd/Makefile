@@ -101,8 +101,8 @@ $(NATIVE_BUILD)LIBSQLITE =
 OBJS += $(OBJSQLITE)
 LDLIBS += $(LIBSQLITE)
 
-install := TARGET = install
-clobber := TARGET = clobber
+install :  TARGET = install
+clobber :  TARGET = clobber
 
 .KEEP_STATE:
 .PARALLEL: $(MYOBJS) $(MYOBJS:%.o=%-native.o)

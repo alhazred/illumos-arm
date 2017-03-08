@@ -42,21 +42,21 @@ MANLINKS=	advance.3gen	\
 		strrspn.3gen	\
 		strtrns.3gen
 
-rmdirp.3gen	:= LINKSRC = mkdirp.3gen
+rmdirp.3gen	:  LINKSRC = mkdirp.3gen
 
-p2close.3gen	:= LINKSRC = p2open.3gen
+p2close.3gen	:  LINKSRC = p2open.3gen
 
-advance.3gen	:= LINKSRC = regexpr.3gen
-compile.3gen	:= LINKSRC = regexpr.3gen
-step.3gen	:= LINKSRC = regexpr.3gen
+advance.3gen	:  LINKSRC = regexpr.3gen
+compile.3gen	:  LINKSRC = regexpr.3gen
+step.3gen	:  LINKSRC = regexpr.3gen
 
-strcadd.3gen	:= LINKSRC = strccpy.3gen
-streadd.3gen	:= LINKSRC = strccpy.3gen
-strecpy.3gen	:= LINKSRC = strccpy.3gen
+strcadd.3gen	:  LINKSRC = strccpy.3gen
+streadd.3gen	:  LINKSRC = strccpy.3gen
+strecpy.3gen	:  LINKSRC = strccpy.3gen
 
-str.3gen	:= LINKSRC = strfind.3gen
-strrspn.3gen	:= LINKSRC = strfind.3gen
-strtrns.3gen	:= LINKSRC = strfind.3gen
+str.3gen	:  LINKSRC = strfind.3gen
+strrspn.3gen	:  LINKSRC = strfind.3gen
+strtrns.3gen	:  LINKSRC = strfind.3gen
 
 .KEEP_STATE:
 

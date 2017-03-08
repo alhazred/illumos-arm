@@ -44,7 +44,7 @@ LDLIBS +=	-lpicl
 #
 PLATFORM=SUNW,Sun-Fire-280R
 
-$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 := FILEMODE= 0755
+$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 :  FILEMODE= 0755
 
 .KEEP_STATE:
 

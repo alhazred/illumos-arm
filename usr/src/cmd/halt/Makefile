@@ -56,12 +56,12 @@ LDLIBS +=	$(LDLIBS_$(MACH))
 
 CLOBBERFILES += $(ROOTLINKS) $(ROOTSYMLINKS)
 
-all     :=	TARGET = all
-install :=	TARGET = install
-clean   :=	TARGET = clean
-clobber :=	TARGET = clobber
-lint    :=	TARGET = lint
-lint	:=	LINTFLAGS += -u
+all     : 	TARGET = all
+install : 	TARGET = install
+clean   : 	TARGET = clean
+clobber : 	TARGET = clobber
+lint    : 	TARGET = lint
+lint	: 	LINTFLAGS += -u
 
 
 all: $(PROG)

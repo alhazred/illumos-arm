@@ -38,7 +38,7 @@ include $(SRC)/test/Makefile.com
 ARCHDIRS = $(ARCHS:%=$(TESTDIR)/%)
 CMDS = $(PROG:%=$(TESTDIR)/%)
 FILEMODE=0444
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 install: $(CMDS) $(ROOTFILES)
 

@@ -19,7 +19,7 @@ include		../Makefile.com
 DOCS=		README
 
 ROOTDOCS=	$(DOCS:%=$(ROOTOPTPKG)/%)
-$(ROOTDOCS) :=	FILEMODE = 0444
+$(ROOTDOCS) : 	FILEMODE = 0444
 
 all:		$(DOCS)
 

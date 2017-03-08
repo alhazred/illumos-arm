@@ -78,19 +78,19 @@ CERRWARN +=	-_gcc=-Wno-implicit-function-declaration
 # not linted
 SMATCH=off
 
-$(INSSBINPROG)  := FILEMODE = 0555
-$(INSSYSADMPROG):= FILEMODE = 0500
-$(INSSKELFILE)  := FILEMODE = 0644
+$(INSSBINPROG)  :  FILEMODE = 0555
+$(INSSYSADMPROG):  FILEMODE = 0500
+$(INSSKELFILE)  :  FILEMODE = 0644
 
-$(USERADD) :=	OBJS = $(ADD_OBJ)
-$(USERADD) :=	LIBS = $(LIBUSRGRP)
-$(USERADD) :=	LDLIBS += -lcmdutils
+$(USERADD) : 	OBJS = $(ADD_OBJ)
+$(USERADD) : 	LIBS = $(LIBUSRGRP)
+$(USERADD) : 	LDLIBS += -lcmdutils
 
-$(USERDEL) :=	OBJS = $(DEL_OBJ)
-$(USERDEL) :=	LIBS = $(LIBUSRGRP)
+$(USERDEL) : 	OBJS = $(DEL_OBJ)
+$(USERDEL) : 	LIBS = $(LIBUSRGRP)
 
-$(USERMOD) :=	OBJS = $(MOD_OBJ)
-$(USERMOD) :=	LIBS = $(LIBUSRGRP)
+$(USERMOD) : 	OBJS = $(MOD_OBJ)
+$(USERMOD) : 	LIBS = $(LIBUSRGRP)
 
 LDLIBS +=	-lbsm -lnsl -lsecdb -lproject -lzfs -ltsol
 

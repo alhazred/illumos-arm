@@ -61,9 +61,9 @@ check_struct_layout: gen_struct_layout gen_layout_obj.o
 	touch $@
 
 # We need CTF data in this object.
-gen_layout_obj.o := CFLAGS += $(CTF_FLAGS)
-gen_layout_obj.o := CFLAGS64 += $(CTF_FLAGS)
-gen_layout_obj.o := POST_PROCESS_O = $(CTFCONVERT_O)
+gen_layout_obj.o :  CFLAGS += $(CTF_FLAGS)
+gen_layout_obj.o :  CFLAGS64 += $(CTF_FLAGS)
+gen_layout_obj.o :  POST_PROCESS_O = $(CTFCONVERT_O)
 
 gen_struct_layout:	../common/gen_struct_layout.c
 		$(NATIVECC) $(NATIVE_CFLAGS) -o $@ \

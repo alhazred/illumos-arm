@@ -27,10 +27,10 @@ include $(SRC)/Makefile.master
 
 SUBDIRS		=	common euro hi_IN ja ko th_TH zh utf-8 vi
 
-install		:=	TARGET = install
-all		:=	TARGET = all
-clean		:=	TARGET = clean
-clobber		:=	TARGET = clobber
+install		: 	TARGET = install
+all		: 	TARGET = all
+clean		: 	TARGET = clean
+clobber		: 	TARGET = clobber
 
 all install clean clobber: $(SUBDIRS)
 

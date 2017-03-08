@@ -63,7 +63,7 @@ DEBUG_FLGS	=
 DEBUG_DEFS	+= $(DEBUG_FLGS)
 
 # needs work
-$(OBJS_DIR)/psm_common.o := SMOFF += deref_check
+$(OBJS_DIR)/psm_common.o :  SMOFF += deref_check
 
 #
 # Depends on ACPI CA interpreter

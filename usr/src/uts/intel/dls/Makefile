@@ -69,7 +69,7 @@ LINTTAGS	+= -erroff=E_ASSIGN_NARROW_CONV
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/dls_link.o := SMOFF += all_func_returns
+$(OBJS_DIR)/dls_link.o :  SMOFF += all_func_returns
 
 
 #

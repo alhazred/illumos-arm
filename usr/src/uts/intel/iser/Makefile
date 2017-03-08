@@ -48,7 +48,7 @@ include $(UTSBASE)/intel/Makefile.intel
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/iser_ib.o := SMOFF += deref_check
+$(OBJS_DIR)/iser_ib.o :  SMOFF += deref_check
 
 #
 #	Define targets

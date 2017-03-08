@@ -44,8 +44,8 @@ SUBDIRS = \
 
 include ./Makefile.subdirs
 
-_msg := TARGET += _msg
-check := TARGET += check
+_msg :  TARGET += _msg
+check :  TARGET += check
 
 _msg: dicts
 check: fmd

@@ -60,7 +60,7 @@ DEBUG_DEFS	+= $(DEBUG_FLGS)
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/hpcsvc.o := SMOFF += all_func_returns
+$(OBJS_DIR)/hpcsvc.o :  SMOFF += all_func_returns
 
 #
 #	Default build targets.

@@ -33,10 +33,10 @@ SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
 HDRS =		md4.h md5.h sha1.h sha2.h skein.h
 HDRDIR =	common
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

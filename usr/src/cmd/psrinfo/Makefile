@@ -32,7 +32,7 @@ include	../Makefile.cmd
 
 LDLIBS += -lkstat -ldevinfo
 
-$(PROG).po := CPPFLAGS += -DXGETTEXT
+$(PROG).po :  CPPFLAGS += -DXGETTEXT
 
 CSTD=	$(CSTD_GNU99)
 

@@ -28,11 +28,11 @@ OBJS +=		skein_iv.o
 OBJS +=		skein_block.o
 OBJS +=		list.o
 
-zfs.o := CPPFLAGS +=	-I../../common
-zfs.o := CPPFLAGS +=	-I../../../cddl/boot/zfs -I$(LZ4)
+zfs.o :  CPPFLAGS +=	-I../../common
+zfs.o :  CPPFLAGS +=	-I../../../cddl/boot/zfs -I$(LZ4)
 
 # Do not unroll skein loops, reduce code size
-skein_block.o := CPPFLAGS +=	-DSKEIN_LOOP=111
+skein_block.o :  CPPFLAGS +=	-DSKEIN_LOOP=111
 
 %.o:	$(ZFSSRC)/%.c
 	$(COMPILE.c) -o $@ $<

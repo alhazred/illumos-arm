@@ -18,7 +18,7 @@ ROOTOPTPKG = $(ROOT)/opt/net-tests
 ROOTBIN = $(ROOTOPTPKG)/bin
 PROGS = nettest
 CMDS = $(PROGS:%=$(ROOTBIN)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 include $(SRC)/test/Makefile.com
 

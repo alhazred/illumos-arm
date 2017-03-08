@@ -31,6 +31,6 @@ include ../Makefile.com
 include ../../../Makefile.cmd.64
 CFLAGS64 += -I.. -I.
 LINTFLAGS64 += -I.. -I.
-prexgram.o prexlex.o := CCVERBOSE=
+prexgram.o prexlex.o :  CCVERBOSE=
 
 install: all $(ROOTPROG64)

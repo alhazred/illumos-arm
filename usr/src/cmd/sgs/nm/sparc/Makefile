@@ -46,14 +46,14 @@ INCLIST=	-I../../include -I../../include/sparc \
 DEFLIST=	-DTARGET=SPARC -DSPARC=1 -D$(ARFORMAT) -DELF
 CPPFLAGS=	$(INCLIST) $(DEFLIST) $(CPPFLAGS.master)  -I$(ELFCAP)
 LDLIBS +=	$(CONVLIBDIR) -lconv $(ELFLIBDIR) -lelf
-objs.xpg4/%.o := CPPFLAGS += -DXPG4
+objs.xpg4/%.o :  CPPFLAGS += -DXPG4
 
 
 # Building SUNWonld results in a call to the `package' target.  Requirements
 # needed to run this application on older releases are established:
 #	i18n support requires libintl.so.1 prior to 2.6
 
-package :=	LDLIBS += /usr/lib/libintl.so.1
+package : 	LDLIBS += /usr/lib/libintl.so.1
 
 
 objs.xpg4/%.o:	../common/%.c

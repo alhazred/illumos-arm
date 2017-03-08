@@ -53,14 +53,14 @@ LDLIBS64 += -lumem
 # This test requires C99/xpg6 behavior. Therefore we build it explicitly
 # with c99 and XPG7 so it has access to the required functions.
 #
-memstream_reopen.32 := CPPFLAGS += -D_XOPEN_SOURCE=700
-memstream_reopen.64 := CPPFLAGS += -D_XOPEN_SOURCE=700
-memstream_reopen.32 := CSTD = $(CSTD_GNU99)
-memstream_reopen.64 := CSTD = $(CSTD_GNU99)
+memstream_reopen.32 :  CPPFLAGS += -D_XOPEN_SOURCE=700
+memstream_reopen.64 :  CPPFLAGS += -D_XOPEN_SOURCE=700
+memstream_reopen.32 :  CSTD = $(CSTD_GNU99)
+memstream_reopen.64 :  CSTD = $(CSTD_GNU99)
 
 # Third-party code
-orientation_test.32 := SMOFF += all_func_returns
-orientation_test.64 := SMOFF += all_func_returns
+orientation_test.32 :  SMOFF += all_func_returns
+orientation_test.64 :  SMOFF += all_func_returns
 
 .KEEP_STATE:
 

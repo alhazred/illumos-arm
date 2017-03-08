@@ -22,10 +22,10 @@ include ../Makefile.ctf
 
 SUBDIRS = test
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
 
 SRCS =	acpi.c			\
 	atkbdc.c		\
@@ -126,8 +126,8 @@ CPPFLAGS =	-I$(COMPAT)/bhyve -I$(CONTRIB)/bhyve \
 # Disable the crypto code until it is wired up
 CPPFLAGS +=	-DNO_OPENSSL
 
-pci_nvme.o := CERRWARN += -_gcc=-Wno-pointer-sign
-pci_nvme.o := SMOFF += kmalloc_wrong_size
+pci_nvme.o :  CERRWARN += -_gcc=-Wno-pointer-sign
+pci_nvme.o :  SMOFF += kmalloc_wrong_size
 
 SMOFF += all_func_returns,leaks,no_if_block
 
@@ -135,8 +135,8 @@ SMOFF += all_func_returns,leaks,no_if_block
 CSTD=		$(CSTD_GNU99)
 C99MODE=	-xc99=%all
 
-$(PROG) := LDLIBS += -lsocket -lnsl -ldlpi -ldladm -lmd -luuid -lvmmapi -lz
-$(MEVENT_TEST_PROG) := LDLIBS += -lsocket
+$(PROG) :  LDLIBS += -lsocket -lnsl -ldlpi -ldladm -lmd -luuid -lvmmapi -lz
+$(MEVENT_TEST_PROG) :  LDLIBS += -lsocket
 
 .KEEP_STATE:
 

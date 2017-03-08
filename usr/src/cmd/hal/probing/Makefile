@@ -25,10 +25,10 @@
 
 SUBDIRS = storage volume printer network-printer acpi xkb 
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 .KEEP_STATE:
 

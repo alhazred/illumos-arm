@@ -25,9 +25,9 @@ MANFILES= 	rstat.3rpc	\
 MANLINKS=	havedisk.3rpc	\
 		rnusers.3rpc
 
-havedisk.3rpc	:= LINKSRC = rstat.3rpc
+havedisk.3rpc	:  LINKSRC = rstat.3rpc
 
-rnusers.3rpc	:= LINKSRC = rusers.3rpc
+rnusers.3rpc	:  LINKSRC = rusers.3rpc
 
 .KEEP_STATE:
 

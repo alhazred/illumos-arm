@@ -65,7 +65,7 @@ CERRWARN	+= -_gcc=-Wno-unused-label
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/usb_ac.o := SMOFF += deref_check,indenting,testing_index_after_use
+$(OBJS_DIR)/usb_ac.o :  SMOFF += deref_check,indenting,testing_index_after_use
 
 #
 # depends on misc/usba

@@ -23,9 +23,9 @@ MANFILES=	maillock.3mail
 MANLINKS=	mailunlock.3mail	\
 		touchlock.3mail
 
-mailunlock.3mail	:= LINKSRC = maillock.3mail
+mailunlock.3mail	:  LINKSRC = maillock.3mail
 
-touchlock.3mail		:= LINKSRC = maillock.3mail
+touchlock.3mail		:  LINKSRC = maillock.3mail
 
 .KEEP_STATE:
 

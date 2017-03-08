@@ -24,7 +24,7 @@ SRCS = $(OBJS:%.o=%.c)
 
 include $(SRC)/cmd/Makefile.cmd
 
-$(TARGETDIR)/$(PROG) :=	FILEMODE = 0555
+$(TARGETDIR)/$(PROG) : 	FILEMODE = 0555
 
 CPPFLAGS = -D__EXTENSIONS__
 LDLIBS += -lsocket

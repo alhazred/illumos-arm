@@ -50,24 +50,24 @@ LINT_LIBS	 = $(LINT_LIB) \
 		   $(SPARC_LINTS:%=$(SPARC_LIB_DIR)/llib-l%.ln)
 
 
-def		:=	TARGET= def
-def.prereq	:=	TARGET= def
-all		:=	TARGET= all
-all.prereq	:=	TARGET= all
-install		:=	TARGET= install
-install.prereq	:=	TARGET= install
-install_h	:=	TARGET= install_h
-install_h.prere	:=	TARGET= install_h
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
-lint.prereq	:=	TARGET= lint
-lintlib		:=	TARGET= lintlib
-modlintlib	:=	TARGET= modlintlib
-modlist		:=	TARGET= modlist
-modlist	modlist.sparc :=	NO_STATE= -K $$MODSTATE$$$$
-clean.lint	:=	TARGET= clean.lint
-check		:=	TARGET= check
+def		: 	TARGET= def
+def.prereq	: 	TARGET= def
+all		: 	TARGET= all
+all.prereq	: 	TARGET= all
+install		: 	TARGET= install
+install.prereq	: 	TARGET= install
+install_h	: 	TARGET= install_h
+install_h.prere	: 	TARGET= install_h
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
+lint.prereq	: 	TARGET= lint
+lintlib		: 	TARGET= lintlib
+modlintlib	: 	TARGET= modlintlib
+modlist		: 	TARGET= modlist
+modlist	modlist.sparc : 	NO_STATE= -K $$MODSTATE$$$$
+clean.lint	: 	TARGET= clean.lint
+check		: 	TARGET= check
 
 .KEEP_STATE:
 

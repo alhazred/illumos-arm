@@ -37,13 +37,13 @@ MIBFILES = SUN-FM-MIB.mib SUN-IREPORT-MIB.mib
 ROOTNETSNMPMIBDIR = $(ROOT)/etc/net-snmp/snmp/mibs
 ROOTMIBS = $(MIBFILES:%=$(ROOTNETSNMPMIBDIR)/%)
 
-$(ROOTMIBS) := FILEMODE = 0644
-$(ROOTNETSNMPMIBDIR) := DIRMODE = 0755
+$(ROOTMIBS) :  FILEMODE = 0644
+$(ROOTNETSNMPMIBDIR) :  DIRMODE = 0755
 
-all := TARGET = all
-clean := TARGET = clean
-clobber := TARGET = clobber
-install := TARGET = install
+all :  TARGET = all
+clean :  TARGET = clean
+clobber :  TARGET = clobber
+install :  TARGET = install
 
 .KEEP_STATE:
 

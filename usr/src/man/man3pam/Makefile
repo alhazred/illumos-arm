@@ -45,15 +45,15 @@ MANLINKS=	pam_close_session.3pam		\
 		pam_get_item.3pam		\
 		pam_sm_close_session.3pam
 
-pam_close_session.3pam		:= LINKSRC = pam_open_session.3pam
+pam_close_session.3pam		:  LINKSRC = pam_open_session.3pam
 
-pam_get_data.3pam		:= LINKSRC = pam_set_data.3pam
+pam_get_data.3pam		:  LINKSRC = pam_set_data.3pam
 
-pam_get_item.3pam		:= LINKSRC = pam_set_item.3pam
+pam_get_item.3pam		:  LINKSRC = pam_set_item.3pam
 
-pam_sm_close_session.3pam	:= LINKSRC = pam_sm_open_session.3pam
+pam_sm_close_session.3pam	:  LINKSRC = pam_sm_open_session.3pam
 
-pam_end.3pam			:= LINKSRC = pam_start.3pam
+pam_end.3pam			:  LINKSRC = pam_start.3pam
 
 .KEEP_STATE:
 

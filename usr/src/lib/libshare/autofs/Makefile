@@ -30,10 +30,10 @@ $(BUILD64)SUBDIRS += $(MACH64)
 MSGFILES =	libshare_autofs.c
 POFILE  =	libshare_autofs.po
 
-all	:=	TARGET= all
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-install	:=	TARGET= install
+all	: 	TARGET= all
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+install	: 	TARGET= install
 
 .KEEP_STATE:
 

@@ -56,7 +56,7 @@ CERRWARN += $(CNOWARN_UNINIT)
 SMATCH=off
 
 LDLIBS += -last
-msgcpp   := LDLIBS += -lpp
+msgcpp   :  LDLIBS += -lpp
 
 # This target should use "shcomp" in the future
 msgcc:	msgcc.sh

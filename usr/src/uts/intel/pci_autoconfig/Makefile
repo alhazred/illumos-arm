@@ -71,8 +71,8 @@ LINTTAGS	+= -erroff=E_BAD_PTR_CAST_ALIGN
 LINTTAGS	+= -erroff=E_ASSIGN_NARROW_CONV
 
 CERRWARN	+= -_gcc=-Wno-parentheses
-$(OBJS_DIR)/pci_boot.o :=	CERRWARN += -_gcc=-Wno-unused-function
-$(OBJS_DIR)/pci_resource.o :=	CERRWARN += -_gcc=-Wno-unused-function
+$(OBJS_DIR)/pci_boot.o : 	CERRWARN += -_gcc=-Wno-unused-function
+$(OBJS_DIR)/pci_resource.o : 	CERRWARN += -_gcc=-Wno-unused-function
 
 #
 #	Default build targets.

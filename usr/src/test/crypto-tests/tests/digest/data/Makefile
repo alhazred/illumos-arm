@@ -37,7 +37,7 @@ DIGEST_FILES = \
     SHA512ShortMsg.rsp
 
 FILES = $(DIGEST_FILES:%=$(SHAREDIR)/%)
-$(FILES) := FILEMODE = 0444
+$(FILES) :  FILEMODE = 0444
 
 all clean lint clobber:
 

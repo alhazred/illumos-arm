@@ -17,9 +17,9 @@ CPPFLAGS +=	$(ACCESS) $(PARANOID) $(NETGROUP) $(TLI) \
 		-DFACILITY=$(FACILITY) -DSEVERITY=$(SEVERITY) \
 		-DREAL_DAEMON_DIR=\"$(REAL_DAEMON_DIR)\" \
 		-I../../lib/libwrap
-tcpd tcpdmatch try-from := \
+tcpd tcpdmatch try-from :  \
 		LDLIBS += -lwrap
-tcpdchk :=	LDLIBS += -lwrap -lnsl
+tcpdchk : 	LDLIBS += -lwrap -lnsl
 
 CERRWARN +=	-erroff=E_FUNC_HAS_NO_RETURN_STMT
 CERRWARN +=	-erroff=E_IMPLICIT_DECL_FUNC_RETURN_INT
@@ -39,9 +39,9 @@ MAPFILE.INT.D=	$(MAPFILE.NGB) mapfile-intf-tcpdchk
 MAPFILE.INT.M=	$(MAPFILE.NGB) mapfile-intf-tcpdmatch
 MAPFILE.INT.F=	$(MAPFILE.NGB) mapfile-intf-tryfrom
 
-tcpdchk :=	LDFLAGS +=$(MAPFILE.INT.D:%=-M%)
-tcpdmatch :=	LDFLAGS +=$(MAPFILE.INT.M:%=-M%)
-try-from :=	LDFLAGS +=$(MAPFILE.INT.F:%=-M%)
+tcpdchk : 	LDFLAGS +=$(MAPFILE.INT.D:%=-M%)
+tcpdmatch : 	LDFLAGS +=$(MAPFILE.INT.M:%=-M%)
+try-from : 	LDFLAGS +=$(MAPFILE.INT.F:%=-M%)
 
 .KEEP_STATE:
 

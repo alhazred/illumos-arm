@@ -29,13 +29,13 @@ include ../Makefile.cmd
 
 .KEEP_STATE:
 
-all := TARGET= all
-check := TARGET= check
-clean := TARGET= clean
-clobber := TARGET= clobber
-install := TARGET= install
-install_h := TARGET= install_h
-_msg := TARGET= _msg
+all :  TARGET= all
+check :  TARGET= check
+clean :  TARGET= clean
+clobber :  TARGET= clobber
+install :  TARGET= install
+install_h :  TARGET= install_h
+_msg :  TARGET= _msg
 
 all clean clobber install install_h: $(SUBDIRS)
 

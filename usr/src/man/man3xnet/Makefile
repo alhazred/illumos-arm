@@ -79,48 +79,48 @@ MANLINKS=	getaddrinfo.3xnet	\
 		setprotoent.3xnet	\
 		setservent.3xnet
 
-getaddrinfo.3xnet	:= LINKSRC = freeaddrinfo.3xnet
+getaddrinfo.3xnet	:  LINKSRC = freeaddrinfo.3xnet
 
-gethostbyaddr.3xnet	:= LINKSRC = endhostent.3xnet
-gethostbyname.3xnet	:= LINKSRC = endhostent.3xnet
-gethostent.3xnet	:= LINKSRC = endhostent.3xnet
+gethostbyaddr.3xnet	:  LINKSRC = endhostent.3xnet
+gethostbyname.3xnet	:  LINKSRC = endhostent.3xnet
+gethostent.3xnet	:  LINKSRC = endhostent.3xnet
 
-getnetbyaddr.3xnet	:= LINKSRC = endnetent.3xnet
-getnetbyname.3xnet	:= LINKSRC = endnetent.3xnet
-getnetent.3xnet		:= LINKSRC = endnetent.3xnet
+getnetbyaddr.3xnet	:  LINKSRC = endnetent.3xnet
+getnetbyname.3xnet	:  LINKSRC = endnetent.3xnet
+getnetent.3xnet		:  LINKSRC = endnetent.3xnet
 
-getprotobyname.3xnet	:= LINKSRC = endprotoent.3xnet
-getprotobynumber.3xnet	:= LINKSRC = endprotoent.3xnet
-getprotoent.3xnet	:= LINKSRC = endprotoent.3xnet
+getprotobyname.3xnet	:  LINKSRC = endprotoent.3xnet
+getprotobynumber.3xnet	:  LINKSRC = endprotoent.3xnet
+getprotoent.3xnet	:  LINKSRC = endprotoent.3xnet
 
-getservbyname.3xnet	:= LINKSRC = endservent.3xnet
-getservbyport.3xnet	:= LINKSRC = endservent.3xnet
-getservent.3xnet	:= LINKSRC = endservent.3xnet
+getservbyname.3xnet	:  LINKSRC = endservent.3xnet
+getservbyport.3xnet	:  LINKSRC = endservent.3xnet
+getservent.3xnet	:  LINKSRC = endservent.3xnet
 
-htons.3xnet		:= LINKSRC = htonl.3xnet
+htons.3xnet		:  LINKSRC = htonl.3xnet
 
-if_freenameindex.3xnet	:= LINKSRC = if_nametoindex.3xnet
-if_indextoname.3xnet	:= LINKSRC = if_nametoindex.3xnet
-if_nameindex.3xnet	:= LINKSRC = if_nametoindex.3xnet
+if_freenameindex.3xnet	:  LINKSRC = if_nametoindex.3xnet
+if_indextoname.3xnet	:  LINKSRC = if_nametoindex.3xnet
+if_nameindex.3xnet	:  LINKSRC = if_nametoindex.3xnet
 
-inet_lnaof.3xnet	:= LINKSRC = inet_addr.3xnet
-inet_makeaddr.3xnet	:= LINKSRC = inet_addr.3xnet
-inet_netof.3xnet	:= LINKSRC = inet_addr.3xnet
-inet_network.3xnet	:= LINKSRC = inet_addr.3xnet
-inet_ntoa.3xnet		:= LINKSRC = inet_addr.3xnet
+inet_lnaof.3xnet	:  LINKSRC = inet_addr.3xnet
+inet_makeaddr.3xnet	:  LINKSRC = inet_addr.3xnet
+inet_netof.3xnet	:  LINKSRC = inet_addr.3xnet
+inet_network.3xnet	:  LINKSRC = inet_addr.3xnet
+inet_ntoa.3xnet		:  LINKSRC = inet_addr.3xnet
 
-inet_pton.3xnet		:= LINKSRC = inet_ntop.3xnet
+inet_pton.3xnet		:  LINKSRC = inet_ntop.3xnet
 
-ntohl.3xnet		:= LINKSRC = htonl.3xnet
-ntohs.3xnet		:= LINKSRC = htonl.3xnet
+ntohl.3xnet		:  LINKSRC = htonl.3xnet
+ntohs.3xnet		:  LINKSRC = htonl.3xnet
 
-sethostent.3xnet	:= LINKSRC = endhostent.3xnet
+sethostent.3xnet	:  LINKSRC = endhostent.3xnet
 
-setnetent.3xnet		:= LINKSRC = endnetent.3xnet
+setnetent.3xnet		:  LINKSRC = endnetent.3xnet
 
-setprotoent.3xnet	:= LINKSRC = endprotoent.3xnet
+setprotoent.3xnet	:  LINKSRC = endprotoent.3xnet
 
-setservent.3xnet	:= LINKSRC = endservent.3xnet
+setservent.3xnet	:  LINKSRC = endservent.3xnet
 
 .KEEP_STATE:
 

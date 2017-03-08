@@ -28,10 +28,10 @@ include		$(SRC)/lib/Makefile.lib
 CAPDIR =	capabilities
 SUBDIRS =	$(MACH) $(BUILD64) $(MACH64) $(PLATFORMS)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

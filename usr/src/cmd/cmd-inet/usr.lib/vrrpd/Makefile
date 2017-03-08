@@ -33,9 +33,9 @@ include ../../../Makefile.cmd
 
 ROOTMANIFESTDIR=	$(ROOTSVCNETWORK)
 
-$(ROOTETC)/inet/$(CFGFILES):= FILEMODE= 644 
-$(ROOTETC)/inet/$(CFGFILES):= OWNER= root 
-$(ROOTETC)/inet/$(CFGFILES):= GROUP= sys 
+$(ROOTETC)/inet/$(CFGFILES):  FILEMODE= 644 
+$(ROOTETC)/inet/$(CFGFILES):  OWNER= root 
+$(ROOTETC)/inet/$(CFGFILES):  GROUP= sys 
 
 CSTD=		$(CSTD_GNU99)
 
@@ -54,7 +54,7 @@ CERRWARN += $(CNOWARN_UNINIT)
 #
 CTFCONVERT_HOOK = && $(CTFCONVERT_O)
 CTFMERGE_HOOK = && $(CTFMERGE) -L VERSION -o $@ $(OBJS)
-$(OBJS) := CFLAGS += $(CTF_FLAGS)
+$(OBJS) :  CFLAGS += $(CTF_FLAGS)
 
 # for messaging catalog. No messages are present in CMN_DIR sources.
 POFILES = $(LOCAL_OBJS:%.o=%.po)

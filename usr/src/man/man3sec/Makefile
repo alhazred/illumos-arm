@@ -36,15 +36,15 @@ MANLINKS=	acl_fromtext.3sec	\
 		facl_get.3sec		\
 		facl_set.3sec
 
-acl_set.3sec		:= LINKSRC = acl_get.3sec
-facl_get.3sec		:= LINKSRC = acl_get.3sec
-facl_set.3sec		:= LINKSRC = acl_get.3sec
+acl_set.3sec		:  LINKSRC = acl_get.3sec
+facl_get.3sec		:  LINKSRC = acl_get.3sec
+facl_set.3sec		:  LINKSRC = acl_get.3sec
 
-acl_fromtext.3sec	:= LINKSRC = acl_totext.3sec
+acl_fromtext.3sec	:  LINKSRC = acl_totext.3sec
 
-aclfrommode.3sec	:= LINKSRC = acltomode.3sec
+aclfrommode.3sec	:  LINKSRC = acltomode.3sec
 
-aclfromtext.3sec	:= LINKSRC = acltotext.3sec
+aclfromtext.3sec	:  LINKSRC = acltotext.3sec
 
 .KEEP_STATE:
 

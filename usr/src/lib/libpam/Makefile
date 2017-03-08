@@ -41,10 +41,10 @@ ETCFILES=	pam.conf
 ROOTETC=	$(ROOT)/etc
 IETCFILES=	$(ETCFILES:%=$(ROOTETC)/%)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

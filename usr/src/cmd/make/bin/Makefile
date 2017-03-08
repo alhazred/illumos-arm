@@ -76,7 +76,7 @@ $(ROOTXPG4BIN)/make:
 $(ROOTBIN)/dmake:
 	-$(RM) $@; $(SYMLINK) ./make $@
 
-$(ROOTRULES) := FILEMODE = 0444
+$(ROOTRULES) :  FILEMODE = 0444
 
 $(ROOTRULES): $(ROOTSHLIB)/make
 

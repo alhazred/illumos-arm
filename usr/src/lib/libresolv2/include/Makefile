@@ -29,10 +29,10 @@ include		../../../Makefile.master
 HDRS=		os_version.h port_ipv6.h
 TMPHDRS=	new_os_version.h new_port_ipv6.h
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

@@ -31,10 +31,10 @@ include ../../../../Makefile.master
 FLASHPRESRC=	caplib.ksh
 FLASHPREPROG=	$(FLASHPRESRC:%.ksh=%)
 
-all:=           TARGET= all
-install:=       TARGET= install
-clean:=         TARGET= clean
-clobber:=       TARGET= clobber
+all:            TARGET= all
+install:        TARGET= install
+clean:          TARGET= clean
+clobber:        TARGET= clobber
 
 ROOTETC=	$(ROOT)/etc
 ETCFLASHD=	$(ROOTETC)/flash
@@ -46,11 +46,11 @@ DIRS=		$(ETCFLASHPREC) $(ETCFLASHPREE) $(ETCFLASHPOSTC)
 
 ETCFLASHPREPROG=	$(FLASHPREPROG:%=$(ETCFLASHPREC)/%)
 
-$(ETCFLASHD) :=	DIRMODE=	755
-$(ETCFLASHPREC) :=	DIRMODE=	700
-$(ETCFLASHPREE) :=	DIRMODE=	700
-$(ETCFLASHPOSTC) :=	DIRMODE=	700
-$(ETCFLASHPREPROG) :=	FILEMODE=       0500
+$(ETCFLASHD) : 	DIRMODE=	755
+$(ETCFLASHPREC) : 	DIRMODE=	700
+$(ETCFLASHPREE) : 	DIRMODE=	700
+$(ETCFLASHPOSTC) : 	DIRMODE=	700
+$(ETCFLASHPREPROG) : 	FILEMODE=       0500
 
 .KEEP_STATE:
 

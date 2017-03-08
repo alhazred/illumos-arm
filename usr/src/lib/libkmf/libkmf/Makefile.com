@@ -60,8 +60,8 @@ LDLIBS	+=	-lcustr
 NATIVE_LIBS +=	libxml2.so
 
 # DYNLIB libraries do not have lint libs and are not linted
-$(DYNLIB) :=    LDLIBS += -lxml2
-$(DYNLIB64) :=  LDLIBS64 += -lxml2
+$(DYNLIB) :     LDLIBS += -lxml2
+$(DYNLIB64) :   LDLIBS64 += -lxml2
 
 CPPFLAGS	+=	-I$(INCDIR) -I$(ADJUNCT_PROTO)/usr/include/libxml2 \
 			-I../../ber_der/inc -I$(SRCDIR)

@@ -37,14 +37,14 @@ SUBDIRS=	cf lib db libsm libsmdb libsmutil .WAIT src util
 include 	../Makefile.cmd
 
 ROOTDIRS=	$(ROOT)/var/spool/mqueue $(ROOT)/var/spool/clientmqueue
-$(ROOTDIRS):=	DIRMODE = 0750
-$(ROOT)/var/spool/clientmqueue:=	DIRMODE = 0770
+$(ROOTDIRS): 	DIRMODE = 0750
+$(ROOT)/var/spool/clientmqueue: 	DIRMODE = 0770
 
-all:=           TARGET= all
-install:=       TARGET= install
-clean:=         TARGET= clean
-clobber:=       TARGET= clobber
-lint:=          TARGET= lint
+all:            TARGET= all
+install:        TARGET= install
+clean:          TARGET= clean
+clobber:        TARGET= clobber
+lint:           TARGET= lint
 
 .KEEP_STATE:
 

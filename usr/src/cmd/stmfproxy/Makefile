@@ -29,13 +29,13 @@ include ../Makefile.cmd
 
 SUBDIRS   = stmfproxy aluaadm
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-cstyle :=	TARGET= cstyle
-check :=	TARGET= check
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+cstyle : 	TARGET= cstyle
+check : 	TARGET= check
 
 .KEEP_STATE:
 

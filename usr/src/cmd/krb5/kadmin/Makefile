@@ -27,15 +27,15 @@ include ../../Makefile.cmd
 
 SUBDIRS= cli dbutil ktutil kpasswd server kclient kdcmgr
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-delete :=	TARGET= delete
-install :=	TARGET= install
-lint :=		TARGET= lint
-catalog :=	TARGET= catalog
-package :=	TARGET= package
-_msg:=          TARGET= _msg
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+delete : 	TARGET= delete
+install : 	TARGET= install
+lint : 		TARGET= lint
+catalog : 	TARGET= catalog
+package : 	TARGET= package
+_msg:           TARGET= _msg
 
 _msg:	$(SUBDIRS)
 

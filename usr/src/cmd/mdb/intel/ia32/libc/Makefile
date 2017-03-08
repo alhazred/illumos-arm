@@ -40,5 +40,5 @@ CPPFLAGS += -I$(MODSRCS_DIR)
 include ../../Makefile.ia32
 include ../../../Makefile.module
 
-dmod/$(MODULE) := LDLIBS += -lavl
+dmod/$(MODULE) :  LDLIBS += -lavl
 

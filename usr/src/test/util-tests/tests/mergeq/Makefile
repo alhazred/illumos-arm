@@ -26,7 +26,7 @@ include $(SRC)/cmd/Makefile.ctf
 include $(SRC)/test/Makefile.com
 
 CMDS = $(PROG:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 CPPFLAGS += -I$(SRC)/lib/mergeq -D_REENTRANT
 LDLIBS += -lumem

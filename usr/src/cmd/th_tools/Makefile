@@ -39,13 +39,13 @@ SRCS = $(PROG:%=%.c)
 OBJECTS = $(SRCS:%.c=%.o)
 
 LDLIBS += -ldevinfo
-th_manage := LDLIBS += -ldevice
+th_manage :  LDLIBS += -ldevice
 
 ROOTPROG = $(PROG:%=$(ROOTUSRSBIN)/%)
 
 CLOBBERFILES = $(PROG) $(SHFILES)
 
-$(ROOTPROG) := FILEMODE = 0555
+$(ROOTPROG) :  FILEMODE = 0555
 
 .KEEP_STATE:
 

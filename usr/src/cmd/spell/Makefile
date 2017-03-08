@@ -71,13 +71,16 @@ ROOTVARADMF = $(VARADMF:%=$(ROOTVARADMD)/%)
 
 HASHFILEMODE = 0644
 $(ROOTSPELLD)/hstop $(ROOTSPELLD)/hlistb \
-$(ROOTSPELLD)/hlista :=	FILEMODE =	0644
-$(ROOTVARADMF) :=	FILEMODE =	0666
+$(ROOTSPELLD)/hlista : 	FILEMODE =	0644
+$(ROOTVARADMF) : 	FILEMODE =	0666
 
-spellin1 hashmk1 := CC = $(NATIVECC)
-spellin1 hashmk1 := POST_PROCESS =
-spellin1 hashmk1 := CPPFLAGS =
-spellin1 hashmk1 := LDFLAGS = $(BDIRECT)
+$(ROOTSPELLD)/hlista : 	FILEMODE =	0644
+$(ROOTVARADMF) : 	FILEMODE =	0666
+
+spellin1 hashmk1 :  CC = $(NATIVECC)
+spellin1 hashmk1 :  POST_PROCESS =
+spellin1 hashmk1 :  CPPFLAGS =
+spellin1 hashmk1 :  LDFLAGS = $(BDIRECT)
 
 $(ROOTSPELLD)/% $(ROOTVARADMD)/% : %
 	$(INS.file)

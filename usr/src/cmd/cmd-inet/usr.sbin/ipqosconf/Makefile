@@ -44,8 +44,8 @@ ROOTLIBIPQOSCONFTYPES =	$(TYPES:%=$(ROOTLIBIPQOSCONF)/%)
 include	../../../Makefile.cmd
 include	../../Makefile.cmd-inet
 
-$(ROOTUSRSBIN)/$(PROG)		:=	FILEMODE= 0755
-$(ROOTLIBIPQOSCONFTYPES)	:=	FILEMODE= 0444
+$(ROOTUSRSBIN)/$(PROG)		: 	FILEMODE= 0755
+$(ROOTLIBIPQOSCONFTYPES)	: 	FILEMODE= 0444
 
 #pull in prototype for strtok_r
 CPPFLAGS +=	-D__EXTENSIONS__

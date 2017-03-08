@@ -31,6 +31,6 @@ include ../Makefile.com
 # library being built & signed here uses the system's own
 # KMF library (/usr/lib/libkmf.so.1)
 #
-$(DYNLIB):=	LD_LIBRARY_PATH=/usr/lib
+$(DYNLIB): 	LD_LIBRARY_PATH=/usr/lib
 
 install: all $(ROOTLIBS) $(ROOTLINKS) 

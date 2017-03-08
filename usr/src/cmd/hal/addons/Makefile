@@ -27,10 +27,10 @@
 
 SUBDIRS = storage acpi network-devices cpufreq
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 .KEEP_STATE:
 

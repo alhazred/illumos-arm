@@ -34,10 +34,10 @@ $(BUILD64)$(BUILDPY3)SUBDIRS += py3
 XGETTEXT=	$(GNUXGETTEXT)
 XGETFLAGS=	$(GNUXGETFLAGS)
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 MSGFILES =	`$(FIND) . -name '*.py' -o -name '*.c'`
 POFILE =	libbe_py.po

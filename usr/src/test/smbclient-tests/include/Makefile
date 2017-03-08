@@ -26,7 +26,7 @@ INCS=	\
 		xattr_common.ksh
 
 ROOTINCS=	$(INCS:%=$(ROOTINCDIR)/%)
-$(ROOTINCS) :=	FILEMODE = 0444
+$(ROOTINCS) : 	FILEMODE = 0444
 
 all lint clean clobber:
 

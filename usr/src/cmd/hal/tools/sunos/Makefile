@@ -36,7 +36,7 @@ CLOBBERFILES += $(HAL_PROGS)
 include ../../../Makefile.cmd
 include ../../Makefile.hal
 
-$(HAL_PROGS) :=		LDLIBS += -lc $(ZIGNORE) -lglib-2.0
+$(HAL_PROGS) : 		LDLIBS += -lc $(ZIGNORE) -lglib-2.0
 
 NATIVE_LIBS += libglib-2.0.so
 CPPFLAGS += $(HAL_DBUS_CPPFLAGS) $(HAL_GLIB_CPPFLAGS) $(HAL_CONFIG_CPPFLAGS)

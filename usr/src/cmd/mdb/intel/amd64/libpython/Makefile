@@ -38,12 +38,12 @@ include ../../../../Makefile.cmd.64
 include ../../Makefile.amd64
 include ../../../Makefile.module
 
-%.o := CPPFLAGS += $(PYCPPFLAGS)
-%.ln := CPPFLAGS += $(PYLNFLAGS)
+%.o :  CPPFLAGS += $(PYCPPFLAGS)
+%.ln :  CPPFLAGS += $(PYLNFLAGS)
 LINTFLAGS += -erroff=E_MACRO_REDEFINED
 
 
-dmod/$(MODULE) := LDLIBS += -lproc
+dmod/$(MODULE) :  LDLIBS += -lproc
 
 %.o: $(MODSRCS_DIR)/%.c
 	$(COMPILE.c) $<

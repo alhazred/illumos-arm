@@ -1110,7 +1110,7 @@ CFLAGS += $(XSTRCONST)
 
 ALTPICS= $(TRACEOBJS:%=pics/%)
 
-$(DYNLIB) := BUILD.SO = $(LD) -o $@ -G $(DYNFLAGS) $(PICS) $(ALTPICS) \
+$(DYNLIB) :  BUILD.SO = $(LD) -o $@ -G $(DYNFLAGS) $(PICS) $(ALTPICS) \
 		$(EXTPICS) $(LDLIBS)
 
 MAPFILES =	$(LIBCDIR)/port/mapfile-vers
@@ -1177,8 +1177,8 @@ CLEANFILES +=			\
 CLOBBERFILES +=	$(LIB_PIC)
 
 # conditional assignments
-$(DYNLIB) := CRTI = crti.o
-$(DYNLIB) := CRTN = crtn.o
+$(DYNLIB) :  CRTI = crti.o
+$(DYNLIB) :  CRTN = crtn.o
 
 # Files which need the threads .il inline template
 TIL=				\
@@ -1221,49 +1221,49 @@ TIL=				\
 	unwind.o
 
 THREADS_INLINES = $(LIBCBASE)/threads/i386.il
-$(TIL:%=pics/%) := CFLAGS += $(THREADS_INLINES)
+$(TIL:%=pics/%) :  CFLAGS += $(THREADS_INLINES)
 
-# pics/mul64.o := CFLAGS += $(LIBCBASE)/crt/mul64.il
+# pics/mul64.o :  CFLAGS += $(LIBCBASE)/crt/mul64.il
 
 # large-file-aware components that should be built large
 
-$(COMSYSOBJS64:%=pics/%) := \
+$(COMSYSOBJS64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(SYSOBJS64:%=pics/%) := \
+$(SYSOBJS64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTGEN64:%=pics/%) := \
+$(PORTGEN64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTREGEX64:%=pics/%) := \
+$(PORTREGEX64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTSTDIO64:%=pics/%) := \
+$(PORTSTDIO64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTSYS64:%=pics/%) := \
+$(PORTSYS64:%=pics/%) :  \
 	CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
-$(PORTSTDIO_W:%=pics/%) := \
+$(PORTSTDIO_W:%=pics/%) :  \
 	CPPFLAGS += -D_WIDE
 
-$(PORTPRINT_W:%=pics/%) := \
+$(PORTPRINT_W:%=pics/%) :  \
 	CPPFLAGS += -D_WIDE
 
-$(PORTPRINT_C89:%=pics/%) := \
+$(PORTPRINT_C89:%=pics/%) :  \
 	CPPFLAGS += -D_C89_INTMAX32
 
-$(PORTSTDIO_C89:%=pics/%) := \
+$(PORTSTDIO_C89:%=pics/%) :  \
 	CPPFLAGS += -D_C89_INTMAX32
 
-$(PORTI18N_COND:%=pics/%) := \
+$(PORTI18N_COND:%=pics/%) :  \
 	CPPFLAGS += -D_WCS_LONGLONG
 
-pics/arc4random.o :=	CPPFLAGS += -I$(SRC)/common/crypto/chacha
+pics/arc4random.o : 	CPPFLAGS += -I$(SRC)/common/crypto/chacha
 
-pics/__clock_gettime.o := CPPFLAGS += $(COMMPAGE_CPPFLAGS)
-pics/gettimeofday.o := CPPFLAGS += $(COMMPAGE_CPPFLAGS)
+pics/__clock_gettime.o :  CPPFLAGS += $(COMMPAGE_CPPFLAGS)
+pics/gettimeofday.o :  CPPFLAGS += $(COMMPAGE_CPPFLAGS)
 
 .KEEP_STATE:
 
@@ -1277,7 +1277,7 @@ $(TIL:%=pics/%): $(LIBCBASE)/threads/i386.il
 include $(LIBCDIR)/Makefile.targ
 
 # We need to strip out all CTF and DOF data from the static library
-$(LIB_PIC) := DIR = pics
+$(LIB_PIC) :  DIR = pics
 $(LIB_PIC): pics $$(PICS)
 	$(BUILD.AR)
 	$(MCS) -d -n .SUNW_ctf $@ > /dev/null 2>&1
@@ -1304,7 +1304,7 @@ ASSYMDEP_OBJS=			\
 	tls_get_addr.o		\
 	vforkx.o
 
-$(ASSYMDEP_OBJS:%=pics/%)	:=	CPPFLAGS += -I.
+$(ASSYMDEP_OBJS:%=pics/%)	: 	CPPFLAGS += -I.
 
 $(ASSYMDEP_OBJS:%=pics/%): assym.h
 

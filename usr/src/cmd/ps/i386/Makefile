@@ -30,7 +30,7 @@
 
 include ../Makefile.com
 
-lint	:= LINTFLAGS = -x
+lint	:  LINTFLAGS = -x
 
 all: $(PROG)
 

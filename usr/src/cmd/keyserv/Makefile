@@ -61,9 +61,9 @@ ISBINPROG=		$(SBINPROG:%=$(ROOTUSRSBIN)/%)
 
 ROOTMANIFESTDIR=	$(ROOTSVCNETWORKRPC)
 
-$(ROOTBIN)/chkey :=				FILEMODE=	4555
+$(ROOTBIN)/chkey : 				FILEMODE=	4555
 
-$(ROOTKEYSERVDFLT) :=				FILEMODE=	444
+$(ROOTKEYSERVDFLT) : 				FILEMODE=	444
 
 CPPFLAGS += -I. -I$(SRC)/lib/libnsl/include -I$(SRC)/lib/libsldap/common \
 		-D_REENTRANT
@@ -79,9 +79,9 @@ CERRWARN +=	-_gcc=-Wno-unused-function
 SMATCH=off
 
 LDLIBS +=	-lnsl
-chkey :=	LDLIBS += -lsldap
-keyserv :=	LDLIBS += -lmp
-newkey  :=	LDLIBS += -lsldap -lsocket
+chkey : 	LDLIBS += -lsldap
+keyserv : 	LDLIBS += -lmp
+newkey  : 	LDLIBS += -lsldap -lsocket
 
 .KEEP_STATE:
 

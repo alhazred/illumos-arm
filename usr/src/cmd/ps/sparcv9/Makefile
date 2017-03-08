@@ -30,7 +30,7 @@ include ../../Makefile.cmd.64
 
 CFLAGS64	+= $(CCVERBOSE)
 
-lint	:= LINTFLAGS64 = -x -m64
+lint	:  LINTFLAGS64 = -x -m64
 
 all: $(PROG)
 

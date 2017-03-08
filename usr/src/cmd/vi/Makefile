@@ -33,12 +33,12 @@ include ../Makefile.cmd
 #
 POFILE= vi.po
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
-_msg:=          TARGET= catalog
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
+_msg:           TARGET= catalog
 
 # this directory is made in ../../Targetdirs
 ROOTINITD= $(ROOTETC)/init.d
@@ -47,7 +47,7 @@ ROOTLINK= $(ROOTETC)/rc2.d/S89PRESERVE
 
 ETCINITF= PRESERVE
 ROOTETCINITF= $(ETCINITF:%=$(ROOTINITD)/%)
-$(ROOTETCINITF):=	FILEMODE =	744
+$(ROOTETCINITF): 	FILEMODE =	744
 
 $(ROOTINITD)/% : %
 	$(INS.file)

@@ -251,7 +251,7 @@ $(ROOT_KICONV_DIR)/%:	$(OBJS_DIR)/% $(ROOT_KICONV_DIR) FRC
 $(ROOT_FIRMWARE_DIR)/$(MODULE):
 	$(INS.dir)
 
-$(ROOT_FIRMWARE_DIR)/$(MODULE)/%:= FILEMODE = $(CFILEMODE)
+$(ROOT_FIRMWARE_DIR)/$(MODULE)/%:  FILEMODE = $(CFILEMODE)
 
 $(ROOT_FIRMWARE_DIR)/$(MODULE)/%: $(ROOT_FIRMWARE_DIR)/$(MODULE) $(FWDIR)/%
 	$(INS.file)
@@ -296,17 +296,17 @@ $(USR_PLAT_LINKS_2):
 #
 # multiple builds support
 #
-def $(DEF_DEPS)			:= TARGET = def
-all $(ALL_DEPS)			:= TARGET = all
-clean $(CLEAN_DEPS)		:= TARGET = clean
-clobber $(CLOBBER_DEPS)		:= TARGET = clobber
-lint $(LINT_DEPS)		:= TARGET = lint
-modlintlib $(MODLINTLIB_DEPS)	:= TARGET = modlintlib
-modlist	$(MODLIST_DEPS)		:= TARGET = modlist
-modlist	$(MODLIST_DEPS)		:= NO_STATE= -K $$MODSTATE$$$$
-clean.lint $(CLEAN_LINT_DEPS)	:= TARGET = clean.lint
-install $(INSTALL_DEPS)		:= TARGET = install
-symcheck $(SYM_DEPS)		:= TARGET = symcheck
+def $(DEF_DEPS)			:  TARGET = def
+all $(ALL_DEPS)			:  TARGET = all
+clean $(CLEAN_DEPS)		:  TARGET = clean
+clobber $(CLOBBER_DEPS)		:  TARGET = clobber
+lint $(LINT_DEPS)		:  TARGET = lint
+modlintlib $(MODLINTLIB_DEPS)	:  TARGET = modlintlib
+modlist	$(MODLIST_DEPS)		:  TARGET = modlist
+modlist	$(MODLIST_DEPS)		:  NO_STATE= -K $$MODSTATE$$$$
+clean.lint $(CLEAN_LINT_DEPS)	:  TARGET = clean.lint
+install $(INSTALL_DEPS)		:  TARGET = install
+symcheck $(SYM_DEPS)		:  TARGET = symcheck
 
 ALL_TARGS	= def all clean clobber lint modlintlib \
 		  clean.lint lintlib install symcheck

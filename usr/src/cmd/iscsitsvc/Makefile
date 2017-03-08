@@ -43,7 +43,7 @@ MANIFEST    = iscsi-target.xml
 SVCMETHOD   = iscsi-target
 
 ROOTMANIFESTDIR	= $(ROOTSVCNETWORKISCSI)
-$(ROOTSVCNETWORKISCSI)/iscsi-target.xml	:= FILEMODE = 0444
+$(ROOTSVCNETWORKISCSI)/iscsi-target.xml	:  FILEMODE = 0444
 
 .KEEP_STATE:
 

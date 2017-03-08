@@ -26,7 +26,7 @@ MANFILES= 	FSS.7	\
 
 MANLINKS=	intro.7
 
-intro.7		:= LINKSRC = Intro.7
+intro.7		:  LINKSRC = Intro.7
 
 .KEEP_STATE:
 

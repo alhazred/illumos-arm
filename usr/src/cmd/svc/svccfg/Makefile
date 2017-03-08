@@ -102,8 +102,10 @@ LIBSCF		= $(SRC)/lib/libscf
 LIBTECLA	= $(SRC)/lib/libtecla		# just for the header
 LIBUUTIL	= $(SRC)/lib/libuutil
 
-lint := LINTFLAGS = -mux
-lint := SVCCFG_EXTRA_LIBS = -lscf -ll -luutil -lumem -lmd5 -lnvpair
+debug :  COPTFLAG = -g
+
+lint : LINTFLAGS = -mux
+lint : SVCCFG_EXTRA_LIBS = -lscf -ll -luutil -lumem -lmd5 -lnvpair
 
 LDLIBS += $(SVCCFG_EXTRA_LIBS)
 
@@ -123,9 +125,9 @@ $(NATIVE_BUILD)LDLIBS = \
 	-L$(ADJUNCT_PROTO)/usr/lib -R$(ADJUNCT_PROTO)/usr/lib \
 	$(SVCCFG_EXTRA_LIBS)
 
-svccfg_lex.o svccfg_grammar.o := CCVERBOSE =
+svccfg_lex.o svccfg_grammar.o :  CCVERBOSE =
 
-svccfg_help.po := XGETFLAGS =	-a
+svccfg_help.po :  XGETFLAGS =	-a
 
 .KEEP_STATE:
 .PARALLEL: $(OBJS) $(LNTS)

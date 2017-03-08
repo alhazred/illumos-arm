@@ -38,7 +38,7 @@ include ../Makefile.cmd
 XPG4EXOBJS += values-xpg4.o
 CFLAGS += $(CCVERBOSE)
 # XPG4
-$(XPG4) := CFLAGS += -D_XOPEN_SOURCE -I$(SRC)/lib/libc/inc
+$(XPG4) :  CFLAGS += -D_XOPEN_SOURCE -I$(SRC)/lib/libc/inc
 
 # XPG6MODE:  Depending on the version of the compiler, the value of
 # __STDC_VERSION__ may differ even in the presence of the same compilation
@@ -67,8 +67,8 @@ $(XPG4) := CFLAGS += -D_XOPEN_SOURCE -I$(SRC)/lib/libc/inc
 # if we use the c89 utility as opposed to cc.
 
 XPG6MODE = $(CSTD_GNU99)
-$(XPG6) := CSTD = $(XPG6MODE)
-$(XPG6) := CFLAGS += -D_XOPEN_SOURCE=600 -I$(SRC)/lib/libc/inc
+$(XPG6) :  CSTD = $(XPG6MODE)
+$(XPG6) :  CFLAGS += -D_XOPEN_SOURCE=600 -I$(SRC)/lib/libc/inc
 
 .KEEP_STATE:
 

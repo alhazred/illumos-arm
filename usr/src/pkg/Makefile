@@ -130,7 +130,7 @@ PDIR= packages.$(PKGMACH)
 # Publication from the tools proto area is managed in the
 # publication rule.
 #
-$(PDIR)/developer-build-onbld.dep:= PKGROOT= $(TOOLSROOT)
+$(PDIR)/developer-build-onbld.dep:  PKGROOT= $(TOOLSROOT)
 
 PKGPUBLISHER= $(PKGPUBLISHER_REDIST)
 
@@ -159,7 +159,7 @@ sparc_ARCH64= sparcv9
 #
 # macros and transforms needed by pkgmogrify
 #
-# If you append to this list using target-specific assignments (:=),
+# If you append to this list using target-specific assignments (: ),
 # be very careful that the targets are of the form $(PDIR)/pkgname.  If
 # you use a higher level target, or a package list, you'll trigger a
 # complete reprocessing of all manifests because they'll fail command
@@ -223,8 +223,8 @@ PKGDEP_TOKENS= $(PKGDEP_TOKENS_$(PKGMACH))
 # dependency types, so that they can be included by either an
 # incorporation or a group package.
 #
-$(PDIR)/osnet-redist.mog := PKGDEP_TYPE= require
-$(PDIR)/osnet-incorporation.mog:= PKGDEP_TYPE= incorporate
+$(PDIR)/osnet-redist.mog :  PKGDEP_TYPE= require
+$(PDIR)/osnet-incorporation.mog:  PKGDEP_TYPE= incorporate
 
 PKGDEP_INCORP= \
 	depend fmri=consolidation/osnet/osnet-incorporation type=require

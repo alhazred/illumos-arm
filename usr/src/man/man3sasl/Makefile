@@ -85,19 +85,19 @@ MANLINKS=	prop_clear.3sasl	\
 		prop_setvals.3sasl	\
 		sasl_encodev.3sasl
 
-prop_clear.3sasl	:= LINKSRC = sasl_auxprop.3sasl
-prop_dispose.3sasl	:= LINKSRC = sasl_auxprop.3sasl
-prop_dup.3sasl		:= LINKSRC = sasl_auxprop.3sasl
-prop_erase.3sasl	:= LINKSRC = sasl_auxprop.3sasl
-prop_format.3sasl	:= LINKSRC = sasl_auxprop.3sasl
-prop_get.3sasl		:= LINKSRC = sasl_auxprop.3sasl
-prop_getnames.3sasl	:= LINKSRC = sasl_auxprop.3sasl
-prop_new.3sasl		:= LINKSRC = sasl_auxprop.3sasl
-prop_request.3sasl	:= LINKSRC = sasl_auxprop.3sasl
-prop_set.3sasl		:= LINKSRC = sasl_auxprop.3sasl
-prop_setvals.3sasl	:= LINKSRC = sasl_auxprop.3sasl
+prop_clear.3sasl	:  LINKSRC = sasl_auxprop.3sasl
+prop_dispose.3sasl	:  LINKSRC = sasl_auxprop.3sasl
+prop_dup.3sasl		:  LINKSRC = sasl_auxprop.3sasl
+prop_erase.3sasl	:  LINKSRC = sasl_auxprop.3sasl
+prop_format.3sasl	:  LINKSRC = sasl_auxprop.3sasl
+prop_get.3sasl		:  LINKSRC = sasl_auxprop.3sasl
+prop_getnames.3sasl	:  LINKSRC = sasl_auxprop.3sasl
+prop_new.3sasl		:  LINKSRC = sasl_auxprop.3sasl
+prop_request.3sasl	:  LINKSRC = sasl_auxprop.3sasl
+prop_set.3sasl		:  LINKSRC = sasl_auxprop.3sasl
+prop_setvals.3sasl	:  LINKSRC = sasl_auxprop.3sasl
 
-sasl_encodev.3sasl	:= LINKSRC = sasl_encode.3sasl
+sasl_encodev.3sasl	:  LINKSRC = sasl_encode.3sasl
 
 .KEEP_STATE:
 

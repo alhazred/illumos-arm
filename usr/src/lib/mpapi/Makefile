@@ -27,12 +27,12 @@
 SUBDIRS = libmpapi libmpscsi_vhci
 HDRSUBDIRS = libmpapi
 
-all :=          TARGET= all
-check :=	TARGET= check
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-install :=      TARGET= install
-install_h :=    TARGET= install_h
+all :           TARGET= all
+check : 	TARGET= check
+clean :         TARGET= clean
+clobber :       TARGET= clobber
+install :       TARGET= install
+install_h :     TARGET= install_h
 
 .KEEP_STATE:
 

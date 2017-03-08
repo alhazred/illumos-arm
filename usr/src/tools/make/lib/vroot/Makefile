@@ -55,7 +55,7 @@ install: all
 lint:
 
 # We can't create CTF in the tools build because of a bootstrap bug with the new CTF
-$(DYNLIB) := CTFMERGE_POST= :
+$(DYNLIB) :  CTFMERGE_POST= :
 CTFCONVERT_O= :
 
 include $(SRC)/lib/Makefile.targ

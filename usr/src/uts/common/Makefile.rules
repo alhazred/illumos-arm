@@ -47,10 +47,10 @@
 #
 #	Section 1a: C objects build rules
 #
-$(OBJS_DIR)/decompress.o := CPPFLAGS += -I$(SRC)/contrib/zlib
-$(OBJS_DIR)/zmod.o := CPPFLAGS += -I$(SRC)/contrib/zlib
-$(OBJS_DIR)/zmod_subr.o := CPPFLAGS += -I$(SRC)/contrib/zlib
-$(OBJS_DIR)/lz4.o := CPPFLAGS += -I$(COMMONBASE)/lz4
+$(OBJS_DIR)/decompress.o :  CPPFLAGS += -I$(SRC)/contrib/zlib
+$(OBJS_DIR)/zmod.o :  CPPFLAGS += -I$(SRC)/contrib/zlib
+$(OBJS_DIR)/zmod_subr.o :  CPPFLAGS += -I$(SRC)/contrib/zlib
+$(OBJS_DIR)/lz4.o :  CPPFLAGS += -I$(COMMONBASE)/lz4
 
 $(OBJS_DIR)/%.o:		$(COMMONBASE)/crypto/aes/%.c
 	$(COMPILE.c) -o $@ $<
@@ -455,7 +455,7 @@ $(OBJS_DIR)/%.o:		$(KMECHKRB5_BASE)/krb5/os/%.c
 	$(COMPILE.c) $(KGSSDFLAGS) -o $@ $<
 	$(CTFCONVERT_O)
 
-$(OBJS_DIR)/ser_sctx.o := CPPFLAGS += -DPROVIDE_KERNEL_IMPORT=1
+$(OBJS_DIR)/ser_sctx.o :  CPPFLAGS += -DPROVIDE_KERNEL_IMPORT=1
 
 $(OBJS_DIR)/%.o:		$(KMECHKRB5_BASE)/mech/%.c
 	$(COMPILE.c) $(KGSSDFLAGS) -o $@ $<
@@ -1502,18 +1502,18 @@ $(OBJS_DIR)/%.o:		$(UTSBASE)/common/io/vioif/%.c
 #
 # krtld must refer to its own bzero/bcopy until the kernel is fully linked
 #
-$(OBJS_DIR)/bootrd.o		:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/doreloc.o		:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj.o		:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_boot.o		:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_bootflags.o	:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_convrelstr.o	:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_isa.o		:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_kdi.o		:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_lm.o		:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_reloc.o	:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_stubs.o	:= CPPFLAGS += -DKOBJ_OVERRIDES
-$(OBJS_DIR)/kobj_subr.o		:= CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/bootrd.o		:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/doreloc.o		:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj.o		:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_boot.o		:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_bootflags.o	:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_convrelstr.o	:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_isa.o		:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_kdi.o		:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_lm.o		:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_reloc.o	:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_stubs.o	:  CPPFLAGS += -DKOBJ_OVERRIDES
+$(OBJS_DIR)/kobj_subr.o		:  CPPFLAGS += -DKOBJ_OVERRIDES
 
 $(OBJS_DIR)/%.o:		$(UTSBASE)/common/krtld/%.c
 	$(COMPILE.c) -o $@ $<
@@ -1547,7 +1547,7 @@ $(OBJS_DIR)/%.o:		$(COMMONBASE)/nvpair/%.c
 	$(COMPILE.c) -o $@ $<
 	$(CTFCONVERT_O)
 
-$(OBJS_DIR)/bootbanner.o := CPPFLAGS += \
+$(OBJS_DIR)/bootbanner.o :  CPPFLAGS += \
 	-DBOOTBANNER1='"$(BOOTBANNER1)"' \
 	-DBOOTBANNER2='"$(BOOTBANNER2)"' \
 	-DBOOTBANNER3='"$(BOOTBANNER3)"' \

@@ -35,7 +35,7 @@ LDLIBS +=	-lscf -luutil -linetsvc
 CERRWARN +=	-_gcc=-Wno-switch
 CERRWARN +=	$(CNOWARN_UNINIT)
 
-lint := LINTFLAGS = -ux
+lint :  LINTFLAGS = -ux
 
 .KEEP_STATE:
 

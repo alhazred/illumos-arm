@@ -28,11 +28,11 @@ MANLINKS=	kstat_close.3kstat		\
 		kstat_data_lookup.3kstat	\
 		kstat_write.3kstat
 
-kstat_data_lookup.3kstat	:= LINKSRC = kstat_lookup.3kstat
+kstat_data_lookup.3kstat	:  LINKSRC = kstat_lookup.3kstat
 
-kstat_close.3kstat		:= LINKSRC = kstat_open.3kstat
+kstat_close.3kstat		:  LINKSRC = kstat_open.3kstat
 
-kstat_write.3kstat		:= LINKSRC = kstat_read.3kstat
+kstat_write.3kstat		:  LINKSRC = kstat_read.3kstat
 
 .KEEP_STATE:
 

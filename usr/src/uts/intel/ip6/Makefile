@@ -57,7 +57,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE) $(ROOT_CONFFILE)
 LDFLAGS		+= -dy -Ndrv/ip
 
 # needs work
-$(OBJS_DIR)/ip6ddi.o := SMOFF += index_overflow
+$(OBJS_DIR)/ip6ddi.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

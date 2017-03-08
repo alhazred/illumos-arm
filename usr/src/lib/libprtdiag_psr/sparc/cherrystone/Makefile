@@ -55,7 +55,7 @@ LINKED_PRTDIAG_DIRS	= \
 #
 PLATFORM=SUNW,Sun-Fire-480R
 
-$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 := FILEMODE= 0755
+$(USR_PLAT_DIR)/$(PLATFORM)/lib/libprtdiag_psr.so.1 :  FILEMODE= 0755
 
 .KEEP_STATE:
 

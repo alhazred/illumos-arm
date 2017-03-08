@@ -59,7 +59,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE) $(ROOT_CONFFILE)
 #	Override defaults to build a unique, local modstubs.o.
 #
 MODSTUBS_DIR	 = $(OBJS_DIR)
-$(MODSTUBS_O)	:= AS_CPPFLAGS += -DSAD_MODULE
+$(MODSTUBS_O)	:  AS_CPPFLAGS += -DSAD_MODULE
 CLEANFILES	+= $(MODSTUBS_O)
 
 #

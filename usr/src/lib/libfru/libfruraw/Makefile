@@ -29,11 +29,11 @@ include	$(SRC)/lib/Makefile.lib
 SUBDIRS = .WAIT $(MACH) $(BUILD64) $(MACH64)
 
 # conditional assignments
-all :=		TARGET= all
-install :=      TARGET= install
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-_msg :=         TARGET= _msg
+all : 		TARGET= all
+install :       TARGET= install
+clean :         TARGET= clean
+clobber :       TARGET= clobber
+_msg :          TARGET= _msg
 
 sparc_HDRS=
 sparcv9_HDRS=

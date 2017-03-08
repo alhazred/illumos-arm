@@ -23,7 +23,7 @@ ROOTBIN = $(ROOT)/opt/util-tests
 TESTDIR = $(ROOTBIN)/tests
 
 CMDS = $(SHFILES:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all: $(PROG)
 

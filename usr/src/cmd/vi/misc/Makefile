@@ -37,7 +37,7 @@ TXTS= READ_ME del.h.cb mkstr.c xstr.c
 POFILES= $(SRCS:%.c=%.po)
 
 include ../../Makefile.cmd
-$(XPG4) := CFLAGS += -DXPG4
+$(XPG4) :  CFLAGS += -DXPG4
 
 CERRWARN += -_gcc=-Wno-char-subscripts
 CERRWARN += -_gcc=-Wno-parentheses

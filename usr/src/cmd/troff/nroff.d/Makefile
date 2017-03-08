@@ -57,12 +57,12 @@ POFILES= $(OBJS:%.o=%.po)
 POFILE= nroff.d.po
 
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
-strip :=	TARGET= strip
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
+strip : 	TARGET= strip
 
 # build rule for common source above
 %.o: ../%.c

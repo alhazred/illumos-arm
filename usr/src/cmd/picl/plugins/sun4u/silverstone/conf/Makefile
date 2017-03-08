@@ -36,16 +36,16 @@ ROOTLIBDIR	= $(ROOT_PLATFORM)/lib
 
 CONF=		platsvcd.conf psvcobj.conf
 ROOTCONF=	$(CONF:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0444
+$(ROOTCONF)	:  FILEMODE = 0444
 
 .KEEP_STATE:
 
 SUBDIRS=
 
-all	:=	TARGET= all
-install :=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
+all	: 	TARGET= all
+install : 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
 
 all: $(CONF)
 

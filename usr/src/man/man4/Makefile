@@ -238,52 +238,52 @@ i386_MANLINKS=	isa.4
 MANFILES=	$(_MANFILES) $($(MACH)_MANFILES)
 MANLINKS=	$(_MANLINKS) $($(MACH)_MANLINKS)
 
-intro.4				:= LINKSRC = Intro.4
+intro.4				:  LINKSRC = Intro.4
 
-addresses.4			:= LINKSRC = aliases.4
-forward.4			:= LINKSRC = aliases.4
+addresses.4			:  LINKSRC = aliases.4
+forward.4			:  LINKSRC = aliases.4
 
-fs.4				:= LINKSRC = default_fs.4
+fs.4				:  LINKSRC = default_fs.4
 
-devid_cache.4			:= LINKSRC = devices.4
-devname_cache.4			:= LINKSRC = devices.4
-mdi_ib_cache.4			:= LINKSRC = devices.4
-mdi_scsi_vhci_cache.4		:= LINKSRC = devices.4
-pci_unitaddr_persistent.4	:= LINKSRC = devices.4
-snapshot_cache.4		:= LINKSRC = devices.4
+devid_cache.4			:  LINKSRC = devices.4
+devname_cache.4			:  LINKSRC = devices.4
+mdi_ib_cache.4			:  LINKSRC = devices.4
+mdi_scsi_vhci_cache.4		:  LINKSRC = devices.4
+pci_unitaddr_persistent.4	:  LINKSRC = devices.4
+snapshot_cache.4		:  LINKSRC = devices.4
 
-dir.4				:= LINKSRC = dir_ufs.4
+dir.4				:  LINKSRC = dir_ufs.4
 
-rhosts.4			:= LINKSRC = hosts.equiv.4
+rhosts.4			:  LINKSRC = hosts.equiv.4
 
-hosts.allow.4			:= LINKSRC = hosts_access.4
-hosts.deny.4			:= LINKSRC = hosts_access.4
+hosts.allow.4			:  LINKSRC = hosts_access.4
+hosts.deny.4			:  LINKSRC = hosts_access.4
 
-ipf.conf.4			:= LINKSRC = ipf.4
-ipf6.conf.4			:= LINKSRC = ipf.4
+ipf.conf.4			:  LINKSRC = ipf.4
+ipf6.conf.4			:  LINKSRC = ipf.4
 
-ipmon.conf.4			:= LINKSRC = ipmon.4
+ipmon.conf.4			:  LINKSRC = ipmon.4
 
-ipnat.conf.4			:= LINKSRC = ipnat.4
+ipnat.conf.4			:  LINKSRC = ipnat.4
 
-ippool.conf.4			:= LINKSRC = ippool.4
+ippool.conf.4			:  LINKSRC = ippool.4
 
-fbtab.4				:= LINKSRC = logindevperm.4
+fbtab.4				:  LINKSRC = logindevperm.4
 
-qop.4				:= LINKSRC = mech.4
+qop.4				:  LINKSRC = mech.4
 
-pcie.4				:= LINKSRC = pci.4
+pcie.4				:  LINKSRC = pci.4
 
-sendmail.cf.4			:= LINKSRC = sendmail.4
-submit.cf.4			:= LINKSRC = sendmail.4
+sendmail.cf.4			:  LINKSRC = sendmail.4
+submit.cf.4			:  LINKSRC = sendmail.4
 
-isa.4				:= LINKSRC = sysbus.4
+isa.4				:  LINKSRC = sysbus.4
 
-dumpdates.4			:= LINKSRC = ufsdump.4
+dumpdates.4			:  LINKSRC = ufsdump.4
 
-wtmp.4				:= LINKSRC = utmp.4
+wtmp.4				:  LINKSRC = utmp.4
 
-wtmpx.4				:= LINKSRC = utmpx.4
+wtmpx.4				:  LINKSRC = utmpx.4
 
 .KEEP_STATE:
 

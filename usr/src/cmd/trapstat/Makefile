@@ -33,11 +33,11 @@ sparc_SUBDIRS =	sun4
 i386_SUBDIRS =
 SUBDIRS =	$($(MACH)_SUBDIRS)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-lint :=		TARGET= lint
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
+lint : 		TARGET= lint
 
 .KEEP_STATE:
 

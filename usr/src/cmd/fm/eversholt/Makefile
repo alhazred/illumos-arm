@@ -25,7 +25,7 @@
 #
 #ident	"%Z%%M%	%I%	%E% SMI"
 
-debug := TARGET += debug
+debug :  TARGET += debug
 
 SUBDIRS = esc eftinfo files
 

@@ -41,9 +41,9 @@ CERRWARN +=	-_gcc=-Wno-clobbered
 SMOFF += all_func_returns,testing_index_after_use
 
 CMDS=		$(PROG:%=$(TESTDIR)/%) $(SHPROG:%=$(TESTDIR)/%)
-$(CMDS):=	FILEMODE=0555
+$(CMDS): 	FILEMODE=0555
 TESTDATA=	$(DATA:%=$(DATADIR)/%)
-$(TESTDATA):=	FILEMODE=0444
+$(TESTDATA): 	FILEMODE=0444
 
 .KEEP_STATE:
 

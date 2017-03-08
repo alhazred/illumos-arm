@@ -61,7 +61,7 @@ CONFS		+= fru_HDD3.conf
 CONFS		+= fru_SC.conf
 CONFS		+= fru_usb-a-1.conf fru_usb-a-2.conf
 ROOTCONF=	$(CONFS:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 MAININFO=	$(CONFS:%.conf=%.info)
 OTHERINFOS	= fru_PS0_data.info fru_PS1_data.info
 OTHERINFOS	+= fru_HDD0_data.info fru_HDD1_data.info
@@ -98,11 +98,11 @@ SUBDIRS =
 
 POFILE = piclfrudr.po
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 all: $(LIBS) $(LIBLINKS) $(CONFS)
 

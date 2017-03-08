@@ -34,7 +34,7 @@ ROOTOPTPKG = $(ROOT)/opt/os-tests
 TESTDIR = $(ROOTOPTPKG)/tests/secflags
 
 CMDS = $(PROG:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 CLEANFILES= stacky.o
 
@@ -46,7 +46,7 @@ addrs-64: addrs.c
 	$(LINK64.c) addrs.c -o $@ $(LDLIBS)
 	$(POST_PROCESS)
 
-stacky := MAPFILE.NES=			# Will foil the test, clearly
+stacky :  MAPFILE.NES=			# Will foil the test, clearly
 stacky: stacky.o
 	$(LINK.c) stacky.o -o $@ $(LDLIBS)
 	$(POST_PROCESS)

@@ -76,9 +76,9 @@ COMPATLINKS=	etc/lib/ld.so.1 \
 		usr/lib/ld.so.1
 COMPATLINKS64=	usr/lib/$(MACH64)/ld.so.1
 
-$(ROOT)/etc/lib/ld.so.1 := COMPATLINKTARGET= ../../lib/ld.so.1
-$(ROOT)/usr/lib/ld.so.1 := COMPATLINKTARGET= ../../lib/ld.so.1
-$(ROOT)/usr/lib/$(MACH64)/ld.so.1 := \
+$(ROOT)/etc/lib/ld.so.1 :  COMPATLINKTARGET= ../../lib/ld.so.1
+$(ROOT)/usr/lib/ld.so.1 :  COMPATLINKTARGET= ../../lib/ld.so.1
+$(ROOT)/usr/lib/$(MACH64)/ld.so.1 :  \
 	COMPATLINKTARGET= ../../../lib/$(MACH64)/ld.so.1
 
 FILEMODE =	755

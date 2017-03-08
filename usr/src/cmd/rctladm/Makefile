@@ -29,7 +29,7 @@ OBJS = rctladm.o utils.o
 SRCS = $(OBJS:.o=.c)
 POFILES = $(OBJS:.o=.po)
 
-lint := LINTFLAGS = -mx
+lint :  LINTFLAGS = -mx
 
 include ../Makefile.cmd
 

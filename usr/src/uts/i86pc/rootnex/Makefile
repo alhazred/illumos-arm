@@ -67,7 +67,7 @@ CERRWARN	+= -_gcc=-Wno-unused-function
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/immu_qinv.o := SMOFF += index_overflow
+$(OBJS_DIR)/immu_qinv.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

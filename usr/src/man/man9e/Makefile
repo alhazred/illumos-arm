@@ -135,54 +135,54 @@ MANLINKS=	ddi_ufm_op_fill_image.9e	\
 		usba_hcdi_pipe_close.9e		\
 		usba_hcdi_pipe_stop_isoc_polling.9e
 
-ddi_ufm_op_fill_image.9e	:= LINKSRC = ddi_ufm.9e
-ddi_ufm_op_fill_slot.9e		:= LINKSRC = ddi_ufm.9e
-ddi_ufm_op_getcaps.9e		:= LINKSRC = ddi_ufm.9e
-ddi_ufm_op_nimages.9e		:= LINKSRC = ddi_ufm.9e
-intro.9e			:= LINKSRC = Intro.9e
+ddi_ufm_op_fill_image.9e	:  LINKSRC = ddi_ufm.9e
+ddi_ufm_op_fill_slot.9e		:  LINKSRC = ddi_ufm.9e
+ddi_ufm_op_getcaps.9e		:  LINKSRC = ddi_ufm.9e
+ddi_ufm_op_nimages.9e		:  LINKSRC = ddi_ufm.9e
+intro.9e			:  LINKSRC = Intro.9e
 
-_info.9e			:= LINKSRC = _fini.9e
-_init.9e			:= LINKSRC = _fini.9e
+_info.9e			:  LINKSRC = _fini.9e
+_init.9e			:  LINKSRC = _fini.9e
 
-MAC.9e				:= LINKSRC = mac.9e
-gldv3.9e			:= LINKSRC = mac.9e
-GLDv3.9e			:= LINKSRC = mac.9e
+MAC.9e				:  LINKSRC = mac.9e
+gldv3.9e			:  LINKSRC = mac.9e
+GLDv3.9e			:  LINKSRC = mac.9e
 
-gldm_get_stats.9e		:= LINKSRC = gld.9e
-gldm_intr.9e			:= LINKSRC = gld.9e
-gldm_ioctl.9e			:= LINKSRC = gld.9e
-gldm_reset.9e			:= LINKSRC = gld.9e
-gldm_send.9e			:= LINKSRC = gld.9e
-gldm_set_mac_addr.9e		:= LINKSRC = gld.9e
-gldm_set_multicast.9e		:= LINKSRC = gld.9e
-gldm_set_promiscuous.9e		:= LINKSRC = gld.9e
-gldm_start.9e			:= LINKSRC = gld.9e
-gldm_stop.9e			:= LINKSRC = gld.9e
+gldm_get_stats.9e		:  LINKSRC = gld.9e
+gldm_intr.9e			:  LINKSRC = gld.9e
+gldm_ioctl.9e			:  LINKSRC = gld.9e
+gldm_reset.9e			:  LINKSRC = gld.9e
+gldm_send.9e			:  LINKSRC = gld.9e
+gldm_set_mac_addr.9e		:  LINKSRC = gld.9e
+gldm_set_multicast.9e		:  LINKSRC = gld.9e
+gldm_set_promiscuous.9e		:  LINKSRC = gld.9e
+gldm_start.9e			:  LINKSRC = gld.9e
+gldm_stop.9e			:  LINKSRC = gld.9e
 
-mc_close.9e			:= LINKSRC = mc_open.9e
-mc_stop.9e			:= LINKSRC = mc_start.9e
+mc_close.9e			:  LINKSRC = mc_open.9e
+mc_stop.9e			:  LINKSRC = mc_start.9e
 
-mcl_set.9e			:= LINKSRC = mac_capab_led.9e
+mcl_set.9e			:  LINKSRC = mac_capab_led.9e
 
-mct_info.9e			:= LINKSRC = mac_capab_transceiver.9e
-mct_read.9e			:= LINKSRC = mac_capab_transceiver.9e
+mct_info.9e			:  LINKSRC = mac_capab_transceiver.9e
+mct_read.9e			:  LINKSRC = mac_capab_transceiver.9e
 
-tran_setcap.9e			:= LINKSRC = tran_getcap.9e
+tran_setcap.9e			:  LINKSRC = tran_getcap.9e
 
-tran_destroy_pkt.9e		:= LINKSRC = tran_init_pkt.9e
+tran_destroy_pkt.9e		:  LINKSRC = tran_init_pkt.9e
 
-tran_unquiesce.9e		:= LINKSRC = tran_quiesce.9e
+tran_unquiesce.9e		:  LINKSRC = tran_quiesce.9e
 
-tran_pkt_constructor.9e		:= LINKSRC = tran_setup_pkt.9e
-tran_pkt_destructor.9e		:= LINKSRC = tran_setup_pkt.9e
-tran_teardown_pkt.9e		:= LINKSRC = tran_setup_pkt.9e
+tran_pkt_constructor.9e		:  LINKSRC = tran_setup_pkt.9e
+tran_pkt_destructor.9e		:  LINKSRC = tran_setup_pkt.9e
+tran_teardown_pkt.9e		:  LINKSRC = tran_setup_pkt.9e
 
-usba_hcdi_cb_close.9e		:= LINKSRC = usba_hcdi_cb_ops.9e
-usba_hcdi_cb_ioctl.9e		:= LINKSRC = usba_hcdi_cb_ops.9e
-usba_hcdi_cb_open.9e		:= LINKSRC = usba_hcdi_cb_ops.9e
-usba_hcdi_device_fini.9e	:= LINKSRC = usba_hcdi_device_init.9e
-usba_hcdi_pipe_close.9e		:= LINKSRC = usba_hcdi_pipe_open.9e
-usba_hcdi_pipe_stop_isoc_polling.9e	:= LINKSRC = usba_hcdi_pipe_stop_intr_polling.9e
+usba_hcdi_cb_close.9e		:  LINKSRC = usba_hcdi_cb_ops.9e
+usba_hcdi_cb_ioctl.9e		:  LINKSRC = usba_hcdi_cb_ops.9e
+usba_hcdi_cb_open.9e		:  LINKSRC = usba_hcdi_cb_ops.9e
+usba_hcdi_device_fini.9e	:  LINKSRC = usba_hcdi_device_init.9e
+usba_hcdi_pipe_close.9e		:  LINKSRC = usba_hcdi_pipe_open.9e
+usba_hcdi_pipe_stop_isoc_polling.9e	:  LINKSRC = usba_hcdi_pipe_stop_intr_polling.9e
 
 
 .KEEP_STATE:

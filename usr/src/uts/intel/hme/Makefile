@@ -63,7 +63,7 @@ CERRWARN	+= -_gcc=-Wno-unused-label
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/hme.o := SMOFF += indenting,deref_check
+$(OBJS_DIR)/hme.o :  SMOFF += indenting,deref_check
 
 #
 #	Default build targets.

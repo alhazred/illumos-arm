@@ -39,16 +39,16 @@ $(CRYPTO_pkcs)TESTDIR_pkcs = $(TESTROOT)/pkcs
 $(CRYPTO_kcf)TESTDIR_kcf = $(TESTROOT)/kcf
 
 COMMONDIR = $(SRC)/test/crypto-tests/tests/common
-$(PROGS_32) := OBJS += $(BASEPROG:%=%.32.o) $(COMMON_OBJS_32)
-$(PROGS_64) := OBJS += $(BASEPROG:%=%.64.o) $(COMMON_OBJS_64)
-$(PROGS_32) := OBJS += $(COMMONDIR)/testfuncs.32.o
-$(PROGS_64) := OBJS += $(COMMONDIR)/testfuncs.64.o
-$(CRYPTO_pkcs)$(BASEPROG)_32_pkcs := OBJS += $(COMMONDIR)/cryptotest_pkcs.32.o
-$(CRYPTO_pkcs)$(BASEPROG)_64_pkcs := OBJS += $(COMMONDIR)/cryptotest_pkcs.64.o
-$(CRYPTO_kcf)$(BASEPROG)_32_kcf	:= OBJS += $(COMMONDIR)/cryptotest_kcf.32.o
-$(CRYPTO_kcf)$(BASEPROG)_64_kcf	:= OBJS += $(COMMONDIR)/cryptotest_kcf.64.o
+$(PROGS_32) :  OBJS += $(BASEPROG:%=%.32.o) $(COMMON_OBJS_32)
+$(PROGS_64) :  OBJS += $(BASEPROG:%=%.64.o) $(COMMON_OBJS_64)
+$(PROGS_32) :  OBJS += $(COMMONDIR)/testfuncs.32.o
+$(PROGS_64) :  OBJS += $(COMMONDIR)/testfuncs.64.o
+$(CRYPTO_pkcs)$(BASEPROG)_32_pkcs :  OBJS += $(COMMONDIR)/cryptotest_pkcs.32.o
+$(CRYPTO_pkcs)$(BASEPROG)_64_pkcs :  OBJS += $(COMMONDIR)/cryptotest_pkcs.64.o
+$(CRYPTO_kcf)$(BASEPROG)_32_kcf	:  OBJS += $(COMMONDIR)/cryptotest_kcf.32.o
+$(CRYPTO_kcf)$(BASEPROG)_64_kcf	:  OBJS += $(COMMONDIR)/cryptotest_kcf.64.o
 
-$(CRYPTO_pkcs)$(PROGS_pkcs)	:= LDLIBS += -lpkcs11 -lcryptoutil
+$(CRYPTO_pkcs)$(PROGS_pkcs)	:  LDLIBS += -lpkcs11 -lcryptoutil
 
 CSTD = $(CSTD_GNU99)
 
@@ -56,7 +56,7 @@ $(CRYPTO_pkcs)CMDS_pkcs = $(PROGS_pkcs:%_pkcs=$(TESTDIR_pkcs)/%)
 $(CRYPTO_kcf)CMDS_kcf = $(PROGS_kcf:%_kcf=$(TESTDIR_kcf)/%)
 CMDS = $(CMDS_pkcs) $(CMDS_kcf)
 
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 CPPFLAGS += -I$(COMMONDIR) -I$(SRC)/common/crypto/

@@ -23,7 +23,7 @@ ROOTOPTPKG = $(ROOT)/opt/os-tests
 RUNFILES = $(ROOTOPTPKG)/runfiles
 
 CMDS = $(SRCS:%=$(RUNFILES)/%)
-$(CMDS) := FILEMODE = 0444
+$(CMDS) :  FILEMODE = 0444
 
 all: $(SRCS)
 

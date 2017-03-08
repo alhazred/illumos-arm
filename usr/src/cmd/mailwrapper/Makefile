@@ -36,7 +36,7 @@ CFS=		mailer.conf
 
 ROOTETCFILES=$(CFS:%=$(ROOTETC)/%)
 
-$(ROOTETCFILES) :=	FILEMODE = 0644
+$(ROOTETCFILES) : 	FILEMODE = 0644
 
 # installed modules
 ROOTLIBPROG=	$(LIBPROG:%=$(ROOTLIB)/%)
@@ -54,11 +54,11 @@ SMOFF += all_func_returns
 
 # conditional assignments
 #
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
 
 # install rules
 $(ROOTINC)/% : %

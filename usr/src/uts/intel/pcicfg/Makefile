@@ -54,7 +54,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE)
 #	Override defaults to build a unique, local modstubs.o.
 #
 MODSTUBS_DIR	 = $(OBJS_DIR)
-$(MODSTUBS_O)	:= AS_CPPFLAGS += -DPCICFG_MODULE
+$(MODSTUBS_O)	:  AS_CPPFLAGS += -DPCICFG_MODULE
 CLEANFILES	+= $(MODSTUBS_O)
 
 #
@@ -76,7 +76,7 @@ CERRWARN	+= -_gcc=-Wno-unused-function
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/pcicfg.o := SMOFF += deref_check
+$(OBJS_DIR)/pcicfg.o :  SMOFF += deref_check
 
 #
 #	Default build targets.

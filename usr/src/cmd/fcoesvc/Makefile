@@ -46,8 +46,8 @@ SVCMETHOD	= svc-fcoet
 SVCMETHOD	+= svc-fcoei
 
 ROOTMANIFESTDIR	= $(ROOTSVCSYSTEM)
-$(ROOTSVCSYSTEM)/fcoe_target.xml	:= FILEMODE = 0444
-$(ROOTSVCSYSTEM)/fcoe_initiator.xml	:= FILEMODE = 0444
+$(ROOTSVCSYSTEM)/fcoe_target.xml	:  FILEMODE = 0444
+$(ROOTSVCSYSTEM)/fcoe_initiator.xml	:  FILEMODE = 0444
 
 .KEEP_STATE:
 

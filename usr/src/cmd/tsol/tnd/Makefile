@@ -38,7 +38,7 @@ include ../../Makefile.cmd
 MANIFEST= tnd.xml
 ROOTMANIFESTDIR = $(ROOTSVCNETWORK)
 SVCMETHOD= svc-tnd
-$(ROOTMANIFEST) :=	FILEMODE= 444
+$(ROOTMANIFEST) : 	FILEMODE= 444
 
 IFLAGS += -I.
 LDLIBS += -lnsl -ltsnet

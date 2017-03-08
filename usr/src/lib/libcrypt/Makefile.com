@@ -62,14 +62,14 @@ COMPATLINKS64 =	usr/lib/$(MACH64)/libcrypt_i.so$(VERS) \
 		usr/lib/$(MACH64)/libcrypt_d.so$(VERS) \
 		usr/lib/$(MACH64)/libcrypt_d.so
 
-$(ROOT)/usr/lib/libcrypt_i.so$(VERS) := COMPATLINKTARGET= libcrypt.so$(VERS)
-$(ROOT)/usr/lib/libcrypt_i.so := COMPATLINKTARGET= libcrypt.so
-$(ROOT)/usr/lib/libcrypt_d.so$(VERS) := COMPATLINKTARGET= libcrypt.so$(VERS)
-$(ROOT)/usr/lib/libcrypt_d.so := COMPATLINKTARGET= libcrypt.so
+$(ROOT)/usr/lib/libcrypt_i.so$(VERS) :  COMPATLINKTARGET= libcrypt.so$(VERS)
+$(ROOT)/usr/lib/libcrypt_i.so :  COMPATLINKTARGET= libcrypt.so
+$(ROOT)/usr/lib/libcrypt_d.so$(VERS) :  COMPATLINKTARGET= libcrypt.so$(VERS)
+$(ROOT)/usr/lib/libcrypt_d.so :  COMPATLINKTARGET= libcrypt.so
 
-$(ROOT)/usr/lib/$(MACH64)/libcrypt_i.so$(VERS) := COMPATLINKTARGET= libcrypt.so$(VERS)
-$(ROOT)/usr/lib/$(MACH64)/libcrypt_i.so := COMPATLINKTARGET= libcrypt.so
-$(ROOT)/usr/lib/$(MACH64)/libcrypt_d.so$(VERS) := COMPATLINKTARGET= libcrypt.so$(VERS)
-$(ROOT)/usr/lib/$(MACH64)/libcrypt_d.so := COMPATLINKTARGET= libcrypt.so
+$(ROOT)/usr/lib/$(MACH64)/libcrypt_i.so$(VERS) :  COMPATLINKTARGET= libcrypt.so$(VERS)
+$(ROOT)/usr/lib/$(MACH64)/libcrypt_i.so :  COMPATLINKTARGET= libcrypt.so
+$(ROOT)/usr/lib/$(MACH64)/libcrypt_d.so$(VERS) :  COMPATLINKTARGET= libcrypt.so$(VERS)
+$(ROOT)/usr/lib/$(MACH64)/libcrypt_d.so :  COMPATLINKTARGET= libcrypt.so
 
 include ../../Makefile.targ

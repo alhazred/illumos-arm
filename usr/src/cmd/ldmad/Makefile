@@ -58,7 +58,7 @@ SRCS = $(LOCAL_SRCS) $(COMMON_SRCS:%.c=$(COMMONBASE)/mdesc/%.c)
 
 ROOTCMDDIR=		$(ROOTLIB)/ldoms
 ROOTMANIFESTDIR=	$(ROOTSVCPLATFORMSUN4V)
-$(ROOTMANIFEST)		:= FILEMODE= 444
+$(ROOTMANIFEST)		:  FILEMODE= 444
 
 LDLIBS +=	-lds -ldladm -ldevinfo -lpri
 INCS +=		-I$(ROOT)/usr/platform/sun4v/include/sys

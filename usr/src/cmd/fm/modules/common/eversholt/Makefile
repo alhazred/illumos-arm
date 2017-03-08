@@ -53,8 +53,8 @@ CERRWARN += -_gcc=-Wno-implicit-function-declaration
 # not linted
 SMATCH=off
 
-$(PROG) := LDFLAGS += -R/usr/lib/fm
-$(PROG) := LDLIBS += -L$(ROOTLIB)/fm -ltopo
+$(PROG) :  LDFLAGS += -R/usr/lib/fm
+$(PROG) :  LDLIBS += -L$(ROOTLIB)/fm -ltopo
 
 CLEANFILES += y.tab.h y.tab.c
 

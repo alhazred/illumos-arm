@@ -21,7 +21,7 @@ ROOTOPTPKG = $(ROOT)/opt/test-runner
 MANDIR = $(ROOTOPTPKG)/man/man1
 
 FILES = $(MANSRCS:%=$(MANDIR)/%)
-$(FILES) := FILEMODE = 0444
+$(FILES) :  FILEMODE = 0444
 
 all: $(MANSRCS)
 

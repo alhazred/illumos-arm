@@ -36,8 +36,8 @@ CERRWARN += -_gcc=-Wno-parentheses
 
 SMOFF += indenting
 
-$(XPG4):= CPPFLAGS += -DXPG4
-$(POFILE) := XGETFLAGS += -a -x pr.xcl
+$(XPG4):  CPPFLAGS += -DXPG4
+$(POFILE) :  XGETFLAGS += -a -x pr.xcl
 
 .KEEP_STATE:
 

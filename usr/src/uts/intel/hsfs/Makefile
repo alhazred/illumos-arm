@@ -76,7 +76,7 @@ CERRWARN	+= -_gcc=-Wno-type-limits
 CERRWARN	+= -_gcc=-Wno-switch
 
 # needs work
-$(OBJS_DIR)/hsfs_vnops.o := SMOFF += 64bit_shift,signed
+$(OBJS_DIR)/hsfs_vnops.o :  SMOFF += 64bit_shift,signed
 
 #
 #	Default build targets.

@@ -79,7 +79,7 @@ CERRWARN += -_gcc=-Wno-parentheses
 CERRWARN += $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/enx_ibt.o := SMOFF += deref_check
+$(OBJS_DIR)/enx_ibt.o :  SMOFF += deref_check
 
 #
 # Default build targets

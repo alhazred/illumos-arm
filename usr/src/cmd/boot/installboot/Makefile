@@ -25,12 +25,12 @@
 
 SUBDIRS =	$(MACH)
 
-all	:=	TARGET= all
-install	:=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-_msg	:=	TARGET= _msg
-lint	:=	TARGET= lint
+all	: 	TARGET= all
+install	: 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+_msg	: 	TARGET= _msg
+lint	: 	TARGET= lint
 
 .KEEP_STATE:
 

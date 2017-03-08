@@ -65,12 +65,12 @@ CERRWARN += -_gcc=-Wno-extra
 # too many untyped funcs
 SMATCH=off
 
-util1.o := CPPFLAGS += -DSAC
-util2.o := CPPFLAGS += -USAC
+util1.o :  CPPFLAGS += -DSAC
+util2.o :  CPPFLAGS += -USAC
 
-sac :=	LDLIBS += -lpam
+sac : 	LDLIBS += -lpam
 
-$(ROOTUSRSBIN)/sacadm :=	FILEMODE =	04755
+$(ROOTUSRSBIN)/sacadm : 	FILEMODE =	04755
 
 $(LIBSAFD)/% : %
 	$(INS.file)

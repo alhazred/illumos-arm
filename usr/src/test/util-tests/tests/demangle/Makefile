@@ -26,7 +26,7 @@ ROOTOPTPKG = $(ROOT)/opt/util-tests
 TESTDIR = $(ROOTOPTPKG)/tests/demangle
 
 CMDS = $(PROG:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 OBJS = $(PROG:%=%.o)
 SRCS = $(OBJS:%.o=%.c)
@@ -34,7 +34,7 @@ SRCS = $(OBJS:%.o=%.c)
 CSTD = $(CSTD_GNU99)
 
 LDLIBS += -ldemangle-sys
-rust := LDLIBS += -lumem
+rust :  LDLIBS += -lumem
 
 all: $(PROG)
 

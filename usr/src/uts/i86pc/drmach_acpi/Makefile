@@ -62,7 +62,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE)
 DEF_BUILDS	= $(DEF_BUILDS64)
 ALL_BUILDS	= $(ALL_BUILDS64)
 
-$(OBJS_DIR)/drmach_acpi.o :=	CERRWARN	+= -_gcc=-Wno-unused-function
+$(OBJS_DIR)/drmach_acpi.o : 	CERRWARN	+= -_gcc=-Wno-unused-function
 
 CFLAGS += $(CCVERBOSE)
 

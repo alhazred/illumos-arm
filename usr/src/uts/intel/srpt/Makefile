@@ -64,7 +64,7 @@ C99LMODE=	-Xc99=%all
 CERRWARN	+= -_gcc=-Wno-unused-label
 
 # needs work
-$(OBJS_DIR)/srpt_stp.o := SMOFF += all_func_returns
+$(OBJS_DIR)/srpt_stp.o :  SMOFF += all_func_returns
 
 #
 #	Default build targets.

@@ -34,10 +34,10 @@ FILES:sh = find . -maxdepth 1 -type f \( \
 
 CMDS = $(PROGS:%.sh=$(TARGETDIR)/%)
 CMDS += $(PROGS:%.ksh=$(TARGETDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 LIBS = $(FILES:%=$(TARGETDIR)/%)
-$(LIBS) := FILEMODE = 0444
+$(LIBS) :  FILEMODE = 0444
 
 all lint clean clobber:
 

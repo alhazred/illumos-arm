@@ -93,11 +93,11 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 # not linted
 SMATCH=off
 
-all:=           TARGET= all
-install:=       TARGET= install
-clean:=         TARGET= clean
-clobber:=       TARGET= clobber
-lint:=          TARGET= lint
+all:            TARGET= all
+install:        TARGET= install
+clean:          TARGET= clean
+clobber:        TARGET= clobber
+lint:           TARGET= lint
 
 # C Pre-Processor flags used by C, CC & lint
 CPPFLAGS +=	-DSUN -DSVR4 -DSOLARIS_LDAP_CMD \
@@ -108,19 +108,19 @@ CPPFLAGS +=	-DSUN -DSVR4 -DSOLARIS_LDAP_CMD \
 		-DHAVE_SASL_OPTIONS -DSOLARIS_LDAP_CMD
 LDLIBS +=	$(COMPLIB)
 
-ldapmodrdn :=	LDLIBS += -lldap
-ldapsearch :=	LDLIBS += -lldap
-ldapdelete :=	LDLIBS += -lldap
-ldapmodify :=	LDLIBS += -lldap
-ldaplist :=	LDLIBS += -lsldap
-ldapaddent :=	LDLIBS += -lsldap -lnsl -lsecdb
-ldapclient :=	LDLIBS += -lsldap -lscf
+ldapmodrdn : 	LDLIBS += -lldap
+ldapsearch : 	LDLIBS += -lldap
+ldapdelete : 	LDLIBS += -lldap
+ldapmodify : 	LDLIBS += -lldap
+ldaplist : 	LDLIBS += -lsldap
+ldapaddent : 	LDLIBS += -lsldap -lnsl -lsecdb
+ldapclient : 	LDLIBS += -lsldap -lscf
 
-ldaplist :=	CSTD = $(CSTD_GNU99)
-ldapaddent :=	CSTD = $(CSTD_GNU99)
-ldapclient :=	CSTD = $(CSTD_GNU99)
+ldaplist : 	CSTD = $(CSTD_GNU99)
+ldapaddent : 	CSTD = $(CSTD_GNU99)
+ldapclient : 	CSTD = $(CSTD_GNU99)
 
-lint :=		LDLIBS += -lldap
+lint : 		LDLIBS += -lldap
 
 .KEEP_STATE:
 
@@ -181,18 +181,18 @@ clean:
 # Not linted Mozilla upstream commands
 lint: lintns_ldaplist lintns_ldapaddent lintns_ldapclient
 
-lintns_ldaplist := CSTD = $(CSTD_GNU99)
+lintns_ldaplist :  CSTD = $(CSTD_GNU99)
 
 lintns_ldaplist:
 	$(LINT.c) $(LDAPLISTSRCS:%=../ns_ldap/%) $(LDLIBS) -lsldap
 
-lintns_ldapaddent := CSTD = $(CSTD_GNU99)
+lintns_ldapaddent :  CSTD = $(CSTD_GNU99)
 
 lintns_ldapaddent:
 	$(LINT.c) $(LDAPADDENTSRCS:%=../ns_ldap/%) $(LDLIBS) -lsldap -lnsl \
 		-lsecdb
 
-lintns_ldapclient := CSTD = $(CSTD_GNU99)
+lintns_ldapclient :  CSTD = $(CSTD_GNU99)
 
 lintns_ldapclient:
 	$(LINT.c) $(LDAPCLIENTSRCS:%=../ns_ldap/%) $(LDLIBS) -lsldap -lscf

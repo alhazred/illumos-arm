@@ -66,7 +66,7 @@ INSTALL_TARGET	= $(BINARY) $(ROOTMODULE) $(ROOTLINK) $(ROOT_CONFFILE)
 LDFLAGS		+= -dy -Ndrv/ip -Nfs/sockfs
 
 # needs work
-$(OBJS_DIR)/udpddi.o := SMOFF += index_overflow
+$(OBJS_DIR)/udpddi.o :  SMOFF += index_overflow
 
 #
 #	Default build targets.

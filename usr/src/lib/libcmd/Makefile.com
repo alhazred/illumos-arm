@@ -140,9 +140,9 @@ CERRWARN	+= -_gcc=-Wno-implicit-function-declaration
 # not linted
 SMATCH=off
 
-pics/cut.o	:= CERRWARN += -erroff=E_END_OF_LOOP_CODE_NOT_REACHED
-pics/sync.o	:= CERRWARN += -erroff=E_END_OF_LOOP_CODE_NOT_REACHED
-pics/vmstate.o	:= CERRWARN += -erroff=E_NO_IMPLICIT_DECL_ALLOWED
+pics/cut.o	:  CERRWARN += -erroff=E_END_OF_LOOP_CODE_NOT_REACHED
+pics/sync.o	:  CERRWARN += -erroff=E_END_OF_LOOP_CODE_NOT_REACHED
+pics/vmstate.o	:  CERRWARN += -erroff=E_NO_IMPLICIT_DECL_ALLOWED
 
 .KEEP_STATE:
 

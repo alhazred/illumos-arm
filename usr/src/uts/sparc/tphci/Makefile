@@ -92,4 +92,4 @@ include $(UTSBASE)/sparc/Makefile.targ
 
 browser:	$(BINARY)
 
-browser		:= CFLAGS += -xsb
+browser		:  CFLAGS += -xsb

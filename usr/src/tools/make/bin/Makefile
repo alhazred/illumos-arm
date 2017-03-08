@@ -65,7 +65,7 @@ $(PROG):	$(OBJS)
 $(ROOTONBLDBINMACH)/dmake:
 	-$(RM) $@; $(SYMLINK) ./make $@
 
-$(ROOTRULES) := FILEMODE = 0444
+$(ROOTRULES) :  FILEMODE = 0444
 
 $(ROOTONBLDSHARE)/%: $(CMDDIR)/%.file
 	$(INS.rename)

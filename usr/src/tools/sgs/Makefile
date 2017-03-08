@@ -20,10 +20,10 @@ SUBDIRS =		\
 	liblddbg	\
 	sgsmsg
 
-all :=		TARGET= install
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
+all : 		TARGET= install
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
 
 ld: sgsmsg include libconv libelf libld
 libconv: sgsmsg include

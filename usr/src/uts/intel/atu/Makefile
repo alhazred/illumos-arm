@@ -63,7 +63,7 @@ LDFLAGS		+= -dy -Nmisc/mac -Nmisc/net80211 -Nmisc/usba
 CERRWARN	+= -_gcc=-Wno-switch
 
 # needs work
-$(OBJS_DIR)/atu.o := SMOFF += all_func_returns
+$(OBJS_DIR)/atu.o :  SMOFF += all_func_returns
 
 #
 #	Default build targets.

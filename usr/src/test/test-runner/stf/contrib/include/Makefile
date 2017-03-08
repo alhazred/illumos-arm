@@ -22,7 +22,7 @@ INCLUDEDIR = $(ROOTOPTPKG)/stf/contrib/include
 PROGS = logapi.shlib ctiutils.shlib
 
 CMDS = $(PROGS:%=$(INCLUDEDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 all lint clean clobber:
 

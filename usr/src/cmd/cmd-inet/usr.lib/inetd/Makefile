@@ -51,7 +51,7 @@ LDLIBS    += -lsocket -lnsl -lrestart -lscf -lcontract -linetutil \
 CLOBBERFILES += $(SVCMETHOD)
 
 # lint doesn't like the unused _umem_*_init()
-lint_SRCS := LINTFLAGS += -xerroff=E_NAME_DEF_NOT_USED2
+lint_SRCS :  LINTFLAGS += -xerroff=E_NAME_DEF_NOT_USED2
 
 .PARALLEL:	$(OBJS)
 .WAIT:		$(PROG)

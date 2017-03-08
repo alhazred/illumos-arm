@@ -52,18 +52,18 @@ I86XPV_LINTS =	xdb xnb xnbe xnbo xnbu xpvtap
 #
 #
 #
-def		:=	TARGET= def
-all		:=	TARGET= all
-install		:=	TARGET= install
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
-lintlib		:=	TARGET= lintlib
-machmodlintlib	:=	TARGET= modlintlib
-modlist		:=	TARGET= modlist
-modlist	modlist.intel :=	NO_STATE= -K $$MODSTATE$$$$
-clean.lint	:=	TARGET= clean.lint
-check		:=	TARGET= check
+def		: 	TARGET= def
+all		: 	TARGET= all
+install		: 	TARGET= install
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
+lintlib		: 	TARGET= lintlib
+machmodlintlib	: 	TARGET= modlintlib
+modlist		: 	TARGET= modlist
+modlist	modlist.intel : 	NO_STATE= -K $$MODSTATE$$$$
+clean.lint	: 	TARGET= clean.lint
+check		: 	TARGET= check
 
 .KEEP_STATE:
 
@@ -134,7 +134,7 @@ install_platforms:	$(ROOT_PSM_DIR) $(USR_PSM_DIR) \
 LINT_TARGET	= globallint
 
 # workaround for multiply defined errors
-globallint := LINTFLAGS += -erroff=E_NAME_MULTIPLY_DEF2
+globallint :  LINTFLAGS += -erroff=E_NAME_MULTIPLY_DEF2
 
 globallint:
 	@-$(ECHO) "\nFULL KERNEL: global crosschecks:"

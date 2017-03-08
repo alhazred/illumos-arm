@@ -33,7 +33,7 @@ include ../../Makefile.ctf
 
 LDLIBS +=	-lnsl -lsocket
 
-lint := LINTFLAGS = -ux
+lint :  LINTFLAGS = -ux
 
 .KEEP_STATE:
 

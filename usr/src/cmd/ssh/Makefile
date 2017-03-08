@@ -33,10 +33,10 @@ CLOBBERFILES += $(MSGFILE) THIRDPARTYLICENSE
 
 .KEEP_STATE:
 
-all :=          TARGET= all
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-install :=      TARGET= install
+all :           TARGET= all
+clean :         TARGET= clean
+clobber :       TARGET= clobber
+install :       TARGET= install
 
 all clean install: $(SUBDIRS)
 

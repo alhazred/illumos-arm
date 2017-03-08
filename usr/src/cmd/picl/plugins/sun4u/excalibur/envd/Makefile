@@ -50,7 +50,7 @@ ROOTLIBDIR	= $(ROOT_PLAT_PLUGINDIR)
 
 CONF=           envmodel.conf
 ROOTCONF=       $(CONF:%=$(ROOTLIBDIR)/%)
-$(ROOTCONF)	:= FILEMODE = 0644
+$(ROOTCONF)	:  FILEMODE = 0644
 INFOS=          envmodel.info
 
 CFLAGS +=	$(CCVERBOSE)
@@ -69,11 +69,11 @@ SUBDIRS=
 POFILE =	piclenvd_excalibur.po
 POFILES =	$(SRCS:%.c=%.po)
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 all: $(LIBS) $(LIBLINKS)
 

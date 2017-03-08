@@ -30,11 +30,11 @@ PROG= vtdaemon vtinfo vtxlock
 
 VTDAEMON_SRC= vtdaemon.c
 VTDAEMON_OBJ= $(VTDAEMON_SRC:%.c=%.o)
-vtdaemon := OBJS = $(VTDAEMON_OBJ)
+vtdaemon :  OBJS = $(VTDAEMON_OBJ)
 
 VTINFO_SRC= vtinfo.c
 VTINFO_OBJ= $(VTINFO_SRC:%.c=%.o)
-vtinfo := OBJS = $(VTINFO_OBJ)
+vtinfo :  OBJS = $(VTINFO_OBJ)
 
 include $(SRC)/cmd/Makefile.cmd
 include $(SRC)/cmd/Makefile.ctf
@@ -42,7 +42,7 @@ include $(SRC)/cmd/Makefile.ctf
 CFLAGS += $(CCVERBOSE)
 CERRWARN += $(CNOWARN_UNINIT)
 
-vtdaemon := LDLIBS += -lpam -lbsm
+vtdaemon :  LDLIBS += -lpam -lbsm
 
 .KEEP_STATE:
 

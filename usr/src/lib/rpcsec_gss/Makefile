@@ -41,11 +41,11 @@ CHECKHDRS= $(HDRS:%.h=%.check)
 $(ROOTDIRS)/%: %
 	$(INS.file)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-_msg :=         TARGET= _msg
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
+_msg :          TARGET= _msg
 
 LIBRARY=	rpcsec.a
 TEXT_DOMAIN=	SUNW_OST_NETRPC

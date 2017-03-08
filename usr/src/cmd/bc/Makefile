@@ -43,9 +43,9 @@ CERRWARN += -_gcc=-Wno-unused-label
 # nothing lintable
 SMATCH=off
 
-$(XPG6EXOBJS) := CFLAGS += -DXPG6
+$(XPG6EXOBJS) :  CFLAGS += -DXPG6
 ROOTLIBB= $(LIBB:%=$(ROOTLIB)/%)
-$(ROOTLIBB) :=	FILEMODE =	$(LIBFILEMODE)
+$(ROOTLIBB) : 	FILEMODE =	$(LIBFILEMODE)
 
 .KEEP_STATE:
 

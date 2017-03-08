@@ -35,11 +35,11 @@ SUBDIRS = \
 	libpapi-ipp \
 	libipp-listener
 
-all :=                  TARGET = all
-clean :=                TARGET = clean
-clobber :=              TARGET = clobber
-install :=              TARGET = install
-install_h :=              TARGET = install_h
+all :                   TARGET = all
+clean :                 TARGET = clean
+clobber :               TARGET = clobber
+install :               TARGET = install
+install_h :               TARGET = install_h
 
 TEXT_DOMAIN=	SUNW_OST_OSLIB
 POFILE= print-lib.po

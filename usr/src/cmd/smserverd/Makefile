@@ -27,7 +27,7 @@
 PROG =	rpc.smserverd
 OBJS =	smediad.o smediad_err.o myaudit.o smed_svc.o smed_xdr.o
 SRCS =	$(OBJS:%.o=%.c)
-lint := SRCS = smediad.c smediad_err.c myaudit.c
+lint :  SRCS = smediad.c smediad_err.c myaudit.c
 
 MANIFEST=	smserver.xml
 

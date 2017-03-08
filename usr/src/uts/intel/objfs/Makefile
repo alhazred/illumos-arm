@@ -74,7 +74,7 @@ CERRWARN	+= -_gcc=-Wno-unused-function
 CERRWARN	+= $(CNOWARN_UNINIT)
 
 # needs work
-$(OBJS_DIR)/objfs_vfs.o := SMOFF += signed_integer_overflow_check
+$(OBJS_DIR)/objfs_vfs.o :  SMOFF += signed_integer_overflow_check
 
 #
 #	Default build targets.

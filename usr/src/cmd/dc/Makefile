@@ -73,4 +73,4 @@ $(XD):
 
 include ../Makefile.targ
 
-$(XPG6) := CFLAGS += -DXPG6
+$(XPG6) :  CFLAGS += -DXPG6

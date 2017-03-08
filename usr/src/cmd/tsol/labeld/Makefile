@@ -25,17 +25,17 @@
 
 include ../../Makefile.cmd
 
-all:=		TARGET= all
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-install:=	TARGET= install
-lint:=		TARGET= lint
-_msg:=		TARGET= _msg
+all: 		TARGET= all
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+install: 	TARGET= install
+lint: 		TARGET= lint
+_msg: 		TARGET= _msg
 
 MANIFEST= labeld.xml
 ROOTMANIFESTDIR = $(ROOTSVCSYSTEM)
 SVCMETHOD= svc-labeld
-$(ROOTMANIFEST) :=	FILEMODE= 444
+$(ROOTMANIFEST) : 	FILEMODE= 444
 
 .KEEP_STATE:
 

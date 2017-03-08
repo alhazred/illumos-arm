@@ -36,7 +36,7 @@ CERRWARN += -_gcc=-Wno-implicit-function-declaration
 SMATCH=off
 
 LIBUNITTAB= $(UNITTAB:%=$(ROOTSHLIB)/%)
-$(LIBUNITTAB) :=	FILEMODE =	$(LIBFILEMODE)
+$(LIBUNITTAB) : 	FILEMODE =	$(LIBFILEMODE)
 
 .KEEP_STATE:
 

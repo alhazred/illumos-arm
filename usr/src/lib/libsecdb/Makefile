@@ -29,11 +29,11 @@ $(BUILD64)SUBDIRS += $(MACH64)
 
 MSGSUBDIRS=	help
 
-all:=		TARGET= all
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-install:=	TARGET= install
-_msg:=		TARGET= _msg
+all: 		TARGET= all
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+install: 	TARGET= install
+_msg: 		TARGET= _msg
 
 .KEEP_STATE:
 
@@ -55,12 +55,12 @@ ETCSECURITYDFILES =	$(ESDFILES:%=$(ROOTETCSECURITY)/%.d/SUNWcs)
 MFSTFILES =	rbac.xml
 MANIFESTDIR =	$(ROOT)/lib/svc/manifest/system
 MANIFEST =	$(MFSTFILES:%=$(MANIFESTDIR)/%)
-$(MANIFEST) :=	FILEMODE = 0444
+$(MANIFEST) : 	FILEMODE = 0444
 
 METHODFILES =	svc-rbac
 METHODDIR =	$(ROOT)/lib/svc/method
 METHOD =	$(METHODFILES:%=$(METHODDIR)/%)
-$(METHOD) :=	FILEMODE = 0555
+$(METHOD) : 	FILEMODE = 0555
 
 SCRIPTS =		i.rbac r.rbac
 CLASS_SCR_SRC_DIR =	common
@@ -69,7 +69,7 @@ INSTALL_DIR =		$(ROOT)/usr/sadm/install
 CLASS_SCR_DIR =		$(INSTALL_DIR)/scripts
 
 CLASS_SCR_FILES =	$(SCRIPTS:%=$(CLASS_SCR_DIR)/%)
-$(CLASS_SCR_FILES) :=	FILEMODE = 0555
+$(CLASS_SCR_FILES) : 	FILEMODE = 0555
 
 all clean clobber delete install package: $(SUBDIRS)
 _msg: $(MSGSUBDIRS)

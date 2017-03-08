@@ -38,14 +38,14 @@ MACHDIR = $($(MACH)_MACHDIR)
 SUBDIRS = tools $($(MACH)_SUBDIRS) demo
 TARGET =
 
-all := TARGET = all
-clean.lint := TARGET = clean.lint
-clean := TARGET = clean
-clobber := TARGET = clobber
-dmods := TARGET = dmods
-install := TARGET = install
-install_h := TARGET = install_h
-lint := TARGET = lint
+all :  TARGET = all
+clean.lint :  TARGET = clean.lint
+clean :  TARGET = clean
+clobber :  TARGET = clobber
+dmods :  TARGET = dmods
+install :  TARGET = install
+install_h :  TARGET = install_h
+lint :  TARGET = lint
 
 all lint: $(SUBDIRS)
 

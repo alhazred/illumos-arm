@@ -29,12 +29,12 @@ $(BUILD64)SUBDIRS += $(MACH64)
 
 XGETFLAGS_ADT += -a
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-delete :=	TARGET= delete
-install :=	TARGET= install
-package :=	TARGET= package
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+delete : 	TARGET= delete
+install : 	TARGET= install
+package : 	TARGET= package
 
 .KEEP_STATE:
 
@@ -54,8 +54,8 @@ ROOTHDRS =	$(GENHDRS:%=$(ROOTHDRDIR)/%)
 CHECKCHDRS =	$(COMMONHDRS:%.h=%.check)
 CHECKHDRS =	$(GENHDRS:%.h=%.check)
 
-$(ROOTHDRS) :=	FILEMODE = 0644
-$(ROOTCHDRS) :=	FILEMODE = 0644
+$(ROOTHDRS) : 	FILEMODE = 0644
+$(ROOTCHDRS) : 	FILEMODE = 0644
 
 all install package: $(GENSRCS) $(SUBDIRS)
 clean clobber delete: $(SUBDIRS)
@@ -67,12 +67,12 @@ clean clobber delete: $(SUBDIRS)
 #
 
 ROOTETCSECURITY =	$(ROOT)/etc/security
-$(ROOTETCSECURITY) :=	DIRMODE = 0755
+$(ROOTETCSECURITY) : 	DIRMODE = 0755
 
 ESFILES =		audit_class audit_event
 ESSRC =			$(ESFILES:%=%.txt)
 ETCSECURITYFILES =	$(ESFILES:%=$(ROOTETCSECURITY)/%)
-$(ETCSECURITYFILES) :=	FILEMODE = 0644
+$(ETCSECURITYFILES) : 	FILEMODE = 0644
 
 #
 # /etc/security/audit/localhost/files is a symbolic link to /var/audit.
@@ -82,7 +82,7 @@ RESA=$(ROOTETCSECURITY)/audit
 RESAL=$(RESA)/localhost
 VARAUDIT=$(ROOT)/var/audit
 AUDITDIRS=$(RESA) $(RESAL) $(VARAUDIT)
-$(AUDITDIRS) := FILEMODE = 0750
+$(AUDITDIRS) :  FILEMODE = 0750
 
 ARSYMLNK=$(RESAL)/files
 
@@ -105,9 +105,9 @@ ROOTXSL=	$(XSL:%=$(ROOTXSLDIR)/%)
 ROOTXMLDIRS =	$(ROOTXMLDIR) $(ROOTDTDDIR) $(ROOTXSLDIR)
 ROOTXMLFILES =	$(ROOTDTD) $(ROOTXSL)
 
-$(ROOTXMLDIRS) :=  FILEMODE = 755
+$(ROOTXMLDIRS) :   FILEMODE = 755
 
-$(ROOTXMLFILES) :=  FILEMODE = 444
+$(ROOTXMLFILES) :   FILEMODE = 444
 
 
 CPPFLAGS += -I$(COMMONDIR)

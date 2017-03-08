@@ -27,11 +27,11 @@ POFILE= csh.po
 CLOBBERFILES += sh.tconst.h
 CLEANFILES += sh.tconst.h
 
-all :=          TARGET = all
-install :=      TARGET = install
-clean :=        TARGET = clean
-clobber :=      TARGET = clobber
-lint :=         TARGET = lint
+all :           TARGET = all
+install :       TARGET = install
+clean :         TARGET = clean
+clobber :       TARGET = clobber
+lint :          TARGET = lint
 
 POBJS = \
 sh.o sh.char.o \

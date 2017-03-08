@@ -134,8 +134,8 @@ LARGESYMS=	nis_parse_ldap_conf.o \
 		yptol_utils.o \
 		nis_parse_ldap_util.o
 LARGEPICS=	$(LARGESYMS:%=pics/%)
-$(LARGEPICS) :=	sparc_C_PICFLAGS = $(C_BIGPICFLAGS)
-$(LARGEPICS) :=	i386_C_PICFLAGS = $(C_BIGPICFLAGS)
+$(LARGEPICS) : 	sparc_C_PICFLAGS = $(C_BIGPICFLAGS)
+$(LARGEPICS) : 	i386_C_PICFLAGS = $(C_BIGPICFLAGS)
 
 # More and stricter semantic checks and lint-like checks
 CFLAGS	+=	$(CCVERBOSE)
@@ -161,7 +161,7 @@ pics/update.o \
 pics/yptol_utils.o \
 pics/map_ctrl.o
 
-$(UVAR_PICS) := CERRWARN += -_gcc=-Wno-unused-variable
+$(UVAR_PICS) :  CERRWARN += -_gcc=-Wno-unused-variable
 
 # Correcting these might alter logic
 CERRWARN +=	$(CNOWARN_UNINIT)
@@ -187,7 +187,7 @@ CPPFLAGS += -I$(SRC)/cmd/ypcmd
 # Need the path to nis_clnt.h
 CLNT_PICS = pics/db_entry_c_xdr.o pics/ldap_xdr.o pics/db_mindex_c_xdr.o
 
-$(CLNT_PICS) := CPPFLAGS += -I../libnsl/nis/gen
+$(CLNT_PICS) :  CPPFLAGS += -I../libnsl/nis/gen
 
 LIBS = $(DYNLIB)
 ZDEFS=
@@ -205,10 +205,10 @@ LDLIBS += -lnsl -lldap -lc
 BDIRECT =
 DYNFLAGS +=	$(BNODIRECT) $(ZINTERPOSE) $(ZDIRECT) $(ZLAZYLOAD)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+install : 	TARGET= install
 
 .KEEP_STATE:
 

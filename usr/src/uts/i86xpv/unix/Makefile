@@ -122,8 +122,8 @@ CLOBBERFILES	= $(CLEANFILES) $(UNIX_BIN)
 CLEANLINTFILES	+= $(LINT_LIB) $(DBOOT_LINT_LIB) $(DBOOT_LINTS)
 
 # instr_size needs a special header
-$(OBJS_DIR)/instr_size.o :=	EXTRA_OPTIONS	= -I$(SRC)/common/dis/i386
-$(OBJS_DIR)/instr_size.ln :=	EXTRA_OPTIONS	= -I$(SRC)/common/dis/i386
+$(OBJS_DIR)/instr_size.o : 	EXTRA_OPTIONS	= -I$(SRC)/common/dis/i386
+$(OBJS_DIR)/instr_size.ln : 	EXTRA_OPTIONS	= -I$(SRC)/common/dis/i386
 
 CFLAGS += -DDIS_MEM
 

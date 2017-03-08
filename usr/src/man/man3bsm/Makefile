@@ -68,50 +68,50 @@ MANLINKS=	au_close.3bsm		\
 		setauclass.3bsm		\
 		setauevent.3bsm
 
-au_close.3bsm		:= LINKSRC = au_open.3bsm
-au_write.3bsm		:= LINKSRC = au_open.3bsm
+au_close.3bsm		:  LINKSRC = au_open.3bsm
+au_write.3bsm		:  LINKSRC = au_open.3bsm
 
-au_to_arg.3bsm		:= LINKSRC = au_to.3bsm
-au_to_arg32.3bsm	:= LINKSRC = au_to.3bsm
-au_to_arg64.3bsm	:= LINKSRC = au_to.3bsm
-au_to_attr.3bsm		:= LINKSRC = au_to.3bsm
-au_to_cmd.3bsm		:= LINKSRC = au_to.3bsm
-au_to_data.3bsm		:= LINKSRC = au_to.3bsm
-au_to_groups.3bsm	:= LINKSRC = au_to.3bsm
-au_to_in_addr.3bsm	:= LINKSRC = au_to.3bsm
-au_to_ipc.3bsm		:= LINKSRC = au_to.3bsm
-au_to_iport.3bsm	:= LINKSRC = au_to.3bsm
-au_to_me.3bsm		:= LINKSRC = au_to.3bsm
-au_to_newgroups.3bsm	:= LINKSRC = au_to.3bsm
-au_to_opaque.3bsm	:= LINKSRC = au_to.3bsm
-au_to_path.3bsm		:= LINKSRC = au_to.3bsm
-au_to_process.3bsm	:= LINKSRC = au_to.3bsm
-au_to_process_ex.3bsm	:= LINKSRC = au_to.3bsm
-au_to_return.3bsm	:= LINKSRC = au_to.3bsm
-au_to_return32.3bsm	:= LINKSRC = au_to.3bsm
-au_to_return64.3bsm	:= LINKSRC = au_to.3bsm
-au_to_socket.3bsm	:= LINKSRC = au_to.3bsm
-au_to_subject.3bsm	:= LINKSRC = au_to.3bsm
-au_to_subject_ex.3bsm	:= LINKSRC = au_to.3bsm
-au_to_text.3bsm		:= LINKSRC = au_to.3bsm
+au_to_arg.3bsm		:  LINKSRC = au_to.3bsm
+au_to_arg32.3bsm	:  LINKSRC = au_to.3bsm
+au_to_arg64.3bsm	:  LINKSRC = au_to.3bsm
+au_to_attr.3bsm		:  LINKSRC = au_to.3bsm
+au_to_cmd.3bsm		:  LINKSRC = au_to.3bsm
+au_to_data.3bsm		:  LINKSRC = au_to.3bsm
+au_to_groups.3bsm	:  LINKSRC = au_to.3bsm
+au_to_in_addr.3bsm	:  LINKSRC = au_to.3bsm
+au_to_ipc.3bsm		:  LINKSRC = au_to.3bsm
+au_to_iport.3bsm	:  LINKSRC = au_to.3bsm
+au_to_me.3bsm		:  LINKSRC = au_to.3bsm
+au_to_newgroups.3bsm	:  LINKSRC = au_to.3bsm
+au_to_opaque.3bsm	:  LINKSRC = au_to.3bsm
+au_to_path.3bsm		:  LINKSRC = au_to.3bsm
+au_to_process.3bsm	:  LINKSRC = au_to.3bsm
+au_to_process_ex.3bsm	:  LINKSRC = au_to.3bsm
+au_to_return.3bsm	:  LINKSRC = au_to.3bsm
+au_to_return32.3bsm	:  LINKSRC = au_to.3bsm
+au_to_return64.3bsm	:  LINKSRC = au_to.3bsm
+au_to_socket.3bsm	:  LINKSRC = au_to.3bsm
+au_to_subject.3bsm	:  LINKSRC = au_to.3bsm
+au_to_subject_ex.3bsm	:  LINKSRC = au_to.3bsm
+au_to_text.3bsm		:  LINKSRC = au_to.3bsm
 
-endauclass.3bsm		:= LINKSRC = getauclassent.3bsm
-getauclassent_r.3bsm	:= LINKSRC = getauclassent.3bsm
-getauclassnam.3bsm	:= LINKSRC = getauclassent.3bsm
-getauclassnam_r.3bsm	:= LINKSRC = getauclassent.3bsm
-setauclass.3bsm		:= LINKSRC = getauclassent.3bsm
+endauclass.3bsm		:  LINKSRC = getauclassent.3bsm
+getauclassent_r.3bsm	:  LINKSRC = getauclassent.3bsm
+getauclassnam.3bsm	:  LINKSRC = getauclassent.3bsm
+getauclassnam_r.3bsm	:  LINKSRC = getauclassent.3bsm
+setauclass.3bsm		:  LINKSRC = getauclassent.3bsm
 
-getauditflagsbin.3bsm	:= LINKSRC = getauditflags.3bsm
-getauditflagschar.3bsm	:= LINKSRC = getauditflags.3bsm
+getauditflagsbin.3bsm	:  LINKSRC = getauditflags.3bsm
+getauditflagschar.3bsm	:  LINKSRC = getauditflags.3bsm
 
-endauevent.3bsm		:= LINKSRC = getauevent.3bsm
-getauevent_r.3bsm	:= LINKSRC = getauevent.3bsm
-getauevnam.3bsm		:= LINKSRC = getauevent.3bsm
-getauevnam_r.3bsm	:= LINKSRC = getauevent.3bsm
-getauevnonam.3bsm	:= LINKSRC = getauevent.3bsm
-getauevnum.3bsm		:= LINKSRC = getauevent.3bsm
-getauevnum_r.3bsm	:= LINKSRC = getauevent.3bsm
-setauevent.3bsm		:= LINKSRC = getauevent.3bsm
+endauevent.3bsm		:  LINKSRC = getauevent.3bsm
+getauevent_r.3bsm	:  LINKSRC = getauevent.3bsm
+getauevnam.3bsm		:  LINKSRC = getauevent.3bsm
+getauevnam_r.3bsm	:  LINKSRC = getauevent.3bsm
+getauevnonam.3bsm	:  LINKSRC = getauevent.3bsm
+getauevnum.3bsm		:  LINKSRC = getauevent.3bsm
+getauevnum_r.3bsm	:  LINKSRC = getauevent.3bsm
+setauevent.3bsm		:  LINKSRC = getauevent.3bsm
 
 .KEEP_STATE:
 

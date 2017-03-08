@@ -87,17 +87,17 @@ LDFLAGS +=	$(MAPFILE.NGB:%=-M%)
 
 # conditional assignments
 #
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+all: 		TARGET= all
+install: 	TARGET= install
+clean: 		TARGET= clean
+clobber: 	TARGET= clobber
+lint: 		TARGET= lint
 
 # file modes, owners and groups for the install target
 #
 
 
-$(ROOTBIN)/mail :=	FILEMODE =	02511
+$(ROOTBIN)/mail : 	FILEMODE =	02511
 
 
 # install rules

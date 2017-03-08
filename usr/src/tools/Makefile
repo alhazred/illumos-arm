@@ -133,11 +133,11 @@ $(BUILDPY3TOOLS)ROOTDIRS += \
 	$(ROOTONBLD)/lib/python$(PYTHON3_VERSION)/onbld/Scm \
 	$(ROOTONBLD)/lib/python$(PYTHON3_VERSION)/onbld/Scm/__pycache__
 
-all :=		TARGET= install
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-_msg :=		TARGET= _msg
+all : 		TARGET= install
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+_msg : 		TARGET= _msg
 
 .KEEP_STATE:
 
@@ -146,12 +146,12 @@ _msg :=		TARGET= _msg
 # build, not a clean or clobber.
 #
 DOROOTDIRS= $(ROOTDIRS)
-clobber:= DOROOTDIRS=
-clean:= DOROOTDIRS=
+clobber:  DOROOTDIRS=
+clean:  DOROOTDIRS=
 
 $(BUILDPY2TOOLS)DOROOTONBLDLIBPY= $(ROOTONBLDLIBPY)
-clobber:= DOROOTONBLDLIBPY=
-clean:= DOROOTONBLDLIBPY=
+clobber:  DOROOTONBLDLIBPY=
+clean:  DOROOTONBLDLIBPY=
 
 all install: $(SUBDIRS)
 

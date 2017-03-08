@@ -97,14 +97,14 @@ CERRWARN	+= -_gcc=-Wno-unused-label
 
 # needs work
 SMOFF += all_func_returns,indenting
-$(OBJS_DIR)/llex.o := SMOFF += index_overflow
-$(OBJS_DIR)/metaslab.o := SMOFF += no_if_block
-$(OBJS_DIR)/zfs_vnops.o := SMOFF += signed
+$(OBJS_DIR)/llex.o :  SMOFF += index_overflow
+$(OBJS_DIR)/metaslab.o :  SMOFF += no_if_block
+$(OBJS_DIR)/zfs_vnops.o :  SMOFF += signed
 # needs work
-$(OBJS_DIR)/zvol.o := SMOFF += deref_check,signed
+$(OBJS_DIR)/zvol.o :  SMOFF += deref_check,signed
 
 # false positive
-$(OBJS_DIR)/zfs_ctldir.o := SMOFF += strcpy_overflow
+$(OBJS_DIR)/zfs_ctldir.o :  SMOFF += strcpy_overflow
 
 #
 #	Default build targets.

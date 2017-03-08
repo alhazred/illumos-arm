@@ -124,7 +124,7 @@ SVCMETHOD=\
 	rmtmpfiles \
 	vtdaemon
 
-$(ROOTSVCMETHOD) := FILEMODE = 0555
+$(ROOTSVCMETHOD) :  FILEMODE = 0555
 
 all: $(BUILTXML)
 

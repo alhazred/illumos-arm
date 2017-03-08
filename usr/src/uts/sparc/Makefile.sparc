@@ -192,12 +192,12 @@ DEBUG_COND_OBJ64	= $(POUND_SIGN)
 DEBUG_COND_DBG64	=
 IF_DEBUG_OBJ		= $(DEBUG_COND_$(BUILD_TYPE))$(OBJS_DIR)/
 
-$(IF_DEBUG_OBJ)syscall.o	:=	DEBUG_DEFS	+= -DSYSCALLTRACE
-$(IF_DEBUG_OBJ)clock.o		:=	DEBUG_DEFS	+= -DKSLICE=1
+$(IF_DEBUG_OBJ)syscall.o	: 	DEBUG_DEFS	+= -DSYSCALLTRACE
+$(IF_DEBUG_OBJ)clock.o		: 	DEBUG_DEFS	+= -DKSLICE=1
 
 # Comment these out if you don't want dispatcher lock statistics.
 
-# $(IF_DEBUG_OBJ)disp_lock.o	:= DEBUG_DEFS	+= -DDISP_LOCK_STATS
+# $(IF_DEBUG_OBJ)disp_lock.o	:  DEBUG_DEFS	+= -DDISP_LOCK_STATS
 
 #
 #	Collect the preprocessor definitions to be associated with *all*

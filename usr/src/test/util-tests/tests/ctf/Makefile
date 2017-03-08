@@ -91,9 +91,9 @@ ROOTMAKEDIRS =	$(MAKEDIRS:%=$(TESTDIR)/%)
 ROOTCHECKS =	$(CHECKS:%=$(TESTDIR)/%)
 ROOTSCRIPTS =	$(SCRIPTS:%.ksh=$(TESTDIR)/%)
 
-ROOTTESTS	:= FILEMODE =	0444
-ROOTCHECKS	:= FILEMODE =	0555
-ROOTSCRIPTS	:= FILEMODE =	0555
+ROOTTESTS	:  FILEMODE =	0444
+ROOTCHECKS	:  FILEMODE =	0555
+ROOTSCRIPTS	:  FILEMODE =	0555
 
 include $(SRC)/cmd/Makefile.cmd
 include $(SRC)/test/Makefile.com
@@ -102,7 +102,7 @@ CSTD = $(CSTD_GNU99)
 
 LDLIBS +=	-lctf
 
-check-merge-static :=	LDLIBS += -lelf
+check-merge-static : 	LDLIBS += -lelf
 
 all: $(CHECKS)
 

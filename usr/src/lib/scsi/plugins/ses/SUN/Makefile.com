@@ -34,5 +34,5 @@ PLUGINTYPE =	vendor
 
 include ../../Makefile.lib
 
-$(PROG) := LDLIBS += -lnvfru
+$(PROG) :  LDLIBS += -lnvfru
 

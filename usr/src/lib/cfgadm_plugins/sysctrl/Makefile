@@ -30,13 +30,13 @@ include		$(SRC)/Makefile.master
 SUBDIRS=
 $(SPARC_BLD)SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-delete :=	TARGET= delete
-install :=	TARGET= install
-_msg :=		TARGET= _msg
-package :=	TARGET= package
+all : 		TARGET= all
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+delete : 	TARGET= delete
+install : 	TARGET= install
+_msg : 		TARGET= _msg
+package : 	TARGET= package
 
 TEXT_DOMAIN=	SUNW_OST_OSLIB
 XGETFLAGS=	-a -x sysctrl.xcl

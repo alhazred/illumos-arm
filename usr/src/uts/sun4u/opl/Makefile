@@ -38,19 +38,19 @@ UTSBASE	= ../..
 #
 include $(UTSBASE)/sun4u/opl/Makefile.opl
 
-def		:=	TARGET= def
-all		:=	TARGET= all
-install		:=	TARGET= install
-install_h	:=	TARGET= install_h
-clean		:=	TARGET= clean
-clobber		:=	TARGET= clobber
-lint		:=	TARGET= lint
-lintlib		:=	TARGET= lintlib
-modlist		:=	TARGET= modlist
-modlist		:=	NO_STATE= -K $$MODSTATE$$$$
-modlintlib	:=	TARGET= modlintlib
-clean.lint	:=	TARGET= clean.lint
-check		:=	TARGET= check
+def		: 	TARGET= def
+all		: 	TARGET= all
+install		: 	TARGET= install
+install_h	: 	TARGET= install_h
+clean		: 	TARGET= clean
+clobber		: 	TARGET= clobber
+lint		: 	TARGET= lint
+lintlib		: 	TARGET= lintlib
+modlist		: 	TARGET= modlist
+modlist		: 	NO_STATE= -K $$MODSTATE$$$$
+modlintlib	: 	TARGET= modlintlib
+clean.lint	: 	TARGET= clean.lint
+check		: 	TARGET= check
 
 #
 #	Default build targets.

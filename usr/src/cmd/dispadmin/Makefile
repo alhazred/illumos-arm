@@ -64,13 +64,13 @@ OBJECTS= $(PROG).o rt$(PROG).o ts$(PROG).o ia$(PROG).o \
 		fss$(PROG).o fx$(PROG).o sdc$(PROG).o subr.o
 
 # conditional assignments, because of above names
-$(PROG):=	OBJ= $(PROG).o
-$(FSS):=	OBJ= fss$(PROG).o
-$(FX):=		OBJ= fx$(PROG).o
-$(IA):=		OBJ= ia$(PROG).o
-$(RT):=		OBJ= rt$(PROG).o
-$(SDC):=	OBJ= sdc$(PROG).o
-$(TS):=		OBJ= ts$(PROG).o
+$(PROG): 	OBJ= $(PROG).o
+$(FSS): 	OBJ= fss$(PROG).o
+$(FX): 		OBJ= fx$(PROG).o
+$(IA): 		OBJ= ia$(PROG).o
+$(RT): 		OBJ= rt$(PROG).o
+$(SDC): 	OBJ= sdc$(PROG).o
+$(TS): 		OBJ= ts$(PROG).o
 
 # install rules
 $(ROOTDIR)/% \
@@ -93,7 +93,7 @@ $(PROGS): $$(OBJ) subr.o
 llib-lsubr.ln:	subr.c
 	$(LINT.c) -y -o subr subr.c
 
-lint :=	LDLIBS += -L. -lsubr
+lint : 	LDLIBS += -L. -lsubr
 
 install: all $(ROOTPROG) $(ROOTRT) $(ROOTTS) $(ROOTIA) $(ROOTFSS) $(ROOTFX) \
 		$(ROOTSDC) $(ROOTMANIFEST) $(ROOTSVCMETHOD)

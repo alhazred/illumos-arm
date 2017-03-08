@@ -29,10 +29,10 @@ ROOTOPTPKG = $(ROOT)/opt/os-tests
 TESTDIR = $(ROOTOPTPKG)/tests/pf_key
 
 CMDS = $(PROG:%=$(TESTDIR)/%)
-$(CMDS) := FILEMODE = 0555
+$(CMDS) :  FILEMODE = 0555
 
 LDLIBS += -lsocket
-kmc-updater := LDLIBS += -lipsecutil
+kmc-updater :  LDLIBS += -lipsecutil
 
 all: $(PROG)
 

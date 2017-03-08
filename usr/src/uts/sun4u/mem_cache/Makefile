@@ -66,9 +66,9 @@ CERRWARN += -_gcc=-Wno-parentheses
 ASFLAGS += -DCHEETAH_PLUS
 AS_INC_PATH	+= -I$(DSF_DIR)/$(OBJS_DIR)
 
-def		:=	TARGET= def
-all		:=	TARGET= all
-install		:=	TARGET= install
+def		: 	TARGET= def
+all		: 	TARGET= all
+install		: 	TARGET= install
 
 #
 #	Default build targets.

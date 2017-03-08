@@ -48,7 +48,7 @@ LINTTAGS	+= -erroff=E_FUNC_RET_ALWAYS_IGNOR2
 LINTTAGS	+= -erroff=E_FUNC_SET_NOT_USED
 
 # needs work
-$(OBJS_DIR)/udmf_usbgem.o := SMOFF += indenting
+$(OBJS_DIR)/udmf_usbgem.o :  SMOFF += indenting
 
 #
 #	Define targets

@@ -60,37 +60,37 @@ WHOPICS=	$(WHOSRC:%.c=$(PICDIR)/%.o) $(PICDIR)/env.o
 SYMBINDREPPICS=	$(SYMBINDREPSRC:%.c=$(PICDIR)/%.o) $(PICDIR)/env.o
 BINDPICS=	$(BINDSRC:%.c=$(PICDIR)/%.o) $(PICDIR)/env.o
 
-$(WHOPICS):=	SEMANTICCHK=
+$(WHOPICS): 	SEMANTICCHK=
 
 LDLIBS +=	$(CONVLIBDIR) -lconv
 
-$(TRUSSLIB):=	PICS = $(TRUSSPICS)
-$(PERFLIB):=	PICS = $(PERFPICS)
-$(WHOLIB):=	PICS = $(WHOPICS)
-$(SYMBINDREP):=	PICS = $(SYMBINDREPPICS)
-$(BINDLIB):=	PICS = $(BINDPICS)
+$(TRUSSLIB): 	PICS = $(TRUSSPICS)
+$(PERFLIB): 	PICS = $(PERFPICS)
+$(WHOLIB): 	PICS = $(WHOPICS)
+$(SYMBINDREP): 	PICS = $(SYMBINDREPPICS)
+$(BINDLIB): 	PICS = $(BINDPICS)
 
-$(TRUSSLIB):=	LDLIBS += $(ZRECORD) -lmapmalloc -lc
-$(PERFLIB):=	LDLIBS += $(ZRECORD) -lmapmalloc -lc
-$(WHOLIB):=	LDLIBS += $(ELFLIBDIR) -lelf $(ZRECORD) -lmapmalloc $(DLLIB) -lc
-$(SYMBINDREP):=	LDLIBS += $(ZRECORD) -lmapmalloc -lc
-$(BINDLIB):=	LDLIBS += $(ZRECORD) -lmapmalloc -lc
+$(TRUSSLIB): 	LDLIBS += $(ZRECORD) -lmapmalloc -lc
+$(PERFLIB): 	LDLIBS += $(ZRECORD) -lmapmalloc -lc
+$(WHOLIB): 	LDLIBS += $(ELFLIBDIR) -lelf $(ZRECORD) -lmapmalloc $(DLLIB) -lc
+$(SYMBINDREP): 	LDLIBS += $(ZRECORD) -lmapmalloc -lc
+$(BINDLIB): 	LDLIBS += $(ZRECORD) -lmapmalloc -lc
 
-$(TRUSSLIB):=	SONAME = $(TRUSSLIB)
-$(PERFLIB):=	SONAME = $(PERFLIB)
-$(WHOLIB):=	SONAME = $(WHOLIB)
-$(SYMBINDREP):=	SONAME = $(SYMBINDREP)
-$(BINDLIB):=	SONAME = $(BINDLIB)
+$(TRUSSLIB): 	SONAME = $(TRUSSLIB)
+$(PERFLIB): 	SONAME = $(PERFLIB)
+$(WHOLIB): 	SONAME = $(WHOLIB)
+$(SYMBINDREP): 	SONAME = $(SYMBINDREP)
+$(BINDLIB): 	SONAME = $(BINDLIB)
 
-$(TRUSSLIB):=	MAPFILES = ../common/mapfile-vers-truss
-$(PERFLIB):=	MAPFILES = ../common/mapfile-vers-perfcnt
-$(WHOLIB):=	MAPFILES = ../common/mapfile-vers-who
-$(SYMBINDREP):=	MAPFILES = ../common/mapfile-vers-symbindrep
-$(BINDLIB):=	MAPFILES = ../common/mapfile-vers-bindings
+$(TRUSSLIB): 	MAPFILES = ../common/mapfile-vers-truss
+$(PERFLIB): 	MAPFILES = ../common/mapfile-vers-perfcnt
+$(WHOLIB): 	MAPFILES = ../common/mapfile-vers-who
+$(SYMBINDREP): 	MAPFILES = ../common/mapfile-vers-symbindrep
+$(BINDLIB): 	MAPFILES = ../common/mapfile-vers-bindings
 
-$(ONPROGS):=	LDFLAGS += $(LDLIBS.cmd) $(BDIRECT)
+$(ONPROGS): 	LDFLAGS += $(LDLIBS.cmd) $(BDIRECT)
 
-$(ROOTCCSLIB) :=	DIRMODE =	755
+$(ROOTCCSLIB) : 	DIRMODE =	755
 
 CPPFLAGS +=	-D_REENTRANT
 DYNFLAGS +=	$(VERSREF)

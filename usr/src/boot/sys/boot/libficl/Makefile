@@ -17,10 +17,10 @@ include $(SRC)/Makefile.master
 
 SUBDIRS = softcore $(MACH) $(MACH64)
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
 
 all install: $(SUBDIRS)
 clean clobber: $(SUBDIRS)

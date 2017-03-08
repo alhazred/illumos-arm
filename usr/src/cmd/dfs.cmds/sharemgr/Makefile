@@ -48,14 +48,14 @@ ROOTLINKS64= $(LINKS:%=$(ROOTUSRSBIN64)/%)
 $(SHAREMGR64)ROOTLINKS += $(ROOTLINKS32) $(ROOTLINKS64)
 
 ROOTMANIFESTDIR	= $(ROOTSVCNETWORKSHARES)
-$(ROOTMANIFEST)		:= FILEMODE= 444
+$(ROOTMANIFEST)		:  FILEMODE= 444
 
-all	:=	TARGET= all
-install	:=	TARGET= install
-clean	:=	TARGET= clean
-clobber	:=	TARGET= clobber
-_msg	:=	TARGET= _msg
-lint	:=	TARGET= lint
+all	: 	TARGET= all
+install	: 	TARGET= install
+clean	: 	TARGET= clean
+clobber	: 	TARGET= clobber
+_msg	: 	TARGET= _msg
+lint	: 	TARGET= lint
 
 .KEEP_STATE:
 

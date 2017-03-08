@@ -67,7 +67,7 @@ CERRWARN	+= -_gcc=-Wno-unused-variable
 
 # needs work
 SMOFF += all_func_returns
-$(OBJS_DIR)/mac_util.o := SMOFF += signed
+$(OBJS_DIR)/mac_util.o :  SMOFF += signed
 
 #
 #	Default build targets.

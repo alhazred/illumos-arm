@@ -35,7 +35,7 @@ LIBPRINTPROGS =	in.lpd
 LIBLPPROGS = $(BINPROGS) $(SBINPROGS)
 
 
-OBJS =	$(BINPROGS:=.o) $(SBINPROGS:=.o) $(LIBPRINTPROGS:=.o) common.o
+OBJS =	$(BINPROGS:%=%.o) $(SBINPROGS:%=%.o) $(LIBPRINTPROGS:%=%.o) common.o
 
 ROOTLIBLPBIN=$(ROOTLIBLP)/bin
 
@@ -51,7 +51,7 @@ include ../../Makefile.cmd
 
 MANIFEST=	rfc1179.xml
 ROOTMANIFESTDIR=	$(ROOTSVCAPPLICATIONPRINT)
-$(ROOTMANIFEST)		:= FILEMODE= 444
+$(ROOTMANIFEST)		:  FILEMODE= 444
 
 LPLIB	=	$(SRC)/cmd/lp/lib
 LIBLP	=	$(LPLIB)/lp/liblp.a
@@ -61,8 +61,8 @@ CPPFLAGS +=	-I../../../lib/print/libpapi-common/common
 CPPFLAGS +=	-I$(ROOT)/usr/include
 CPPFLAGS +=	-I../../lp/include
 LDLIBS +=	$(LIBLP) -lpapi -lc
-in.lpd:=	CFLAGS +=	-DSOLARIS_PRIVATE_POST_0_9
-in.lpd:=	LDLIBS +=	-lnsl -lsocket
+in.lpd: 	CFLAGS +=	-DSOLARIS_PRIVATE_POST_0_9
+in.lpd: 	LDLIBS +=	-lnsl -lsocket
 
 CERRWARN +=	-_gcc=-Wno-unused-variable
 CERRWARN +=	$(CNOWARN_UNINIT)

@@ -72,9 +72,9 @@ CLEANFILES=	$(OBJECTS) $(DEBUGS) $(YSRC) $(LIBRARY)
 # support for -g library
 GLIB=		libdump_g.a
 DEBUGS=		$(OBJECTS:%=.debug/%)
-$(GLIB):=	AROBJS = $(DEBUGS)
-$(GLIB):=	DIR = .debug
-$(GLIB):=	CFLAGS= $(CCGDEBUG) $(XESS) -DDEBUG -DYYDEBUG ${SBFLAGS}
+$(GLIB): 	AROBJS = $(DEBUGS)
+$(GLIB): 	DIR = .debug
+$(GLIB): 	CFLAGS= $(CCGDEBUG) $(XESS) -DDEBUG -DYYDEBUG ${SBFLAGS}
 
 .KEEP_STATE:
 

@@ -71,10 +71,10 @@ clobber:	clean
 # mapfiles are not delivered into the $ROOT area, and therefore are not
 # delivered as packaged components of the OSNet.
 
-$(MACH)_cc_map.noexeglobs :=	LINK =	$(LINK.c)
-$(MACH64)_cc_map.noexeglobs :=	LINK =	$(LINK64.c)
-$(MACH)_gcc_map.noexeglobs :=	LINK =	$(LINK.c)
-$(MACH64)_gcc_map.noexeglobs :=	LINK =	$(LINK64.c)
+$(MACH)_cc_map.noexeglobs : 	LINK =	$(LINK.c)
+$(MACH64)_cc_map.noexeglobs : 	LINK =	$(LINK64.c)
+$(MACH)_gcc_map.noexeglobs : 	LINK =	$(LINK.c)
+$(MACH64)_gcc_map.noexeglobs : 	LINK =	$(LINK64.c)
 
 # This generic target creates two dynamic executables from an empty "main"
 # program.  These objects are not executed, but are analyzed to determine the

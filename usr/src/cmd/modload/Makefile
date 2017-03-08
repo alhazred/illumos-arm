@@ -32,14 +32,14 @@ include ../Makefile.cmd
 ETCSEC = $(ROOTETC)/security
 XPRIV = $(ETCSEC)/extra_privs
 
-$(XPRIV) := FILEMODE = 644
+$(XPRIV) :  FILEMODE = 644
 
 SUBDIRS +=	$(MACH64)
 
-all	:=	TARGET = all
-install	:=	TARGET = install
-clean	:=	TARGET = clean
-clobber	:=	TARGET = clobber
+all	: 	TARGET = all
+install	: 	TARGET = install
+clean	: 	TARGET = clean
+clobber	: 	TARGET = clobber
 
 .KEEP_STATE:
 

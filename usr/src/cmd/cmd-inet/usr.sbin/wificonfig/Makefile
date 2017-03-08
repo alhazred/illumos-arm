@@ -33,7 +33,7 @@ include		../../../Makefile.cmd
 
 LDLIBS +=	-lsecdb
 
-$(ROOTSBIN)/wificonfig := FILEMODE = 04755
+$(ROOTSBIN)/wificonfig :  FILEMODE = 04755
 ROOTUSRSBINLINKS = $(ROOTUSRSBIN)/$(PROG)
 CERRWARN += -_gcc=-Wno-char-subscripts
 CERRWARN += -_gcc=-Wno-parentheses

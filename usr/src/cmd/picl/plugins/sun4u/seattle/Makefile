@@ -34,11 +34,11 @@ SUBDIRS=	devtree frutree frudata frudr envmon .WAIT
 
 MSGSUBDIRS=	frudr
 
-all :=		TARGET= all
-install :=	TARGET= install
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-lint :=		TARGET= lint
+all : 		TARGET= all
+install : 	TARGET= install
+clean : 	TARGET= clean
+clobber : 	TARGET= clobber
+lint : 		TARGET= lint
 
 .KEEP_STATE:
 

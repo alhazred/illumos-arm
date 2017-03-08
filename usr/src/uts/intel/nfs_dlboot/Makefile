@@ -77,7 +77,7 @@ LINTTAGS	+= -erroff=E_ASSIGN_NARROW_CONV
 CERRWARN	+= -_gcc=-Wno-parentheses
 
 # needs work
-$(OBJS_DIR)/nfs_dlinet.o := SMOFF += indenting,all_func_returns
+$(OBJS_DIR)/nfs_dlinet.o :  SMOFF += indenting,all_func_returns
 
 #
 #	Default build targets.

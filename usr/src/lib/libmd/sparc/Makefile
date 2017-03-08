@@ -39,7 +39,7 @@ EXTPICS =	../capabilities/sun4u/sparc/pics/symcap.o \
 		../capabilities/sun4v/sparc/pics/symcap.o
 
 # Suppress error for edonr.c __asm__ code
-pics/edonr.o := CERRWARN +=	$(CNOWARN_UNINIT)
+pics/edonr.o :  CERRWARN +=	$(CNOWARN_UNINIT)
 
 .KEEP_STATE:
 

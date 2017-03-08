@@ -55,21 +55,21 @@ MANLINKS=	ptree_add_row_to_table.3picltree	\
 		ptree_get_propval_by_name.3picltree	\
 		ptree_update_propval_by_name.3picltree
 
-ptree_delete_node.3picltree		:= LINKSRC = ptree_add_node.3picltree
-ptree_delete_prop.3picltree		:= LINKSRC = ptree_add_prop.3picltree
+ptree_delete_node.3picltree		:  LINKSRC = ptree_add_node.3picltree
+ptree_delete_prop.3picltree		:  LINKSRC = ptree_add_prop.3picltree
 
-ptree_destroy_node.3picltree		:= LINKSRC = ptree_create_node.3picltree
-ptree_destroy_prop.3picltree		:= LINKSRC = ptree_create_prop.3picltree
+ptree_destroy_node.3picltree		:  LINKSRC = ptree_create_node.3picltree
+ptree_destroy_prop.3picltree		:  LINKSRC = ptree_create_prop.3picltree
 
-ptree_add_row_to_table.3picltree	:= LINKSRC = ptree_create_table.3picltree
+ptree_add_row_to_table.3picltree	:  LINKSRC = ptree_create_table.3picltree
 
-ptree_get_next_prop.3picltree		:= LINKSRC = ptree_get_first_prop.3picltree
+ptree_get_next_prop.3picltree		:  LINKSRC = ptree_get_first_prop.3picltree
 
-ptree_get_next_by_col.3picltree		:= LINKSRC = ptree_get_next_by_row.3picltree
+ptree_get_next_by_col.3picltree		:  LINKSRC = ptree_get_next_by_row.3picltree
 
-ptree_get_propval_by_name.3picltree	:= LINKSRC = ptree_get_propval.3picltree
+ptree_get_propval_by_name.3picltree	:  LINKSRC = ptree_get_propval.3picltree
 
-ptree_update_propval_by_name.3picltree	:= LINKSRC = ptree_update_propval.3picltree
+ptree_update_propval_by_name.3picltree	:  LINKSRC = ptree_update_propval.3picltree
 
 .KEEP_STATE:
 

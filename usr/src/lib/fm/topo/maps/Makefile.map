@@ -51,7 +51,7 @@ platform_ROOTTOPOROOT = \
 ROOTTOPOROOT = $($(CLASS)_ROOTTOPOROOT)
 ROOTTOPOMAPS = $(TOPOFILE:%=$(ROOTTOPOROOT)/%)
 
-install:= FILEMODE =	0444
+install:  FILEMODE =	0444
 
 # The .xmlgen perl file automatically generates a new xml file.  This is done
 # to avoid having to deal with things like 48 platform specific internal

@@ -72,9 +72,9 @@ $(OBJS_DIR)/%.o:		$(UTSBASE)/sparc/zfs/%.c
 # _RELSEG indicates that the dynamic syms are put in a separate ELF
 #	section so they can be freed later.
 #
-$(OBJS_DIR)/kobj_bootflags.o	:= CPPFLAGS += -I$(SRC)/common
-$(OBJS_DIR)/kobj.o		:= CPPFLAGS += -DMODDIR_SUFFIX=\"sparcv9\"
-$(OBJS_DIR)/kobj.o		:= CPPFLAGS += -D_RELSEG
+$(OBJS_DIR)/kobj_bootflags.o	:  CPPFLAGS += -I$(SRC)/common
+$(OBJS_DIR)/kobj.o		:  CPPFLAGS += -DMODDIR_SUFFIX=\"sparcv9\"
+$(OBJS_DIR)/kobj.o		:  CPPFLAGS += -D_RELSEG
 
 $(OBJS_DIR)/%.o:		$(UTSBASE)/sparc/krtld/%.s
 	$(COMPILE.s) -o $@ $<
@@ -120,9 +120,9 @@ $(LINTS_DIR)/%.ln:		$(UTSBASE)/sparc/fs/proc/%.c
 $(LINTS_DIR)/%.ln:		$(UTSBASE)/sparc/krtld/%.c
 	@($(LHEAD) $(LINT.c) $< $(LTAIL))
 
-$(OBJS_DIR)/kobj_bootflags.ln	:= CPPFLAGS += -I$(SRC)/common
-$(OBJS_DIR)/kobj.ln		:= CPPFLAGS += -DMODDIR_SUFFIX=\"sparcv9\"
-$(OBJS_DIR)/kobj.ln		:= CPPFLAGS += -D_RELSEG
+$(OBJS_DIR)/kobj_bootflags.ln	:  CPPFLAGS += -I$(SRC)/common
+$(OBJS_DIR)/kobj.ln		:  CPPFLAGS += -DMODDIR_SUFFIX=\"sparcv9\"
+$(OBJS_DIR)/kobj.ln		:  CPPFLAGS += -D_RELSEG
 
 $(LINTS_DIR)/%.ln:		$(UTSBASE)/sparc/krtld/%.s
 	@($(LHEAD) $(LINT.s) $< $(LTAIL))

@@ -37,14 +37,14 @@ SUBDIRS=	pooladm poolbind poolcfg poolstat poold
 
 ROOTMANIFESTDIR=	$(ROOTSVCSYSTEM)
 
-all :=		TARGET = all
-install :=	TARGET = install
-clean :=	TARGET = clean
-clobber :=	TARGET = clobber
-lint :=		TARGET = lint
-_msg :=		TARGET = _msg
+all : 		TARGET = all
+install : 	TARGET = install
+clean : 	TARGET = clean
+clobber : 	TARGET = clobber
+lint : 		TARGET = lint
+_msg : 		TARGET = _msg
 
-$(ROOTMANIFEST):= 	FILEMODE= 444
+$(ROOTMANIFEST):  	FILEMODE= 444
 
 .KEEP_STATE:
 

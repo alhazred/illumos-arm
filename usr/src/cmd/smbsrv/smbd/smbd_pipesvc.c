@@ -12,6 +12,9 @@
 /*
  * Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This is the named pipe service for smbd.
@@ -19,6 +22,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <../include/string.h>
 
 #include <stdio.h>
 #include <strings.h>

@@ -24,6 +24,9 @@
  * Copyright 2018 Nexenta Systems, Inc.  All rights reserved.
  * Copyright 2016 Martin Matuska. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <synch.h>
 #include <pthread.h>
@@ -32,6 +35,7 @@
 #include <strings.h>
 #include <sys/errno.h>
 #include <libzfs.h>
+#include <../include/string.h>
 
 #include <smbsrv/libsmb.h>
 #include <smbsrv/libsmbns.h>

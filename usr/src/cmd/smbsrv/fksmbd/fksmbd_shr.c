@@ -12,6 +12,9 @@
 /*
  * Copyright 2018 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Replace the smb_shr_load() function in libmlsvc, because
@@ -30,6 +33,7 @@
 #include <libshare.h>
 #include <unistd.h>
 #include <note.h>
+#include <../include/string.h>
 
 #include <smbsrv/libsmb.h>
 #include <smbsrv/libsmbns.h>

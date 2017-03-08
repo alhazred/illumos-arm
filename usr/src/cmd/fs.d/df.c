@@ -25,6 +25,9 @@
 /*
  * Copyright (c) 1989, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright 2016 Jason King
@@ -54,6 +57,7 @@
 #include <sys/zone.h>
 #include <sys/debug.h>
 #include <libzfs.h>
+#include <zone.h>
 #include <libcmdutils.h>
 
 #include "fslib.h"

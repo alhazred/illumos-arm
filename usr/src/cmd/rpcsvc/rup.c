@@ -24,9 +24,13 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <netdb.h>
 #include <sys/param.h>
 #include <sys/stat.h>
@@ -37,6 +41,7 @@
 #include <netdir.h>
 #include <rpcsvc/rstat.h>
 #include <rpc/pmap_clnt.h>
+#include <rpc/clnt_soc.h>
 
 
 #define	MACHINELEN	15	/* length of machine name printed out */

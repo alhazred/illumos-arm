@@ -28,6 +28,9 @@
 /*
  * Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <netconfig.h>
@@ -44,6 +47,7 @@
 #include <synch.h>
 #include <string.h>
 #include "rpcbind.h"
+#include <string.h>
 
 static rpcb_stat_byvers inf;
 static rwlock_t inf_lock = DEFAULTRWLOCK;

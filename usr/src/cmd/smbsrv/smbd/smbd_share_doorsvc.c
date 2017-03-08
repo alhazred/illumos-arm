@@ -22,6 +22,9 @@
  * Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * LanMan share door server
@@ -41,6 +44,7 @@
 #include <smbsrv/smb_share.h>
 #include <smbsrv/smbinfo.h>
 #include "smbd.h"
+#include <../include/string.h>
 
 #define	SMB_SHARE_DSRV_VERSION	1
 #define	SMB_SHARE_DSRV_COOKIE	((void*)(0xdeadbeef^SMB_SHARE_DSRV_VERSION))

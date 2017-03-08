@@ -40,6 +40,8 @@
 #include	<sys/vfstab.h>
 #include	<sys/wait.h>
 #include	<sys/types.h>
+#include	<stdlib.h>
+#include	<unistd.h>
 
 #define	FSTYPE_MAX	8
 #define	FULLPATH_MAX	64

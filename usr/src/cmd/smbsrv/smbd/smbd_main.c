@@ -22,6 +22,9 @@
  * Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2018 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -49,6 +52,7 @@
 #include <libgen.h>
 #include <pwd.h>
 #include <grp.h>
+#include <../include/string.h>
 
 #include <smbsrv/smb_door.h>
 #include <smbsrv/smb_ioctl.h>

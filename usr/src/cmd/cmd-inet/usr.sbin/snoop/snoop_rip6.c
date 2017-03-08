@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"	/* SunOS */
 
@@ -40,6 +43,8 @@
 #include <protocols/routed.h>
 #include <protocols/ripngd.h>
 #include "snoop.h"
+#include <stdio.h>
+#include <strings.h>
 
 extern char *dlc_header;
 static char *show_cmd6();

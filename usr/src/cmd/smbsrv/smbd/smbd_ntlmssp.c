@@ -12,6 +12,9 @@
 /*
  * Copyright 2017 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * SPNEGO back-end for NTLMSSP.  See [MS-NLMP]
@@ -24,6 +27,7 @@
 #include "smbd_authsvc.h"
 #include "netsmb/ntlmssp.h"
 #include <assert.h>
+#include <../include/string.h>
 
 /* A shorter alias for a crazy long name from [MS-NLMP] */
 #define	NTLMSSP_NEGOTIATE_NTLM2 \

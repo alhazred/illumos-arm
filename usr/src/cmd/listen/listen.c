@@ -21,6 +21,9 @@
  */
 
 /*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+/*
  * Copyright 2014 Garrett D'Amore
  */
 /*
@@ -64,6 +67,7 @@
 #include <sys/stropts.h>
 #include <sac.h>
 #include <utmpx.h>
+#include <stdlib.h>
 
 /* listener include files */
 

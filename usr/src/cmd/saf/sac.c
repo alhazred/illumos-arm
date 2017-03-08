@@ -26,6 +26,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -50,6 +53,7 @@
 #include "structs.h"
 
 #include <security/pam_appl.h>
+#include <ulimit.h>
 
 #define	RESP	1		/* pollfail via no response to sanity poll */
 #define	DEATH	2		/* pollfail via child death */

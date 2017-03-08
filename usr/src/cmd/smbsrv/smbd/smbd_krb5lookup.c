@@ -12,12 +12,16 @@
 /*
  * Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
 #include <syslog.h>
+#include <../include/string.h>
 
 #include <sys/types.h>
 #include <sys/errno.h>

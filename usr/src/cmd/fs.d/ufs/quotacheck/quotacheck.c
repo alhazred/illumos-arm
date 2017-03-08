@@ -65,6 +65,7 @@
 #include <sys/vfstab.h>
 #include <pwd.h>
 #include <iso/limits_iso.h>
+#include <unistd.h>
 
 union {
 	struct	fs	sblk;

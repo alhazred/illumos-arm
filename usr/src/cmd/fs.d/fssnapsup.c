@@ -23,6 +23,9 @@
  * Copyright (c) 2000-2001 by Sun Microsystems, Inc.
  * All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -32,6 +35,9 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 #include <kstat.h>
 #include <libintl.h>
 #include <sys/fssnap_if.h>

@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_ILBADM_H
 #define	_ILBADM_H
@@ -223,8 +226,6 @@ ilbadm_status_t ilbadm_set_netmask(char *, ilb_ip_addr_t *, int);
 int		ilbadm_mask_to_prefixlen(ilb_ip_addr_t *);
 
 void		print_cmdlist_short(char *, FILE *);
-extern int	ilb_cmp_ipaddr(ilb_ip_addr_t *, ilb_ip_addr_t *,
-    longlong_t *);
 
 void	ip2str(ilb_ip_addr_t *, char *, size_t, int);
 char	*i_str_from_val(int, ilbadm_val_type_t *);

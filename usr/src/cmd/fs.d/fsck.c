@@ -87,7 +87,6 @@ int	exitstat = 0;
 int	verbose = 0;
 char	*nargv[ARGV_MAX];
 char	*myname, *fstype;
-char	*malloc();
 char	vfstab[] = VFSTAB;
 char	pflg = 0, Vflg = 0;
 

@@ -183,12 +183,12 @@ urw(proc_t *p, int writing, void *buf, size_t len, uintptr_t a)
 	caddr_t addr = (caddr_t)a;
 	caddr_t page;
 	caddr_t vaddr;
-	struct seg *seg;
-	int error = 0;
+	struct seg *volatile seg;
+	volatile int error = 0;
 	int err = 0;
 	uint_t prot;
 	uint_t prot_rw = writing ? PROT_WRITE : PROT_READ;
-	int protchanged;
+	volatile int protchanged;
 	on_trap_data_t otd;
 	int retrycnt;
 	struct as *as = p->p_as;

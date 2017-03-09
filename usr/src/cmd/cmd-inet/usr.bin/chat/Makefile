@@ -14,6 +14,7 @@ CPPFLAGS +=	-DSOL2
 LDFLAGS +=	$(MAPFILE.NGB:%=-M%)
 CERRWARN +=	-_gcc=-Wno-unused-value
 CERRWARN +=	-_gcc=-Wno-trigraphs
+CERRWARN +=	-_gcc=-Wno-unused-const-variable
 
 # not linted
 SMATCH=off

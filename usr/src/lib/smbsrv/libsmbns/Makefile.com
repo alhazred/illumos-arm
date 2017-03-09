@@ -21,6 +21,7 @@
 # Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2018, Joyent, Inc.
 
 LIBRARY= libsmbns.a
@@ -50,7 +51,7 @@ SRCS=   $(OBJS_COMMON:%.o=$(SRCDIR)/%.c)	\
 	$(OBJS_SHARED:%.o=$(SRC)/common/smbsrv/%.c)
 
 LDLIBS +=	$(MACH_LDLIBS)
-LDLIBS +=	-lsmb -lads -lgss -lcmdutils -lldap \
+LDLIBS +=	-L$(ROOT)/usr/lib/smbsrv -lsmb -lads -lgss -lcmdutils -lldap \
 		-lsocket -lnsl -lc
 CPPFLAGS +=	-D_REENTRANT
 CPPFLAGS +=	-Dsyslog=smb_syslog

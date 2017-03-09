@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1992, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 #
@@ -25,7 +26,7 @@
 
 PROG = auditconfig
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 LIBBSM = $(SRC)/lib/libbsm/common
 

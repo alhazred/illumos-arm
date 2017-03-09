@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -43,10 +44,10 @@ SYMBOL_VERSION SUNW_1.1 {
 	sendfile;
 	sendfilev;
 
-$if _ELF32	# largefile interfaces for 32-bit applications
-	sendfile64;
-	sendfilev64;
-$endif
+#$if _ELF32	# largefile interfaces for 32-bit applications
+#	sendfile64;
+#	sendfilev64;
+#$endif
 
     local:
 	*;

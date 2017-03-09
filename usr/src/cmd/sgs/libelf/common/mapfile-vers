@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -172,7 +173,7 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	_gelf_getdyndtflags_1;
 	_gelf_getdynval;
 
-$if _ELF32
+#$if _ELF32
 	elf_demangle;
-$endif
+#$endif
 };

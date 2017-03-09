@@ -31,7 +31,7 @@ SRCS=		$(OBJS1:%.o=%.c) $(SRC)/common/util/getresponse.c
 
 include ../Makefile.cmd
 
-CPPFLAGS += -D_FILE_OFFSET_BITS=64 -I $(SRC)/common/util
+CPPFLAGS += -D_FILE_OFFSET_BITS=64 -I$(SRC)/head -I $(SRC)/common/util
 DCFILE= $(PROG).dc
 
 LINTFLAGS += -u

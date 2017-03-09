@@ -39,7 +39,7 @@
 #include <zlib.h>
 #include <sys/debug.h>
 
-#ifdef _LP64
+#if defined _LP64 && defined _MULTI_DATAMODEL
 static const char *_libctf_zlib = "/usr/lib/64/libz.so.1";
 #else
 static const char *_libctf_zlib = "/usr/lib/libz.so.1";

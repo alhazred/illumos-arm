@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -45,7 +46,10 @@ DTDS =		dtd/brand.dtd.1 dtd/zone_platform.dtd.1
 DTDDIR =	$(ROOT)/usr/share/lib/xml
 ROOTDTDS=	$(DTDS:%=$(DTDDIR)/%)
 
-$(DTDDIR)/%: %
+$(DTDDIR)/dtd:
+	$(INS.dir)
+
+$(DTDDIR)/%: % $(DTDDIR)/dtd
 	$(INS.file)
 
 .KEEP_STATE:
@@ -59,7 +63,7 @@ check: $(CHECKHDRS)
 $(ROOTBRANDDIR):
 	$(INS.dir)
 
-install:	$(ROOTBRANDDIR)	$(ROOTDTDS)
+install:	$(ROOTBRANDDIR) $(ROOTDTDS)
 
 $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)

@@ -51,6 +51,9 @@ extern void flush_windows(void);
 #elif defined(__aarch64)
 #define	UMEM_FRAMESIZE	MINFRAME
 
+#elif defined(__riscv)
+#define	UMEM_FRAMESIZE	MINFRAME
+
 #else
 #error needs update for new architecture
 #endif

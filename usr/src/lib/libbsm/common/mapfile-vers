@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -341,11 +342,11 @@ SYMBOL_VERSION SUNWprivate_1.1 {
     local:
 	# These functions are aliased to "int" versions. Let those
 	# go into .SUNW_dynsymsort, and keep these out.
-	adrm_long		{ FLAGS = NODYNSORT };
-	adrm_u_long		{ FLAGS = NODYNSORT };
-	adrf_long		{ FLAGS = NODYNSORT };
-	adrf_u_long		{ FLAGS = NODYNSORT };
-	adrm_putlong		{ FLAGS = NODYNSORT };
+	adrm_long		;
+	adrm_u_long		;
+	adrf_long		;
+	adrf_u_long		;
+	adrm_putlong		;
 
 	# Reduce all remaining global symbols to local scope
 	*;

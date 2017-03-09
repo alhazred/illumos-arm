@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -51,7 +52,7 @@ MSGFILES =	`$(GREP) -l gettext *.[ch]`
 
 all clean clobber: $(SUBDIRS)
 
-install: $(GSSMECH_DIR) all .WAIT $(SUBDIRS)
+install: $(GSSMECH_DIR) $(SUBDIRS)
 
 check install_h:
 

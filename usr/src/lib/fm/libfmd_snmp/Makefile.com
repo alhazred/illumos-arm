@@ -52,6 +52,7 @@ CPPFLAGS += -I../common -I.
 $(NOT_RELEASE_BUILD)CPPFLAGS += -DDEBUG
 CFLAGS += $(CCVERBOSE) $(C_BIGPICFLAGS)
 CFLAGS64 += $(CCVERBOSE) $(C_BIGPICFLAGS)
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 SNMPLIBS = -lnetsnmp -lnetsnmpagent
 NATIVE_LIBS += libnetsnmp.so libnetsnmpagent.so

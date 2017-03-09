@@ -262,6 +262,7 @@ krb5_pthread_atfork_child_handler()
  * krb5_ld_init() contains code that will be executed at load time (via the
  * ld -zinitarray directive).
  */
+__attribute__ ((constructor))
 void
 krb5_ld_init()
 {

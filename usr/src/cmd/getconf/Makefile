@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -35,7 +36,7 @@ XPG6EXOBJS= $(X6)/getconf.o
 
 include ../Makefile.cmd
 
-XPG4EXOBJS += values-xpg4.o
+#XPG4EXOBJS += values-xpg4.o
 CFLAGS += $(CCVERBOSE)
 # XPG4
 $(XPG4) :  CFLAGS += -D_XOPEN_SOURCE -I$(SRC)/lib/libc/inc
@@ -114,6 +115,7 @@ install: all $(ROOTPROG) $(ROOTXPG4PROG) $(ROOTXPG6PROG)
 values-xpg4.o: ../../lib/crt/common/values-xpg4.c
 	$(COMPILE.c) -o $@ ../../lib/crt/common/values-xpg4.c
 
+clobber: clean
 clean:
 	-@rm -rf $(OBJS) $(XPG4EXOBJS) $(XPG6EXOBJS) $(X4) $(X6) \
 		$(PROG) $(XPG4) $(XPG6)

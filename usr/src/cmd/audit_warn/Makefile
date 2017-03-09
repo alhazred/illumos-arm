@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -28,7 +29,7 @@
 PROG = audit_warn
 SRCS = audit_warn.sh
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 ETCSECURITYFILES =	audit_warn
 ROOTETCSECURITY =	$(ROOT)/etc/security

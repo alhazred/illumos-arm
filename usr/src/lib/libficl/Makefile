@@ -11,6 +11,7 @@
 
 #
 # Copyright 2016 Toomas Soome <tsoome@me.com>
+# Copyright 2017 Hayashi Naoyuki
 #
 
 include		../Makefile.lib
@@ -28,6 +29,8 @@ clobber : 	TARGET= clobber
 install : 	TARGET= install
 
 .KEEP_STATE:
+$(MACH): softcore
+$(BUILD64)$(MACH64): softcore
 
 all install: install_h $(SUBDIRS)
 

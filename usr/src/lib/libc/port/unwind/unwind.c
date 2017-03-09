@@ -78,7 +78,7 @@ _t_cancel(void *fp)
 	__cleanup_t *head;
 	void (*fptr)(void (*func)(void *), void *arg);
 
-#if defined(__alpha) || defined(__aarch64)
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	while ((head = self->ul_clnup_hdr) != NULL) {
 		self->ul_clnup_hdr = head->next;
 		/* execute the cleanup handler */

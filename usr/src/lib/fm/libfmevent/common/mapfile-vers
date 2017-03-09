@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -78,8 +79,8 @@ SYMBOL_VERSION SUNW_1.1 {
 SYMBOL_VERSION SUNWprivate {
     global:
 	fmev_pri_string;
-	fmev_publish		{ FLAGS = NODYNSORT };
-	fmev_rspublish		{ FLAGS = NODYNSORT };
+	fmev_publish		;
+	fmev_rspublish		;
 	_i_fmev_publish;
 	_i_fmev_publish_nvl;
 	__fmev_errno;

@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -67,7 +68,7 @@ OBJECTS= api_interface.o \
 	verify_mgr.o
 
 
-include $(SRC)/lib/Makefile.lib
+include ../../../Makefile.lib
 
 SRCDIR= ../common
 
@@ -88,10 +89,12 @@ TSSLIB=-L$(TSPILIBDIR)
 TSSLIB64=-L$(TSPILIBDIR)/$(MACH64)
 TSSINC=-I$(TSPIINCDIR)
 
-LDLIBS += $(TSSLIB) -L$(ADJUNCT_PROTO)/lib -lc -luuid -lmd -ltspi -lsoftcrypto
+LDLIBS += -Bsymbolic $(TSSLIB) -L$(ADJUNCT_PROTO)/lib -lc -luuid -lmd -ltspi -lsoftcrypto
 CPPFLAGS += -xCC -D_POSIX_PTHREAD_SEMANTICS $(TSSINC) $(SOFTCRYPTOFLAGS)
 CPPFLAGS64 += $(CPPFLAGS)
 CSTD=        $(CSTD_GNU99)
+
+CFLAGS  +=	-_gcc=-fvisibility=protected
 
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	-_gcc=-Wno-unused-label

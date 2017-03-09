@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright (c) 2018, Joyent, Inc.
@@ -60,6 +61,8 @@ CPPFLAGS +=	-D_REENTRANT -I$(AUTOFSSMFLIB_DIR) \
 all: $(LIBS)
 
 install: $(ROOTLIBDIR) $(ROOTLIBDIR64) all
+$(ROOTLIBS) $(ROOTLINKS): $(ROOTLIBDIR)
+$(ROOTLIBS64) $(ROOTLINKS64): $(ROOTLIBDIR64)
 
 pics/%.o:       $(AUTOFSSMFLIB_DIR)/%.c
 	$(COMPILE.c) -o $@ $<

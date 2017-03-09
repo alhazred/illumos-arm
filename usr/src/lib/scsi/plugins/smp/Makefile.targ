@@ -22,6 +22,7 @@
 #
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2015 RackTop Systems.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 all: $(PROG) $(DMODPROG)
@@ -62,13 +63,13 @@ $(ROOTPLUGINDIR)/%: $(PROG)
 $(ROOTPLUGINDIR64)/%: $(PROG)
 	$(RM) $@; $(LN) -s $< $@
 
-$(ROOTPROG): $$(@D) $(PROG)
+$(ROOTPROG): %/$(PROG) : $(PROG) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(PROG)
 
-$(ROOTPROG64): $$(@D) $(PROG)
+$(ROOTPROG64): %/$(PROG) : $(PROG) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(PROG)
 
-$(ROOTDMOD): $$(@D) $(DMODPROG)
+$(ROOTDMOD): %/$(DMODPROG) : $(ROOTDMOD) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(DMODPROG)
 
 include ../../../../Makefile.rootdirs

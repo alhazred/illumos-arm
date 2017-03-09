@@ -24,7 +24,7 @@
 # Use is subject to license terms.
 #
 
-SHELL=/usr/bin/ksh93
+SHELL=/usr/bin/ksh
 
 include		../Makefile.lib
 
@@ -47,7 +47,8 @@ HDRS= \
 	history.h \
 	nval.h \
 	shell.h
-
+	
+HDRDIR= common/include
 HDRDIR32= $(MACH)/include/ast
 HDRDIR64= $(MACH64)/include/ast
 include ../Makefile.asthdr

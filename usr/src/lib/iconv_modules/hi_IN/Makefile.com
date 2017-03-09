@@ -33,6 +33,7 @@ SRCS	=	iscii91%UTF-8.c \
 
 dummy: all
 
+include ../../../../Makefile.master
 include $(SRC)/lib/iconv_modules/Makefile.iconv
 
 CPPFLAGS += -I../include

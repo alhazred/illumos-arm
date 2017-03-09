@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -29,7 +30,7 @@ VERS=		.1
 
 OBJECTS=	nss_spi.o
 
-include	$(SRC)/lib/Makefile.lib
+include	../../../../Makefile.lib
 
 MPSDIR=		/usr/lib/mps
 KMFINC=		-I../../../include -I../../../ber_der/inc
@@ -46,7 +47,7 @@ SRCDIR=		../common
 INCDIR=		../../include
 
 CFLAGS		+=	$(CCVERBOSE)
-CPPFLAGS	+=	-D_REENTRANT $(KMFINC) $(NSSINC)  \
+CPPFLAGS	+=	-D_REENTRANT -DNSS_PKCS11_2_0_COMPAT $(KMFINC) $(NSSINC)  \
 		-I$(INCDIR) -I$(ADJUNCT_PROTO)/usr/include/libxml2
 
 PICS=	$(OBJECTS:%=pics/%)

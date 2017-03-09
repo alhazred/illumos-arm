@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -29,9 +30,9 @@ LIBRARY=	audit_remote.a
 VERS=		.1
 OBJECTS=	audit_remote.o transport.o
 
-LIBBSM=		$(SRC)/lib/libbsm/common
+LIBBSM=		../../../libbsm/common
 
-include		$(SRC)/lib/Makefile.lib
+include		../../../Makefile.lib
 
 LIBS=		$(DYNLIB)
 LDLIBS		+= -lmtmalloc -lbsm -lsecdb -lc -lnsl -lsocket -lgss
@@ -39,6 +40,7 @@ LDLIBS		+= -lmtmalloc -lbsm -lsecdb -lc -lnsl -lsocket -lgss
 CFLAGS		+= $(CCVERBOSE)
 CPPFLAGS	+= -D_REENTRANT -I$(LIBBSM)
 CPPFLAGS	+= -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 ROOTLIBDIR=	$(ROOT)/usr/lib/security
 

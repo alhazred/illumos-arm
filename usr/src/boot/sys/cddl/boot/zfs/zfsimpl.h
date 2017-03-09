@@ -81,6 +81,7 @@
  * Macros for various sorts of alignment and rounding when the alignment
  * is known to be a power of 2.
  */
+#ifndef P2ALIGN
 #define	P2ALIGN(x, align)		((x) & -(align))
 #define	P2PHASE(x, align)		((x) & ((align) - 1))
 #define	P2NPHASE(x, align)		(-(x) & ((align) - 1))
@@ -89,6 +90,7 @@
 #define	P2PHASEUP(x, align, phase)	((phase) - (((phase) - (x)) & -(align)))
 #define	P2BOUNDARY(off, len, align)	\
 	(((off) ^ ((off) + (len) - 1)) > (align) - 1)
+#endif
 
 /*
  * General-purpose 32-bit and 64-bit bitfield encodings.
@@ -119,10 +121,12 @@
 /*
  * Macros to reverse byte order
  */
+#ifndef BSWAP_16
 #define	BSWAP_8(x)	((x) & 0xff)
 #define	BSWAP_16(x)	((BSWAP_8(x) << 8) | BSWAP_8((x) >> 8))
 #define	BSWAP_32(x)	((BSWAP_16(x) << 16) | BSWAP_16((x) >> 16))
 #define	BSWAP_64(x)	((BSWAP_32(x) << 32) | BSWAP_32((x) >> 32))
+#endif
 
 #define	SPA_MINBLOCKSHIFT	9
 #define	SPA_OLDMAXBLOCKSHIFT	17
@@ -452,7 +456,7 @@ _NOTE(CONSTCOND) } while (0)
 	ZIO_SET_CHECKSUM(&(bp)->blk_cksum, 0, 0, 0, 0);	\
 }
 
-#if BYTE_ORDER == _BIG_ENDIAN
+#if BYTE_ORDER == BIG_ENDIAN
 #define	ZFS_HOST_BYTEORDER	(0ULL)
 #else
 #define	ZFS_HOST_BYTEORDER	(1ULL)
@@ -1586,12 +1590,14 @@ typedef struct zap_leaf {
 #define	ZFS_DIRENT_OBJ(de) BF64_GET(de, 0, 48)
 #define	ZFS_DIRENT_MAKE(type, obj) (((uint64_t)type << 60) | obj)
 
+#if !defined __sun && !defined _BOOT
 typedef struct ace {
 	uid_t		a_who;		/* uid or gid */
 	uint32_t	a_access_mask;	/* read,write,... */
 	uint16_t	a_flags;	/* see below */
 	uint16_t	a_type;		/* allow or deny */
 } ace_t;
+#endif
 
 #define	ACE_SLOT_CNT	6
 

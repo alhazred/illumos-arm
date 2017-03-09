@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -38,7 +39,7 @@ LIBS =		$(DYNLIB)
 LDLIBS +=	-lc -lgen
 CFLAGS +=	$(CCVERBOSE)
 CPPFLAGS +=	-D_REENTRANT
-DYNFLAGS +=	$(BLOCAL) $(ZNOVERSION)
+#DYNFLAGS +=	$(BLOCAL) $(ZNOVERSION)
 
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	$(CNOWARN_UNINIT)

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -29,7 +30,7 @@ SRCS =          ipfd.c
 MANIFEST=	ipfilter.xml
 SVCMETHOD=	ipfilter
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../Makefile.cmd
 
 LDLIBS +=       -lscf -lumem
 

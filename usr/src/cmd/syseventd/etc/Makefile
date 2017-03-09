@@ -22,6 +22,7 @@
 #
 #ident	"%Z%%M%	%I%	%E% SMI"
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2000-2001 by Sun Microsystems, Inc.
 # All rights reserved.
 #
@@ -30,7 +31,7 @@
 
 CONFIG_FILES= README
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../Makefile.cmd
 include ../Makefile.com
 
 .KEEP_STATE:

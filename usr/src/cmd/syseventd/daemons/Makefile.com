@@ -22,6 +22,7 @@
 #
 #ident	"%Z%%M%	%I%	%E% SMI"
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2001 by Sun Microsystems, Inc.
 # All rights reserved.
 #
@@ -31,10 +32,12 @@
 # Common prologue for sysevent daemons
 #
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../../Makefile.cmd
 include $(SRC)/cmd/syseventd/Makefile.com
 
 OBJS =		$(SRCS:%.c=%.o)
+LDFLAGS += -_gcc=-Wl,--export-dynamic
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 POFILES =	$(SRCS:.c=.po)
 POFILE =	$(PROG)_msg.po

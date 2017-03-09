@@ -21,6 +21,7 @@
 # Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2018, Joyent, Inc.
 # Copyright 2015 Nexenta Systems, Inc. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 # The filesystem independent utilities clri, fsdb, dcopy, labelit, and mkfs
@@ -106,6 +107,7 @@ volcopy.po :    XGETFLAGS += -a -x volcopy.xcl
 $(DFPROG).po :  XGETFLAGS += -a -x df.xcl
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 # This is too intense when building the whole world.
 # .PARALLEL:	$(SUBDIRS)
@@ -121,11 +123,11 @@ _msg: $(I18NDIRS) $(POFILES1)
 all_local:	$(PROG) $(ROOTFS_PROG) $(SPPROG) $(MNTTAB) \
 		$(DEFAULTFILES)
 
-ff volcopy: deffs.o $$(@F).o
+ff volcopy: % : deffs.o %.o
 		$(LINK.c) -o $@ $@.o deffs.o $(LDLIBS)
 		$(POST_PROCESS)
 
-df: deffs.o $(FSLIB) $$(@F).o
+df: % : deffs.o $(FSLIB) %.o
 	$(LINK.c) -o $@ $@.o deffs.o $(FSLIB) $(LDLIBS)
 	$(POST_PROCESS)
 

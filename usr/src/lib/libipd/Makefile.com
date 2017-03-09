@@ -11,9 +11,8 @@
 
 #
 # Copyright 2012 Joyent, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
-
-include		../../Makefile.lib
 
 LIBRARY =	libipd.a
 VERS =		.1

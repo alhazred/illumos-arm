@@ -19,6 +19,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1993,1997 by Sun Microsystems, Inc.
 # All rights reserved.
 #
@@ -27,7 +28,8 @@
 
 include		../../../Makefile.master
 
-SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
+SUBDIRS=	$(MACH)
+$(BUILD64)SUBDIRS+=$(MACH64)
 
 # conditional statements
 
@@ -41,7 +43,7 @@ clobber : 	TARGET= clobber
 
 all clean clobber install install_lib:	$(SUBDIRS)
 
-$(MACH) $(MACH64): FRC
+$(SUBDIRS): FRC
 		@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:

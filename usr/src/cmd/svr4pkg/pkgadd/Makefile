@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2017 Peter Tribble.
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
@@ -33,7 +34,7 @@ OBJS=		check.o		\
 
 ROOTLINKS=   $(ROOTUSRSBIN)/pkgask
 
-include $(SRC)/cmd/svr4pkg/Makefile.svr4pkg
+include ../Makefile.svr4pkg
 
 LDLIBS	+=	-lpkg -linstzones -ladm
 

@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -30,7 +31,7 @@ LIBOBJS =	libnfs_basic.o
 COMMON =	ref_subr.o
 OBJECTS =	$(LIBOBJS) $(COMMON)
 
-include $(SRC)/lib/Makefile.lib
+include $(dir $(lastword $(MAKEFILE_LIST)))../../../../lib/Makefile.lib
 
 lintcheck :  SRCS = ../libnfs_basic.c ../../lib/ref_subr.c
 

@@ -1,5 +1,6 @@
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -43,7 +44,7 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 # not linted
 SMATCH=off
 
-LDLIBS +=	-lxnet -lmd
+LDLIBS +=	-lxnet -lmd -lsocket -lnsl
 CLEAN_FILES +=	$(ROUTEDOBJS) $(RTQUERYOBJS)
 CLOBBERFILES +=	$(ROUTEDPROG) $(RTQUERYPROG)
 #
@@ -93,6 +94,7 @@ install:	all $(ROOTUSRSBINPROG) $(ROOTMANIFEST) $(ROOTSVCMETHOD)
 
 check:		$(CHKMANIFEST)
 
+clobber: clean
 clean:
 	$(RM) $(CLEAN_FILES)
 

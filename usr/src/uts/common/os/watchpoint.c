@@ -752,18 +752,21 @@ sys_watchpoint(caddr_t addr, int watchcode, int ta)
  */
 
 static int
-watch_xcopyin(const void *uaddr, void *kaddr, size_t count)
+watch_xcopyin(const void *_uaddr, void *_kaddr, size_t _count)
 {
+	const void *volatile uaddr = _uaddr;
+	void *volatile kaddr = _kaddr;
+	volatile size_t count = _count;
 	klwp_t *lwp = ttolwp(curthread);
-	caddr_t watch_uaddr = (caddr_t)uaddr;
-	caddr_t watch_kaddr = (caddr_t)kaddr;
-	int error = 0;
+	caddr_t volatile watch_uaddr = (caddr_t)uaddr;
+	caddr_t volatile watch_kaddr = (caddr_t)kaddr;
+	volatile int error = 0;
 	label_t ljb;
 	size_t part;
-	int mapped;
+	volatile int mapped;
 
 	while (count && error == 0) {
-		int watchcode;
+		volatile int watchcode;
 		caddr_t vaddr;
 		size_t len;
 		int ta;
@@ -843,21 +846,24 @@ watch_copyin(const void *kaddr, void *uaddr, size_t count)
 
 
 static int
-watch_xcopyout(const void *kaddr, void *uaddr, size_t count)
+watch_xcopyout(const void *_kaddr, void *_uaddr, size_t _count)
 {
+	const void *volatile kaddr = _kaddr;
+	void *volatile uaddr = _uaddr;
+	volatile size_t count = _count;
 	klwp_t *lwp = ttolwp(curthread);
-	caddr_t watch_uaddr = (caddr_t)uaddr;
-	caddr_t watch_kaddr = (caddr_t)kaddr;
-	int error = 0;
+	caddr_t volatile watch_uaddr = (caddr_t)uaddr;
+	caddr_t volatile watch_kaddr = (caddr_t)kaddr;
+	volatile int error = 0;
 	label_t ljb;
 
 	while (count && error == 0) {
-		int watchcode;
+		volatile int watchcode;
 		caddr_t vaddr;
 		size_t part;
 		size_t len;
 		int ta;
-		int mapped;
+		volatile int mapped;
 
 		if ((part = PAGESIZE -
 		    (((uintptr_t)uaddr) & PAGEOFFSET)) > count)
@@ -941,27 +947,30 @@ watch_copyout(const void *kaddr, void *uaddr, size_t count)
 
 static int
 watch_copyinstr(
-	const char *uaddr,
-	char *kaddr,
-	size_t maxlength,
+	const char *_uaddr,
+	char *_kaddr,
+	size_t _maxlength,
 	size_t *lencopied)
 {
+	const char *volatile uaddr = _uaddr;
+	char *volatile kaddr = _kaddr;
+	volatile size_t maxlength = _maxlength;
 	klwp_t *lwp = ttolwp(curthread);
-	size_t resid;
-	int error = 0;
+	volatile size_t resid;
+	volatile int error = 0;
 	label_t ljb;
 
 	if ((resid = maxlength) == 0)
 		return (ENAMETOOLONG);
 
 	while (resid && error == 0) {
-		int watchcode;
+		volatile int watchcode;
 		caddr_t vaddr;
 		size_t part;
 		size_t len;
 		size_t size;
 		int ta;
-		int mapped;
+		volatile int mapped;
 
 		if ((part = PAGESIZE -
 		    (((uintptr_t)uaddr) & PAGEOFFSET)) > resid)
@@ -1055,27 +1064,30 @@ watch_copyinstr(
 
 static int
 watch_copyoutstr(
-	const char *kaddr,
-	char *uaddr,
-	size_t maxlength,
+	const char *_kaddr,
+	char *_uaddr,
+	size_t _maxlength,
 	size_t *lencopied)
 {
+	const char *volatile kaddr = _kaddr;
+	char *volatile uaddr = _uaddr;
+	volatile size_t maxlength = _maxlength;
 	klwp_t *lwp = ttolwp(curthread);
-	size_t resid;
-	int error = 0;
+	volatile size_t resid;
+	volatile int error = 0;
 	label_t ljb;
 
 	if ((resid = maxlength) == 0)
 		return (ENAMETOOLONG);
 
 	while (resid && error == 0) {
-		int watchcode;
+		volatile int watchcode;
 		caddr_t vaddr;
 		size_t part;
 		size_t len;
 		size_t size;
 		int ta;
-		int mapped;
+		volatile int mapped;
 
 		if ((part = PAGESIZE -
 		    (((uintptr_t)uaddr) & PAGEOFFSET)) > resid)
@@ -1172,7 +1184,7 @@ watch_fuword(const void *addr, void *dst, fuword_func func, size_t size)
 	int watchcode;
 	caddr_t vaddr;
 	int mapped;
-	int rv = 0;
+	volatile int rv = 0;
 	int ta;
 	label_t ljb;
 
@@ -1242,7 +1254,7 @@ watch_suword8(void *addr, uint8_t value)
 	int watchcode;
 	caddr_t vaddr;
 	int mapped;
-	int rv = 0;
+	volatile int rv = 0;
 	int ta;
 	label_t ljb;
 
@@ -1284,7 +1296,7 @@ watch_suword16(void *addr, uint16_t value)
 	int watchcode;
 	caddr_t vaddr;
 	int mapped;
-	int rv = 0;
+	volatile int rv = 0;
 	int ta;
 	label_t ljb;
 
@@ -1326,7 +1338,7 @@ watch_suword32(void *addr, uint32_t value)
 	int watchcode;
 	caddr_t vaddr;
 	int mapped;
-	int rv = 0;
+	volatile int rv = 0;
 	int ta;
 	label_t ljb;
 
@@ -1369,7 +1381,7 @@ watch_suword64(void *addr, uint64_t value)
 	int watchcode;
 	caddr_t vaddr;
 	int mapped;
-	int rv = 0;
+	volatile int rv = 0;
 	int ta;
 	label_t ljb;
 

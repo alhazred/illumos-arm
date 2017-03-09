@@ -116,12 +116,13 @@ enum fp_direction_type {	/* rounding direction */
 };
 
 enum fp_exception_type {	/* exceptions according to bit number */
-	fp_invalid	= 52 - 32,
-	fp_division	= 53 - 32,
-	fp_overflow	= 54 - 32,
-	fp_underflow	= 55 - 32,
-	fp_inexact	= 56 - 32
+	fp_inexact	= 0,
+	fp_division	= 1,
+	fp_underflow	= 2,
+	fp_overflow	= 3,
+	fp_invalid	= 4
 };
+#define	N_IEEE_EXCEPTION 5	/* Number of floating-point exceptions. */
 
 enum fp_trap_disable_type {	/* trap enable bits according to bit number */
 	fp_trap_inexact_dis	= 62,
@@ -141,13 +142,13 @@ enum fp_direction_type {	/* rounding direction */
 };
 
 enum fp_exception_type {	/* exceptions according to bit number */
-	fp_invalid	= 0,
+	fp_inexact	= 0,
 	fp_division	= 1,
-	fp_overflow	= 2,
-	fp_underflow	= 3,
-	fp_inexact	= 4,
-	fp_denormalized	= 7
+	fp_underflow	= 2,
+	fp_overflow	= 3,
+	fp_invalid	= 4
 };
+#define	N_IEEE_EXCEPTION 5	/* Number of floating-point exceptions. */
 
 enum fp_trap_enable_type {	/* trap enable bits according to bit number */
 	fp_trap_invalid		= 0,
@@ -169,11 +170,12 @@ enum fp_direction_type {	/* rounding direction */
 
 enum fp_exception_type {	/* exceptions according to bit number */
 	fp_inexact	= 0,
-	fp_underflow	= 1,
-	fp_overflow	= 2,
-	fp_division	= 3,
-	fp_invalid	= 4,
+	fp_division	= 1,
+	fp_underflow	= 2,
+	fp_overflow	= 3,
+	fp_invalid	= 4
 };
+#define	N_IEEE_EXCEPTION 5	/* Number of floating-point exceptions. */
 
 #endif	/* __i386 || __amd64 */
 

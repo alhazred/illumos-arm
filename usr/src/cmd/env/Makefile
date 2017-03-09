@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -30,13 +31,14 @@ OBJS= env.o
 
 include ../Makefile.cmd
 
-clean $(XPG4) :  OBJS += values-xpg4.o
+#clean $(XPG4) :  OBJS += values-xpg4.o
+#$(XPG4): values-xpg4.o
 
 .KEEP_STATE:
 
 all: $(PROG) $(XPG4)
 
-$(PROG) $(XPG4): $$(OBJS)
+$(PROG) $(XPG4): $(OBJS)
 	$(LINK.c) -o $@ $(OBJS) $(LDLIBS)
 	$(POST_PROCESS)
 

@@ -18,13 +18,15 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
 include     ../../../Makefile.master
 
-FILES_SUBDIRS=    $(MACH) $(BUILD64) $(MACH64)
+SUBDIRS=$(MACH)
+$(BUILD64)SUBDIRS+= $(MACH64)
 
 all: 		TARGET= all
 clean: 		TARGET= clean
@@ -33,9 +35,9 @@ install: 	TARGET= install
 
 .KEEP_STATE:
 
-all clean clobber install debugmod: $(FILES_SUBDIRS)
+all clean clobber install: $(SUBDIRS)
 
-$(MACH) $(MACH64): FRC
+$(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:

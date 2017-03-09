@@ -20,10 +20,11 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 HDRS =		stp_bpdu.h stp_in.h stp_vectors.h uid_stp.h
 HDRDIR =	common

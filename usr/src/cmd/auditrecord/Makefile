@@ -19,11 +19,12 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 ATTR =			audit_record_attr
 ROOTAUDITDIR =		$(ROOT)/usr/lib/audit
@@ -47,23 +48,24 @@ install: all $(ROOTUSRSBINPROG) install_data
 
 install_data: $(SECURITYFILES) $(ATTR)
 
-$(SECURITYFILES): $(ROOTAUDITDIR) $(ATTR)
-	$(INS.file) $(ATTR)
+$(SECURITYFILES): $(ATTR) $(ROOTAUDITDIR)
+	$(INS.file)
 
 $(ROOTAUDITDIR):
 	$(INS.dir)
 
 _msg: $(PROG).po
 
+clobber: clean
 clean:
 	$(RM) $(ATTR) $(STRIPTEXT) $(AGETTEXT)
 
 $(ATTR): $(STRIPTEXT) $(ATTRPROC) $(ADTXMLFILE) $(ATTR).txt
-	./$(STRIPTEXT) < $(ATTR).txt > $(ATTR)
+	$(PERL) ./$(STRIPTEXT) < $(ATTR).txt > $(ATTR)
 	$(PERL) -I $(LIBBSMDIR) ./$(ATTRPROC) $(ADTXMLFILE) >> $(ATTR)
 
 $(ROOTUSRSBINPROG): $(PROG)
-	$(INS.file) $(PROG)
+	$(INS.file)
 
 $(PROG).po: $(PROG) $(ATTR) $(AGETTEXT)
 	export PERL5LIB; PERL5LIB=../perl/contrib; \

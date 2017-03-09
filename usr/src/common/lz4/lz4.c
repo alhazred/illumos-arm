@@ -36,7 +36,51 @@
  * Copyright 2020 OmniOS Community Edition (OmniOSce) Association.
  */
 
-#if defined(_KERNEL) || defined(_FAKE_KERNEL)
+#ifdef __linux__
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <assert.h>
+#include <arpa/inet.h>
+#include <assert.h>
+#define UMEM_DEFAULT 0
+void *umem_zalloc(size_t size, int flags)
+{
+	return calloc(1, size);
+}
+void umem_free(void *buf, size_t size)
+{
+	free(buf);
+}
+#define	BE_32(x) htonl(x)
+#define	BE_IN32(xa) ( \
+    (((uint32_t)*((volatile uint8_t *)(xa) + 0)) << 24) | \
+    (((uint32_t)*((volatile uint8_t *)(xa) + 1)) << 16) | \
+    (((uint32_t)*((volatile uint8_t *)(xa) + 2)) << 8) | \
+    (((uint32_t)*((volatile uint8_t *)(xa) + 3)) << 0))
+
+#define	ASSERT	assert
+#define	__unused
+#define	__DECONST(type, var)	((type)(uintptr_t)(const void *)(var))
+
+#elif defined(_BOOT)
+#include <sys/types.h>
+#include <sys/endian.h>
+#include <assert.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define	BE_32(x)	htobe32(x)
+#define	BE_IN32(xa) ( \
+    (((uint32_t)*((volatile uint8_t *)(xa) + 0)) << 24) | \
+    (((uint32_t)*((volatile uint8_t *)(xa) + 1)) << 16) | \
+    (((uint32_t)*((volatile uint8_t *)(xa) + 2)) << 8) | \
+    (((uint32_t)*((volatile uint8_t *)(xa) + 3)) << 0))
+
+#define	ASSERT	assert
+
+#elif defined(_KERNEL) || defined(_FAKE_KERNEL)
 #include <sys/zfs_context.h>
 #elif defined(_STANDALONE)
 #include <sys/cdefs.h>
@@ -919,7 +963,7 @@ static int
 real_LZ4_compress(const char *source, char *dest, int isize, int osize)
 {
 #if HEAPMODE
-#if defined(_KERNEL) || defined(_FAKE_KERNEL)
+#if (defined(_KERNEL) || defined(_FAKE_KERNEL)) && !defined(_BOOT)
 	void *ctx = kmem_zalloc(sizeof (struct refTables), KM_NOSLEEP);
 #else
 	void *ctx = calloc(1, sizeof (struct refTables));
@@ -938,7 +982,7 @@ real_LZ4_compress(const char *source, char *dest, int isize, int osize)
 	else
 		result = LZ4_compressCtx(ctx, source, dest, isize, osize);
 
-#if defined(_KERNEL) || defined(_FAKE_KERNEL)
+#if (defined(_KERNEL) || defined(_FAKE_KERNEL)) && !defined(_BOOT)
 	kmem_free(ctx, sizeof (struct refTables));
 #else
 	free(ctx);

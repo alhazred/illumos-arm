@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2003, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright 2010 Nexenta Systems, Inc.  All rights reserved.
@@ -105,7 +106,7 @@ BIGNUMDIR=	$(SRC)/common/bignum
 PADDIR=		$(SRC)/common/crypto/padding
 BERDIR=		../../../libldap5/sources/ldap/ber
 
-include $(SRC)/lib/Makefile.lib
+include ../../../Makefile.lib
 
 #	set signing mode
 POST_PROCESS_SO +=	; $(ELFSIGN_CRYPTO)
@@ -125,6 +126,7 @@ LDLIBS  +=      -lc -lmd -lcryptoutil -lsoftcrypto -lgen -lavl
 CSTD =	$(CSTD_GNU99)
 
 CFLAGS	+=      $(CCVERBOSE)
+CFLAGS  +=	-_gcc=-fvisibility=protected
 
 CERRWARN +=	-_gcc=-Wno-unused-label
 CERRWARN +=	-_gcc=-Wno-parentheses
@@ -132,6 +134,7 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-type-limits
 CERRWARN +=	-_gcc=-Wno-unused-variable
 CERRWARN +=	-_gcc=-Wno-empty-body
+CERRWARN +=	-_gcc=-Wno-unused-value
 
 # not linted
 SMATCH=off

@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2003, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -28,7 +29,7 @@ OBJECTS = \
 	elfcertlib.o \
 	elfsignlib.o
 
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
 include $(SRC)/lib/Makefile.rootfs
 
 SRCDIR =	../common

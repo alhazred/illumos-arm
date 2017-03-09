@@ -22,6 +22,7 @@
 #
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2018 Nexenta Systems, Inc.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 #
@@ -52,7 +53,7 @@ SYMBOL_VERSION SUNW_1.10 {	# SunOS 5.11 (Solaris 11)
 
 SYMBOL_VERSION SUNW_1.9.1 {	# SunOS 5.10 (Solaris 10 update 5)
     global:
-	inet_aton		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+	inet_aton		;
 } SUNW_1.9;
 
 SYMBOL_VERSION SUNW_1.9 {	# SunOS 5.10 (Solaris 10)
@@ -78,8 +79,8 @@ SYMBOL_VERSION SUNW_1.7 {	# SunOS 5.8 (Solaris 8)
 	freehostent;
 	getipnodebyaddr;
 	getipnodebyname;
-	inet_ntop		{ TYPE = FUNCTION; FILTER = libc.so.1 };
-	inet_pton		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+	inet_ntop		;
+	inet_pton		;
 } SUNW_1.6;
 
 SYMBOL_VERSION SUNW_1.6 {	# SunOS 5.7 (Solaris 7)
@@ -123,9 +124,9 @@ SYMBOL_VERSION SUNW_1.1 {		# SunOS 5.6 (Solaris 2.6)
     global:
 	clnt_create_vers_timed;
 	clnt_door_create;
-$if _ELF32
-	_new_svc_fdset;
-$endif
+#$if _ELF32
+#	_new_svc_fdset;
+#$endif
 	rpc_gss_getcred;
 	rpc_gss_get_error;
 	rpc_gss_get_mechanisms;
@@ -234,8 +235,8 @@ SYMBOL_VERSION SUNW_0.7 {	# SunOS 5.3 (Solaris 2.3)
 	getrpcbynumber_r;
 	getrpcent;
 	getrpcent_r;
-	h_errno			{ FLAGS = NODIRECT };
-	inet_ntoa_r		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+	h_errno			;
+	inet_ntoa_r		;
 	key_secretkey_is_set;
 	maxbno;
 	nc_sperror;
@@ -310,26 +311,26 @@ SYMBOL_VERSION SUNW_0.7 {	# SunOS 5.3 (Solaris 2.3)
 	ypprot_err;
 	yp_unbind;
 	yp_update;
-$if _sparc && _ELF32
-} SISCD_2.3;
-
-SYMBOL_VERSION SISCD_2.3 {
-    global:
-$endif
+#$if _sparc && _ELF32
+#} SISCD_2.3;
+#
+#SYMBOL_VERSION SISCD_2.3 {
+#    global:
+#$endif
 	gethostbyaddr;
 	gethostbyname;
-	inet_addr		{ TYPE = FUNCTION; FILTER = libc.so.1 };
-	inet_netof		{ TYPE = FUNCTION; FILTER = libc.so.1 };
-	inet_ntoa		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+	inet_addr;
+	inet_netof;
+	inet_ntoa;
 	_null_auth;
 	rpc_broadcast_exp;
 	svc_fdset;
-$if _ELF32
-} SYSVABI_1.3;
-
-SYMBOL_VERSION SYSVABI_1.3 {
-    global:
-$endif
+#$if _ELF32
+#} SYSVABI_1.3;
+#
+#SYMBOL_VERSION SYSVABI_1.3 {
+#    global:
+#$endif
 	authdes_getucred;
 	authdes_seccreate;
 	authnone_create;
@@ -573,7 +574,7 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	__gen_dhkeys;
 	__gen_dhkeys_g;
 	getdomainname;
-	gethostname		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+	gethostname		;
 	_get_hostserv_inetnetdir_byaddr;
 	_get_hostserv_inetnetdir_byname;
 	__getnetnamebyuid;

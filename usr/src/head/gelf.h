@@ -98,7 +98,11 @@ typedef Elf64_Versym	GElf_Versym;
  * so GELF_R_TYPE is defined as ELF64_R_TYPE_ID in order
  * to isolate the proper bits for the true type id.
  */
+#ifdef __aarch64
+#define	GELF_R_TYPE		ELF64_R_TYPE
+#else
 #define	GELF_R_TYPE		ELF64_R_TYPE_ID
+#endif
 #define	GELF_R_SYM		ELF64_R_SYM
 #define	GELF_R_INFO		ELF64_R_INFO
 #define	GELF_R_TYPE_DATA	ELF64_R_TYPE_DATA

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -63,6 +64,6 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 all: $(LIBS)
 
 $(SRCDIR)/ipmi_tables.c: $(SRCDIR)/mktables.sh $(SRCDIR)/libipmi.h
-	sh $(SRCDIR)/mktables.sh $(SRCDIR)/libipmi.h > $@
+	ksh $(SRCDIR)/mktables.sh $(SRCDIR)/libipmi.h > $@
 
 include ../../Makefile.targ

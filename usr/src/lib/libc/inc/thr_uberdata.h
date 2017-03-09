@@ -125,7 +125,7 @@
 #define	WAITERMASK64	0x00000000000000ffULL
 #define	SPINNERMASK64	0x0000000000ff0000ULL
 
-#elif defined(__x86) || defined(__alpha) || defined(__aarch64)
+#elif defined(__x86) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 
 /* lock.lock64.pad[x]	   7 6 5 4 */
 #define	LOCKMASK	0xff000000
@@ -269,6 +269,16 @@ typedef fpuenv_t fpuenv32_t;
 typedef struct {	/* structure returned by fnstenv */
 	uint32_t	fctrl;		/* control word */
 	uint32_t	fstat;		/* control word */
+} fpuenv_t;
+
+#ifdef _SYSCALL32
+typedef fpuenv_t fpuenv32_t;
+#endif	/* _SYSCALL32 */
+
+#elif defined(__riscv)
+
+typedef struct {	/* structure returned by fnstenv */
+	uint32_t	fcsr;		/* control word */
 } fpuenv_t;
 
 #ifdef _SYSCALL32

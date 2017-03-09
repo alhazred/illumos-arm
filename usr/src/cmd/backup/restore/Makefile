@@ -1,4 +1,5 @@
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -40,6 +41,7 @@ CLOBBERFILES +=	$(PRODUCT) $(DEBUGPRODUCTS)
 LOCAL=		.
 GENERAL=	../include
 GLOBAL=		../../../head
+CFLAGS +=	-_gcc=-fcommon
 CPPFLAGS=	-I$(LOCAL) -I$(GENERAL) -I$(GLOBAL) \
 			$(CPPFLAGS.master) -D_LARGEFILE64_SOURCE=1
 LIBDUMP=	../lib/libdump.a
@@ -55,7 +57,7 @@ FILEMODE=	04555
 
 all:		$(ROOTFS_PROG) 
 
-$(PROG):	$(OBJECTS) $$(LIBDUMP)
+$(PROG):	$(OBJECTS) $(LIBDUMP)
 	$(LINK.c) -o $@ $(OBJECTS) $(LDLIBS)
 	$(POST_PROCESS)
 
@@ -78,6 +80,7 @@ check:
 	$(CSTYLE) $(CSTYLEFLAGS) $(SRCS) $(HEADERS)
 	$(HDRCHK) $(HDRCHKFLAGS) $(HEADERS)
 
+clobber: clean
 clean:
 	$(RM) $(OBJECTS) $(DEBUGOBJS) *.ln
 

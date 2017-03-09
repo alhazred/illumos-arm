@@ -19,6 +19,7 @@
 #
 #
 # Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2018 Nexenta Systems, Inc.  All rights reserved.
 #
 
@@ -65,8 +66,8 @@ SYMBOL_VERSION SUNWprivate {
 	nls_str_toloc;
 	nls_str_upper;
 
-	nsmb_close		{ FLAGS = NODIRECT };
-	nsmb_ioctl		{ FLAGS = NODIRECT };
+	nsmb_close		;
+	nsmb_ioctl		;
 
 	smb_cf_minauth_from_str;
 	smb_cf_version_from_str;
@@ -83,7 +84,7 @@ SYMBOL_VERSION SUNWprivate {
 	smb_ctx_gethandle;
 	smb_ctx_init;
 	smb_ctx_kill;
-	smb_ctx_newvc		{ FLAGS = NODIRECT };
+	smb_ctx_newvc		;
 	smb_ctx_opt;
 	smb_ctx_parseunc;
 	smb_ctx_readrc;
@@ -107,7 +108,7 @@ SYMBOL_VERSION SUNWprivate {
 	smb_ctx_setuser;
 	smb_ctx_setwins;
 
-	smb_debug		{ FLAGS = NODIRECT };	# data
+	smb_debug		;	# data
 	smb_error;
 #
 # Functions to support named pipes
@@ -122,17 +123,17 @@ SYMBOL_VERSION SUNWprivate {
 	smb_getprogname;
 	smb_iod_connect;
 	smb_iod_door_path;
-	smb_iod_open_door	{ FLAGS = NODIRECT };
-	smb_iod_start		{ FLAGS = NODIRECT };
+	smb_iod_open_door	;
+	smb_iod_start		;
 	smb_iod_work;
 	smb_lib_init;
-	smb_open_driver		{ FLAGS = NODIRECT };
+	smb_open_driver		;
 	smb_open_printer;
 	smb_open_rcfile;
 	smb_simplecrypt;
 	smb_simpledecrypt;
 	smb_strerror;
-	smb_verbose		{ FLAGS = NODIRECT };	# data
+	smb_verbose		;	# data
 #
 # Functions to support Access Control Lists (ACLs)
 	smbfs_acl_free_sd;

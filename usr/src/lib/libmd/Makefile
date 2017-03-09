@@ -22,13 +22,15 @@
 #
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2013 Saso Kiselkov. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-include		$(SRC)/lib/Makefile.lib
+include	../Makefile.lib
 
 $(SPARC_BLD)CAPDIR = capabilities
 
-SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
+SUBDIRS=	$(MACH)
+$(BUILD64)SUBDIRS+=$(MACH64)
 
 HDRS =		md4.h md5.h sha1.h sha2.h skein.h
 HDRDIR =	common
@@ -54,5 +56,4 @@ $(SUBDIRS):	FRC
 		@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:
-
-include		$(SRC)/lib/Makefile.targ
+include ../Makefile.targ

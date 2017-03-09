@@ -172,11 +172,7 @@ static void DestroyPlugin(KMF_PLUGIN *);
 #define	ISA_PATH	"/"
 #elif defined(__amd64)
 #define	ISA_PATH	"/amd64"
-#elif defined(__alpha)
-#define	ISA_PATH	"/"
-#elif defined(__aarch64)
-#define	ISA_PATH	"/"
-#elif defined(__arm)
+#elif !defined(_MULTI_DATAMODEL)
 #define	ISA_PATH	"/"
 #endif
 

@@ -23,7 +23,7 @@
 # Use is subject to license terms.
 #
 
-include $(SRC)/Makefile.master
+include ../../Makefile.master
 
 SUBDIRS		=	common euro hi_IN ja ko th_TH zh utf-8 vi
 

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2015 Gary Mills
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
@@ -97,6 +98,7 @@ CERRWARN +=	-_gcc=-Wno-address
 SMATCH=off
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 .PARALLEL: $(ALL)
 
@@ -105,7 +107,7 @@ all: $(SUBDIRS) .WAIT $(ALL)
 install: all .WAIT $(DIRS) .WAIT $(USRBINPROG) $(LIBACCTPROG) $(ETCACCTPROG) \
 	$(ETCINITPROG)
 
-THIS_YEAR:sh=	date +%Y
+THIS_YEAR=$(shell date +%Y)
 
 holidays:	FRC
 	@if grep $(THIS_YEAR) holidays > /dev/null 2>&1;\

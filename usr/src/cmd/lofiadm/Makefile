@@ -20,6 +20,7 @@
 #
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -48,7 +49,7 @@ LINTFLAGS += -erroff=E_NAME_USED_NOT_DEF2
 
 .KEEP_STATE:
 
-all: $(LZMAOBJS) $(PROG) $(POFILE)
+all: $(LZMAOBJS) $(PROG) #$(POFILE)
 
 LzmaEnc.o:	$(SRC)/common/lzma/LzmaEnc.c
 	$(COMPILE.c) -o $@ $(SRC)/common/lzma/LzmaEnc.c
@@ -58,7 +59,7 @@ LzFind.o:	$(SRC)/common/lzma/LzFind.c
 	$(COMPILE.c) -o $@ $(SRC)/common/lzma/LzFind.c
 	$(POST_PROCESS)
 
-$(PROG): $(OBJS)
+$(PROG): $(OBJS) $(LZMAOBJS)
 	$(LINK.c) -o $@ $(OBJS) $(LZMAOBJS) $(LDLIBS)
 	$(POST_PROCESS)
 
@@ -68,6 +69,7 @@ $(POFILE): $(POFILES)
 	$(RM) $@
 	cat $(POFILES) > $@
 
+clobber: clean
 clean:
 	$(RM) $(PROG) $(OBJS) $(LZMAOBJS) $(POFILE) $(POFILES)
 

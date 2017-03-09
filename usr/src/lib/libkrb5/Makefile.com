@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -26,4 +27,17 @@
 LIBRARY =	libkrb5.a
 VERS =		.1
 
+OBJECTS= sym_import.o
+include	../../Makefile.lib
+
 DYNFLAGS +=	$(ZLOADFLTR)
+LDLIBS +=	-L$(ROOT)/usr/lib/gss -Wl,-rpath -Wl,/usr/lib/gss -Wl,-F -Wl,mech_krb5.so.1 -lmech_krb5
+
+LIBS=		$(DYNLIB) $(LINTLIB)
+SRCDIR=		../common
+
+all: $(LIBS)
+include		../../Makefile.targ
+
+pics/%.o: $(SRCDIR)/%.s
+	$(COMPILE.s) -c -o $@ $<

@@ -19,10 +19,14 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 #
+
+# include library definitions
+include ../Makefile.lib
 
 PROTOCOL_DIR= $(ROOTHDRDIR)/rpcsvc
 PROTOCOL_SRCDIR= $(SRC)/head/rpcsvc
@@ -56,8 +60,6 @@ DERIVED_FILES= $(GEN_DERIVED_FILES) $(RPC_DERIVED_FILES)
 #
 CLEANFILES += $(DERIVED_FILES)
 
-# include library definitions
-include ../Makefile.lib
 
 # header file delivered to /usr/include; internal to ON build process
 HDRS =		nss.h
@@ -78,15 +80,14 @@ package : 	TARGET= package
 
 
 .KEEP_STATE:
+all:		$(SUBDIRS)
 
-all:		$(PROTOCOL_DIR) $(DERIVED_FILES) .WAIT $(SUBDIRS)
-
-headers:	$(PROTOCOL_DIR) .WAIT $(PROTOCOL_FILES) $(PROTOCOL_FILES_UTS) \
+headers:	$(PROTOCOL_FILES) $(PROTOCOL_FILES_UTS) \
 		$(DERIVED_FILES)
 
-install:	all .WAIT $(SUBDIRS)
+install:	$(SUBDIRS)
 
-install_h:	$(ROOTHDRS)
+install_h:	headers $(ROOTHDRS)
 
 # nss.h isn't delivered; no reason to check
 check:
@@ -96,20 +97,20 @@ clean clobber delete package:	$(SUBDIRS)
 $(PROTOCOL_DIR):
 	$(INS.dir)
 
-$(PROTOCOL_DIR)/%.h:	$(PROTOCOL_SRCDIR)/%.h
+$(PROTOCOL_DIR)/%.h:	$(PROTOCOL_SRCDIR)/%.h | $(PROTOCOL_DIR)
 	$(INS.file)
 
-$(PROTOCOL_DIR)/nis.h:	$(PROTOCOL_SRCDIR)/nis.x $(PROTOCOL_SRCDIR)/nis_object.x
+$(PROTOCOL_DIR)/nis.h:	$(PROTOCOL_SRCDIR)/nis.x $(PROTOCOL_SRCDIR)/nis_object.x | $(PROTOCOL_DIR)
 	$(RPCGEN) -C -h $(PROTOCOL_SRCDIR)/nis.x > nis-tmp.h
 	$(SED) -e '/EDIT_START/,$$ d' < nis-tmp.h > nis.h
 	$(RM) $@
 	$(INS) -s -m $(FILEMODE) -f $(@D) nis.h
 	$(RM) nis.h nis-tmp.h
 
-$(PROTOCOL_DIR)/%.x:	$(PROTOCOL_SRCDIR)/%.x
+$(PROTOCOL_DIR)/%.x:	$(PROTOCOL_SRCDIR)/%.x | $(PROTOCOL_DIR)
 	$(INS.file)
 
-$(PROTOCOL_DIR)/%.x:	$(PROTOCOL_UTS_SRCDIR)/%.x
+$(PROTOCOL_DIR)/%.x:	$(PROTOCOL_UTS_SRCDIR)/%.x | $(PROTOCOL_DIR)
 	$(INS.file)
 
 #

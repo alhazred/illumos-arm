@@ -73,7 +73,7 @@ salloc(unsigned size)
 	int index;
 
 	s = size;
-#if defined(u3b) || defined(sparc)
+#if defined(u3b) || defined(sparc) || defined(__aarch64) || defined(__alpha) || defined(__riscv)
 	s += 3;		/* needs alignment on quad boundary */
 	s &= ~03;
 #elif defined(i386)
@@ -128,7 +128,7 @@ srealloc(void *optr, unsigned size)
 		register struct strings *sp = lastsp;
 
 		s = size;
-#if defined(u3b) || defined(sparc)
+#if defined(u3b) || defined(sparc) || defined(__aarch64) || defined(__alpha) || defined(__riscv)
 		s += 3;		/* needs alignment on quad boundary */
 		s &= ~03;
 #elif defined(i386)

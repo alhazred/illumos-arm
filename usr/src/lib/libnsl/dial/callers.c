@@ -474,7 +474,7 @@ tlicall(char *flds[], char *dev[])
 {
 	char		addrbuf[ BUFSIZ ];
 	char		devname[MAXNAMESIZE];
-	int		fd;
+	volatile int	fd;
 	int		i, j;
 	struct t_bind	*bind_ret = 0;
 	struct t_info	tinfo;

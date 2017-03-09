@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -51,6 +52,7 @@ CFLAGS64 +=       -erroff=E_IMPLICIT_DECL_FUNC_RETURN_INT
 CFLAGS64 +=       -DSOLARIS
 
 CERRWARN +=	-_gcc=-Wno-unused-variable
+CERRWARN +=	-_gcc=-Wno-unused-but-set-variable
 
 # not linted
 SMATCH=off

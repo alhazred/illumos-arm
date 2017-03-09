@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1994, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2018, Joyent, Inc.
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
@@ -91,13 +92,15 @@ CPPFLAGS +=	-I$(SRC)/lib/libc/inc \
 		-I$(ELFCAP) \
 		 $(CPPFEATUREMACROS)
 
-ASFLAGS=	-P -D_ASM $(CPPFLAGS)
 LDLIB =		-L ../../libld/$(MACH)
 RTLDLIB =	-L ../../librtld/$(MACH)
 
 CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-unused-variable
 CERRWARN +=	-_gcc=-Wno-switch
+CERRWARN +=	-_gcc=-Wno-unused-but-set-variable
+CFLAGS += -_gcc=-fvisibility=protected
+ASFLAGS += -_gcc=-fvisibility=protected -D_ASM
 
 # not linted
 SMATCH=off
@@ -109,16 +112,17 @@ CPICLIB =	$(VAR_RTLD_CPICLIB)
 CPICLIB64 =	$(VAR_RTLD_CPICLIB64)
 CLIB =		-lc_pic
 
+LDLIBS +=	-Bsymbolic
 LDLIBS +=	$(CONVLIBDIR) -lconv \
 		$(CPICLIB) $(CLIB) \
 		$(LDDBGLIBDIR) -llddbg \
-		$(RTLDLIB) -lrtld \
+		$(RTLDLIB) \
 		$(LDLIB) -lld
 
-DYNFLAGS +=	-i -e _rt_boot $(VERSREF) $(ZNODLOPEN) \
-		$(ZINTERPOSE) -zdtrace=dtrace_data '-R$$ORIGIN'
 
-BUILD.s=	$(AS) $(ASFLAGS) $< -o $@
+DYNFLAGS += -_gcc=-nostdlib -_gcc=-e_rt_boot
+
+BUILD.s=	$(COMPILE.s) -c -o $@ $<
 
 BLTDEFS=	msg.h
 BLTDATA=	msg.c
@@ -135,14 +139,18 @@ SGSMSGSPARC64=	../common/rtld.sparc64.msg
 SGSMSGINTEL=	../common/rtld.intel.msg
 SGSMSGINTEL32=	../common/rtld.intel32.msg
 SGSMSGINTEL64=	../common/rtld.intel64.msg
+SGSMSGALPHA=	../common/rtld.alpha.msg
+SGSMSGAARCH64=	../common/rtld.aarch64.msg
+SGSMSGRISCV64=	../common/rtld.riscv64.msg
 SGSMSGCHK=	../common/rtld.chk.msg
 SGSMSGTARG=	$(SGSMSGCOM)
 SGSMSGALL=	$(SGSMSGCOM) $(SGSMSG32) $(SGSMSG64) \
 		$(SGSMSGSPARC) $(SGSMSGSPARC32) $(SGSMSGSPARC64) \
-		$(SGSMSGINTEL) $(SGSMSGINTEL32) $(SGSMSGINTEL64)
+		$(SGSMSGINTEL) $(SGSMSGINTEL32) $(SGSMSGINTEL64) \
+		$(SGSMSGALPHA) $(SGSMSGAARCH64)
 
 SGSMSGFLAGS1=	$(SGSMSGFLAGS) -m $(BLTMESG)
-SGSMSGFLAGS2=	$(SGSMSGFLAGS) -h $(BLTDEFS) -d $(BLTDATA) -n rtld_msg
+SGSMSGFLAGS2=	$(SGSMSGFLAGS) -h $(BLTDEFS) -d $(BLTDATA) -n rtld_msg -i ../../messages/sgs.ident
 
 SRCS=		$(AVLOBJ:%.o=$(VAR_AVLDIR)/%.c) \
 		$(DTROBJ:%.o=$(VAR_DTRDIR)/%.c) \

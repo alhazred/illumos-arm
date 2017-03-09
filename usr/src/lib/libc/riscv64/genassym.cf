@@ -1,0 +1,63 @@
+include <sys/types.h>
+include <sys/time_impl.h>
+include <signal.h>
+include "thr_uberdata.h"
+
+define	TV_SEC			offsetof(timespec_t, tv_sec)
+define	TV_NSEC			offsetof(timespec_t, tv_nsec)
+define	UL_SIGLINK		offsetof(ulwp_t, ul_siglink)
+define	UL_USTACK		offsetof(ulwp_t, ul_ustack)
+define	SS_SP			offsetof(stack_t, ss_sp)
+define	SS_SIZE			offsetof(stack_t, ss_size)
+define	SIGSEGV			SIGSEGV
+define	UC_MCONTEXT_GREGS	offsetof(ucontext_t, uc_mcontext.gregs)
+define	UC_MCONTEXT_UC_LINK	offsetof(ucontext_t, uc_link)
+define	UC_MCONTEXT		((sizeof(ucontext_t) + 15) & ~15)
+define	UL_TLSENT		offsetof(ulwp_t, ul_tlsent)
+define	UL_NTLSENT		offsetof(ulwp_t, ul_ntlsent)
+define	UL_SIGMASK		offsetof(ulwp_t, ul_sigmask)
+define	UL_VFORK		offsetof(ulwp_t, ul_vfork)
+define	UL_SCHEDCTL		offsetof(ulwp_t, ul_schedctl)
+define	UL_SCHEDCTL_CALLED	offsetof(ulwp_t, ul_schedctl_called)
+define	TI_MODULEID		offsetof(TLS_index, ti_moduleid)
+define	MASKSET0		MASKSET0
+define	MASKSET1		MASKSET1
+define	MASKSET2		MASKSET2
+define	MASKSET3		MASKSET3
+define	SIG_SETMASK		SIG_SETMASK
+define	WAITERMASK		WAITERMASK
+define	MUTEX_LOCKW		offsetof(lwp_mutex_t, mutex_lockw)
+define	MUTEX_LOCK_WORD		offsetof(lwp_mutex_t, mutex_lockword)
+
+define REG_RA	REG_RA
+define REG_SP	REG_SP
+define REG_GP	REG_GP
+define REG_TP	REG_TP
+define REG_T0	REG_T0
+define REG_T1	REG_T1
+define REG_T2	REG_T2
+define REG_S0	REG_S0
+define REG_S1	REG_S1
+define REG_A0	REG_A0
+define REG_A1	REG_A1
+define REG_A2	REG_A2
+define REG_A3	REG_A3
+define REG_A4	REG_A4
+define REG_A5	REG_A5
+define REG_A6	REG_A6
+define REG_A7	REG_A7
+define REG_S2	REG_S2
+define REG_S3	REG_S3
+define REG_S4	REG_S4
+define REG_S5	REG_S5
+define REG_S6	REG_S6
+define REG_S7	REG_S7
+define REG_S8	REG_S8
+define REG_S9	REG_S9
+define REG_S10	REG_S10
+define REG_S11	REG_S11
+define REG_T3	REG_T3
+define REG_T4	REG_T4
+define REG_T5	REG_T5
+define REG_T6	REG_T6
+define REG_PC	REG_PC

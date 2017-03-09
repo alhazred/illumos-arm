@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1996-2001 by Sun Microsystems, Inc.
 # All rights reserved.
 #
@@ -27,4 +28,4 @@
 #
 # sgs/libdl/Makefile
 
-include		$(SRC)/cmd/sgs/Makefile.sub
+include		../Makefile.sub

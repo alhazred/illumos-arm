@@ -72,7 +72,7 @@
 	</property_group>
 
 	<property_group name='config' type='application'>
-		<propval name='format' type='astring' value='cpio' />
+		<propval name='format' type='astring' value='hsfs' />
 	</property_group>
 
 	<stability value='Unstable' />

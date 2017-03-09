@@ -43,6 +43,7 @@ CERRWARN +=	-_gcc=-Wno-unused-variable
 CERRWARN +=	-_gcc=-Wno-switch
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	$(CNOWARN_UNINIT)
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 # not linted
 SMATCH=off

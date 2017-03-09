@@ -1,4 +1,5 @@
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2001, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # External declarations - used to suppress -zdefs errors.
@@ -20,12 +21,12 @@
 $mapfile_version 2
 
 SYMBOL_SCOPE {
-	add_options	{ TYPE = FUNCTION; FLAGS = extern };	#  From  pppd
-	detached	{ TYPE = DATA; FLAGS = extern };	#    "     "
-	error		{ TYPE = FUNCTION; FLAGS = extern };	#    "     "
-	pap_passwd_hook { TYPE = DATA; FLAGS = extern };	#    "     "
-	remote_name	{ TYPE = DATA; FLAGS = extern };	#    "     "
-	slprintf	{ TYPE = FUNCTION; FLAGS = extern };	#    "     "
-	sys_close	{ TYPE = FUNCTION; FLAGS = extern };	#    "     "
-	warn		{ TYPE = FUNCTION; FLAGS = extern };	#    "     "
+	add_options	;	#  From  pppd
+	detached	;	#    "     "
+	error		;	#    "     "
+	pap_passwd_hook ;	#    "     "
+	remote_name	;	#    "     "
+	slprintf	;	#    "     "
+	sys_close	;	#    "     "
+	warn		;	#    "     "
 };

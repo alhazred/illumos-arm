@@ -24,6 +24,7 @@
 # Use is subject to license terms.
 #
 # Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 include	../Makefile.lib
@@ -50,13 +51,13 @@ install_h: $(ROOTHDRDIR) $(ROOTHDRS)
 
 check: $(CHECKHDRS)
 
-$(ROOTHDRDIR)/%: $(HDRDIR)/%
+$(ROOTHDRDIR)/%: $(HDRDIR)/% | $(ROOTHDRDIR)
 	$(INS.file)
 
 $(ROOTHDRDIR):
 	$(INS.dir)
 
-$(MACH) $(MACH64): FRC
+$(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:

@@ -22,6 +22,7 @@
 # Copyright (c) 1997, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2012 DEY Storage Systems, Inc.  All rights reserved.
 # Copyright (c) 2013 by Delphix. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright (c) 2018, Joyent, Inc.
 # Copyright 2020 OmniOS Community Edition (OmniOSce) Association.
@@ -100,6 +101,7 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	-_gcc=-Wno-type-limits
 CERRWARN +=	-_gcc=-Wno-unused-label
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 # not linted
 SMATCH=off
@@ -109,7 +111,7 @@ SMATCH=off
 # to directly bind to its dependencies (ie. map -Bdirect -> -zdirect).  Ensure
 # lazy loading is established (which is enabled automatically with -Bdirect).
 BDIRECT =
-DYNFLAGS +=	$(BNODIRECT) $(ZDIRECT) $(ZLAZYLOAD)
+#DYNFLAGS +=	$(BNODIRECT) $(ZDIRECT) $(ZLAZYLOAD)
 
 .KEEP_STATE:
 

@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # lib/libsmedia/plugins/bd/Makefile.targ
@@ -27,5 +28,5 @@
 LIBRARY=	sm_blkdev.a
 VERS=		.1
 
-OBJECTS= b_generic.o 
+OBJECTS= b_generic.o
 

@@ -20,9 +20,10 @@
 #
 #
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 HDRS =		libsrpt.h
 HDRDIR =	common

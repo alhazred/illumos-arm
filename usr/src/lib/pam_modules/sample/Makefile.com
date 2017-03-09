@@ -21,6 +21,7 @@
 #
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -37,6 +38,7 @@ OBJECTS=	sample_authenticate.o \
 
 include		../../Makefile.pam_modules
 
+CERRWARN	+= -_gcc=-Wno-unused-but-set-variable
 LDLIBS +=	-lpam -lc
 
 all:	$(LIBS)

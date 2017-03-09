@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2015 Gary Mills
 # Copyright 2015 Igor Kozhukhov <ikozhukhov@gmail.com>
 # Copyright 2016 RackTop Systems.
@@ -31,6 +32,8 @@
 # include global definitions; SRC should be defined in the shell.
 # SRC is needed until RFE 1026993 is implemented.
 
+CODEMGR_WS=$(shell git rev-parse --show-toplevel)
+SRC=$(CODEMGR_WS)/usr/src
 include		$(SRC)/Makefile.master
 
 LORDER=		lorder
@@ -79,7 +82,9 @@ HDRDIR=		/__nonexistent_directory__
 #
 LIBS=
 MACHLIBS=	$(LIBS:%=$(MACH)/%)
+ifneq ($(MACH),$(MACH64))
 MACHLIBS64=	$(LIBS:%=$(MACH64)/%)
+endif
 DYNLIB=		$(LIBRARY:.a=.so$(VERS))
 DYNLIBPSR=	$(LIBRARY:.a=_psr.so$(VERS))
 DYNLIBCCC=	$(LIBRARYCCC:.a=.so$(VERS))
@@ -124,10 +129,30 @@ SONAME=		$(DYNLIB)
 # either within the library or as dependencies, all text should be pure, and
 # combining relocations into one relocation table reduces startup costs.
 # All options are tunable to allow overload/omission from lower makefiles.
+CPPFLAGS+=	$(CCYFLAG)$(ROOT)/usr/include
+CFLAGS+=	-_gcc=--sysroot=$(ROOT)
 HSONAME=	-h$(SONAME)
-DYNFLAGS=	$(HSONAME) $(ZTEXT) $(ZDEFS) $(BDIRECT) \
+DYNFLAGS_i386=	$(HSONAME) $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%) \
 		$(LDCHECKS)
+DYNFLAGS_sparc=	$(HSONAME) $(ZTEXT) $(ZDEFS) $(BDIRECT) \
+		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%) \
+		$(LDCHECKS)
+DYNFLAGS_alpha=	$(HSONAME) $(ZTEXT) \
+		-_gcc=--sysroot=$(ROOT) \
+		$(MAPFILES:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.NED:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.PGA:) \
+		$(LDCHECKS)
+DYNFLAGS_aarch64=$(HSONAME) $(ZTEXT) \
+		-_gcc=--sysroot=$(ROOT) \
+		$(MAPFILES:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.NED:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.PGA:) \
+		$(LDCHECKS)
+DYNFLAGS_riscv64=$(HSONAME) $(ZTEXT) \
+		-_gcc=--sysroot=$(ROOT) \
+		$(MAPFILES:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.NED:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.PGA:) \
+		$(LDCHECKS)
+
+DYNFLAGS= $(DYNFLAGS_$(MACH))
+
 
 LDLIBS=		$(LDLIBS.lib)
 
@@ -140,7 +165,7 @@ PICS=		$(OBJECTS:%=pics/%)
 .PARALLEL:	$(OBJS) $(PICS) DUMMY
 
 # default value for "portable" source
-SRCS=		$(OBJECTS:%.o=$(SRCDIR)/%.c)
+#SRCS=		$(OBJECTS:%.o=$(SRCDIR)/%.c)
 
 # default build of an archive and a shared object,
 # overridden locally when extra processing is needed
@@ -186,10 +211,16 @@ $(PICS)  : 	sparc_CFLAGS += -xregs=no%appl $(sparc_C_PICFLAGS)
 $(PICS)  : 	sparcv9_CFLAGS += -xregs=no%appl $(sparcv9_C_PICFLAGS)
 $(PICS)  : 	i386_CFLAGS += $(i386_C_PICFLAGS)
 $(PICS)  : 	amd64_CFLAGS += $(amd64_C_PICFLAGS)
+$(PICS)  : 	aarch64_CFLAGS += $(aarch64_C_PICFLAGS)
+$(PICS)  : 	riscv64_CFLAGS += $(riscv64_C_PICFLAGS)
+$(PICS)  : 	alpha_CFLAGS += $(alpha_C_PICFLAGS)
 $(PICS)  : 	CCFLAGS += $(CC_PICFLAGS)
 $(PICS)  : 	CPPFLAGS += -DPIC -D_REENTRANT
 $(PICS)  : 	sparcv9_CCFLAGS += -xregs=no%appl $(sparcv9_CC_PICFLAGS)
 $(PICS)  : 	amd64_CCFLAGS += $(amd64_CC_PICFLAGS)
+$(PICS)  : 	aarch64_CCFLAGS += $(aarch64_CC_PICFLAGS)
+$(PICS)  : 	riscv64_CCFLAGS += $(riscv64_CC_PICFLAGS)
+$(PICS)  : 	alpha_CCFLAGS += $(alpha_CC_PICFLAGS)
 $(PICS)  : 	CFLAGS += $(CTF_FLAGS)
 $(PICS)	 : 	CFLAGS64 += $(CTF_FLAGS)
 $(PICS)  : 	CTFCONVERT_POST = $(CTFCONVERT_O)
@@ -206,8 +237,9 @@ HSONAMECCC=	-h $(SONAMECCC)
 # Keep in sync with the standard DYNFLAGS
 #
 $(DYNLIBCCC): 	DYNFLAGS = $(HSONAMECCC) $(ZTEXT) $(ZDEFS) \
-		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%) \
-		$(BDIRECT) $(NORUNPATH)
+		$(MAPFILES:%=-_gcc=-Wl,--version-script=%) \
+		-_gcc=--sysroot=$(ROOT) \
+		$(NORUNPATH)
 
 
 # build rule for "portable" source

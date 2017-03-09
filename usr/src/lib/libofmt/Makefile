@@ -13,7 +13,7 @@
 # Copyright 2017 Nexenta Systems, Inc.
 #
 
-include		$(SRC)/lib/Makefile.lib
+include		../Makefile.lib
 
 SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
 

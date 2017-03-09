@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1996, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -40,7 +41,7 @@ $(ROOTSVCMETHOD) : 	FILEMODE = 0555
 
 CHKMANIFEST=	$(MANIFEST:%.xml=%.xmlchk)
 
-SUBDIRS=	include $(MACH)
+SUBDIRS=	$(MACH)
 $(BUILD64)SUBDIRS +=	$(MACH64)
 
 all : 		TARGET= all

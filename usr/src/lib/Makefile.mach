@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -39,8 +40,10 @@ $(ROOTLIBDIR64)/$(DYNLIB)	:  FILEMODE= 755
 $(ROOTLIBDIR)/%: $(MACH)/%
 	$(INS.file)
 
+ifneq ($(MACH),$(MACH64))
 $(ROOTLIBDIR64)/%: $(MACH64)/%
 	$(INS.file)
+endif
 
 $(ROOTLIBDIR)/$(LIBLINKS):	$(ROOTLIBDIR)/$(LIBLINKS)$(VERS)
 	$(INS.liblink)
@@ -51,8 +54,10 @@ $(ROOTLIBDIR64)/$(LIBLINKS):	$(ROOTLIBDIR64)/$(LIBLINKS)$(VERS)
 $(MACHLIBS): FRC
 	@cd $(@D); pwd; VERSION='$(VERSION)' $(MAKE) $(@F)
 
+ifneq ($(MACH),$(MACH64))
 $(MACHLIBS64): FRC
 	@cd $(@D); pwd; VERSION='$(VERSION)' $(MAKE) $(@F)
+endif
 
 $(ROOTCOMPATLINKS):
 	$(RM) $@; $(SYMLINK) $(COMPATLINKTARGET) $@

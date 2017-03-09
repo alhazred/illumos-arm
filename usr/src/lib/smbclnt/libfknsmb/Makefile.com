@@ -91,6 +91,7 @@ CPPFLAGS += -D_FILE_OFFSET_BITS=64
 CPPFLAGS += -DDEBUG
 
 CERRWARN += -_gcc=-Wno-switch
+CERRWARN += -_gcc=-Wno-unused-but-set-variable
 
 # needs work
 SMOFF += all_func_returns,deref_check,signed

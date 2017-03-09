@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2016, Chris Fraire <cfraire@me.com>.
 #
@@ -46,7 +47,7 @@ SYMBOL_VERSION SUNW_2.3 {	# SunOS 5.11 (Solaris 11)
 
 SYMBOL_VERSION SUNW_2.2.2 {	# SunOS 5.10 (Solaris 10 Update 5)
     global:
-	inet_aton		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+	inet_aton		;
 } SUNW_2.2.1;
 
 SYMBOL_VERSION SUNW_2.2.1 {	# SunOS 5.10 (Solaris 10 Update 4)
@@ -77,7 +78,7 @@ SYMBOL_VERSION SUNW_2.1 {	# SunOS 5.6 (Solaris 2.6)
 	__fp_query;
 	_getlong;
 	_getshort;
-	h_errno			{ FLAGS = NODIRECT; FILTER = libnsl.so.1 };
+	h_errno			;
 	__hostalias;
 	hstrerror;
 	__p_cdname;
@@ -132,7 +133,7 @@ SYMBOL_VERSION SUNWprivate_2.1 {
 	__ctl_sendhelp;
 	__ctl_server;
 	__ctl_setcsctx;
-	daemon		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+	daemon		;
 	dn_count_labels;
 	__dn_count_labels;
 	dn_skipname;

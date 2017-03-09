@@ -21,6 +21,7 @@
 
 #
 # Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 include ../Makefile.lib
@@ -35,7 +36,6 @@ common_SUBDIRS = \
 	libfmd_msg \
 	libfmd_snmp \
 	libfmevent \
-	.WAIT \
 	libfmnotify \
 	topo
 
@@ -44,13 +44,21 @@ sparc_SUBDIRS = \
 	libldom
 
 i386_SUBDIRS =
+alpha_SUBDIRS =
+aarch64_SUBDIRS =
+riscv64_SUBDIRS =
 
 SUBDIRS = $(common_SUBDIRS) $($(MACH)_SUBDIRS)
 
-libldom: libmdesc libfmd_agent
-
-libfmd_snmp: libfmd_adm topo
-
-topo: $($(MACH)_SUBDIRS) libfmd_agent libdiskstatus
+libdiagcode: libfmd_agent
+libdiskstatus: libdiagcode
+libseslog: libdiskstatus
+libfmd_adm: libseslog
+libfmd_log: libfmd_adm
+libfmd_msg: libfmd_log
+topo: libfmd_msg
+libfmd_snmp: topo
+libfmevent: libfmd_snmp
+libfmnotify: libfmevent
 
 include ./Makefile.subdirs

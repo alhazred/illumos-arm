@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -100,6 +101,7 @@ LINTFLAGS += -erroff=E_NAME_MULTIPLY_DEF2
 CERRWARN += $(CNOWARN_UNINIT)
 CERRWARN += -_gcc=-Wno-char-subscripts
 CERRWARN += -_gcc=-Wno-parentheses
+CERRWARN += -_gcc=-Wno-cast-function-type
 
 # not linted
 SMATCH=off
@@ -181,7 +183,7 @@ $(POFILE):      $(POFILES)
 	$(RM) $@; cat $(POFILES) > $@
 
 $(DEVFSADM_MOD): $(DEVFSADM_OBJ)
-	$(LINK.c) -o $@ $< $(DEVFSADM_OBJ) $(LDLIBS)
+	$(LINK.c) -o $@ $(DEVFSADM_OBJ) $(LDLIBS)  -_gcc=-Wl,--export-dynamic
 	$(POST_PROCESS)
 
 SUNW_%.so: %.o $(MAPFILES)
@@ -195,7 +197,7 @@ SUNW_%.so: %.o $(MAPFILES)
 
 $(DEVLINKTAB): $(DEVLINKTAB_SRC)
 	$(RM) $(DEVLINKTAB)
-	/bin/sh $(DEVLINKTAB_SRC) > $(DEVLINKTAB)
+	MACH=$(MACH) /bin/sh $(DEVLINKTAB_SRC) > $(DEVLINKTAB)
 
 $(ROOTUSRSBIN):
 	$(INS.dir)

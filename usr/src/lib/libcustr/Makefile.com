@@ -17,7 +17,7 @@ LIBRARY =	libcustr.a
 VERS =		.1
 OBJECTS =	custr.o
 
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
 
 # On some illumos distributions (e.g. SmartOS), utilities in /sbin require
 # custr.  Place libcustr in /lib so such distros can work even if /usr is

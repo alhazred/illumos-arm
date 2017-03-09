@@ -21,6 +21,7 @@
 #
 # Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2010 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 ETCFILES= ioctl.syscon passwd shadow motd
@@ -59,12 +60,18 @@ lint:
 
 clobber:
 
+ifneq ($(RELEASE_BUILD),$(POUND_SIGN))
 motd:	FRC
 	@-$(ECHO) "rebuilding motd"
-	@$(RELEASE_BUILD)-$(ECHO) "The illumos Project\t$(VERSION)\t$(RELEASE_DATE)" > motd
-	@$(NOT_RELEASE_BUILD)-$(ECHO) "The illumos Project\t$(VERSION)\t`date +'%h. %d, %Y'`" > motd
-	@$(NOT_RELEASE_BUILD)-$(ECHO) $(DEV_CM) | sed -e "s/@(#)//" >> motd
+	@-$(ECHO) "The illumos Project\t$(VERSION)\t$(RELEASE_DATE)" > motd
 	@-$(CAT) release_info >> motd
+else
+motd:	FRC
+	@-$(ECHO) "rebuilding motd"
+	@-$(ECHO) "The illumos Project\t$(VERSION)\t`date +'%h. %d, %Y'`" > motd
+	@-$(ECHO) $(DEV_CM) | sed -e "s/@(#)//" >> motd
+	@-$(CAT) release_info >> motd
+endif
 
 smbpasswd:
 	$(TOUCH) smbpasswd

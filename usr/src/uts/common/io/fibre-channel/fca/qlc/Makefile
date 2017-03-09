@@ -23,6 +23,7 @@
 # Use is subject to license terms.
 #
 # Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 # Path to the base of the uts directory tree (usually /usr/src/uts).
@@ -31,7 +32,7 @@ UTSBASE	= ../../../../..
 #
 #	Include common rules.
 #
-include $(SRC)/Makefile.master
+include $(UTSBASE)/../Makefile.master
 
 FWTABLE          = ql_fw_table.c
 FWIMAGES         = 2200

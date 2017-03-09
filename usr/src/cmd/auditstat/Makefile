@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -27,7 +28,7 @@ PROG= auditstat
 OBJS = auditstat.o
 SRCS = $(OBJS:%.o=%.c)
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 STATCOMMONDIR = $(SRC)/cmd/stat/common
 
@@ -57,6 +58,7 @@ $(PROG): $(OBJS) $(STAT_COMMON_OBJS)
 	$(COMPILE.c) -o $@ $<
 	$(POST_PROCESS_O)
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(STAT_COMMON_OBJS)
 

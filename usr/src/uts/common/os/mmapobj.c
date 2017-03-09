@@ -1019,10 +1019,11 @@ mmapobj_map_flat(vnode_t *vp, mmapobj_result_t *mrp, size_t padding,
  * fcred - credentials for the file associated with vp at open time.
  */
 static int
-mmapobj_map_ptload(struct vnode *vp, caddr_t addr, size_t len, size_t zfodlen,
+mmapobj_map_ptload(struct vnode *vp, caddr_t addr, size_t len, size_t _zfodlen,
     off_t offset, int prot, cred_t *fcred)
 {
-	int error = 0;
+	volatile size_t zfodlen = _zfodlen;
+	volatile int error = 0;
 	caddr_t zfodbase, oldaddr;
 	size_t oldlen;
 	size_t end;

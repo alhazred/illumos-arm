@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -46,7 +47,7 @@ $(ETCFLASHPOSTPROG) : 	FILEMODE=       0744
 
 all:  $(FLASHPOSTPROG)
 
-install: all .WAIT $(DIRS) .WAIT $(ETCFLASHPOSTPROG)
+install: all $(DIRS) $(ETCFLASHPOSTPROG)
 
 cstyle:
 
@@ -55,7 +56,7 @@ lint:
 $(DIRS):
 	$(INS.dir)
 
-$(ETCFLASHPOSTD)/% : %
+$(ETCFLASHPOSTD)/% : % $(ETCFLASHPOSTD)
 	$(INS.file)
 
 clean:

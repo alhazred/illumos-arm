@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -165,7 +166,7 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 };
 
 
-$if _sparc || (_x86 && _ELF32)
+#$if _sparc || (_x86 && _ELF32)
 # The following applies to sparc (32/64-bit), and 32-bit x86:
 #
 # It was a mistake ever to have exported these symbols from libadm.
@@ -173,28 +174,28 @@ $if _sparc || (_x86 && _ELF32)
 # except for 'circf' and 'sed', which do not exist in libgen and
 # are being retained as dummy variables in libadm.
 
-SYMBOL_VERSION SUNW_0.7 {
-    global:
-	circf;
-	sed;
-	nbra		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x4 };
-$if _ELF32
-	loc1		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x4 };
-	loc2		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x4 };
-	locs		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x4 };
-$elif _ELF64
-	loc1		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x8 };
-	loc2		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x8 };
-	locs		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x8 };
-$else
-$error unknown ELFCLASS
-$endif
-};
-
-SYMBOL_VERSION SUNWprivate_1.1 {
-    global:
-	advance		{ TYPE = FUNCTION; FILTER = libgen.so.1 };
-	compile		{ TYPE = FUNCTION; FILTER = libgen.so.1 };
-	step		{ TYPE = FUNCTION; FILTER = libgen.so.1 };
-};
-$endif
+#SYMBOL_VERSION SUNW_0.7 {
+#    global:
+#	circf;
+#	sed;
+#	nbra		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x4 };
+#$if _ELF32
+#	loc1		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x4 };
+#	loc2		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x4 };
+#	locs		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x4 };
+#$elif _ELF64
+#	loc1		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x8 };
+#	loc2		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x8 };
+#	locs		{ TYPE = DATA; FILTER = libgen.so.1; SIZE = 0x8 };
+#$else
+#$error unknown ELFCLASS
+#$endif
+#};
+#
+#SYMBOL_VERSION SUNWprivate_1.1 {
+#   global:
+#	advance		{ TYPE = FUNCTION; FILTER = libgen.so.1 };
+#	compile		{ TYPE = FUNCTION; FILTER = libgen.so.1 };
+#	step		{ TYPE = FUNCTION; FILTER = libgen.so.1 };
+#};
+#$endif

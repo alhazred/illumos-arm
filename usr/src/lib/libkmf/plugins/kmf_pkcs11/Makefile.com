@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -30,7 +31,7 @@ PKCS11_COBJECTS = pkcs11_spi.o
 BIGNUM_COBJECTS = bignumimpl.o
 OBJECTS = $(PKCS11_COBJECTS) $(BIGNUM_COBJECTS)
 
-include	$(SRC)/lib/Makefile.lib
+include	../../../../Makefile.lib
 
 LIBLINKS=	$(DYNLIB:.so.1=.so)
 KMFINC=		-I../../../include -I../../../ber_der/inc

@@ -15,9 +15,10 @@
 # Copyright 2013 DEY Storage Systems, Inc.
 # Copyright 2016 Joyent, Inc.
 # Copyright 2017 RackTop Systems.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-include		$(SRC)/cmd/Makefile.cmd
+include		../Makefile.cmd
 include		$(SRC)/cmd/Makefile.ctf
 include		$(SRC)/cmd/localedef/Makefile.common
 

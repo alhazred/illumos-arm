@@ -62,7 +62,7 @@ LIB_OBJS = \
 OBJECTS = $(COMMON_OBJS) $(LIB_OBJS) $(LIST_OBJS) $(MERGEQ_OBJS)
 MAPFILEDIR = $(SRC)/lib/libctf
 
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
 
 SRCS = \
 	$(COMMON_OBJS:%.o=$(SRC)/common/ctf/%.c) \

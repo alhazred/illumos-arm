@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -53,6 +54,7 @@ all:	$(SUBDIRS)
 
 clean clobber lint:	$(SUBDIRS)
 
+ifneq ($(MACH),$(MACH64))
 install:	$(SUBDIRS)
 	-$(RM) $(ROOTPROG)
 	-$(LN) $(ISAEXEC) $(ROOTPROG)
@@ -62,6 +64,15 @@ install:	$(SUBDIRS)
 	$(64ONLY)-$(LN) $(ROOTPROG32) $(ROOTUCBPROG32)
 	$(BUILD64)-$(RM) $(ROOTUCBPROG64)
 	$(BUILD64)-$(LN) $(ROOTPROG64) $(ROOTUCBPROG64)
+else
+install:	$(SUBDIRS)
+	-$(RM) $(ROOTPROG)
+	-$(LN) $(ISAEXEC) $(ROOTPROG)
+	-$(RM) $(ROOTUCBPROG)
+	-$(LN) $(ISAEXEC) $(ROOTUCBPROG)
+	-$(RM) $(ROOTUCBPROG64)
+	-$(LN) $(ROOTPROG64) $(ROOTUCBPROG64)
+endif
 
 $(SUBDIRS):	FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)

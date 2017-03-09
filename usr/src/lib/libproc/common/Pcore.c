@@ -1049,8 +1049,9 @@ note_auxv(struct ps_prochandle *P, size_t nbytes)
 		for (i = 0; i < n; i++)
 			auxv_32_to_n(&a32[i], &P->auxv[i]);
 
-	} else {
+	} else
 #endif
+	{
 		n = nbytes / sizeof (auxv_t);
 		nbytes = n * sizeof (auxv_t);
 
@@ -1062,9 +1063,7 @@ note_auxv(struct ps_prochandle *P, size_t nbytes)
 			P->auxv = NULL;
 			return (-1);
 		}
-#if defined _LP64 && defined _MULTI_DATAMODEL
 	}
-#endif
 
 	if (_libproc_debug) {
 		for (i = 0; i < n; i++) {
@@ -1136,14 +1135,13 @@ note_gwindows(struct ps_prochandle *P, size_t nbytes)
 		(void) read(P->asfd, &g32, MIN(nbytes, sizeof (g32)));
 		gwindows_32_to_n(&g32, lwp->lwp_gwins);
 
-	} else {
+	} else
 #endif
+	{
 		(void) memset(lwp->lwp_gwins, 0, sizeof (gwindows_t));
 		(void) read(P->asfd, lwp->lwp_gwins,
 		    MIN(nbytes, sizeof (gwindows_t)));
-#if defined _LP64 && defined _MULTI_DATAMODEL
 	}
-#endif
 	return (0);
 }
 
@@ -1445,6 +1443,7 @@ fake_up_symtab(struct ps_prochandle *P, const elf_file_header_t *ehdr,
 		return;
 	}
 
+#if !defined _LP64 || defined _MULTI_DATAMODEL
 	if (P->status.pr_dmodel == PR_MODEL_ILP32) {
 		struct {
 			Elf32_Ehdr ehdr;
@@ -1510,8 +1509,13 @@ fake_up_symtab(struct ps_prochandle *P, const elf_file_header_t *ehdr,
 		}
 
 		fp->file_symtab.sym_elfmem = b;
-#if defined _LP64 && defined _MULTI_DATAMODEL
-	} else {
+	}
+#endif
+#if defined _MULTI_DATAMODEL
+	else
+#endif
+#if defined _LP64
+	{
 		struct {
 			Elf64_Ehdr ehdr;
 			Elf64_Shdr shdr[3];
@@ -1574,8 +1578,8 @@ fake_up_symtab(struct ps_prochandle *P, const elf_file_header_t *ehdr,
 		}
 
 		fp->file_symtab.sym_elfmem = b;
-#endif
 	}
+#endif
 
 	if ((scn = elf_getscn(fp->file_symtab.sym_elf, 1)) == NULL ||
 	    (fp->file_symtab.sym_data_pri = elf_getdata(scn, NULL)) == NULL ||
@@ -1674,7 +1678,7 @@ core_elf_fdopen(elf_file_t *efp, GElf_Half type, int *perr)
 	 * 32-bit, so convert e32 to a elf_file_header_t.
 	 */
 	if (e32.e_ident[EI_CLASS] == ELFCLASS64) {
-#if defined _LP64 && defined _MULTI_DATAMODEL
+#if defined _LP64
 		Elf64_Ehdr e64;
 
 		if (pread64(efp->e_fd, &e64, sizeof (e64), 0) != sizeof (e64)) {
@@ -1703,6 +1707,7 @@ core_elf_fdopen(elf_file_t *efp, GElf_Half type, int *perr)
 		goto err;
 #endif	/* _LP64 */
 	} else {
+#if !defined _LP64 || defined _MULTI_DATAMODEL
 		(void) memcpy(efp->e_hdr.e_ident, e32.e_ident, EI_NIDENT);
 		efp->e_hdr.e_type = e32.e_type;
 		efp->e_hdr.e_machine = e32.e_machine;
@@ -1717,6 +1722,11 @@ core_elf_fdopen(elf_file_t *efp, GElf_Half type, int *perr)
 		efp->e_hdr.e_shentsize = e32.e_shentsize;
 		efp->e_hdr.e_shnum = (Elf64_Word)e32.e_shnum;
 		efp->e_hdr.e_shstrndx = (Elf64_Word)e32.e_shstrndx;
+#else
+		if (perr != NULL)
+			*perr = G_LP64;
+		goto err;
+#endif
 	}
 
 	/*

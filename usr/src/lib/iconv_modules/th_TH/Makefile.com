@@ -23,6 +23,7 @@
 # Use is subject to license terms.
 #
 
+include ../../../../Makefile.master
 include $(SRC)/lib/iconv_modules/Makefile.iconv
 
 COMMON = ../common/

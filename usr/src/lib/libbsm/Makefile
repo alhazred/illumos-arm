@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1992, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -59,6 +60,8 @@ $(ROOTCHDRS) : 	FILEMODE = 0644
 
 all install package: $(GENSRCS) $(SUBDIRS)
 clean clobber delete: $(SUBDIRS)
+
+.NOTPARALLEL: all install
 
 #
 # Macros for libbsm database files. These should probably be installed
@@ -141,11 +144,6 @@ audit_uevents.h: mkhdr.sh audit_event.txt
 $(COMMONDIR)/adt_event.check:	$(COMMONDIR)/adt_event.h
 	$(DOT_C_CHECK) $<
 
-clean clobber: clean_files
-
-clean_files:
-	-$(RM) $(CLEANFILES)
-
 $(GENSRCS): $(ADTXMLFILE) $(AUDITXML)
 	$(PERL) -I. $(AUDITXML) -o $(COMMONDIR) $(ADTXMLFILE)
 
@@ -157,19 +155,19 @@ $(RESAL): $(RESA)
 
 $(ARSYMLNK): $(RESAL)
 
-$(ROOTHDRDIR):
-	$(INS.dir)
+#$(ROOTHDRDIR):
+#	$(INS.dir)
 
-$(ROOTHDRDIR)/%:%
+$(ROOTHDRDIR)/%:% $(ROOTHDRDIR)
 	$(INS.file)
 
-$(ROOTHDRDIR)/%:$(COMMONDIR)/%
+$(ROOTHDRDIR)/%:$(COMMONDIR)/% $(ROOTHDRDIR)
 	$(INS.file)
 
 $(ROOTXMLDIRS):
 	$(INS.dir)
 
-$(ROOTDTDDIR)/% $(ROOTXSLDIR)/%: %
+$(ROOTDTDDIR)/% $(ROOTXSLDIR)/%: % $(ROOTDTDDIR) $(ROOTXSLDIR)
 	$(INS.file)
 
 $(AUDITDIRS):
@@ -179,13 +177,13 @@ $(ARSYMLNK):
 	$(RM) $@
 	$(SYMLINK) ../../../../var/audit $@
 
-$(ETCSECURITY)/%: %.txt
+$(ETCSECURITY)/%: %.txt $(ROOTETCSECURITY)
 	$(INS.rename)
 
 $(ROOTETCSECURITY):
 	$(INS.dir)
 
-$(ROOTETCSECURITY)/%: %.txt
+$(ROOTETCSECURITY)/%: %.txt $(ROOTETCSECURITY)
 	$(INS.rename)
 
 $(POFILE):	 pofile_MSGFILES

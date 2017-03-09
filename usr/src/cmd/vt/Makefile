@@ -36,7 +36,7 @@ VTINFO_SRC= vtinfo.c
 VTINFO_OBJ= $(VTINFO_SRC:%.c=%.o)
 vtinfo :  OBJS = $(VTINFO_OBJ)
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 include $(SRC)/cmd/Makefile.ctf
 
 CFLAGS += $(CCVERBOSE)

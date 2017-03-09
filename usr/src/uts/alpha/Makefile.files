@@ -1,0 +1,182 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
+#
+
+#
+#	Core (unix) objects
+#
+CORE_OBJS +=		\
+	ddi_arch.o	\
+	sundep.o	\
+	bitmap_arch.o	\
+	ip_ocsum.o	\
+	sendsig.o	\
+	polled_io.o	\
+	x_call.o	\
+	bcmp.o		\
+	memcmp.o	\
+	strlen.o	\
+	bcopy.o		\
+	memcpy.o	\
+	memmove.o	\
+	memset.o	\
+	bzero.o		\
+	memchr.o	\
+	ovbcopy.o
+
+#
+#	Generic-unix Module
+#
+GENUNIX_OBJS +=		\
+	archdep.o	\
+	syscall.o	\
+	fpu.o		\
+	float.o		\
+	fdt.o		\
+	fdt_ro.o	\
+	fdt_strerror.o	\
+	fdt_wip.o	\
+	fdt_empty_tree.o \
+	fdt_rw.o	\
+	fdt_sw.o	\
+	getcontext.o	\
+	install_utrap.o
+
+
+#
+#	PROM Routines
+#
+GENUNIX_OBJS +=		\
+	prom_node.o	\
+	prom_env.o	\
+	prom_printf.o	\
+	prom_putchar.o	\
+	prom_getchar.o	\
+	prom_version.o	\
+	prom_reboot.o	\
+	prom_panic.o	\
+	prom_exit.o
+
+#
+#	file system modules
+#
+CORE_OBJS +=		\
+	prmachdep.o
+
+#
+#	ZFS file system module
+#
+ZFS_OBJS +=		\
+	spa_boot.o
+
+#
+#	Decompression code
+#
+CORE_OBJS += decompress.o
+
+#
+#	Microcode utilities
+#
+CORE_OBJS += ucode_utils.o
+
+#
+#	Driver modules
+#
+ATA_OBJS += $(GHD_OBJS) ata_blacklist.o ata_common.o ata_disk.o \
+	ata_dma.o atapi.o atapi_fsm.o ata_debug.o \
+	sil3xxx.o
+BSCBUS_OBJS += bscbus.o
+BSCV_OBJS += bscv.o
+CMDK_OBJS += cmdk.o
+CMLB_OBJS += cmlb.o
+CPUNEX_OBJS += cpunex.o
+DADK_OBJS += dadk.o
+DCOPY_OBJS += dcopy.o
+DNET_OBJS += dnet.o dnet_mii.o
+FD_OBJS += fd.o
+GDA_OBJS += gda.o
+GHD_OBJS += ghd.o ghd_debug.o ghd_dma.o ghd_queue.o ghd_scsa.o \
+	ghd_scsi.o ghd_timer.o ghd_waitq.o ghd_gcmd.o
+NSKERN_OBJS += nsc_asm.o
+PCICFG_OBJS += pcicfg.o
+PCI_PCINEXUS_OBJS += pci_pci.o
+PIT_BEEP_OBJS += pit_beep.o
+PCI_AUTOCONFIG_OBJS += pci_autoconfig.o
+SD_OBJS += sd.o sd_xbuf.o
+
+HECI_OBJS += 		\
+	heci_init.o	\
+	heci_intr.o	\
+	heci_interface.o \
+	io_heci.o	\
+	heci_main.o
+
+STRATEGY_OBJS += strategy.o
+UCODE_OBJS += ucode_drv.o
+VGATEXT_OBJS += vgatext.o vgasubr.o
+
+#
+#	Kernel linker
+#
+KRTLD_OBJS +=		\
+	bootfsops.o	\
+	bootrd.o	\
+	bootrd_cpio.o	\
+	ufsops.o	\
+	hsfs.o		\
+	doreloc.o	\
+	kobj_boot.o	\
+	kobj_convrelstr.o \
+	kobj_crt.o	\
+	kobj_isa.o	\
+	kobj_reloc.o
+
+FBT_OBJS += fbt.o
+SDT_OBJS += sdt.o
+
+#
+#	IOMMULIB module
+#
+IOMMULIB_OBJS = iommulib.o
+
+#
+#	Brand modules
+#
+SN1_BRAND_OBJS	=	sn1_brand.o sn1_brand_asm.o
+S10_BRAND_OBJS	=	s10_brand.o s10_brand_asm.o
+
+SWAPGENERIC_OBJS += swapgeneric.o
+
+#
+#	special files
+#
+MODSTUB_OBJ +=	 	\
+	modstubs.o
+
+BOOTDEV_OBJS +=		\
+	bootdev.o
+
+ASSYM_DEPS += \
+	prom_dispatch.o  prom_reset.o modstubs.o nsc_asm.o float.o

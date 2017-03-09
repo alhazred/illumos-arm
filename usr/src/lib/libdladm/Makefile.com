@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2018, Joyent, Inc.
 #
@@ -37,7 +38,7 @@ include ../../Makefile.rootfs
 
 LIBS =		$(DYNLIB)
 LDLIBS +=	-ldevinfo -lc -linetutil -lsocket -lscf -lrcm -lnvpair \
-		-lexacct -lkstat -lpool
+		-lexacct -lnsl -lkstat -lncurses -lpool
 
 SRCDIR =	../common
 

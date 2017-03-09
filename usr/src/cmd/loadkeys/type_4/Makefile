@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -73,6 +74,7 @@ $(COMPATKEYDIR)/%: $(ROOTKEYDIR)/%
 	$(RM) $@; ln $< $@
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all:  $(KEYTABLES)
 

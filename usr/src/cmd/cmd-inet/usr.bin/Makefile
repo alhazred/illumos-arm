@@ -25,6 +25,7 @@
 # Copyright 2011 Nexenta Systems, Inc. All rights reserved.
 # Copyright 2016 Toomas Soome <tsoome@me.com>
 # Copyright (c) 2018, Joyent, Inc.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 PROG=		finger rdate ruptime rwho whois
@@ -125,10 +126,11 @@ ROOTRSHSYMLINK=	$(ROOT)/usr/ucb/rsh
 ROOTREMSHSYMLINK=$(ROOT)/usr/bin/remsh
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all: $(ALL) $(SUBDIRS)
 
-install: all .WAIT $(ROOTPROG) $(ROOTSUIDPROG) \
+install: $(ALL) $(SUBDIRS) $(ROOTPROG) $(ROOTSUIDPROG) \
 	$(SUBDIRS) $(ROOTSUNWRCP) $(ROOTRSHSYMLINK) $(ROOTREMSHSYMLINK)
 
 # Messaging - copy $POFILES to $POFILE to work with the parent directory

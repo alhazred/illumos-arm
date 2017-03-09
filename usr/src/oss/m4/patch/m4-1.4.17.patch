@@ -1,0 +1,20 @@
+diff -cNr ../m4-1.4.17-orig/lib/fseeko.c ./lib/fseeko.c
+*** ../m4-1.4.17-orig/lib/fseeko.c	2013-09-22 15:15:55.000000000 +0900
+--- ./lib/fseeko.c	2015-06-20 20:40:23.985763054 +0900
+***************
+*** 15,21 ****
+     with this program; if not, see <http://www.gnu.org/licenses/>.  */
+  
+  #include <config.h>
+! 
+  /* Specification.  */
+  #include <stdio.h>
+  
+--- 15,21 ----
+     with this program; if not, see <http://www.gnu.org/licenses/>.  */
+  
+  #include <config.h>
+! #include "file64.h"
+  /* Specification.  */
+  #include <stdio.h>
+  

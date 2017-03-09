@@ -32,8 +32,6 @@
  * Use is subject to license terms.
  */
 
-#pragma weak __iob = _iob
-
 #include "lint.h"
 #include "mbstatet.h"
 #include "mtlib.h"
@@ -44,6 +42,7 @@
 #include "stdiom.h"
 #include <wchar.h>
 
+extern FILE __iob[] __attribute__ ((__alias__ ("_iob")));
 /*
  * Ptrs to start of preallocated buffers for stdin, stdout.
  * Some slop is allowed at the end of the buffers in case an upset in

@@ -19,11 +19,12 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1996, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # cmd/sgs/messages/Makefile.com
 
-include		$(SRC)/Makefile.master
+include $(dir $(lastword $(MAKEFILE_LIST)))../../../Makefile.master
 include		$(SRC)/cmd/sgs/Makefile.com
 
 

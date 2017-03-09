@@ -24,6 +24,8 @@
 #
 # Copyright (c) 2018, Joyent, Inc.
 
+include ../../../../Makefile.master
+
 LDFLAGS	=	$(DYNFLAGS) $(LDLIBS)
 
 # needs work
@@ -278,7 +280,7 @@ all: $(ALL_SOS)
 #
 # Proto area symlinks
 #
-$(CREATE_LINKS):        $(ICONV_LINK_TARGETS)
+$(CREATE_LINKS):        $(ICONV_LINK_TARGETS) | $(ICONV_DIR)
 	$(SYMLINK) -f GBK%UCS-2BE.so $(ICONV_DIR)/GB18030%UCS-2BE.so
 	$(SYMLINK) -f GBK%UCS-2LE.so $(ICONV_DIR)/GB18030%UCS-2LE.so
 	$(SYMLINK) -f GBK%UCS-4BE.so $(ICONV_DIR)/GB18030%UCS-4BE.so

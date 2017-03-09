@@ -25,8 +25,12 @@
 # Copyright (c) 2011,2017 by Delphix. All rights reserved.
 # Copyright (c) 2013 Andrew Stormont.  All rights reserved.
 # Copyright 2016 Hans Rosenfeld <rosenfeld@grumpf.hope-2000.org>
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2019 Joyent, Inc.
 #
+
+CODEMGR_WS=$(shell git rev-parse --show-toplevel)
+SRC=$(CODEMGR_WS)/usr/src
 
 #
 #	This Makefile contains the common targets and definitions for
@@ -115,6 +119,10 @@ CC_i386_32	= $(i386_CC)
 CC_i386_64	= $(amd64_CC)
 CC_amd64_64	= $(amd64_CC)
 
+CC_aarch64_64	= $(aarch64_CC)
+CC_riscv64_64	= $(riscv64_CC)
+CC_alpha_64	= $(alpha_CC)
+
 CC		= $(CC_$(MACH)_$(CLASS))
 
 AS_sparc_32	= $(sparc_AS)
@@ -123,6 +131,10 @@ AS_sparc_64	= $(sparcv9_AS)
 AS_i386_32	= $(i386_AS)
 AS_i386_64	= $(amd64_AS)
 AS_amd64_64	= $(amd64_AS)
+
+AS_aarch64_64	= $(aarch64_AS)
+AS_riscv64_64	= $(riscv64_AS)
+AS_alpha_64	= $(alpha_AS)
 
 AS		= $(AS_$(MACH)_$(CLASS))
 
@@ -133,6 +145,10 @@ LD_i386_32	= $(i386_LD)
 LD_i386_64	= $(amd64_LD)
 LD_amd64_64	= $(amd64_LD)
 
+LD_aarch64_64	= $(aarch64_LD)
+LD_riscv64_64	= $(riscv64_LD)
+LD_alpha_64	= $(alpha_LD)
+
 LD		= $(LD_$(MACH)_$(CLASS))
 
 LINT_sparc_32	= $(sparc_LINT)
@@ -141,6 +157,10 @@ LINT_sparc_64	= $(sparcv9_LINT)
 LINT_i386_32	= $(i386_LINT)
 LINT_i386_64	= $(amd64_LINT)
 LINT_amd64_64	= $(amd64_LINT)
+
+LINT_aarch64_64	= $(aarch64_LINT)
+LINT_riscv64_64	= $(riscv64_LINT)
+LINT_alpha_64	= $(alpha_LINT)
 
 LINT		= $(LINT_$(MACH)_$(CLASS))
 
@@ -185,10 +205,14 @@ LINT_MODULE=	$(MODULE)
 #	Build the compile/assemble lines:
 #
 EXTRA_OPTIONS		=
-AS_DEFS			= -D_ASM -D__STDC__=0
+AS_DEFS			= -D_ASM #-D__STDC__=0
+
+ALWAYS_DEFS_sparc_64	= -D_SYSCALL32_IMPL
+ALWAYS_DEFS_i386_64	= -D_SYSCALL32_IMPL
+ALWAYS_DEFS_amd64_64	= -D_SYSCALL32_IMPL
 
 ALWAYS_DEFS_32		= -D_KERNEL -D_SYSCALL32 -D_DDI_STRICT
-ALWAYS_DEFS_64		= -D_KERNEL -D_SYSCALL32 -D_SYSCALL32_IMPL -D_ELF64 \
+ALWAYS_DEFS_64		= -D_KERNEL -D_SYSCALL32 $(ALWAYS_DEFS_$(MACH)_64) -D_ELF64 \
 			-D_DDI_STRICT
 #
 # XX64	This should be defined by the compiler!
@@ -204,7 +228,12 @@ ALWAYS_DEFS		= $(ALWAYS_DEFS_$(CLASS))
 #
 CPPFLAGS	= $(ALWAYS_DEFS) $(ALL_DEFS) $(CONFIG_DEFS) \
 		   $(INCLUDE_PATH) $(EXTRA_OPTIONS)
-ASFLAGS		+= -P
+ASFLAGS_i386	+= -P
+ASFLAGS_sparc	+= -P
+ASFLAGS_alpha	+= -c
+ASFLAGS_aarch64	+= -c
+ASFLAGS_riscv64	+= -c
+ASFLAGS		+= $(ASFLAGS_$(MACH))
 AS_CPPFLAGS	= $(ALWAYS_DEFS) $(ALL_DEFS) $(CONFIG_DEFS) $(AS_DEFS) \
 		   $(AS_INC_PATH) $(EXTRA_OPTIONS)
 
@@ -221,6 +250,10 @@ CERRWARN += -_gcc=-Wno-sign-compare
 CERRWARN += -_gcc=-Wno-unknown-pragmas
 CERRWARN += -_gcc=-Wno-unused-parameter
 CERRWARN += -_gcc=-Wno-missing-field-initializers
+CERRWARN += -_gcc=-Wno-unused-but-set-variable
+CERRWARN += -_gcc=-Wno-maybe-uninitialized
+CERRWARN += -_gcc=-Wno-implicit-fallthrough
+CERRWARN += -_gcc=-Wno-cast-function-type
 
 # gcc4 lacks -Wno-maybe-uninitialized
 CNOWARN_UNINIT = -_gcc4=-Wno-uninitialized \
@@ -278,6 +311,31 @@ CFLAGS_uts		+= $(CUSERFLAGS)
 CFLAGS_uts		+= $(CFLAGS_uts_$(MACH))
 CFLAGS_uts		+= -_gcc=-fno-asynchronous-unwind-tables
 
+LDFLAGS_uts_i386 += -r
+LDFLAGS_uts_sparc += -r
+
+LDFLAGS_uts_alpha += $(GSHARED) -Bsymbolic -xnolib -_gcc=-nostartfiles
+LDFLAGS_uts_alpha += $(addprefix $(FORCE_NEEDED_OPT), $(NEEDED_MODULES))
+LDFLAGS_uts_alpha += -Wl,-T,$(SRC)/uts/$(MACH)/ml/kobj.ldscript $(MAPFILES:%=-Wl,--version-script=%)
+LDFLAGS_uts_alpha += $(STAND_MARCH:%=-_gcc=-march=%) $(STAND_MABI:%=-_gcc=-mabi=%)
+LDFLAGS_uts_alpha += $(STAND_MCPU:%=-_gcc=-mcpu=%) $(STAND_MFPU:%=-_gcc=-mfpu=%)
+
+LDFLAGS_uts_aarch64 += $(GSHARED) -Bsymbolic -xnolib -_gcc=-nostartfiles
+LDFLAGS_uts_aarch64 += $(addprefix $(FORCE_NEEDED_OPT), $(NEEDED_MODULES))
+LDFLAGS_uts_aarch64 += -Wl,-T,$(SRC)/uts/$(MACH)/ml/kobj.ldscript $(MAPFILES:%=-Wl,--version-script=%)
+LDFLAGS_uts_aarch64 += -Wl,-z,max-page-size=4096
+LDFLAGS_uts_aarch64 += $(STAND_MARCH:%=-_gcc=-march=%) $(STAND_MABI:%=-_gcc=-mabi=%)
+LDFLAGS_uts_aarch64 += $(STAND_MCPU:%=-_gcc=-mcpu=%) $(STAND_MFPU:%=-_gcc=-mfpu=%)
+
+LDFLAGS_uts_riscv64 += $(GSHARED) -Bsymbolic -xnolib -_gcc=-nostartfiles
+LDFLAGS_uts_riscv64 += $(addprefix $(FORCE_NEEDED_OPT), $(NEEDED_MODULES))
+LDFLAGS_uts_riscv64 += -Wl,-T,$(SRC)/uts/$(MACH)/ml/kobj.ldscript $(MAPFILES:%=-Wl,--version-script=%)
+LDFLAGS_uts_riscv64 += -Wl,-z,max-page-size=4096
+LDFLAGS_uts_riscv64 += $(STAND_MARCH:%=-_gcc=-march=%) $(STAND_MABI:%=-_gcc=-mabi=%)
+LDFLAGS_uts_riscv64 += $(STAND_MCPU:%=-_gcc=-mcpu=%) $(STAND_MFPU:%=-_gcc=-mfpu=%)
+
+LDFLAGS += $(LDFLAGS_uts_$(MACH))
+
 #
 #	Declare that $(OBJECTS) and $(LINTS) can be compiled in parallel.
 #	The DUMMY target is for those instances where OBJECTS and LINTS
@@ -300,6 +358,7 @@ SYM_DEPS	= $(SYM_BUILDS:%=symcheck.%)
 SISCHECK_DEPS	= $(DEF_BUILDS:%=sischeck.%)
 SISCLEAN_DEPS	= $(ALL_BUILDS:%=sisclean.%)
 
+SISCHECK_DEPS	=
 #
 #	Default module name
 #
@@ -412,7 +471,7 @@ IPCTF		= $(IPDRV_DIR)/$(OBJS_DIR)/ipctf.a
 # tripping over code that isn't really suitable for shared libraries.
 #
 BUILD.SO		= \
-	$(LD) -o $@ $(GSHARED) $(ZNORELOC) -h $(SONAME)
+	$(CC) -xnolib -_gcc=-nostartfiles -o $@ $(GSHARED) $(ZNORELOC) -h $(SONAME)
 
 #
 # SONAME defaults for common fake shared libraries.
@@ -436,6 +495,7 @@ SUBDIR64		= $(SUBDIR64_$(MACH))
 
 ROOT_MOD_DIR		= $(ROOT)/kernel
 
+ifneq ($(MACH),$(MACH64))
 ROOT_KERN_DIR_32	= $(ROOT_MOD_DIR)
 ROOT_BRAND_DIR_32	= $(ROOT_MOD_DIR)/brand
 ROOT_DRV_DIR_32		= $(ROOT_MOD_DIR)/drv
@@ -491,6 +551,35 @@ ROOT_CRYPTO_DIR_64	= $(ROOT_MOD_DIR)/crypto/$(SUBDIR64)
 ROOT_MAC_DIR_64		= $(ROOT_MOD_DIR)/mac/$(SUBDIR64)
 ROOT_CC_DIR_64		= $(ROOT_MOD_DIR)/cc/$(SUBDIR64)
 ROOT_KICONV_DIR_64	= $(ROOT_MOD_DIR)/kiconv/$(SUBDIR64)
+else
+ROOT_KERN_DIR_64	= $(ROOT_MOD_DIR)
+ROOT_BRAND_DIR_64	= $(ROOT_MOD_DIR)/brand
+ROOT_DRV_DIR_64		= $(ROOT_MOD_DIR)/drv
+ROOT_DTRACE_DIR_64	= $(ROOT_MOD_DIR)/dtrace
+ROOT_EXEC_DIR_64	= $(ROOT_MOD_DIR)/exec
+ROOT_FS_DIR_64		= $(ROOT_MOD_DIR)/fs
+ROOT_SCHED_DIR_64	= $(ROOT_MOD_DIR)/sched
+ROOT_SOCK_DIR_64	= $(ROOT_MOD_DIR)/socketmod
+ROOT_STRMOD_DIR_64	= $(ROOT_MOD_DIR)/strmod
+ROOT_IPP_DIR_64		= $(ROOT_MOD_DIR)/ipp
+ROOT_SYS_DIR_64		= $(ROOT_MOD_DIR)/sys
+ROOT_MISC_DIR_64	= $(ROOT_MOD_DIR)/misc
+ROOT_KGSS_DIR_64	= $(ROOT_MOD_DIR)/misc/kgss
+ROOT_SCSI_VHCI_DIR_64	= $(ROOT_MOD_DIR)/misc/scsi_vhci
+ROOT_PMCS_FW_DIR_64	= $(ROOT_MOD_DIR)/misc/pmcs
+ROOT_QLC_FW_DIR_64	= $(ROOT_MOD_DIR)/misc/qlc
+ROOT_EMLXS_FW_DIR_64	= $(ROOT_MOD_DIR)/misc/emlxs
+ROOT_NLMISC_DIR_64	= $(ROOT_MOD_DIR)/misc
+ROOT_MACH_DIR_64	= $(ROOT_MOD_DIR)/mach
+ROOT_CPU_DIR_64		= $(ROOT_MOD_DIR)/cpu
+ROOT_TOD_DIR_64		= $(ROOT_MOD_DIR)/tod
+ROOT_FONT_DIR_64	= $(ROOT_MOD_DIR)/fonts
+ROOT_DACF_DIR_64	= $(ROOT_MOD_DIR)/dacf
+ROOT_CRYPTO_DIR_64	= $(ROOT_MOD_DIR)/crypto
+ROOT_MAC_DIR_64		= $(ROOT_MOD_DIR)/mac
+ROOT_CC_DIR_64		= $(ROOT_MOD_DIR)/cc
+ROOT_KICONV_DIR_64	= $(ROOT_MOD_DIR)/kiconv
+endif
 
 ROOT_KERN_DIR		= $(ROOT_KERN_DIR_$(CLASS))
 ROOT_BRAND_DIR		= $(ROOT_BRAND_DIR_$(CLASS))
@@ -540,8 +629,28 @@ ROOT_MOD_DIRS_32	+= $(ROOT_CC_DIR_32)
 ROOT_MOD_DIRS_32	+= $(ROOT_KICONV_DIR_32)
 ROOT_MOD_DIRS_32	+= $(ROOT_FIRMWARE_DIR)
 
+ifeq ($(MACH),$(MACH64))
+ROOT_MOD_DIRS_64	= $(ROOT_BRAND_DIR_64) $(ROOT_DRV_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_EXEC_DIR_64) $(ROOT_DTRACE_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_FS_DIR_64) $(ROOT_SCHED_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_STRMOD_DIR_64) $(ROOT_SYS_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_IPP_DIR_64) $(ROOT_SOCK_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_MISC_DIR_64) $(ROOT_MACH_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_KGSS_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_SCSI_VHCI_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_PMCS_FW_DIR_64)
+ROOT_MOD_DIRS_64        += $(ROOT_QLC_FW_DIR_64)
+ROOT_MOD_DIRS_64        += $(ROOT_EMLXS_FW_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_CPU_DIR_64) $(ROOT_FONT_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_TOD_DIR_64) $(ROOT_DACF_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_CRYPTO_DIR_64) $(ROOT_MAC_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_CC_DIR_64)
+ROOT_MOD_DIRS_64	+= $(ROOT_KICONV_DIR_64)
+endif
+
 USR_MOD_DIR		= $(ROOT)/usr/kernel
 
+ifneq ($(MACH),$(MACH64))
 USR_DRV_DIR_32		= $(USR_MOD_DIR)/drv
 USR_EXEC_DIR_32		= $(USR_MOD_DIR)/exec
 USR_FS_DIR_32		= $(USR_MOD_DIR)/fs
@@ -567,6 +676,20 @@ USR_DACF_DIR_64		= $(USR_MOD_DIR)/dacf/$(SUBDIR64)
 USR_PCBE_DIR_64		= $(USR_MOD_DIR)/pcbe/$(SUBDIR64)
 USR_DTRACE_DIR_64	= $(USR_MOD_DIR)/dtrace/$(SUBDIR64)
 USR_BRAND_DIR_64	= $(USR_MOD_DIR)/brand/$(SUBDIR64)
+else
+USR_DRV_DIR_64		= $(USR_MOD_DIR)/drv
+USR_EXEC_DIR_64		= $(USR_MOD_DIR)/exec
+USR_FS_DIR_64		= $(USR_MOD_DIR)/fs
+USR_SCHED_DIR_64	= $(USR_MOD_DIR)/sched
+USR_SOCK_DIR_64		= $(USR_MOD_DIR)/socketmod
+USR_STRMOD_DIR_64	= $(USR_MOD_DIR)/strmod
+USR_SYS_DIR_64		= $(USR_MOD_DIR)/sys
+USR_MISC_DIR_64		= $(USR_MOD_DIR)/misc
+USR_DACF_DIR_64		= $(USR_MOD_DIR)/dacf
+USR_PCBE_DIR_64		= $(USR_MOD_DIR)/pcbe
+USR_DTRACE_DIR_64	= $(USR_MOD_DIR)/dtrace
+USR_BRAND_DIR_64	= $(USR_MOD_DIR)/brand
+endif
 
 USR_DRV_DIR		= $(USR_DRV_DIR_$(CLASS))
 USR_EXEC_DIR		= $(USR_EXEC_DIR_$(CLASS))
@@ -588,6 +711,16 @@ USR_MOD_DIRS_32		+= $(USR_MISC_DIR_32) $(USR_DACF_DIR_32)
 USR_MOD_DIRS_32		+= $(USR_PCBE_DIR_32)
 USR_MOD_DIRS_32		+= $(USR_DTRACE_DIR_32) $(USR_BRAND_DIR_32)
 USR_MOD_DIRS_32		+= $(USR_SOCK_DIR_32)
+
+ifeq ($(MACH),$(MACH64))
+USR_MOD_DIRS_64		= $(USR_DRV_DIR_64) $(USR_EXEC_DIR_64)
+USR_MOD_DIRS_64		+= $(USR_FS_DIR_64) $(USR_SCHED_DIR_64)
+USR_MOD_DIRS_64		+= $(USR_STRMOD_DIR_64) $(USR_SYS_DIR_64)
+USR_MOD_DIRS_64		+= $(USR_MISC_DIR_64) $(USR_DACF_DIR_64)
+USR_MOD_DIRS_64		+= $(USR_PCBE_DIR_64)
+USR_MOD_DIRS_64		+= $(USR_DTRACE_DIR_64) $(USR_BRAND_DIR_64)
+USR_MOD_DIRS_64		+= $(USR_SOCK_DIR_64)
+endif
 
 #
 #

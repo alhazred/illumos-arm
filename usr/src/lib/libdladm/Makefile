@@ -19,11 +19,12 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 HDRS =		libdladm.h libdladm_impl.h libdllink.h libdlaggr.h	\
 		libdlwlan.h libdlwlan_impl.h libdlvnic.h libdlvlan.h	\

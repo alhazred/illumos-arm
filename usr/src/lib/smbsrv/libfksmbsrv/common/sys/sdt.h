@@ -28,7 +28,18 @@
 #define	_SYS_SDT_H
 
 #include <sys/stdint.h>
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
+#define	FKSMB_SMB_START(name, arg1)
+#define	FKSMB_SMB_DONE(name, arg1)
+#define	FKSMB_SMB2_START(name, arg1)
+#define	FKSMB_SMB2_DONE(name, arg1)
+#define	FKSMB_PROBE0(name)
+#define	FKSMB_PROBE1(name, arg1)
+#define	FKSMB_PROBE2(name, arg1, arg2)
+#define	FKSMB_PROBE3(name, arg1, arg2, arg3)
+#else
 #include <fksmb_dt.h>
+#endif
 
 #ifdef	__cplusplus
 extern "C" {

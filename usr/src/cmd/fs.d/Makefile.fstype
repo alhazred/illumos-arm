@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -40,6 +41,7 @@
 
 # include global command definitions; SRC should be defined in the shell.
 # SRC is needed until RFE 1026993 is implemented.
+include $(dir $(lastword $(MAKEFILE_LIST)))../../Makefile.master
 include		$(SRC)/cmd/Makefile.cmd
 
 FSCOMMONDIR=	$(SRC)/cmd/fs.d
@@ -73,16 +75,16 @@ all:		$(PROG) $(ETCPROG) $(LIBPROG) $(TYPEPROG)
 $(FSTYPEDIRS): 
 		$(INS.dir)
 
-$(ROOTETCFSTYPE)/%:	$(ROOTETCFSTYPE) %
+$(ROOTETCFSTYPE)/%:	% $(ROOTETCFSTYPE)
 		$(INS.file)
 
-$(ROOTLIBFSTYPE)/%:	$(ROOTLIBFSTYPE) %
+$(ROOTLIBFSTYPE)/%:	% $(ROOTLIBFSTYPE)
 		$(INS.file)
 
-$(ROOTLIBTYPE)/%:	$(ROOTLIBTYPE) %
+$(ROOTLIBTYPE)/%:	% $(ROOTLIBTYPE)
 		$(INS.file)
 
-$(ROOTETCTYPE)/%:	$(ROOTETCTYPE) %
+$(ROOTETCTYPE)/%:	% $(ROOTETCTYPE)
 		$(INS.file)
 
 # Prevent fslib.o from being build in the sub makefiles.

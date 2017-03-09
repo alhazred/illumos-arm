@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -27,7 +28,7 @@ include ../Makefile.cmd
 
 SUBDIR_CMD=	lsvcrun mfstscan servinfo svcadm svccfg svcprop svcs
 SUBDIR_DAEMON=	configd startd
-SUBDIR_REPO=	milestone profile seed
+SUBDIR_REPO=	milestone profile #seed
 SUBDIR_MISC=	shell
 SUBDIRS=	$(SUBDIR_CMD) $(SUBDIR_DAEMON) $(SUBDIR_REPO) $(SUBDIR_MISC)
 

@@ -46,8 +46,20 @@ PROTOCLEANFILES = $(ICONV_LIBS) $(ICONV_LIBS_64)
 CPPFLAGS	+= -I../../inc -I. -I../../common
 CFLAGS		+= $(C_PICFLAGS) $(GSHARED)
 
-DYNFLAGS=	$(GSHARED) $(ZTEXT) $(ZDEFS) $(BDIRECT) \
+DYNFLAGS_i386=	$(GSHARED) $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
+DYNFLAGS_sparc=	$(GSHARED) $(ZTEXT) $(ZDEFS) $(BDIRECT) \
+		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
+DYNFLAGS_alpha=	$(ZTEXT) \
+		-_gcc=--sysroot=$(ROOT) \
+		$(MAPFILES:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.NED:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.PGA:)
+DYNFLAGS_aarch64=$(ZTEXT) \
+		-_gcc=--sysroot=$(ROOT) \
+		$(MAPFILES:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.NED:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.PGA:)
+DYNFLAGS_riscv64=$(ZTEXT) \
+		-_gcc=--sysroot=$(ROOT) \
+		$(MAPFILES:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.NED:%=-_gcc=-Wl,--version-script=%) $(MAPFILE.PGA:)
+DYNFLAGS= $(DYNFLAGS_$(MACH))
 
 LDLIBS=		-lc
 
@@ -66,10 +78,10 @@ $(ICONV_LIBS_64) :       FILEMODE= 755
 $(ICONV_DIR) $(ICONV_DIR_64):
 	$(INS.dir) $@
 
-$(ICONV_DIR)/%: %
+$(ICONV_DIR)/%: % $(ICONV_DIR)
 	$(INS.file)
 
-$(ICONV_DIR_64)/%: %
+$(ICONV_DIR_64)/%: % $(ICONV_DIR_64)
 	$(INS.file)
 
 $(ICONV_DIR)/%: ../%

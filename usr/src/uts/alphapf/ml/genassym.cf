@@ -1,0 +1,158 @@
+include <sys/hwrpb.h>
+include <sys/pal.h>
+include <sys/cpu.h>
+include <sys/modctl.h>
+include <sys/cpuvar.h>
+include <sys/ontrap.h>
+include <sys/lockstat.h>
+include <sys/rwlock_impl.h>
+include <sys/mutex_impl.h>
+include <sys/machlock.h>
+include <sys/machtypes.h>
+include <sys/trap.h>
+include <sys/sunddi.h>
+include <sys/dditypes.h>
+include <sys/ddi.h>
+include <sys/ddi_isa.h>
+include <sys/ddifm.h>
+include <sys/fm/io/ddi.h>
+include <sys/fm/protocol.h>
+include <sys/ontrap.h>
+
+define	RPB_PHYS_ADDR		offsetof(struct rpb, phys_addr)
+define	RPB_PROCS_SIZE		offsetof(struct rpb, pcs_size)
+define	RPB_PROCS_OFF		offsetof(struct rpb, pcs_off)
+define	RPB_PRIMARY_CPU_ID	offsetof(struct rpb, cpu_id)
+define	RPB_VPTB		offsetof(struct rpb, vptb)
+define	RPB_CRB_OFF		offsetof(struct rpb, crb_off)
+define	HWPCB_KSP		offsetof(struct hwpcb, ksp)
+define	HWPCB_USP		offsetof(struct hwpcb, usp)
+define	HWPCB_ASN		offsetof(struct hwpcb, asn)
+define	HWPCB_FEN		offsetof(struct hwpcb, fen)
+define	HWPCB_PTBR		offsetof(struct hwpcb, ptbr)
+define	PCS_PAL_REV_AVAIL_OSF	offsetof(struct pcs, pal_rev_avl[PAL_OSF])
+define	PCS_PAL_REV		offsetof(struct pcs, pal_rev)
+define	MODS_SIZE		sizeof(struct mod_stub_info)
+define	MODS_INSTFCN		offsetof(struct mod_stub_info, mods_func_adr)
+define	MODS_RETFCN		offsetof(struct mod_stub_info, mods_errfcn)
+define	MODS_FLAG		offsetof(struct mod_stub_info, mods_flag)
+define	MODS_WEAK		MODS_WEAK
+define	MODS_NOUNLOAD		MODS_NOUNLOAD
+define	MODS_INSTALLED		MODS_INSTALLED
+define	CPU_THREAD		offsetof(cpu_t, cpu_thread)
+define	CPU_IDLE_THREAD		offsetof(cpu_t, cpu_idle_thread)
+define	CPU_LWP			offsetof(cpu_t, cpu_lwp)
+define	CPU_STATS_SYS_CPUMIGRATE offsetof(cpu_t, cpu_stats.sys.cpumigrate)
+define	THREAD_SIZE		sizeof(struct _kthread)
+define	T_ONFAULT		offsetof(struct _kthread, t_onfault)
+define	T_LOFAULT		offsetof(struct _kthread, t_lofault)
+define	T_COPYOPS		offsetof(struct _kthread, t_copyops)
+define	T_LOCKSTAT		offsetof(struct _kthread, t_lockstat)
+define	T_CPU			offsetof(struct _kthread, t_cpu)
+define	T_ONTRAP		offsetof(struct _kthread, t_ontrap)
+define	T_INTR_START		offsetof(struct _kthread, t_intr_start)
+define	T_CTX			offsetof(struct _kthread, t_ctx)
+define	T_FLAG			offsetof(struct _kthread, t_flag)
+define	T_LOCK			offsetof(struct _kthread, t_lock)
+define	T_PROCP			offsetof(struct _kthread, t_procp)
+define	T_LWP			offsetof(struct _kthread, t_lwp)
+define	T_ASTFLAG		offsetof(struct _kthread, t_astflag)
+define	T_STACK			offsetof(struct _kthread, t_stk)
+define	T_LPL			offsetof(struct _kthread, t_lpl)
+define	T_PIL			offsetof(struct _kthread, t_pil)
+define	P_PCTX			offsetof(struct proc, p_pctx)
+define	CP_COPYIN		offsetof(struct copyops, cp_copyin)
+define	CP_COPYOUT		offsetof(struct copyops, cp_copyout)
+define	CP_XCOPYIN		offsetof(struct copyops, cp_xcopyin)
+define	CP_XCOPYOUT		offsetof(struct copyops, cp_xcopyout)
+define	CP_COPYINSTR		offsetof(struct copyops, cp_copyinstr)
+define	CP_COPYOUTSTR		offsetof(struct copyops, cp_copyoutstr)
+define	CP_FUWORD8		offsetof(struct copyops, cp_fuword8)
+define	CP_FUWORD16		offsetof(struct copyops, cp_fuword16)
+define	CP_FUWORD32		offsetof(struct copyops, cp_fuword32)
+define	CP_FUWORD64		offsetof(struct copyops, cp_fuword64)
+define	CP_SUWORD8		offsetof(struct copyops, cp_suword8)
+define	CP_SUWORD16		offsetof(struct copyops, cp_suword16)
+define	CP_SUWORD32		offsetof(struct copyops, cp_suword32)
+define	CP_SUWORD64		offsetof(struct copyops, cp_suword64)
+define	CP_PHYSIO		offsetof(struct copyops, cp_physio)
+define	OT_PROT			offsetof(struct on_trap_data, ot_prot)
+define	OT_TRAP			offsetof(struct on_trap_data, ot_trap)
+define	OT_TRAMPOLINE		offsetof(struct on_trap_data, ot_trampoline)
+define	OT_JMPBUF		offsetof(struct on_trap_data, ot_jmpbuf)
+define	OT_PREV			offsetof(struct on_trap_data, ot_prev)
+define	OT_HANDLE		offsetof(struct on_trap_data, ot_handle)
+define	OT_PAD1			offsetof(struct on_trap_data, ot_pad1)
+define	RW_WRITER		RW_WRITER
+define	RW_READER		RW_READER
+define	RW_WRITE_LOCKED		RW_WRITE_LOCKED
+define	RW_WRITE_WANTED		RW_WRITE_WANTED
+define	RW_READ_LOCK		RW_READ_LOCK
+define	LOCK_HELD_VALUE		LOCK_HELD_VALUE
+define	MUTEX_THREAD		MUTEX_THREAD
+define	DISP_LEVEL		DISP_LEVEL
+define	T_INTR_THREAD		T_INTR_THREAD
+define	TS_ONPROC		TS_ONPROC
+define	CPU_THREAD_LOCK		offsetof(cpu_t, cpu_thread_lock)
+define	T_STATE			offsetof(struct _kthread, t_state)
+define	T_LOCKP			offsetof(struct _kthread, t_lockp)
+
+define	LABEL_REG_PC	LABEL_REG_PC
+define	LABEL_REG_SP	LABEL_REG_SP
+define	LABEL_REG_S0	LABEL_REG_S0
+define	LABEL_REG_S1	LABEL_REG_S1
+define	LABEL_REG_S2	LABEL_REG_S2
+define	LABEL_REG_S3	LABEL_REG_S3
+define	LABEL_REG_S4	LABEL_REG_S4
+define	LABEL_REG_S5	LABEL_REG_S5
+define	LABEL_REG_S6	LABEL_REG_S6
+
+define	T_LABEL_SP	offsetof(struct _kthread, t_pcb.val[LABEL_REG_SP])
+define	T_LABEL_PC	offsetof(struct _kthread, t_pcb.val[LABEL_REG_PC])
+define	T_LABEL_S0	offsetof(struct _kthread, t_pcb.val[LABEL_REG_S0])
+define	T_LABEL_S1	offsetof(struct _kthread, t_pcb.val[LABEL_REG_S1])
+define	T_LABEL_S2	offsetof(struct _kthread, t_pcb.val[LABEL_REG_S2])
+define	T_LABEL_S3	offsetof(struct _kthread, t_pcb.val[LABEL_REG_S3])
+define	T_LABEL_S4	offsetof(struct _kthread, t_pcb.val[LABEL_REG_S4])
+define	T_LABEL_S5	offsetof(struct _kthread, t_pcb.val[LABEL_REG_S5])
+define	T_LABEL_S6	offsetof(struct _kthread, t_pcb.val[LABEL_REG_S6])
+
+define	LWP_PCB_KSP	offsetof(struct  _klwp, lwp_pcb.pcb_hw.ksp)
+define	LWP_PCB_SELF	offsetof(struct  _klwp, lwp_pcb.pcb_self)
+define	TIMESPEC_SIZE	sizeof(timespec_t)
+define	TV_SEC		offsetof(timespec_t, tv_sec)
+define	TV_NSEC		offsetof(timespec_t, tv_nsec)
+define	T_LASTFAST	T_LASTFAST
+define	LPL_LGRPID	offsetof(struct lgrp_ld, lpl_lgrpid)
+define	CPU_ID		offsetof(struct cpu, cpu_id)
+
+
+define	DDI_ACCATTR_IO_SPACE	DDI_ACCATTR_IO_SPACE
+define	DDI_ACCATTR_DIRECT	DDI_ACCATTR_DIRECT
+define	DDI_ACCATTR_CPU_VADDR	DDI_ACCATTR_CPU_VADDR
+define	DDI_DEV_AUTOINCR	DDI_DEV_AUTOINCR
+define	DDI_DEV_NO_AUTOINCR	DDI_DEV_NO_AUTOINCR
+define	AHI_ACC_ATTR		offsetof(ddi_acc_impl_t, ahi_acc_attr)
+define	AHI_IO_PORT_BASE	offsetof(ddi_acc_impl_t, ahi_io_port_base)
+define	AHI_ERR			offsetof(ddi_acc_impl_t, ahi_err)
+
+define	AHI_PUT8	offsetof(ddi_acc_impl_t, ahi_put8)
+define	AHI_GET8	offsetof(ddi_acc_impl_t, ahi_get8)
+define	AHI_REP_PUT8	offsetof(ddi_acc_impl_t, ahi_rep_put8)
+define	AHI_REP_GET8	offsetof(ddi_acc_impl_t, ahi_rep_get8)
+define	AHI_PUT16	offsetof(ddi_acc_impl_t, ahi_put16)
+define	AHI_GET16	offsetof(ddi_acc_impl_t, ahi_get16)
+define	AHI_REP_PUT16	offsetof(ddi_acc_impl_t, ahi_rep_put16)
+define	AHI_REP_GET16	offsetof(ddi_acc_impl_t, ahi_rep_get16)
+define	AHI_PUT32	offsetof(ddi_acc_impl_t, ahi_put32)
+define	AHI_GET32	offsetof(ddi_acc_impl_t, ahi_get32)
+define	AHI_REP_PUT32	offsetof(ddi_acc_impl_t, ahi_rep_put32)
+define	AHI_REP_GET32	offsetof(ddi_acc_impl_t, ahi_rep_get32)
+define	AHI_PUT64	offsetof(ddi_acc_impl_t, ahi_put64)
+define	AHI_GET64	offsetof(ddi_acc_impl_t, ahi_get64)
+define	AHI_REP_PUT64	offsetof(ddi_acc_impl_t, ahi_rep_put64)
+define	AHI_REP_GET64	offsetof(ddi_acc_impl_t, ahi_rep_get64)
+
+define	ERR_ONTRAP	offsetof(ndi_err_t, err_ontrap)
+
+

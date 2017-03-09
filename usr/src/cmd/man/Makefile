@@ -12,6 +12,7 @@
 #
 # Copyright 2012 Nexenta Systems, Inc. All rights reserved.
 # Copyright 2014 Garrett D'Amore <garrett@damore.org>
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
 #
 
@@ -22,7 +23,7 @@ OBJS=		makewhatis.o man.o stringlist.o
 MANIFEST=	update-man-index.xml
 SVCMETHOD=	update-man-index
 
-include		$(SRC)/cmd/Makefile.cmd
+include		../Makefile.cmd
 
 ROOTMANIFESTDIR=	$(ROOTSVCSYSTEM)
 

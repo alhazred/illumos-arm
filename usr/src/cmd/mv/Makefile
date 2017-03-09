@@ -36,7 +36,7 @@ ROOTXPG4LINKS= $(ROOTXPG4BIN)/$(CPFILE) $(ROOTXPG4BIN)/$(LNFILE)
 
 include ../Makefile.cmd
 
-clean $(XPG4)	:  OBJS += values-xpg4.o
+#clean $(XPG4)	:  OBJS += values-xpg4.o
 
 CLOBBERFILES += $(CPFILE) $(LNFILE)
 CFLAGS	+=	$(CCVERBOSE)
@@ -46,7 +46,7 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 $(XPG4) :  CFLAGS += -DXPG4
 LINTFLAGS += -DXPG4 -u
 XGETFLAGS += -a -x mv.xcl
-CPPFLAGS += -D_FILE_OFFSET_BITS=64 -I $(SRC)/common/util
+CPPFLAGS += -D_FILE_OFFSET_BITS=64 -I$(SRC)/head -I $(SRC)/common/util
 
 lint : 	LDLIBS += -lcmdutils -lavl -lsec -lnvpair
 $(PROG) :  LDLIBS += -lcmdutils -lavl -lsec -lnvpair
@@ -56,11 +56,11 @@ $(XPG4) :  LDLIBS += -lcmdutils -lavl -lsec -lnvpair
 
 all:	$(PROG) $(CPFILE) $(LNFILE) $(XPG4)
 
-$(PROG):	$$(OBJS)
+$(PROG):	$(OBJS)
 	$(LINK.c) -o $@ $(OBJS) $(LDLIBS)
 	$(POST_PROCESS)
 
-$(XPG4):	$$(XPG4OBJS)
+$(XPG4):	$(XPG4OBJS)
 	$(LINK.c) -o $@ $(XPG4OBJS) $(LDLIBS)
 	$(POST_PROCESS)
 

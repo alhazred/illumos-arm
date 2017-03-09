@@ -10,6 +10,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
 # Copyright 2017 RackTop Systems.
 #
@@ -65,12 +66,18 @@ INCS += -I$(SRC)/uts/common
 
 CPPFLAGS += $(INCS) -D_REENTRANT -D_FAKE_KERNEL
 CPPFLAGS += -D_FILE_OFFSET_BITS=64
+CPPFLAGS += -I$(ROOT)/usr/sfw/include
+LDLIBS   += -L$(ROOT)/usr/sfw/lib -Wl,-rpath,/usr/sfw/lib -liconv
 
 # Could make this $(NOT_RELEASE_BUILD) but as the main purpose of
 # this library is for debugging, let's always define DEBUG here.
 CPPFLAGS += -DDEBUG
+CERRWARN += -_gcc=-Wno-cast-function-type
 
 LDLIBS += -lumem -lcryptoutil -lsocket -lc
+
+CPPFLAGS += -I$(ROOT)/usr/sfw/include
+LDLIBS   += -L$(ROOT)/usr/sfw/lib -Wl,-rpath,/usr/sfw/lib -liconv
 
 .KEEP_STATE:
 

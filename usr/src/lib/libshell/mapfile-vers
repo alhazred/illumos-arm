@@ -123,16 +123,16 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	sh;
 	e_dict;
 
-    local:
-	*;
-};
+#    local:
+#	*;
+#};
 
 # Builtin shell commands
 # (see libshell/common/include/builtins.h)
 # Note: We have to export all the |b_*()| symbols that the "builtin" command
 # can load builtins which are not enabled by the default OS/Net configuration.
-SYMBOL_VERSION SUNWprivate_1.1 {
-    global:
+#SYMBOL_VERSION SUNWprivate_1.1 {
+#    global:
 	B_echo;
 	B_login;
 	b_alarm;

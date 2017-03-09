@@ -21,18 +21,20 @@
 
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # Copyright (c) 2018, Joyent, Inc.
 
+include ../../Makefile.master
 XLATEDIR = $(SRC)/lib/libbsm/common
 
 PROG = praudit
 SRCS = format.c main.c token.c toktable.c printaudit.c prio.c $(XLATEDIR)/adt_xlate.c
 OBJS = format.o main.o token.o toktable.o printaudit.o prio.o adt_xlate.o
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 TEXT_DOMAIN=SUNW_OST_OSCMD
 POFILE = $(PROG).po
@@ -44,6 +46,8 @@ CPPFLAGS += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 
 CERRWARN += -_gcc=-Wno-parentheses
 CERRWARN += $(CNOWARN_UNINIT)
+CERRWARN += -_gcc=-Wno-overflow
+CERRWARN += -_gcc=-Wno-type-limits
 
 SMOFF += signed
 

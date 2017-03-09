@@ -207,11 +207,7 @@ typedef struct _kmf_handle {
 #define	KMF_PLUGIN_PATH "/lib/crypto/"
 #elif defined(__amd64)
 #define	KMF_PLUGIN_PATH "/lib/crypto/amd64/"
-#elif defined(__alpha)
-#define	KMF_PLUGIN_PATH "/lib/crypto/"
-#elif defined(__aarch64)
-#define	KMF_PLUGIN_PATH "/lib/crypto/"
-#elif defined(__arm)
+#elif !defined(_MULTI_DATAMODEL)
 #define	KMF_PLUGIN_PATH "/lib/crypto/"
 #endif
 #endif /* !KMF_PLUGIN_PATH */

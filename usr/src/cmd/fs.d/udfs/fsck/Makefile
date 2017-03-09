@@ -47,6 +47,7 @@ SMATCH=off
 OBJS=		$(FSCKOBJS) $(UDFSOBJS)
 SRCS=		$(FSCKSRCS) $(UDFSSRCS) ../mkfs/udfslib.c
 
+CFLAGS +=	-_gcc=-fcommon
 #CPPFLAGS +=	-D_LARGEFILE64_SOURCE
 CPPFLAGS +=	-I../mkfs
 LDLIBS += -ladm

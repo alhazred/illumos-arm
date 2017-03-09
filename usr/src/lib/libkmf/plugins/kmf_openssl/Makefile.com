@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -28,7 +29,7 @@ VERS=		.1
 
 OBJECTS=	openssl_spi.o compat.o
 
-include	$(SRC)/lib/Makefile.lib
+include	../../../../Makefile.lib
 
 LIBLINKS=	$(DYNLIB:.so.1=.so)
 KMFINC=		-I../../../include -I../../../ber_der/inc

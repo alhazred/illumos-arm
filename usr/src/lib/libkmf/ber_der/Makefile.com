@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -32,7 +33,7 @@ OBJECTS=\
 	io.o \
 	clasn1.o
 
-include $(SRC)/lib/Makefile.lib
+include ../../../Makefile.lib
 include $(SRC)/lib/Makefile.rootfs
 
 SRCDIR=	../common

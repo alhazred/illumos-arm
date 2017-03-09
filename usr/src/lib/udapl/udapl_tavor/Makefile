@@ -20,11 +20,12 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
 
 ROOTUSR =	$(ROOT)/usr
 ROOTUSRSHARE =	$(ROOTUSR)/share

@@ -1,4 +1,5 @@
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -9,7 +10,7 @@ SQLITE_VERSION = 2.8.15-repcached
 
 VERS = .1
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 ENCODING  = ISO8859
 
@@ -35,8 +36,8 @@ install	:  TARGET= install
 all install:	sqlite.h $(SUBDIRS)
 clobber:	$(SUBDIRS)
 
-$(ROOTHDRDIR):
-	$(INS.dir)
+#$(ROOTHDRDIR):
+#	$(INS.dir)
 
 $(ROOTHDRDIR)/%: % $(ROOTHDRDIR)
 	$(INS.file)

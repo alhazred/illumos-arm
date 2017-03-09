@@ -24,12 +24,13 @@
 # Use is subject to license terms.
 #
 # Copyright 2015 RackTop Systems.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 all: $(PROG) $(DMODPROG)
 
-.NO_PARALLEL:
-.PARALLEL: $(OBJS) $(DMOD_OBJS)
+.NOTPARALLEL:
+.PARALLEL: $(OBJS) $(DMOD_OBJS) $(DMODLINTFILES)
 
 $(PROG): $(OBJS) $(APIMAP)
 	$(LINK.c) $(OBJS) -o $@ $(LDLIBS)
@@ -58,19 +59,19 @@ clobber: clean
 
 install_h:
 
-$(ROOTPLUGINDIR)/%: $(PROG)
+$(ROOTPLUGINDIR)/%: $(PROG) $(ROOTPLUGINDIR)
 	$(RM) $@; $(LN) -s $< $@
 
-$(ROOTPLUGINDIR64)/%: $(PROG)
+$(ROOTPLUGINDIR64)/%: $(PROG) $(ROOTPLUGINDIR64)
 	$(RM) $@; $(LN) -s $< $@
 
-$(ROOTPROG): $$(@D) $(PROG)
+$(ROOTPROG): %/$(PROG) : $(PROG) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(PROG)
 
-$(ROOTPROG64): $$(@D) $(PROG)
+$(ROOTPROG64): %/$(PROG) : $(PROG) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(PROG)
 
-$(ROOTDMOD): $$(@D) $(DMODPROG)
+$(ROOTDMOD): %/$(DMODPROG) : $(ROOTDMOD) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(DMODPROG)
 
 include ../../../../Makefile.rootdirs

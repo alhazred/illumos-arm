@@ -1642,6 +1642,7 @@ $(OBJS_DIR)/%.o:		$(UTSBASE)/common/zmod/%.c
 ZLIB_OBJ_LDFLAGS_i386= -r -Breduce -M$(UTSBASE)/common/zmod/mapfile
 ZLIB_OBJ_LDFLAGS_sparc= -r -Breduce -M$(UTSBASE)/common/zmod/mapfile
 ZLIB_OBJ_LDFLAGS_aarch64= -r -d --version-script=$(UTSBASE)/common/zmod/mapfile
+ZLIB_OBJ_LDFLAGS_riscv64= -r -d --version-script=$(UTSBASE)/common/zmod/mapfile
 ZLIB_OBJ_LDFLAGS_alpha= -r -d --version-script=$(UTSBASE)/common/zmod/mapfile
 ZLIB_OBJ_LDFLAGS= $(ZLIB_OBJ_LDFLAGS_$(MACH))
 $(OBJS_DIR)/zlib_obj.o:		$(ZLIB_OBJS:%=$(OBJS_DIR)/%)

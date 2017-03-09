@@ -24,21 +24,22 @@
 #
 # Copyright 2016 RackTop Systems.
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-pics/%.o:	$(SRCDIR)/common/%.c
+pics/%.o:	$(SRCDIR)/common/%.c msg.h
 		$(COMPILE.c) -o $@ $<
 		$(POST_PROCESS_O)
 
-pics/%.o:	$(SGSCOMMON)/%.c
+pics/%.o:	$(SGSCOMMON)/%.c msg.h
 		$(COMPILE.c) -o $@ $<
 		$(POST_PROCESS_O)
 
-pics/%32.o:	$(SRCDIR)/common/%.c
+pics/%32.o:	$(SRCDIR)/common/%.c msg.h
 		$(COMPILE.c) -o $@ $<
 		$(POST_PROCESS_O)
 
-pics/%64.o:	$(SRCDIR)/common/%.c
+pics/%64.o:	$(SRCDIR)/common/%.c msg.h
 		$(COMPILE.c) -D_ELF64 -o $@ $<
 		$(POST_PROCESS_O)
 
@@ -61,6 +62,6 @@ chkmsg:		$(LIBSRCS) $(CHKSRCS)
 		sh $(CHKMSG) $(CHKMSGFLAGS) $(LIBSRCS) $(CHKSRCS)
 
 $(BLTDEFS) + \
-$(BLTDATA) + \
+$(BLTDATA)  \
 $(BLTMESG):	$(SGSMSGALL)
 		$(SGSMSG) $(SGSMSGFLAGS) $(SGSMSGALL)

@@ -21,6 +21,7 @@
 #
 # Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 
@@ -80,13 +81,13 @@ CPPFLAGS += -DDEBUG
 CPPFLAGS += $(INCS)
 
 LDFLAGS += $(ZNOLAZYLOAD)
-LDFLAGS += '-R$$ORIGIN' '-R$$ORIGIN/..'
+LDFLAGS += -R/usr/lib/smbsrv
 LDLIBS += -L$(ROOT)/usr/lib/smbsrv
 LDLIBS += -lfksmbsrv -lfakekernel
 # prefer to keep libs ordered by dependence
 LDLIBS += -lmlsvc -lmlrpc -lsmbns -lsmb -lsmbfs -lgss
 LDLIBS += -lzfs -lbsm -lscf -lcmdutils -lsocket -lnsl -lumem
-$(PROG) :  LDLIBS += -lkrb5
+$(PROG) :  LDLIBS += -lkrb5 -L$(ROOT)/usr/lib/gss -lmech_krb5
 
 LINTFLAGS += -xerroff=E_NAME_DEF_NOT_USED2
 LINTFLAGS += -xerroff=E_NAME_USED_NOT_DEF2

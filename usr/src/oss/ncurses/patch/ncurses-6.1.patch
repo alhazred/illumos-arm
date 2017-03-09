@@ -1,0 +1,40 @@
+diff -cNr ../ncurses-6.1-orig/aclocal.m4 ./aclocal.m4
+*** ../ncurses-6.1-orig/aclocal.m4	2018-01-17 06:45:49.000000000 +0900
+--- ./aclocal.m4	2019-02-13 23:48:37.614753230 +0900
+***************
+*** 6236,6242 ****
+  			CC_SHARED_OPTS=$cf_shared_opts
+  			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -dy -G -h '$cf_cv_shared_soname' -o $[@]'
+  		else
+! 			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -dy -G -h '$cf_cv_shared_soname' -o $[@]'
+  		fi
+  		;;
+  	(sysv5uw7*|unix_sv*)
+--- 6236,6242 ----
+  			CC_SHARED_OPTS=$cf_shared_opts
+  			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -dy -G -h '$cf_cv_shared_soname' -o $[@]'
+  		else
+! 			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -h '$cf_cv_shared_soname' -o $[@]'
+  		fi
+  		;;
+  	(sysv5uw7*|unix_sv*)
+diff -cNr ../ncurses-6.1-orig/configure ./configure
+*** ../ncurses-6.1-orig/configure	2018-01-20 09:27:18.000000000 +0900
+--- ./configure	2019-02-13 23:49:04.383793000 +0900
+***************
+*** 6526,6532 ****
+  			CC_SHARED_OPTS=$cf_shared_opts
+  			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -dy -G -h '$cf_cv_shared_soname' -o $@'
+  		else
+! 			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -dy -G -h '$cf_cv_shared_soname' -o $@'
+  		fi
+  		;;
+  	(sysv5uw7*|unix_sv*)
+--- 6526,6532 ----
+  			CC_SHARED_OPTS=$cf_shared_opts
+  			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -dy -G -h '$cf_cv_shared_soname' -o $@'
+  		else
+! 			MK_SHARED_LIB='${CC} ${LDFLAGS} ${CFLAGS} -shared -h '$cf_cv_shared_soname' -o $@'
+  		fi
+  		;;
+  	(sysv5uw7*|unix_sv*)

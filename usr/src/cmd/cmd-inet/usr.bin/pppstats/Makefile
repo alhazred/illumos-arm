@@ -15,6 +15,7 @@ include		../../../Makefile.cmd
 
 PPPFLAGS +=	-DSTREAMS -DINTERNAL_BUILD -DSOL2
 CPPFLAGS +=	$(PPPFLAGS)
+CERRWARN +=	-_gcc=-Wno-unused-const-variable
 
 .KEEP_STATE:
 

@@ -19,11 +19,11 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2017 Hayashi Naoyuki
- */
-/*
  * Copyright 2017 Joyent Inc
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
+ */
+/*
+ * Copyright 2017 Hayashi Naoyuki
  */
 
 /*

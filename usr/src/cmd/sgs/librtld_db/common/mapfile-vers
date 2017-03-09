@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2003, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -66,22 +67,22 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	rd_get_dyns;
 	validate_rdebug32;
 
-$if _ELF64
+#$if _ELF64
 	_rd_get_dyns64;
 	_rd_get_ehdr64;
 	_rd_loadobj_iter64;
 	validate_rdebug64;
-$endif
+#$endif
 };
 
 #Externally defined symbols
-SYMBOL_SCOPE {
-    global:
-	ps_pauxv		{ FLAGS = NODIRECT PARENT };
-	ps_pdmodel		{ FLAGS = NODIRECT PARENT };
-	ps_pglobal_lookup	{ FLAGS = NODIRECT PARENT };
-	ps_pglobal_sym		{ FLAGS = NODIRECT PARENT };
-	ps_plog			{ FLAGS = NODIRECT PARENT };
-	ps_pread		{ FLAGS = NODIRECT PARENT };
-	ps_pwrite		{ FLAGS = NODIRECT PARENT };
-};
+#SYMBOL_SCOPE {
+#   global:
+#	ps_pauxv		{ FLAGS = NODIRECT PARENT };
+#	ps_pdmodel		{ FLAGS = NODIRECT PARENT };
+#	ps_pglobal_lookup	{ FLAGS = NODIRECT PARENT };
+#	ps_pglobal_sym		{ FLAGS = NODIRECT PARENT };
+#	ps_plog			{ FLAGS = NODIRECT PARENT };
+#	ps_pread		{ FLAGS = NODIRECT PARENT };
+#	ps_pwrite		{ FLAGS = NODIRECT PARENT };
+#};

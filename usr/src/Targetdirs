@@ -27,6 +27,7 @@
 # Copyright 2014 Garrett D'Amore <garrett@damore.org>
 # Copyright 2016 Hans Rosenfeld <rosenfeld@grumpf.hope-2000.org>
 # Copyright 2017 Nexenta Systems, Inc.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2017 RackTop Systems.
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
 # Copyright 2020 Joyent, Inc.
@@ -39,14 +40,25 @@
 #
 
 DIRLINKS=	$(SYM.DIRS)
+ifneq ($(MACH),$(MACH64))
 $(BUILD64)	DIRLINKS += $(SYM.DIRS64)
+endif
+
+FILELINKS= $(SYM.DEV)
 
 TARGETDIRS=	$(DIRS)
+ifneq ($(MACH),$(MACH64))
 $(BUILD64)	TARGETDIRS += $(DIRS64)
+endif
 
 TARGETDIRS	+= $(FILELINKS) $(DIRLINKS)
 
 i386_DIRS=			\
+	/usr/lib/inet/$(MACH32) \
+	/usr/bin/$(MACH32)	\
+	/usr/lib/rcap/$(MACH32) \
+	/usr/sbin/$(MACH32) \
+	$(MACH32_DIRS) \
 	/boot/acpi		\
 	/boot/acpi/tables	\
 	/boot/grub		\
@@ -57,12 +69,39 @@ i386_DIRS=			\
 	/usr/lib/xen/bin
 
 sparc_DIRS=				\
+	/usr/lib/inet/$(MACH32)		\
+	/usr/bin/$(MACH32)		\
+	/usr/lib/rcap/$(MACH32) \
+	/usr/sbin/$(MACH32) \
+	$(MACH32_DIRS) \
 	/usr/lib/ldoms
 
 sparc_64ONLY= $(POUND_SIGN)
 64ONLY=  $($(MACH)_64ONLY)
 
-$(64ONLY) MACH32_DIRS=/usr/ucb/$(MACH32)
+aarch64_DIRS=				\
+	/usr/lib/inet/$(MACH)		\
+	/usr/bin/$(MACH)		\
+	/usr/lib/rcap/$(MACH)		\
+	/usr/sbin/$(MACH)
+
+riscv64_DIRS=				\
+	/usr/lib/inet/$(MACH)		\
+	/usr/bin/$(MACH)		\
+	/usr/lib/rcap/$(MACH)		\
+	/usr/sbin/$(MACH)
+
+alpha_DIRS=				\
+	/usr/lib/inet/$(MACH)		\
+	/usr/bin/$(MACH)		\
+	/usr/lib/rcap/$(MACH)		\
+	/usr/sbin/$(MACH)
+
+ifeq ($(MACH),$(MACH64))
+$(MACH)_DIRS += /usr/ucb/$(MACH)
+else
+$(64ONLY)MACH32_DIRS=/usr/ucb/$(MACH32)
+endif
 
 PYTHON2_DIRS=
 PYTHON2_64DIRS=
@@ -93,9 +132,11 @@ DIRS= \
 	/boot/solaris/bin \
 	$($(MACH)_DIRS) \
 	/dev \
+	/dev/cpu/self \
 	/dev/dsk \
 	/dev/fd \
 	/dev/ipnet \
+	/dev/md \
 	/dev/net \
 	/dev/rdsk \
 	/dev/rmt \
@@ -239,7 +280,6 @@ DIRS= \
 	/usr/ast \
 	/usr/ast/bin \
 	/usr/bin \
-	/usr/bin/$(MACH32) \
 	/usr/ccs \
 	/usr/ccs/bin \
 	/usr/ccs/lib \
@@ -306,7 +346,7 @@ DIRS= \
 	/usr/lib/pool \
 	$(PYTHON2_DIRS) \
 	/usr/lib/rcap \
-	/usr/lib/rcap/$(MACH32) \
+	/usr/lib/reparse \
 	/usr/lib/sa  \
 	/usr/lib/saf \
 	/usr/lib/sasl \
@@ -326,7 +366,6 @@ DIRS= \
 	/usr/sadm/install/bin \
 	/usr/sadm/install/scripts \
 	/usr/sbin \
-	/usr/sbin/$(MACH32) \
 	/usr/share  \
 	/usr/share/applications \
 	/usr/share/audio \
@@ -344,7 +383,6 @@ DIRS= \
 	/usr/share/man \
 	/usr/share/src \
 	/usr/ucb \
-	$(MACH32_DIRS) \
 	/usr/ucblib \
 	/usr/xpg4 \
 	/usr/xpg4/bin \
@@ -492,34 +530,85 @@ DIRS64= \
 # /usr/src/Makefile because of the colon in its name.
 
 # macros for symbolic links
+sparc_SYM.DIRS= \
+	/lib/32 \
+	/lib/crypto/32 \
+	/lib/secure/32 \
+	/usr/lib/32 \
+	/usr/lib/elfedit/32 \
+	/usr/lib/lwp/32 \
+	/usr/lib/link_audit/32 \
+	/usr/lib/secure/32 \
+	/usr/ucblib/32 \
+	/var/ld/32
+
+i386_SYM.DIRS= \
+	/lib/32 \
+	/lib/crypto/32 \
+	/lib/secure/32 \
+	/usr/lib/32 \
+	/usr/lib/elfedit/32 \
+	/usr/lib/lwp/32 \
+	/usr/lib/link_audit/32 \
+	/usr/lib/secure/32 \
+	/usr/ucblib/32 \
+	/var/ld/32
+
+aarch64_SYM.DIRS= \
+	/lib/64 \
+	/lib/crypto/64 \
+	/lib/secure/64 \
+	/usr/lib/64 \
+	/usr/lib/elfedit/64 \
+	/usr/lib/lwp/64 \
+	/usr/lib/link_audit/64 \
+	/usr/lib/secure/64 \
+	/usr/ucblib/64 \
+	/var/ld/64
+
+riscv64_SYM.DIRS= \
+	/lib/64 \
+	/lib/crypto/64 \
+	/lib/secure/64 \
+	/usr/lib/64 \
+	/usr/lib/elfedit/64 \
+	/usr/lib/lwp/64 \
+	/usr/lib/link_audit/64 \
+	/usr/lib/secure/64 \
+	/usr/ucblib/64 \
+	/var/ld/64
+
+alpha_SYM.DIRS= \
+	/lib/64 \
+	/lib/crypto/64 \
+	/lib/secure/64 \
+	/usr/lib/64 \
+	/usr/lib/elfedit/64 \
+	/usr/lib/lwp/64 \
+	/usr/lib/link_audit/64 \
+	/usr/lib/secure/64 \
+	/usr/ucblib/64 \
+	/var/ld/64
+
 SYM.DIRS= \
+	$($(MACH)_SYM.DIRS) \
 	/bin \
 	/dev/stdin \
 	/dev/stdout \
 	/dev/stderr \
 	/etc/log \
-	/lib/32 \
-	/lib/crypto/32 \
-	/lib/secure/32 \
 	/usr/adm \
 	/usr/spool \
 	/usr/lib/tmac \
 	/usr/ccs/lib/link_audit \
 	/usr/news \
 	/usr/preserve \
-	/usr/lib/32 \
 	/usr/lib/cron \
-	/usr/lib/elfedit/32 \
-	/usr/lib/lwp/32 \
-	/usr/lib/link_audit/32 \
-	/usr/lib/secure/32 \
 	/usr/mail \
 	/usr/man \
 	/usr/pub \
 	/usr/src \
-	/usr/tmp \
-	/usr/ucblib/32 \
-	/var/ld/32
+	/usr/tmp
 
 sparc_SYM.DIRS64=
 
@@ -555,9 +644,9 @@ ROOTDIRS=	$(TARGETDIRS:%=$(ROOT)%)
 #
 
 $(ROOT)/var/adm \
-$(ROOT)/var/adm/sa :=		DIRMODE= 775
+$(ROOT)/var/adm/sa : 		DIRMODE= 775
 
-$(ROOT)/var/spool/lp:=		DIRMODE= 775
+$(ROOT)/var/spool/lp: 		DIRMODE= 775
 
 # file mode
 #
@@ -566,11 +655,11 @@ $(ROOT)/var/krb5/rcache \
 $(ROOT)/var/preserve \
 $(ROOT)/var/spool/pkg \
 $(ROOT)/var/spool/uucppublic \
-$(ROOT)/var/tmp:=	DIRMODE= 1777
+$(ROOT)/var/tmp: 	DIRMODE= 1777
 
-$(ROOT)/root:=		DIRMODE= 700
+$(ROOT)/root: 		DIRMODE= 700
 
-$(ROOT)/var/krb5/rcache/root:=	DIRMODE= 700
+$(ROOT)/var/krb5/rcache/root: 	DIRMODE= 700
 
 
 #
@@ -579,7 +668,7 @@ $(ROOT)/var/krb5/rcache/root:=	DIRMODE= 700
 #
 $(ROOT)/var/sadm/pkg \
 $(ROOT)/var/sadm/security \
-$(ROOT)/var/sadm/install/logs :=	DIRMODE= 555
+$(ROOT)/var/sadm/install/logs : 	DIRMODE= 555
 
 
 #
@@ -587,65 +676,471 @@ $(ROOT)/var/sadm/install/logs :=	DIRMODE= 555
 # internally by fdfs and autofs.
 #
 $(ROOT)/dev/fd \
-$(ROOT)/home:=		DIRMODE= 555
+$(ROOT)/home: 		DIRMODE= 555
 
-$(ROOT)/var/mail:=	DIRMODE=1777
+$(ROOT)/var/mail: 	DIRMODE=1777
 
-$(ROOT)/proc:=		DIRMODE= 555
+$(ROOT)/proc: 		DIRMODE= 555
 
-$(ROOT)/system/boot:=		DIRMODE= 555
-$(ROOT)/system/contract:=	DIRMODE= 555
-$(ROOT)/system/object:=		DIRMODE= 555
+$(ROOT)/system/boot: 		DIRMODE= 555
+$(ROOT)/system/contract: 	DIRMODE= 555
+$(ROOT)/system/object: 		DIRMODE= 555
 
 # symlink assignments, LINKDEST is the value of the symlink
 #
-$(ROOT)/usr/lib/cron:=			LINKDEST=../../etc/cron.d
-$(ROOT)/bin:=				LINKDEST=usr/bin
-$(ROOT)/lib/32:=			LINKDEST=.
-$(ROOT)/lib/crypto/32:=			LINKDEST=.
-$(ROOT)/lib/secure/32:=			LINKDEST=.
-$(ROOT)/dev/stdin:=			LINKDEST=fd/0
-$(ROOT)/dev/stdout:=			LINKDEST=fd/1
-$(ROOT)/dev/stderr:=			LINKDEST=fd/2
-$(ROOT)/usr/pub:=			LINKDEST=share/lib/pub
-$(ROOT)/usr/man:=			LINKDEST=share/man
-$(ROOT)/usr/src:=			LINKDEST=share/src
-$(ROOT)/usr/adm:=			LINKDEST=../var/adm
-$(ROOT)/etc/log:=			LINKDEST=../var/adm/log
-$(ROOT)/usr/mail:=			LINKDEST=../var/mail
-$(ROOT)/usr/news:=			LINKDEST=../var/news
-$(ROOT)/usr/preserve:=			LINKDEST=../var/preserve
-$(ROOT)/usr/spool:=			LINKDEST=../var/spool
-$(ROOT)/usr/tmp:=			LINKDEST=../var/tmp
-$(ROOT)/usr/lib/tmac:=			LINKDEST=../share/lib/tmac
-$(ROOT)/usr/lib/32:=			LINKDEST=.
-$(ROOT)/usr/lib/elfedit/32:=		LINKDEST=.
-$(ROOT)/usr/lib/lwp/32:=		LINKDEST=.
-$(ROOT)/usr/lib/link_audit/32:=		LINKDEST=.
-$(ROOT)/usr/lib/secure/32:=		LINKDEST=.
-$(ROOT)/usr/ccs/lib/link_audit:=	LINKDEST=../../lib/link_audit
-$(ROOT)/var/ld/32:=			LINKDEST=.
-$(ROOT)/usr/ucblib/32:=			LINKDEST=.
+$(ROOT)/usr/lib/cron: 			LINKDEST=../../etc/cron.d
+$(ROOT)/bin: 				LINKDEST=usr/bin
+$(ROOT)/lib/32: 			LINKDEST=.
+$(ROOT)/lib/crypto/32: 			LINKDEST=.
+$(ROOT)/lib/secure/32: 			LINKDEST=.
+$(ROOT)/dev/stdin: 			LINKDEST=fd/0
+$(ROOT)/dev/stdout: 			LINKDEST=fd/1
+$(ROOT)/dev/stderr: 			LINKDEST=fd/2
+$(ROOT)/usr/pub: 			LINKDEST=share/lib/pub
+$(ROOT)/usr/man: 			LINKDEST=share/man
+$(ROOT)/usr/src: 			LINKDEST=share/src
+$(ROOT)/usr/adm: 			LINKDEST=../var/adm
+$(ROOT)/etc/log: 			LINKDEST=../var/adm/log
+$(ROOT)/usr/mail: 			LINKDEST=../var/mail
+$(ROOT)/usr/news: 			LINKDEST=../var/news
+$(ROOT)/usr/preserve: 			LINKDEST=../var/preserve
+$(ROOT)/usr/spool: 			LINKDEST=../var/spool
+$(ROOT)/usr/tmp: 			LINKDEST=../var/tmp
+$(ROOT)/usr/lib/tmac: 			LINKDEST=../share/lib/tmac
+$(ROOT)/usr/lib/32: 			LINKDEST=.
+$(ROOT)/usr/lib/elfedit/32: 		LINKDEST=.
+$(ROOT)/usr/lib/lwp/32: 		LINKDEST=.
+$(ROOT)/usr/lib/link_audit/32: 		LINKDEST=.
+$(ROOT)/usr/lib/secure/32: 		LINKDEST=.
+$(ROOT)/usr/ccs/lib/link_audit: 	LINKDEST=../../lib/link_audit
+$(ROOT)/var/ld/32: 			LINKDEST=.
+$(ROOT)/usr/ucblib/32: 			LINKDEST=.
 
-
-$(BUILD64) $(ROOT)/lib/64:=		LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/lib/crypto/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/lib/secure/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/lib/64:=		LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/lib/elfedit/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/lib/brand/sn1/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/lib/brand/solaris10/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/lib/lwp/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/lib/link_audit/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/lib/secure/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/lib/security/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/xpg4/lib/64:=	LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/var/ld/64:=		LINKDEST=$(MACH64)
-$(BUILD64) $(ROOT)/usr/ucblib/64:=	LINKDEST=$(MACH64)
+ifneq ($(MACH),$(MACH64))
+$(BUILD64) $(ROOT)/lib/64: 		LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/lib/crypto/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/lib/secure/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/lib/64: 		LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/lib/elfedit/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/lib/brand/sn1/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/lib/brand/solaris10/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/lib/lwp/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/lib/link_audit/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/lib/secure/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/lib/security/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/xpg4/lib/64: 	LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/var/ld/64: 		LINKDEST=$(MACH64)
+$(BUILD64) $(ROOT)/usr/ucblib/64: 	LINKDEST=$(MACH64)
+else
+$(ROOT)/lib/64: 			LINKDEST=.
+$(ROOT)/lib/crypto/64: 			LINKDEST=.
+$(ROOT)/lib/secure/64: 			LINKDEST=.
+$(ROOT)/usr/lib/64: 			LINKDEST=.
+$(ROOT)/usr/lib/elfedit/64: 		LINKDEST=.
+$(ROOT)/usr/lib/brand/sn1/64: 		LINKDEST=.
+$(ROOT)/usr/lib/brand/solaris10/64: 	LINKDEST=.
+$(ROOT)/usr/lib/lwp/64: 		LINKDEST=.
+$(ROOT)/usr/lib/link_audit/64: 		LINKDEST=.
+$(ROOT)/usr/lib/secure/64: 		LINKDEST=.
+$(ROOT)/usr/lib/security/64: 		LINKDEST=.
+$(ROOT)/usr/xpg4/lib/64: 		LINKDEST=.
+$(ROOT)/var/ld/64: 			LINKDEST=.
+$(ROOT)/usr/ucblib/64: 			LINKDEST=.
+endif
 
 #
 # Installing a directory symlink calls for overriding INS.dir to install
 # a symlink.
 #
-$(DIRLINKS:%=$(ROOT)%):= \
+$(DIRLINKS:%=$(ROOT)%):  \
    INS.dir= -$(RM) -r $@; $(SYMLINK) $(LINKDEST) $@
+
+SYM.DEV= \
+	/dev/allkmem \
+	/dev/arp \
+	/dev/bl \
+	/dev/bmc \
+	/dev/bpf \
+	/dev/bridgectl \
+	/dev/conslog \
+	/dev/console \
+	/dev/cpu/self/cpuid \
+	/dev/crypto \
+	/dev/cryptoadm \
+	/dev/dld \
+	/dev/dump \
+	/dev/ecpp0 \
+	/dev/fm \
+	/dev/fssnapctl \
+	/dev/icmp \
+	/dev/icmp6 \
+	/dev/ip \
+	/dev/ip6 \
+	/dev/ipauth \
+	/dev/ipf \
+	/dev/ipl \
+	/dev/iplookup \
+	/dev/ipmpstub \
+	/dev/ipnat \
+	/dev/ipscan \
+	/dev/ipsecah \
+	/dev/ipsecesp \
+	/dev/ipstate \
+	/dev/ipsync \
+	/dev/kbd \
+	/dev/keysock \
+	/dev/kmdb \
+	/dev/kmem \
+	/dev/kssl \
+	/dev/kstat \
+	/dev/ksyms \
+	/dev/llc1 \
+	/dev/lo0 \
+	/dev/lockstat \
+	/dev/lofictl \
+	/dev/log \
+	/dev/logindmux \
+	/dev/lp1 \
+	/dev/md/admin \
+	/dev/mem \
+	/dev/mouse \
+	/dev/msglog \
+	/dev/nsmb \
+	/dev/null \
+	/dev/openprom \
+	/dev/physmem \
+	/dev/pm \
+	/dev/poll \
+	/dev/pool \
+	/dev/poolctl \
+	/dev/ppm \
+	/dev/ptmajor \
+	/dev/ptmx \
+	/dev/ptyp0 \
+	/dev/ptyp1 \
+	/dev/ptyp2 \
+	/dev/ptyp3 \
+	/dev/ptyp4 \
+	/dev/ptyp5 \
+	/dev/ptyp6 \
+	/dev/ptyp7 \
+	/dev/ptyp8 \
+	/dev/ptyp9 \
+	/dev/ptypa \
+	/dev/ptypb \
+	/dev/ptypc \
+	/dev/ptypd \
+	/dev/ptype \
+	/dev/ptypf \
+	/dev/ptyq0 \
+	/dev/ptyq1 \
+	/dev/ptyq2 \
+	/dev/ptyq3 \
+	/dev/ptyq4 \
+	/dev/ptyq5 \
+	/dev/ptyq6 \
+	/dev/ptyq7 \
+	/dev/ptyq8 \
+	/dev/ptyq9 \
+	/dev/ptyqa \
+	/dev/ptyqb \
+	/dev/ptyqc \
+	/dev/ptyqd \
+	/dev/ptyqe \
+	/dev/ptyqf \
+	/dev/ptyr0 \
+	/dev/ptyr1 \
+	/dev/ptyr2 \
+	/dev/ptyr3 \
+	/dev/ptyr4 \
+	/dev/ptyr5 \
+	/dev/ptyr6 \
+	/dev/ptyr7 \
+	/dev/ptyr8 \
+	/dev/ptyr9 \
+	/dev/ptyra \
+	/dev/ptyrb \
+	/dev/ptyrc \
+	/dev/ptyrd \
+	/dev/ptyre \
+	/dev/ptyrf \
+	/dev/ramdiskctl \
+	/dev/random \
+	/dev/rawip \
+	/dev/rawip6 \
+	/dev/rds \
+	/dev/rts \
+	/dev/sad/admin \
+	/dev/sad/user \
+	/dev/sdpib \
+	/dev/spdsock \
+	/dev/sppp \
+	/dev/sppptun \
+	/dev/srn \
+	/dev/syscon \
+	/dev/sysevent \
+	/dev/sysmsg \
+	/dev/systty \
+	/dev/tcp \
+	/dev/tcp6 \
+	/dev/ticlts \
+	/dev/ticots \
+	/dev/ticotsord \
+	/dev/tty \
+	/dev/ttyp0 \
+	/dev/ttyp1 \
+	/dev/ttyp2 \
+	/dev/ttyp3 \
+	/dev/ttyp4 \
+	/dev/ttyp5 \
+	/dev/ttyp6 \
+	/dev/ttyp7 \
+	/dev/ttyp8 \
+	/dev/ttyp9 \
+	/dev/ttypa \
+	/dev/ttypb \
+	/dev/ttypc \
+	/dev/ttypd \
+	/dev/ttype \
+	/dev/ttypf \
+	/dev/ttyq0 \
+	/dev/ttyq1 \
+	/dev/ttyq2 \
+	/dev/ttyq3 \
+	/dev/ttyq4 \
+	/dev/ttyq5 \
+	/dev/ttyq6 \
+	/dev/ttyq7 \
+	/dev/ttyq8 \
+	/dev/ttyq9 \
+	/dev/ttyqa \
+	/dev/ttyqb \
+	/dev/ttyqc \
+	/dev/ttyqd \
+	/dev/ttyqe \
+	/dev/ttyqf \
+	/dev/ttyr0 \
+	/dev/ttyr1 \
+	/dev/ttyr2 \
+	/dev/ttyr3 \
+	/dev/ttyr4 \
+	/dev/ttyr5 \
+	/dev/ttyr6 \
+	/dev/ttyr7 \
+	/dev/ttyr8 \
+	/dev/ttyr9 \
+	/dev/ttyra \
+	/dev/ttyrb \
+	/dev/ttyrc \
+	/dev/ttyrd \
+	/dev/ttyre \
+	/dev/ttyrf \
+	/dev/udp \
+	/dev/udp6 \
+	/dev/urandom \
+	/dev/vni \
+	/dev/winlock \
+	/dev/wscons \
+	/dev/xsvc \
+	/dev/zero \
+	/dev/zfs
+
+$(ROOT)/dev/allkmem:	REALPATH=../devices/pseudo/mm@0\:allkmem
+$(ROOT)/dev/arp:	REALPATH=../devices/pseudo/arp@0\:arp
+$(ROOT)/dev/bl:		REALPATH=../devices/pseudo/bl@0\:bl
+$(ROOT)/dev/bmc:	REALPATH=../devices/pseudo/bmc@0\:bmc
+$(ROOT)/dev/bpf:	REALPATH=../devices/pseudo/bpf@0\:bpf
+$(ROOT)/dev/bridgectl:	REALPATH=../devices/pseudo/clone@0\:bridge
+$(ROOT)/dev/conslog:	REALPATH=../devices/pseudo/log@0\:conslog
+$(ROOT)/dev/console:	REALPATH=../devices/pseudo/cn@0\:console
+$(ROOT)/dev/cpu/self/cpuid:	REALPATH=../../../devices/pseudo/cpuid@0\:self
+$(ROOT)/dev/crypto:	REALPATH=../devices/pseudo/crypto@0\:crypto
+$(ROOT)/dev/cryptoadm:	REALPATH=../devices/pseudo/cryptoadm@0\:cryptoadm
+$(ROOT)/dev/dld:	REALPATH=../devices/pseudo/dld@0\:ctl
+$(ROOT)/dev/dump:	REALPATH=../devices/pseudo/dump@0\:dump
+$(ROOT)/dev/ecpp0:	REALPATH=../devices/pci@0,0/isa@1/lp@1,378\:ecpp0
+$(ROOT)/dev/fm:		REALPATH=../devices/pseudo/fm@0\:fm
+$(ROOT)/dev/fssnapctl:	REALPATH=../devices/pseudo/fssnap@0\:ctl
+$(ROOT)/dev/icmp:	REALPATH=../devices/pseudo/icmp@0\:icmp
+$(ROOT)/dev/icmp6:	REALPATH=../devices/pseudo/icmp6@0\:icmp6
+$(ROOT)/dev/ip:		REALPATH=../devices/pseudo/ip@0\:ip
+$(ROOT)/dev/ip6:	REALPATH=../devices/pseudo/ip6@0\:ip6
+$(ROOT)/dev/ipauth:	REALPATH=../devices/pseudo/ipf@0\:ipauth
+$(ROOT)/dev/ipf:	REALPATH=../devices/pseudo/ipf@0\:ipf
+$(ROOT)/dev/ipl:	REALPATH=../devices/pseudo/ipf@0\:ipf
+$(ROOT)/dev/iplookup:	REALPATH=../devices/pseudo/ipf@0\:iplookup
+$(ROOT)/dev/ipmpstub:	REALPATH=../devices/pseudo/dlpistub@0\:ipmpstub
+$(ROOT)/dev/ipnat:	REALPATH=../devices/pseudo/ipf@0\:ipnat
+$(ROOT)/dev/ipscan:	REALPATH=../devices/pseudo/ipf@0\:ipscan
+$(ROOT)/dev/ipsecah:	REALPATH=../devices/pseudo/ipsecah@0\:ipsecah
+$(ROOT)/dev/ipsecesp:	REALPATH=../devices/pseudo/ipsecesp@0\:ipsecesp
+$(ROOT)/dev/ipstate:	REALPATH=../devices/pseudo/ipf@0\:ipstate
+$(ROOT)/dev/ipsync:	REALPATH=../devices/pseudo/ipf@0\:ipsync
+$(ROOT)/dev/kbd:	REALPATH=../devices/pseudo/conskbd@0\:kbd
+$(ROOT)/dev/keysock:	REALPATH=../devices/pseudo/keysock@0\:keysock
+$(ROOT)/dev/kmdb:	REALPATH=../devices/pseudo/kmdb@0\:kmdb
+$(ROOT)/dev/kmem:	REALPATH=../devices/pseudo/mm@0\:kmem
+$(ROOT)/dev/kssl:	REALPATH=../devices/pseudo/kssl@0\:kssl
+$(ROOT)/dev/kstat:	REALPATH=../devices/pseudo/kstat@0\:kstat
+$(ROOT)/dev/ksyms:	REALPATH=../devices/pseudo/ksyms@0\:ksyms
+$(ROOT)/dev/llc1:	REALPATH=../devices/pseudo/clone@0\:llc1
+$(ROOT)/dev/lo0:	REALPATH=../devices/pseudo/ipnet@0\:lo0
+$(ROOT)/dev/lockstat:	REALPATH=../devices/pseudo/lockstat@0\:lockstat
+$(ROOT)/dev/lofictl:	REALPATH=../devices/pseudo/lofi@0\:ctl
+$(ROOT)/dev/log:	REALPATH=../devices/pseudo/log@0\:log
+$(ROOT)/dev/logindmux:	REALPATH=../devices/pseudo/clone@0\:logindmux
+$(ROOT)/dev/lp1:	REALPATH=../devices/pci@0,0/isa@1/lp@1,378\:ecpp0
+$(ROOT)/dev/md/admin:	REALPATH=../../devices/pseudo/md@0\:admin
+$(ROOT)/dev/mem:	REALPATH=../devices/pseudo/mm@0\:mem
+$(ROOT)/dev/mouse:	REALPATH=../devices/pseudo/consms@0\:mouse
+$(ROOT)/dev/msglog:	REALPATH=../devices/pseudo/sysmsg@0\:msglog
+$(ROOT)/dev/nsmb:	REALPATH=../devices/pseudo/nsmb@0\:nsmb
+$(ROOT)/dev/null:	REALPATH=../devices/pseudo/mm@0\:null
+$(ROOT)/dev/openprom:	REALPATH=../devices/pseudo/openeepr@0\:openprom
+$(ROOT)/dev/physmem:	REALPATH=../devices/pseudo/physmem@0\:physmem
+$(ROOT)/dev/pm:		REALPATH=../devices/pseudo/pm@0\:pm
+$(ROOT)/dev/poll:	REALPATH=../devices/pseudo/poll@0\:poll
+$(ROOT)/dev/pool:	REALPATH=../devices/pseudo/pool@0\:pool
+$(ROOT)/dev/poolctl:	REALPATH=../devices/pseudo/pool@0\:poolctl
+$(ROOT)/dev/ppm:	REALPATH=../devices/pseudo/ppm@0\:ppm
+$(ROOT)/dev/ptmajor:	REALPATH=../devices/pseudo/ptm@0\:ptmajor
+$(ROOT)/dev/ptmx:	REALPATH=../devices/pseudo/clone@0\:ptm
+$(ROOT)/dev/ptyp0:	REALPATH=../devices/pseudo/ptc@0\:ptyp0
+$(ROOT)/dev/ptyp1:	REALPATH=../devices/pseudo/ptc@0\:ptyp1
+$(ROOT)/dev/ptyp2:	REALPATH=../devices/pseudo/ptc@0\:ptyp2
+$(ROOT)/dev/ptyp3:	REALPATH=../devices/pseudo/ptc@0\:ptyp3
+$(ROOT)/dev/ptyp4:	REALPATH=../devices/pseudo/ptc@0\:ptyp4
+$(ROOT)/dev/ptyp5:	REALPATH=../devices/pseudo/ptc@0\:ptyp5
+$(ROOT)/dev/ptyp6:	REALPATH=../devices/pseudo/ptc@0\:ptyp6
+$(ROOT)/dev/ptyp7:	REALPATH=../devices/pseudo/ptc@0\:ptyp7
+$(ROOT)/dev/ptyp8:	REALPATH=../devices/pseudo/ptc@0\:ptyp8
+$(ROOT)/dev/ptyp9:	REALPATH=../devices/pseudo/ptc@0\:ptyp9
+$(ROOT)/dev/ptypa:	REALPATH=../devices/pseudo/ptc@0\:ptypa
+$(ROOT)/dev/ptypb:	REALPATH=../devices/pseudo/ptc@0\:ptypb
+$(ROOT)/dev/ptypc:	REALPATH=../devices/pseudo/ptc@0\:ptypc
+$(ROOT)/dev/ptypd:	REALPATH=../devices/pseudo/ptc@0\:ptypd
+$(ROOT)/dev/ptype:	REALPATH=../devices/pseudo/ptc@0\:ptype
+$(ROOT)/dev/ptypf:	REALPATH=../devices/pseudo/ptc@0\:ptypf
+$(ROOT)/dev/ptyq0:	REALPATH=../devices/pseudo/ptc@0\:ptyq0
+$(ROOT)/dev/ptyq1:	REALPATH=../devices/pseudo/ptc@0\:ptyq1
+$(ROOT)/dev/ptyq2:	REALPATH=../devices/pseudo/ptc@0\:ptyq2
+$(ROOT)/dev/ptyq3:	REALPATH=../devices/pseudo/ptc@0\:ptyq3
+$(ROOT)/dev/ptyq4:	REALPATH=../devices/pseudo/ptc@0\:ptyq4
+$(ROOT)/dev/ptyq5:	REALPATH=../devices/pseudo/ptc@0\:ptyq5
+$(ROOT)/dev/ptyq6:	REALPATH=../devices/pseudo/ptc@0\:ptyq6
+$(ROOT)/dev/ptyq7:	REALPATH=../devices/pseudo/ptc@0\:ptyq7
+$(ROOT)/dev/ptyq8:	REALPATH=../devices/pseudo/ptc@0\:ptyq8
+$(ROOT)/dev/ptyq9:	REALPATH=../devices/pseudo/ptc@0\:ptyq9
+$(ROOT)/dev/ptyqa:	REALPATH=../devices/pseudo/ptc@0\:ptyqa
+$(ROOT)/dev/ptyqb:	REALPATH=../devices/pseudo/ptc@0\:ptyqb
+$(ROOT)/dev/ptyqc:	REALPATH=../devices/pseudo/ptc@0\:ptyqc
+$(ROOT)/dev/ptyqd:	REALPATH=../devices/pseudo/ptc@0\:ptyqd
+$(ROOT)/dev/ptyqe:	REALPATH=../devices/pseudo/ptc@0\:ptyqe
+$(ROOT)/dev/ptyqf:	REALPATH=../devices/pseudo/ptc@0\:ptyqf
+$(ROOT)/dev/ptyr0:	REALPATH=../devices/pseudo/ptc@0\:ptyr0
+$(ROOT)/dev/ptyr1:	REALPATH=../devices/pseudo/ptc@0\:ptyr1
+$(ROOT)/dev/ptyr2:	REALPATH=../devices/pseudo/ptc@0\:ptyr2
+$(ROOT)/dev/ptyr3:	REALPATH=../devices/pseudo/ptc@0\:ptyr3
+$(ROOT)/dev/ptyr4:	REALPATH=../devices/pseudo/ptc@0\:ptyr4
+$(ROOT)/dev/ptyr5:	REALPATH=../devices/pseudo/ptc@0\:ptyr5
+$(ROOT)/dev/ptyr6:	REALPATH=../devices/pseudo/ptc@0\:ptyr6
+$(ROOT)/dev/ptyr7:	REALPATH=../devices/pseudo/ptc@0\:ptyr7
+$(ROOT)/dev/ptyr8:	REALPATH=../devices/pseudo/ptc@0\:ptyr8
+$(ROOT)/dev/ptyr9:	REALPATH=../devices/pseudo/ptc@0\:ptyr9
+$(ROOT)/dev/ptyra:	REALPATH=../devices/pseudo/ptc@0\:ptyra
+$(ROOT)/dev/ptyrb:	REALPATH=../devices/pseudo/ptc@0\:ptyrb
+$(ROOT)/dev/ptyrc:	REALPATH=../devices/pseudo/ptc@0\:ptyrc
+$(ROOT)/dev/ptyrd:	REALPATH=../devices/pseudo/ptc@0\:ptyrd
+$(ROOT)/dev/ptyre:	REALPATH=../devices/pseudo/ptc@0\:ptyre
+$(ROOT)/dev/ptyrf:	REALPATH=../devices/pseudo/ptc@0\:ptyrf
+$(ROOT)/dev/ramdiskctl:	REALPATH=../devices/pseudo/ramdisk@1024\:ctl
+$(ROOT)/dev/random:	REALPATH=../devices/pseudo/random@0\:random
+$(ROOT)/dev/rawip:	REALPATH=../devices/pseudo/icmp@0\:icmp
+$(ROOT)/dev/rawip6:	REALPATH=../devices/pseudo/icmp6@0\:icmp6
+$(ROOT)/dev/rds:	REALPATH=../devices/pseudo/rds@0\:rds
+$(ROOT)/dev/rts:	REALPATH=../devices/pseudo/rts@0\:rts
+$(ROOT)/dev/sad/admin:	REALPATH=../../devices/pseudo/sad@0\:admin
+$(ROOT)/dev/sad/user:	REALPATH=../../devices/pseudo/sad@0\:user
+$(ROOT)/dev/sdpib:	REALPATH=../devices/pseudo/sdpib@0\:sdpib
+$(ROOT)/dev/spdsock:	REALPATH=../devices/pseudo/spdsock@0\:spdsock
+$(ROOT)/dev/sppp:	REALPATH=../devices/pseudo/clone@0\:sppp
+$(ROOT)/dev/sppptun:	REALPATH=../devices/pseudo/clone@0\:sppptun
+$(ROOT)/dev/srn:	REALPATH=../devices/pseudo/srn@0\:srn
+$(ROOT)/dev/stderr:	REALPATH=./fd/2
+$(ROOT)/dev/stdin:	REALPATH=./fd/0
+$(ROOT)/dev/stdout:	REALPATH=./fd/1
+$(ROOT)/dev/syscon:	REALPATH=../devices/pseudo/cn@0\:syscon
+$(ROOT)/dev/sysevent:	REALPATH=../devices/pseudo/sysevent@0\:sysevent
+$(ROOT)/dev/sysmsg:	REALPATH=../devices/pseudo/sysmsg@0\:sysmsg
+$(ROOT)/dev/systty:	REALPATH=../devices/pseudo/cn@0\:systty
+$(ROOT)/dev/tcp:	REALPATH=../devices/pseudo/tcp@0\:tcp
+$(ROOT)/dev/tcp6:	REALPATH=../devices/pseudo/tcp6@0\:tcp6
+$(ROOT)/dev/ticlts:	REALPATH=../devices/pseudo/tl@0\:ticlts
+$(ROOT)/dev/ticots:	REALPATH=../devices/pseudo/tl@0\:ticots
+$(ROOT)/dev/ticotsord:	REALPATH=../devices/pseudo/tl@0\:ticotsord
+$(ROOT)/dev/tty:	REALPATH=../devices/pseudo/sy@0\:tty
+$(ROOT)/dev/ttyp0:	REALPATH=../devices/pseudo/ptsl@0\:ttyp0
+$(ROOT)/dev/ttyp1:	REALPATH=../devices/pseudo/ptsl@0\:ttyp1
+$(ROOT)/dev/ttyp2:	REALPATH=../devices/pseudo/ptsl@0\:ttyp2
+$(ROOT)/dev/ttyp3:	REALPATH=../devices/pseudo/ptsl@0\:ttyp3
+$(ROOT)/dev/ttyp4:	REALPATH=../devices/pseudo/ptsl@0\:ttyp4
+$(ROOT)/dev/ttyp5:	REALPATH=../devices/pseudo/ptsl@0\:ttyp5
+$(ROOT)/dev/ttyp6:	REALPATH=../devices/pseudo/ptsl@0\:ttyp6
+$(ROOT)/dev/ttyp7:	REALPATH=../devices/pseudo/ptsl@0\:ttyp7
+$(ROOT)/dev/ttyp8:	REALPATH=../devices/pseudo/ptsl@0\:ttyp8
+$(ROOT)/dev/ttyp9:	REALPATH=../devices/pseudo/ptsl@0\:ttyp9
+$(ROOT)/dev/ttypa:	REALPATH=../devices/pseudo/ptsl@0\:ttypa
+$(ROOT)/dev/ttypb:	REALPATH=../devices/pseudo/ptsl@0\:ttypb
+$(ROOT)/dev/ttypc:	REALPATH=../devices/pseudo/ptsl@0\:ttypc
+$(ROOT)/dev/ttypd:	REALPATH=../devices/pseudo/ptsl@0\:ttypd
+$(ROOT)/dev/ttype:	REALPATH=../devices/pseudo/ptsl@0\:ttype
+$(ROOT)/dev/ttypf:	REALPATH=../devices/pseudo/ptsl@0\:ttypf
+$(ROOT)/dev/ttyq0:	REALPATH=../devices/pseudo/ptsl@0\:ttyq0
+$(ROOT)/dev/ttyq1:	REALPATH=../devices/pseudo/ptsl@0\:ttyq1
+$(ROOT)/dev/ttyq2:	REALPATH=../devices/pseudo/ptsl@0\:ttyq2
+$(ROOT)/dev/ttyq3:	REALPATH=../devices/pseudo/ptsl@0\:ttyq3
+$(ROOT)/dev/ttyq4:	REALPATH=../devices/pseudo/ptsl@0\:ttyq4
+$(ROOT)/dev/ttyq5:	REALPATH=../devices/pseudo/ptsl@0\:ttyq5
+$(ROOT)/dev/ttyq6:	REALPATH=../devices/pseudo/ptsl@0\:ttyq6
+$(ROOT)/dev/ttyq7:	REALPATH=../devices/pseudo/ptsl@0\:ttyq7
+$(ROOT)/dev/ttyq8:	REALPATH=../devices/pseudo/ptsl@0\:ttyq8
+$(ROOT)/dev/ttyq9:	REALPATH=../devices/pseudo/ptsl@0\:ttyq9
+$(ROOT)/dev/ttyqa:	REALPATH=../devices/pseudo/ptsl@0\:ttyqa
+$(ROOT)/dev/ttyqb:	REALPATH=../devices/pseudo/ptsl@0\:ttyqb
+$(ROOT)/dev/ttyqc:	REALPATH=../devices/pseudo/ptsl@0\:ttyqc
+$(ROOT)/dev/ttyqd:	REALPATH=../devices/pseudo/ptsl@0\:ttyqd
+$(ROOT)/dev/ttyqe:	REALPATH=../devices/pseudo/ptsl@0\:ttyqe
+$(ROOT)/dev/ttyqf:	REALPATH=../devices/pseudo/ptsl@0\:ttyqf
+$(ROOT)/dev/ttyr0:	REALPATH=../devices/pseudo/ptsl@0\:ttyr0
+$(ROOT)/dev/ttyr1:	REALPATH=../devices/pseudo/ptsl@0\:ttyr1
+$(ROOT)/dev/ttyr2:	REALPATH=../devices/pseudo/ptsl@0\:ttyr2
+$(ROOT)/dev/ttyr3:	REALPATH=../devices/pseudo/ptsl@0\:ttyr3
+$(ROOT)/dev/ttyr4:	REALPATH=../devices/pseudo/ptsl@0\:ttyr4
+$(ROOT)/dev/ttyr5:	REALPATH=../devices/pseudo/ptsl@0\:ttyr5
+$(ROOT)/dev/ttyr6:	REALPATH=../devices/pseudo/ptsl@0\:ttyr6
+$(ROOT)/dev/ttyr7:	REALPATH=../devices/pseudo/ptsl@0\:ttyr7
+$(ROOT)/dev/ttyr8:	REALPATH=../devices/pseudo/ptsl@0\:ttyr8
+$(ROOT)/dev/ttyr9:	REALPATH=../devices/pseudo/ptsl@0\:ttyr9
+$(ROOT)/dev/ttyra:	REALPATH=../devices/pseudo/ptsl@0\:ttyra
+$(ROOT)/dev/ttyrb:	REALPATH=../devices/pseudo/ptsl@0\:ttyrb
+$(ROOT)/dev/ttyrc:	REALPATH=../devices/pseudo/ptsl@0\:ttyrc
+$(ROOT)/dev/ttyrd:	REALPATH=../devices/pseudo/ptsl@0\:ttyrd
+$(ROOT)/dev/ttyre:	REALPATH=../devices/pseudo/ptsl@0\:ttyre
+$(ROOT)/dev/ttyrf:	REALPATH=../devices/pseudo/ptsl@0\:ttyrf
+$(ROOT)/dev/udp:	REALPATH=../devices/pseudo/udp@0\:udp
+$(ROOT)/dev/udp6:	REALPATH=../devices/pseudo/udp6@0\:udp6
+$(ROOT)/dev/urandom:	REALPATH=../devices/pseudo/random@0\:urandom
+$(ROOT)/dev/vni:	REALPATH=../devices/pseudo/dlpistub@0\:vni
+$(ROOT)/dev/winlock:	REALPATH=../devices/pseudo/winlock@0\:winlock
+$(ROOT)/dev/wscons:	REALPATH=../devices/pseudo/wc@0\:wscons
+$(ROOT)/dev/xsvc:	REALPATH=../devices/xsvc@0,0\:xsvc
+$(ROOT)/dev/zero:	REALPATH=../devices/pseudo/mm@0\:zero
+$(ROOT)/dev/zfs:	REALPATH=../devices/pseudo/zfs@0\:zfs
+
+#
+# usr/src/Makefile uses INS.dir for any member of ROOTDIRS, the fact
+# these are symlinks to files has no bearing on this.
+#
+$(FILELINKS:%=$(ROOT)%):  \
+    INS.dir= -$(RM) $@; $(SYMLINK) $(REALPATH) $@
+

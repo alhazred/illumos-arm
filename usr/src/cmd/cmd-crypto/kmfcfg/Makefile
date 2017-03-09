@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -47,6 +48,7 @@ POFILES		= $(OBJS:%.o=%.po)
 POFILE		= $(PROG)_msg.po
 MSGFILES	= $(SRCS:%.c=%.i)
 
+CERRWARN	+= -_gcc=-Wno-switch
 CPPFLAGS	+= -I$(ADJUNCT_PROTO)/usr/include/libxml2 \
 		-I$(KMFDIR)/include -I.
 LDLIBS		+= -L$(ROOT)/usr/lib -lkmf -lcryptoutil

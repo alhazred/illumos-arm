@@ -12,6 +12,7 @@
 #
 # Copyright 2016 Nexenta Systems, Inc.  All rights reserved.
 # Copyright 2017 RackTop Systems.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2019 Joyent, Inc.
 #
 
@@ -39,7 +40,7 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	_curthread;
 	_curzone;
 
-	aok		{ FLAGS = NODIRECT };
+	aok		;
 	boot_time;
 	cmn_err;
 	copyin;
@@ -89,9 +90,9 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 
 	fm_panic;
 
-	fakekernel_cprintf	{ FLAGS = NODIRECT };
+	fakekernel_cprintf	;
 	fakekernel_init;
-	fakekernel_putlog	{ FLAGS = NODIRECT };
+	fakekernel_putlog	;
 
 	gethrestime;
 	gethrestime_sec;
@@ -135,7 +136,7 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 
 	ksocket_accept;
 	ksocket_bind;
-	ksocket_bind_helper	{ FLAGS = NODIRECT };
+	ksocket_bind_helper	;
 	ksocket_close;
 	ksocket_connect;
 	ksocket_getpeername;

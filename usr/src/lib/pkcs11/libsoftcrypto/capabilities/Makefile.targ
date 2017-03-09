@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -42,12 +43,12 @@
 #  ....
 #
 # The objects that made up these filtees are now combined into one relocatable
-# object, pics/objcap.o, using ../common/mapfile-cap.  This mapfile identifies
+# object, $(PICDIR)/objcap.o, using ../common/mapfile-cap.  This mapfile identifies
 # the machine hardware name, together with establishing the global symbols that
 # should be exported to define each family.
 #
 # This object capabilities relocatable object is then translated into a symbol
-# capabilities relocatable object, pics/symcap.o.
+# capabilities relocatable object, $(PICDIR)/symcap.o.
 #
 # The sun4u and sun4v families of symbol capabilities object are eventually
 # included in the final build of libsoftcrypto.so.1.
@@ -59,13 +60,13 @@ $(PICS):	pics
 # Combine all pic objects into one relocatable object.  Assign any capabilities
 # to this object, and define the interface.
 
-pics/objcap.o:	$(PICS) $(MAPFILE-CAP)
+$(PICDIR)/objcap.o:	$(PICS) $(MAPFILE-CAP)
 		$(LD) -r -o $@ $(MAPOPT-CAP) -Breduce $(PICS)
 
 # Convert the combined object capabilities object into a symbol capabilities
 # object.
 
-pics/symcap.o:	$(OBJCAP)
+$(PICDIR)/symcap.o:	$(OBJCAP)
 		$(LD) -r -o $@ -z symbolcap $(OBJCAP)
 
 include		../../../Makefile.targ

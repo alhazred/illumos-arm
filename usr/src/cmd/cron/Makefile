@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -34,7 +35,7 @@ MANIFEST =	cron.xml
 ROOTMANIFESTDIR = $(ROOTSVCSYSTEM)
 ROOTMETHOD =	$(ROOTLIBSVCMETHOD)/svc-cron
 
-CPPFLAGS +=	-D_FILE_OFFSET_BITS=64 -I $(SRC)/common/util
+CPPFLAGS +=	-D_FILE_OFFSET_BITS=64 $(CCYFLAG)$(SRC)/common/util
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	-_gcc=-Wno-unused-label
 CERRWARN +=	$(CNOWARN_UNINIT)
@@ -57,7 +58,7 @@ PROG2 =		at atq atrm crontab
 XPG6PROG =	crontab
 XPG4PROG =	at crontab
 PROG =		$(PROG1) $(PROG2)
-PARSETEST =	parsetest
+#PARSETEST =	parsetest
 
 SCRIPT =	batch
 XPG4SCRIPT =	batch.xpg4
@@ -85,7 +86,7 @@ COMMONOBJ2=	funcs.o
 COMMONOBJS=	$(COMMONOBJ1) $(COMMONOBJ2)
 CRONOBJS=	cron.o elm.o parse.o
 ATOBJS=		at.o att1.o att2.o
-XPG4OBJS=	values-xpg4.o
+#XPG4OBJS=	values-xpg4.o
 ATRMOBJS1=	atrm.o
 ATRMOBJS=	$(ATRMOBJS1) $(GETRESPOBJ)
 ATQOBJS=	atq.o
@@ -112,6 +113,15 @@ crontab : 	POBJS = $(CRONTABOBJS) $(COMMONOBJS)
 crontab.xpg4 : 	POBJS = $(XPG4CTOBJS) $(XPG4COMMONOBJS)
 crontab.xpg6 : 	POBJS = $(XPG6CTOBJS) $(XPG6COMMONOBJS)
 parsetest : 	POBJS = $(PARSETESTOBJS)
+
+cron : 		$(CRONOBJS) $(COMMONOBJ2)
+at : 		$(ATOBJS) $(COMMONOBJS)
+at.xpg4 : 	$(XPG4ATOBJS) $(XPG4COMMONOBJS)
+atrm : 		$(ATRMOBJS) $(COMMONOBJS)
+atq : 		$(ATQOBJS) $(COMMONOBJS)
+crontab : 	$(CRONTABOBJS) $(COMMONOBJS)
+crontab.xpg4 : 	$(XPG4CTOBJS) $(XPG4COMMONOBJS)
+crontab.xpg6 : 	$(XPG6CTOBJS) $(XPG6COMMONOBJS)
 
 CFLAGS += $(CCVERBOSE)
 
@@ -168,21 +178,24 @@ $(ROOTLIBSVCMETHOD)/svc-cron :  FILEMODE = 0555
 
 .KEEP_STATE:
 
+$(XPG4SCRIPT): %: %.sh
+	$(RM) $@; $(CAT) $(@:%=%.sh) > $@; $(CHMOD) +x $@
+
 all :		$(PROG) $(XPG4) $(XPG6) $(SCRIPT) $(XPG4SCRIPT) $(FILES) \
 		$(PARSETEST)
 
 install :	all $(ROOTPROG) $(ROOTETCDEFAULTFILES) $(ROOTSYMLINK) \
 		$(ROOTMANIFEST) $(ROOTMETHOD)
 
-$(PROG) $(PARSETEST):	$$(POBJS)
+$(PROG) $(PARSETEST):	$(POBJS)
 		$(LINK.c) $(POBJS) -o $@ $(LDLIBS)
 		$(POST_PROCESS)
 
-$(XPG4) :	objs.xpg4 $$(POBJS)
+$(XPG4) :	objs.xpg4 $(POBJS)
 		$(LINK.c) $(POBJS) -o $@ $(LDLIBS)
 		$(POST_PROCESS)
 
-$(XPG6) :	objs.xpg6 $$(POBJS)
+$(XPG6) :	objs.xpg6 $(POBJS)
 		$(LINK.c) $(POBJS) -o $@ $(LDLIBS)
 		$(POST_PROCESS)
 
@@ -235,6 +248,7 @@ check:		$(CHKMANIFEST)
 $(POFILE):	$(POFILES)
 	$(RM) $@; cat $(POFILES) > $@
 
+clobber: clean
 clean :
 		$(RM) $(OBJS) att1.h att1.c att2.c
 

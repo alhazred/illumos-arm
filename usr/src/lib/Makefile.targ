@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1989, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2019, Joyent, Inc.
 #
@@ -42,8 +43,10 @@ $(ROOTLIBDIR64)/$(DYNLIB) : 	FILEMODE= 755
 $(ROOTLIBDIR64)/$(DYNLIBCCC) : 	FILEMODE= 755
 
 # install rules
-$(ROOTHDRDIR)/%: $(HDRDIR)/%
+$(ROOTHDRDIR)/%: $(HDRDIR)/% $(ROOTHDRDIR)
 	$(INS.file)
+$(ROOTHDRDIR):
+	$(INS.dir)
 
 $(ROOTLIBDIR)/%: %
 	$(INS.file)
@@ -54,14 +57,14 @@ $(ROOTFS_LIBDIR)/%: %
 $(ROOTFS_LIBDIR64)/%: %
 	$(INS.file)
 
-$(ROOTLIBDIR)/$(LIBLINKS): $(ROOTLIBDIR)/$(LIBLINKS)$(VERS)
+$(LIBLINKS:%=$(ROOTLIBDIR)/%): $(ROOTLIBDIR)/$(LIBLINKS)$(VERS)
 	$(INS.liblink)
-$(ROOTLIBDIR64)/$(LIBLINKS): $(ROOTLIBDIR64)/$(LIBLINKS)$(VERS)
+$(LIBLINKS:%=$(ROOTLIBDIR64)/%)): $(ROOTLIBDIR64)/$(LIBLINKS)$(VERS)
 	$(INS.liblink64)
 
-$(ROOTLIBDIR)/$(LIBLINKSCCC): $(ROOTLIBDIR)/$(LIBLINKSCCC)$(VERS)
+$(LIBLINKSCCC:%=$(ROOTLIBDIR)/%): $(ROOTLIBDIR)/$(LIBLINKSCCC)$(VERS)
 	$(INS.liblinkccc)
-$(ROOTLIBDIR64)/$(LIBLINKSCCC): $(ROOTLIBDIR64)/$(LIBLINKSCCC)$(VERS)
+$(LIBLINKSCCC:%=$(ROOTLIBDIR64)/%): $(ROOTLIBDIR64)/$(LIBLINKSCCC)$(VERS)
 	$(INS.liblinkccc64)
 
 $(ROOTDEMODIRS):
@@ -69,35 +72,46 @@ $(ROOTDEMODIRS):
 $(ROOTDEMODIRBASE)/%: $(DEMOFILESRCDIR)/%
 	$(INS.file)
 
-objs/%.o pics/%.o: $(SRCDIR)/%.c
+objs/%.o: $(SRCDIR)/%.c
 	$(COMPILE.c) -o $@ $<
 	$(POST_PROCESS_O)
 
-objs/%.o pics/%.o: $(SRCDIR)/%.cc
+pics/%.o: $(SRCDIR)/%.c
+	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
+
+objs/%.o: $(SRCDIR)/%.cc
+	$(COMPILE.cc) -o $@ $<
+	$(POST_PROCESS_O)
+
+pics/%.o: $(SRCDIR)/%.cc
 	$(COMPILE.cc) -o $@ $<
 	$(POST_PROCESS_CC_O)
 
 objs pics:
 	-@mkdir -p $@
 
-$(LIBRARY): objs .WAIT $$(OBJS)
+$(OBJS): | objs
+$(LIBRARY): $(OBJS)
 	$(BUILD.AR)
 	$(POST_PROCESS_A)
 
-$(DYNLIB): $$(MAPFILES)
+$(DYNLIB): $(MAPFILES)
 
-$(DYNLIB): pics .WAIT $$(PICS) $$(ALTPICS) $$(EXTPICS)
+$(PICS): | pics
+$(DYNLIB): $(PICS) $(ALTPICS) $(EXTPICS)
 	$(BUILD.SO)
 	$(POST_PROCESS_SO)
 
-$(DYNLIBCCC): pics .WAIT $$(PICS) $$(ALTPICS) $$(EXTPICS)
+$(DYNLIBCCC): $(PICS) $(ALTPICS) $(EXTPICS)
 	$(BUILDCCC.SO)
 	$(POST_PROCESS_SO)
 
 $(TYPECHECK): $(TYPECHECK_LIB32) $(TYPECHECK_LIB64)
 	$(TYPECHECK.lib)
 
-clobber: clean
+clobber:
+	-$(RM) $(OBJS) $(PICS) $(DUPLICATE_SRC) $(CLEANFILES)
 	-$(RM) $(CLOBBERTARGFILES)
 
 clean:

@@ -1,0 +1,146 @@
+diff -cNr ../orig/trousers-0.3.10/src/tddl/tddl.c ./src/tddl/tddl.c
+*** ../orig/trousers-0.3.10/src/tddl/tddl.c	2012-09-20 02:24:48.000000000 +0900
+--- ./src/tddl/tddl.c	2013-04-24 19:40:25.228878002 +0900
+***************
+*** 18,30 ****
+--- 18,34 ----
+  
+  #include "trousers/tss.h"
+  #include "trousers_types.h"
++ #ifndef SOLARIS
+  #include "linux/tpm.h"
++ #endif
+  #include "tcslog.h"
+  #include "tddl.h"
+  
+  struct tpm_device_node tpm_device_nodes[] = {
++ #ifndef SOLARIS
+  	{"/dev/tpm0", TDDL_UNDEF, TDDL_UNDEF},
+  	{"/udev/tpm0", TDDL_UNDEF, TDDL_UNDEF},
++ #endif
+  	{"/dev/tpm", TDDL_UNDEF, TDDL_UNDEF},
+  	{NULL, 0, 0}
+  };
+***************
+*** 63,69 ****
+  	 
+  		
+  		fd = socket(AF_INET, SOCK_STREAM, 0);
+! 		if (fd > 0) {
+  			struct hostent *host = gethostbyname(tcp_device_hostname);
+  			if (host != NULL) {   
+  				struct sockaddr_in addr;
+--- 67,73 ----
+  	 
+  		
+  		fd = socket(AF_INET, SOCK_STREAM, 0);
+! 		if (fd >= 0) {
+  			struct hostent *host = gethostbyname(tcp_device_hostname);
+  			if (host != NULL) {   
+  				struct sockaddr_in addr;
+***************
+*** 105,116 ****
+  		/* tpm_device_paths is filled out in tddl.h */
+  		for (i = 0; tpm_device_nodes[i].path != NULL; i++) {
+  			errno = 0;
+! 			if ((fd = open(tpm_device_nodes[i].path, O_RDWR)) >= 0)
+  				break;
+  		}
+  	}
+  	
+! 	if (fd > 0) {
+  		opened_device = &(tpm_device_nodes[i]);
+  		tpm_device_nodes[i].fd = fd;
+  	}
+--- 109,124 ----
+  		/* tpm_device_paths is filled out in tddl.h */
+  		for (i = 0; tpm_device_nodes[i].path != NULL; i++) {
+  			errno = 0;
+! 			if ((fd = open(tpm_device_nodes[i].path, O_RDWR)) >= 0) {
+  				break;
++ 			} else {
++ 				fprintf(stderr, "Error opening %s: %s\n",
++ 				    tpm_device_nodes[i].path, strerror(errno));
++ 			}
+  		}
+  	}
+  	
+! 	if (fd >= 0) {
+  		opened_device = &(tpm_device_nodes[i]);
+  		tpm_device_nodes[i].fd = fd;
+  	}
+***************
+*** 181,191 ****
+--- 189,201 ----
+  			/* fall through */
+  		case TDDL_TRANSMIT_IOCTL:
+  			errno = 0;
++ #ifndef SOLARIS
+  			if ((sizeResult = ioctl(opened_device->fd, TPMIOC_TRANSMIT, txBuffer)) != -1) {
+  				opened_device->transmit = TDDL_TRANSMIT_IOCTL;
+  				break;
+  			}
+  			LogWarn("ioctl: (%d) %s", errno, strerror(errno));
++ #endif
+  			LogInfo("Falling back to Read/Write device support.");
+  			/* fall through */
+  		case TDDL_TRANSMIT_RW:
+***************
+*** 258,263 ****
+--- 268,274 ----
+  	int rc;
+  
+  	if (opened_device->transmit == TDDL_TRANSMIT_IOCTL) {
++ #ifndef SOLARIS
+  		if ((rc = ioctl(opened_device->fd, TPMIOC_CANCEL, NULL)) == -1) {
+  			LogError("ioctl: (%d) %s", errno, strerror(errno));
+  			return TDDLERR(TDDL_E_FAIL);
+***************
+*** 265,270 ****
+--- 276,284 ----
+  			/* The driver timed out while trying to tell the chip to cancel */
+  			return TDDLERR(TDDL_E_COMMAND_COMPLETED);
+  		}
++ #else
++ 		return TDDLERR(TSS_E_NOTIMPL);
++ #endif
+  
+  		return TSS_SUCCESS;
+  	} else {
+diff -cNr ../orig/trousers-0.3.10/src/tspi/rpc/hosttable.c ./src/tspi/rpc/hosttable.c
+*** ../orig/trousers-0.3.10/src/tspi/rpc/hosttable.c	2012-09-20 02:35:07.000000000 +0900
+--- ./src/tspi/rpc/hosttable.c	2013-04-24 19:40:25.229878013 +0900
+***************
+*** 35,41 ****
+  	return TSS_SUCCESS;
+  }
+  
+! #ifdef SOLARIS
+  #pragma init(_init)
+  void _init(void)
+  #else
+--- 35,41 ----
+  	return TSS_SUCCESS;
+  }
+  
+! #if defined SOLARIS && (! defined __alpha && ! defined __aarch64)
+  #pragma init(_init)
+  void _init(void)
+  #else
+***************
+*** 69,75 ****
+  	ht = NULL;
+  }
+  
+! #ifdef SOLARIS
+  #pragma fini(_fini)
+  void _fini(void)
+  #else
+--- 69,75 ----
+  	ht = NULL;
+  }
+  
+! #if defined SOLARIS && (! defined __alpha && ! defined __aarch64)
+  #pragma fini(_fini)
+  void _fini(void)
+  #else

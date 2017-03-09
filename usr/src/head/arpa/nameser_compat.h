@@ -23,6 +23,9 @@
  * Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * Copyright(c)	1983,	1989
@@ -86,6 +89,8 @@ extern "C" {
 	defined(__i386) || defined(__amd64) || \
 	defined(MIPSEL) || defined(_MIPSEL) || defined(BIT_ZERO_ON_RIGHT) || \
 	defined(__alpha__) || defined(__alpha) || \
+	defined(__aarch64) || \
+	defined(__riscv) || \
 	(defined(__Lynx__) && defined(__x86__))
 #define	BYTE_ORDER	LITTLE_ENDIAN
 #endif

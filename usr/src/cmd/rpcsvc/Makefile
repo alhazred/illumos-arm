@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -63,6 +64,7 @@ CERRWARN += -_gcc=-Wno-unused-variable
 CERRWARN += -_gcc=-Wno-parentheses
 CERRWARN += -_gcc=-Wno-extra
 CERRWARN += -_gcc=-Wno-unused-function
+CERRWARN += -_gcc=-Wno-unused-but-set-variable
 
 # not linted
 SMATCH=off
@@ -75,6 +77,7 @@ $(SPROG) : 	LDLIBS += -lrpcsvc
 $(TPROG) : 	LDLIBS += -lrpcsvc
 spray : 	LDLIBS += -lrpcsvc
 
+CLEANFILES += $(DERIVED_FILES)
 
 SUBDIRS= rpc.bootparamd
 OBJS= $(SCLNTOBJS) $(SSVCOBJS) $(WCLNTOBJS) $(WSVCOBJS) $(TSVCOBJS)
@@ -158,6 +161,8 @@ rstat_main.o:	rstat.h rstat_v2.h
 
 rstat_svc.o: rstat.h
 
+rstat_proc.o : rstat.h
+
 rstat_V2_svc.o rstat_V2_xdr.o: rstat_v2.h
 
 rpc.rstatd: $(TSVCOBJS)
@@ -229,7 +234,7 @@ rwall_clnt.c: rwall.x
 check:	$(CHKMANIFEST)
 
 clean: $(SUBDIRS)
-	-$(RM) $(OBJS) $(DERIVED_FILES)
+	-$(RM) $(OBJS) $(CLEANFILES)
 
 clobber: $(SUBDIRS)
 

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -27,7 +28,7 @@ PROG = mpstat
 OBJS = mpstat.o
 SRCS =$(OBJS:%.o=%.c) $(COMMON_SRCS)
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../Makefile.cmd
 include $(SRC)/cmd/stat/Makefile.stat
 
 LDLIBS += -ldevinfo -lkstat -lavl

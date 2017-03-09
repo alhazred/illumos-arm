@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -26,7 +27,7 @@
 include ../../Makefile.lib
 include ../Makefile.lib
 
-FMHDRS = fmd_adm.h
+FMHDRS = fmd_adm.h fmd_api.h fmd_fmri.h
 HDRDIR = common
 
 SUBDIRS = $(MACH)

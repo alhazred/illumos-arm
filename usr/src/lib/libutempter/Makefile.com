@@ -14,7 +14,7 @@ VERS=		.1
 
 OBJECTS=	utempter.o
 
-include		$(SRC)/lib/Makefile.lib
+include		../../Makefile.lib
 
 SRCDIR=		../common
 

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 # Copyright (c) 2016, Chris Fraire <cfraire@me.com>.
@@ -61,15 +62,12 @@ clobber.targ: clean
 # include library targets
 include ../../Makefile.targ
 
-$(PICS): pics
-$(OBJS): objs
-
 objs/%.o pics/%.o: $(ISASRCDIR)/%.c
 	$(COMPILE.c) -o $@ $<
 	$(POST_PROCESS_O)
 
 objs/%.o pics/%.o: $(ISASRCDIR)/%.s
-	$(COMPILE.s) -o $@ $<
+	$(COMPILE.s) -c -o $@ $<
 	$(POST_PROCESS_S_O)
 
 objs/%.o pics/%.o: ../common/%.c

@@ -1,0 +1,107 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License, Version 1.0 only
+# (the "License").  You may not use this file except in compliance
+# with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright 2017 Hayashi Naoyuki
+#
+
+CERRWARN=
+CONFIG_PREFIX?=   /usr
+CONFIG_CC?=       $(GNU_CC)  -Wl,--no-relax --sysroot=$(ROOT) -isystem $(ROOT)/usr/include
+CONFIG_CXX?=      $(GNU_CXX) -Wl,--no-relax --sysroot=$(ROOT) -isystem $(ROOT)/usr/include -isystem $(ROOT)/usr/include/c++/$(GCC_VER)/$(MACH)-solaris2.11  -isystem $(ROOT)/usr/include/c++/$(GCC_VER)
+CONFIG_CFLAGS?=   $(GNU_CFLAGS)  -I$(ROOT)/usr/sfw/include $(CONFIG_ADDITIONAL_CFLAGS)
+CONFIG_CXXFLAGS?= $(GNU_CCFLAGS) -I$(ROOT)/usr/sfw/include $(CONFIG_ADDITIONAL_CXXFLAGS)
+CONFIG_LDFLAGS?=  $(GNU_LDFLAGS) --sysroot=$(ROOT) -L$(ROOT)/usr/sfw/lib -Wl,-rpath,/usr/sfw/lib $(CONFIG_ADDITIONAL_LDFLAGS)
+CONFIG_LIBS?=     $(LIBS) $(CONFIG_ADDITIONAL_LIBS)
+CONFIG_ARGS?=     --prefix=$(CONFIG_PREFIX) --libdir=$(CONFIG_PREFIX)/lib --mandir=/usr/share/man --disable-nls --enable-shared --host=$(MACH)-solaris2.11 $(CONFIG_ADDITIONAL_ARGS)
+
+CC_FOR_TARGET?= $(CONFIG_CC)
+CXX_FOR_TARGET?= $(CONFIG_CXX)
+CFLAGS_FOR_TARGET?= $(CONFIG_CFLAGS)
+CXXFLAGS_FOR_TARGET?= $(CONFIG_CXXFLAGS)
+LDFLAGS_FOR_TARGET?= $(CONFIG_LDFLAGS)
+INSTALL_TARGET?= install
+
+CONFIG_RANLIB?= $(RANLIB)
+SRCDIR?=$(CURDIR)/src
+PATCHDIR?=$(CURDIR)/patch
+BUILDDIR?=$(PICDIR)/obj
+ifneq (x$(SOURCE),x)
+SOURCE_DIR:=$(PICDIR)/$(SOURCE_DIR)
+endif
+TMPINSTALLDIR=$(PICDIR)/install
+TAR_OPT?= -xf
+
+.PHONY: all expand post_expand install build config install_h clean clobber install_dst post_install
+.PHONY: pre_config post_config post_patch apply_patch post_expand expand patch
+
+all: build
+
+install: post_install
+
+post_install: install_dst
+
+install_dst: all
+	cd $(BUILDDIR) ; $(MAKE) $(MAKE_ARGS) -j 1 DESTDIR=$(TMPINSTALLDIR) $(INSTALL_TARGET)
+	find $(TMPINSTALLDIR) -name "*.la" -exec rm {} \;
+	[ x$(WITH_STATIC) = x1 ] || find $(TMPINSTALLDIR) -name "*.a" -exec rm {} \;
+	tar -cf - -C $(TMPINSTALLDIR) . | tar -xf - -C $(ROOT)
+
+build: post_config
+	cd $(BUILDDIR); \
+		$(MAKE_ENV) $(MAKE) $(MAKE_ARGS)
+
+post_config: config
+
+config: pre_config
+	cd $(BUILDDIR); \
+		RANLIB="$(CONFIG_RANLIB)" \
+		CC="$(CONFIG_CC)" CXX="$(CONFIG_CXX)" \
+		CFLAGS="$(CONFIG_CFLAGS)" LDFLAGS="$(CONFIG_LDFLAGS)" LIBS="$(CONFIG_LIBS)" \
+		CC_FOR_TARGET="$(CC_FOR_TARGET)" CXX_FOR_TARGET="$(CXX_FOR_TARGET)" \
+		CFLAGS_FOR_TARGET="$(CFLAGS_FOR_TARGET)" CXXFLAGS_FOR_TARGET="$(CXXFLAGS_FOR_TARGET)" \
+		LDFLAGS_FOR_TARGET="$(LDFLAGS_FOR_TARGET)" \
+		AR="$(AR)" \
+		$(CONFIG_ENV) \
+		$(SOURCE_DIR)/$(CONFIG_SUBDIR)/configure $(CONFIG_ARGS)
+
+clean clobber:
+	$(RM) -rf $(PICDIR)
+
+pre_config: post_patch
+
+post_patch: apply_patch
+
+apply_patch: post_expand
+	cd $(SOURCE_DIR); for p in $(PATCH:%=$(PATCHDIR)/%) ; do patch -p0 < $${p}; done
+
+post_expand: expand
+
+expand:
+	$(RM) -rf $(PICDIR)
+	mkdir -p $(BUILDDIR)
+	cd $(PICDIR); $(SOURCE:%=tar $(TAR_OPT) $(DISTFILES)/%)
+
+install_h:
+
+patch:
+	diff -cNr orig/$(SOURCE_DIR) $(SOURCE_DIR) > patch/$(PATCH); echo

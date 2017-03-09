@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 # Copyright (c) 2016, Chris Fraire <cfraire@me.com>.
@@ -47,6 +48,7 @@ CERRWARN +=	-_gcc=-Wno-implicit-function-declaration
 SMOFF += all_func_returns
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all: $(PROG)
 

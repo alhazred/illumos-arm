@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1993, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 #
@@ -44,12 +45,8 @@ $mapfile_version 2
 
 SYMBOL_VERSION SUNWprivate_4.83 {
 	global:
-		dbg_desc {	# interposed - ld.so.1(1)
-			FLAGS = NODIRECT;
-		};
-		dbg_print {	# interposed - ld(1) and ld.so.1(1)
-			FLAGS = NODIRECT;
-		};
+		dbg_desc ;
+		dbg_print;
 
 		Dbg_args_file;
 		Dbg_args_guidance_unknown;

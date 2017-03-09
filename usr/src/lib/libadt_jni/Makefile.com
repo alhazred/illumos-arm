@@ -22,6 +22,7 @@
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2018, Joyent, Inc.
 
 LIBRARY=	libadt_jni.a
@@ -30,7 +31,7 @@ VERS=		.1
 OBJECTS=	adt_jni.o	\
 		adt_jni_event.o
 
-include		$(SRC)/lib/Makefile.lib
+include		../../../Makefile.lib
 
 LIBS =		$(DYNLIB)
 

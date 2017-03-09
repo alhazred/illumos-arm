@@ -17,6 +17,9 @@
 # Copyright 2019 Garrett D'Amore <garrett@damore.org>
 #
 
+CODEMGR_WS=$(shell git rev-parse --show-toplevel)
+SRC=$(CODEMGR_WS)/usr/src
+
 include		$(SRC)/data/Makefile.data
 include		Makefile.com
 
@@ -43,6 +46,8 @@ CATDIRS=	$(LOCDIRS:%=%/LC_COLLATE) \
 		$(LOCDIRS:%=%/LC_NUMERIC) \
 		$(LOCDIRS:%=%/LC_TIME)
 DATA=		$(CATDIRS:%=%/LCL_DATA)
+
+$(DATA):	$(CATDIRS)
 
 .PARALLEL:
 
@@ -80,7 +85,7 @@ install:	all $(ROOTDATA) $(ROOTTRANSLATIONS) $(ROOTPRIVTRANS)
 
 translate:	$(ROOTTRANSLATIONS) $(ROOTPRIVTRANS)
 
-locale $(ROOTLOCDIRS) $(ROOTCATDIRS):
+locale $(ROOTLOCDIRS) $(ROOTCATDIRS) $(CATDIRS):
 		$(INS.dir)
 
 $(STAMPFILES):	locale

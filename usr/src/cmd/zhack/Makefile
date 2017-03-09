@@ -26,13 +26,14 @@
 
 #
 # Copyright (c) 2012 by Delphix. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 PROG= zhack
 
 include ../Makefile.cmd
 
-$(INTEL_BLD)SUBDIRS	= $(MACH)
+SUBDIRS	= $(MACH)
 $(BUILD64)SUBDIRS	+= $(MACH64)
 
 all	: 	TARGET = all

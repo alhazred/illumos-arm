@@ -337,11 +337,11 @@ extern double __mul_set(double, double, int *);
 extern double __div_set(double, double, int *);
 extern double __dabs(double *);
 
-#if defined(sparc) || defined(__sparc) || defined(__alpha) || defined(__aarch64)
+#if defined(sparc) || defined(__sparc) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 extern enum fp_direction_type _QgetRD(void);
 #endif
 
-#if defined(__alpha) || defined(__aarch64)
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
 #define	HIWORD		1
 #define	LOWORD		0
 

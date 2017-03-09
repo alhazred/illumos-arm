@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -44,3 +45,4 @@ $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:
+install_h:

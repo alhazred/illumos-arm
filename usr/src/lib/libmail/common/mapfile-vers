@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -61,25 +62,25 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	xgetenv;
 	xsetenv;
 
-$if _ELF32	# only for 32-bit applications
-	abspath;
-	notify;
-	s_append;
-	s_array;
-	s_copy;
-	setup_exec;
-	s_free;
-	s_grow;
-	s_new;
-	s_parse;
-	s_read_line;
-	s_read_to_eof;
-	s_seq_read;
-	s_skipwhite;
-	s_tok;
-	s_tolower;
-	systemvp;
-$endif
+#$if _ELF32	# only for 32-bit applications
+#	abspath;
+#	notify;
+#	s_append;
+#	s_array;
+#	s_copy;
+#	setup_exec;
+#	s_free;
+#	s_grow;
+#	s_new;
+#	s_parse;
+#	s_read_line;
+#	s_read_to_eof;
+#	s_seq_read;
+#	s_skipwhite;
+#	s_tok;
+#	s_tolower;
+#	systemvp;
+#$endif
 
     local:
 	*;

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -69,6 +70,7 @@ $(ETCDFSD)/% : %
 	$(INS.file)
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all: $(ALL) all_init.d $(TXTS)
 
@@ -88,7 +90,7 @@ ins_init.d: FRC
 	@cd init.d; pwd; $(MAKE) $(MFLAGS) install
 
 $(SHFILES):
-	sh $@.sh $(ROOT)
+	MACH=$(MACH) sh $@.sh $(ROOT)
 
 install: $(ALL) ins_all ins_init.d $(RCDIRS)
 

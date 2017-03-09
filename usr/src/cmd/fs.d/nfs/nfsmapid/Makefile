@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -33,11 +34,11 @@ ATTMK	  =	$(TYPEPROG)
 include		../../Makefile.fstype
 
 LDLIBS   +=	-L$(ROOT)/usr/lib/nfs -R/usr/lib/nfs
-$(TYPEPROG) :  LDLIBS += -lnsl -lmapid -ldtrace -lidmap
+$(TYPEPROG) :  LDLIBS += -lnsl -lmapid -lidmap
 COMMON    =	nfs_resolve.o
 SRCS	  =	nfsmapid.c ../lib/nfs_resolve.c nfsmapid_server.c
 DSRC	  =	nfsmapid_dt.d
-DOBJ	  =	$(DSRC:%.d=%.o)
+#DOBJ	  =	$(DSRC:%.d=%.o)
 OBJS	  =	nfsmapid.o nfsmapid_server.o $(COMMON)
 CPPFLAGS +=	-I../lib -D_POSIX_PTHREAD_SEMANTICS
 
@@ -77,6 +78,7 @@ $(POFILE):	$(SRCS)
 		sed "/^domain/d" messages.po > $@
 		$(RM) $@.i messages.po
 
+clobber: clean
 clean:
 		$(RM) $(OBJS) $(TESTPROG) $(TESTOBJS) $(DOBJ) $(POFILE)
 

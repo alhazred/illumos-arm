@@ -46,7 +46,10 @@ include	../../../Makefile.cmd
 
 CERRWARN +=	-_gcc=-Wno-unused-variable
 CERRWARN +=	-_gcc=-Wno-implicit-function-declaration
+CERRWARN +=	-_gcc9=-Wno-address-of-packed-member
 CERRWARN +=	$(CNOWARN_UNINIT)
+mDNS.o: CERRWARN += -_gcc10=-Wno-enum-conversion
+DNSCommon.o: CERRWARN += -_gcc10=-Wno-return-local-addr
 
 # not linted
 SMATCH=off

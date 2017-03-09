@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -26,7 +27,7 @@ PROG = ipmpstat
 ROOTFS_PROG = $(PROG)
 ROOTUSRSBINLINKS = $(PROG:%=$(ROOTUSRSBIN)/%)
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../../Makefile.cmd
 
 CSTD = $(CSTD_GNU99)
 CERRWARN += $(CNOWARN_UNINIT)

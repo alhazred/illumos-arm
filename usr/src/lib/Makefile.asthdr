@@ -45,6 +45,7 @@ ROOTHDRDIR=	$(ROOT)/usr/include/ast
 # (INTEL_BLD is '#' for a Sparc build and SPARC_BLD is '#' for an Intel build)
 $(SPARC_BLD)AST64BITCPPSYMBOL = __sparcv9
 $(INTEL_BLD)AST64BITCPPSYMBOL = __amd64
+AST64BITCPPSYMBOL = _LP64
 
 # We use a custom install sequence here to unify 32bit and 64bit AST includes
 # since we can only ship one set of includes. Therefore we use

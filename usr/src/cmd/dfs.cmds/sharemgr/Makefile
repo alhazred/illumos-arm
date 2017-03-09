@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -58,6 +59,7 @@ _msg	: 	TARGET= _msg
 lint	: 	TARGET= lint
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all clean clobber lint _msg:	$(SUBDIRS)
 

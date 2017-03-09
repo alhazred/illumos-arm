@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -26,13 +27,13 @@
 
 LIBRARY=	audit_syslog.a
 VERS=		.1
-PRAUDIT=	$(SRC)/cmd/praudit
+PRAUDIT=	../../../../cmd/praudit
 
 OBJECTS=	sysplugin.o		\
 		systoken.o		\
 		toktable.o
 
-include		$(SRC)/lib/Makefile.lib
+include		../../../Makefile.lib
 
 SRCS=		$(SRCDIR)/sysplugin.c	\
 		$(PRAUDIT)/toktable.c	\
@@ -68,5 +69,5 @@ pics/%.o: $(SRCDIR)/%.c
 	$(POST_PROCESS_O)
 
 pics/toktable.o: $(PRAUDIT)/toktable.c
-	$(COMPILE.c) $(PRAUDIT)/toktable.c -o $@ $<
+	$(COMPILE.c) -o $@ $<
 	$(POST_PROCESS_O)

@@ -20,9 +20,12 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+
+include ../../../Makefile.master
 
 PROG=		cmdexec
 
@@ -47,7 +50,7 @@ $(ROOTPKGMNFST) :  FILEMODE = 0444
 # cmdexec also installed in usr/sadm/install/scripts
 SCRIPTS = $(CLASS_ACTION_SCRIPTS) $(PROG)
 
-include $(SRC)/cmd/svr4pkg/Makefile.svr4pkg
+include ../Makefile.svr4pkg
 CLOBBERFILES += $(CLASS_ACTION_SCRIPTS)
 
 ROOTLINKS=	$(ROOTCLASS_SCR_DIR)/i.CONFIG.prsv

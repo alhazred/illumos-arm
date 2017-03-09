@@ -1,0 +1,17 @@
+diff -cNr ../wget-1.16-orig/src/openssl.c ./src/openssl.c
+*** ../wget-1.16-orig/src/openssl.c	2014-10-27 17:15:33.000000000 +0900
+--- ./src/openssl.c	2014-11-05 22:02:08.447727776 +0900
+***************
+*** 89,97 ****
+--- 89,99 ----
+    if (RAND_status ())
+      return;
+  
++ #ifdef HAVE_SSL_RAND_EGD
+    /* Get random data from EGD if opt.egd_file was used.  */
+    if (opt.egd_file && *opt.egd_file)
+      RAND_egd (opt.egd_file);
++ #endif
+  
+    if (RAND_status ())
+      return;

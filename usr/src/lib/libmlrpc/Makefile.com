@@ -68,6 +68,6 @@ include ../../Makefile.targ
 objs/%_ndr.o pics/%_ndr.o : %_ndr.c
 
 %_ndr.c : $(NDLDIR)/%.ndl
-	$(NDRGEN) -Y $(ANSI_CPP) $(CPPFLAGS) $<
+	ROOT=${ROOT} $(NDRGEN) -Y $(ANSI_CPP) $(INCS) -I$(ROOT)/usr/include $<
 
 .KEEP_STATE:

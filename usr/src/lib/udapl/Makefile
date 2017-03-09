@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -26,6 +27,7 @@
 include ../Makefile.lib
 
 SUBDIRS =	libdat udapl_tavor
+udapl_tavor: libdat
 
 HDRSUBDIRS =	libdat
 

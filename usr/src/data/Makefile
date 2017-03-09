@@ -16,11 +16,10 @@
 
 COMMON_SUBDIRS=	consfonts \
 		hwdata \
-		locale \
-		terminfo \
 		zoneinfo
 
-i386_SUBDIRS=	amdpmc perfmon ucode
+i386_SUBDIRS=	amdpmc perfmon ucode locale terminfo
+sparc_SUBDIRS=	locale terminfo
 
 SUBDIRS = $(COMMON_SUBDIRS) $($(MACH)_SUBDIRS)
 

@@ -19,7 +19,8 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1995, 2010, Oracle and/or its affiliates. All rights reserved.
 
-EXTRASUBDIRS =	demo
-include		$(SRC)/cmd/sgs/Makefile.sub
+#EXTRASUBDIRS =	demo
+include		../Makefile.sub

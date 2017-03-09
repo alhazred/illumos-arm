@@ -70,7 +70,7 @@ wcstod(const wchar_t *cp, wchar_t **ptr)
 		return (0.0);	/* Shameful kluge for SVID's sake. */
 #if defined(__i386) || defined(__amd64)
 	mr.rd = __xgetRD();
-#elif defined(__sparc) || defined(__alpha) || defined(__aarch64)
+#elif defined(__sparc) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	mr.rd = _QgetRD();
 #else
 #error Unknown architecture!
@@ -100,7 +100,7 @@ wcstof(const wchar_t *cp, wchar_t **ptr)
 		return (0.0f);
 #if defined(__i386) || defined(__amd64)
 	mr.rd = __xgetRD();
-#elif defined(__sparc) || defined(__alpha) || defined(__aarch64)
+#elif defined(__sparc) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	mr.rd = _QgetRD();
 #else
 #error Unknown architecture!
@@ -134,7 +134,7 @@ wcstold(const wchar_t *cp, wchar_t **ptr)
 		__hex_to_extended(&dr, mr.rd, (extended *)&x, &fs);
 	else
 		decimal_to_extended((extended *)&x, &mr, &dr, &fs);
-#elif defined(__sparc) || (defined(__alpha) && defined(__LONG_DOUBLE_128__)) || defined(__aarch64)
+#elif defined(__sparc) || (defined(__alpha) && defined(__LONG_DOUBLE_128__)) || defined(__aarch64) || defined(__riscv)
 	mr.rd = _QgetRD();
 	if (form < 0)
 		__hex_to_quadruple(&dr, mr.rd, &x, &fs);

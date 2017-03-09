@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2017 Peter Tribble.
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
@@ -41,7 +42,7 @@ OBJS=	copyf.o         dockdeps.o      echo.o          eptstat.o       \
 	unpack_package_from_stream.o
 SRCS = $(OBJS:.o=.c)
 
-include	$(SRC)/cmd/Makefile.cmd
+include	../../Makefile.cmd
 
 #
 # For messaging catalog

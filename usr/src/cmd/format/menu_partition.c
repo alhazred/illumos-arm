@@ -172,9 +172,16 @@ p_expand(void)
 	nparts = efi_label->efi_nparts;
 
 	enter_critical();
-	efi_label->efi_parts[nparts - 1].p_start += delta;
 	efi_label->efi_last_u_lba += delta;
 	efi_label->efi_altern_lba = cur_parts->etoc->efi_last_lba;
+	if (efi_label->efi_parts[nparts - 1].p_tag == V_RESERVED) {
+		efi_label->efi_parts[nparts - 1].p_start += delta;
+	} else if (efi_label->efi_parts[nparts - 1].p_tag == V_UNASSIGNED) {
+		efi_label->efi_parts[nparts - 1].p_tag = V_RESERVED;
+		efi_label->efi_parts[nparts - 1].p_start =
+		    efi_label->efi_last_u_lba - EFI_MIN_RESV_SIZE + 1;
+		efi_label->efi_parts[nparts - 1].p_size = EFI_MIN_RESV_SIZE;
+	}
 	exit_critical();
 
 	fmt_print("The expanded capacity is added to the unallocated space.\n");

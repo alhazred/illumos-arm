@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -78,9 +79,9 @@ SYMBOL_VERSION SUNW_1.1 {
 	strrspn;
 	strtrns;
 
-$if _ELF32
-	copylist64;	# largefiles interfaces for 32-bit applications
-$endif
+#$if _ELF32
+#	copylist64;	# largefiles interfaces for 32-bit applications
+#$endif
 };
 
 SYMBOL_VERSION SUNWprivate_1.1 {

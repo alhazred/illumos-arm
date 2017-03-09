@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -35,7 +36,7 @@ clobber: 	TARGET= clobber
 install: 	TARGET= install
 _msg: 		TARGET= _msg
 
-.KEEP_STATE:
+.NOTPARALLEL:
 
 ROOTETC =		$(ROOT)/etc
 ROOTETCSECURITY =	$(ROOTETC)/security
@@ -44,12 +45,14 @@ EFILES =	user_attr
 EFILESRC =	$(EFILES:%=%)
 ETCFILES =	$(EFILES:%=$(ROOTETC)/%)
 ETCDFILES =	$(EFILES:%=$(ROOTETC)/%.d/SUNWcs)
+ETCDDIRS =	$(EFILES:%=$(ROOTETC)/%.d)
 
 ESDFILES =	auth_attr exec_attr prof_attr
 ESFILES =		$(ESDFILES) policy.conf
 ESSRC =			$(ESFILES:%=%)
 ETCSECURITYFILES =	$(ESFILES:%=$(ROOTETCSECURITY)/%)
 ETCSECURITYDFILES =	$(ESDFILES:%=$(ROOTETCSECURITY)/%.d/SUNWcs)
+ETCSECURITYDDIRS =	$(ESDFILES:%=$(ROOTETCSECURITY)/%.d)
 
 
 MFSTFILES =	rbac.xml
@@ -71,21 +74,24 @@ CLASS_SCR_DIR =		$(INSTALL_DIR)/scripts
 CLASS_SCR_FILES =	$(SCRIPTS:%=$(CLASS_SCR_DIR)/%)
 $(CLASS_SCR_FILES) : 	FILEMODE = 0555
 
+ATTR_FILES =	auth_attr exec_attr prof_attr user_attr
+
 all clean clobber delete install package: $(SUBDIRS)
 _msg: $(MSGSUBDIRS)
 
-install:	install_data
+install_h:
 
-install_data:	$(ETCSECURITYFILES) $(ETCSECURITYDFILES) $(ETCFILES) \
-		$(ETCDFILES) $(CLASS_SCR_FILES) $(MANIFESTDIR) $(MANIFEST) \
+install:	$(ATTR_FILES) install_data
+
+install_data:	$(ETCSECURITYDDIRS) $(ETCSECURITYFILES) $(ETCSECURITYDFILES) $(ETCFILES) \
+		$(ETCDDIRS) $(ETCDFILES) $(CLASS_SCR_FILES) $(MANIFESTDIR) $(MANIFEST) \
 		$(METHODDIR) $(METHOD)
 
-ATTR_FILES =	auth_attr exec_attr prof_attr user_attr
-${ATTR_FILES}:	$$@.txt ${CLASS_SCR_SRC_DIR}/i.rbac
+%:	%.txt ${CLASS_SCR_SRC_DIR}/i.rbac
 	> $@
 	$(ECHO) $@.txt $@ | $(SHELL) ${CLASS_SCR_SRC_DIR}/i.rbac
 
-$(ETCSECURITYDFILES) $(ETCDFILES): $$(@D)
+$(ETCSECURITYDFILES) $(ETCDFILES): $(@D)
 
 $(ETCSECURITYFILES) $(ETCFILES): $(ETCSECURITY) $(ROOTETCSECURITY)
 
@@ -97,6 +103,12 @@ $(ROOTETCSECURITY):
 
 $(ROOTETCSECURITY)/%: %
 	$(INS.file)
+
+$(ROOTETCSECURITY)/%.d:
+	$(INS.dir)
+
+$(ROOTETC)/%.d:
+	$(INS.dir)
 
 $(ROOTETCSECURITY)/%.d/SUNWcs: %
 	$(INS.rename)

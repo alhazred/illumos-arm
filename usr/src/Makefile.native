@@ -1,0 +1,47 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright 2017 Hayashi Naoyuki
+#
+
+#
+NATIVECC=		gcc
+NATIVECCC=		g++
+NATIVECPP=		gcc -E
+NATIVEAS=		gcc -x assembler-with-cpp
+NATIVELD=		ld
+NATIVEAR=		ar
+NATIVERANLIB=		ranlib
+
+NATIVE_COPTFLAG=		-O2 -fno-omit-frame-pointer
+NATIVE_CCOPTFLAG=		-O2 -fno-omit-frame-pointer
+NATIVE_C99MODE=			-std=gnu99
+NATIVE_CERRWARN=		-Werror
+NATIVE_FORCE_NEEDED_OPT=	--force-add-needed=
+NATIVE_C_PICFLAGS=		-fPIC
+NATIVE_CC_PICFLAGS=		-fPIC
+#
+NATIVE_CFLAGS=		-fno-builtin
+NATIVE_CCFLAGS=		-fno-builtin
+NATIVE_ASFLAGS=		
+NATIVE_ARFLAGS=		crs
+

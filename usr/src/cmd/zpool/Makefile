@@ -76,6 +76,7 @@ $(POFILE): $(POFILES)
 	$(RM) $@
 	$(CAT) $(POFILES) > $@
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(STAT_COMMON_OBJS)
 

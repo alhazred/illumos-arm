@@ -20,10 +20,12 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2017 Jason King.
 # Copyright (c) 2018, Joyent, Inc.
 #
+include ../../../../Makefile.master
 
 # AES
 AES_DIR =		$(SRC)/common/crypto/aes

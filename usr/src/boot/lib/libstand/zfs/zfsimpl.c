@@ -159,7 +159,11 @@ zfs_init(void)
 	STAILQ_INIT(&zfs_vdevs);
 	STAILQ_INIT(&zfs_pools);
 
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
+	dnode_cache_buf = malloc(SPA_OLDMAXBLOCKSIZE);
+#else
 	dnode_cache_buf = malloc(SPA_MAXBLOCKSIZE);
+#endif
 
 	zfs_init_crc();
 }

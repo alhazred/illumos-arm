@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -53,7 +54,7 @@ all: $(PROG) $(ROOTLOGINDEVPERM)
 
 $(LOGINDEVPERM): $(LOGINDEVPERMSRC)
 	$(RM) $(LOGINDEVPERM)
-	/bin/sh $(LOGINDEVPERMSRC) > $(LOGINDEVPERM)
+	MACH=$(MACH) /bin/sh $(LOGINDEVPERMSRC) > $(LOGINDEVPERM)
 
 $(PROG): $(OBJS)
 	$(LINK.c) $(OBJS) -o $@ $(LDLIBS)

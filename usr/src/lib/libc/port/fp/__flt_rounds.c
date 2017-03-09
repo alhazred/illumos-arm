@@ -43,7 +43,7 @@
 #include <floatingpoint.h>
 #include "libc.h"
 
-#if defined(__sparc) || defined(__alpha) || defined(__aarch64)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 
 int
 __flt_rounds(void)

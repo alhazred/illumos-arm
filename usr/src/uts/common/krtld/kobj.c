@@ -1226,17 +1226,8 @@ bind_primary(val_t *bootaux, int lmid)
 					break;
 				}
 			}
-			if (relasz == 0 || relaent == 0 || rela == NULL) {
-				relasz = pltrelsz;
-				rela = jmprel;
-#if defined(_LP64)
-				relaent = (pltrel == DT_RELA? sizeof(Elf64_Rela): sizeof(Elf64_Rel));
-#else
-				relaent = (pltrel == DT_RELA? sizeof(Elf32_Rela): sizeof(Elf32_Rel));
-#endif
-			}
-			if (relasz == 0 ||
-			    relaent == 0 || rela == NULL) {
+			if ((relasz == 0 || relaent == 0 || rela == NULL) &&
+			    (pltrelsz == 0 || jmprel == NULL)) {
 				_kobj_printf(ops, "krtld: bind_primary(): "
 				    "no relocation information found for "
 				    "module %s\n", mp->filename);
@@ -1247,8 +1238,19 @@ bind_primary(val_t *bootaux, int lmid)
 				_kobj_printf(ops, "krtld: relocating: file=%s "
 				    "KOBJ_EXEC\n", mp->filename);
 #endif
-			if (do_relocate(mp, rela, relasz/relaent, relaent,
-			    (Addr)mp->text) < 0)
+			if (relasz && rela != NULL &&
+			    do_relocate(mp, rela, relasz/relaent, relaent, (Addr)mp->text) < 0)
+				return (-1);
+			if (pltrelsz && jmprel != NULL &&
+			    do_relocate(mp, jmprel,
+#if defined(_LP64)
+				    pltrelsz/(pltrel == DT_RELA? sizeof(Elf64_Rela): sizeof(Elf64_Rel)),
+				    (pltrel == DT_RELA? sizeof(Elf64_Rela): sizeof(Elf64_Rel)),
+#else
+				    pltrelsz/(pltrel == DT_RELA? sizeof(Elf32_Rela): sizeof(Elf32_Rel)),
+				    (pltrel == DT_RELA? sizeof(Elf32_Rela): sizeof(Elf32_Rel)),
+#endif
+				    (Addr)mp->text) < 0)
 				return (-1);
 		} else {
 			if (do_relocations(mp) < 0)
@@ -2101,7 +2103,6 @@ load_dso(struct modctl *modp, struct module *mp, struct _buf *file)
 		goto done;
 
 	Word relasz = 0, relaent = 0, pltrelsz = 0;
-	Word shtype;
 	char *rela = NULL;
 	char *jmprel = NULL;
 
@@ -2116,11 +2117,9 @@ load_dso(struct modctl *modp, struct module *mp, struct _buf *file)
 			relaent = dyn->d_un.d_val;
 			break;
 		case DT_RELA:
-			shtype = SHT_RELA;
 			rela = (char *)mp->dso + dyn->d_un.d_ptr;
 			break;
 		case DT_REL:
-			shtype = SHT_REL;
 			rela = (char *)mp->dso + dyn->d_un.d_ptr;
 			break;
 		case DT_JMPREL:
@@ -2132,10 +2131,10 @@ load_dso(struct modctl *modp, struct module *mp, struct _buf *file)
 		}
 	}
 
-	if (relasz && do_relocate(mp, rela, shtype, relasz/relaent, relaent, (Addr)mp->dso) < 0)
+	if (relasz && do_relocate(mp, rela, relasz/relaent, relaent, (Addr)mp->dso) < 0)
 		goto done;
 
-	if (pltrelsz && do_relocate(mp, jmprel, shtype, pltrelsz/relaent, relaent, (Addr)mp->dso) < 0)
+	if (pltrelsz && do_relocate(mp, jmprel, pltrelsz/relaent, relaent, (Addr)mp->dso) < 0)
 		goto done;
 
 	mp->flags |= KOBJ_RELOCATED;

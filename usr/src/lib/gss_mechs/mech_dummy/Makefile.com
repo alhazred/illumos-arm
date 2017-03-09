@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -33,7 +34,7 @@ LIBRARY =	mech_dummy.a
 VERS =		.1
 OBJECTS =	dmech.o
 
-include $(SRC)/lib/Makefile.lib
+include ../../../Makefile.lib
 
 # There should be a mapfile here
 MAPFILES =

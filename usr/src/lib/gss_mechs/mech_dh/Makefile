@@ -24,7 +24,7 @@
 # All rights reserved.
 #
 
-SUBDIRS= backend .WAIT dh192 dh640 dh1024
+SUBDIRS= backend dh192 dh640 dh1024
 MSGSUBDIRS = backend
 
 all : 		TARGET= all
@@ -45,3 +45,5 @@ $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET); echo
 
 FRC:
+
+install_h:

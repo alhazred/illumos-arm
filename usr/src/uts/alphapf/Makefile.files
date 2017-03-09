@@ -1,0 +1,83 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright 2017 Hayashi Naoyuki
+#
+
+CORE_OBJS +=			\
+	alpha-divrem.o		\
+	ddi_alpha.o		\
+	ddi_impl.o		\
+	hat_alpha.o		\
+	hat_kpm.o		\
+	hat_kdi.o		\
+	hment.o			\
+	htable.o		\
+	mem_config_stubs.o	\
+	mem_config_arch.o	\
+	lgrpplat.o		\
+	cpupm_mach.o		\
+	mp_machdep.o		\
+	machdep.o		\
+	ppage.o			\
+	cpc_subr.o		\
+	alpha_subr.o		\
+	alpha_mmu.o		\
+	lock_prim.o		\
+	alpha_pcc.o		\
+	hardclk.o		\
+	avintr.o		\
+	startup.o		\
+	vm_machdep.o		\
+	memnode.o 		\
+	mach_sysconfig.o	\
+	intr.o			\
+	bsrw.o			\
+	swtch.o			\
+	locore.o		\
+	confunix.o		\
+	mp_startup.o		\
+	mp_call.o		\
+	hold_page.o		\
+	trap.o			\
+	memlist_new.o		\
+	mp_pc.o			\
+	exceptions.o		\
+	ibft.o			\
+	dtrace_subr.o		\
+	fakebop.o		\
+	mlsetup.o		\
+	mach_kdi.o		\
+	bootsvcs.o		\
+	cons_dispatch.o		\
+	cbe.o			\
+	notes.o			\
+	alpha-stub.o		\
+	alpha_stub_asm.o	\
+	pci_strings.o		\
+	dvma.o
+
+ASSYM_DEPS += modstubs.o
+ASSYM_DEPS += kdi_asm.o alpha_subr.o bcopy.o bzero.o
+ASSYM_DEPS += locore.o swtch.o lock_prim.o alpha_stub_asm.o
+ASSYM_DEPS += notes.o cons_dispatch.o alpha-divrem.o
+ASSYM_DEPS += exceptions.o ddi_alpha_asm.o

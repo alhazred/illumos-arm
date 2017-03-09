@@ -179,7 +179,7 @@ $(ROOTDEMODIRBASE)/bin/%: common/scripts/%.sh
 $(ROOTDEMODIRBASE)/src/%.sh: common/scripts/%.sh
 	$(INS.file)
 	
-ROOTDEMODIRS=	$(ROOTDEMODIRBASE) .WAIT \
+ROOTDEMODIRS=	$(ROOTDEMODIRBASE) \
 		$(ROOTDEMODIRBASE)/bin \
 		$(ROOTDEMODIRBASE)/fun \
 		$(ROOTDEMODIRBASE)/src \

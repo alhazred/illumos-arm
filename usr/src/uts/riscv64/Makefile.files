@@ -1,0 +1,126 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2013, Joyent, Inc. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
+#
+
+#
+#	This Makefile defines all file modules and build rules for the
+# directory uts/$(MACH) and its children. These are the source files which
+# are specific to $(MACH) processor architectures.
+#
+
+#
+#	Core (unix) objects
+#
+CORE_OBJS +=		\
+	ddi_arch.o	\
+	sundep.o	\
+	bitmap_arch.o	\
+	ip_ocsum.o	\
+	sendsig.o	\
+	polled_io.o	\
+	x_call.o	\
+	bcmp.o		\
+	memcmp.o	\
+	strlen.o	\
+	bcopy.o		\
+	memcpy.o	\
+	memmove.o	\
+	memset.o	\
+	bzero.o		\
+	memchr.o	\
+	ovbcopy.o
+
+#
+#	Generic-unix Module
+#
+GENUNIX_OBJS +=		\
+	archdep.o	\
+	syscall.o	\
+	fpu.o		\
+	float.o		\
+	fdt.o		\
+	fdt_ro.o	\
+	fdt_strerror.o	\
+	fdt_wip.o	\
+	fdt_empty_tree.o \
+	fdt_rw.o	\
+	fdt_sw.o	\
+	getcontext.o	\
+	install_utrap.o
+
+
+#
+#	PROM Routines
+#
+GENUNIX_OBJS +=		\
+	prom_node.o	\
+	prom_env.o	\
+	prom_printf.o	\
+	prom_putchar.o	\
+	prom_getchar.o	\
+	prom_version.o	\
+	prom_reboot.o	\
+	prom_panic.o	\
+	prom_exit.o	\
+	prom_utils.o
+
+#
+#	file system modules
+#
+CORE_OBJS +=		\
+	prmachdep.o
+
+#
+#	ZFS file system module
+#
+ZFS_OBJS +=		\
+	spa_boot.o
+
+#
+#	Decompression code
+#
+CORE_OBJS += decompress.o
+
+#
+#	Kernel linker
+#
+KRTLD_OBJS +=		\
+	bootfsops.o	\
+	bootrd.o	\
+	bootrd_cpio.o	\
+	ufsops.o	\
+	hsfs.o		\
+	doreloc.o	\
+	kobj_isa.o	\
+	kobj_convrelstr.o \
+	kobj_reloc.o	\
+	kobj_crt.o
+
+SD_OBJS += sd.o sd_xbuf.o
+CMDK_OBJS += cmdk.o
+CMLB_OBJS += cmlb.o
+STRATEGY_OBJS += strategy.o
+ASSYM_DEPS +=	float.o

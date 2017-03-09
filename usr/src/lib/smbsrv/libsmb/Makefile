@@ -21,14 +21,16 @@
 #
 # Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2015 Igor Kozhukhov <ikozhukhov@gmail.com>
+# Copyright 2017 Hayashi Naoyuki
 #
 
+include ../../Makefile.lib
 HDRS=	libsmb.h
 
 GENSRCS = common/smb_status_tbl.h
 CLEANFILES += $(GENSRCS)
 
-all install: $(GENSRCS)
+install_h: $(GENSRCS)
 
 include ../Makefile.smbsrv
 

@@ -21,6 +21,7 @@
 
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -32,7 +33,7 @@ PROG = auditreduce
 SRCS = main.c option.c proc.c time.c token.c regex2.c $(TABLEDIR)/toktable.c
 OBJS = main.o option.o proc.o time.o token.o regex2.o toktable.o
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 TEXT_DOMAIN = SUNW_OST_OSCMD
 POFILE = $(PROG).po

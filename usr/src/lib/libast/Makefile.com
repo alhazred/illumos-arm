@@ -24,7 +24,7 @@
 #
 # Copyright (c) 2019, Joyent, Inc.
 
-SHELL=/usr/bin/ksh93
+SHELL=/usr/bin/ksh
 
 LIBRARY=	libast.a
 VERS=		.1
@@ -759,6 +759,9 @@ pics/common/sfio/sfmove.o		:  CERRWARN += -erroff=E_NO_IMPLICIT_DECL_ALLOWED
 pics/common/sfio/sfrd.o			:  CERRWARN += -erroff=E_NO_IMPLICIT_DECL_ALLOWED
 pics/common/sfio/sfvscanf.o		:  CERRWARN += -erroff=E_END_OF_LOOP_CODE_NOT_REACHED
 pics/common/tm/tmxduration.o		:  CERRWARN += -erroff=E_NO_IMPLICIT_DECL_ALLOWED
+pics/common/path/pathkey.o 		:  CERRWARN += -_gcc10=-Wno-return-local-addr
+pics/common/path/pathpath.o 		:  CERRWARN += -_gcc10=-Wno-return-local-addr
+pics/common/path/pathprobe.o 		:  CERRWARN += -_gcc10=-Wno-return-local-addr
 
 .KEEP_STATE:
 

@@ -24,7 +24,7 @@
 #
 # Copyright (c) 2018, Joyent, Inc.
 
-
+include ../../../../Makefile.master
 include $(SRC)/lib/iconv_modules/Makefile.iconv
 
 install		: 	TARGET = install
@@ -256,7 +256,7 @@ UTF8_to_Cp933.o: $(COMMON)UTF8_to_Cp933.c $(ICONV_COMMON)tab_lookup.h $(COMMON)u
 #
 # Proto area symlinks
 #
-$(CREATE_LINKS):	$(ICONV_LINK_TARGETS)
+$(CREATE_LINKS):	$(ICONV_LINK_TARGETS) | $(ICONV_DIR)
 	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-cp949.so $(ICONV_DIR)/ko_KR-UTF-8%UnifiedHangul.so
 	$(SYMLINK) -f ko_KR-cp933%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR-cp933%UTF-8.so
 	$(SYMLINK) -f ko_KR-cp949%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR-cp949%UTF-8.so

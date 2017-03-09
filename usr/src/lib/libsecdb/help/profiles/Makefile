@@ -20,6 +20,7 @@
 #
 
 # Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 
 include ../../../../Makefile.master
 
@@ -121,6 +122,7 @@ FILEMODE = 0444
 
 all:	$(HTMLENTS)
 
+$(HELPFILES): $(DIRS)
 install:	all $(DIRS) $(HELPFILES)
 
 _msg: $(MSGDIRS) $(MSGS)
@@ -134,4 +136,4 @@ $(DIRS):
 $(MSGDIR)/%: %
 	$(INS.file)
 
-clean clobber:
+clean clobber install_h:

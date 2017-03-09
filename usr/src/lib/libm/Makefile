@@ -11,15 +11,21 @@
 
 #
 # Copyright 2011 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 LIBRARY=	libm.a
 VERS=		.2
 
 # include common library definitions
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
-SUBDIRS		= $(MACH)
+SUBDIRS_i386 = $(MACH)
+SUBDIRS_sparc = $(MACH)
+SUBDIRS_alpha = $(SRC)/oss/msun
+SUBDIRS_aarch64 = $(SRC)/oss/msun
+SUBDIRS_riscv64 = $(SRC)/oss/msun
+SUBDIRS = $(SUBDIRS_$(MACH))
 $(BUILD64)SUBDIRS += $(MACH64)
 
 all	: 	TARGET= all

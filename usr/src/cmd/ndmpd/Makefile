@@ -1,5 +1,6 @@
 #
 # Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2018, Joyent, Inc.
 #
 
@@ -38,7 +39,7 @@
 #
 PROG = ndmpd
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 NDMP_DIR = ndmp
 TLM_DIR = tlm
@@ -73,8 +74,9 @@ CERRWARN += -_gcc=-Wno-unused-variable
 CERRWARN += -_gcc=-Wno-switch
 CERRWARN += $(CNOWARN_UNINIT)
 CERRWARN += -_gcc=-Wno-address
+CERRWARN += -_gcc=-Wno-cast-function-type
 
-LDLIBS   += -lsocket -lnsl -lzfs -lsec -lndmp -lmd5 -lnvpair -lumem -lbsm -lgen -lcmdutils -linetutil
+LDLIBS   += -lsocket -lnsl -lzfs -lsec -lndmp -lmd -lnvpair -lumem -lbsm -lgen -lcmdutils -linetutil
 
 OBJS= \
 	$(NDMP_DIR)/ndmp_xdr.o \
@@ -117,6 +119,8 @@ TLM_OBJ = \
 
 SRCS= $(NDMP_OBJ:%.o=$(NDMP_DIR)/%.c) $(TLM_OBJ:%.o=$(TLM_DIR)/%.c)
 
+$(NDMP_OBJ:%.o=$(NDMP_DIR)/%.o): $(NDMP_DIR)/ndmp.h
+
 SVCMETHOD = svc-ndmp
 $(ROOTSVCMETHOD) :  FILEMODE = 0555
 
@@ -133,7 +137,7 @@ $(ROOTNDMPDFILE):  FILEMODE = 0555
 $(ROOTNDMPDDIR):
 	$(INS.dir)
 
-$(ROOTNDMPDDIR)/%: %
+$(ROOTNDMPDDIR)/%: % $(ROOTNDMPDDIR)
 	$(INS.file)
 
 .KEEP_STATE:
@@ -144,7 +148,7 @@ install: all $(ROOTNDMPDDIR)  $(ROOTNDMPDFILE) $(ROOTSVCMETHOD) $(ROOTMANIFEST)
 
 check:	$(CHKMANIFEST)
 
-clobber:
+clobber: clean
 
 $(PROG) : $(OBJS)
 	$(LINK.c) -o $@  $(OBJS) $(LDLIBS)

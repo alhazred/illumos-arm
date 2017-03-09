@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1998, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright (c) 2018, Joyent, Inc.
@@ -62,6 +63,7 @@ $(PROG): $(OBJS) $(BZIP2OBJS)
 	$(LINK.c) -o $(PROG) $(OBJS) $(BZIP2OBJS) $(LDLIBS)
 	$(POST_PROCESS)
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(BZIP2OBJS)
 

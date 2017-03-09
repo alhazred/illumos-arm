@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -50,7 +51,13 @@ ROOTOBJECTS64=	$(OBJECTS:%=$(ROOTLIB64)/%)
 $(INTEL_BLD)ROOTOBJECTS += $(ROOTLIB)/gcrt1.o
 $(INTEL_BLD)ROOTOBJECTS64 += $(ROOTLIB64)/gcrt1.o
 
-ASFLAGS +=	-P -D__STDC__ -D_ASM -DPIC $(AS_PICFLAGS)
+ASFLAGS_i386	+= -P -D__STDC__
+ASFLAGS_sparc	+= -P -D__STDC__
+ASFLAGS_alpha	+= -c
+ASFLAGS_aarch64	+= -c
+ASFLAGS_riscv64	+= -c
+ASFLAGS	+= $(ASFLAGS_$(MACH))
+ASFLAGS += -D_ASM -DPIC $(AS_PICFLAGS)
 
 values-xpg6.o :  CPPFLAGS += -I$(SRC)/lib/libc/inc
 $(COMMON_CRT) $(VALUES) :  CFLAGS += $(C_PICFLAGS)
@@ -97,7 +104,7 @@ $(ROOT)/usr/ccs/lib/$(MACH64)/values-xpg6.o:  \
 all:	$(OBJECTS)
 
 clean clobber:
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS) $(COMMON_CRT) $(MACH_CRT)
 
 
 $(CRT1): $(COMMON_CRT) $(MACH_CRT)

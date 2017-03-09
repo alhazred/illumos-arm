@@ -23,6 +23,7 @@
 # Use is subject to license terms.
 #
 # Copyright 2012 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 
 #
 #
@@ -31,7 +32,7 @@ MANIFEST=	server.xml client.xml rquota.xml mapid.xml nlockmgr.xml \
 		status.xml cbd.xml nfslogd.xml
 SVCMETHOD=	nfs-server nfs-client nlockmgr
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../../Makefile.cmd
 
 ROOTMANIFESTDIR=	$(ROOTSVCNETWORKNFS)
 

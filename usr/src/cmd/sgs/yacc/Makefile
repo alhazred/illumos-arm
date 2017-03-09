@@ -19,6 +19,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1995,1997 by Sun Microsystems, Inc.
 # All Rights Reserved.
 #
@@ -26,7 +27,8 @@
 
 include		../../../Makefile.master
 
-SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
+SUBDIRS=	$(MACH)
+$(BUILD64)SUBDIRS+= $(MACH64)
 
 CSRC=		common/y1.c common/y2.c common/y3.c common/y4.c
 
@@ -55,7 +57,7 @@ $(POFILE):
 	sed "/^domain/d" < messages.po > $@
 	$(RM) messages.po
 
-$(MACH) $(MACH64): FRC
+$(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:

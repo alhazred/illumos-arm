@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -52,7 +53,7 @@ XGETFLAGS +=	-a
 
 .KEEP_STATE:
 
-all clean clobber install: native $(SUBDIRS)
+all clean clobber install: $(SUBDIRS)
 
 $(POFILE):	pofile_MSGFILES
 

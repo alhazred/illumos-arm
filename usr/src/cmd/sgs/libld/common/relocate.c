@@ -236,7 +236,7 @@ disp_scansyms(Ifl_desc * ifl, Rel_desc *rld, Boolean rlocal, int inspect,
 	Sym_desc	*tsdp, *rsdp;
 	Sym		*rsym, *tsym;
 	Ssv_desc	*ssvp;
-	uchar_t		rtype, ttype;
+	uint_t		rtype, ttype;
 	Addr		value;
 
 	/*
@@ -2128,7 +2128,7 @@ reloc_section(Ofl_desc *ofl, Is_desc *isect, Is_desc *rsect, Os_desc *osect)
 	Rel		*reloc;		/* current relocation entry */
 	Xword		rsize;		/* size of relocation section data */
 	Xword		entsize;	/* size of relocation entry */
-	Rel_desc	reld;		/* relocation descriptor */
+	Rel_desc	reld = {0};	/* relocation descriptor */
 	Rel_aux	rel_aux;
 	Shdr *		shdr;
 	Word		flags = 0;
@@ -2297,7 +2297,7 @@ process_movereloc(Ofl_desc *ofl, Is_desc *rsect)
 	Ifl_desc	*file = rsect->is_file;
 	Rel		*rend, *reloc;
 	Xword		rsize, entsize;
-	Rel_desc	reld;
+	Rel_desc	reld = {0};
 	Rel_aux	rel_aux;
 
 	rsize = rsect->is_shdr->sh_size;

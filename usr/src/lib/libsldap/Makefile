@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -75,3 +76,4 @@ $(POFILES):
 	$(RM) messages.po
 
 FRC:
+install_h:

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -41,7 +42,7 @@ LIBS = $(DYNLIB)
 SRCDIR =	../common
 SRCS = $(CMNOBJS:%.o=$(SRCDIR)/%.c)
 
-ASFLAGS +=	-P -D__STDC__ -D_ASM -DPIC
+ASFLAGS +=	-D_ASM -DPIC
 CPPFLAGS +=	-I../../libc/inc -D_REENTRANT
 CFLAGS +=	$(CCVERBOSE)
 LDLIBS +=	-lc
@@ -60,5 +61,5 @@ all: $(LIBS)
 include	../../Makefile.targ
 
 pics/%.o: $(CRTSRCS)/%.s
-	$(COMPILE.s) -o $@ $<
+	$(COMPILE.s) -c -o $@ $<
 	$(POST_PROCESS_S_O)

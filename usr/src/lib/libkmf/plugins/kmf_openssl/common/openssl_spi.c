@@ -9,6 +9,9 @@
  * Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
  */
 /*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+/*
  * Written by Dr Stephen N Henson (shenson@bigfoot.com) for the OpenSSL
  * project 2000.
  */
@@ -92,6 +95,7 @@
 #include <openssl/ocsp.h>
 #include <openssl/des.h>
 #include <openssl/rand.h>
+#include <openssl/evp.h>
 #include "compat.h"
 
 #define	PRINT_ANY_EXTENSION (\

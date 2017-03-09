@@ -39,7 +39,7 @@ ROOTHDRS= $(HDRS:%=$(ROOTDIRS)/%)
 CHECKHDRS= $(HDRS:%.h=%.check)
 
 # install rule
-$(ROOTDIRS)/%: %
+$(ROOTDIRS)/%: % $(ROOTDIRS)
 	$(INS.file)
 
 .KEEP_STATE:

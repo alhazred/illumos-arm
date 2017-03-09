@@ -23,7 +23,7 @@
 # Use is subject to license terms.
 #
 
-include $(SRC)/Makefile.master
+include ../../../../../Makefile.master
 
 SUBDIRS =       $(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)

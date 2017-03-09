@@ -278,15 +278,15 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	ps_pbrandname;
 	ps_pcontinue;
 	ps_pdmodel;
-	ps_pdread		{ FLAGS = NODYNSORT };	# Alias of ps_pread
-	ps_pdwrite		{ FLAGS = NODYNSORT };	# Alias of ps_pwrite
+	ps_pdread		;	# Alias of ps_pread
+	ps_pdwrite		;	# Alias of ps_pwrite
 	ps_pglobal_lookup;
 	ps_pglobal_sym;
 	ps_plog;
 	ps_pread;
 	ps_pstop;
-	ps_ptread		{ FLAGS = NODYNSORT };	# Alias of ps_pread
-	ps_ptwrite		{ FLAGS = NODYNSORT };	# Alias of ps_pwrite
+	ps_ptread		;	# Alias of ps_pread
+	ps_ptwrite		;	# Alias of ps_pwrite
 	ps_pwrite;
 	Psecflags;
         Psecflags_free;
@@ -321,25 +321,25 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	Pzoneroot;
 	Pfdinfo_iter;
 
-$if _x86 && _ELF32
-	Pldt;
-	proc_get_ldt;
-	ps_lgetLDT;
-$endif
+#$if _x86 && _ELF32
+#	Pldt;
+#	proc_get_ldt;
+#	ps_lgetLDT;
+#$endif
 
-$if _sparc
-	Plwp_getgwindows;
-	Plwp_getxregs;
-	Plwp_setxregs;
-	ps_lgetxregs;
-	ps_lgetxregsize;
-	ps_lsetxregs;
+#$if _sparc
+#	Plwp_getgwindows;
+#	Plwp_getxregs;
+#	Plwp_setxregs;
+#	ps_lgetxregs;
+#	ps_lgetxregsize;
+#	ps_lsetxregs;
 
-$if _ELF64
-	Plwp_getasrs;
-	Plwp_setasrs;
-$endif
-$endif
+#$if _ELF64
+#	Plwp_getasrs;
+#	Plwp_setasrs;
+#$endif
+#$endif
 
     local:
 	*;

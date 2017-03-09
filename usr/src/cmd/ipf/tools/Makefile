@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -49,14 +50,14 @@ lint:           TARGET= lint
 $(USRLIBIPF):
 	$(INS.dir)
 
-$(USRLIBIPF)/% : %
+$(USRLIBIPF)/% : % $(USRLIBIPF)
 	$(INS.file)
 
 .KEEP_STATE:
 
 all clean clobber lint: $(SUBDIRS)
 
-install: all $(SUBDIRS) install_local
+install: $(SUBDIRS) install_local
 
 install_local: $(USRLIBIPF) $(USRLIBIPFLICENCE)
 

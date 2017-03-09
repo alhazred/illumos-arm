@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -34,6 +35,9 @@ include ../Makefile.cmd
 
 sparc_SUBDIRS = 
 i386_SUBDIRS = smf
+alpha_SUBDIRS = smf
+aarch64_SUBDIRS = smf
+riscv64_SUBDIRS = smf
 
 SUBDIRS = $($(MACH)_SUBDIRS)
 
@@ -45,6 +49,7 @@ lint    : 	TARGET = lint
 
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all: $(PROG)
 

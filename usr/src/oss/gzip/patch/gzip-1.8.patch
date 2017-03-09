@@ -1,0 +1,20 @@
+diff -cNr ../gzip-1.8-orig/lib/fseeko.c ./lib/fseeko.c
+*** ../gzip-1.8-orig/lib/fseeko.c	2016-01-02 10:54:30.000000000 +0900
+--- ./lib/fseeko.c	2016-10-20 07:54:03.934859241 +0900
+***************
+*** 15,21 ****
+     with this program; if not, see <http://www.gnu.org/licenses/>.  */
+  
+  #include <config.h>
+! 
+  /* Specification.  */
+  #include <stdio.h>
+  
+--- 15,21 ----
+     with this program; if not, see <http://www.gnu.org/licenses/>.  */
+  
+  #include <config.h>
+! #include "file64.h"
+  /* Specification.  */
+  #include <stdio.h>
+  

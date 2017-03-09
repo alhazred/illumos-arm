@@ -685,13 +685,13 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	vmtrace;
 	vmtrbusy;
 	vmwalk;
-    local:
-	*;
-};
+#    local:
+#	*;
+#};
 
 # data
-SYMBOL_VERSION SUNWprivate_1.1 {
-    global:
+#SYMBOL_VERSION SUNWprivate_1.1 {
+#    global:
 	Dtbag;
 	Dthash;
 	Dtlist;

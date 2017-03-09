@@ -20,6 +20,7 @@
 #
 #
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 #
@@ -40,17 +41,17 @@ $mapfile_version 2
 
 SYMBOL_VERSION SUNW_1.1.1 {
     global:
-	calloc			{ FLAGS = NODIRECT };
+	calloc			;
 } SUNW_1.1;
 
 SYMBOL_VERSION SUNW_1.1 {
     global:
-	free			{ FLAGS = NODIRECT };
-	malloc			{ FLAGS = NODIRECT };
-	mallocctl		{ FLAGS = NODIRECT };
-	memalign		{ FLAGS = NODIRECT };
-	realloc			{ FLAGS = NODIRECT };
-	valloc			{ FLAGS = NODIRECT };
+	free			;
+	malloc			;
+	mallocctl		;
+	memalign		;
+	realloc			;
+	valloc			;
 };
 
 SYMBOL_VERSION SUNWprivate_1.1 {

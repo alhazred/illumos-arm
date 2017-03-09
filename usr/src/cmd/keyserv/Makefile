@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -122,6 +123,7 @@ selfcheck.o: ../fs.d/nfs/lib/selfcheck.c
 install: all $(DIRS) $(IBINPROG) $(ISBINPROG) $(ROOTETCDEFAULTFILES) \
 	$(ROOTMANIFEST)
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(OUTSIDE_UTIL_OBJS)
 

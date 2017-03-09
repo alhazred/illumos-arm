@@ -105,7 +105,6 @@ pr_fcntl(struct ps_prochandle *Pr, int fd, int cmd, void *argp)
 		case F_FREESP:
 			adp->arg_size = sizeof (struct flock);
 			break;
-#ifdef _LP64
 #ifdef _MULTI_DATAMODEL
 
 		case 33:
@@ -114,7 +113,7 @@ pr_fcntl(struct ps_prochandle *Pr, int fd, int cmd, void *argp)
 		case 27:
 			adp->arg_size = sizeof (struct flock64_32);
 #endif	/* _MULTI_DATAMODEL */
-#else	/* _LP64 */
+#if !defined _LP64
 		case F_GETLK64:
 		case F_SETLK64:
 		case F_SETLKW64:

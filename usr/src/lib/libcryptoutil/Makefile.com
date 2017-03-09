@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2003, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright (c) 2018, Joyent, Inc.
@@ -39,7 +40,7 @@ OBJECTS= \
 	util.o \
 	pkcs11_uri.o
 
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
 include $(SRC)/lib/Makefile.rootfs
 
 SRCDIR=	../common

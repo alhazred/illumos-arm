@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -52,6 +53,8 @@ CPPFLAGS +=	-D_REENTRANT -I$(ADJUNCT_PROTO)/usr/include/libxml2 \
 all: $(LIBS)
 
 install: $(ROOTLIBDIR) $(ROOTLIBDIR64) all
+$(ROOTLIBS) $(ROOTLINKS): $(ROOTLIBDIR)
+$(ROOTLIBS64) $(ROOTLINKS64): $(ROOTLIBDIR64)
 
 $(ROOTLIBDIR):
 	$(INS.dir)

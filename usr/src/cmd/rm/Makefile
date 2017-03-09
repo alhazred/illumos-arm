@@ -35,7 +35,7 @@ include ../Makefile.cmd
 CFLAGS += $(CCVERBOSE)
 CERRWARN += -_gcc=-Wno-parentheses
 $(XPG4) :  CFLAGS += -DXPG4
-CPPFLAGS += -D_FILE_OFFSET_BITS=64  -I $(SRC)/common/util
+CPPFLAGS += -D_FILE_OFFSET_BITS=64  -I$(SRC)/head -I $(SRC)/common/util
 LINTFLAGS += -u
 .KEEP_STATE:
 

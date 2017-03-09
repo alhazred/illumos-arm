@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2020 Joyent, Inc.
 #
@@ -104,15 +105,15 @@ pics/%.o: ../$(MACH)/%.c
 	$(POST_PROCESS_O)
 
 ../common/topo_error.c: ../common/mkerror.sh ../common/topo_error.h
-	sh ../common/mkerror.sh liberrors < ../common/topo_error.h > $@
-	sh ../common/mkerror.sh properrors < ../common/libtopo.h >> $@
-	sh ../common/mkerror.sh methoderrors < ../common/libtopo.h >> $@
-	sh ../common/mkerror.sh fmrierrors < ../common/libtopo.h >> $@
-	sh ../common/mkerror.sh hdlerrors < ../common/libtopo.h >> $@
-	sh ../common/mkerror.sh moderrors < ../common/topo_mod.h >> $@
+	ksh ../common/mkerror.sh liberrors < ../common/topo_error.h > $@
+	ksh ../common/mkerror.sh properrors < ../common/libtopo.h >> $@
+	ksh ../common/mkerror.sh methoderrors < ../common/libtopo.h >> $@
+	ksh ../common/mkerror.sh fmrierrors < ../common/libtopo.h >> $@
+	ksh ../common/mkerror.sh hdlerrors < ../common/libtopo.h >> $@
+	ksh ../common/mkerror.sh moderrors < ../common/topo_mod.h >> $@
 
 $(SRCDIR)/topo_tables.c: $(SRCDIR)/mktables.sh $(SRCDIR)/libtopo.h
-	sh $(SRCDIR)/mktables.sh $(SRCDIR)/libtopo.h > $@
+	ksh $(SRCDIR)/mktables.sh $(SRCDIR)/libtopo.h > $@
 
 include ../../../../Makefile.targ
 include ../../../Makefile.targ

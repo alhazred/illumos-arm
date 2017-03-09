@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -55,7 +56,7 @@ SYMBOL_VERSION SUNW_0.7 {
 	fp_query;
 	_getlong;
 	_getshort;
-	h_errno			{ FLAGS = NODIRECT; FILTER = libnsl.so.1 };
+	h_errno			;
 	hostalias;
 	p_cdname;
 	p_class;
@@ -71,8 +72,8 @@ SYMBOL_VERSION SUNW_0.7 {
 	res_querydomain;
 	res_search;
 	res_send;
-	strcasecmp		{ TYPE = FUNCTION; FILTER = libc.so.1 };
-	strncasecmp		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+	strcasecmp		;
+	strncasecmp		;
 };
 
 SYMBOL_VERSION SUNWprivate_1.1 {

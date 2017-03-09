@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -50,10 +51,10 @@ install_h: $(ROOTHDRDIR) $(ROOTHDRS)
 
 check: $(CHECKHDRS)
 
-$(ROOTLIBDIR) $(ROOTHDRDIR):
+$(ROOTLIBDIR):
 	$(INS.dir)
 
-$(ROOTHDRDIR)/% : %
+$(ROOTHDRDIR)/% : % | $(ROOTHDRDIR)
 	$(INS.file)
 
 $(SUBDIRS):	FRC

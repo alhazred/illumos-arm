@@ -20,16 +20,18 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # lib/gss_mechs/mech_dh/dh1024/Makefile
 #
 
-SUBDIRS = $(MACH) $(BUILD64) $(MACH64)
-
 # include library definitions
 include ../../../Makefile.lib
+
+SUBDIRS = $(MACH)
+$(BUILD64)SUBDIRS+=$(MACH64)
 
 SED=    sed
 GREP=   grep
@@ -71,7 +73,7 @@ generic.po:
 $(MSGDOMAIN):
 	$(INS.dir)
 
-$(MACH) $(MACH64):      FRC
+$(SUBDIRS):      FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:

@@ -706,13 +706,13 @@ static int
 lwp_upimutex_lock(lwp_mutex_t *lp, uint8_t type, int try, lwp_timer_t *lwptp)
 {
 	label_t ljb;
-	int error = 0;
+	volatile int error = 0;
 	lwpchan_t lwpchan;
 	uint16_t flag;
 	upib_t *upibp;
 	volatile struct upimutex *upimutex = NULL;
 	turnstile_t *ts;
-	uint32_t nupinest;
+	volatile uint32_t nupinest;
 	volatile int upilocked = 0;
 
 	if (on_fault(&ljb)) {
@@ -972,7 +972,7 @@ static int
 lwp_upimutex_unlock(lwp_mutex_t *lp, uint8_t type)
 {
 	label_t ljb;
-	int error = 0;
+	volatile int error = 0;
 	lwpchan_t lwpchan;
 	uint16_t flag;
 	upib_t *upibp;
@@ -1079,7 +1079,7 @@ static int
 upi_dead(upimutex_t *upip, uint16_t lockflg)
 {
 	label_t ljb;
-	int error = 0;
+	volatile int error = 0;
 	lwp_mutex_t *lp;
 
 	if (on_fault(&ljb)) {
@@ -1152,9 +1152,9 @@ lwp_mutex_timedlock(lwp_mutex_t *lp, timespec_t *tsp, uintptr_t owner)
 	proc_t *p = ttoproc(t);
 	lwp_timer_t lwpt;
 	caddr_t timedwait;
-	int error = 0;
+	volatile int error = 0;
 	int time_error;
-	clock_t tim = -1;
+	volatile clock_t tim = -1;
 	uchar_t waiters;
 	volatile int locked = 0;
 	volatile int watched = 0;
@@ -1163,7 +1163,7 @@ lwp_mutex_timedlock(lwp_mutex_t *lp, timespec_t *tsp, uintptr_t owner)
 	lwpchan_t lwpchan;
 	sleepq_head_t *sqh;
 	uint16_t flag;
-	int imm_timeout = 0;
+	volatile int imm_timeout = 0;
 
 	if ((caddr_t)lp >= p->p_as->a_userlimit)
 		return (set_errno(EFAULT));
@@ -1503,7 +1503,7 @@ lwp_mutex_wakeup(lwp_mutex_t *lp, int release_all)
 	volatile int watched = 0;
 	volatile uint8_t type = 0;
 	label_t ljb;
-	int error = 0;
+	volatile int error = 0;
 
 	if ((caddr_t)lp >= p->p_as->a_userlimit)
 		return (set_errno(EFAULT));
@@ -1587,15 +1587,15 @@ lwp_cond_wait(lwp_cond_t *cv, lwp_mutex_t *mp, timespec_t *tsp, int check_park)
 	volatile uint8_t mtype = 0;
 	uchar_t waiters;
 	volatile int error;
-	clock_t tim = -1;
+	volatile clock_t tim = -1;
 	volatile int locked = 0;
 	volatile int m_locked = 0;
 	volatile int cvwatched = 0;
 	volatile int mpwatched = 0;
 	label_t ljb;
 	volatile int no_lwpchan = 1;
-	int imm_timeout = 0;
-	int imm_unpark = 0;
+	volatile int imm_timeout = 0;
+	volatile int imm_unpark = 0;
 
 	if ((caddr_t)cv >= p->p_as->a_userlimit ||
 	    (caddr_t)mp >= p->p_as->a_userlimit)
@@ -1852,7 +1852,7 @@ lwp_cond_signal(lwp_cond_t *cv)
 	volatile int locked = 0;
 	volatile int watched = 0;
 	label_t ljb;
-	int error = 0;
+	volatile int error = 0;
 
 	if ((caddr_t)cv >= p->p_as->a_userlimit)
 		return (set_errno(EFAULT));
@@ -1917,7 +1917,7 @@ lwp_cond_broadcast(lwp_cond_t *cv)
 	volatile int watched = 0;
 	label_t ljb;
 	uchar_t waiters;
-	int error = 0;
+	volatile int error = 0;
 
 	if ((caddr_t)cv >= p->p_as->a_userlimit)
 		return (set_errno(EFAULT));
@@ -1971,7 +1971,7 @@ lwp_sema_trywait(lwp_sema_t *sp)
 	int count;
 	lwpchan_t lwpchan;
 	uchar_t waiters;
-	int error = 0;
+	volatile int error = 0;
 
 	if ((caddr_t)sp >= p->p_as->a_userlimit)
 		return (set_errno(EFAULT));
@@ -2031,7 +2031,7 @@ lwp_sema_timedwait(lwp_sema_t *sp, timespec_t *tsp, int check_park)
 	proc_t *p = ttoproc(t);
 	lwp_timer_t lwpt;
 	caddr_t timedwait;
-	clock_t tim = -1;
+	volatile clock_t tim = -1;
 	label_t ljb;
 	volatile int locked = 0;
 	volatile int watched = 0;
@@ -2039,10 +2039,10 @@ lwp_sema_timedwait(lwp_sema_t *sp, timespec_t *tsp, int check_park)
 	int count;
 	lwpchan_t lwpchan;
 	uchar_t waiters;
-	int error = 0;
+	volatile int error = 0;
 	int time_error;
-	int imm_timeout = 0;
-	int imm_unpark = 0;
+	volatile int imm_timeout = 0;
+	volatile int imm_unpark = 0;
 
 	if ((caddr_t)sp >= p->p_as->a_userlimit)
 		return (set_errno(EFAULT));
@@ -2178,7 +2178,7 @@ lwp_sema_post(lwp_sema_t *sp)
 	int count;
 	lwpchan_t lwpchan;
 	uchar_t waiters;
-	int error = 0;
+	volatile int error = 0;
 
 	if ((caddr_t)sp >= p->p_as->a_userlimit)
 		return (set_errno(EFAULT));
@@ -2329,9 +2329,11 @@ lwp_rwlock_release(lwpchan_t *lwpchan, lwp_rwlock_t *rw)
  * returning or blocking. Based on lwp_cond_wait().
  */
 static int
-lwp_rwlock_lock(lwp_rwlock_t *rw, timespec_t *tsp, int rd_wr)
+lwp_rwlock_lock(lwp_rwlock_t *rw, timespec_t *_tsp, int _rd_wr)
 {
-	lwp_mutex_t *mp = NULL;
+	timespec_t *volatile tsp = _tsp;
+	volatile int rd_wr = _rd_wr;
+	lwp_mutex_t *volatile mp = NULL;
 	kthread_t *t = curthread;
 	kthread_t *tp;
 	klwp_t *lwp = ttolwp(t);
@@ -2345,17 +2347,17 @@ lwp_rwlock_lock(lwp_rwlock_t *rw, timespec_t *tsp, int rd_wr)
 	uchar_t mwaiters;
 	volatile int error = 0;
 	int time_error;
-	clock_t tim = -1;
+	volatile clock_t tim = -1;
 	volatile int locked = 0;
 	volatile int mlocked = 0;
 	volatile int watched = 0;
 	volatile int mwatched = 0;
 	label_t ljb;
 	volatile int no_lwpchan = 1;
-	int imm_timeout = 0;
+	volatile int imm_timeout = 0;
 	int try_flag;
 	uint32_t rwstate;
-	int acquired = 0;
+	volatile int acquired = 0;
 
 	/* We only check rw because the mutex is included in it. */
 	if ((caddr_t)rw >= p->p_as->a_userlimit)
@@ -2974,7 +2976,7 @@ out:
 int
 lwp_mutex_register(lwp_mutex_t *lp, caddr_t uaddr)
 {
-	int error = 0;
+	volatile int error = 0;
 	volatile int watched;
 	label_t ljb;
 	uint8_t type;
@@ -3032,7 +3034,7 @@ lwp_mutex_trylock(lwp_mutex_t *lp, uintptr_t owner)
 {
 	kthread_t *t = curthread;
 	proc_t *p = ttoproc(t);
-	int error = 0;
+	volatile int error = 0;
 	volatile int locked = 0;
 	volatile int watched = 0;
 	label_t ljb;
@@ -3145,7 +3147,7 @@ lwp_mutex_unlock(lwp_mutex_t *lp)
 	volatile uint8_t type = 0;
 	label_t ljb;
 	uint16_t flag;
-	int error = 0;
+	volatile int error = 0;
 
 	if ((caddr_t)lp >= p->p_as->a_userlimit)
 		return (set_errno(EFAULT));

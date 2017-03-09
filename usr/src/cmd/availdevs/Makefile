@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -41,7 +42,7 @@ NATIVE_LIBS += libxml2.so
 all install :  LDLIBS += -lxml2
 
 CPPFLAGS += $(INCS) -D_LARGEFILE64_SOURCE=1 -D_REENTRANT
-$(NOT_RELEASE_BUILD) CPPFLAGS += -DDEBUG
+$(NOT_RELEASE_BUILD)CPPFLAGS += -DDEBUG
 
 .KEEP_STATE:
 

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -72,6 +73,14 @@ $(RT): 		OBJ= rt$(PROG).o
 $(SDC): 	OBJ= sdc$(PROG).o
 $(TS): 		OBJ= ts$(PROG).o
 
+$(PROG): 	$(PROG).o
+$(FSS): 	fss$(PROG).o
+$(FX): 		fx$(PROG).o
+$(IA): 		ia$(PROG).o
+$(RT): 		rt$(PROG).o
+$(SDC): 	sdc$(PROG).o
+$(TS): 		ts$(PROG).o
+
 # install rules
 $(ROOTDIR)/% \
 $(ROOTDIR)/FSS/% \
@@ -86,7 +95,7 @@ $(ROOTDIR)/TS/% : %
  
 all: $(PROGS) 
 
-$(PROGS): $$(OBJ) subr.o
+$(PROGS): $(OBJ) subr.o
 	$(LINK.c) -o $@ $(OBJ) subr.o $(LDLIBS)
 	$(POST_PROCESS)
 
@@ -104,6 +113,7 @@ install: all $(ROOTPROG) $(ROOTRT) $(ROOTTS) $(ROOTIA) $(ROOTFSS) $(ROOTFX) \
 
 check: $(CHKMANIFEST)
 
+clobber: clean
 clean:
 	$(RM) $(OBJECTS) $(PROGS) llib-lsubr.ln
  

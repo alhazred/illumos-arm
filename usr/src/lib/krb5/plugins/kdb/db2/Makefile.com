@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -41,7 +42,7 @@ DB2_OBJS= \
 OBJECTS= $(DB2_OBJS)
 
 # include library definitions
-include $(SRC)/lib/krb5/Makefile.lib
+include ../../../../Makefile.lib
 
 LIBS=		$(DYNLIB)
 SRCS=	$(DB2_OBJS:%.o=../%.c)

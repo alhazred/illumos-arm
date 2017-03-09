@@ -156,7 +156,7 @@ __hex_to_double(decimal_record *pd, enum fp_direction_type rd, double *px,
 	}
 }
 
-#if defined(__sparc) || (defined(__alpha) && defined(__LONG_DOUBLE_128__)) || defined(__aarch64)
+#if defined(__sparc) || (defined(__alpha) && (__SIZEOF_LONG_DOUBLE__ == 16)) || defined(__aarch64) || defined(__riscv)
 
 void
 __hex_to_quadruple(decimal_record *pd, enum fp_direction_type rd, quadruple *px,

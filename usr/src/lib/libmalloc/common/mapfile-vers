@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -40,19 +41,19 @@ $mapfile_version 2
 
 SYMBOL_VERSION SUNW_1.1.1 {
     global:
-	memalign		{ FLAGS = NODIRECT };
-	valloc			{ FLAGS = NODIRECT };
+	memalign		;
+	valloc			;
 } SUNW_1.1;
 
 SYMBOL_VERSION SUNW_1.1 {
     global:
-	calloc			{ FLAGS = NODIRECT };
-	cfree			{ FLAGS = NODIRECT };
-	free			{ FLAGS = NODIRECT };
-	mallinfo		{ FLAGS = NODIRECT };
-	malloc			{ FLAGS = NODIRECT };
-	mallopt			{ FLAGS = NODIRECT };
-	realloc			{ FLAGS = NODIRECT };
+	calloc			;
+	cfree			;
+	free			;
+	mallinfo		;
+	malloc			;
+	mallopt			;
+	realloc			;
 };
 
 SYMBOL_VERSION SUNWprivate_1.1 {

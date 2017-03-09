@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright (c) 2018, Joyent, Inc.
@@ -263,6 +264,8 @@ CERRWARN +=	-_gcc=-Wno-unused-label
 CERRWARN +=	-_gcc=-Wno-unused-value
 CERRWARN +=	-_gcc=-Wno-empty-body
 CERRWARN +=	-_gcc=-Wno-address
+CERRWARN +=	-_gcc=-Wno-unused-but-set-variable
+CERRWARN +=	-_gcc=-Wno-expansion-to-defined
 
 # needs work
 SMATCH=off

@@ -29,7 +29,7 @@
 #  contains the CIFS client commands
 #
 
-include $(SRC)/Makefile.master
+include ../../../Makefile.master
 
 SUBDIRS_CATALOG=	smbutil mount umount share
 SUBDIRS=		$(SUBDIRS_CATALOG) chacl lsacl \

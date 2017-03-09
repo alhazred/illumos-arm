@@ -13,5 +13,6 @@ SRCS=		$(OBJS:%.o=%.c)
 
 CERRWARN +=	-_gcc=-Wno-unused-variable
 CERRWARN +=	$(CNOWARN_UNINIT)
+CFLAGS +=	-_gcc=-fwrapv
 
 SMOFF +=	signed

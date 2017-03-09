@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1989, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright 2010 Nexenta Systems, Inc.  All rights reserved.
@@ -126,7 +127,12 @@ $(ROOTVARIANTDIR64)/$(VAR1_DYNLIB64)	:  FILEMODE= 755
 
 .KEEP_STATE:
 
-all:	all_h lib32 $(BUILD64) .WAIT lib64 .WAIT etc THIRDPARTYLICENSE
+all:	all_h lib32 etc # THIRDPARTYLICENSE
+lib32:	all_h
+ifneq ($(MACH),$(MACH64))
+lib64:	all_h
+all:	lib64
+endif
 
 THIRDPARTYLICENSE: extract-copyright
 	$(RM) $@
@@ -134,6 +140,7 @@ THIRDPARTYLICENSE: extract-copyright
 
 etc:	$($(MACH)_ETC)
 
+$(MACHLIBS) : $(MACH)/$(LIB_PIC)
 lib32:	$(MACH_COMP) $(MACHLIBS) $(MACH)/$(LIB_PIC) $(VARIANTLIBS)
 	@if $(ELFDUMP) -r $(MACH)/$(DYNLIB) | $(GREP) -w environ ; then \
 		$(ECHO) "Error: Invalid reference to environ" ; \
@@ -141,6 +148,7 @@ lib32:	$(MACH_COMP) $(MACHLIBS) $(MACH)/$(LIB_PIC) $(VARIANTLIBS)
 		exit 1; \
 	fi
 
+$(MACHLIBS64) : $(MACH64)/$(LIB_PIC)
 lib64:	$(MACH_COMP) $(MACHLIBS64) $(MACH64)/$(LIB_PIC) $(VARIANTLIBS64)
 	@if $(ELFDUMP) -r $(MACH64)/$(DYNLIB) | $(GREP) -w environ ; then \
 		$(ECHO) "Error: Invalid reference to environ" ; \
@@ -148,14 +156,21 @@ lib64:	$(MACH_COMP) $(MACHLIBS64) $(MACH64)/$(LIB_PIC) $(VARIANTLIBS64)
 		exit 1; \
 	fi
 
-$(MACH)/assym.h $(MACH64)/assym.h:
+$(MACH)/assym.h:
 	@cd $(@D); $(MAKE) assym.h
+
+ifneq ($(MACH),$(MACH64))
+$(MACH64)/assym.h:
+	@cd $(@D); $(MAKE) assym.h
+endif
 
 $(VARIANTLIBS): FRC
 	@cd $(@D); pwd; VERSION='$(VERSION)' $(MAKE) $(@F)
 
+ifneq ($(MACH),$(MACH64))
 $(VARIANTLIBS64): FRC
 	@cd $(@D); pwd; VERSION='$(VERSION)' $(MAKE) $(@F)
+endif
 
 $($(MACH)_ETC): FRC
 	@cd $(@); pwd; $(MAKE) $(TARGET)
@@ -168,15 +183,22 @@ install:	all			\
 		inslib32		\
 		$(ROOTCOMPATLINKS)
 
-$(BUILD64)install: inslib64 $(ROOTCOMPATLINKS64)
+ifneq ($(MACH),$(MACH64))
+install: inslib64 $(ROOTCOMPATLINKS64)
+endif
 
 inslib32:	$(ROOTFS_LIBS) $(ROOTFS_LINKS) $(ROOTVARIANTLIBS)
 
+ifneq ($(MACH),$(MACH64))
 inslib64:	$(ROOTFS_LIBS64) $(ROOTFS_LINKS64) $(ROOTVARIANTLIBS64)
+endif
 
 install_h: all_h $(ROOTHDRS)
 
-all_h:	$(MACH)/assym.h $(MACH64)/assym.h
+all_h:	$(MACH)/assym.h
+ifneq ($(MACH),$(MACH64))
+all_h:	$(MACH64)/assym.h
+endif
 
 check:	$(CHECKHDRS)
 
@@ -189,15 +211,19 @@ $(ROOTVARIANTDIR)/%: $(ROOTVARIANTDIR) $(VAR2_BLDDIR)/%
 $(ROOTVARIANTDIR)/%: $(ROOTVARIANTDIR) $(VAR3_BLDDIR)/%
 	$(INS.file)
 
+ifneq ($(MACH),$(MACH64))
 $(ROOTVARIANTDIR64): $(ROOTLIB64)
 	$(INS.dir)
 $(ROOTVARIANTDIR64)/%: $(ROOTVARIANTDIR64) $(VAR1_BLDDIR64)/%
 	$(INS.file)
+endif
 
 $(MACH)/$(LIB_PIC): FRC
 	@cd $(MACH); pwd; VERSION='$(VERSION)' $(MAKE) $(LIB_PIC)
+ifneq ($(MACH),$(MACH64))
 $(MACH64)/$(LIB_PIC): FRC
 	@cd $(MACH64); pwd; VERSION='$(VERSION)' $(MAKE) $(LIB_PIC)
+endif
 
 all	: 	TARGET= all
 install	: 	TARGET= install

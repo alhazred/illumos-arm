@@ -139,7 +139,7 @@ rd_get_dyns(rd_agent_t *rap, psaddr_t addr, void **dynpp, size_t *dynpp_sz)
 rd_err_e
 rd_reset(struct rd_agent *rap)
 {
-	rd_err_e			err;
+	rd_err_e err = RD_DBERR;
 
 	RDAGLOCK(rap);
 
@@ -157,10 +157,12 @@ rd_reset(struct rd_agent *rap)
 
 	if (rap->rd_dmodel == PR_MODEL_LP64)
 		err = _rd_reset64(rap);
+#if defined _MULTI_DATAMODEL
 	else
-#endif
-#if !defined _LP64 || defined _MULTI_DATAMODEL
 		err = _rd_reset32(rap);
+#endif
+#else
+	err = _rd_reset32(rap);
 #endif
 
 	RDAGUNLOCK(rap);
@@ -208,17 +210,19 @@ rd_delete(rd_agent_t *rap)
 rd_err_e
 rd_loadobj_iter(rd_agent_t *rap, rl_iter_f *cb, void *client_data)
 {
-	rd_err_e	err;
+	rd_err_e err = RD_DBERR;
 
 	RDAGLOCK(rap);
 
 #ifdef _LP64
 	if (rap->rd_dmodel == PR_MODEL_LP64)
 		err = _rd_loadobj_iter64(rap, cb, client_data);
+#if defined _MULTI_DATAMODEL
 	else
-#endif
-#if !defined _LP64 || defined _MULTI_DATAMODEL
 		err = _rd_loadobj_iter32(rap, cb, client_data);
+#endif
+#else
+	err = _rd_loadobj_iter32(rap, cb, client_data);
 #endif
 
 	RDAGUNLOCK(rap);
@@ -230,17 +234,20 @@ rd_err_e
 rd_plt_resolution(rd_agent_t *rap, psaddr_t pc, lwpid_t lwpid,
 	psaddr_t pltbase, rd_plt_info_t *rpi)
 {
-	rd_err_e	err;
+	rd_err_e err = RD_DBERR;
+
 	RDAGLOCK(rap);
 #ifdef	_LP64
 	if (rap->rd_dmodel == PR_MODEL_LP64)
 		err = plt64_resolution(rap, pc, lwpid, pltbase,
 		    rpi);
+#if defined _MULTI_DATAMODEL
 	else
-#endif
-#if !defined _LP64 || defined _MULTI_DATAMODEL
 		err = plt32_resolution(rap, pc, lwpid, pltbase,
 		    rpi);
+#endif
+#else
+	err = plt32_resolution(rap, pc, lwpid, pltbase, rpi);
 #endif
 	RDAGUNLOCK(rap);
 	return (err);
@@ -286,17 +293,19 @@ rd_event_addr(rd_agent_t *rap, rd_event_e num, rd_notify_t *np)
 rd_err_e
 rd_event_enable(rd_agent_t *rap, int onoff)
 {
-	rd_err_e	err;
+	rd_err_e err = RD_DBERR;
 
 	RDAGLOCK(rap);
 
 #ifdef _LP64
 	if (rap->rd_dmodel == PR_MODEL_LP64)
 		err = _rd_event_enable64(rap, onoff);
+#if defined _MULTI_DATAMODEL
 	else
-#endif
-#if !defined _LP64 || defined _MULTI_DATAMODEL
 		err = _rd_event_enable32(rap, onoff);
+#endif
+#else
+	err = _rd_event_enable32(rap, onoff);
 #endif
 
 	RDAGUNLOCK(rap);
@@ -307,17 +316,19 @@ rd_event_enable(rd_agent_t *rap, int onoff)
 rd_err_e
 rd_event_getmsg(rd_agent_t *rap, rd_event_msg_t *emsg)
 {
-	rd_err_e	err;
+	rd_err_e err = RD_DBERR;
 
 	RDAGLOCK(rap);
 
 #ifdef _LP64
 	if (rap->rd_dmodel == PR_MODEL_LP64)
 		err = _rd_event_getmsg64(rap, emsg);
+#if defined _MULTI_DATAMODEL
 	else
-#endif
-#if !defined _LP64 || defined _MULTI_DATAMODEL
 		err = _rd_event_getmsg32(rap, emsg);
+#endif
+#else
+	err = _rd_event_getmsg32(rap, emsg);
 #endif
 
 	RDAGUNLOCK(rap);
@@ -349,17 +360,19 @@ rd_binder_exit_addr(struct rd_agent *rap, const char *bname, psaddr_t *beaddr)
 rd_err_e
 rd_objpad_enable(struct rd_agent *rap, size_t padsize)
 {
-	rd_err_e	err;
+	rd_err_e err = RD_DBERR;
 
 	RDAGLOCK(rap);
 
 #ifdef _LP64
 	if (rap->rd_dmodel == PR_MODEL_LP64)
 		err = _rd_objpad_enable64(rap, padsize);
+#if defined _MULTI_DATAMODEL
 	else
-#endif
-#if !defined _LP64 || defined _MULTI_DATAMODEL
 		err = _rd_objpad_enable32(rap, padsize);
+#endif
+#else
+	err = _rd_objpad_enable32(rap, padsize);
 #endif
 
 	RDAGUNLOCK(rap);

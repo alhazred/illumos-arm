@@ -23,11 +23,12 @@
 # Use is subject to license terms.
 #
 # Copyright 2014 Nexenta Systems, Inc.
+# Copyright 2017 Hayashi Naoyuki
 #
 # lib/pam_modules/Makefile
 #
 
-include $(SRC)/Makefile.master
+include ../../Makefile.master
 
 SUBDIRS = \
 	allow	\

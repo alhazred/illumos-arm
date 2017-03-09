@@ -23,6 +23,7 @@
 # Copyright (c) 1996, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2016 RackTop Systems.
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 .KEEP_STATE:
@@ -33,6 +34,9 @@ include		$(SRC)/cmd/sgs/Makefile.var
 
 i386_ARCH =	intel
 sparc_ARCH =	sparc
+alpha_ARCH =	alpha
+aarch64_ARCH =	aarch64
+riscv64_ARCH =	riscv64
 
 ARCH =		$($(MACH)_ARCH)
 
@@ -63,8 +67,11 @@ ELFCAP=		$(SRC)/common/elfcap
 
 # Reassign CPPFLAGS so that local search paths are used before any parent
 # $ROOT paths.
+CPPFLAGS_aarch64+=	-DPIC -D_REENTRANT
+CPPFLAGS_riscv64+=	-DPIC -D_REENTRANT
+CPPFLAGS_alpha+=	-DPIC -D_REENTRANT
 CPPFLAGS =	-I. -I../common -I$(SGSHOME)/include -I$(SGSHOME)/include/$(MACH) \
-		$(CPPFLAGS.master) -I$(ELFCAP)
+		$(CPPFLAGS.master) $(CPPFLAGS_$(MACH)) -I$(ELFCAP)
 
 # PICS64 is unique to our environment
 $(PICS64) : 	sparc_CFLAGS += -xregs=no%appl $(C_PICFLAGS)
@@ -111,7 +118,7 @@ DTEXTDOM =
 # Define any generic sgsmsg(1l) flags.  The default message generation system
 # is to use gettext(3i), add the -C flag to switch to catgets(3c).
 
-SGSMSG =		$(ONBLD_TOOLS)/bin/$(MACH)/sgsmsg
+#SGSMSG =		$(ONBLD_TOOLS)/bin/$(MACH)/sgsmsg
 SGSMSG_PIGLATIN_NL =	perl $(SGSTOOLS)/common/sgsmsg_piglatin_nl.pl
 CHKMSG =		$(SGSHOME)/tools/chkmsg.sh
 

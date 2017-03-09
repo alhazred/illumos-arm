@@ -23,7 +23,7 @@
 # Use is subject to license terms.
 #
 
-include $(SRC)/Makefile.master
+include ../../../../../../Makefile.master
 include $(SRC)/lib/iconv_modules/Makefile.iconv
 
 CFLAGS =  -Xa -fPIC -G -xO3 -I. $(XREGSFLAG) -D_REENTRANT

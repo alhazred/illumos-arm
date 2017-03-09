@@ -21,6 +21,7 @@
 
 #
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2018, Joyent, Inc.
 #
 
@@ -49,7 +50,7 @@ CPPFLAGS += -I$(SRC)/lib/libsmbfs \
 SMATCH=off
 
 # Debugging
-${NOT_RELEASE_BUILD} CPPFLAGS += -DDEBUG
+${NOT_RELEASE_BUILD}CPPFLAGS += -DDEBUG
 
 all:	$(TYPEPROG)
 

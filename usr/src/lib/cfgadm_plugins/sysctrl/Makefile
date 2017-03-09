@@ -20,12 +20,13 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # lib/cfgadm_plugins/sysctrl/Makefile
 
-include		$(SRC)/Makefile.master
+include		../../../Makefile.master
 
 SUBDIRS=
 $(SPARC_BLD)SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
@@ -52,7 +53,7 @@ all clean delete install package: $(SUBDIRS)
 clobber: $(SUBDIRS)
 	$(RM) $(POFILE) $(POFILES)
 
-$(MACH) $(MACH64):	FRC
+$(SUBDIRS):	FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
 _msg:	$(MSGDOMAIN) $(POFILE)

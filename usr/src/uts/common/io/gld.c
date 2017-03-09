@@ -5847,6 +5847,7 @@ gld_macaddr_sprintf(char *etherbuf, unsigned char *ap, int len)
 	int i;
 	char *cp = etherbuf;
 	static char digits[] = "0123456789abcdef";
+	ASSERT(len > 0);
 
 	for (i = 0; i < len; i++) {
 		*cp++ = digits[*ap >> 4];

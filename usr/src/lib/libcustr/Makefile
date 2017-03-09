@@ -13,7 +13,7 @@
 # Copyright 2018, Joyent, Inc.
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 HDRS =		libcustr.h
 HDRDIR =	common

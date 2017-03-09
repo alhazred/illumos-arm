@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2015 Gary Mills
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
@@ -60,11 +61,11 @@ $(ROOTLIBDIR64)/$(LIBLINKSCCC): $(ROOTLIBDIR64)/$(LIBLINKSCCC)$(VERS)
 objs pics:
 	-@mkdir -p $@
 
-$(DYNLIB): pics .WAIT $$(PICS)
+$(DYNLIB): pics .WAIT $(PICS)
 	$(BUILD.SO)
 	$(POST_PROCESS_SO)
 
-$(DYNLIBCCC): pics .WAIT $$(PICS)
+$(DYNLIBCCC): pics .WAIT $(PICS)
 	$(BUILDCCC.SO)
 	$(POST_PROCESS_SO)
 
@@ -78,5 +79,6 @@ $(DYNLINKLIBDIR)/%: %$(VERS)
 $(ROOTCOMPATLINKS) $(ROOTCOMPATLINKS64):
 	$(RM) $@; $(SYMLINK) $(COMPATLINKTARGET) $@
 
+clobber: clean
 clean:
 		$(RM) $(POBJS) $(OBJS) $(PICS) $(CLEANFILES)

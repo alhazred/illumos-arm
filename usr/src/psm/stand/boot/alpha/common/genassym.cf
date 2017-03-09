@@ -1,0 +1,24 @@
+include <sys/hwrpb.h>
+include <sys/pal.h>
+include <sys/cpu.h>
+include <sys/pcb.h>
+
+define	RPB_PHYS_ADDR		offsetof(struct rpb, phys_addr)
+define	RPB_PROCS_SIZE		offsetof(struct rpb, pcs_size)
+define	RPB_PROCS_OFF		offsetof(struct rpb, pcs_off)
+define	RPB_PRIMARY_CPU_ID	offsetof(struct rpb, cpu_id)
+define	RPB_VPTB		offsetof(struct rpb, vptb)
+define	RPB_CRB_OFF		offsetof(struct rpb, crb_off)
+define	HWPCB_KSP		offsetof(struct hwpcb, ksp)
+define	HWPCB_USP		offsetof(struct hwpcb, usp)
+define	HWPCB_ASN		offsetof(struct hwpcb, asn)
+define	HWPCB_FEN		offsetof(struct hwpcb, fen)
+define	HWPCB_PTBR		offsetof(struct hwpcb, ptbr)
+define	PCB_KSP			offsetof(struct alpha_pcb, ksp)
+define	PCB_USP			offsetof(struct alpha_pcb, usp)
+define	PCB_ASN			offsetof(struct alpha_pcb, asn)
+define	PCB_FEN			offsetof(struct alpha_pcb, flags)
+define	PCB_PTBR		offsetof(struct alpha_pcb, ptbr)
+define	PCS_PAL_REV_AVAIL_OSF	offsetof(struct pcs, pal_rev_avl[PAL_OSF])
+define	PCS_PAL_REV		offsetof(struct pcs, pal_rev)
+define	PCS_STAT_FLAGS		offsetof(struct pcs, stat_flags)

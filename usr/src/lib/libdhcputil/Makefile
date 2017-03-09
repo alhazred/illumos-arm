@@ -21,10 +21,11 @@
 #
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2012 OmniTI Computer Consulting, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 # Use is subject to license terms.
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 LOCHDRS =	dhcp_inittab.h dhcp_symbol.h dhcpmsg.h
 COMHDRS =	dhcp_impl.h dhcp_symbol_common.h

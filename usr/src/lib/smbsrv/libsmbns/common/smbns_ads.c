@@ -1283,10 +1283,11 @@ smb_ads_get_dc_level(smb_ads_handle_t *ah)
 static int
 smb_ads_getfqhostname(smb_ads_handle_t *ah, char *fqhost, int len)
 {
-	if (smb_gethostname(fqhost, len, SMB_CASE_LOWER) != 0)
+	char fqhost1[MAXHOSTNAMELEN];
+	if (smb_gethostname(fqhost1, MAXHOSTNAMELEN, SMB_CASE_LOWER) != 0)
 		return (-1);
 
-	(void) snprintf(fqhost, len, "%s.%s", fqhost,
+	(void) snprintf(fqhost, len, "%s.%s", fqhost1,
 	    ah->domain);
 
 	return (0);

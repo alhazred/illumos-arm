@@ -15,7 +15,7 @@
 
 PROG=		growfs
 
-include		$(SRC)/cmd/Makefile.cmd
+include		../Makefile.cmd
 
 .KEEP_STATE:
 

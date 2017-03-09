@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -28,7 +29,12 @@
 include ../../Makefile.master
 
 # note: the x86 needs the "bootblks" target for installboot
-SUBDIRS= lib bootblks boot cpr bootlst
+SUBDIRS_i386= lib bootblks boot cpr bootlst
+SUBDIRS_sparc= lib bootblks boot cpr bootlst
+SUBDIRS_riscv64= boot
+SUBDIRS_aarch64= boot
+SUBDIRS_alpha= boot
+SUBDIRS=$(SUBDIRS_$(MACH))
 
 all		: 	TARGET= all
 install		: 	TARGET= install

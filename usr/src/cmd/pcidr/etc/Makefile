@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -30,7 +31,7 @@
 
 .PARALLEL:
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../Makefile.cmd
 
 CONF = SUNW,EC_dr,ESC_dr_req,sysevent.conf
 CONFDIR = $(ROOTETC)/sysevent/config

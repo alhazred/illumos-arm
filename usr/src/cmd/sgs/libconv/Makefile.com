@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1994, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2018 Joyent, Inc.
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
@@ -86,7 +87,7 @@ OBJECTS =	$(COMOBJS) $(COMOBJS32) $(COMOBJS64) $(ELFCAP_OBJS) \
 NOCTFOBJS =	$(OBJECTS)
 CTFMERGE_LIB =	:
 
-include	$(SRC)/lib/Makefile.lib
+include ../../../../lib/Makefile.lib
 include	$(SRC)/cmd/sgs/Makefile.com
 
 SRCDIR =	$(SRC)/cmd/sgs/libconv
@@ -107,9 +108,9 @@ PICS=		$(OBJECTS:%=pics/%)
 CPPFLAGS +=	-I$(SRC)/lib/libc/inc -I$(ELFCAP) \
 		-I$(SRC)/common/sgsrtcid
 
-ARFLAGS=	cr
+ARFLAGS=	crs
 
-AS_CPPFLAGS=	-P -D_ASM $(CPPFLAGS)
+AS_CPPFLAGS=	-D_ASM $(CPPFLAGS)
 
 BLTDATA=	$(BLTOBJS:%.o=%.c) $(BLTOBJS:%.o=%.h) report_bufsize.h
 

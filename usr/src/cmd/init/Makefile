@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -49,6 +50,7 @@ CPPFLAGS += -DBOOTBANNER5='"$(BOOTBANNER5)"'
 SMATCH=off
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all: $(ROOTFS_PROG)
 

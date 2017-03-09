@@ -20,12 +20,13 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # Copyright 2019 Joyent, Inc.
 
-PROG:sh = basename `cd ..; pwd`
+PROG = $(notdir $(abspath $(dir $(CURDIR))))
 
 OBJS = $(PROG).o
 
@@ -55,6 +56,8 @@ LDLIBS_ptree		= -lproc -lcontract
 LDLIBS_pwdx		= -lproc
 
 LDLIBS += $(LDLIBS_$(PROG))
+
+CERRWARN_pfiles	+= -_gcc=-Wno-unused-variable
 
 CERRWARN_plgrp	+= -_gcc=-Wno-parentheses
 CERRWARN_plgrp	+= -_smatch=off
@@ -97,6 +100,8 @@ SRCS_pmadvise =		$(PMAP)/pmap_common.c
 
 LN_pargs =		penv pauxv
 
+CLEANFILES +=		$(LN_$(PROG))
+
 CPPFLAGS +=	$(CPPFLAGS_$(PROG))
 OBJS +=		$(OBJS_$(PROG))
 SRCS +=		$(SRCS_$(PROG))
@@ -125,7 +130,7 @@ ROOTBINLN=$(LN_$(PROG):%=$(ROOTBIN)/%)
 ROOTBINPROG=$(ROOTBIN)/$(PROG)
 ROOTPROCBINSYMLINK=$(ROOT)/usr/proc/bin/$(PROG)
 
-$(PROG): $$(OBJS)
+$(PROG): $(OBJS)
 	$(LINK.c) $(OBJS) -o $@ $(LDLIBS)
 	$(POST_PROCESS)
 

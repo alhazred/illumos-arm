@@ -93,17 +93,17 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	b_wc;
 	b_vmstate;
 	b_xgrep;
-    local:
-	*;
-};
+#    local:
+#	*;
+#};
 
 # functions exported by the old Solaris version of libcmd
 # (the code has been moved to libc starting with Solaris 11/B51)
-SYMBOL_VERSION SUNWprivate_1.1 {
-    global:
-	defcntl		{ TYPE = FUNCTION; FILTER = libc.so.1 };
-	defopen		{ TYPE = FUNCTION; FILTER = libc.so.1 };
-	defread		{ TYPE = FUNCTION; FILTER = libc.so.1 };
+#SYMBOL_VERSION SUNWprivate_1.1 {
+#    global:
+	defcntl		;
+	defopen		;
+	defread		;
     local:
 	*;
 };

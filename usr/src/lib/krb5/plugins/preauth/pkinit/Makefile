@@ -19,12 +19,13 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 #
 
-include		$(SRC)/lib/krb5/Makefile.lib
+include		../../../Makefile.lib
 
 include $(SRC)/lib/gss_mechs/mech_krb5/Makefile.mech_krb5
 

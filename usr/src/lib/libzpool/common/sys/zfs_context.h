@@ -98,7 +98,7 @@ extern "C" {
 #include <sys/pset.h>
 #include <sys/kobj.h>
 #include <sys/fm/util.h>
-#if !defined __alpha && !defined __arm && !defined __aarch64
+#if !defined __alpha && !defined __riscv && !defined __aarch64
 #include "zfs.h"
 #endif
 
@@ -125,7 +125,7 @@ extern void dprintf_setup(int *argc, char **argv);
  * zfs$target:::probe2 /copyinstr(arg0) == "zfs__probe_name"/
  *     {printf("%u %p\n", arg1, arg2);}
  */
-#if defined __alpha || defined __arm || defined __aarch64
+#if defined __alpha || defined __riscv || defined __aarch64
 #undef	DTRACE_PROBE
 #define	DTRACE_PROBE(a)	((void)0)
 #undef	DTRACE_PROBE1

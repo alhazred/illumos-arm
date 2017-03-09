@@ -22,10 +22,11 @@
 # Copyright (c) 1997, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2014 Garrett D'Amore <garrett@damore.org>
 # Copyright 2016 RackTop Systems.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 # rebind basic build macros to 64-bit versions
-
+ifneq ($(MACH),$(MACH64))
 CFLAGS=		$(CFLAGS64)
 CCFLAGS=	$(CCFLAGS64)
 COPTFLAG=	$(COPTFLAG64)
@@ -73,3 +74,4 @@ BUILDCCC.SO=	$(BUILDCCC64.SO)
 MAPFILECLASS=	-64
 
 MAPFILE.NGB =	$(MAPFILE.NGB_$(MACH64))
+endif

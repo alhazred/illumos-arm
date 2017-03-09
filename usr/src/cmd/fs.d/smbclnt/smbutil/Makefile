@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -38,7 +39,7 @@ OBJS=   smbutil.o discon.o info.o login.o lookup.o print.o status.o view.o \
 
 SRCS=	$(OBJS:%.o=%.c)
 
-include		$(SRC)/cmd/Makefile.cmd
+include ../../../Makefile.cmd
 
 POFILE=	smbutil_all.po
 POFILES= $(OBJS:%.o=%.po)
@@ -50,14 +51,16 @@ CSTD= $(CSTD_GNU99)
 
 LDLIBS += -lmlrpc -lsmbfs -lnsl
 
-CPPFLAGS += -I$(SRC)/lib/libsmbfs \
+INCS += -I$(SRC)/lib/libsmbfs \
 	-I$(SRC)/uts/common/smbclnt -I$(SRC)/uts/common
+
+CPPFLAGS += $(INCS)
 
 # not linted
 SMATCH=off
 
 # Debugging
-${NOT_RELEASE_BUILD} CPPFLAGS += -DDEBUG
+${NOT_RELEASE_BUILD}CPPFLAGS += -DDEBUG
 
 # disable some of the less important lint
 LINTFLAGS	+= -erroff=E_FUNC_RET_ALWAYS_IGNOR2
@@ -72,7 +75,7 @@ $(PROG):	$(OBJS)
 install:	all $(ROOTPROG)
 
 $(ROOTPROG):	$(PROG)
-	$(INS.file) $(PROG)
+	$(INS.file)
 
 catalog: $(POFILE)
 
@@ -88,6 +91,6 @@ clean:
 include ../../../Makefile.targ
 
 srvsvc1_ndr.c : srvsvc1.ndl
-	$(NDRGEN) -Y $(ANSI_CPP) $(CPPFLAGS) srvsvc1.ndl
+	ROOT=${ROOT} $(NDRGEN) -Y $(ANSI_CPP) $(INCS) -I$(ROOT)/usr/include srvsvc1.ndl
 
 .KEEP_STATE:

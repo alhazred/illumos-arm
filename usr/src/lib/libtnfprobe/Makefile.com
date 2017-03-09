@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1997, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright (c) 2019, Joyent, Inc.
@@ -86,11 +87,11 @@ $(ROOTHDRDIR)/% : %
 	$(INS.file)
 
 #ASFLAGS=	$(AS_PICFLAGS) -P -D_SYS_SYS_S -D_LOCORE -D_ASM -DPIC -DLOCORE $(CPPFLAGS)
-ASFLAGS=	-P -D_SYS_SYS_S -D_LOCORE -D_ASM -DPIC -DLOCORE $(CPPFLAGS)
+ASFLAGS=	-D_SYS_SYS_S -D_LOCORE -D_ASM -DPIC -DLOCORE $(CPPFLAGS)
 BUILD.s=	$(AS) $(ASFLAGS) $< -o $@
 
 objs/%.o pics/%.o: ../%.s
-		$(COMPILE.s) -o $@ $<
+		$(COMPILE.s) -c -o $@ $<
 		$(POST_PROCESS_S_O)
 
 pics/%.o objs/%.o: ../%.c

@@ -23,11 +23,13 @@
 # Use is subject to license terms.
 #
 # Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 include		../Makefile.lib
 
-SUBDIRS =	$(MACH) $(BUILD64) $(MACH64)
+SUBDIRS =	$(MACH)
+$(BUILD64)SUBDIRS+= $(MACH64)
 
 INSTALLED_HDRS = \
 		com_err.h krb5.h locate_plugin.h
@@ -36,7 +38,7 @@ LOCPLUGH =	$(SRC)/lib/gss_mechs/mech_krb5/include/locate_plugin.h
 KRB5H =		$(SRC)/uts/common/gssapi/mechs/krb5/include/krb5.h
 
 KRB5INCDIR=	$(ROOT)/usr/include/kerberosv5
-
+ROOTHDRDIR =	$(KRB5INCDIR)
 COMERRHINST =	$(KRB5INCDIR)/com_err.h
 LOCPLUGHINST =	$(KRB5INCDIR)/locate_plugin.h
 KRB5HINST =	$(KRB5INCDIR)/krb5.h
@@ -60,10 +62,10 @@ $(SUBDIRS):	FRC
 install_h:	$(KRB5INCDIR) $(KRB5HDRS)
 
 $(COMERRHINST):	$(COMERRH)
-	$(INS) -s -m $(FILEMODE) -f $(KRB5INCDIR) $(COMERRH)
+	$(INS.file)
 $(KRB5HINST):	$(KRB5H)
-	$(INS) -s -m $(FILEMODE) -f $(KRB5INCDIR) $(KRB5H)
+	$(INS.file)
 $(LOCPLUGHINST): $(LOCPLUGH)
-	$(INS) -s -m $(FILEMODE) -f $(KRB5INCDIR) $(LOCPLUGH)
+	$(INS.file)
 
 FRC:

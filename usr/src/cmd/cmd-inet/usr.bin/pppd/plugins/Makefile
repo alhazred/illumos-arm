@@ -23,6 +23,7 @@
 # Use is subject to license terms.
 #
 # Copyright 2011 Nexenta Systems, Inc. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 MINCONN =	minconn.so
@@ -35,7 +36,7 @@ OBJECTS =	minconn.o passprompt.o pppoe.o
 # The rest of the sources are GPL
 LINTSRCS =	pppoe.c
 
-include		$(SRC)/lib/Makefile.lib
+include		../../../../../lib/Makefile.lib
 include		../Makefile.def
 
 # Express objects in terms of "pics" thus triggering the appropriate CPPFLAGS,
@@ -74,15 +75,15 @@ $(LIBPPPPLUGINDIR): 	FILEMODE = 0755
 
 all:	$(LIBRARIES)
 
-$(MINCONN): pics .WAIT $$(PICS)
+$(MINCONN): pics .WAIT $(PICS)
 	$(BUILD.SO)
 	$(POST_PROCESS_SO)
 
-$(PASSPROMPT): pics .WAIT $$(PICS)
+$(PASSPROMPT): pics .WAIT $(PICS)
 	$(BUILD.SO)
 	$(POST_PROCESS_SO)
 
-$(PPPOE): pics .WAIT $$(PICS)
+$(PPPOE): pics .WAIT $(PICS)
 	$(BUILD.SO)
 	$(POST_PROCESS_SO)
 

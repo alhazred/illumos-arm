@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2017 Peter Tribble.
 
 #
@@ -47,7 +48,7 @@ OBJECTS=	\
 
 
 # include library definitions
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
 
 SRCDIR=		../common
 
@@ -67,6 +68,7 @@ CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-clobbered
 CERRWARN +=	-_gcc=-Wno-switch
+pics/gpkgmap.o: CERRWARN += -_gcc=-Wno-overflow
 
 # not linted
 SMATCH=off

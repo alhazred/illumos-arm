@@ -19,12 +19,13 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # Copyright (c) 2018, Joyent, Inc.
 
-include		$(SRC)/lib/Makefile.lib
+include $(dir $(lastword $(MAKEFILE_LIST)))../Makefile.lib
 
 SRCDIR =	../common
 

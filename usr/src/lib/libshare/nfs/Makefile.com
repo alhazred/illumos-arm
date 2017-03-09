@@ -20,6 +20,7 @@
 #
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright (c) 2018, Joyent, Inc.
@@ -60,9 +61,17 @@ SMATCH=off
 all: $(LIBS)
 
 install: all
+$(ROOTLIBS) $(ROOTLINKS): $(ROOTLIBDIR)
+$(ROOTLIBS64) $(ROOTLINKS64): $(ROOTLIBDIR64)
 
 pics/%.o:  $(NFSLIB_DIR)/%.c
 	$(COMPILE.c) -o $@ $<
 	$(POST_PROCESS_O)
+
+$(ROOTLIBDIR):
+	$(INS.dir)
+ 
+$(ROOTLIBDIR64):
+	$(INS.dir)
 
 include ../../../Makefile.targ

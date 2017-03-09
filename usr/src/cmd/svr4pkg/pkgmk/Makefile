@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -31,7 +32,7 @@ OBJS=		main.o		\
 		quit.o		\
 		splpkgmap.o
 
-include $(SRC)/cmd/svr4pkg/Makefile.svr4pkg
+include ../Makefile.svr4pkg
 
 LDLIBS +=	-ll -lpkg -linstzones -ladm
 

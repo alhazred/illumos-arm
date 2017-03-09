@@ -48,8 +48,8 @@ SYMBOL_VERSION SUNWprivate {
 	mlrpc_clh_unbind;
 
 	# Allow debug/test programs to provide these.
-	ndo_printf		{ FLAGS = NODIRECT };
-	ndo_trace		{ FLAGS = NODIRECT };
+	ndo_printf		;
+	ndo_trace		;
 
 	ndr_buf_decode;
 	ndr_buf_fini;

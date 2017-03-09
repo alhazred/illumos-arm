@@ -89,7 +89,12 @@ static struct uuid_to_ptag {
 	{ EFI_FREEBSD_UFS, V_FREEBSD_UFS },
 	{ EFI_FREEBSD_VINUM, V_FREEBSD_VINUM },
 	{ EFI_FREEBSD_ZFS, V_FREEBSD_ZFS },
-	{ EFI_FREEBSD_NANDFS, V_FREEBSD_NANDFS }
+	{ EFI_FREEBSD_NANDFS, V_FREEBSD_NANDFS },
+	{ EFI_RISCV_BBL, V_RISCV_BBL },
+	{ EFI_RISCV_FSBL, V_RISCV_FSBL },
+	{ EFI_UBOOT_ENV, V_UBOOT_ENV },
+	{ EFI_UBOOT_DTB, V_UBOOT_DTB },
+	{ EFI_UBOOT_FIT, V_UBOOT_FIT }
 };
 
 /*
@@ -107,7 +112,7 @@ struct dk_map2  default_vtoc_map[NDKMAP] = {
 
 #if defined(_SUNOS_VTOC_16)
 
-#if defined(__i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64)
+#if defined(__i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	{	V_BOOT,		V_UNMNT	},		/* i - 8 */
 	{	V_ALTSCTR,	0	},		/* j - 9 */
 

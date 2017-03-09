@@ -113,7 +113,7 @@ if [ $format_set -eq 0 -a "$FORMAT" = hsfs ]; then
 	fi
 fi
 
-[[ "$FORMAT" =~ ^(cpio|ufs|ufs-nocompress)$ ]] || FORMAT=ufs
+echo "$FORMAT" | egrep -q '^(cpio|ufs|ufs-nocompress)$' || FORMAT=ufs
 
 case $PLATFORM in
 i386|i86pc)	PLATFORM=i86pc
@@ -348,7 +348,7 @@ function create_ufs_archive
 	# sanity check the archive before moving it into place
 	#
 	ARCHIVE_SIZE=`ls -l "${archive}-new" 2> /dev/null | nawk '{ print $5 }'`
-	if [ $compress = yes ] || [ $ISA = sparc ] ; then
+	if [ $compress = yes ] || [ $ISA != i386 ] ; then
 		#
 		# 'file' will report "English text" for uncompressed
 		# boot_archives.  Checking for that doesn't seem stable,

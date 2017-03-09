@@ -20,6 +20,7 @@
 #
 #
 # Copyright (c) 1992, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright (c) 2018, Joyent, Inc.
 
@@ -38,13 +39,27 @@ CPPFLAGS += -D_FILE_OFFSET_BITS=64
 SMATCH=off
 
 LDLIBS_i386= -lfdisk
+LDLIBS_alpha= -lfdisk
+LDLIBS_aarch64= -lfdisk
+LDLIBS_riscv64= -lfdisk
 LDLIBS_sparc=
 LDLIBS += -ladm -lefi $(LDLIBS_$(MACH))
 
 i386_CFLAGS += -D_LARGEFILE64_SOURCE
 i386_CFLAGS += -D_FILE_OFFSET_BITS=64
 
+alpha_CFLAGS += -D_LARGEFILE64_SOURCE
+alpha_CFLAGS += -D_FILE_OFFSET_BITS=64
+
+aarch64_CFLAGS += -D_LARGEFILE64_SOURCE
+aarch64_CFLAGS += -D_FILE_OFFSET_BITS=64
+
+riscv64_CFLAGS += -D_LARGEFILE64_SOURCE
+riscv64_CFLAGS += -D_FILE_OFFSET_BITS=64
+
 LINTFLAGS += -erroff=E_BAD_PTR_CAST_ALIGN -erroff=E_NAME_DEF_NOT_USED2
+CERRWARN +=	-_gcc=-Wno-unused-variable
+CSTD=		$(CSTD_GNU99)
 
 all:	$(ROOTFS_PROG)
 

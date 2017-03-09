@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -35,6 +36,7 @@ include ../Makefile.cmd
 # to local scope.
 MAPFILES +=	$(MAPFILE.LEX) $(MAPFILE.NGB)
 MAPOPTS =	$(MAPFILES:%=-M%)
+MAPFILES=
 
 LFLAGS =	-t
 YFLAGS =	-d -b zonecfg_grammar
@@ -55,6 +57,7 @@ zonecfg_lex.o :  SMOFF += free
 
 CLOBBERFILES += $(PROG).ln
 
+.NOTPARALLEL:
 .KEEP_STATE:
 
 all: $(PROG)

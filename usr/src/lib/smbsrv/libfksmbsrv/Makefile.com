@@ -191,7 +191,7 @@ OBJS_MISC = \
 # This one can't be in OBJECTS, as it has to depend on
 # all of those for the COMPILE.d rule (which processes
 # all those objects collecting probe instances).
-DTRACE_OBJS = fksmb_dt.o
+#DTRACE_OBJS = fksmb_dt.o
 
 OBJECTS = \
 	$(OBJS_LOCAL) \
@@ -272,7 +272,7 @@ include ../../../Makefile.targ
 EXTPICS= $(DTRACE_OBJS:%=pics/%)
 CLEANFILES += $(EXTPICS)
 
-$(OBJS) $(PICS) : ../common/fksmb_dt.h
+#$(OBJS) $(PICS) : ../common/fksmb_dt.h
 
 pics/fksmb_dt.o: ../common/fksmb_dt.d $(PICS)
 	$(COMPILE.d) -C -s ../common/fksmb_dt.d -o $@ $(PICS)

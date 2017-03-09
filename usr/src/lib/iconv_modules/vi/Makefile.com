@@ -24,6 +24,8 @@
 #
 # Copyright (c) 2018, Joyent, Inc.
 
+include ../../../../Makefile.master
+
 SRCS		=	tcvn%UCS-2.c \
             tcvn%UTF-8.c \
             tcvn%viscii.c \
@@ -70,7 +72,7 @@ UCS-2BE%viscii.o: $(COMMON)UCS-2%viscii.c
 
 include $(SRC)/lib/iconv_modules/Makefile.iconv
 
-$(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
+$(CREATE_LINKS):  $(ICONV_LINK_TARGETS) | $(ICONV_DIR)
 	$(SYMLINK) -f tcvn%UCS-2BE.so $(ICONV_DIR)/tcvn%UCS-2.so
 	$(SYMLINK) -f UCS-2BE%tcvn.so $(ICONV_DIR)/UCS-2%tcvn.so
 	$(SYMLINK) -f UCS-2BE%viscii.so $(ICONV_DIR)/UCS-2%viscii.so

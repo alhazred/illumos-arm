@@ -23,7 +23,7 @@
 # Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
-SHELL=/usr/bin/ksh93
+SHELL=/usr/bin/ksh
 
 PROG= ksh
 
@@ -38,6 +38,9 @@ SUBDIRS += builtins
 
 ARCH32_i386= i86
 ARCH32_sparc= sparcv7
+ARCH32_aarch64= aarch64
+ARCH32_alpha= alpha
+ARCH32_riscv64= riscv64
 ARCH32= $(ARCH32_$(MACH))
 
 # Serialise the build to avoid that we run the test suite for 32bit

@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -26,13 +27,15 @@
 
 LIBRARY = libkcfd.a
 VERS = .1
-
+OBJECTS= sym_import.o
+include	../../../Makefile.lib
 include $(SRC)/lib/Makefile.rootfs
 
-#
-# Identify that this library is an interposer. This identification
-# ensures that runtime symbol lookup resolves to this library
-# (before libpkcs11.so.1) regardless of dependency link order.
-# This library should only be linked to by kcfd.
-#
-DYNFLAGS	+= $(ZINTERPOSE) -R/usr/lib/security
+LDLIBS +=	$(ROOT)/usr/lib/security/pkcs11_softtoken.so -Wl,-rpath -Wl,/usr/lib/security
+LIBS=		$(DYNLIB) $(LINTLIB)
+SRCDIR=		../common
+DYNFLAGS +=	-Wl,-F -Wl,pkcs11_softtoken.so.1
+all: $(LIBS)
+include	../../../Makefile.targ
+pics/%.o: $(SRCDIR)/%.s
+	$(COMPILE.s) -c -o $@ $<

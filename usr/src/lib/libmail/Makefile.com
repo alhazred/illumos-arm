@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -42,6 +43,8 @@ LIBS =		$(DYNLIB)
 CPPFLAGS =	-I../inc -I../../common/inc $(CPPFLAGS.master)
 CFLAGS +=	$(CCVERBOSE)
 LDLIBS +=	-lc
+CERRWARN +=	-_gcc=-Wno-unused-value
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 .KEEP_STATE:
 

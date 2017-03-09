@@ -23,9 +23,10 @@
 # Use is subject to license terms.
 #
 # Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 HDRS=		dsgetdc.h
 HDRDIR=		common
@@ -51,10 +52,9 @@ clobber : 	TARGET = clobber
 install	: 	TARGET = install
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
-all:	$(DERIVED_FILES) .WAIT $(SUBDIRS)
-
-install: all .WAIT $(SUBDIRS)
+all install:	$(DERIVED_FILES) $(SUBDIRS)
 
 install_h: $(DERIVED_FILES) $(ROOTHDRS)
 

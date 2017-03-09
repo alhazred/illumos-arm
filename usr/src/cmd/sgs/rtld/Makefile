@@ -21,10 +21,11 @@
 
 #
 # Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-include		$(SRC)/cmd/sgs/Makefile.com
+#include		$(SRC)/cmd/sgs/Makefile.com
 
-EXTRASUBDIRS =	mdbmod
+#EXTRASUBDIRS =	mdbmod
 
-include		$(SRC)/cmd/sgs/Makefile.sub
+include		../Makefile.sub

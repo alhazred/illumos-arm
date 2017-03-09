@@ -18,11 +18,12 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # The CN KMF mapper. Maps a certificate to its Common Name value.
 #
-include         $(SRC)/lib/Makefile.lib
+include         ../../../Makefile.lib
 
 SUBDIRS =	$(MACH)
 

@@ -24,6 +24,7 @@
 # Use is subject to license terms.
 #
 # Copyright 2015 RackTop Systems.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 all: $(PROG) $(DMODPROG)
@@ -58,13 +59,13 @@ clobber: clean
 
 install_h:
 
-$(ROOTPROG): $$(@D) $(PROG)
+$(ROOTPROG): %/$(PROG) : $(PROG) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(PROG)
 
-$(ROOTPROG64): $$(@D) $(PROG)
+$(ROOTPROG64): %/$(PROG) : $(PROG) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(PROG)
 
-$(ROOTDMOD): $$(@D) $(DMODPROG)
+$(ROOTDMOD): %/$(DMODPROG) : $(ROOTDMOD) %
 	$(RM) $@; $(INS) -s -m 0755 -f $(@D) $(DMODPROG)
 
 include ../../../../../Makefile.rootdirs

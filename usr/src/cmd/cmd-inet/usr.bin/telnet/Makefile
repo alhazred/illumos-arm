@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -29,7 +30,7 @@ PROG=		telnet
 OBJS=		telnet.o commands.o main.o network.o ring.o \
 		sys_bsd.o terminal.o utilities.o genget.o
 
-include		$(SRC)/lib/gss_mechs/mech_krb5/Makefile.mech_krb5
+include		../../../../lib/gss_mechs/mech_krb5/Makefile.mech_krb5
 AUTH_OBJS=	auth.o authenc.o kerberos5.o
 AUTH_INCLUDES=	-I$(SRC)/uts/common/gssapi/mechs/krb5/include \
 		-I$(SRC)/lib/gss_mechs/mech_krb5/include \
@@ -51,7 +52,7 @@ CERRWARN +=	-_gcc=-Wno-unused-function
 CERRWARN +=	-_gcc=-Wno-extra
 CERRWARN +=	-_gcc=-Wno-implicit-function-declaration
 CERRWARN +=	-_gcc=-Wno-unused-label
-LDLIBS +=	-lsocket -lnsl -ltermlib
+LDLIBS +=	-lsocket -lnsl -lncurses
 LDLIBS +=	-lmech_krb5 
 LDFLAGS +=	$(KRUNPATH) -L$(ROOT)$(KLIBDIR_DO) -L$(ROOT)$(KLIBDIR_GL)
 

@@ -20,10 +20,11 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
-include $(SRC)/Makefile.master
+include ../../../../../Makefile.master
 
 SUBDIRS = $(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)

@@ -22,6 +22,7 @@
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2019 Joyent, Inc.
 #
 
@@ -36,6 +37,7 @@ LIBRARY = libumem.a
 STANDLIBRARY = libstandumem.so
 VERS = .1
 
+.NOTPARALLEL:
 # By default, we build the shared library.  Construction of the standalone
 # is specifically requested by architecture-specific Makefiles.
 TYPES = library
@@ -126,7 +128,7 @@ LDFLAGS = $(LDFLAGS_$(CURTYPE))
 
 ASFLAGS_standalone = -DUMEM_STANDALONE
 ASFLAGS_library =
-ASFLAGS += -P $(ASFLAGS_$(CURTYPE)) -D_ASM
+ASFLAGS += $(ASFLAGS_$(CURTYPE)) -D_ASM
 
 # We want the thread-specific errno in the library, but we don't want it in
 # the standalone.  $(DTS_ERRNO) is designed to add -D_TS_ERRNO to $(CPPFLAGS),

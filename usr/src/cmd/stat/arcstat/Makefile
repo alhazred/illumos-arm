@@ -11,9 +11,10 @@
 
 #
 # Copyright 2014 Adam Stevko.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../Makefile.cmd
 
 PROG=	arcstat
 

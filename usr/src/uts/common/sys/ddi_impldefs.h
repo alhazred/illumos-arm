@@ -934,53 +934,48 @@ typedef struct ddi_dma_impl {
  * implementation specific state is in dmai_private.
  */
 typedef struct ddi_dma_impl {
-	ulong_t		dmai_mapping;
+	uint_t	dmai_size;
+	off_t	dmai_offset;
 	uint_t		dmai_minxfer;
 	uint_t		dmai_burstsizes;
 	uint_t		dmai_ndvmapages;
-	uint_t		dmai_pool;
-	uint_t		dmai_rflags;
-	uint_t		dmai_inuse;
+	uint_t		dmai_pool;	/* cached DVMA space */
+	uint_t		dmai_rflags;	/* requester's flags + ours */
+	uint_t		dmai_inuse;	/* active handle? */
 	uint_t		dmai_nwin;
+	uint_t		dmai_winsize;
+	uint_t		dmai_ncookies;
+	uint_t		dmai_curcookie;
 	caddr_t		dmai_nexus_private;
 	void		*dmai_iopte;
 	uint_t		*dmai_sbi;
-	void		*dmai_minfo;
-	dev_info_t	*dmai_rdip;
-	ddi_dma_obj_t	dmai_object;
-	ddi_dma_attr_t	dmai_attr;
-	ddi_dma_cookie_t *dmai_cookie;
-
-	uint_t		dmai_window_index;
+	void		*dmai_minfo;	/* random mapping information */
+	dev_info_t	*dmai_rdip;	/* original requester's dev_info_t */
+	ddi_dma_obj_t	dmai_object;	/* requester's object */
+	ddi_dma_attr_t	dmai_attr;	/* DMA attributes */
+	ddi_dma_cookie_t *dmai_cookie;	/* pointer to first DMA cookie */
 
 	int		(*dmai_fault_check)(struct ddi_dma_impl *handle);
 	void		(*dmai_fault_notify)(struct ddi_dma_impl *handle);
 	int		dmai_fault;
 	ndi_err_t	dmai_error;
-
 } ddi_dma_impl_t;
 
 #elif defined(__aarch64)
 typedef struct ddi_dma_impl {
-	ulong_t		dmai_mapping;
+	ddi_dma_cookie_t *dmai_cookie;
+	uint_t		dmai_ncookies;
+	uint_t		dmai_curcookie;
 	void		*dmai_private;
+
 	uint_t		dmai_minxfer;
 	uint_t		dmai_burstsizes;
-	uint_t		dmai_ndvmapages;
-	uint_t		dmai_pool;
 	uint_t		dmai_rflags;
-	uint_t		dmai_inuse;
 	uint_t		dmai_nwin;
-	caddr_t		dmai_nexus_private;
-	void		*dmai_iopte;
-	uint_t		*dmai_sbi;
-	void		*dmai_minfo;
 	dev_info_t	*dmai_rdip;
-	ddi_dma_obj_t	dmai_object;
 	ddi_dma_attr_t	dmai_attr;
-	ddi_dma_cookie_t *dmai_cookie;
 
-	uint_t		dmai_window_index;
+	ddi_dma_obj_t	dmai_object;
 
 	int		(*dmai_fault_check)(struct ddi_dma_impl *handle);
 	void		(*dmai_fault_notify)(struct ddi_dma_impl *handle);
@@ -991,25 +986,19 @@ typedef struct ddi_dma_impl {
 
 #elif defined(__riscv)
 typedef struct ddi_dma_impl {
-	ulong_t		dmai_mapping;
+	ddi_dma_cookie_t *dmai_cookie;
+	uint_t		dmai_ncookies;
+	uint_t		dmai_curcookie;
 	void		*dmai_private;
+
 	uint_t		dmai_minxfer;
 	uint_t		dmai_burstsizes;
-	uint_t		dmai_ndvmapages;
-	uint_t		dmai_pool;
 	uint_t		dmai_rflags;
-	uint_t		dmai_inuse;
 	uint_t		dmai_nwin;
-	caddr_t		dmai_nexus_private;
-	void		*dmai_iopte;
-	uint_t		*dmai_sbi;
-	void		*dmai_minfo;
 	dev_info_t	*dmai_rdip;
-	ddi_dma_obj_t	dmai_object;
 	ddi_dma_attr_t	dmai_attr;
-	ddi_dma_cookie_t *dmai_cookie;
 
-	uint_t		dmai_window_index;
+	ddi_dma_obj_t	dmai_object;
 
 	int		(*dmai_fault_check)(struct ddi_dma_impl *handle);
 	void		(*dmai_fault_notify)(struct ddi_dma_impl *handle);

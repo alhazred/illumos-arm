@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 # Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2018, Joyent, Inc. All rights reserved.
 #
 # cmd/fs.d/nfs/mount/Makefile
@@ -69,6 +70,7 @@ CLOBBERFILES	+= $(LIBPROG)
 
 .KEEP_STATE:
 
+$(OBJS): webnfs.h
 all:	$(ROOTFS_PROG)
 
 $(LIBPROG):	webnfs.h $(OBJS)
@@ -122,5 +124,6 @@ install:	$(ROOTETCPROG)
 
 lint:	webnfs.h webnfs_xdr.c webnfs_client.c lint_SRCS
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) webnfs.x webnfs.h webnfs_xdr.c webnfs_client.c

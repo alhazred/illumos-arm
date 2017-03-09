@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -59,7 +60,7 @@ OBJECTS=	addicmp.o addipopt.o bcopywrap.o \
 		printpooldata.o printhash_live.o printhashdata.o \
 		printactiveaddr.o printactivenat.o printaddr.o
 
-include $(SRC)/lib/Makefile.lib
+include ../../../../lib/Makefile.lib
 include ../../Makefile.ipf
 
 SRCDIR= ../common

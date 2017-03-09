@@ -386,7 +386,7 @@ __aconvert(double arg, int ndigits, int *exp, int *sign, char *buf)
 	__qaconvert(&ldarg, ndigits, exp, sign, buf);
 }
 
-#elif defined(__alpha) || defined(__aarch64)
+#elif defined(__alpha) || defined(__aarch64) || defined(__riscv)
 
 void
 __aconvert(double arg, int ndigits, int *exp, int *sign, char *buf)

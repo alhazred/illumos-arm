@@ -2188,7 +2188,7 @@ populate_krb5_db_entry (krb5_context context,
 	    goto cleanup;
 
 	if (attr_present == TRUE) {
-	    if ((mask & KDB_PRINC_EXPIRE_TIME_ATTR) == 1) {
+	    if ((mask & KDB_PRINC_EXPIRE_TIME_ATTR) != 0) {
 		if (expiretime < entry->expiration)
 		    entry->expiration = expiretime;
 	    } else {

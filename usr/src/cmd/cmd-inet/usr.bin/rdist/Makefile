@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -76,6 +77,7 @@ install: all $(ROOTPROG) $(ROOTSYMLINK)
 $(ROOTSYMLINK):
 	$(RM) $@; $(SYMLINK) ../bin/$(PROG) $@
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(KCMDOBJS) $(YOBJS)
 

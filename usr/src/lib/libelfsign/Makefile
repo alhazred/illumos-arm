@@ -20,11 +20,12 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 SUBDIRS=	$(MACH)
 
@@ -43,7 +44,7 @@ install: 	TARGET= install
 
 .KEEP_STATE:
 
-all clean clobber install: .WAIT $(SUBDIRS)
+all clean clobber install: $(SUBDIRS)
 
 install_h:	$(ROOTHDRS)
 

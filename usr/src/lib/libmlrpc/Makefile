@@ -25,7 +25,7 @@
 # Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 HDRS=		libmlrpc.h ndr.h ndrtypes.ndl rpcpdu.ndl
 HDRDIR=		common
@@ -50,11 +50,8 @@ install_h: $(ROOTHDRDIR) $(ROOTHDRS)
 
 check: $(CHECKHDRS)
 
-$(ROOTHDRDIR)/%: %
+$(ROOTHDRDIR)/%: % $(ROOTHDRDIR)
 	$(INS.file)
-
-$(ROOTHDRDIR):
-	$(INS.dir)
 
 $(SUBDIRS): FRC
 	@cd $@; pwd; VERSION='$(VERSION)' $(MAKE) $(TARGET)

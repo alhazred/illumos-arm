@@ -19,13 +19,14 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1998, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2018, Joyent, Inc.
 #
 # cmd/ldap/Makefile.com
 # Native LDAP II commands (makestyle clean).
 #
-include $(SRC)/cmd/Makefile.cmd
+include ../../Makefile.cmd
 
 LDAPMOD=	ldapmodify
 LDAPADD=	ldapadd
@@ -129,7 +130,7 @@ all:	$(PROG) $(LDAPCLIENTPROG) $(LDAPADDENTPROG) $(IDSCONFIGPROG)
 $(LDAPADD):	$(LDAPMOD)
 		@$(RM) $(LDAPADD); $(LN) $(LDAPMOD) $(LDAPADD)
 
-$(LDAPPROG):	../common/$$@.c $(LDAPCOMMOBJS)
+$(LDAPPROG):	% : ../common/%.c $(LDAPCOMMOBJS)
 		$(LINK.c) -o $@ ../common/$@.c $(LDAPCOMMOBJS) $(LDLIBS)
 		$(POST_PROCESS)
 
@@ -141,7 +142,7 @@ $(LDAPPROG):	../common/$$@.c $(LDAPCOMMOBJS)
 		$(COMPILE.c) -o $@ $<
 		$(POST_PROCESS_O)
 
-idsconfig:	../ns_ldap/$$@.sh
+idsconfig:	%: ../ns_ldap/%.sh
 		$(CP) ../ns_ldap/$(IDSCONFIGSRC) $(IDSCONFIGPROG)
 		$(CHMOD) 755 $(IDSCONFIGPROG)
 

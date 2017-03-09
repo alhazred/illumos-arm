@@ -1184,7 +1184,7 @@ bad:
  * address space.
  */
 int
-execmap(struct vnode *vp, caddr_t addr, size_t len, size_t zfodlen,
+execmap(struct vnode *vp, caddr_t addr, size_t len, size_t _zfodlen,
     off_t offset, int prot, int page, uint_t szc)
 {
 	int error = 0;
@@ -1194,6 +1194,7 @@ execmap(struct vnode *vp, caddr_t addr, size_t len, size_t zfodlen,
 	size_t zfoddiff;
 	label_t ljb;
 	proc_t *p = ttoproc(curthread);
+	volatile size_t zfodlen = _zfodlen;
 
 	oldaddr = addr;
 	addr = (caddr_t)((uintptr_t)addr & (uintptr_t)PAGEMASK);

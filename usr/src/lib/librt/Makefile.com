@@ -19,15 +19,24 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1997, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
 LIBRARY =	librt.a
 VERS =		.1
 
-include		$(SRC)/lib/Makefile.rootfs
+OBJECTS= sym_import.o
 
-DYNFLAGS +=	-F libc.so.1
+include	../../Makefile.lib
+include ../../Makefile.rootfs
+
+LIBS=		$(DYNLIB) $(LINTLIB)
+SRCDIR=		../common
+DYNFLAGS +=	-Wl,-F -Wl,libc.so.1
+
+pics/%.o: $(SRCDIR)/%.s
+	$(COMPILE.s) -c -o $@ $<
 
 COMPATLINKS +=	lib/libposix4.so.1 \
 		lib/libposix4.so \
@@ -53,3 +62,6 @@ $(ROOT)/usr/lib/$(MACH64)/librt.so.1:  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/librt.so.1
 $(ROOT)/usr/lib/$(MACH64)/librt.so:  \
 	COMPATLINKTARGET=../../../lib/$(MACH64)/librt.so.1
+
+all: $(LIBS)
+include		../../Makefile.targ

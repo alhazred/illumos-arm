@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -28,7 +29,7 @@
 MANIFEST=	client.xml
 SVCMETHOD=	smb-client
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../../Makefile.cmd
 
 ETCSECURITYFILES =	exec_attr.d/SUNWsmbfs
 ROOTETCSECURITY =	$(ROOT)/etc/security

@@ -24,6 +24,9 @@
 
 
 /*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+/*
  * Copyright 2014 Garrett D'Amore <garrett@damore.org>
  *
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
@@ -39,7 +42,7 @@
 extern "C" {
 #endif
 
-#if defined(__sparc)
+#if defined(__sparc) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 
 extern int __flt_rounds(void);
 #define	FLT_ROUNDS	__flt_rounds()
@@ -94,6 +97,8 @@ extern int __flt_rounds;
 #define	DECIMAL_DIG	36
 #elif defined(__i386) || defined(__amd64)
 #define	DECIMAL_DIG	21
+#elif defined(__alpha) || defined(__arm)
+#define	DECIMAL_DIG	__DECIMAL_DIG__
 #endif
 #endif /* defined(__EXTENSIONS__) || defined(_STDC_C99)... */
 
@@ -123,6 +128,19 @@ extern int __flt_rounds;
 #define	LDBL_MAX_EXP	(+16384)
 #define	LDBL_MAX	1.189731495357231765085759326628007016E+4932L
 #define	LDBL_MAX_10_EXP	(+4932)
+
+#elif defined(__alpha) || defined(__aarch64) || defined(__riscv)
+
+/* Follows IEEE standards for 64-bit or 128-bit floating point */
+#define LDBL_MANT_DIG   __LDBL_MANT_DIG__
+#define LDBL_EPSILON    __LDBL_EPSILON__
+#define LDBL_DIG        __LDBL_DIG__
+#define LDBL_MIN_EXP    __LDBL_MIN_EXP__
+#define LDBL_MIN        __LDBL_MIN__
+#define LDBL_MIN_10_EXP __LDBL_MIN_10_EXP__
+#define LDBL_MAX_EXP    __LDBL_MAX_EXP__
+#define LDBL_MAX        __LDBL_MAX__
+#define LDBL_MAX_10_EXP __LDBL_MAX_10_EXP__
 
 #else
 

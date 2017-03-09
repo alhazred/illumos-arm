@@ -25,6 +25,9 @@
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_ALLOCA_H
 #define	_ALLOCA_H
@@ -53,7 +56,9 @@ extern "C" {
  */
 
 #if defined(__BUILTIN_VA_ARG_INCR) || \
-	defined(__sparc) || defined(__i386) || defined(__amd64)
+	defined(__sparc) || defined(__i386) || defined(__amd64) || \
+	defined(__alpha) || defined(__aarch64) || defined(__riscv)
+
 #define	alloca(x)	__builtin_alloca(x)
 
 extern void *__builtin_alloca(size_t);

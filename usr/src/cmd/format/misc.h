@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_MISC_H
 #define	_MISC_H
@@ -153,7 +156,7 @@ void	charmode_off(void);
 char	*alloc_string(char *s);
 char	**build_argvlist(char **, int *, int *, char *);
 int	conventional_name(char *name);
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 int	emcpower_name(char *name);
 #endif
 

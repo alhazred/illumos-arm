@@ -23,6 +23,9 @@
 /*
  * Copyright (c) 1991-2001 by Sun Microsystems, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_PARTITION_H
 #define	_PARTITION_H
@@ -45,7 +48,7 @@ extern "C" {
 #define	G_PARTITION		6
 #define	H_PARTITION		7
 
-#if defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv) || defined(sparc)
 /*
  * the boot and alts slices only exist in the x86 disk layout.
  */

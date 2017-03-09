@@ -22,6 +22,9 @@
  * Copyright (c) 1993, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright 2016 Toomas Soome <tsoome@me.com>
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains functions that implement the fdisk menu commands.
@@ -38,7 +41,7 @@
 #include <sys/dktp/fdisk.h>
 #include <sys/stat.h>
 #include <sys/dklabel.h>
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 #include <libfdisk.h>
 #endif
 
@@ -71,7 +74,7 @@ extern	struct menu_item menu_fdisk[];
 #define	lel(val)	(((unsigned)(les((val)&0x0000FFFF))<<16) | \
 			(les((unsigned)((val)&0xffff0000)>>16)))
 
-#elif	defined(i386)
+#elif defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 
 #define	les(val)	(val)
 #define	lel(val)	(val)
@@ -108,7 +111,7 @@ static int get_solaris_part();
 
 #endif	/* __STDC__ */
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 int extpart_init(ext_part_t **epp);
 #endif
 /*
@@ -135,7 +138,7 @@ fill_ipart(char *bootptr, struct ipart *partp)
 	partp->endcyl = getbyte((uchar_t **)&bootptr);
 	partp->relsect = getlong((uchar_t **)&bootptr);
 	partp->numsect = getlong((uchar_t **)&bootptr);
-#elif defined(i386)
+#elif defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	/*
 	 * i386 platform:
 	 *
@@ -190,7 +193,7 @@ getlong(uchar_t **bp)
 }
 #endif /* defined(sparc) */
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 /*
  * Convert emcpowerN[a-p,p0,p1,p2,p3,p4] to emcpowerNp0 path,
  * this is specific for emc powerpath driver.
@@ -224,7 +227,7 @@ get_sname(char *name)
 	char		np[MAXNAMELEN];
 	char		*npt;
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	if (emcpower_name(cur_disk->disk_name)) {
 		get_emcpower_pname(name, cur_disk->disk_name);
 		return;
@@ -277,7 +280,7 @@ get_pname(char *name)
 		(void) strcpy(np, cur_disk->disk_name);
 	}
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	if (emcpower_name(np)) {
 		get_emcpower_pname(name, np);
 		return;
@@ -485,7 +488,7 @@ get_solaris_part(int fd, struct ipart *ipart)
 	char		*bootptr;
 	struct dk_label	update_label;
 	ushort_t	found = 0;
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	uint32_t	relsec, numsec;
 	int		pno, rval, ext_part_found = 0;
 	ext_part_t	*epp;
@@ -514,7 +517,7 @@ get_solaris_part(int fd, struct ipart *ipart)
 	(void) memcpy(&boot_sec, mbr, sizeof (struct mboot));
 	free(mbr);
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	(void) extpart_init(&epp);
 #endif
 	for (i = 0; i < FD_NUMPART; i++) {
@@ -526,7 +529,7 @@ get_solaris_part(int fd, struct ipart *ipart)
 		bootptr = &boot_sec.parts[ipc];
 		(void) fill_ipart(bootptr, &ip);
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 		if (fdisk_is_dos_extended(ip.systid) && (ext_part_found == 0)) {
 			/* We support only one extended partition per disk */
 			ext_part_found = 1;
@@ -562,7 +565,7 @@ get_solaris_part(int fd, struct ipart *ipart)
 		/*
 		 * we are interested in Solaris and EFI partition types
 		 */
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 		if ((ip.systid == SUNIXOS &&
 		    (fdisk_is_linux_swap(epp, lel(ip.relsect), NULL) != 0)) ||
 		    ip.systid == SUNIXOS2 ||
@@ -595,7 +598,7 @@ get_solaris_part(int fd, struct ipart *ipart)
 		}
 	}
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	libfdisk_fini(&epp);
 #endif
 
@@ -683,7 +686,7 @@ copy_solaris_part(struct ipart *ipart)
 	char		buf[MAXPATHLEN];
 	char		*bootptr;
 	struct stat	statbuf;
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	uint32_t	relsec, numsec;
 	int		pno, rval, ext_part_found = 0;
 	ext_part_t	*epp;
@@ -744,7 +747,7 @@ copy_solaris_part(struct ipart *ipart)
 
 	(void) memcpy(&mboot, mbr, sizeof (struct mboot));
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	(void) extpart_init(&epp);
 #endif
 	for (i = 0; i < FD_NUMPART; i++) {
@@ -756,7 +759,7 @@ copy_solaris_part(struct ipart *ipart)
 		bootptr = &mboot.parts[ipc];
 		(void) fill_ipart(bootptr, &ip);
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 		if (fdisk_is_dos_extended(ip.systid) && (ext_part_found == 0)) {
 			/* We support only one extended partition per disk */
 			ext_part_found = 1;
@@ -785,7 +788,7 @@ copy_solaris_part(struct ipart *ipart)
 #endif
 
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 		if ((ip.systid == SUNIXOS &&
 		    (fdisk_is_linux_swap(epp, lel(ip.relsect), NULL) != 0)) ||
 		    ip.systid == SUNIXOS2 ||
@@ -818,7 +821,7 @@ copy_solaris_part(struct ipart *ipart)
 			break;
 		}
 	}
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	libfdisk_fini(&epp);
 #endif
 
@@ -838,7 +841,7 @@ auto_solaris_part(struct dk_label *label)
 	struct ipart	ip;
 	char		*bootptr;
 	char		pbuf[MAXPATHLEN];
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	uint32_t	relsec, numsec;
 	int		pno, rval, ext_part_found = 0;
 	ext_part_t	*epp;
@@ -869,7 +872,7 @@ auto_solaris_part(struct dk_label *label)
 
 	(void) memcpy(&mboot, mbr, sizeof (struct mboot));
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	(void) extpart_init(&epp);
 #endif
 	for (i = 0; i < FD_NUMPART; i++) {
@@ -881,7 +884,7 @@ auto_solaris_part(struct dk_label *label)
 		bootptr = &mboot.parts[ipc];
 		(void) fill_ipart(bootptr, &ip);
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 		if (fdisk_is_dos_extended(ip.systid) && (ext_part_found == 0)) {
 			/* We support only one extended partition per disk */
 			ext_part_found = 1;
@@ -913,7 +916,7 @@ auto_solaris_part(struct dk_label *label)
 		 */
 
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 		if ((ip.systid == SUNIXOS &&
 		    (fdisk_is_linux_swap(epp, lel(ip.relsect), NULL) != 0)) ||
 		    ip.systid == SUNIXOS2 ||
@@ -946,7 +949,7 @@ auto_solaris_part(struct dk_label *label)
 		}
 	}
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	libfdisk_fini(&epp);
 #endif
 	(void) close(fd);
@@ -994,7 +997,7 @@ good_fdisk()
 	}
 }
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 int
 extpart_init(ext_part_t **epp)
 {

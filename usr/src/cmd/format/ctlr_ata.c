@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains the routines for the IDE drive interface
@@ -40,7 +43,7 @@
 #include <string.h>
 #include <sys/byteorder.h>
 #include <errno.h>
-#if defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv) || defined(sparc)
 #include <sys/dktp/altsctr.h>
 #endif
 #include <sys/dktp/dadkio.h>
@@ -62,14 +65,14 @@ int	updatebadsec();
 
 #ifdef  __STDC__
 static int	ata_ck_format(void);
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 static int	ata_ex_cur(struct defect_list *);
 static int	ata_wr_cur(struct defect_list *);
 static int	ata_repair(diskaddr_t, int);
 #endif /* i386 */
 #else /* __STDC__ */
 static int	ata_ck_format();
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 static int	ata_ex_cur();
 static int	ata_wr_cur();
 static int	ata_repair();
@@ -109,8 +112,8 @@ struct  ctlr_ops pcmcia_ataops = {
 	0,
 };
 
-
-#if defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
+diskaddr_t	altsec_offset;	/* Alternate sector offset */
 static struct	dkl_partition	*dpart = NULL;
 #endif	/* defined(i386) */
 extern	struct	badsec_lst	*badsl_chain;
@@ -138,7 +141,7 @@ static char *dadkrawioerrs[] = {
 	};
 
 /*ARGSUSED6*/
-#if	defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 int
 ata_rdwr(int dir, int fd, diskaddr_t blk64, int secnt, caddr_t bufaddr,
 		int flags, int *xfercntp)
@@ -226,7 +229,7 @@ ata_ck_format()
 }
 
 
-#if defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 
 static int
 get_alts_slice()

@@ -27,6 +27,9 @@
  * Copyright 2017 Nexenta Systems, Inc.
  * Copyright 2018 OmniOS Community Edition (OmniOSce) Association.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * bootadm(1M) is a new utility for managing bootability of
@@ -299,7 +302,7 @@ static void append_to_flist(filelist_t *, char *);
 static int ufs_add_to_sign_list(char *sign);
 static error_t synchronize_BE_menu(void);
 
-#if !defined(_OBP)
+#if !defined(_OBP) && defined(__x86)
 static void ucode_install();
 #endif
 
@@ -333,7 +336,7 @@ static subcmd_defn_t inst_subcmds[] = {
 
 #define	build_path(buf, len, root, prefix, suffix) \
     snprintf((buf), (len), "%s%s%s%s%s", (root), (prefix), get_machine(), \
-    is_flag_on(IS_SPARC_TARGET) ? "" : "/amd64", (suffix))
+    (is_flag_on(IS_SPARC_TARGET) || is_alpha() || is_aarch64() || is_riscv64())? "" : "/amd64", (suffix))
 
 /*
  * Directory specific flags:
@@ -458,14 +461,14 @@ usage(void)
 	    "[-F format]\n", prog);
 	(void) fprintf(stderr,
 	    "\t%s list-archive [-R altroot [-p platform]]\n", prog);
-#if defined(_OBP)
+#if defined(_OBP) ||  !defined(__x86)
 	(void) fprintf(stderr,
 	    "\t%s install-bootloader [-fv] [-R altroot] [-P pool]\n", prog);
 #else
 	(void) fprintf(stderr,
 	    "\t%s install-bootloader [-Mfv] [-R altroot] [-P pool]\n", prog);
 #endif
-#if !defined(_OBP)
+#if !defined(_OBP) && defined(__x86)
 	/* x86 only */
 	(void) fprintf(stderr, "\t%s set-menu [-R altroot] key=value\n", prog);
 	(void) fprintf(stderr, "\t%s list-menu [-R altroot]\n", prog);
@@ -662,7 +665,7 @@ parse_args_internal(int argc, char *argv[])
 	int c, i, error;
 	extern char *optarg;
 	extern int optind, opterr;
-#if defined(_OBP)
+#if defined(_OBP) || ! defined(__x86)
 	const char *optstring = "a:d:fF:i:m:no:veQCLR:p:P:XZ";
 #else
 	const char *optstring = "a:d:fF:i:m:no:veQCMLR:p:P:XZ";
@@ -737,7 +740,7 @@ parse_args_internal(int argc, char *argv[])
 			bam_cmd = BAM_MENU;
 			bam_subcmd = optarg;
 			break;
-#if !defined(_OBP)
+#if !defined(_OBP) && defined(__x86)
 		case 'M':
 			bam_mbr = 1;
 			break;
@@ -799,7 +802,10 @@ parse_args_internal(int argc, char *argv[])
 			bam_platform = optarg;
 			if ((strcmp(bam_platform, "i86pc") != 0) &&
 			    (strcmp(bam_platform, "sun4u") != 0) &&
-			    (strcmp(bam_platform, "sun4v") != 0)) {
+			    (strcmp(bam_platform, "sun4v") != 0) &&
+			    (strcmp(bam_platform, "alpha") != 0) &&
+			    (strcmp(bam_platform, "aarch64") != 0) &&
+			    (strcmp(bam_platform, "riscv64") != 0)) {
 				error = 1;
 				bam_error(_("invalid platform %s - must be "
 				    "one of sun4u, sun4v or i86pc\n"),
@@ -1003,6 +1009,11 @@ is_safe_exec(char *path)
 	if (!S_ISREG(sb.st_mode)) {
 		bam_error(_("%s is not a regular file, skipping\n"), path);
 		return (BAM_ERROR);
+	}
+
+	if (is_alpha() || is_aarch64() || is_riscv64()) {
+		// FIXME
+		return (BAM_SUCCESS);
 	}
 
 	if (sb.st_uid != getuid()) {
@@ -1501,7 +1512,7 @@ bam_menu(char *subcmd, char *opt, int largc, char *largv[])
 		ret = f(menu, ((largc > 0) ? largv[0] : ""),
 		    ((largc > 1) ? largv[1] : ""));
 	} else if (strcmp(subcmd, "disable_hypervisor") == 0) {
-		if (is_sparc()) {
+		if (is_sparc() || is_alpha() || is_aarch64() || is_riscv64()) {
 			bam_error(_("%s operation unsupported on SPARC "
 			    "machines\n"), subcmd);
 			ret = BAM_ERROR;
@@ -1509,7 +1520,7 @@ bam_menu(char *subcmd, char *opt, int largc, char *largv[])
 			ret = f(menu, bam_root, NULL);
 		}
 	} else if (strcmp(subcmd, "enable_hypervisor") == 0) {
-		if (is_sparc()) {
+		if (is_sparc() || is_alpha() || is_aarch64() || is_riscv64()) {
 			bam_error(_("%s operation unsupported on SPARC "
 			    "machines\n"), subcmd);
 			ret = BAM_ERROR;
@@ -1619,7 +1630,7 @@ bam_archive(
 	if (strcmp(subcmd, "update_all") == 0)
 		bam_update_all = 1;
 
-#if !defined(_OBP)
+#if !defined(_OBP) && defined(__x86)
 	ucode_install(bam_root);
 #endif
 
@@ -2301,7 +2312,7 @@ cmpstat(
 	 * On SPARC we create/update links too.
 	 */
 	if (flags != FTW_F && flags != FTW_D && (flags == FTW_SL &&
-	    !is_flag_on(IS_SPARC_TARGET)))
+	    !is_flag_on(IS_SPARC_TARGET) && !is_alpha() && !is_aarch64() && !is_riscv64()))
 		return (0);
 
 	/*
@@ -2360,7 +2371,7 @@ cmpstat(
 	/*
 	 * On SPARC we create a -path-list file for mkisofs
 	 */
-	if (is_flag_on(IS_SPARC_TARGET) && !bam_nowrite()) {
+	if ((is_flag_on(IS_SPARC_TARGET) || is_alpha() || is_aarch64() || is_riscv64()) && !bam_nowrite()) {
 		if (flags != FTW_D) {
 			char	*strip;
 
@@ -2378,7 +2389,7 @@ cmpstat(
 		if (bam_verbose)
 			bam_print(_("    new     %s\n"), file);
 
-		if (is_flag_on(IS_SPARC_TARGET)) {
+		if (is_flag_on(IS_SPARC_TARGET) || is_alpha() || is_aarch64() || is_riscv64()) {
 			set_dir_flag(NEED_UPDATE);
 			return (0);
 		}
@@ -2402,7 +2413,7 @@ cmpstat(
 		if (bam_smf_check)	/* ignore new during smf check */
 			return (0);
 
-		if (is_flag_on(IS_SPARC_TARGET)) {
+		if (is_flag_on(IS_SPARC_TARGET) || is_alpha() || is_aarch64() || is_riscv64()) {
 			set_dir_flag(NEED_UPDATE);
 		} else {
 			ret = update_dircache(file, flags);
@@ -2422,7 +2433,7 @@ cmpstat(
 	 * If we got there, the file is already listed as to be included in the
 	 * iso image. We just need to know if we are going to rebuild it or not
 	 */
-	if (is_flag_on(IS_SPARC_TARGET) &&
+	if ((is_flag_on(IS_SPARC_TARGET) || is_alpha() || is_aarch64() || is_riscv64()) &&
 	    is_dir_flag_on(NEED_UPDATE) && !bam_nowrite())
 		return (0);
 	/*
@@ -2453,7 +2464,7 @@ cmpstat(
 			}
 		}
 
-		if (is_flag_on(IS_SPARC_TARGET)) {
+		if (is_flag_on(IS_SPARC_TARGET) || is_alpha() || is_aarch64() || is_riscv64()) {
 			set_dir_flag(NEED_UPDATE);
 		} else {
 			ret = update_dircache(file, flags);
@@ -2666,7 +2677,7 @@ is_valid_archive(char *root)
 		return (BAM_SUCCESS);
 	}
 
-	if (is_flag_on(IS_SPARC_TARGET))
+	if (is_flag_on(IS_SPARC_TARGET) || is_alpha() || is_aarch64() || is_riscv64())
 		return (BAM_SUCCESS);
 
 	if (bam_extend && sb.st_size > BA_SIZE_MAX) {
@@ -2707,7 +2718,7 @@ check_flags_and_files(char *root)
 	 * check if cache directories exist on x86.
 	 * check (and always open) the cache file on SPARC.
 	 */
-	if (is_sparc()) {
+	if (is_sparc() || is_alpha() || is_aarch64() || is_riscv64()) {
 		ret = snprintf(get_cachedir(),
 		    sizeof (get_cachedir()), "%s%s%s/%s", root,
 		    ARCHIVE_PREFIX, get_machine(), CACHEDIR_SUFFIX);
@@ -2980,7 +2991,7 @@ check4stale(char *root)
 			if (bam_verbose)
 				bam_print(_("    stale %s\n"), path);
 
-			if (is_flag_on(IS_SPARC_TARGET)) {
+			if (is_flag_on(IS_SPARC_TARGET) || is_alpha() || is_aarch64() || is_riscv64()) {
 				set_dir_flag(NEED_UPDATE);
 			} else {
 				if (has_cachedir())
@@ -3471,6 +3482,52 @@ out_err:
 	return (BAM_ERROR);
 }
 
+static int
+create_alpha_archive(char *archive, char *tempname, char *list)
+{
+	int		ret;
+	char		cmdline[3 * PATH_MAX + 64];
+	filelist_t	flist = {0};
+	const char	*func = "create_alpha_archive()";
+
+	/*
+	 * Prepare mkisofs command line and execute it
+	 */
+	(void) snprintf(cmdline, sizeof (cmdline), "%s %s -o \"%s\" "
+	    "-path-list \"%s\" 2>&1", MKISOFS_PATH, MKISO_PARAMS,
+	    tempname, list);
+
+	BAM_DPRINTF(("%s: executing: %s\n", func, cmdline));
+
+	ret = exec_cmd(cmdline, &flist);
+	if (ret != 0 || check_cmdline(flist) == BAM_ERROR) {
+		dump_errormsg(flist);
+		goto out_err;
+	}
+
+	filelist_free(&flist);
+
+	BAM_DPRINTF(("%s: executing: %s\n", func, cmdline));
+
+	ret = exec_cmd(cmdline, &flist);
+	if (ret != 0 || check_cmdline(flist) == BAM_ERROR)
+		goto out_err;
+
+	filelist_free(&flist);
+
+	/* Did we get a valid archive ? */
+	if (check_archive(tempname) == BAM_ERROR)
+		return (BAM_ERROR);
+
+	return (do_archive_copy(tempname, archive));
+
+out_err:
+	filelist_free(&flist);
+	bam_error(_("boot-archive creation FAILED, command: '%s'\n"), cmdline);
+	(void) unlink(tempname);
+	return (BAM_ERROR);
+}
+
 static unsigned int
 from_733(unsigned char *s)
 {
@@ -3756,6 +3813,8 @@ mkisofs_archive(char *root)
 
 		ret = create_sparc_archive(boot_archive, temp, bootblk,
 		    get_cachedir());
+	} else if (is_alpha() || is_aarch64() || is_riscv64()) {
+		ret = create_alpha_archive(boot_archive, temp, get_cachedir());
 	} else {
 		if (!is_dir_flag_on(NO_EXTEND)) {
 			if (bam_verbose)
@@ -10258,6 +10317,81 @@ is_sparc(void)
 	return (issparc);
 }
 
+int
+is_alpha(void)
+{
+	static int _isalpha = -1;
+	char mbuf[257];	/* from sysinfo(2) manpage */
+
+	if (_isalpha != -1)
+		return (_isalpha);
+
+	if (bam_alt_platform) {
+		if (strncmp(bam_platform, "alpha", 4) == 0) {
+			_isalpha = 1;
+		}
+	} else {
+		if (sysinfo(SI_ARCHITECTURE, mbuf, sizeof (mbuf)) > 0 &&
+		    strcmp(mbuf, "alpha") == 0) {
+			_isalpha = 1;
+		}
+	}
+	if (_isalpha == -1)
+		_isalpha = 0;
+
+	return (_isalpha);
+}
+
+int
+is_aarch64(void)
+{
+	static int _isaarch64 = -1;
+	char mbuf[257];	/* from sysinfo(2) manpage */
+
+	if (_isaarch64 != -1)
+		return (_isaarch64);
+
+	if (bam_alt_platform) {
+		if (strncmp(bam_platform, "aarch64", strlen("aarch64")) == 0) {
+			_isaarch64 = 1;
+		}
+	} else {
+		if (sysinfo(SI_ARCHITECTURE, mbuf, sizeof (mbuf)) > 0 &&
+		    strcmp(mbuf, "aarch64") == 0) {
+			_isaarch64 = 1;
+		}
+	}
+	if (_isaarch64 == -1)
+		_isaarch64 = 0;
+
+	return (_isaarch64);
+}
+
+int
+is_riscv64(void)
+{
+	static int _isriscv64 = -1;
+	char mbuf[257];	/* from sysinfo(2) manpage */
+
+	if (_isriscv64 != -1)
+		return (_isriscv64);
+
+	if (bam_alt_platform) {
+		if (strncmp(bam_platform, "riscv64", strlen("riscv64")) == 0) {
+			_isriscv64 = 1;
+		}
+	} else {
+		if (sysinfo(SI_ARCHITECTURE, mbuf, sizeof (mbuf)) > 0 &&
+		    strcmp(mbuf, "riscv64") == 0) {
+			_isriscv64 = 1;
+		}
+	}
+	if (_isriscv64 == -1)
+		_isriscv64 = 0;
+
+	return (_isriscv64);
+}
+
 static void
 append_to_flist(filelist_t *flistp, char *s)
 {
@@ -10272,7 +10406,7 @@ append_to_flist(filelist_t *flistp, char *s)
 	flistp->tail = lp;
 }
 
-#if !defined(_OBP)
+#if !defined(_OBP) && defined(__x86)
 
 UCODE_VENDORS;
 

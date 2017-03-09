@@ -21,6 +21,9 @@
 /*
  * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains miscellaneous routines.
@@ -673,7 +676,7 @@ conventional_name(char *name)
 	return (*name == 0);
 }
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 /*
  * Return true if a device name match the emc powerpath name scheme:
  * emcpowerN[a-p,p0,p1,p2,p3,p4]

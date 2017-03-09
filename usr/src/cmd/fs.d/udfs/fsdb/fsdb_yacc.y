@@ -23,25 +23,46 @@
  * Copyright (c) 1999-2000 by Sun Microsystems, Inc.
  * All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
 #include <stdio.h>
 #include <locale.h>
+#include <libgen.h>
 #include <sys/param.h>
 #include <sys/fs/udf_volume.h>
+#include "ud_lib.h"
 
 char	shell_name[128] = "/bin/sh";
 extern char	prompt[];
 extern uint16_t ricb_prn;
 extern uint32_t ricb_loc;
 extern int32_t bsize, bmask, l2d, l2b;
+extern ud_handle_t udh;
 
 int	base = 16;
 int	old_value = 0;
 int	value = 0;
 int	count = 0;
 
+void print_prompt();
+int yylex (void);
+int32_t check_and_get_int(uint8_t *str, uint64_t *value);
+void yyerror(const char *);
+void print_inode(uint32_t addr);
+caddr_t verify_inode(uint32_t addr, uint32_t type);
+int32_t verify_dent(uint32_t i_addr, uint32_t nent);
+int32_t inode_from_path(char *path, uint32_t *in, uint8_t *fl);
+void fill_pattern(uint32_t addr, uint32_t count, char *pattern);
+void list(char *nm, uint32_t in, uint32_t fl);
+void print_desc(uint32_t addr, int32_t id);
+void dump_disk(uint32_t addr, uint32_t count, char *format);
+void set_file(int32_t id, uint32_t iloc, uint64_t value);
+void print_dent(uint32_t i_addr, uint32_t nent);
+void find_it(char *dir, char *name, uint32_t in, uint32_t fl);
 
 int	last_op_type = 0;
 #define	TYPE_NONE	0
@@ -231,7 +252,7 @@ cd		: CD ' ' WORD
 						gettext("Could not locate inode"
 						" for path %s\n"), temp_cwd);
 					strcpy(temp_cwd, "/");
-					if ((temp = ud_xlate_to_daddr(ricb_prn,
+					if ((temp = ud_xlate_to_daddr(udh, ricb_prn,
 						ricb_loc)) == 0) {
 						fprintf(stdout,
 						gettext("Failed to translate"
@@ -259,7 +280,7 @@ cd		: CD ' ' WORD
 				/*
 				 * set current value to root icb
 				 */
-				if ((block = ud_xlate_to_daddr(ricb_prn,
+				if ((block = ud_xlate_to_daddr(udh, ricb_prn,
 						ricb_loc)) == 0) {
 					fprintf(stdout,
 						gettext("Failed to translate "

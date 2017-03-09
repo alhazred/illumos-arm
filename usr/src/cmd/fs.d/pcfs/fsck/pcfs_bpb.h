@@ -23,6 +23,9 @@
  * Copyright (c) 1999 by Sun Microsystems, Inc.
  * All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _PCFS_BPB_H
 #define	_PCFS_BPB_H
@@ -84,7 +87,7 @@ extern "C" {
  *	|     File area     |
  *	|___________________|
  */
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma	pack(1)
 #endif
 struct _orig_bios_param_blk {
@@ -109,11 +112,11 @@ struct _orig_bios_param_blk {
 	uint32_t hidden_sectors;
 	uint32_t sectors_in_logical_volume;
 };
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma pack()
 #endif
 
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma	pack(1)
 #endif
 struct _bpb32_extensions {
@@ -126,11 +129,11 @@ struct _bpb32_extensions {
 	uint16_t backupboot;
 	uint16_t reserved[6];
 };
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma pack()
 #endif
 
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma	pack(1)
 #endif
 struct _bpb_extensions {
@@ -141,18 +144,18 @@ struct _bpb_extensions {
 	uchar_t  volume_label[11];
 	uchar_t  type[8];
 };
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma pack()
 #endif
 
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma	pack(1)
 #endif
 struct _sun_bpb_extensions {
 	uint16_t  bs_offset_high;
 	uint16_t  bs_offset_low;
 };
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma pack()
 #endif
 
@@ -168,7 +171,7 @@ typedef struct _bios_param_blk {
 	struct _sun_bpb_extensions  sunbpb;
 } bpb_t;
 
-#ifdef i386
+#if defined i386 || defined __alpha || defined __riscv || defined __aarch64
 #pragma	pack(1)
 struct _bpb_head {
 	uchar_t			    bs_jump_code[3];

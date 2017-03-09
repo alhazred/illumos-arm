@@ -22,12 +22,13 @@
 #	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T
 #	  All Rights Reserved
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 #ident	"%Z%%M%	%I%	%E% SMI"	/* SVr4.0 1.1.2.1	*/
 case "$MACH" in
-  "u3b2"|"sparc"|"i386"|"ppc" )
+  "u3b2"|"sparc"|"i386"|"ppc"|"arm"|"alpha"|"aarch64"|"riscv64" )
 	echo "
 # Do not modify this file directly.
 # Use the sharemgr(1m) command for all share management

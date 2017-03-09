@@ -25,6 +25,9 @@
  *
  * Copyright (c) 1993, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains the code to perform program startup.  This
@@ -124,7 +127,7 @@ static char *other_ctlrs[] = {
 	};
 #define	OTHER_CTLRS 1
 
-#elif defined(i386)
+#elif defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv) || defined(sparc)
 static char *other_ctlrs[] = {
 	"ISP-80"
 	};

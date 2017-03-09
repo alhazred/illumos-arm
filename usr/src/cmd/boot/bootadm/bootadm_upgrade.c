@@ -23,6 +23,9 @@
  * Use is subject to license terms.
  * Copyright 2017 Toomas Soome <tsoome@me.com>
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <errno.h>
@@ -117,7 +120,7 @@ get_boot_cap(const char *osroot)
 	int		error;
 	const char	*fcn = "get_boot_cap()";
 
-	if (is_sparc()) {
+	if (is_sparc() || is_alpha() || is_aarch64() || is_riscv64()) {
 		/* there is no non dboot sparc new-boot */
 		bam_direct = BAM_DIRECT_DBOOT;
 		BAM_DPRINTF(("%s: is sparc - always DBOOT\n", fcn));

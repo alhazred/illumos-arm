@@ -22,6 +22,9 @@
  * Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -29,7 +32,7 @@
  * nfs log - read buffer file and print structs in user-readable form
  */
 
-#define	_REENTRANT
+//#define	_REENTRANT
 
 #include <ctype.h>
 #include <stdio.h>

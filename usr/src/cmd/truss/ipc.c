@@ -23,6 +23,9 @@
  * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -405,6 +408,15 @@ checkproc(private_t *pri)
 #elif defined(__i386)
 		(void) Lgetareg(Lwp, R_PC, &pc);
 		(void) Lputareg(Lwp, EAX, (prgreg_t)what);
+#elif defined(__alpha)
+		(void) Lgetareg(Lwp, R_PC, &pc);
+		(void) Lputareg(Lwp, REG_A0, (prgreg_t)what);
+#elif defined(__aarch64)
+		(void) Lgetareg(Lwp, R_PC, &pc);
+		(void) Lputareg(Lwp, REG_X0, (prgreg_t)what);
+#elif defined(__riscv)
+		(void) Lgetareg(Lwp, R_PC, &pc);
+		(void) Lputareg(Lwp, REG_A0, (prgreg_t)what);
 #else
 #error "unrecognized architecture"
 #endif

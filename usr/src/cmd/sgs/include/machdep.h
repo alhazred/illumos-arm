@@ -20,6 +20,9 @@
  */
 
 /*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+/*
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  *
@@ -43,6 +46,18 @@
 #elif defined(__i386) || defined(__amd64)
 
 #include <i386/machdep_x86.h>
+
+#elif defined(__alpha)
+
+#include <alpha/machdep_alpha.h>
+
+#elif defined(__aarch64)
+
+#include <aarch64/machdep_aarch64.h>
+
+#elif defined(__riscv)
+
+#include <riscv64/machdep_riscv64.h>
 
 #else
 

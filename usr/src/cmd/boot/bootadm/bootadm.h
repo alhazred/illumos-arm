@@ -24,6 +24,9 @@
  *
  * Copyright 2016 Toomas Soome <tsoome@me.com>.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef _BOOTADM_H
 #define	_BOOTADM_H
@@ -224,6 +227,9 @@ extern void unlink_line(menu_t *mp, line_t *lp);
 extern void line_free(line_t *lp);
 extern char *s_strdup(char *);
 extern int is_sparc(void);
+extern int is_alpha(void);
+extern int is_aarch64(void);
+extern int is_riscv64(void);
 extern int is_pcfs(char *);
 extern int is_zfs(char *);
 extern int bootadm_digest(const char *, char **);

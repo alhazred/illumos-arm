@@ -25,6 +25,9 @@
  *
  * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 #ifndef	__ELF_DOT_H
 #define	__ELF_DOT_H
 
@@ -95,7 +98,11 @@ typedef struct pltpadinfo {
 typedef struct _rt_elf_private {
 	void		*e_symtab;	/* symbol table */
 	void		*e_sunwsymtab;	/* symtab augmented with local fcns */
+#ifdef __alpha
+	uint64_t	*e_hash;
+#else
 	uint_t		*e_hash;	/* hash table */
+#endif
 	char		*e_strtab;	/* string table */
 	void		*e_reloc;	/* relocation table */
 	uint_t		*e_pltgot;	/* addrs for procedure linkage table */

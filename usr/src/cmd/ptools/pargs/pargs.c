@@ -25,6 +25,9 @@
 /*
  * Copyright (c) 2018, Joyent, Inc.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * pargs examines and prints the arguments (argv), environment (environ),
@@ -722,6 +725,7 @@ at_str(long val, char *instr, size_t n, char *str)
 	if ((hwcap) & (mask))					\
 		(void) snprintf(s, n, "%s" name " | ", s)
 
+#if !defined(__alpha) && !defined(__aarch64) && !defined(__riscv)
 /*ARGSUSED*/
 static void
 at_hwcap(long val, char *instr, size_t n, char *str)
@@ -753,6 +757,7 @@ at_hwcap2(long val, char *instr, size_t n, char *str)
 #error	"port me"
 #endif
 }
+#endif
 
 
 /*ARGSUSED*/
@@ -833,8 +838,10 @@ static struct aux_id aux_arr[] = {
 	{ AT_SUN_LPAGESZ,	"AT_SUN_LPAGESZ",	at_null	},
 	{ AT_SUN_PLATFORM,	"AT_SUN_PLATFORM",	at_str	},
 	{ AT_SUN_EXECNAME,	"AT_SUN_EXECNAME",	at_str	},
+#if !defined(__alpha) && !defined(__aarch64) && !defined(__riscv)
 	{ AT_SUN_HWCAP,		"AT_SUN_HWCAP",		at_hwcap },
 	{ AT_SUN_HWCAP2,	"AT_SUN_HWCAP2",	at_hwcap2 },
+#endif
 	{ AT_SUN_IFLUSH,	"AT_SUN_IFLUSH",	at_null	},
 	{ AT_SUN_CPU,		"AT_SUN_CPU",		at_null	},
 	{ AT_SUN_MMU,		"AT_SUN_MMU",		at_null	},

@@ -22,12 +22,15 @@
 #
 #	Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T
 #	  All Rights Reserved
+#
+# Copyright 2017 Hayashi Naoyuki
+#
 
 
 #ident	"%Z%%M%	%I%	%E% SMI"	/* SVr4.0 1.2	*/
 
 case "$MACH" in
-  "u3b2"|"sparc"|"i386"|"ppc" )
+  "u3b2"|"sparc"|"i386"|"ppc"|"alpha"|"arm"|"aarch64"|"riscv64" )
 	echo "# This is the per-system configuration file
 " >_sysconfig
 	;;

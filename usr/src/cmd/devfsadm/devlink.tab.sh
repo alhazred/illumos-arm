@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1998, 2000 by Sun Microsystems, Inc.
 # All rights reserved.
 #
@@ -111,6 +112,30 @@ case "$MACH" in
 	#
 	# These are the sparc specific entries
 	# It depends on the build machine being an sparc
+	#
+	cat <<-EOM
+	EOM
+	;;
+  "alpha" )
+	#
+	# These are the alpha specific entries
+	# It depends on the build machine being an alpha
+	#
+	cat <<-EOM
+	EOM
+	;;
+  "aarch64" )
+	#
+	# These are the aarch64 specific entries
+	# It depends on the build machine being an aarch64
+	#
+	cat <<-EOM
+	EOM
+	;;
+  "riscv64" )
+	#
+	# These are the riscv64 specific entries
+	# It depends on the build machine being an riscv64
 	#
 	cat <<-EOM
 	EOM

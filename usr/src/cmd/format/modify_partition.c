@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains functions to implement the partition menu commands.
@@ -170,7 +173,7 @@ currently being used for swapping.\n");
 			}
 			map[C_PARTITION].dkl_nblk = ncyl * spc();
 
-#if defined(i386)
+#if defined(i386) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 			/*
 			 * Adjust for the boot and possibly alternates
 			 * partitions.
@@ -230,7 +233,7 @@ currently being used for swapping.\n");
 		 */
 		if (sel_type == 1) {
 			map[free_hog].dkl_nblk = map[C_PARTITION].dkl_nblk;
-#if defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 			map[free_hog].dkl_nblk -= map[I_PARTITION].dkl_nblk;
 			if (cur_ctype->ctype_ctype != DKC_SCSI_CCS) {
 				map[free_hog].dkl_nblk -=
@@ -303,7 +306,7 @@ currently being used for swapping.\n");
 		for (i = 0; i < NDKMAP; i++) {
 			cur_parts->pinfo_map[i].dkl_nblk = map[i].dkl_nblk;
 			cur_parts->pinfo_map[i].dkl_cylno = map[i].dkl_cylno;
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 			cur_parts->vtoc.v_part[i].p_start =
 			    map[i].dkl_cylno * nhead * nsect;
 			cur_parts->vtoc.v_part[i].p_size =
@@ -380,7 +383,7 @@ check_map(struct dk_map32 *map)
 	int		cyloffset = 0;
 	blkaddr32_t	tot_blks = 0;
 
-#ifdef i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	/*
 	 * On x86, we must account for the boot and alternates
 	 */
@@ -407,7 +410,7 @@ check_map(struct dk_map32 *map)
 			return (-1);
 		}
 		if (i != C_PARTITION && map[i].dkl_nblk) {
-#ifdef	i386
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 			if (i == I_PARTITION || i == J_PARTITION)
 				continue;
 #endif

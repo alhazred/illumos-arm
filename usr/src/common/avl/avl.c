@@ -27,6 +27,9 @@
  * Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
  * Copyright (c) 2015 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * AVL - generic AVL tree implementation for kernel use
@@ -103,6 +106,9 @@
 #include <sys/debug.h>
 #include <sys/avl.h>
 #include <sys/cmn_err.h>
+#ifdef _BOOT
+#include <sys/promif.h>
+#endif
 
 /*
  * Small arrays to translate between balance (or diff) values and child indices.
@@ -643,7 +649,11 @@ avl_add(avl_tree_t *tree, void *new_node)
 	 */
 	if (avl_find(tree, new_node, &where) != NULL)
 #ifdef _KERNEL
+#ifdef _BOOT
+		prom_panic("avl_find() succeeded inside avl_add()");
+#else
 		panic("avl_find() succeeded inside avl_add()");
+#endif
 #else
 		(void) assfail("avl_find() succeeded inside avl_add()",
 		    __FILE__, __LINE__);

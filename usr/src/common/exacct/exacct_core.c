@@ -23,6 +23,9 @@
  * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -261,10 +264,12 @@ ea_set_item(ea_object_t *obj, ea_catalog_t tag,
 		item->ei_u.ei_u_uint64 = *(uint64_t *)value;
 		item->ei_size = sizeof (uint64_t);
 		break;
+#ifndef _KERNEL
 	case EXT_DOUBLE:
 		item->ei_u.ei_u_double = *(double *)value;
 		item->ei_size = sizeof (double);
 		break;
+#endif
 	case EXT_STRING:
 		if ((item->ei_string = ea_strdup((char *)value)) == NULL) {
 			/* exacct_errno set above. */
@@ -675,11 +680,13 @@ ea_pack_object(ea_object_t *obj, void *buf, size_t bufsize)
 			size = sizeof (uint64_t);
 			exacct_order64(src);
 			break;
+#ifndef _KERNEL
 		case EXT_DOUBLE:
 			src = &curr_obj->eo_item.ei_double;
 			size = sizeof (double);
 			exacct_order64((uint64_t *)src);
 			break;
+#endif
 		case EXT_STRING:
 			src = curr_obj->eo_item.ei_string;
 			size = curr_obj->eo_item.ei_size;
@@ -736,9 +743,11 @@ ea_pack_object(ea_object_t *obj, void *buf, size_t bufsize)
 		case EXT_UINT64:
 			exacct_order64(src);
 			break;
+#ifndef _KERNEL
 		case EXT_DOUBLE:
 			exacct_order64((uint64_t *)src);
 			break;
+#endif
 		default:
 			break;
 		}

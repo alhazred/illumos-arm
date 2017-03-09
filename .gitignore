@@ -23,3 +23,11 @@ cscope.po.out
 /usr/src/noise-*.ref
 /usr/src/tools/clobber-*.out
 /usr/src/tools/install-*.out
+/usr/src/cross/bin
+/usr/src/cross/include
+/usr/src/cross/lib
+/usr/src/cross/lib64
+/usr/src/cross/libexec
+/usr/src/cross/share
+/usr/src/cross/*-solaris2.10/
+/usr/src/cross/*-solaris2.11/

@@ -2,8 +2,9 @@
  * Copyright (c) 2001 by Sun Microsystems, Inc.
  * All rights reserved.
  */
-
-#pragma ident	"%Z%%M%	%I%	%E% SMI"
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * The contents of this file are subject to the Netscape Public

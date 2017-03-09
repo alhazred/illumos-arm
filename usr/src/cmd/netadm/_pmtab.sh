@@ -24,16 +24,22 @@
 #	  All Rights Reserved
 
 
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1999 by Sun Microsystems, Inc.
 # All rights reserved.
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"	/* SVr4.0 1.2	*/
 
 case "$MACH" in
-  "u3b2"|"sparc"|"ppc"|i386 )
+  "u3b2"|"sparc"|"ppc"|i386|"alpha" )
 	echo "# VERSION=1
 ttya:u:root:reserved:reserved:reserved:/dev/term/a:I::/usr/bin/login::9600:ldterm,ttcompat:ttya login\: ::tvi925:y:# 
 ttyb:u:root:reserved:reserved:reserved:/dev/term/b:I::/usr/bin/login::9600:ldterm,ttcompat:ttyb login\: ::tvi925:y:# " > _pmtab
+	;;
+  "arm"|"aarch64"|"riscv64" )
+	echo "# VERSION=1
+ttya:u:root:reserved:reserved:reserved:/dev/term/a:I::/usr/bin/login::115200:ldterm,ttcompat:ttya login\: ::tvi925:y:# 
+ttyb:u:root:reserved:reserved:reserved:/dev/term/b:I::/usr/bin/login::115200:ldterm,ttcompat:ttyb login\: ::tvi925:y:# " > _pmtab
 	;;
   * )
 	echo "Unknown architecture."

@@ -21,6 +21,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -103,6 +104,95 @@ link_ver_string:
 EOF
 }
 
+build_alphanote()
+{
+	notestring="Solaris Link Editors: $release-$revision"
+	#
+	# The 'adjustment' is for the the fact that the Alpha
+	# assembler automatically append a '\0' at the end of a string.
+	#
+	pad_notestring -1
+cat > $notefile <<EOF
+	.section	.note, "a"
+
+#include <sgs.h>
+
+	.balign	4
+	.long	.endname - .startname	/* note name size */
+	.long	0			/* note desc size */
+	.long	0			/* note type */
+.startname:
+	.string	"$notestring"
+.endname:
+
+	.section	.rodata, "a"
+	.globl		link_ver_string
+link_ver_string:
+	.type	link_ver_string,@object
+	.string	"${release}-${revision}\0"
+	.size	link_ver_string, .-link_ver_string
+EOF
+}
+
+build_aarch64note()
+{
+	notestring="Solaris Link Editors: $release-$revision"
+	#
+	# The 'adjustment' is for the the fact that the Alpha
+	# assembler automatically append a '\0' at the end of a string.
+	#
+	pad_notestring -1
+cat > $notefile <<EOF
+	.section	.note, "a"
+
+#include <sgs.h>
+
+	.balign	4
+	.long	.endname - .startname	/* note name size */
+	.long	0			/* note desc size */
+	.long	0			/* note type */
+.startname:
+	.string	"$notestring"
+.endname:
+
+	.section	.rodata, "a"
+	.globl		link_ver_string
+link_ver_string:
+	.type	link_ver_string,@object
+	.string	"${release}-${revision}\0"
+	.size	link_ver_string, .-link_ver_string
+EOF
+}
+
+build_riscv64note()
+{
+	notestring="Solaris Link Editors: $release-$revision"
+	#
+	# The 'adjustment' is for the the fact that the Alpha
+	# assembler automatically append a '\0' at the end of a string.
+	#
+	pad_notestring -1
+cat > $notefile <<EOF
+	.section	.note, "a"
+
+#include <sgs.h>
+
+	.balign	4
+	.long	.endname - .startname	/* note name size */
+	.long	0			/* note desc size */
+	.long	0			/* note type */
+.startname:
+	.string	"$notestring"
+.endname:
+
+	.section	.rodata, "a"
+	.globl		link_ver_string
+link_ver_string:
+	.type	link_ver_string,@object
+	.string	"${release}-${revision}\0"
+	.size	link_ver_string, .-link_ver_string
+EOF
+}
 
 notefile=""
 release=""
@@ -137,6 +227,12 @@ if [[ $MACH = "sparc" ]]; then
 	build_sparcnote
 elif [[ $MACH = "i386" ]]; then
 	build_i386note
+elif [[ $MACH = "alpha" ]]; then
+	build_alphanote
+elif [[ $MACH = "aarch64" ]]; then
+	build_aarch64note
+elif [[ $MACH = "riscv64" ]]; then
+	build_riscv64note
 else
 	echo "I don't know how to build a vernote.s for ${MACH}, so sorry"
 	exit 1

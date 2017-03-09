@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2016 Toomas Soome <tsoome@me.com>
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
@@ -125,6 +126,21 @@ sun4u|sun4v)	ISA=sparc
 		BOOT_ARCHIVE_SUFFIX=boot_archive
 		compress=no
 		;;
+alpha)	ISA=alpha
+		ARCH64=none
+		BOOT_ARCHIVE_SUFFIX=boot_archive
+		compress=no
+	;;
+aarch64)	ISA=aarch64
+		ARCH64=none
+		BOOT_ARCHIVE_SUFFIX=boot_archive
+		compress=no
+	;;
+riscv64)	ISA=riscv64
+		ARCH64=none
+		BOOT_ARCHIVE_SUFFIX=boot_archive
+		compress=no
+	;;
 *)		usage
 		;;
 esac

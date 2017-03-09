@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
@@ -137,7 +140,7 @@ struct	menu_item menu_partition[] = {
 		p_hpart, disp_expert_change_expert_efi },
 	{ "8      - change '8' partition",
 		p_ipart, disp_all_change_expert_efi },
-#if defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv) || defined(sparc)
 	{ "9      - change `9' partition",
 		p_jpart, expert },
 #endif

@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_CTLR_ATA_H
 #define	_CTLR_ATA_H
@@ -45,8 +48,8 @@ extern "C" {
  */
 #define	TRIPLET(u, m, l)	((int)((((u))&0xff<<16) + \
 				(((m)&0xff)<<8) + (l&0xff)))
-#if	defined(i386)
-diskaddr_t	altsec_offset;	/* Alternate sector offset */
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
+extern diskaddr_t	altsec_offset;	/* Alternate sector offset */
 #endif	/* defined(i386) */
 
 #ifdef	__STDC__
@@ -54,7 +57,7 @@ diskaddr_t	altsec_offset;	/* Alternate sector offset */
  *	Local prototypes for ANSI C compilers
  */
 
-#if	defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 int	ata_rdwr(int, int, diskaddr_t, int, caddr_t, int, int *);
 #else	/* defined(i386) */
 static int	ata_rdwr(int, int, diskaddr_t, int, caddr_t, int, int *);
@@ -67,7 +70,7 @@ int	apply_chg_list(int, int, uchar_t *, uchar_t *, struct chg_list *);
 
 #else /* ! _STDC_ */
 
-#if	defined(i386)
+#if defined(i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 int	ata_rdwr();
 int	ata_ex_cur();
 #else	/* defined(i386) */

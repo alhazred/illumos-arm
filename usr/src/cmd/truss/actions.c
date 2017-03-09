@@ -22,6 +22,9 @@
 /*
  * Copyright (c) 1989, 2010, Oracle and/or its affiliates. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*	Copyright (c) 1988 AT&T	*/
 /*	  All Rights Reserved  	*/
@@ -936,6 +939,24 @@ showargs(private_t *pri, int raw)
 
 	pri->length = 0;
 	ptrsize = (data_model == PR_MODEL_LP64)? 8 : 4;
+
+#if defined(__alpha)
+	ap = (long)Lsp->pr_reg[R_SP];
+	fail = (Pread(Proc, &nargs, sizeof (nargs), ap) != sizeof (nargs));
+	ap += ptrsize;
+#endif /* __alpha */
+
+#if defined(__aarch64)
+	ap = (long)Lsp->pr_reg[R_SP];
+	fail = (Pread(Proc, &nargs, sizeof (nargs), ap) != sizeof (nargs));
+	ap += ptrsize;
+#endif /* __aarch64 */
+
+#if defined(__riscv)
+	ap = (long)Lsp->pr_reg[R_SP];
+	fail = (Pread(Proc, &nargs, sizeof (nargs), ap) != sizeof (nargs));
+	ap += ptrsize;
+#endif /* __riscv */
 
 #if defined(__i386) || defined(__amd64)	/* XX64 */
 	ap = (long)Lsp->pr_reg[R_SP];

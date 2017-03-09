@@ -23,6 +23,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #define	_SYSCALL32
 
@@ -820,6 +823,12 @@ find_stack(uintptr_t sp)
 	prgreg_t tref = Lsp->pr_reg[REG_FS];
 #elif defined(__i386)
 	prgreg_t tref = Lsp->pr_reg[GS];
+#elif defined(__alpha)
+	prgreg_t tref = Lsp->pr_reg[REG_UQ];
+#elif defined(__aarch64)
+	prgreg_t tref = Lsp->pr_reg[REG_TP];
+#elif defined(__riscv)
+	prgreg_t tref = Lsp->pr_reg[REG_TP];
 #endif
 	struct callstack *Stk = NULL;
 	td_thrhandle_t th;
@@ -933,6 +942,12 @@ get_tid(struct callstack *Stk)
 	    Lsp->pr_reg[REG_FS] : Lsp->pr_reg[REG_GS];
 #elif defined(__i386)
 	prgreg_t tref = Lsp->pr_reg[GS];
+#elif defined(__alpha)
+	prgreg_t tref = Lsp->pr_reg[REG_UQ];
+#elif defined(__aarch64)
+	prgreg_t tref = Lsp->pr_reg[REG_TP];
+#elif defined(__riscv)
+	prgreg_t tref = Lsp->pr_reg[REG_TP];
 #endif
 	td_thrhandle_t th;
 	td_thrinfo_t thrinfo;
@@ -1247,7 +1262,15 @@ function_trace(private_t *pri, int first, int clear, int dotrace)
 	const lwpstatus_t *Lsp = pri->lwpstat;
 	uintptr_t pc = Lsp->pr_reg[R_PC];
 	uintptr_t sp = Lsp->pr_reg[R_SP];
+#if defined(__alpha)
+	uintptr_t fp = Lsp->pr_reg[REG_S6];
+#elif defined(__aarch64)
+	uintptr_t fp = Lsp->pr_reg[REG_X29];
+#elif defined(__riscv)
+	uintptr_t fp = Lsp->pr_reg[REG_S0];
+#else
 	uintptr_t fp = Lsp->pr_reg[R_FP];
+#endif
 	struct bkpt *Bp;
 	struct dynlib *Dp;
 	struct callstack *Stk;
@@ -1506,7 +1529,15 @@ function_return(private_t *pri, struct callstack *Stk)
 {
 	const lwpstatus_t *Lsp = pri->lwpstat;
 	uintptr_t sp = Lsp->pr_reg[R_SP];
+#if defined(__alpha)
+	uintptr_t fp = Lsp->pr_reg[REG_S6];
+#elif defined(__aarch64)
+	uintptr_t fp = Lsp->pr_reg[REG_X29];
+#elif defined(__riscv)
+	uintptr_t fp = Lsp->pr_reg[REG_S0];
+#else
 	uintptr_t fp = Lsp->pr_reg[R_FP];
+#endif
 	int i;
 
 #ifdef _LP64
@@ -1544,8 +1575,19 @@ function_return(private_t *pri, struct callstack *Stk)
 #endif
 
 	if ((i >= 0) && (!cflag)) {
+#if defined(__alpha)
+		show_function_return(pri, Lsp->pr_reg[REG_V0], 0,
+		    Stk, Stk->stack[i].fcn->dyn, Stk->stack[i].fcn);
+#elif defined(__aarch64)
+		show_function_return(pri, Lsp->pr_reg[REG_X0], 0,
+		    Stk, Stk->stack[i].fcn->dyn, Stk->stack[i].fcn);
+#elif defined(__riscv)
+		show_function_return(pri, Lsp->pr_reg[REG_A0], 0,
+		    Stk, Stk->stack[i].fcn->dyn, Stk->stack[i].fcn);
+#else
 		show_function_return(pri, Lsp->pr_reg[R_R0], 0,
 		    Stk, Stk->stack[i].fcn->dyn, Stk->stack[i].fcn);
+#endif
 	}
 }
 
@@ -1555,6 +1597,12 @@ function_return(private_t *pri, struct callstack *Stk)
 #define	FPADJUST	8
 #elif defined(__i386)
 #define	FPADJUST	4
+#elif defined(__alpha)
+#define	FPADJUST	0
+#elif defined(__aarch64)
+#define	FPADJUST	0
+#elif defined(__riscv)
+#define	FPADJUST	0
 #endif
 
 void
@@ -1909,3 +1957,90 @@ get_arguments(long *argp)
 }
 
 #endif	/* __amd64 || __i386 */
+
+#if defined(__alpha)
+
+uintptr_t
+previous_fp(uintptr_t sp, uintptr_t *rpc)
+{
+	return 0;
+}
+
+uintptr_t
+get_return_address(uintptr_t *psp)
+{
+	return 0;
+}
+
+int
+get_arguments(long *argp)
+{
+	private_t *pri = get_private();
+	const lwpstatus_t *Lsp = pri->lwpstat;
+	int i;
+
+	for (i = 0; i < 6; i++) {
+		argp[i] = Lsp->pr_reg[REG_A0+i];
+	}
+	return 6;
+}
+
+#endif	/* __alpha */
+
+#if defined(__aarch64)
+
+uintptr_t
+previous_fp(uintptr_t sp, uintptr_t *rpc)
+{
+	return 0;
+}
+
+uintptr_t
+get_return_address(uintptr_t *psp)
+{
+	return 0;
+}
+
+int
+get_arguments(long *argp)
+{
+	private_t *pri = get_private();
+	const lwpstatus_t *Lsp = pri->lwpstat;
+	int i;
+
+	for (i = 0; i < 8; i++) {
+		argp[i] = Lsp->pr_reg[REG_X0+i];
+	}
+	return 8;
+}
+
+#endif	/* __aarch64 */
+
+#if defined(__riscv)
+
+uintptr_t
+previous_fp(uintptr_t sp, uintptr_t *rpc)
+{
+	return 0;
+}
+
+uintptr_t
+get_return_address(uintptr_t *psp)
+{
+	return 0;
+}
+
+int
+get_arguments(long *argp)
+{
+	private_t *pri = get_private();
+	const lwpstatus_t *Lsp = pri->lwpstat;
+	int i;
+
+	for (i = 0; i < 8; i++) {
+		argp[i] = Lsp->pr_reg[REG_A0+i];
+	}
+	return 8;
+}
+
+#endif	/* __riscv */

@@ -22,6 +22,9 @@
  * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -923,6 +926,7 @@ correct_location(char *drv_path, char **drvelf_desc, int *drvelf_type_ptr)
 	while (token != NULL) {
 		if (strcmp("drv", token) == 0) {
 			token = strtok((char *)NULL, DIR_SEP);
+#ifdef _MULTI_DATAMODEL
 			if (strcmp(DRVDIR64, token) == 0) {
 				if (*drvelf_type_ptr == ELFCLASS64)
 					return (NOERR);
@@ -936,6 +940,18 @@ correct_location(char *drv_path, char **drvelf_desc, int *drvelf_type_ptr)
 				    *drvelf_desc, drv_path);
 				return (ERROR);
 			}
+#else
+#ifdef _LP64
+			if (*drvelf_type_ptr == ELFCLASS64)
+				return (NOERR);
+#else
+			if (*drvelf_type_ptr == ELFCLASS32)
+				return (NOERR);
+#endif
+			(void) fprintf(stderr, gettext(ERR_LOCATION),
+			    *drvelf_desc, drv_path);
+			return (ERROR);
+#endif // #ifdef _MULTI_DATAMODEL
 		} else {
 			token = strtok((char *)NULL, DIR_SEP);
 		}
@@ -969,26 +985,25 @@ isaspec_drvmod_discovery()
 		return (ERROR);
 	}
 
-	if (strcmp(arch, "sparc") == 0 || strcmp(arch, "i386") == 0) {
-		moddir->next = (struct drvmod_dir *)
-		    calloc(1, sizeof (struct drvmod_dir));
-		if (moddir->next == NULL) {
-			(void) fprintf(stderr, gettext(ERR_NO_MEM));
-			return (ERROR);
-		}
-		if (kelf_type == ELFCLASS64) {
-			(void) strcpy(moddir->direc, DRVDIR64);
-			(void) strcpy(moddir->next->direc, "");
-		} else {
-			(void) strcpy(moddir->direc, "");
-			(void) strcpy(moddir->next->direc, DRVDIR64);
-		}
-		moddir->next->next = NULL;
-		return (NOERR);
-	} else {
-		(void) fprintf(stderr, gettext(ERR_ARCH_NOT_SUPPORTED), arch);
+#ifdef _MULTI_DATAMODEL
+	moddir->next = (struct drvmod_dir *) calloc(1, sizeof (struct drvmod_dir));
+	if (moddir->next == NULL) {
+		(void) fprintf(stderr, gettext(ERR_NO_MEM));
 		return (ERROR);
 	}
+	if (kelf_type == ELFCLASS64) {
+		(void) strcpy(moddir->direc, DRVDIR64);
+		(void) strcpy(moddir->next->direc, "");
+	} else {
+		(void) strcpy(moddir->direc, "");
+		(void) strcpy(moddir->next->direc, DRVDIR64);
+	}
+	moddir->next->next = NULL;
+#else
+	(void) strcpy(moddir->direc, "");
+	moddir->next = NULL;
+#endif
+	return (NOERR);
 }
 
 void

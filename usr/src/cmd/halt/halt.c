@@ -99,7 +99,7 @@
 
 #if defined(__sparc)
 #define	CUR_ELFDATA	ELFDATA2MSB
-#elif defined(__x86)
+#elif defined(__x86) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 #define	CUR_ELFDATA	ELFDATA2LSB
 #endif
 

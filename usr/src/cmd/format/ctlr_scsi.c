@@ -22,6 +22,9 @@
  * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016 by Delphix. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 /*
  * This file contains the routines for embedded scsi disks
@@ -305,11 +308,7 @@ scsi_rdwr(dir, fd, blkno, secnt, bufaddr, flags, xfercntp)
  * If we are able to read the first track, we conclude that
  * the disk has been formatted.
  */
-#ifdef i386
 static int
-#else /* i386 */
-static int
-#endif /* i386 */
 scsi_ck_format(void)
 {
 	int	status;

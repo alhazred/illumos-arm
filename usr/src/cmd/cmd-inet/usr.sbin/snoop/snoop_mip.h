@@ -23,6 +23,9 @@
  * Copyright (c) 1999 by Sun Microsystems, Inc.
  * All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SNOOP_MIP_H
 #define	_SNOOP_MIP_H
@@ -102,6 +105,28 @@ typedef struct registration_request_str {
 } regreq_t;
 #endif /* _BIT_FIELDS_HTOL */
 #endif /* __sparc */
+
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
+#ifdef _BIT_FIELDS_LTOH
+typedef struct registration_request_str {
+	uchar_t		type;		/* must be REG_TYPE_REQ */
+	uchar_t
+		reserved : 			1,
+		BiDirectional_Tunnel_desired : 	1,
+		VJ_compression_desired : 	1,
+		GRE_encap_desired : 		1,
+		Minimal_encap_desired : 	1,
+		Decapsulation_done_locally : 	1, /* ...by the popup MN */
+		Broadcasts_desired : 		1,
+		Simultaneous_registration : 	1;
+	ushort_t	lifetime;	/* 0 = dereg; 0xffff = infinity */
+	in_addr_t	home_addr;	/* address of the MN */
+	in_addr_t	home_agent_addr; /* address of a HA */
+	in_addr_t	care_of_addr;	/* address of decap endpoint */
+	ident_t		identification;	/* for replay protection */
+} regreq_t;
+#endif /* _BIT_FIELDS_LTOH */
+#endif /* __alpha */
 
 #ifdef __i386
 #ifdef _BIT_FIELDS_LTOH
@@ -320,6 +345,26 @@ typedef struct mobility_agt_adv_extension {
 #endif /* _BIT_FIELDS_LTOH */
 #endif /* __i386 */
 
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
+#ifdef _BIT_FIELDS_LTOH
+typedef struct mobility_agt_adv_extension {
+	uchar_t		type;
+	uchar_t		length;
+	ushort_t	sequence_num;
+	ushort_t	reg_lifetime;
+	uchar_t
+			reverse_tunnel_bit:1,
+			vanjacob_hdr_comp_bit:1,
+			greencap_bit:1,
+			minencap_bit:1,
+			fa_bit:1,
+			ha_bit:1,
+			busy_bit:1,
+			reg_bit:1;
+	uchar_t		reserved;
+} mobagtadvext_t;
+#endif /* _BIT_FIELDS_LTOH */
+#endif /* __i386 */
 #ifdef __cplusplus
 }
 #endif

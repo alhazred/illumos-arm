@@ -93,7 +93,10 @@ bitness(const char *isaname)
 		return (32);
 
 	if (strcmp(isaname, "sparcv9") == 0 ||
-	    strcmp(isaname, "amd64") == 0)
+	    strcmp(isaname, "amd64") == 0 ||
+	    strcmp(isaname, "alpha") == 0 ||
+	    strcmp(isaname, "aarch64") == 0 ||
+	    strcmp(isaname, "riscv64") == 0)
 		return (64);
 
 	return (0);
@@ -139,6 +142,14 @@ machtype(const char *isaname)
 		return (EM_386);
 	if (strcmp(isaname, "amd64") == 0)
 		return (EM_AMD64);
+	if (strcmp(isaname, "alpha") == 0)
+		return (EM_ALPHA);
+	if (strcmp(isaname, "aarch64") == 0)
+		return (EM_AARCH64);
+	if (strcmp(isaname, "riscv64") == 0)
+		return (EM_RISCV);
+	if (strcmp(isaname, "aarch32") == 0)
+		return (EM_ARM);
 
 	return (0);
 }

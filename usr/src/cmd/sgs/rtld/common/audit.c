@@ -20,6 +20,9 @@
  */
 
 /*
+ * Copyright 2017 Hayashi Naoyuki
+ */
+/*
  * Copyright (c) 1996, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2012, Joyent, Inc. All rights reserved.
  *
@@ -1290,6 +1293,12 @@ static const Aud_info aud_info[] = {
 	{ MSG_SYM_LAAMD64PLTENTER, /* MSG_ORIG(MSG_SYM_LAAMD64PLTENTER) */
 #elif	defined(__i386)
 	{ MSG_SYM_LAX86PLTENTER,	/* MSG_ORIG(MSG_SYM_LAX86PLTENTER) */
+#elif	defined(__alpha)
+	{ MSG_SYM_LAALPHAPLTENTER,	/* MSG_ORIG(MSG_SYM_LAALPHAPLTENTER) */
+#elif	defined(__aarch64)
+	{ MSG_SYM_LAAARCH64PLTENTER,	/* MSG_ORIG(MSG_SYM_LAAARCH64PLTENTER) */
+#elif	defined(__riscv)
+	{ MSG_SYM_LARISCVPLTENTER,	/* MSG_ORIG(MSG_SYM_LARISCVPLTENTER) */
 #else
 #error platform not defined!
 #endif

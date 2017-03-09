@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1993, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 #
@@ -89,6 +90,38 @@ case "$MACH" in
 	EOM
 	;;
     "ppc" )
+	# 
+	# These are the ppc specific entries
+	# It depends on the build machine being a ppc
+	#
+	cat <<-EOM
+	EOM
+	;;
+    "alpha" )
+	# 
+	# These are the ppc specific entries
+	# It depends on the build machine being a ppc
+	#
+	cat <<-EOM
+	EOM
+	;;
+    "aarch64" )
+	# 
+	# These are the ppc specific entries
+	# It depends on the build machine being a ppc
+	#
+	cat <<-EOM
+	EOM
+	;;
+    "riscv64" )
+	# 
+	# These are the ppc specific entries
+	# It depends on the build machine being a ppc
+	#
+	cat <<-EOM
+	EOM
+	;;
+    "arm" )
 	# 
 	# These are the ppc specific entries
 	# It depends on the build machine being a ppc

@@ -38,8 +38,6 @@
  * Refer to RFC 903 "A Reverse Address Resolution Protocol".
  */
 
-#define	_REENTRANT
-
 #include	<thread.h>
 #include	<synch.h>
 #include	<stdlib.h>

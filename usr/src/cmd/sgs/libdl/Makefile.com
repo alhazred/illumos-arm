@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1994, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
 #
@@ -26,7 +27,17 @@
 LIBRARY =	libdl.a
 VERS =		.1
 
-include		$(SRC)/lib/Makefile.rootfs
+OBJECTS= filter_symbols.o
 
-COMPATLINKS +=	etc/lib/libdl.so.1
-$(ROOT)/etc/lib/libdl.so.1 :  COMPATLINKTARGET=../../lib/libdl.so.1
+include ../../../../lib/Makefile.lib
+include $(SRC)/lib/Makefile.rootfs
+
+LIBS=		$(DYNLIB)
+SRCDIR=		../common
+MAPFILES=	$(SRCDIR)/mapfile-vers
+
+all: $(LIBS)
+include		$(SRC)/lib/Makefile.targ
+
+pics/%.o: $(SRCDIR)/%.s
+	$(COMPILE.s) -o $@ -c $<

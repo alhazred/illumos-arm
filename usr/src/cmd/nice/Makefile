@@ -31,13 +31,13 @@ OBJS= nice.o
 include ../Makefile.cmd
 CFLAGS += $(CCVERBOSE)
 
-clean $(XPG4) :  OBJS += values-xpg4.o
+#clean $(XPG4) :  OBJS += values-xpg4.o
 
 .KEEP_STATE:
 
 all: $(PROG) $(XPG4)
 
-$(PROG) $(XPG4): $$(OBJS)
+$(PROG) $(XPG4): $(OBJS)
 	$(LINK.c) -o $@ $(OBJS) $(LDLIBS)
 	$(POST_PROCESS)
 

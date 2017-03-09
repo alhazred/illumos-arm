@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -36,7 +37,7 @@ include		../../Makefile.fstype
 OBJS=		quota.o rquota_xdr.o replica.o
 SRCS=		$(OBJS:%.o=%.c)
 XFILE=		$(ROOT)/usr/include/rpcsvc/rquota.x
-CPPFLAGS +=	-I $(ROOT)/usr/include/sys -D_LARGEFILE64_SOURCE
+CPPFLAGS +=	-I $(ROOT)/usr/include -D_LARGEFILE64_SOURCE
 LDLIBS +=		-lnsl
 
 CERRWARN +=	-_gcc=-Wno-implicit-function-declaration
@@ -54,6 +55,7 @@ $(LIBPROG):	$(OBJS)
 
 lint:		lint_PROG
 
+clobber: clean
 clean:
 		$(RM) $(OBJS) rquota_xdr.c
 

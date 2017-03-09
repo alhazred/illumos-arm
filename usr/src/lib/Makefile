@@ -28,6 +28,7 @@
 # Copyright (c) 2015 Gary Mills
 # Copyright 2016 Toomas Soome <tsoome@me.com>
 # Copyright 2018 Nexenta Systems, Inc.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2016, Chris Fraire <cfraire@me.com>.
 # Copyright 2017 RackTop Systems.
 # Copyirght 2018 Jason King
@@ -277,6 +278,15 @@ SUBDIRS +=				\
 	watchmalloc	\
 	$($(MACH)_SUBDIRS)
 
+alpha_SUBDIRS=		\
+	libfdisk
+
+aarch64_SUBDIRS=	\
+	libfdisk
+
+riscv64_SUBDIRS=	\
+	libfdisk
+
 i386_SUBDIRS=		\
 	libfdisk	\
 	libppt		\
@@ -369,6 +379,9 @@ sparc_MSGSUBDIRS=	\
 	libprtdiag	\
 	libprtdiag_psr
 
+alpha_MSGSUBDIRS= libfdisk
+aarch64_MSGSUBDIRS= libfdisk
+riscv64_MSGSUBDIRS= libfdisk
 i386_MSGSUBDIRS= libfdisk
 
 HDRSUBDIRS=				\
@@ -504,6 +517,21 @@ HDRSUBDIRS=				\
 	udapl		\
 	$($(MACH)_HDRSUBDIRS)
 
+alpha_HDRSUBDIRS=	\
+	libfdisk	\
+	../oss/nss		\
+	../oss/nspr
+
+aarch64_HDRSUBDIRS=	\
+	libfdisk	\
+	../oss/nss		\
+	../oss/nspr
+
+riscv64_HDRSUBDIRS=	\
+	libfdisk	\
+	../oss/nss		\
+	../oss/nspr
+
 i386_HDRSUBDIRS=	\
 	libfdisk	\
 	libppt		\
@@ -529,6 +557,25 @@ _msg : 		TARGET= _msg
 
 .KEEP_STATE:
 
+SUBDIRS+=	\
+	../oss/libiconv	\
+	../oss/gettext	\
+	../oss/ncurses	\
+	../oss/pcre	\
+	../oss/net-snmp	\
+	../oss/trousers	\
+	../oss/libstdc++ \
+	../oss/libssp	\
+	../oss/xz	\
+	../oss/libxml2	\
+	../oss/zlib	\
+	../oss/libressl	\
+	../oss/libxslt	\
+	../oss/nss	\
+	../oss/nspr	\
+	../oss/idnkit
+
+NOWAIT_SUBDIRS= $(SUBDIRS:.WAIT=)
 #
 # For the all and install targets, we clearly must respect library
 # dependencies so that the libraries link correctly.  However, for
@@ -540,31 +587,80 @@ _msg : 		TARGET= _msg
 # clobber, we must use $(NOWAIT_SUBDIRS) rather than
 # $(SUBDIRS), to prevent `.WAIT' from expanding to `.WAIT-nodepend'.
 #
+aarch64_NOSUPPORT=	\
+	libpp		\
+	libcurses	\
+	libfru		\
+	libunistat	\
+	libxcurses	\
+	libxcurses2	\
+	c_synonyms	\
+	libmd5		\
+	libw		\
+	libintl		\
+	libaio		\
+	libdisasm	\
+	libdtrace	\
+	libdtrace_jni	\
+	libtermcap	\
+	libeti		\
+	libthread	\
+	libslp		\
+	libcrypt	\
+	libdoor		\
+	libsys		\
+	librdc		\
+	libm1		\
+	libmvec		\
+	libadt_jni	\
+	abi		\
+	libtnf		\
+	libtnfctl	\
+	print		\
+	libsched	\
+	libpctx		\
+	libcpc		\
+	../cmd/sendmail/libmilter	\
+	pylibbe		\
+	pyzfs		\
+	pysolaris	\
+	libzfs_jni	\
+	brand		\
+	policykit	\
+	hal		\
+	libgrubmgmt	\
+	libfruutils	\
+	libdscfg
 
-all:			$(SUBDIRS)
+alpha_NOSUPPORT= $(aarch64_NOSUPPORT)
+riscv64_NOSUPPORT= $(aarch64_NOSUPPORT)
 
-install:		$(SUBDIRS) .WAIT install_extra
+all:			$(filter-out .WAIT $($(MACH)_NOSUPPORT), $(SUBDIRS))
+
+install:		$(filter-out .WAIT $($(MACH)_NOSUPPORT), $(SUBDIRS)) .WAIT install_extra
 
 # extra libraries kept in other source areas
+install_extra: $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(SUBDIRS))
 install_extra:
 	@cd ../cmd/sgs; pwd; $(MAKE) install_lib
 	@pwd
 
-clean clobber:		$(NOWAIT_SUBDIRS:%=%-nodepend)
+clean clobber:		$(patsubst %,%-nodepend, $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(NOWAIT_SUBDIRS)))
 
 
-install_h check:	$(HDRSUBDIRS:%=%-nodepend)
+install_h check:	$(patsubst %,%-nodepend, $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(HDRSUBDIRS)))
 
-_msg:			$(MSGSUBDIRS:%=%-nodepend) .WAIT _dc
+_msg:			$(patsubst %,%-nodepend, $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(MSGSUBDIRS))) .WAIT _dc
 
-_dc:			$(DCSUBDIRS:%=%-nodepend)
+_dc:			$(patsubst %,%-nodepend, $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(DCSUBDIRS)))
 
 lint:
 
 # Library interdependencies are called out explicitly here.
-../cmd/sgs/libconv: crt
+libdemangle: crt
+../cmd/sgs/libconv: crt libdemangle
 ../cmd/sgs/libdl: crt
-libc:		../cmd/sgs/libconv ../cmd/sgs/libdl
+#libc:		../cmd/sgs/libconv ../cmd/sgs/libdl
 
 libm:		libc
 libmd:		libc
@@ -574,7 +670,7 @@ libnvpair:	libc libnsl
 libsocket:	libc libnsl
 
 basedeps:	libc libm libmd libmp libnsl libnvpair libsocket
-basedeps : 	TARGET=install
+basedeps :	TARGET=install
 
 # The following dependencies are currently required by libdbus-1 and should
 # be used for anything linking against it.
@@ -687,8 +783,8 @@ libstmfproxy:	libstmf libpthread
 libsum:		libast
 libsun_ima:	libdevinfo libsysevent
 libsysevent:	libsecdb
-libtecla:	libcurses
-libtermcap:	libcurses
+#libtecla:	libcurses
+#libtermcap:	libcurses
 libtnfctl:	../cmd/sgs/libelf
 libtsalarm:	libpcp
 libtsnet:	libtsol libsecdb
@@ -733,20 +829,69 @@ sun_fc:		libdevinfo libsysevent
 sun_sas:	libdevinfo libsysevent libkstat libdevid
 udapl:		libdevinfo libdladm
 
+
+
+# GROUP1
+libc:			crt
+libpthread:		libc
+../oss/libiconv:	libc libm libpthread
+../oss/gettext:		../oss/libiconv
+../oss/ncurses:		../oss/gettext
+SUBDIR_GROUP1= crt libc libpthread ../oss/libiconv ../oss/gettext ../oss/ncurses libmd libnsl libmp libsocket libm libnvpair
+$(filter-out .WAIT $($(MACH)_NOSUPPORT) $(SUBDIR_GROUP1), $(SUBDIRS)): $(SUBDIR_GROUP1)
+
+../oss/libxml2:		../oss/xz ../oss/zlib
+../oss/libxslt:		../oss/libxml2 ../oss/libressl
+../oss/libressl:	../oss/zlib ../oss/libssp
+../cmd/sgs/libdl:	../cmd/sgs/libconv libc
+../cmd/sgs/libelf:	../cmd/sgs/libconv libc
+../cmd/sgs/librtld_db:	../cmd/sgs/libconv libc
+../oss/idnkit:		libc
+
+../oss/pcre:		../oss/zlib ../oss/libstdc++
+../oss/net-snmp:	libresolv2 libbsm ../oss/pcre
+../oss/trousers:	../oss/libressl libresolv2 libbsm
+
+libpool:		../oss/libxml2
+pkcs11:			../oss/trousers ../oss/libressl
+libipsecutil:		../oss/libressl
+libkrb5:		gss_mechs/mech_krb5
+libdiskmgt:		libfdisk
+../oss/nss:		libbsm ../oss/zlib ../oss/nspr ../oss/libressl
+../oss/nspr:		../cmd/sgs/libdl
+libnisdb sun_fc:	../oss/libstdc++
+libshare libkmf fm libzonecfg libbrand:	../oss/libxml2
+libzfs libzpool:		../oss/zlib
+libkmf libldap5:		../oss/nss
+libpkg libwanboot libkmf krb5:	../oss/libressl
+fm:				../oss/net-snmp
+../oss/libstdc++:	librt ../oss/libssp
+../oss/libssp:		librt
+iconv_modules:	../oss/idnkit
+
 #
 # The reason this rule checks for the existence of the
 # Makefile is that some of the directories do not exist
 # in certain situations (e.g., exportable source builds,
 # OpenSolaris).
 #
-$(SUBDIRS): FRC
+
+$(info $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(SUBDIRS)))
+
+.PHONY: $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(SUBDIRS))
+
+$(filter-out .WAIT $($(MACH)_NOSUPPORT), $(SUBDIRS)): FRC
+	@echo Start $@
 	@if [ -f $@/Makefile  ]; then \
 		cd $@; pwd; $(MAKE) $(TARGET); \
 	else \
+		echo Missing files $@/Makefile; \
 		true; \
 	fi
+	@echo End $@
 
-$(SUBDIRS:%=%-nodepend):
+.PHONY: $(patsubst %,%-nodepend, $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(SUBDIRS)))
+$(patsubst %,%-nodepend, $(filter-out .WAIT $($(MACH)_NOSUPPORT), $(SUBDIRS))): FRC
 	@if [ -f $(@:%-nodepend=%)/Makefile  ]; then \
 		cd $(@:%-nodepend=%); pwd; $(MAKE) $(TARGET); \
 	else \

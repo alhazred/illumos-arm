@@ -19,19 +19,20 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright (c) 2018, Joyent, Inc.
 
 LIBRARY =	libmapid.a
 VERS	=	.1
-SMF_DIR	=	$(SRC)/cmd/fs.d/nfs/lib
 
 LIBOBJS	=	mapid.o
 OTHOBJS	=	smfcfg.o
 OBJECTS =	$(LIBOBJS) $(OTHOBJS)
 
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
+SMF_DIR	=	$(SRC)/cmd/fs.d/nfs/lib
 
 LIBS	=	$(DYNLIB)
 

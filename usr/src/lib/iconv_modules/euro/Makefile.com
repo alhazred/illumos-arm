@@ -22,7 +22,7 @@
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
-include $(SRC)/Makefile.master
+include ../../../../Makefile.master
 
 
 # let the .so compilation be driven by present recoding tables
@@ -57,7 +57,7 @@ $(ALL_SOS): ../common/euro.h ../common/euro.c tbl.h
 tbl.h: ../genincl $(TABLES:%=../tbls/%)
 	(cd ..; ./genincl) > $@
 
-$(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
+$(CREATE_LINKS):  $(ICONV_LINK_TARGETS) | $(ICONV_DIR)
 	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-15.so
 	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-2.so
 	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-4.so

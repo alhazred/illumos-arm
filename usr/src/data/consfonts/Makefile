@@ -13,6 +13,9 @@
 # Copyright 2017 Toomas Soome <tsoome@me.com>
 #
 
+CODEMGR_WS=$(shell git rev-parse --show-toplevel)
+SRC=$(CODEMGR_WS)/usr/src
+
 GALLANT_FNT=	Gallant19.fnt
 GALLANT_SRC=	Gallant19.bdf
 

@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -71,7 +72,7 @@ pics/elfcap.o:	$(ELFCAP)/elfcap.c
 		$(POST_PROCESS_O)
 
 $(RTLD):	pics $(PICS) $(CRTS)
-		$(LD) -o $@ -dy $(GSHARED) $(DYNFLAGS) $(CRTI) $(PICS) \
+		$(CC) -o $@ -dy $(GSHARED) $(DYNFLAGS) $(CRTI) $(PICS) \
 		    $(LDLIBS) $(CRTN)
 		$(POST_PROCESS_SO)
 
@@ -88,6 +89,8 @@ include		$(SRC)/lib/Makefile.targ
 include		$(SRC)/cmd/sgs/Makefile.targ
 
 # Derived source and header files (messaging).
+
+$(PICS): |	$(BLTFILES)
 
 catalog:	$(BLTMESG)
 

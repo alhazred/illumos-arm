@@ -151,6 +151,9 @@ extern "C" {
 #include <stdint.h>
 #include <string.h>
 
+#ifndef	__NORETURN
+#define	__NORETURN
+#endif
 #define	__dead2	__NORETURN
 extern void pager_open(void);
 extern int pager_output(const char *);

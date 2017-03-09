@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -49,6 +50,7 @@ WORDS=	american british local list extra stop
 TXTS=	compress.sh spell.sh
 
 include ../Makefile.cmd
+include ../../Makefile.native
 
 CFLAGS += $(CCVERBOSE)
 CERRWARN += -_gcc=-Wno-parentheses

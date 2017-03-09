@@ -22,6 +22,7 @@
 # Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright 2019 Joyent, Inc.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 PROG =		svcs
@@ -59,6 +60,7 @@ $(POFILE): $(POFILES)
 
 install: all $(ROOTPROG)
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(MYOBJS)
 

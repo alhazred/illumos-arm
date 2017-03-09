@@ -27,7 +27,7 @@
 # Copyright 2017 RackTop Systems.
 #
 
-PROG:sh=	cd ..; basename `pwd`
+PROG=zdb
 SRCS= ../$(PROG).c ../zdb_il.c
 OBJS= $(PROG).o zdb_il.o
 

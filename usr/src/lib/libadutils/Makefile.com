@@ -45,6 +45,7 @@ CPPFLAGS +=	-I$(SRC)/lib/libldap5/include/ldap
 
 CERRWARN +=	-_gcc=-Wno-type-limits
 CERRWARN +=	$(CNOWARN_UNINIT)
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 # not linted
 SMATCH=off

@@ -1,0 +1,33 @@
+OUTPUT_FORMAT("elf64-littleaarch64")
+OUTPUT_ARCH(aarch64)
+SECTIONS
+{
+  .plt            : { *(.plt) }
+  .text           : { *(.text .text.*) }
+  .rodata         : { *(.rodata .rodata.*) }
+  .hash           : { *(.hash) }
+  .dynsym         : { *(.dynsym) }
+  .dynstr         : { *(.dynstr) }
+  .rela.dyn       : { *(.rela.text .rela.text.*)
+                      *(.rela.rodata .rela.rodata.*)
+                      *(.rela.data .rela.data.*)
+                      *(.rela.got)
+                      *(.rela.sdata .rela.sdata.*)
+                      *(.rela.sbss .rela.sbss.* )
+                      *(.rela.bss .rela.bss.*)
+                      *(.rela.iplt)
+                    }
+  .rela.plt       : { *(.rela.plt) }
+  . = ALIGN (CONSTANT (MAXPAGESIZE)) - ((CONSTANT (MAXPAGESIZE) - .)& (CONSTANT (MAXPAGESIZE) - 1));
+  . = DATA_SEGMENT_ALIGN (CONSTANT (MAXPAGESIZE), CONSTANT (COMMONPAGESIZE));
+  . = ALIGN(0x2000);
+  .data.rel.ro : { *(.data.rel.ro.local*) *(.data.rel.ro*) }
+  .dynamic        : { *(.dynamic) }
+  .got            : { *(.got.plt) *(.igot.plt) *(.got) *(.igot) }
+  .data           : { *(.data .data.*) }
+  .sbss           : { *(.sbss .sbss.*) *(.scommon) }
+  .bss            : { *(.bss .bss.*) *(COMMON) }
+  . = ALIGN(64 / 8);
+  . = DATA_SEGMENT_END (.);
+  /DISCARD/ : { *(.note.GNU-stack) *(.gnu_debuglink) *(.gnu.lto_*) *(.eh_frame)}
+}

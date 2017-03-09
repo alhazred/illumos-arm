@@ -1,0 +1,32 @@
+diff -cNr ../gzip-1.6-orig/lib/fseeko.c ./lib/fseeko.c
+*** ../gzip-1.6-orig/lib/fseeko.c	2013-04-07 10:59:54.000000000 +0900
+--- ./lib/fseeko.c	2013-12-07 00:34:18.089948116 +0900
+***************
+*** 17,29 ****
+  #include <config.h>
+  
+  /* Specification.  */
+  #include <stdio.h>
+  
+  /* Get off_t and lseek.  */
+  #include <unistd.h>
+  
+  #include "stdio-impl.h"
+- 
+  int
+  fseeko (FILE *fp, off_t offset, int whence)
+  #undef fseeko
+--- 17,29 ----
+  #include <config.h>
+  
+  /* Specification.  */
++ #include "file64.h"
+  #include <stdio.h>
+  
+  /* Get off_t and lseek.  */
+  #include <unistd.h>
+  
+  #include "stdio-impl.h"
+  int
+  fseeko (FILE *fp, off_t offset, int whence)
+  #undef fseeko

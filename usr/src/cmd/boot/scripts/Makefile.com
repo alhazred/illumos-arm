@@ -19,17 +19,22 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # ident	"%Z%%M%	%I%	%E% SMI"
 # 
+include ../../../Makefile.master
 
 .SUFFIXES: .ksh
 
 MANIFEST= boot-archive-update.xml
 SVCMETHOD= boot-archive-update
 
+alpha_BOOTPROG=
+aarch64_BOOTPROG=
+riscv64_BOOTPROG=
 sparc_BOOTPROG=
 
 i386_BOOTPROG=			\
@@ -58,6 +63,7 @@ all: $(BOOTPROG) $(METHODPROG) $(PROG)
 
 check:	$(CHKMANIFEST)
 
+clobber: clean
 clean:
 	$(RM) $(BOOTPROG) $(METHODPROG) $(PROG)
 

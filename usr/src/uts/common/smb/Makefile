@@ -40,7 +40,7 @@ ROOTDIR= $(ROOT)/usr/include/smb
 ROOTHDRS= $(HDRS:%=$(ROOTDIR)/%)
 CHECKHDRS= $(HDRS:%.h=%.check)
 
-$(ROOTDIR)/%: %
+$(ROOTDIR)/%: % $(ROOTDIR)
 	$(INS.file)
 
 $(ROOTDIR):

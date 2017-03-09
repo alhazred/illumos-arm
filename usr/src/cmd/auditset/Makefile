@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 #
 # Makefile for auditset
@@ -28,7 +29,7 @@ SVCMETHOD = $(PROG)
 
 MANIFEST = auditset.xml
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 ROOTMANIFESTDIR = $(ROOTSVCSYSTEM)
 

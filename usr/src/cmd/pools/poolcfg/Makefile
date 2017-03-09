@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -36,8 +37,8 @@ include ../Makefile.pools
 # poolcf has a name clash with main() and libl.so.1.  However, poolcfg must
 # still export a number of "yy*" (libl) interfaces.  Reduce all other symbols
 # to local scope.
-MAPFILES +=	$(MAPFILE.LEX) $(MAPFILE.NGB)
-MAPOPTS =	$(MAPFILES:%=-Wl,-M%)
+#MAPFILES +=	$(MAPFILE.LEX) $(MAPFILE.NGB)
+#MAPOPTS =	$(MAPFILES:%=-Wl,-M%)
 
 LFLAGS =	-t
 YFLAGS =	-d

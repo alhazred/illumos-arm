@@ -2935,7 +2935,7 @@ elf_lazy_find_sym(Slookup *slp, Sresult *srp, uint_t *binfo, int *in_nfavl)
  * Warning message for bad r_offset.
  */
 void
-elf_reloc_bad(Rt_map *lmp, void *rel, uchar_t rtype, ulong_t roffset,
+elf_reloc_bad(Rt_map *lmp, void *rel, uint_t rtype, ulong_t roffset,
     ulong_t rsymndx)
 {
 	const char	*name = NULL;
@@ -2979,7 +2979,7 @@ elf_reloc_bad(Rt_map *lmp, void *rel, uchar_t rtype, ulong_t roffset,
  * Resolve a static TLS relocation.
  */
 long
-elf_static_tls(Rt_map *lmp, Sym *sym, void *rel, uchar_t rtype, char *name,
+elf_static_tls(Rt_map *lmp, Sym *sym, void *rel, uint_t rtype, char *name,
     ulong_t roffset, long value)
 {
 	Lm_list	*lml = LIST(lmp);

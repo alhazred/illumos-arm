@@ -312,6 +312,8 @@ extern char	procfs_path[PATH_MAX];
 #define	BPT	((instr_t)0x00000080)
 #elif defined(__aarch64)
 #define	BPT	((instr_t)0xd4207d00)
+#elif defined(__riscv)
+#define	BPT	((instr_t)0x00100073)
 #endif
 
 /*

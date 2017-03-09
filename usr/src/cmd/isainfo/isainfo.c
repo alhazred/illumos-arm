@@ -26,6 +26,9 @@
 /*
  * Copyright (c) 2012, Joyent, Inc. All rights reserved.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #include <sys/types.h>
 #include <sys/systeminfo.h>
@@ -89,6 +92,7 @@ static uint_t
 bitness(const char *isaname)
 {
 	if (strcmp(isaname, "sparc") == 0 ||
+	    strcmp(isaname, "aarch32") == 0 ||
 	    strcmp(isaname, "i386") == 0)
 		return (32);
 

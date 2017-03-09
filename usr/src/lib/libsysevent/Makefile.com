@@ -40,6 +40,7 @@ LIBS =		$(DYNLIB)
 CPPFLAGS +=	-D_REENTRANT -I..
 CFLAGS +=	$(CCVERBOSE)
 LDLIBS +=	-lnvpair -lc
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 # not linted
 SMATCH=off

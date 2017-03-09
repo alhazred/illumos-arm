@@ -1,0 +1,20 @@
+diff -cNr ../findutils-4.6.0-orig/gl/lib/fseeko.c ./gl/lib/fseeko.c
+*** ../findutils-4.6.0-orig/gl/lib/fseeko.c	2015-12-25 01:41:42.000000000 +0900
+--- ./gl/lib/fseeko.c	2016-10-20 07:26:56.790067307 +0900
+***************
+*** 15,21 ****
+     with this program; if not, see <http://www.gnu.org/licenses/>.  */
+  
+  #include <config.h>
+! 
+  /* Specification.  */
+  #include <stdio.h>
+  
+--- 15,21 ----
+     with this program; if not, see <http://www.gnu.org/licenses/>.  */
+  
+  #include <config.h>
+! #include "file64.h"
+  /* Specification.  */
+  #include <stdio.h>
+  

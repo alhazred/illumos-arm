@@ -24,7 +24,7 @@
 #
 # Copyright (c) 2018, Joyent, Inc.
 
-include $(SRC)/Makefile.master
+include ../../../../Makefile.master
 
 include $(SRC)/lib/iconv_modules/Makefile.iconv
 
@@ -330,7 +330,7 @@ $(INSTALL_MODULES):	$(DYNOBJS)
 	done
 	$(TOUCH) $@
 
-$(CREATE_LINKS):	$(INSTALL_MODULES)
+$(CREATE_LINKS):	$(INSTALL_MODULES) | $(ICONV_DIR)
 	$(SYMLINK) -f EUC-JIS-2004%UTF-32.so $(ICONV_DIR)/EUC-JIS-2004%UCS-4.so
 	$(SYMLINK) -f EUC-JIS-2004%UTF-32BE.so $(ICONV_DIR)/EUC-JIS-2004%UCS-4BE.so
 	$(SYMLINK) -f EUC-JIS-2004%UTF-32LE.so $(ICONV_DIR)/EUC-JIS-2004%UCS-4LE.so

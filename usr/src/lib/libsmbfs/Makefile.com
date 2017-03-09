@@ -25,6 +25,7 @@
 # Copyright 2015 Igor Kozhukhov <ikozhukhov@gmail.com>
 #
 # Copyright 2018 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright (c) 2018, Joyent, Inc.
 
@@ -76,7 +77,7 @@ OBJ_CMN= smbfs_ntacl.o
 
 OBJECTS= $(OBJ_LIB) $(OBJ_CMN)
 
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
 
 LIBS =		$(DYNLIB)
 
@@ -91,11 +92,15 @@ CSTD=	$(CSTD_GNU99)
 
 LDLIBS += -lsocket -lnsl -lc -lmd -lpkcs11 -lkrb5 -lsec -lidmap -lscf -luuid
 
+CPPFLAGS += -I$(ROOT)/usr/sfw/include
+LDLIBS   += -L$(ROOT)/usr/sfw/lib -Wl,-rpath,/usr/sfw/lib -liconv
+
 # normal warnings...
 CFLAGS	+=	$(CCVERBOSE)
 
 CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-unused-variable
+CERRWARN +=	-_gcc=-Wno-unused-but-set-variable
 
 # not linted
 SMATCH=off
@@ -106,7 +111,7 @@ CPPFLAGS += -D__EXTENSIONS__ -D_REENTRANT -DMIA \
 	-I$(SRC)/common/smbclnt
 
 # Debugging
-${NOT_RELEASE_BUILD} CPPFLAGS += -DDEBUG
+${NOT_RELEASE_BUILD}CPPFLAGS += -DDEBUG
 
 all:	$(LIBS)
 

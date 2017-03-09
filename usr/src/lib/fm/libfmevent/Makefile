@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -50,7 +51,8 @@ install :  TARGET = install
 
 all clean clobber: $(SUBDIRS)
 
-install: install_h .WAIT $(SUBDIRS)
+all: install_h
+install: install_h $(SUBDIRS)
 
 install_h: $(ROOTFMHDRS)
 

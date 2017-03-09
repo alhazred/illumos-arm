@@ -19,7 +19,7 @@ VERS=		.1
 
 OBJECTS=	ofmt.o
 
-include		$(SRC)/lib/Makefile.lib
+include		../../Makefile.lib
 include		$(SRC)/lib/Makefile.rootfs
 
 SRCDIR=		../common

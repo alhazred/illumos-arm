@@ -1,0 +1,8 @@
+{
+	global:
+		_fini;
+		_info;
+		_init;
+	local:
+		*;
+};

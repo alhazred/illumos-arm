@@ -24,7 +24,7 @@
 #
 # Copyright (c) 2018, Joyent, Inc.
 
-include $(SRC)/Makefile.master
+include ../../../../Makefile.master
 
 #
 # Common sources come from following directory:

@@ -20,6 +20,7 @@
 #
 #
 # Copyright (c) 1992, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright (c) 2018, Joyent, Inc.
 
@@ -28,7 +29,7 @@ PROG = auditd
 MANIFEST = auditd.xml
 SVCMETHOD = svc-auditd
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 ROOTMANIFESTDIR = $(ROOTSVCSYSTEM)
 
@@ -39,6 +40,8 @@ CPPFLAGS += -D_REENTRANT
 CPPFLAGS += -I$(LIBBSM) -I$(AUDITD)
 
 CERRWARN += -_gcc=-Wno-parentheses
+CERRWARN += -_gcc=-Wno-switch
+CERRWARN += -_gcc=-Wno-cast-function-type
 
 SMOFF += macros
 

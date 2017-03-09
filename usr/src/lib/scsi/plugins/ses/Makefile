@@ -20,17 +20,29 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
+include ../../../Makefile.lib
+
+i386_SUBDIRS = \
+	SUN-Storage-J4400	\
+	SUN-Storage-J4500
+
+sparc_SUBDIRS = \
+	SUN-Storage-J4400	\
+	SUN-Storage-J4500
+
 SUBDIRS = 			\
+	SUN			\
 	libses			\
 	ses2			\
 	LSILOGIC-SASX28-A.0	\
-	SUN			\
-	SUN-Storage-J4400	\
-	SUN-Storage-J4500
+	$($(MACH)_SUBDIRS)
+
+libses : ses2
 
 .KEEP_STATE:
 

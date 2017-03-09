@@ -20,6 +20,7 @@
 
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 # Copyright (c) 2018, Joyent, Inc.
@@ -47,9 +48,14 @@ HDRS=	snoop.h snoop_mip.h at.h snoop_ospf.h snoop_ospf6.h
 
 include	../../../Makefile.cmd
 
+CFLAGS +=	-_gcc=-fcommon
 CPPFLAGS += -I. -I$(SRC)/common/net/dhcp \
 	-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 LDLIBS += -ldhcputil -ldlpi -lsocket -lnsl -ltsol
+
+CPPFLAGS += -I$(ROOT)/usr/sfw/include
+LDLIBS   += -L$(ROOT)/usr/sfw/lib -Wl,-rpath,/usr/sfw/lib -liconv
+
 LDFLAGS += $(MAPFILE.NGB:%=-Wl,-M%)
 CERRWARN += -_gcc=-Wno-switch
 CERRWARN += -_gcc=-Wno-implicit-function-declaration
@@ -60,6 +66,9 @@ CERRWARN += -_gcc=-Wno-parentheses
 CERRWARN += -_gcc=-Wno-unused-variable
 CERRWARN += -_gcc=-Wno-unused-label
 CERRWARN += -_gcc=-Wno-unused-function
+CERRWARN += -_gcc=-Wno-unused-but-set-variable
+CERRWARN += -_gcc=-Wno-pointer-sign
+CERRWARN += -_gcc=-Wno-cast-function-type
 
 # we really should have smatch running on this code but...
 SMATCH=off

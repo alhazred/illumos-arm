@@ -1,4 +1,5 @@
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2001, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # External declarations - used to suppress -zdefs errors.
@@ -20,8 +21,8 @@
 $mapfile_version 2
 
 SYMBOL_SCOPE {
-	add_options	{ TYPE = FUNCTION; FLAGS = extern };	# From pppd
-	idle_time_hook	{ TYPE = DATA; FLAGS = extern };	#    "     "
-	idle_time_limit	{ TYPE = DATA; FLAGS = extern };	#    "     "
-	info		{ TYPE = FUNCTION; FLAGS = extern };	#    "     "
+	add_options	;	# From pppd
+	idle_time_hook	;	#    "     "
+	idle_time_limit	;	#    "     "
+	info		;	#    "     "
 };

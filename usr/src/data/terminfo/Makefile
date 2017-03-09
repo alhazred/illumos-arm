@@ -25,6 +25,9 @@
 # Copyright 2017 Nexenta Systems, Inc.
 #
 
+CODEMGR_WS=$(shell git rev-parse --show-toplevel)
+SRC=$(CODEMGR_WS)/usr/src
+
 TABSETSRC=	3101 \
 		beehive \
 		hds \

@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2003 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -55,6 +56,7 @@ $(LIBPROG):	$(OBJS) $(FSOBJS)
 		$(LINK.c) -o $@ $(OBJS) $(FSOBJS) $(LDLIBS)
 		$(POST_PROCESS)
 
+clobber: clean
 clean:
 	-$(RM) $(OBJS) $(FSOBJS)
 

@@ -1,0 +1,40 @@
+include <sys/hwrpb.h>
+include <sys/pal.h>
+include <sys/cpu.h>
+include <sys/cpuvar.h>
+include <sys/modctl.h>
+include <sys/pcb.h>
+
+define	CPU_THREAD		offsetof(cpu_t, cpu_thread)
+define	CPU_IDLE_THREAD		offsetof(cpu_t, cpu_idle_thread)
+define	CPU_LWP			offsetof(cpu_t, cpu_lwp)
+define	RPB_PHYS_ADDR		offsetof(struct rpb, phys_addr)
+define	RPB_PROCS_SIZE		offsetof(struct rpb, pcs_size)
+define	RPB_PROCS_OFF		offsetof(struct rpb, pcs_off)
+define	RPB_PRIMARY_CPU_ID	offsetof(struct rpb, cpu_id)
+define	RPB_VPTB		offsetof(struct rpb, vptb)
+define	RPB_CRB_OFF		offsetof(struct rpb, crb_off)
+define	HWPCB_KSP		offsetof(struct hwpcb, ksp)
+define	HWPCB_USP		offsetof(struct hwpcb, usp)
+define	HWPCB_ASN		offsetof(struct hwpcb, asn)
+define	HWPCB_FEN		offsetof(struct hwpcb, fen)
+define	HWPCB_PTBR		offsetof(struct hwpcb, ptbr)
+
+define	PCB_FEN			offsetof(pcb_t, pcb_hw.flags)
+define	PCB_FPU			offsetof(pcb_t, pcb_fpu)
+define	PCB_FLAGS		offsetof(pcb_t, pcb_flags)
+
+define	PCS_PAL_REV_AVAIL_OSF	offsetof(struct pcs, pal_rev_avl[PAL_OSF])
+define	PCS_PAL_REV		offsetof(struct pcs, pal_rev)
+define	MODS_SIZE		sizeof(struct mod_stub_info)
+define	MODS_INSTFCN		offsetof(struct mod_stub_info, mods_func_adr)
+define	MODS_RETFCN		offsetof(struct mod_stub_info, mods_errfcn)
+define	MODS_FLAG		offsetof(struct mod_stub_info, mods_flag)
+define	MODS_WEAK		MODS_WEAK
+define	MODS_NOUNLOAD		MODS_NOUNLOAD
+define	MODS_INSTALLED		MODS_INSTALLED
+
+define	KFPU_REGS		offsetof(fpu_ctx_t, fpu_regs.kfpu_regs[0])
+define	KFPU_CR			offsetof(fpu_ctx_t, fpu_regs.kfpu_cr)
+
+define	PCB_HW_FLAGS_FEN	PCB_HW_FLAGS_FEN

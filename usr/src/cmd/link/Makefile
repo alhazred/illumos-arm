@@ -32,7 +32,7 @@ OBJS= link.o
 
 include ../Makefile.cmd
 
-clean $(XPG4) :  OBJS += values-xpg4.o
+#clean $(XPG4) :  OBJS += values-xpg4.o
 
 FILEMODE= 0555
 
@@ -42,7 +42,7 @@ CERRWARN += -_gcc=-Wno-parentheses
 
 all: $(PROG) $(XPG4)
 
-$(PROG) $(XPG4): $$(OBJS)
+$(PROG) $(XPG4): $(OBJS)
 	$(LINK.c) -o $@ $(OBJS) $(LDLIBS)
 	$(POST_PROCESS)
 

@@ -22,6 +22,7 @@
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 # Copyright (c) 2013 Andrew Stormont.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright (c) 2018, Joyent, Inc.
 
@@ -128,6 +129,7 @@ $(ETCINITD)/%: %
 
 check:	$(CHKMANIFEST)
 
+clobber: clean
 clean:
 	$(RM) $(SADC_OBJECTS) $(PROGS) $(SHELLS)
 

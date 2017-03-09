@@ -1,0 +1,13 @@
+diff -cNr ../flex-2.5.39-orig/scan.c ./scan.c
+*** ../flex-2.5.39-orig/scan.c	2014-03-27 03:56:27.000000000 +0900
+--- ./scan.c	2015-06-20 20:04:42.750074895 +0900
+***************
+*** 16,21 ****
+--- 16,22 ----
+  /* First, we deal with  platform-specific or compiler-specific issues. */
+  
+  /* begin standard C headers. */
++ #include <config.h>
+  #include <stdio.h>
+  #include <string.h>
+  #include <errno.h>

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -101,7 +102,7 @@ $(ISRCHDR):	$(KRB5IPROPDIR)/iprop.x
 	$(RPCGEN) -h $(KRB5IPROPDIR)/iprop.x > $@
 
 # Explicitly state the dependancy on iprop.h
-$(LIBS): $(ISRCHDR)
+$(PICS): $(ISRCHDR)
 
 CLEANFILES +=	$(ISRCHDR)
 

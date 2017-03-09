@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -31,7 +32,7 @@ pics/%.o:	$(SRCDIR)/common/%.c
 		$(POST_PROCESS_O)
 
 pics/%.o:	%.s
-		$(COMPILE.s) -o $@ $<
+		$(COMPILE.s) -o $@ -c $<
 		$(POST_PROCESS_O)
 
 pics/%32.o:	$(SRCDIR)/common/%.c
@@ -45,6 +46,19 @@ pics/%64.o:	$(SRCDIR)/common/%.c
 pics/elfcap.o:	$(ELFCAP)/elfcap.c
 		$(COMPILE.c) -o $@ $(ELFCAP)/elfcap.c
 		$(POST_PROCESS_O)
+
+pics/relocate.o:	../common/relocate.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+pics/strproc.o:	../common/strproc.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+pics/tokens.o:	../common/tokens.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
 
 # This rule generates the report_bufsize.h include file used by libconv
 # code to ensure that their private buffer size calculations agree with
@@ -60,12 +74,12 @@ report_bufsize.h:	$(SRCDIR)/Makefile.targ
 
 $(SRCDIR)/common/%.c $(SRCDIR)/common/%_machelf.c:	%_msg.h
 
-%_msg.h + %_msg.c: $(SGSMSG) $(SRCDIR)/common/%.msg report_bufsize.h
+%_msg.h %_msg.c: $(SRCDIR)/common/%.msg report_bufsize.h
 		$(SGSMSG) $(SGSMSGFLAGS) -h $*_msg.h -d $*_msg.c \
 			-n sgs_msg_libconv_$* $<
 
 vernote.s:	bld_vernote $(README_REVISION) $(ONLDREADME)
-		./bld_vernote \
+		MACH=$(MACH) ./bld_vernote \
 			-R `perl $(README_REVISION) $(ONLDREADME)` \
 			-r "$(RELEASE)" -o $@
 
@@ -74,7 +88,7 @@ bld_vernote:	$(SRCDIR)/common/bld_vernote.ksh
 		cp $(SRCDIR)/common/bld_vernote.ksh $@
 		chmod a+x $@
 
-$(LIBRARY):	pics $$(PICS)
+$(LIBRARY):	pics $(PICS)
 		@ $(RM) $(LIBRARY)
 		$(AR) $(ARFLAGS) $@ $(PICS)
 		$(POST_PROCESS_A)
@@ -96,3 +110,5 @@ clean:
 delete:
 
 include		$(SRC)/cmd/sgs/Makefile.targ
+
+$(PICS): $(BLTDATA)

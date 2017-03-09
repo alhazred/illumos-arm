@@ -94,7 +94,8 @@ $(LIBLINKS):
 delete:
 		$(RM) $(DYNLIB)
 
-$(PICS):	pics
+$(PICS):	|pics
+$(PICS):	$(BLTDEFS)
 
 include		$(SRC)/lib/Makefile.targ
 include		$(SRC)/cmd/sgs/Makefile.targ

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright (c) 2018, Joyent, Inc.
@@ -40,9 +41,9 @@ include ../../Makefile.rootfs
 
 LIBS =		$(DYNLIB)
 
-$(NOT_NATIVE)NATIVE_BUILD = $(POUND_SIGN)
-$(NATIVE_BUILD)VERS =
-$(NATIVE_BUILD)LIBS = $(DYNLIB)
+#$(NOT_NATIVE)NATIVE_BUILD = $(POUND_SIGN)
+#$(NATIVE_BUILD)VERS =
+#$(NATIVE_BUILD)LIBS = $(DYNLIB)
 
 LDLIBS_i386 += -lsmbios
 LDLIBS +=	-luutil -lc -lgen -lnvpair
@@ -54,7 +55,7 @@ COMDIR =	../../../common/svc
 
 CFLAGS +=	$(CCVERBOSE) -Wp,$(CSTD_GNU99)
 CPPFLAGS +=	-I../inc -I../../common/inc -I$(COMDIR) -I$(ROOTHDRDIR)
-$(NOT_RELEASE_BUILD) CPPFLAGS += -DFASTREBOOT_DEBUG
+#$(NOT_RELEASE_BUILD) CPPFLAGS += -DFASTREBOOT_DEBUG
 
 CERRWARN +=	-_gcc=-Wno-switch
 CERRWARN +=	-_gcc=-Wno-char-subscripts

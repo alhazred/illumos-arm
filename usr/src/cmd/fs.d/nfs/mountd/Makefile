@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
 # Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
 #
@@ -38,7 +39,7 @@ OBJS	  = 	$(LOCAL) $(COMMON)
 SRCS	  =	$(LOCAL:%.o=%.c) $(FSLIBSRC) ../lib/nfs_sec.c \
 		../lib/sharetab.c ../lib/daemon.c ../lib/smfcfg.c
 DSRC	  =	mountd_dt.d
-DOBJ	  =	$(DSRC:%.d=%.o)
+#DOBJ	  =	$(DSRC:%.d=%.o)
 LDLIBS	 +=	-lrpcsvc -lnsl -lbsm -lsocket -ltsnet -ltsol -lnvpair -lscf -lumem
 CPPFLAGS +=	-D_REENTRANT -I../lib
 

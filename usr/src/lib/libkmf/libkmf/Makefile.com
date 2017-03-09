@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2018, Joyent, Inc.
 #
@@ -47,7 +48,7 @@ BERDERLIB64=    -lkmfberder
 CRYPTOUTILLIB=	 -lcryptoutil
 CRYPTOUTILLIB64= -lcryptoutil
 
-include $(SRC)/lib/Makefile.lib
+include ../../../Makefile.lib
 include $(SRC)/lib/Makefile.rootfs
 
 SRCDIR=	../common

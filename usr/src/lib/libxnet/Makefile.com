@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -26,7 +27,16 @@
 LIBRARY =	libxnet.a
 VERS =		.1
 
-include		$(SRC)/lib/Makefile.rootfs
+OBJECTS= sym_import.o
 
-DYNFLAGS +=     $(ZLOADFLTR)
-CPPFLAGS +=	-D__EXTENSIONS__
+include	../../Makefile.lib
+include ../../Makefile.rootfs
+
+LIBS=		$(DYNLIB) $(LINTLIB)
+SRCDIR=		../common
+DYNFLAGS +=	-lnsl -lsocket -lc
+all: $(LIBS)
+include		../../Makefile.targ
+
+pics/%.o: $(SRCDIR)/%.s
+	$(COMPILE.s) -c -o $@ $<

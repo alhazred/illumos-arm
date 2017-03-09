@@ -103,6 +103,12 @@ extern "C" {
 #define	V_FREEBSD_ZFS		0x0904
 #define	V_FREEBSD_NANDFS	0x0905
 
+#define	V_RISCV_BBL		0x0100
+#define	V_RISCV_FSBL		0x0101
+#define	V_UBOOT_ENV		0x0102
+#define	V_UBOOT_DTB		0x0103
+#define	V_UBOOT_FIT		0x0104
+
 #define	V_UNKNOWN	0xffff		/* Unknown partition */
 
 /*

@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # KMF Prototype Makefile
@@ -28,6 +29,8 @@ LIBRARY=	libkmf.a
 VERS=		1
 
 SUBDIRS	=	ber_der libkmf plugins mappers
+libkmf: ber_der
+plugins mappers: libkmf
 
 HDRS=	kmfapi.h kmftypes.h
 HDRDIR= include

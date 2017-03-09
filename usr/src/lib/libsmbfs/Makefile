@@ -23,13 +23,14 @@
 # Use is subject to license terms.
 #
 # Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 #
 # lib/libsmbfs/Makefile
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 HDRS=		ntlmssp.h smbfs_acl.h smbfs_api.h smb_keychain.h spnego.h
 HDRDIR=		netsmb
@@ -62,11 +63,11 @@ install_h: $(ROOTHDRDIR) $(ROOTHDRS)
 
 check: $(CHECKHDRS)
 
-$(ROOTHDRDIR)/%: %
-	$(INS.file)
+#$(ROOTHDRDIR)/%: %
+#	$(INS.file)
 
-$(ROOTHDRDIR):
-	$(INS.dir)
+#$(ROOTHDRDIR):
+#	$(INS.dir)
 
 $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)

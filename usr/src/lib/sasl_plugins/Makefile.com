@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -27,7 +28,7 @@
 COMMONOBJS=	plugin_common.o
 OBJECTS=	$(PLUG_OBJS) $(COMMONOBJS)
 
-include $(SRC)/lib/Makefile.lib
+include ../../../Makefile.lib
 
 CPPFLAGS +=	-I$(SRC)/lib/libsasl/include
 
@@ -60,3 +61,8 @@ pics/%.o: $(SRC)/lib/libsasl/plugin/%.c
 	$(POST_PROCESS_O)
 
 include $(SRC)/lib/Makefile.targ
+
+$(ROOTLIBDIR):
+	$(INS.dir)
+
+$(ROOTLIBS): $(ROOTLIBDIR)

@@ -25,6 +25,8 @@
 # Copyright 2018 OmniOS Community Edition (OmniOSce) Association.
 #
 
+CODEMGR_WS=$(shell git rev-parse --show-toplevel)
+SRC=$(CODEMGR_WS)/usr/src
 include		$(SRC)/data/Makefile.data
 
 HWDATA=		pci.ids usb.ids efi.fixes

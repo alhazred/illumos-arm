@@ -21,6 +21,7 @@
 
 #
 # Copyright (c) 1992, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright (c) 2018, Joyent, Inc.
 
@@ -124,7 +125,7 @@ install :	$(PROG) $(ROOTDIRS) $(ROOTPROG) $(ROOTLOCKS) \
 $(RTLCKS):
 		$(TOUCH) $@
 
-$(ROOTSECLIB)/%: %.sh
+$(ROOTSECLIB)/%: %.sh $(ROOTSECLIB)
 		$(INS.rename)
 
 $(PROGalloc) :	$(PROGallocOBJS)
@@ -146,11 +147,17 @@ $(PROGdminfo) :	$(PROGdminfoOBJS)
 $(ROOTDIRS) :
 		$(INS.dir)
 
-$(ROOTSECDEV)/%: %
+$(ROOTSECDEV)/%: % $(ROOTSECDEV)
 		$(INS.file)
 
-$(ROOTSECLIB)/%: %
+$(ROOTSECLIB)/%: % $(ROOTSECLIB)
 		$(RM) $@
+		$(INS.file)
+
+$(ROOTETCTSOL):
+		$(INS.dir)
+
+$(ROOTETCTSOL)/%: % $(ROOTETCTSOL)
 		$(INS.file)
 
 $(ROOTLINKalloc) :	$(PROGalloc:%=$(ROOTUSRSBIN)/%)
@@ -182,6 +189,7 @@ $(POFILE):      $(POFILES)
 $(ALLSCRIPTS):	$(SCRIPTS:%=%.sh)
 		$(CAT) $(SCRIPTS:%=%.sh) > $@
 
+clobber: clean
 clean :
 		$(RM) $(PROG) $(RTLCKS) $(OBJS) \
 		$(SCRIPTS) $(ALLSCRIPTS) $(POFILE) $(POFILES)

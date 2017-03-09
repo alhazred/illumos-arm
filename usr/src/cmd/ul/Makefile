@@ -21,6 +21,7 @@
 #
 #
 # Copyright (c) 1989 by Sun Microsystems, Inc.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright 2019 Joyent, Inc.
 #
@@ -29,7 +30,7 @@ PROG= ul
 
 include ../Makefile.cmd
 
-LDLIBS += -lcurses
+LDLIBS += -lncurses
 
 # false positive
 SMOFF += unreachable

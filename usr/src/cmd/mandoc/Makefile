@@ -12,9 +12,10 @@
 #
 # Copyright 2014 Garrett D'Amore <garrett@damore.org>
 # Copyright 2015 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-include		$(SRC)/cmd/Makefile.cmd
+include		../Makefile.cmd
 include		$(SRC)/cmd/mandoc/Makefile.common
 
 .KEEP_STATE:

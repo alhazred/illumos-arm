@@ -21,12 +21,13 @@
 #
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2012 OmniTI Computer Consulting, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 # Use is subject to license terms.
 #
 
 
 # include library definitions
-include $(SRC)/lib/Makefile.lib
+include ../Makefile.lib
 
 HDRS =		instzones_api.h
 HDRDIR =        hdrs

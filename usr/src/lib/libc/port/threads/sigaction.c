@@ -573,6 +573,8 @@ setcontext(const ucontext_t *ucp)
 		uc.uc_mcontext.gregs[REG_UQ] = (greg_t)self;
 #elif defined(__aarch64)
 		uc.uc_mcontext.gregs[REG_TP] = (greg_t)self;
+#elif defined(__riscv)
+		uc.uc_mcontext.gregs[REG_TP] = (greg_t)self;
 #else
 #error "none of __sparc, __amd64, __i386 defined"
 #endif

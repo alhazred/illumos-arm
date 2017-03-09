@@ -23,6 +23,7 @@
 # Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2014 Garrett D'Amore <garrett@damore.org>
 # Copyright 2015 Nexenta Systems, Inc. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 include		../../Makefile.cmd
@@ -70,22 +71,25 @@ all:		$(PROG)
 #$(DIRS):
 #		$(INS.dir)
 
-$(ROOTETCINITD)/%:	%
+$(ROOTETCINITD)/%:	% $(ROOTETCINITD)
 		$(INS.file)
 
-$(ROOTETCRCSD)/%:	%.rcS
+$(ROOTETCRCSD)/%:	%.rcS $(ROOTETCRCSD)
 		$(INS.rename)
 
-$(ROOTETCRC2D)/%:	%.rc2
+$(ROOTETCRC2D)/%:	%.rc2 $(ROOTETCRC2D)
 		$(INS.rename)
 
-$(ROOTETCRC3D)/%:	%.rc3
+$(ROOTETCRC3D)/%:	%.rc3 $(ROOTETCRC3D)
 		$(INS.rename)
 
 install:	all $(ROOTETCINITDPROG) \
 		$(ROOTETCRCSD)/README \
 		$(ROOTETCRC2D)/README \
 		$(ROOTETCRC3D)/README
+
+$(DIRS):
+	$(INS.dir)
 
 lint:
 

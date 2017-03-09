@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -67,7 +68,7 @@ CFLAGS += $(GSHARED) $(XREGSFLAG)
 
 CPPFLAGS += -I.
 CPPFLAGS += -D_POSIX_PTHREAD_SEMANTICS -D_REENTRANT
-LDFLAGS += $(ZIGNORE) -Wl,-M$(APIMAP)
+#LDFLAGS += $(ZIGNORE) -Wl,-M$(APIMAP)
 LDLIBS += -L$(ROOTLIBDIR)/fm -ltopo -lnvpair -lc
 DYNFLAGS += -R/usr/lib/fm
 
@@ -103,9 +104,9 @@ check:	$(CHECKHDRS)
 
 install_h:
 
-$(ROOTPROG): $$(@D) $(PROG)
+$(ROOTPROG): %/$(PROG) : $(PROG) %
 	$(RM) $@; $(INS) -s -m 0555 -f $(@D) $(PROG)
 
-install: $(ROOTPROG)
+install: all $(ROOTPROG)
 
 include ../../../Makefile.rootdirs

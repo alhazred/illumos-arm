@@ -85,7 +85,7 @@ static void print_message(char *);
 static void probe_data_area(void);
 static void probe_hole(int);
 static void probe_stack(void);
-static void probe_text_area(void);
+void probe_text_area(void);
 static void segv_action(int, siginfo_t *, void *);
 static void set_handler(int);
 static int  test_stack_end_of_hole();
@@ -332,7 +332,7 @@ text_area_not_writeable()
 /*
  * write to text area, trigger a SEGV
  */
-static void
+void
 probe_text_area()
 {
 	handler_exit_code = FAIL_SEGV;

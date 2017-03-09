@@ -25,7 +25,7 @@
 #
 # Copyright (c) 2018, Joyent, Inc.
 
-SHELL=/usr/bin/ksh93
+SHELL=/usr/bin/ksh
 
 LIBRARY=	libsum.a
 VERS=		.1

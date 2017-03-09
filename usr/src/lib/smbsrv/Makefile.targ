@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -30,7 +31,7 @@
 #
 
 %_ndr.c: $(NDLDIR)/%.ndl
-	$(NDRGEN) -Y $(ANSI_CPP) $(CPPFLAGS) $<
+	ROOT=${ROOT} $(NDRGEN) -Y $(ANSI_CPP) $(INCS) -I$(ROOT)/usr/include $<
 
 pics/%.o:	$(SRC)/common/smbsrv/%.c
 	$(COMPILE.c) -o $@ $<

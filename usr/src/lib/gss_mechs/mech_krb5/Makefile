@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -60,12 +61,12 @@ install :       TARGET= install
 
 all clean:    $(SUBDIRS)
 
-install: install_dir all .WAIT $(SUBDIRS)
+install: install_dir $(SUBDIRS)
 
 # override ROOTLIBDIR and ROOTLINKS
 ROOTLIBDIR=     $(ROOT)/usr/lib/gss
 
-install_dir:	$(ROOTLIBDIR) $(BUILD64)
+install_dir:	$(ROOTLIBDIR)
 
 install_h:
 

@@ -1,4 +1,5 @@
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # CDDL HEADER START
@@ -40,8 +41,8 @@ $mapfile_version 2
 # External interface requirements
 SYMBOL_SCOPE {
 	global:
-		debug_level		{ FLAGS = EXTERN };
-		root_dir		{ FLAGS = EXTERN };
-		syseventd_err_print	{ FLAGS = EXTERN };
-		syseventd_print		{ FLAGS = EXTERN };
+		debug_level		;
+		root_dir		;
+		syseventd_err_print	;
+		syseventd_print		;
 };

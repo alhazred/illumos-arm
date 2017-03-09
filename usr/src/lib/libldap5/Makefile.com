@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -59,7 +60,7 @@ include ../../Makefile.lib
 
 NSS_LIBS=	-lnspr4 -lplc4 -lnss3 -lssl3
 NSS_HDRS=	$(ADJUNCT_PROTO)/usr/include/mps
-NSS_LDPATH=	/usr/lib/mps
+NSS_LDPATH=	$(ADJUNCT_PROTO)/usr/lib/mps
 NSS_LDPATH64=	$(NSS_LDPATH)/64
 
 
@@ -105,6 +106,11 @@ CERRWARN +=	-_gcc=-Wno-unused-function
 CERRWARN +=	-_gcc=-Wno-unused-variable
 CERRWARN +=	-_gcc=-Wno-unused-value
 CERRWARN +=	-_gcc=-Wno-address
+CERRWARN +=	-_gcc=-Wno-unused-but-set-variable
+CERRWARN +=	-_gcc=-Wno-cast-function-type
+
+LDLIBS +=	-L$(NSS_LDPATH) $(NSS_LIBS)
+DYNFLAGS +=	-R/usr/lib/mps
 
 # not linted
 SMATCH=off

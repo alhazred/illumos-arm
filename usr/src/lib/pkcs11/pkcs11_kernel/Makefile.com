@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -72,7 +73,7 @@ pics/kernelKeys.o :  \
 pics/kernelSoftCommon.o :  \
 	CPPFLAGS = -I$(ST_DIR) $(CPPFLAGS.master)
 
-include $(SRC)/lib/Makefile.lib
+include ../../../Makefile.lib
 
 #	set signing mode
 POST_PROCESS_SO	+=	; $(ELFSIGN_CRYPTO)
@@ -85,6 +86,7 @@ LIBS	=	$(DYNLIB)
 LDLIBS  +=      -lc -lcryptoutil -lmd
 
 CFLAGS  +=      $(CCVERBOSE)
+CFLAGS  +=	-_gcc=-fvisibility=protected
 
 CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-unused-label

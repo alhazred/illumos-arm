@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -40,275 +41,73 @@ $mapfile_version 2
 
 SYMBOL_VERSION SUNW_1.1 {
     global:
-	C_CancelFunction {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_CloseAllSessions {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_CloseSession {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_CopyObject {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_CreateObject {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Decrypt {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DecryptDigestUpdate {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DecryptFinal {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DecryptInit {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DecryptUpdate {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DecryptVerifyUpdate {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DeriveKey {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DestroyObject {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Digest {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DigestEncryptUpdate {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DigestFinal {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DigestInit {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DigestKey {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_DigestUpdate {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Encrypt {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_EncryptFinal {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_EncryptInit {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_EncryptUpdate {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Finalize {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_FindObjects {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_FindObjectsFinal {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_FindObjectsInit {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GenerateKey {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GenerateKeyPair {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GenerateRandom {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetAttributeValue {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetFunctionList {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetFunctionStatus {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetInfo {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetMechanismInfo {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetMechanismList {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetObjectSize {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetOperationState {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetSessionInfo {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetSlotInfo {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetSlotList {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_GetTokenInfo {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Initialize {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_InitPIN {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_InitToken {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Login {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Logout {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_OpenSession {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SeedRandom {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SetAttributeValue {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SetOperationState {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SetPIN {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Sign {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SignEncryptUpdate {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SignFinal {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SignInit {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SignRecover {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_SignRecoverInit {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_UnwrapKey {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_Verify {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_VerifyFinal {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_VerifyInit {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-    	C_VerifyRecover {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_VerifyRecoverInit {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_VerifyUpdate {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_WaitForSlotEvent {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-	C_WrapKey {
-		TYPE = FUNCTION;
-		FILTER = pkcs11_softtoken.so.1;
-	};
-
+	C_CancelFunction;
+	C_CloseAllSessions;
+	C_CloseSession;
+	C_CopyObject;
+	C_CreateObject;
+	C_Decrypt;
+	C_DecryptDigestUpdate;
+	C_DecryptFinal;
+	C_DecryptInit;
+	C_DecryptUpdate;
+	C_DecryptVerifyUpdate;
+	C_DeriveKey;
+	C_DestroyObject;
+	C_Digest;
+	C_DigestEncryptUpdate;
+	C_DigestFinal;
+	C_DigestInit;
+	C_DigestKey;
+	C_DigestUpdate;
+	C_Encrypt;
+	C_EncryptFinal;
+	C_EncryptInit;
+	C_EncryptUpdate;
+	C_Finalize;
+	C_FindObjects;
+	C_FindObjectsFinal;
+	C_FindObjectsInit;
+	C_GenerateKey;
+	C_GenerateKeyPair;
+	C_GenerateRandom;
+	C_GetAttributeValue;
+	C_GetFunctionList;
+	C_GetFunctionStatus;
+	C_GetInfo;
+	C_GetMechanismInfo;
+	C_GetMechanismList;
+	C_GetObjectSize;
+	C_GetOperationState;
+	C_GetSessionInfo;
+	C_GetSlotInfo;
+	C_GetSlotList;
+	C_GetTokenInfo;
+	C_Initialize;
+	C_InitPIN;
+	C_InitToken;
+	C_Login;
+	C_Logout;
+	C_OpenSession;
+	C_SeedRandom;
+	C_SetAttributeValue;
+	C_SetOperationState;
+	C_SetPIN;
+	C_Sign;
+	C_SignEncryptUpdate;
+	C_SignFinal;
+	C_SignInit;
+	C_SignRecover;
+	C_SignRecoverInit;
+	C_UnwrapKey;
+	C_Verify;
+	C_VerifyFinal;
+	C_VerifyInit;
+	C_VerifyRecover;
+	C_VerifyRecoverInit;
+	C_VerifyUpdate;
+	C_WaitForSlotEvent;
+	C_WrapKey;
     local:
 	*;
 };

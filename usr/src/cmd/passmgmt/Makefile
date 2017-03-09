@@ -20,6 +20,7 @@
 #
 #
 # Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright (c) 2018, Joyent, Inc.
 # Copyright 2020 OmniOS Community Edition (OmniOSce) Association.
@@ -59,6 +60,7 @@ install: all $(ROOTLIBPROG) $(ROOTFILE)
 # with "\" and code below will filter out the "\".  Only datemsk format
 # strings next to each other need to be quoted.
 
+CLOBBERFILES += datemsk
 datemsk: datemsk.template
 	@while read i; do echo $$i; done < datemsk.template > $@
 

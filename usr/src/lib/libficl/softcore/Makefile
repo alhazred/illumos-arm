@@ -10,15 +10,19 @@
 #
 
 #
-# Copyright 2018 Toomas Soome <tsoome@me.com>
+# Copyright 2016 Toomas Soome <tsoome@me.com>
+# Copyright 2017 Hayashi Naoyuki
 #
 
-include $(SRC)/Makefile.master
+include ../../Makefile.lib
+include ../../../Makefile.native
+include $(SRC)/tools/Makefile.tools
 
 install all: softcore.c
 
 SOFTCORE=	$(SRC)/common/ficl/softcore
-PROG=		$(ONBLD_TOOLS)/bin/$(MACH)/makesoftcore
+LZ4=		$(SRC)/common/lz4
+PROG =	makesoftcore
 
 #
 # not needed: file access
@@ -27,8 +31,23 @@ FR = softcore.fr ifbrack.fr prefix.fr ficl.fr jhlocal.fr marker.fr
 FR += freebsd.fr ficllocal.fr oo.fr classes.fr string.fr wordsets.fr
 SOURCES=	$(FR:%=$(SOFTCORE)/%)
 
-softcore.c: $(SOURCES)
-	$(PROG) $(SOURCES)
+OBJS=	makesoftcore.o lz4.o
+SRCS=	makesoftcore.c lz4.c
+LDLIBS= #-lumem
+
+NATIVE_CFLAGS += -I.. -I$(SRC)/common/ficl -I$(LZ4)
+
+softcore.c: $(PROG) $(SOURCES)
+	./$(PROG) $(SOURCES)
+
+$(PROG): $(OBJS)
+	$(NATIVECC) -o $@ $(OBJS) $(LDLIBS)
+
+%.o: $(SOFTCORE)/%.c
+	$(NATIVECC) $(NATIVE_CFLAGS)  -c $<
+
+%.o: $(LZ4)/%.c
+	$(NATIVECC) $(NATIVE_CFLAGS)  -c $<
 
 clobber clean:
-	$(RM) softcore.c
+	$(RM) softcore.c $(OBJS) $(PROG)

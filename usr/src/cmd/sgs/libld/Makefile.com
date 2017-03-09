@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -81,8 +82,8 @@ OBJECTS =	$(BLTOBJ) $(G_MACHOBJS32) $(G_MACHOBJS64) \
 		$(COMOBJS) $(COMOBJS32) $(COMOBJS64) \
 		$(SGSCOMMONOBJ) $(E_COMMONOBJ) $(AVLOBJ) $(ELFCAPOBJ)
 
-include		$(SRC)/lib/Makefile.lib
-include		$(SRC)/cmd/sgs/Makefile.com
+include ../../../../lib/Makefile.lib
+include 	$(SRC)/cmd/sgs/Makefile.com
 
 SRCDIR =	$(SGSHOME)/libld
 MAPFILEDIR =	$(SRCDIR)/common
@@ -103,14 +104,14 @@ KRTLD_I386 = $(SRC)/uts/$(VAR_PLAT_i386)/krtld
 KRTLD_AMD64 = $(SRC)/uts/$(VAR_PLAT_amd64)/krtld
 KRTLD_SPARC = $(SRC)/uts/$(VAR_PLAT_sparc)/krtld
 
-
+CFLAGS +=	-_gcc=-fcommon
 CPPFLAGS +=	-DUSE_LIBLD_MALLOC -I$(SRC)/lib/libc/inc \
 		    -I$(SRC)/uts/common/krtld -I$(SRC)/uts/sparc \
 		    $(VAR_LIBLD_CPPFLAGS)
 LDLIBS +=	$(CONVLIBDIR) -lconv $(LDDBGLIBDIR) -llddbg \
 		    $(ELFLIBDIR) -lelf $(DLLIB) -lc
 
-DYNFLAGS +=	$(VERSREF) '-R$$ORIGIN'
+DYNFLAGS +=	$(VERSREF) #'-R$$ORIGIN'
 
 # too hairy
 pics/sections32.o :  SMATCH=off
@@ -133,7 +134,7 @@ SGSMSGTARG =	$(SGSMSGCOM) $(SGSMSGSPARC) $(SGSMSGINTEL)
 SGSMSGALL =	$(SGSMSGCOM) $(SGSMSGSPARC) $(SGSMSGINTEL)
 
 SGSMSGFLAGS1 =	$(SGSMSGFLAGS) -m $(BLTMESG)
-SGSMSGFLAGS2 =	$(SGSMSGFLAGS) -h $(BLTDEFS) -d $(BLTDATA) -n libld_msg
+SGSMSGFLAGS2 =	$(SGSMSGFLAGS) -h $(BLTDEFS) -d $(BLTDATA)  -i ../../messages/sgs.ident -n libld_msg
 
 CHKSRCS =	$(SRC)/uts/common/krtld/reloc.h \
 		$(COMOBJS32:%32.o=$(SRCDIR)/common/%.c) \

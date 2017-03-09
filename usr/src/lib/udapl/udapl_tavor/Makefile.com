@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Copyright 2019, Joyent, Inc.
@@ -130,7 +131,7 @@ TAVOROBJS = \
 
 OBJECTS = $(LOCOBJS) $(TAVOROBJS)
 
-include $(SRC)/lib/Makefile.lib
+include ../../../Makefile.lib
 
 LIBS =		$(DYNLIB)
 LDLIBS +=	-ldevinfo -lsocket -lnsl -ldat -lc -ldladm
@@ -150,6 +151,9 @@ CFLAGS +=	$(CCVERBOSE)
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-switch
+CERRWARN +=	-_gcc=-Wno-unused-value
+CERRWARN +=	-_gcc=-Wno-unused-but-set-variable
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 $(NOT_RELEASE_BUILD)CPPFLAGS += -DDAPL_DBG
 $(RELEASE_BUILD)CERRWARN += -_gcc=-Wno-unused

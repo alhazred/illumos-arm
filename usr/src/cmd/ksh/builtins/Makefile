@@ -87,7 +87,7 @@ ROOTXPG4ALIAS= \
 ROOTALIASPROG= $(ALIASPROG:%=$(ROOTBIN)/%)
 
 include ../../Makefile.cmd
-$(SPARC_BLD)include ../../Makefile.cmd.64
+#$(SPARC_BLD)include ../../Makefile.cmd.64
 
 FILEMODE= 555
 CERRWARN += -_gcc=-Wno-parentheses

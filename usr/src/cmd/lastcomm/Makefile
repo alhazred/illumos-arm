@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -50,6 +51,7 @@ $(PROG): $(OBJS) $(EXPOBJ)
 
 install: all $(ROOTPROG)
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(EXPOBJ)
 

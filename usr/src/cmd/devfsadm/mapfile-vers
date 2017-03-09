@@ -1,4 +1,5 @@
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2016 Nexenta Systems, Inc.  All rights reserved.
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
 #
@@ -40,27 +41,27 @@ $mapfile_version 2
 # External interface requirements
 SYMBOL_SCOPE {
 	global:
-		ctrl_enumerate_int		{ FLAGS = EXTERN };
-		devfsadm_devlink_cache		{ FLAGS = EXTERN };
-		devfsadm_enumerate_char_start	{ FLAGS = EXTERN };
-		devfsadm_enumerate_int		{ FLAGS = EXTERN };
-		devfsadm_errprint		{ FLAGS = EXTERN };
-		devfsadm_free_dev_names		{ FLAGS = EXTERN };
-		devfsadm_have_reserved		{ FLAGS = EXTERN };
-		devfsadm_is_reserved		{ FLAGS = EXTERN };
-		devfsadm_link_valid		{ FLAGS = EXTERN };
-		devfsadm_lookup_dev_names	{ FLAGS = EXTERN };
-		devfsadm_mklink			{ FLAGS = EXTERN };
-		devfsadm_noupdate		{ FLAGS = EXTERN };
-		devfsadm_print			{ FLAGS = EXTERN };
-		devfsadm_read_link		{ FLAGS = EXTERN };
-		devfsadm_reserve_id_cache	{ FLAGS = EXTERN };
-		devfsadm_rm_all			{ FLAGS = EXTERN };
-		devfsadm_rm_link		{ FLAGS = EXTERN };
-		devfsadm_rm_stale_links		{ FLAGS = EXTERN };
-		devfsadm_root_path		{ FLAGS = EXTERN };
-		devfsadm_secondary_link		{ FLAGS = EXTERN };
-		disk_enumerate_int		{ FLAGS = EXTERN };
-		s_strdup			{ FLAGS = EXTERN };
-		system_labeled			{ FLAGS = EXTERN };
+		ctrl_enumerate_int		;
+		devfsadm_devlink_cache		;
+		devfsadm_enumerate_char_start	;
+		devfsadm_enumerate_int		;
+		devfsadm_errprint		;
+		devfsadm_free_dev_names		;
+		devfsadm_have_reserved		;
+		devfsadm_is_reserved		;
+		devfsadm_link_valid		;
+		devfsadm_lookup_dev_names	;
+		devfsadm_mklink			;
+		devfsadm_noupdate		;
+		devfsadm_print			;
+		devfsadm_read_link		;
+		devfsadm_reserve_id_cache	;
+		devfsadm_rm_all			;
+		devfsadm_rm_link		;
+		devfsadm_rm_stale_links		;
+		devfsadm_root_path		;
+		devfsadm_secondary_link		;
+		disk_enumerate_int		;
+		s_strdup			;
+		system_labeled			;
 };

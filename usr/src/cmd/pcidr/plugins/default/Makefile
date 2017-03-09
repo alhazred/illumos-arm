@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -36,7 +37,7 @@ TOPOBJECTS = pcidr_common.o
 LOCOBJECTS = $(NAME).o pcidr_cfga.o
 OBJECTS = $(LOCOBJECTS) $(TOPOBJECTS)
 
-include $(SRC)/lib/Makefile.lib
+include ../../../../lib/Makefile.lib
 include $(SRC)/cmd/pcidr/Makefile.com
 #############################################################################
 

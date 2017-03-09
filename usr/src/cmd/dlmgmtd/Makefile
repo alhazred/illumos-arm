@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -72,7 +73,7 @@ lint:	lint_SRCS
 $(ROOTCFGDIR):
 	$(INS.dir)
 
-$(ROOTCFGDIR)/%: $(ROOTCFGDIR) %
+$(ROOTCFGDIR)/%: % $(ROOTCFGDIR)
 	$(INS.file)
 
 include ../Makefile.targ

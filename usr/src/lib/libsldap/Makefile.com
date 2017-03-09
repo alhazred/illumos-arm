@@ -52,6 +52,8 @@ CPPFLAGS +=	-I../common -I$(SRC)/lib/libldap5/include/ldap \
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	-_gcc=-Wno-switch
 CERRWARN +=	$(CNOWARN_UNINIT)
+CERRWARN +=	-_gcc=-Wno-cast-function-type
+CERRWARN +=	-_gcc10=-Wno-enum-conversion
 
 # not linted
 SMATCH=off

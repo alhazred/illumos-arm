@@ -84,7 +84,7 @@ typedef  union {
 } _fval;
 
 
-#elif defined(__i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64)
+#elif defined(__i386) || defined(__amd64) || defined(__alpha) || defined(__aarch64) || defined(__riscv)
 /* byte order with low order bits at lowest address */
 
 /* double precision */

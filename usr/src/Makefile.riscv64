@@ -1,0 +1,127 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright 2017 Hayashi Naoyuki
+#
+
+TARGET_PREFIX=		$(CROSS_TOOLS)/bin/riscv64-solaris2.11-
+#
+riscv64_GNU_CC=			$(TARGET_PREFIX)gcc
+riscv64_GNU_CXX=		$(TARGET_PREFIX)g++
+riscv64_GNU_CFLAGS=		$(MCPU:%=-mcpu=%) $(MARCH:%=-march=%) $(MFPU:%=-mfpu=%) -fPIC -O2 -fno-strict-aliasing
+riscv64_GNU_CCFLAGS=		$(MCPU:%=-mcpu=%) $(MARCH:%=-march=%) $(MFPU:%=-mfpu=%) -fPIC -O2 -fno-strict-aliasing
+
+GNU_CC=$($(MACH)_GNU_CC)
+GNU_CXX=$($(MACH)_GNU_CXX)
+GNU_CFLAGS=$($(MACH)_GNU_OPTFLAGS)
+GNU_CCFLAGS=$($(MACH)_GNU_OPTFLAGS)
+
+export CW_GCC=$(GNU_CC)
+export CW_GCC_DIR=$(CROSS_TOOLS)/bin
+export CW_GPLUSPLUS=$(GNU_CXX)
+export CW_GPLUSPLUS_DIR=$(CROSS_TOOLS)/bin
+#
+riscv64_CC=			$(CROSS_TOOLS)/bin/cw --primary gcc$(GCC_MAJOR_VER),$(CW_GCC),gnu       --
+riscv64_CCC=			$(CROSS_TOOLS)/bin/cw --primary gcc$(GCC_MAJOR_VER),$(CW_GPLUSPLUS),gnu -C --
+riscv64_CPP=			$(CROSS_TOOLS)/bin/cw --primary gcc$(GCC_MAJOR_VER),$(CW_GCC),gnu       -- -_gcc=-E
+riscv64_AS=			$(CROSS_TOOLS)/bin/cw --primary gcc$(GCC_MAJOR_VER),$(CW_GCC),gnu       -- -_gcc=-x -_gcc=assembler-with-cpp
+riscv64_LD=			$(TARGET_PREFIX)ld
+riscv64_LINT=			true
+riscv64_OC=			$(TARGET_PREFIX)objcopy
+riscv64_NM=			$(TARGET_PREFIX)gcc-nm
+riscv64_AR=			$(TARGET_PREFIX)gcc-ar
+riscv64_RANLIB=			$(TARGET_PREFIX)gcc-ranlib
+riscv64_READELF=		$(TARGET_PREFIX)readelf
+riscv64_OD=			$(TARGET_PREFIX)objdump
+ANSI_CPP=			$(TARGET_PREFIX)cpp
+
+riscv64_FORCE_NEEDED_OPT=	-Wl,--force-add-needed=
+
+riscv64_STAND_FLAGS=		-_gcc=-ffreestanding
+riscv64_STAND_FLAGS+=		-_gcc=-fno-jump-tables
+riscv64_STAND_FLAGS+=		-_gcc=-fno-common
+riscv64_STAND_FLAGS+=		-_gcc=-fno-PIC
+riscv64_STAND_FLAGS+=		-_gcc=-fno-builtin
+riscv64_STAND_FLAGS+=		-_gcc=-mstrict-align
+riscv64_STAND_FLAGS+=		$(STAND_MARCH:%=-_gcc=-march=%) $(STAND_MABI:%=-_gcc=-mabi=%)
+
+riscv64_XARCH=			$(MARCH:%=-_gcc=-march=%) $(MABI:%=-_gcc=-mabi=%)
+riscv64_AS_XARCH=		$(MARCH:%=-_gcc=-march=%) $(MABI:%=-_gcc=-mabi=%)
+
+riscv64_C_PICFLAGS=		-_gcc=-fpic
+riscv64_CC_PICFLAGS=		-_gcc=-fpic
+riscv64_C_BIGPICFLAGS=		-_gcc=-fPIC
+riscv64_CC_BIGPICFLAGS=		-_gcc=-fPIC
+
+AS_PICFLAGS=			-_gcc=-fpic
+AS_BIGPICFLAGS=			-_gcc=-fPIC
+
+riscv64_CFLAGS=			$(riscv64_XARCH)
+riscv64_CCFLAGS=		$(riscv64_XARCH)
+riscv64_ASFLAGS=		$(riscv64_AS_XARCH)
+riscv64_COPTFLAG=		-xO3
+$(NOT_RELEASE_BUILD)riscv64_COPTFLAG+=-_gcc=-fno-omit-frame-pointer
+
+riscv64_ARFLAGS=		crs
+
+AWK=				/usr/bin/awk
+
+CC=				$($(MACH)_CC)
+CCC=				$($(MACH)_CCC)
+CPP=				$($(MACH)_CPP)
+AS=				$($(MACH)_AS)
+LD=				$($(MACH)_LD)
+LINT=				$($(MACH)_LINT)
+OC=				$($(MACH)_OC)
+NM=				$($(MACH)_NM)
+AR=				$($(MACH)_AR)
+RANLIB=				$($(MACH)_RANLIB)
+READELF=			$($(MACH)_READELF)
+OD=				$($(MACH)_OD)
+C_PICFLAGS=			$($(MACH)_C_PICFLAGS)
+CC_PICFLAGS=			$($(MACH)_CC_PICFLAGS)
+C_BIGPICFLAGS=			$($(MACH)_C_BIGPICFLAGS)
+CC_BIGPICFLAGS=			$($(MACH)_CC_BIGPICFLAGS)
+FORCE_NEEDED_OPT=		$($(MACH)_FORCE_NEEDED_OPT)
+
+BUILD64=			$(POUND_SIGN)
+GCC_ROOT=
+GCCLIBDIR=
+GCCLIBDIR64=
+POST_PROCESS_O=			true
+POST_PROCESS_A=			true
+POST_PROCESS_SO=		true
+POST_PROCESS=			true
+PROCESS_COMMENT=		true
+STRIP=				true
+CTFCONVERT=			true
+CTFMERGE=			true
+CTFSTABS=			true
+CTFSTRIP=			true
+DTRACE=				true
+ELFDUMP=			true
+
+CCNOAUTOINLINE=
+
+BDIRECT=
+
+GCCLIBDIR=$(ROOT)/usr/lib

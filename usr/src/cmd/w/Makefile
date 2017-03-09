@@ -22,12 +22,13 @@
 #
 #ident	"%Z%%M%	%I%	%E% SMI"
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2003 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # cmd/w/Makefile
 
-PROG= w 
+PROG= w
 
 include ../Makefile.cmd
 

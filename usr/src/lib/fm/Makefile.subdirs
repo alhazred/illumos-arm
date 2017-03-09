@@ -20,17 +20,18 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 .KEEP_STATE:
 
-all :  TARGET += all
-check :  TARGET += check
-clean :  TARGET += clean
-clobber :  TARGET += clobber
-install :  TARGET += install
-install_h :  TARGET += install_h
+all :  TARGET = all
+check :  TARGET = check
+clean :  TARGET = clean
+clobber :  TARGET = clobber
+install :  TARGET = install
+install_h :  TARGET = install_h
 
 all check clean clobber install install_h: $(SUBDIRS)
 

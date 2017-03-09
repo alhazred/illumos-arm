@@ -24,7 +24,7 @@
 # Copyright (c) 2019, Joyent, Inc.
 #
 
-SHELL=/usr/bin/ksh93
+SHELL=/usr/bin/ksh
 
 LIBRARY=	libshell.a
 VERS=		.1
@@ -166,6 +166,8 @@ SMATCH		= off
 
 pics/sh/macro.o		:  CERRWARN += -erroff=E_NO_IMPLICIT_DECL_ALLOWED
 pics/sh/nvdisc.o	:  CERRWARN += -erroff=E_END_OF_LOOP_CODE_NOT_REACHED
+pics/data/strdata.o	:  CERRWARN += -_gcc=-Wno-cast-function-type
+pics/sh/streval.o	:  CERRWARN += -_gcc=-Wno-cast-function-type
 
 .KEEP_STATE:
 

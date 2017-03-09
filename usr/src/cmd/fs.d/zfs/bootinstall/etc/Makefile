@@ -19,12 +19,13 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
 .PARALLEL:
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../../../Makefile.cmd
 
 CONF = SUNW,EC_zfs,ESC_ZFS_bootfs_vdev_attach,sysevent.conf
 CONFDIR = $(ROOTETC)/sysevent/config

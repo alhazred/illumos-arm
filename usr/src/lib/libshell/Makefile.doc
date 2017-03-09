@@ -60,9 +60,12 @@ $(ROOTDOCDIRBASE)/%: misc/%
 	$(INS.file)
 
 ROOTDOCDIRS=	\
-	$(ROOTDOCDIRBASE) .WAIT \
-	$(ROOTDOCDIRBASE)/images .WAIT \
+	$(ROOTDOCDIRBASE) \
+	$(ROOTDOCDIRBASE)/images \
 	$(ROOTDOCDIRBASE)/images/callouts
+
+$(ROOTDOCDIRBASE)/images/callouts: $(ROOTDOCDIRBASE)/images
+$(ROOTDOCDIRBASE)/images: $(ROOTDOCDIRBASE)
 
 # Generic documentation rules
 DOCFILESRCDIR=         common
@@ -71,7 +74,9 @@ $(ROOTDOCDIRS) :       OWNER =         root
 $(ROOTDOCDIRS) :       GROUP =         bin
 $(ROOTDOCDIRS) :       DIRMODE =       755
 
+$(ROOTDOCFILES): $(ROOTDOCDIRS)
+
 $(ROOTDOCDIRS):
 	$(INS.dir)
 
-install: $(ROOTDOCDIRS) .WAIT $(ROOTDOCFILES)
+install: $(ROOTDOCDIRS) $(ROOTDOCFILES)

@@ -1,0 +1,171 @@
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+# Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2015 Nexenta Systems, Inc. All rights reserved.
+# Copyright (c) 2013 Andrew Stormont.  All rights reserved.
+# Copyright (c) 2015, Joyent, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
+
+#
+#	This makefile contains the common definitions for all $(MACH)
+#	implementation architecture independent modules.
+#
+
+#
+#	Machine type (implementation architecture):
+#
+PLATFORM	 = $(MACH)pf
+
+#
+#	Everybody needs to know how to build modstubs.o and to locate unix.o.
+#	Note that unix.o must currently be selected from among the possible
+#	"implementation architectures". Note further, that unix.o is only
+#	used as an optional error check for undefines so (theoretically)
+#	any "implementation architectures" could be used. We choose i86pc
+#	because it is the reference port.
+#
+UNIX_DIR	 = $(UTSBASE)/$(MACH)pf/unix
+GENLIB_DIR	 = $(UTSBASE)/$(MACH)/genunix
+IPDRV_DIR	 = $(UTSBASE)/$(MACH)/ip
+MODSTUBS_DIR	 = $(UNIX_DIR)
+DSF_DIR		 = .
+LINTS_DIR	 = $(OBJS_DIR)
+LINT_LIB_DIR	 = $(UTSBASE)/$(MACH)/lint-libs/$(OBJS_DIR)
+
+UNIX_O		 = $(UNIX_DIR)/$(OBJS_DIR)/unix.o
+GENLIB		 = $(GENLIB_DIR)/$(OBJS_DIR)/libgenunix.so
+MODSTUBS_O	 = $(MODSTUBS_DIR)/$(OBJS_DIR)/modstubs.o
+LINT_LIB	 = $(UTSBASE)/i86pc/lint-libs/$(OBJS_DIR)/llib-lunix.ln
+GEN_LINT_LIB	 = $(UTSBASE)/$(MACH)/lint-libs/$(OBJS_DIR)/llib-lgenunix.ln
+
+#
+#	Include the makefiles which define build rule templates, the
+#	collection of files per module, and a few specific flags. Note
+#	that order is significant, just as with an include path. The
+#	first build rule template which matches the files name will be
+#	used. By including these in order from most machine dependent
+#	to most machine independent, we allow a machine dependent file
+#	to be used in preference over a machine independent version
+#	(Such as a machine specific optimization, which preserves the
+#	interfaces.)
+#
+include $(UTSBASE)/$(MACH)/Makefile.files
+include $(UTSBASE)/common/Makefile.files
+
+#
+# ----- TRANSITIONAL SECTION --------------------------------------------------
+#
+
+#
+#	Not everything which *should* be a module is a module yet. The
+#	following is a list of such objects which are currently part of
+#	genunix but which might someday become kmods.  This must be
+#	defined before we include Makefile.uts, or else genunix's build
+#	won't be as parallel as we might like.
+#
+NOT_YET_KMODS	 = $(OLDPTY_OBJS) $(PTY_OBJS) $(VCONS_CONF_OBJS) $(MOD_OBJS)
+
+#
+# ----- END OF TRANSITIONAL SECTION -------------------------------------------
+#
+#	Include machine independent rules. Note that this does not imply
+#	that the resulting module from rules in Makefile.uts is	machine
+#	independent. Only that the build rules are machine independent.
+#
+include $(UTSBASE)/Makefile.uts
+
+CTFCONVERT=true
+CTFMERGE=true
+
+#
+#	The following must be defined for all implementations:
+#
+MODSTUBS		= $(UTSBASE)/$(MACH)/ml/modstubs.s
+
+#
+#	Define supported builds
+#
+DEF_BUILDS		= $(DEF_BUILDSONLY64)
+ALL_BUILDS		= $(ALL_BUILDSONLY64)
+
+#
+#	inline templates
+#
+INLINES			=
+
+#
+#	kernel-specific optimizations; override default in Makefile.master
+#
+
+CFLAGS_XARCH		= $($(MACH)_CFLAGS)
+
+COPTIMIZE		= $(COPTFLAG)
+
+CFLAGS			= $(CFLAGS_XARCH)
+CFLAGS			+= $(COPTIMIZE)
+CFLAGS			+= $(INLINES) -D_ASM_INLINES
+CFLAGS			+= $(CCMODE)
+CFLAGS			+= $(SPACEFLAG)
+CFLAGS			+= $(CCUNBOUND)
+CFLAGS			+= $(CFLAGS_uts)
+CFLAGS			+= -xstrconst
+CFLAGS			+= -_gcc=-fstack-protector
+CFLAGS			+= $(MODULE:%=-_gcc=-fPIC -_gcc=-fvisibility=protected)
+
+INC_PATH		+= -I$(UTSBASE)/$(MACH)
+
+ASFLAGS_XARCH		= $($(MACH)_ASFLAGS)
+
+ASFLAGS			+= $(ASFLAGS_XARCH)
+
+#
+#	Define the base directory for installation.
+#
+BASE_INS_DIR	= $(ROOT)
+
+#
+#	Debugging level
+#
+#	Special knowledge of which special debugging options affect which
+#	file is used to optimize the build if these flags are changed.
+#
+DEBUG_DEFS_OBJ64	=
+DEBUG_DEFS_DBG64	= -DDEBUG
+DEBUG_DEFS		= $(DEBUG_DEFS_$(BUILD_TYPE))
+
+DEBUG_COND_OBJ64	= $(POUND_SIGN)
+DEBUG_COND_DBG64	=
+IF_DEBUG_OBJ		= $(DEBUG_COND_$(BUILD_TYPE))$(OBJS_DIR)/
+
+$(IF_DEBUG_OBJ)syscall.o	: 	DEBUG_DEFS	+= -DSYSCALLTRACE
+$(IF_DEBUG_OBJ)clock.o		: 	DEBUG_DEFS	+= -DKSLICE=1
+
+#
+#	Collect the preprocessor definitions to be associated with *all*
+#	files.
+#
+ALL_DEFS	 = $(DEBUG_DEFS) $(OPTION_DEFS)
+
+#
+#	generic-unix module (/kernel/genunix):
+#
+GENUNIX_KMODS	+= genunix
+

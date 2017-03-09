@@ -23,6 +23,7 @@
 # Copyright (c) 1994, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2016 RackTop Systems.
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 LIBRARY =	liblddbg.a
@@ -52,7 +53,7 @@ SGSCOMMONOBJ =	alist.o
 OBJECTS =	$(BLTOBJ) $(COMOBJS) $(COMOBJS32) $(COMOBJS64) $(SGSCOMMONOBJ)
 
 
-include		$(SRC)/lib/Makefile.lib
+include ../../../../lib/Makefile.lib
 include		$(SRC)/lib/Makefile.rootfs
 include		$(SRC)/cmd/sgs/Makefile.com
 
@@ -69,7 +70,7 @@ CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-parentheses
 
 CPPFLAGS +=	-I$(SRC)/lib/libc/inc
-DYNFLAGS +=	$(VERSREF) '-R$$ORIGIN'
+DYNFLAGS +=	$(VERSREF) #'-R$$ORIGIN'
 LDLIBS +=	$(CONVLIBDIR) -lconv -lc
 
 BLTDEFS =	msg.h
@@ -81,7 +82,7 @@ BLTFILES =	$(BLTDEFS) $(BLTDATA) $(BLTMESG)
 SGSMSGCOM =	$(SRCDIR)/common/liblddbg.msg
 SGSMSGALL =	$(SGSMSGCOM)
 SGSMSGTARG =	$(SGSMSGCOM)
-SGSMSGFLAGS +=	-h $(BLTDEFS) -d $(BLTDATA) -m $(BLTMESG) -n liblddbg_msg
+SGSMSGFLAGS +=	-h $(BLTDEFS) -d $(BLTDATA) -m $(BLTMESG) -i ../../messages/sgs.ident -n liblddbg_msg
 
 CHKSRCS =	$(COMOBJS32:%32.o=$(SRCDIR)/common/%.c)
 

@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -55,7 +56,7 @@ pics/%.o: $(LIBCBASE)/../$(TARGET_ARCH)/gen/%.s
 	$(POST_PROCESS_S_O)
 
 pics/_stack_grow.o: $(LIBCBASE)/../$(TARGET_ARCH)/gen/_stack_grow.s
-	$(BUILD.s) $(LIBCBASE)/../$(TARGET_ARCH)/gen/_stack_grow.s
+	$(BUILD.s)
 	$(POST_PROCESS_S_O)
 
 pics/%.o: $(LIBCBASE)/fp/%.c
@@ -134,7 +135,6 @@ pics/%64.o: $(LIBCBASE)/../port/print/%.c
 
 pics/%64.o: $(LIBCBASE)/../port/regex/%.c
 	$(COMPILE.c) -DM_I18N_MB -DI18N \
-	-I$(LIBCBASE)/../port/regex \
 	-I$(LIBCBASE)/../port/gen -o $@ $<
 	$(POST_PROCESS_O)
 
@@ -201,7 +201,6 @@ pics/%.o: $(LIBCBASE)/../port/print/%.c
 # regex rules
 pics/%.o: $(LIBCBASE)/../port/regex/%.c
 	$(COMPILE.c) -DM_I18N_MB -DI18N \
-	-I$(LIBCBASE)/../port/regex \
 	-I$(LIBCBASE)/../port/gen -o $@ $<
 	$(POST_PROCESS_O)
 
@@ -288,27 +287,27 @@ pics/%.o: $(SRC)/common/atomic/$(TARGETMACH)/%.s
 	$(BUILD.s)
 	$(POST_PROCESS_S_O)
 
-$(COMOBJS:%=pics/%): $(SRC)/common/util/$$(@F:.o=.c)
+$(COMOBJS:%=pics/%): $(SRC)/common/util/$(@F:.o=.c)
 	$(COMPILE.c) -o $@ $(SRC)/common/util/$(@F:.o=.c)
 	$(POST_PROCESS_O)
 
-$(XATTROBJS:%=pics/%): $(SRC)/common/xattr/$$(@F:.o=.c)
+$(XATTROBJS:%=pics/%): $(SRC)/common/xattr/$(@F:.o=.c)
 	$(COMPILE.c) -o $@ $(SRC)/common/xattr/$(@F:.o=.c)
 	$(POST_PROCESS_O)
 
-$(DTRACEOBJS:%=pics/%): $(SRC)/common/dtrace/$$(@F:.o=.c)
+$(DTRACEOBJS:%=pics/%): $(SRC)/common/dtrace/$(@F:.o=.c)
 	$(COMPILE.c) -o $@ $(SRC)/common/dtrace/$(@F:.o=.c)
 	$(POST_PROCESS_O)
 
-$(SECFLAGSOBJS:%=pics/%): $(SRC)/common/secflags/$$(@F:.o=.c)
+$(SECFLAGSOBJS:%=pics/%): $(SRC)/common/secflags/$(@F:.o=.c)
 	$(COMPILE.c) -o $@ $(SRC)/common/secflags/$(@F:.o=.c)
 	$(POST_PROCESS_O)
 
-$(UNICODEOBJS:%=pics/%): $(SRC)/common/unicode/$$(@F:.o=.c)
+$(UNICODEOBJS:%=pics/%): $(SRC)/common/unicode/$(@F:.o=.c)
 	$(COMPILE.c) -o $@ $(SRC)/common/unicode/$(@F:.o=.c)
 	$(POST_PROCESS_O)
 
-$(CHACHAOBJS:%=pics/%): $(SRC)/common/crypto/chacha/$$(@F:.o=.c)
+$(CHACHAOBJS:%=pics/%): $(SRC)/common/crypto/chacha/$(@F:.o=.c)
 	$(COMPILE.c) -I$(SRC)/common/crypto/chacha -DKEYSTREAM_ONLY \
 	    -o $@ $(SRC)/common/crypto/chacha/$(@F:.o=.c)
 	$(POST_PROCESS_O)

@@ -3621,19 +3621,20 @@ strwakeq(queue_t *q, int flag)
 }
 
 int
-struioget(queue_t *q, mblk_t *mp, struiod_t *dp, int noblock)
+struioget(queue_t *q, mblk_t *_mp, struiod_t *dp, int noblock)
 {
 	stdata_t *stp = STREAM(q);
-	int typ  = STRUIOT_STANDARD;
+	volatile int typ  = STRUIOT_STANDARD;
 	uio_t	 *uiop = &dp->d_uio;
 	dblk_t	 *dbp;
 	ssize_t	 uiocnt;
-	ssize_t	 cnt;
+	volatile ssize_t	 cnt;
 	unsigned char *ptr;
 	ssize_t	 resid;
 	int	 error = 0;
 	on_trap_data_t otd;
 	queue_t	*stwrq;
+	mblk_t * volatile mp = _mp;
 
 	/*
 	 * Plumbing may change while taking the type so store the

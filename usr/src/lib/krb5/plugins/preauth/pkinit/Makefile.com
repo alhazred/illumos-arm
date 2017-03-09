@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -41,7 +42,7 @@ PKINIT_OBJS= \
 OBJECTS= $(PKINIT_OBJS)
 
 # include library definitions
-include $(SRC)/lib/krb5/Makefile.lib
+include	../../../../Makefile.lib
 
 SRCS= $(PKINIT_OBJS:%.o=../%.c)
 

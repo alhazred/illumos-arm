@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -37,4 +38,4 @@ SUNPLUGINHDR =	$(ROOTPLUGINHDRDIR)/ses/vendor/sun.h
 CLEANFILES +=	../common/libses_elemtype.c
 
 ../common/libses_elemtype.c: ../common/mkelemtype.sh $(SES2HDR) $(SUNPLUGINHDR)
-	sh ../common/mkelemtype.sh $(SES2HDR) $(SUNPLUGINHDR) > $@
+	ksh ../common/mkelemtype.sh $(SES2HDR) $(SUNPLUGINHDR) > $@

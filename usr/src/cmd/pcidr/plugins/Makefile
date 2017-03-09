@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -32,7 +33,7 @@
 
 SUBDIRS = default
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../Makefile.cmd
 
 all : 		TARGET = all
 install : 	TARGET = install

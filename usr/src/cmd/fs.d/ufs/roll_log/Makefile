@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1996,1997 by Sun Microsystems, Inc.
 # All rights reserved.
 #
@@ -35,7 +36,9 @@ CERRWARN +=	-_gcc=-Wno-switch
 
 .KEEP_STATE:
 
-all install:	$(MACH) .WAIT $(OBJS)
+$(OBJS): $(MACH)
+
+all install:	$(MACH) $(OBJS)
 
 $(OBJS):	$(INCLUDES)
 
@@ -48,3 +51,4 @@ $(MACH)/%.o:	%.c
 lint:	lint_SRCS
 
 clean:
+	-$(RM) $(OBJS)

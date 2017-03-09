@@ -45,6 +45,7 @@ ROLLDIR=	../roll_log
 OBJS=		$(FSCKOBJS) $(UFSOBJS) $(ROLLOBJS) $(FSLIB)
 SRCS=		$(FSCKSRCS) $(UFSSRCS) $(ROLLSRCS) $(FSLIBSRC)
 
+CFLAGS +=	-_gcc=-fcommon
 CPPFLAGS +=	-D_LARGEFILE64_SOURCE -I../../ -I../../../../lib/libadm/inc
 LDLIBS +=	-lefi -lavl
 

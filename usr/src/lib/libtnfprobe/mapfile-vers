@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -40,7 +41,7 @@ $mapfile_version 2
 
 SYMBOL_VERSION SUNWprivate_1.1 {
     global:
-	fork				{ FLAGS = NODIRECT };
+	fork				;
 	fork1;
 	pthread_create;
 	pthread_exit;
@@ -102,9 +103,9 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	tnf_user_struct_properties;
 	_tnfw_b_control;
 
-$if _sparc
-	thr_stksegment;
-$endif
+#$if _sparc
+#	thr_stksegment;
+#$endif
 
     local:
 	*;

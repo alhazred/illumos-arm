@@ -21,6 +21,7 @@
 #
 # Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2019, Joyent, Inc.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 #
@@ -39,15 +40,15 @@
 
 $mapfile_version 2
 
-$if _x86
-LOAD_SEGMENT umem {
-	FLAGS = READ EXECUTE;
-	ASSIGN_SECTION {
-		IS_NAME = .text;
-		FILE_BASENAME = asm_subr.o
-	};
-};
-$endif
+#$if _x86
+#LOAD_SEGMENT umem {
+#	FLAGS = READ EXECUTE;
+#	ASSIGN_SECTION {
+#		IS_NAME = .text;
+#		FILE_BASENAME = asm_subr.o
+#	};
+#};
+#$endif
 
 SYMBOL_VERSION ILLUMOS_0.1 {
     global:
@@ -56,11 +57,11 @@ SYMBOL_VERSION ILLUMOS_0.1 {
 
 SYMBOL_VERSION SUNW_1.1 {
     global:
-	calloc			{ FLAGS = NODIRECT };
-	free			{ FLAGS = NODIRECT };
-	malloc			{ FLAGS = NODIRECT };
-	memalign		{ FLAGS = NODIRECT };
-	realloc			{ FLAGS = NODIRECT };
+	calloc			;
+	free			;
+	malloc			;
+	memalign		;
+	realloc			;
 	umem_alloc;
 	umem_cache_alloc;
 	umem_cache_create;
@@ -69,7 +70,7 @@ SYMBOL_VERSION SUNW_1.1 {
 	umem_free;
 	umem_nofail_callback;
 	umem_zalloc;
-	valloc			{ FLAGS = NODIRECT };
+	valloc			;
 };
 
 SYMBOL_VERSION SUNWprivate_1.1 {

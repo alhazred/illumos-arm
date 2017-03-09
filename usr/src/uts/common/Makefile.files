@@ -1661,6 +1661,12 @@ TEM_OBJS += tem.o tem_safe.o
 #
 i386_FONT	= 8x16
 i386_FONT_SRC= ter-u16b
+aarch64_FONT	= 8x16
+aarch64_FONT_SRC= ter-u16b
+alpha_FONT	= 8x16
+alpha_FONT_SRC= ter-u16b
+riscv64_FONT	= 8x16
+riscv64_FONT_SRC= ter-u16b
 sparc_FONT	= 12x22
 sparc_FONT_SRC= Gallant19
 FONT=$($(MACH)_FONT)

@@ -10,6 +10,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2012 Joyent, Inc.  All rights reserved.
 #
 
@@ -41,6 +42,8 @@ SYMBOL_VERSION SUNWprivate_1.1 {
 	ipd_status_get_config;
 	ipd_status_free;
 	ipd_ctl;
+
+	__emutls_v.*;
     local:
 	*;
 };

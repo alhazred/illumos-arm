@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 # Needed for ROOTFS_LIBDIR definition
@@ -82,7 +83,7 @@ lint:	lint_SRCS
 $(ROOTCFGDIR):
 	$(INS.dir)
 
-$(ROOTCFGDIR)/%: $(ROOTCFGDIR) %
+$(ROOTCFGDIR)/%: % $(ROOTCFGDIR)
 	$(INS.file)
 
 include 	../../../Makefile.targ

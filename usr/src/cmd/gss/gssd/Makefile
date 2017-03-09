@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -72,14 +73,16 @@ CERRWARN += -_gcc=-Wno-unused-variable
 CERRWARN += -_gcc=-Wno-implicit-function-declaration
 CERRWARN += -_gcc=-Wno-parentheses
 CERRWARN += $(CNOWARN_UNINIT)
+CERRWARN += -_gcc=-Wno-pointer-to-int-cast
 
 # not linted
 SMATCH=off
 
 LDLIBS += -lgss -lnsl
 
-gssd : 	MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
-gssd : 	LDFLAGS += $(MAPFILES:%=-Wl,-M%)
+#gssd : 	MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
+#gssd : 	LDFLAGS += $(MAPFILES:%=-Wl,-M%)
+MAPFILES=
 
 $(GPROGS) :  CPPFLAGS += -DSYSV -DSunOS=50
 
@@ -93,7 +96,7 @@ $(ROOTLIB):
 $(ROOTLIB)/%:	%
 	$(INS.file)
 
-gssd:	$(GSSDOBJS) $$(MAPFILES)
+gssd:	$(GSSDOBJS) $(MAPFILES)
 	$(LINK.c) $(GSSDOBJS) -o $@ $(LDLIBS)
 	$(POST_PROCESS)
 
@@ -134,6 +137,7 @@ install: all $(DIRS) $(ROOTLIBPROG) $(ROOTMANIFEST)
 
 install_h:
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(RSRC) gssd.x
 

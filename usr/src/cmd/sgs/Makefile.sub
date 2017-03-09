@@ -19,12 +19,15 @@
 # CDDL HEADER END
 #
 
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
 #
 
+CODEMGR_WS=$(shell git rev-parse --show-toplevel)
+SRC=$(CODEMGR_WS)/usr/src
 include		$(SRC)/Makefile.master
 
 # This is how the SUBDIRS stuff should look by the time the SGS
@@ -58,8 +61,5 @@ all clean clobber delete install catalog package chkmsg: \
 
 $(SUBDIRS):	FRC
 		@ cd $@; pwd; $(MAKE) $(TARGET)
-		@ $(BUILD64)if [ -f $(MACH64)/Makefile ]; then		\
-		  $(BUILD64)     cd $(MACH64); pwd; $(MAKE) $(TARGET);	\
-		  $(BUILD64)else /bin/true; fi
 
 FRC:

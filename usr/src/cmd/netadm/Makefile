@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -54,13 +55,13 @@ FILEMODE= 0644
 
 CLOBBERFILES += $(PMLOG)
 
-$(ETCSAFD)/% : %
+$(ETCSAFD)/% : % $(ETCSAFD)
 	$(INS.file)
 
-$(VARPMD)/% : %
+$(VARPMD)/% : % $(VARPMD)
 	$(INS.file)
 
-$(ETCPMD)/% : %
+$(ETCPMD)/% : % $(ETCPMD)
 	$(INS.file)
 
 all : 		TARGET= all
@@ -70,19 +71,20 @@ clobber : 	TARGET= clean
 lint : 		TARGET= lint
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all: $(PROG) $(PMLOG) $(SUBDIRS)
 
 _sysconfig: _sysconf.sh
-	$(SH) _sysconf.sh
+	MACH=$(MACH) $(SH) _sysconf.sh
 
 _sactab _pmtab iu.ap ttydefs:
-	$(SH) $@.sh
+	MACH=$(MACH) $(SH) $@.sh
 
 $(PMLOG):
 	$(TOUCH) $@
 
-install: all $(DIRS) $(SUBDIRS) $(ROOTETCSAF) $(ROOTETCF) $(ROOTETCPM) $(ROOTVARPM)
+install: $(PROG) $(PMLOG) $(DIRS) $(SUBDIRS) $(ROOTETCSAF) $(ROOTETCF) $(ROOTETCPM) $(ROOTVARPM)
 
 $(DIRS):
 	$(INS.dir)
@@ -90,7 +92,7 @@ $(DIRS):
 $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
-clean: $(SUBDIRS)
+clobber clean: $(SUBDIRS)
 
 lint: $(SUBDIRS)
 

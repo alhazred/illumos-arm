@@ -23,17 +23,19 @@
 # Use is subject to license terms.
 #
 # Copyright (c) 2015 by Delphix. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
-PROG:sh=	basename `pwd`
+PROG=	ztest
 BASHPROG=	zloop
 ROOTBASHPROG=	$(ROOTBIN)/$(BASHPROG)
+CLOBBERFILES += $(BASHPROG)
 
 CLOBBERFILES=	$(BASHPROG)
 
 include ../Makefile.cmd
 
-$(INTEL_BLD)SUBDIRS	= $(MACH)
+SUBDIRS	= $(MACH)
 $(BUILD64)SUBDIRS	+= $(MACH64)
 
 all	: 	TARGET = all

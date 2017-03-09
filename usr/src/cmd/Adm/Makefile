@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -56,11 +57,12 @@ $(CRONTABD)/sys : 	FILEMODE =	0600
 $(CRONTABD)/root : 	FILEMODE =	0600
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 all: $(CRON_ENT) $(CRON_LIB) $(ETC_SCRIPT) $(SUBDIRS)
 
-install: all $(DIRS) $(CRONTABS) $(CRONLIBS) $(ETCSCRIPTS) $(ETCZONESD) \
-	$(SUBDIRS) 
+install: $(CRON_ENT) $(CRON_LIB) $(ETC_SCRIPT) $(DIRS) $(CRONTABS) $(CRONLIBS) $(ETCSCRIPTS) $(ZISPECIALS) \
+	$(SUBDIRS)
 
 $(CRONTABD)/% : %
 	$(INS.file)
@@ -68,7 +70,10 @@ $(CRONTABD)/% : %
 $(CRONLIBD)/% : %
 	$(INS.file)
 
-$(ETCZONESD): $(ZI_SPECIAL)
+$(ETCZONESD):
+	$(INS.dir)
+
+$(ZISPECIALS): $(ZI_SPECIAL) $(ETCZONESD)
 	$(CP) -f $(ZI_SPECIAL) $(ZISPECIALS)
 	$(CHMOD) $(FILEMODE) $(ZISPECIALS)
 

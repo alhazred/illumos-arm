@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -35,7 +36,8 @@
 
 include ../../../Makefile.master
 
-SUBDIRS= $(MACH) $(BUILD64) $(MACH64)
+SUBDIRS= $(MACH)
+$(BUILD64)SUBDIRS+=$(MACH64)
 
 # include library definitions
 include ../../Makefile.lib
@@ -69,7 +71,7 @@ check: $(CHECKHDRS)
 # include library targets
 # include ../../Makefile.targ
 
-$(MACH) $(MACH64):      FRC
+$(SUBDIRS):      FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:

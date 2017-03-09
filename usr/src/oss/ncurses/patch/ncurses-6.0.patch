@@ -1,0 +1,20 @@
+diff -cNr ../ncurses-6.0-orig/configure ./configure
+*** ../ncurses-6.0-orig/configure	2015-08-05 18:20:32.000000000 +0900
+--- ./configure	2016-02-07 03:35:19.152476640 +0900
+***************
+*** 6397,6403 ****
+  			CC_SHARED_OPTS=$cf_shared_opts
+  			MK_SHARED_LIB='${CC} -dy -G -h '$cf_cv_shared_soname' -o $@'
+  		else
+! 			MK_SHARED_LIB='${CC} -shared -dy -G -h '$cf_cv_shared_soname' -o $@'
+  		fi
+  		;;
+  	(sysv5uw7*|unix_sv*)
+--- 6397,6403 ----
+  			CC_SHARED_OPTS=$cf_shared_opts
+  			MK_SHARED_LIB='${CC} -dy -G -h '$cf_cv_shared_soname' -o $@'
+  		else
+! 			MK_SHARED_LIB='${CC} -shared -dy -h '$cf_cv_shared_soname' -o $@'
+  		fi
+  		;;
+  	(sysv5uw7*|unix_sv*)

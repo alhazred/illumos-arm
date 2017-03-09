@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -58,7 +59,8 @@ CLOBBERFILES +=	$(POFILES) $(POFILE)
 all: $(PROG)
 
 include ../Makefile.com
-
+%.o: ../common/%.c
+	$(COMPILE.c) $<
 $(PROG): $(OBJS) $(MAPFILE.NGB)
 	$(LINK.c) $(OBJS) -o $@ $(LDLIBS)
 	$(POST_PROCESS)

@@ -19,6 +19,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2003 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -29,6 +30,8 @@ PROG= swap
 include ../Makefile.cmd
 
 SUBDIRS += $(MACH64)
+
+.NOTPARALLEL:
 
 CPPFLAGS += -D_LARGEFILE64_SOURCE
 

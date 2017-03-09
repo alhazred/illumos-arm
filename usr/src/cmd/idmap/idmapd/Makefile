@@ -21,6 +21,7 @@
 #
 # Copyright (c) 2007, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright 2014 Nexenta Systems, Inc.  All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # Copyright (c) 2018, Joyent, Inc.
 
@@ -63,6 +64,7 @@ include ../../Makefile.cmd
 CERRWARN +=	-_gcc=-Wno-type-limits
 CERRWARN +=	-_gcc=-Wno-switch
 CERRWARN +=	$(CNOWARN_UNINIT)
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 
 # not linted
 SMATCH=off
@@ -117,8 +119,9 @@ LDLIBS += \
 rpc_svc.o :  CFLAGS += $(RPC_MSGOUT_OPT)
 
 $(PROG) :  MAPFILES = $(MAPFILE.INT) $(MAPFILE.NGB)
-$(PROG) :  LDFLAGS += $(MAPFILES:%=-Wl,-M%) \
-	-R /usr/lib/smbsrv
+$(PROG) :  LDFLAGS += \
+	-R /usr/lib/smbsrv -_gcc=-Wl,--export-dynamic
+MAPFILES=
 
 DIRMODE = 0755
 FILEMODE = 0555
@@ -129,7 +132,7 @@ FILEMODE = 0555
 
 all: $(PROG)
 
-$(PROG): $(OBJS) $$(MAPFILES)
+$(PROG): $(OBJS) $(MAPFILES)
 	$(LINK.c) -o $@ $(OBJS) $(LDLIBS)
 	$(POST_PROCESS)
 
@@ -141,6 +144,7 @@ install: all $(ROOTLIBPROG) $(ROOTMANIFEST)
 
 check: $(CHKMANIFEST)
 
+clobber: clean
 clean:
 	$(RM) $(OBJS) $(GENSRCS)
 

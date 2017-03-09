@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -46,6 +47,7 @@ install_h: 	TARGET = install_h
 
 all install clean clobber: $(SUBDIRS)
 
+$(ROOTHDRS): $(ROOTHDRDIR)
 install_h: $(ROOTHDRS)
 
 check:		$(CHECKHDRS)

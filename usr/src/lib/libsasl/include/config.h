@@ -106,7 +106,7 @@
 #define PLUGINDIR "/usr/lib/sasl/sparcv9"
 #elif defined(__amd64)
 #define PLUGINDIR "/usr/lib/sasl/amd64"
-#elif defined(__alpha) || defined(__aarch64)
+#elif !defined(_MULTI_DATAMODEL)
 #define PLUGINDIR "/usr/lib/sasl"
 #else
 #error Unsupported 64-bit architecture!

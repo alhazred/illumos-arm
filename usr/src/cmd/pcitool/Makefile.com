@@ -17,6 +17,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
@@ -24,7 +25,7 @@ PROG = pcitool
 OBJS = pcitool.o pcitool_ui.o pcitool_usage.o
 SRCS = $(OBJS:%.o=../%.c)
 
-include $(SRC)/cmd/Makefile.cmd
+include ../../Makefile.cmd
 
 UTSBASE = ../../../../src/uts
 

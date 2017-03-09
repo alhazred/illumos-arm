@@ -1,9 +1,10 @@
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
-include		$(SRC)/cmd/Makefile.cmd
+include		../Makefile.cmd
 include		$(SRC)/cmd/Makefile.ctf
 include		$(SRC)/cmd/zic/Makefile.common
 

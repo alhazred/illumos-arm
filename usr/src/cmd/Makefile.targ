@@ -23,6 +23,7 @@
 # Use is subject to license terms.
 #
 # Copyright (c) 2015 by Delphix. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 # cmd/Makefile.targ
 # common target definitions for command builds
@@ -36,6 +37,8 @@ $(ROOTMANIFEST) : 	FILEMODE= 444
 $(ROOTSVCBIN) : 	FILEMODE= 544
 
 clobber: clean
+clobber:
+	-$(RM) $(OBJS) $(CLEANFILES)
 	-$(RM) $(PROG) $(CLOBBERFILES)
 
 lint_PROG:	$$(PROG).c
@@ -44,13 +47,13 @@ lint_PROG:	$$(PROG).c
 lint_SRCS:	$$(SRCS)
 	$(LINT.c) $(SRCS) $(LDLIBS)
 
-$(ROOTCMDDIR)/%: $(ROOTCMDDIR) %
+$(ROOTCMDDIR)/%: % $(ROOTCMDDIR)
 	$(INS.file)
 
 $(ROOTCMDDIR) $(ROOTCMDDIR64):
 	$(INS.dir)
 
-$(ROOTCMDDIR64)/%: $(ROOTCMDDIR64) %
+$(ROOTCMDDIR64)/%: % $(ROOTCMDDIR64)
 	$(INS.file)
 
 $(ROOTMANIFEST): $(ROOTMANIFESTDIR)

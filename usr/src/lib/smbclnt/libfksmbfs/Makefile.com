@@ -105,6 +105,7 @@ CPPFLAGS += -DDEBUG
 
 CERRWARN += -_gcc=-Wno-switch
 CERRWARN += -_gcc=-Wno-parentheses
+CERRWARN += -_gcc=-Wno-cast-function-type
 
 # needs work
 SMOFF += all_func_returns,deref_check,signed,or_vs_and

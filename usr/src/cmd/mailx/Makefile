@@ -69,6 +69,8 @@ CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	$(CNOWARN_UNINIT)
 CERRWARN +=	-_gcc=-Wno-unused-variable
 CERRWARN +=	-_gcc=-Wno-clobbered
+CERRWARN +=	-_gcc=-Wno-cast-function-type
+util.o: CERRWARN += -_gcc10=-Wno-return-local-addr
 # not linted
 SMATCH=off
 
@@ -101,7 +103,7 @@ $(ROOTUCBMAIL) $(ROOTUCBCAPMAIL):
 $(ROOTMAILXD):
 	$(INS.dir)
 
-$(MAILXHELP): $(MISC)/$$@
+$(MAILXHELP): $(MISC)/$@
 	$(GREP) -v '^#.*@(' $(MISC)/$@ > $@
 
 $(POFILE):      $(POFILES)

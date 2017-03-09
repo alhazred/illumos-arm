@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 1993, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # Generic interface definition for usr/src/cmd/sgs/libld.
@@ -43,9 +44,7 @@ $mapfile_version 2
 
 SYMBOL_VERSION SUNWprivate_4.6 {
 	global:
-		dbg_print {	# interposed - ld(1) and ld.so.1(1)
-			FLAGS = NODIRECT;
-		};
+		dbg_print;
 
 		ld_getopt;
 
@@ -81,14 +80,14 @@ SYMBOL_VERSION SUNWprivate_4.6 {
 # The following functions must be provided by our caller, or one of the
 # callers dependencies.
 
-SYMBOL_SCOPE {
-	global:
-		eprintf {
-			TYPE = FUNCTION;
-			FLAGS = extern;
-		};
-		veprintf {
-			TYPE = FUNCTION;
-			FLAGS = extern;
-		};
-};
+#SYMBOL_SCOPE {
+#	global:
+#		eprintf {
+#			TYPE = FUNCTION;
+#			FLAGS = extern;
+#		};
+#		veprintf {
+#			TYPE = FUNCTION;
+#			FLAGS = extern;
+#		};
+#};

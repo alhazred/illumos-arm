@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -101,7 +102,7 @@ $(POFILE): $(POFILES)
 	$(RM) $@
 	$(CAT) $(POFILES) > $@
 
-$(ROOTUSRLIBRCAP)/%: $(ROOTUSRLIBRCAP) %
+$(ROOTUSRLIBRCAP)/%: % $(ROOTUSRLIBRCAP)
 	$(INS.file)
 
 include ../../Makefile.targ

@@ -480,17 +480,17 @@ shell		: BANG
 			}
 		;
 
-avd		: AVD	{ print_desc(NULL, AVD); }
+avd		: AVD	{ print_desc(0, AVD); }
 		;
-mvds		: MVDS	{ print_desc(NULL, MVDS); }
+mvds		: MVDS	{ print_desc(0, MVDS); }
 		;
-rvds		: RVDS	{ print_desc(NULL, RVDS); }
+rvds		: RVDS	{ print_desc(0, RVDS); }
 		;
-ints		: INTS	{ print_desc(NULL, INTS); }
+ints		: INTS	{ print_desc(0, INTS); }
 		;
-fsds		: FSDS	{ print_desc(NULL, FSDS); }
+fsds		: FSDS	{ print_desc(0, FSDS); }
 		;
-root		: ROOT	{ print_desc(NULL, ROOT); }
+root		: ROOT	{ print_desc(0, ROOT); }
 		;
 
 at		: ATTZ '=' expr	{ set_file(ATTZ, i_number << l2b, $3); }

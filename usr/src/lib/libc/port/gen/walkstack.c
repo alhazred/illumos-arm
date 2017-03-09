@@ -150,7 +150,7 @@
 #define	CHECK_FOR_SIGFRAME(fp, oldctx) ((((fp) + sizeof (struct frame)) + \
 	3 * sizeof (int) == (oldctx)) && \
 	(((struct frame *)fp)->fr_savpc == (greg_t)-1))
-#elif defined(__alpha) || defined(__aarch64)
+#elif defined(__alpha) || defined(__aarch64) || defined(__riscv)
 #else
 #error no arch defined
 #endif
@@ -193,7 +193,7 @@ int
 walkcontext(const ucontext_t *uptr, int (*operate_func)(uintptr_t, int, void *),
     void *usrarg)
 {
-#if defined(__alpha) || defined(__aarch64)
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	return -1;
 #else
 	ucontext_t *oldctx = uptr->uc_link;
@@ -384,7 +384,7 @@ display_stack_info(uintptr_t pc, int signo, void *arg)
 int
 printstack(int dofd)
 {
-#if defined(__alpha) || defined(__aarch64)
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	return -1;
 #else
 	ucontext_t u;
@@ -427,7 +427,7 @@ callback(uintptr_t pc, int signo, void *arg)
 int
 backtrace(void **buffer, int count)
 {
-#if defined(__alpha) || defined(__aarch64)
+#if defined(__alpha) || defined(__aarch64) || defined(__riscv)
 	return -1;
 #else
 	backtrace_t	bt;

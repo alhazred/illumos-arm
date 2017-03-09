@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2016 Toomas Soome <tsoome@me.com>
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
@@ -35,6 +36,9 @@ include ../Makefile.cmd
 #
 sparc_SUBDIRS = smf.sparc
 i386_SUBDIRS = smf.i386
+alpha_SUBDIRS = smf.alpha
+aarch64_SUBDIRS = smf.aarch64
+riscv64_SUBDIRS = smf.riscv64
 SUBDIRS = $($(MACH)_SUBDIRS)
 
 ROOTLINKS = $(ROOTUSRSBIN)/poweroff $(ROOTUSRSBIN)/reboot

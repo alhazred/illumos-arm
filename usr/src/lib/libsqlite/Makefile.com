@@ -4,6 +4,7 @@
 # Copyright 2015 Igor Kozhukhov <ikozhukhov@gmail.com>
 # Copyright 2016 Nexenta Systems, Inc.  All rights reserved.
 # Copyright (c) 2019, Joyent, Inc.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2019 OmniOS Community Edition (OmniOSce) Association.
 #
 
@@ -45,7 +46,8 @@ OBJECTS = \
 	vdbeaux.o	\
 	where.o
 
-include $(SRC)/lib/Makefile.lib
+include ../../Makefile.lib
+include ../../../Makefile.native
 
 # install this library in the root filesystem
 include $(SRC)/lib/Makefile.rootfs
@@ -53,7 +55,8 @@ include $(SRC)/lib/Makefile.rootfs
 SRCDIR = ../src
 TOOLDIR = ../tool
 $(DYNLIB) :  LDLIBS += -lc
-LIBS = $(DYNLIB) $(NATIVERELOC)
+LIBS = $(DYNLIB) #$(NATIVERELOC)
+
 
 
 # generated sources
@@ -99,6 +102,7 @@ CERRWARN += -_gcc=-Wno-implicit-function-declaration
 CERRWARN += $(CNOWARN_UNINIT)
 CERRWARN += -_gcc=-Wno-unused-function
 CERRWARN += -_gcc=-Wno-unused-label
+CERRWARN += -_gcc=-Wno-cast-function-type
 
 # not linted
 SMATCH=off
@@ -190,17 +194,11 @@ CLEANFILES += \
 
 ENCODING  = ISO8859
 
-
-.PARALLEL: $(OBJS) $(OBJS:%.o=%-native.o)
-.KEEP_STATE:
-
+.NOTPARALLEL:
 # This is the default Makefile target.  The objects listed here
 # are what get build when you type just "make" with no arguments.
 #
 all:		$(LIBS)
-install:	all \
-		$(ROOTLIBDIR)/$(DYNLIB) \
-		$(ROOTLIBDIR)/$(NATIVERELOC)
 
 
 all_h: $(GENHDR)

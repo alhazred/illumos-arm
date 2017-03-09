@@ -52,8 +52,8 @@ $(OBJECTS): $(INLINES)
 #	Partially link .o files to generate the kmod. The fake dependency
 #	on modstubs simplifies things...
 #
-$(BINARY):		$(OBJECTS) $(DTRACE_MAPFILE) $(MAPFILE)
-	$(LD) -r $(LDFLAGS) -o $@ $(OBJECTS)
+$(BINARY):		$(OBJECTS) #$(DTRACE_MAPFILE)
+	$(CC) $(LDFLAGS) -o $@ $(OBJECTS)
 	$(CTFMERGE_UNIQUIFY_AGAINST_GENUNIX)
 	$(POST_PROCESS)
 
@@ -128,12 +128,19 @@ $(LINTS_DIR)/vers.ln: $(SRC)/uts/common/os/vers.c
 #
 #	Installation targets and rules:
 #
+.PHONY: $(ROOT_MOD_DIR) $(USR_MOD_DIR)
 $(ROOT_MOD_DIR) $(USR_MOD_DIR):
 	-$(INS.dir)
 
+.PHONY: $(ROOT_MOD_DIRS_64)
+.PHONY: $(ROOT_MOD_DIRS_32)
+$(ROOT_MOD_DIRS_64) \
 $(ROOT_MOD_DIRS_32):	$(ROOT_MOD_DIR)
 	-$(INS.dir)
 
+.PHONY: $(USR_MOD_DIRS_64)
+.PHONY: $(USR_MOD_DIRS_32)
+$(USR_MOD_DIRS_64) \
 $(USR_MOD_DIRS_32):	$(USR_MOD_DIR)
 	-$(INS.dir)
 
@@ -258,6 +265,7 @@ $(ROOT_FIRMWARE_DIR)/$(MODULE)/%: $(ROOT_FIRMWARE_DIR)/$(MODULE) $(FWDIR)/%
 
 include $(SRC)/Makefile.psm.targ
 
+ifneq ($(MACH),$(MACH64))
 #
 #	Target for 64b modules
 #
@@ -269,6 +277,7 @@ $(ROOT_KERN_DIR_64)/%:	$(OBJS_DIR)/% $(ROOT_KERN_DIR_64) FRC
 
 %/$(SUBDIR64):		%
 	-$(INS.dir)
+endif
 
 #
 #	Targets for '.conf' file installation.
@@ -359,6 +368,9 @@ $(SISCLEAN_DEPS):
 
 $(OBJS_DIR):
 	-@mkdir -p $@ 2> /dev/null
+
+$(ALL_TARGET): $(OBJS_DIR)
+$(INSTALL_TARGET): $(OBJS_DIR)
 
 def.targ:		$(OBJS_DIR) $(ALL_TARGET)
 

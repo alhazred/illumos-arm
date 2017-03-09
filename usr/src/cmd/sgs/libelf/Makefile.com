@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2015 Gary Mills
 # Copyright (c) 1990, 2010, Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2018, Joyent, Inc.
@@ -50,7 +51,7 @@ MISCOBJS64=	nlist.o
 
 OBJECTS=	$(BLTOBJS)  $(MACHOBJS)  $(COMOBJS)  $(CLASSOBJS) $(MISCOBJS)
 
-include $(SRC)/lib/Makefile.lib
+include ../../../../lib/Makefile.lib
 include $(SRC)/lib/Makefile.rootfs
 
 SRCDIR=	$(SRC)/cmd/sgs/libelf
@@ -87,7 +88,7 @@ SGSMSGTARG=	$(SGSMSGCOM)
 SGSMSGALL=	$(SGSMSGCOM) $(SGSMSG32)
 
 SGSMSGFLAGS1=	$(SGSMSGFLAGS) -m $(BLTMESG)
-SGSMSGFLAGS2=	$(SGSMSGFLAGS) -h $(BLTDEFS) -d $(BLTDATA) -n libelf_msg
+SGSMSGFLAGS2=	$(SGSMSGFLAGS) -h $(BLTDEFS) -d $(BLTDATA) -n libelf_msg  -i ../../messages/sgs.ident
 
 BLTSRCS=	$(BLTOBJS:%.o=%.c)
 LIBSRCS=	$(COMOBJS:%.o=$(SRCDIR)/common/%.c)  $(MISCOBJS:%.o=$(SRCDIR)/misc/%.c) \
@@ -97,4 +98,4 @@ LIBS =		$(DYNLIB)
 
 CLEANFILES +=	$(BLTSRCS) $(BLTFILES)
 
-.PARALLEL:	$(LIBS)
+all: $(LIBS)

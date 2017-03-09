@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -47,7 +48,7 @@ ROOTUSRSBINLINKS = $(PROG:%=$(ROOTUSRSBIN)/%)
 # ipadm uses the ancillary data feature which is available only through
 # UNIX 98 standards version of Socket interface. This interface is supposed to
 # be accessed by -lxnet.
-LDLIBS +=	-lxnet
+LDLIBS +=	-lxnet -lsocket
 
 # these #defines are required to use UNIX 98 interfaces
 _D_UNIX98_EXTN= -D_XOPEN_SOURCE=500 -D__EXTENSIONS__
@@ -86,7 +87,7 @@ lint:	lint_SRCS
 $(ROOTCFGDIR):
 	$(INS.dir)
 
-$(ROOTCFGDIR)/%: $(ROOTCFGDIR) %
+$(ROOTCFGDIR)/%: % $(ROOTCFGDIR)
 	$(INS.file)
 
 include ../../../Makefile.targ

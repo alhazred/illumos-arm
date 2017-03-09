@@ -85,9 +85,9 @@ SYMBOL_VERSION SUNWprivate {
 
 	smb_credinit;
 	smb_credrele;
-	smb_debugmsg		{ FLAGS = NODIRECT };
+	smb_debugmsg		;
 	smb_dev2share;
-	smb_errmsg		{ FLAGS = NODIRECT };
+	smb_errmsg		;
 	smb_fh_close;
 	smb_fh_create;
 	smb_fh_hold;

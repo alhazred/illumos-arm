@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 # Copyright 2019 Peter Tribble.
@@ -34,6 +35,7 @@ ROOTPROFILE = $(ROOT)/etc/svc/profile
 PROFILESRCS = \
 	generic_open.xml \
 	generic_limited_net.xml \
+	generic_minimum.xml \
 	inetd_generic.xml \
 	inetd_upgrade.xml \
 	ns_dns.xml \
@@ -66,8 +68,11 @@ install: all $(PROFILES)
 	$(LN) $(ROOTPROFILE)/platform_SUNW,Sun-Fire-880.xml \
 	    $(ROOTPROFILE)/platform_SUNW,Sun-Fire-V890.xml
 
-$(ROOTPROFILE)/%: %
+$(ROOTPROFILE)/%: % $(ROOTPROFILE)
 	$(INS.file)
+
+$(ROOTPROFILE):
+	$(INS.dir)
 
 all:	$(CHECK_OPEN) $(CHECK_LMTD)
 

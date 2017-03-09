@@ -25,6 +25,7 @@
 # Copyright 2013 Nexenta Systems, Inc.  All rights reserved.
 #
 # Copyright (c) 2012, Joyent Inc. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 PROG=		ipf ipfs ipmon ipnat ippool ipfstat
@@ -110,6 +111,7 @@ $(ROOTIPFLINKS): FRC
 
 
 .KEEP_STATE:
+.NOTPARALLEL:
 
 ipf:	$(IPF_OBJS) $(LIBIPF) $(MAPFILE.NGB)
 	$(LINK.c) -o ipf $(IPF_OBJS) $(LDLIBS)

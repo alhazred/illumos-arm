@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 # Copyright 2016 Nexenta Systems, Inc.
@@ -52,6 +53,9 @@ include ../../Makefile.lib
 LIBS =		$(DYNLIB)
 i386_LDLIBS =   -lfdisk
 sparc_LDLIBS =
+alpha_LDLIBS =  -lfdisk
+aarch64_LDLIBS= -lfdisk
+riscv64_LDLIBS= -lfdisk
 LDLIBS +=       -ldevinfo -ladm -ldevid -lkstat -lsysevent \
 		-lnvpair -lefi -lc $($(MACH)_LDLIBS)
 DYNFLAGS +=	-R/opt/VRTSvxvm/lib
@@ -62,6 +66,7 @@ CFLAGS +=	$(CCVERBOSE)
 CERRWARN +=	-_gcc=-Wno-switch
 CERRWARN +=	-_gcc=-Wno-parentheses
 CERRWARN +=	$(CNOWARN_UNINIT)
+CERRWARN +=	-_gcc=-Wno-cast-function-type
 CPPFLAGS +=	-D_REENTRANT -I$(SRC)/lib/libdiskmgt/common
 
 # not linted

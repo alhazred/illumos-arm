@@ -31,9 +31,10 @@ LINK_TARGETS  = 646%CODESET.so
 
 dummy: all
 
+include ../../../../Makefile.master
 include $(SRC)/lib/iconv_modules/Makefile.iconv
 
-$(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
+$(CREATE_LINKS):  $(ICONV_LINK_TARGETS) | $(ICONV_DIR)
 	$(SYMLINK) -f 646%CODESET.so $(ICONV_DIR)/646%5601.so
 	$(SYMLINK) -f 646%CODESET.so $(ICONV_DIR)/646%BIG5.so
 	$(SYMLINK) -f 646%CODESET.so $(ICONV_DIR)/646%cns11643.so

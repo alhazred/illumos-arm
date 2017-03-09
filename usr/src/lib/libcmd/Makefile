@@ -25,7 +25,7 @@
 #
 
 
-SHELL=/usr/bin/ksh93
+SHELL=/usr/bin/ksh
 
 include		../Makefile.lib
 

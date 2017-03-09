@@ -18,6 +18,7 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright (c) 2003, 2010, Oracle and/or its affiliates. All rights reserved.
 #
 # lib/pkcs11/Makefile
@@ -38,6 +39,12 @@ SUBDIRS = \
 	pkcs11_kernel	\
 	pkcs11_softtoken \
 	pkcs11_tpm
+
+libsoftcrypto: libpkcs11
+pkcs11_softtoken: libsoftcrypto
+libkcfd: pkcs11_softtoken
+pkcs11_kernel: libkcfd
+pkcs11_tpm: pkcs11_kernel
 
 all	: 	TARGET= all
 clean	: 	TARGET= clean

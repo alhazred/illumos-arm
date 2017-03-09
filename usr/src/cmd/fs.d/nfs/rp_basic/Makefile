@@ -18,11 +18,12 @@
 #
 # CDDL HEADER END
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
-include $(SRC)/lib/Makefile.lib
+include ../../../../lib/Makefile.lib
 
 SUBDIRS =	$(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)

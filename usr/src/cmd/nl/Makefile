@@ -49,7 +49,7 @@ SMATCH=off
 $(XPG4):  CPPFLAGS += -DXPG4
 
 MAPFILE.INT =	../expr/mapfile-intf
-LDFLAGS +=	$(MAPFILE.INT:%=-Wl,-M%)
+#LDFLAGS +=	$(MAPFILE.INT:%=-Wl,-M%)
 
 .KEEP_STATE:
 

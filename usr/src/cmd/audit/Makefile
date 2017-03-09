@@ -20,11 +20,12 @@
 #
 #
 # Copyright (c) 1992, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017 Hayashi Naoyuki
 #
 
 PROG = audit
 
-include $(SRC)/cmd/Makefile.cmd
+include ../Makefile.cmd
 
 TEXT_DOMAIN=SUNW_OST_OSCMD
 POFILE=$(PROG).po

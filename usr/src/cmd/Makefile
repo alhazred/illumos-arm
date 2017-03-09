@@ -27,6 +27,7 @@
 # Copyright 2014 Garrett D'Amore <garrett@damore.org>
 # Copyright 2016 Toomas Soome <tsoome@me.com>
 # Copyright 2018 Nexenta Systems, Inc.
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2018 Gary Mills
 # Copyright 2019 Peter Tribble
 #
@@ -814,12 +815,121 @@ _dc : 		TARGET = _dc
 
 .KEEP_STATE:
 
+aarch64_NOSUPPORT=	\
+	availdevs	\
+	perl		\
+	abi		\
+	adbgen		\
+	ast		\
+	audio		\
+	avs		\
+	awk awk_xpg4 oawk \
+	make		\
+	mdb		\
+	bdiff		\
+	bnu		\
+	captoinfo	\
+	cdrw		\
+	cpc		\
+	crypt		\
+	csh		\
+	demangle	\
+	dis		\
+	ed		\
+	eeprom		\
+	eqn		\
+	fcinfo		\
+	fcoesvc		\
+	fm		\
+	fmthard		\
+	fwflash		\
+	gcore		\
+	hal		\
+	infocmp		\
+	isns		\
+	krb5		\
+	latencytop	\
+	localedef	\
+	lockstat plockstat tnf dtrace \
+	intrstat trapstat \
+	locator		\
+	luxadm		\
+	pcitool		\
+	picl		\
+	policykit	\
+	more 		\
+	pools		\
+	powertop	\
+	lp print	\
+	pyzfs		\
+	refer		\
+	rexd		\
+	shcomp		\
+	lvm		\
+	power		\
+	vi		\
+	tbl troff 	\
+	ypcmd yppasswd 	\
+	tic tip tput \
+	spell srchtxt		\
+	volcheck volrmmount	\
+	rmformat rmmount rmvolmgr \
+	eject fdformat \
+	grep egrep fgrep \
+	gettxt gettext genmsg msgfmt \
+	geniconvtbl ssh \
+	sed terminfo file find \
+	fmt fold  \
+	nohup  pathchk   \
+	sendmail \
+	intrd \
+	iconv \
+	scsi
+
+alpha_NOSUPPORT= $(aarch64_NOSUPPORT)
+riscv64_NOSUPPORT= $(aarch64_NOSUPPORT)
+
+../oss/postfix: ../oss/db
+
+COMMON_SUBDIRS+= ../oss/db
+COMMON_SUBDIRS+= ../oss/gdbm
+#COMMON_SUBDIRS+= ../oss/postfix
+COMMON_SUBDIRS+= ../oss/flex
+COMMON_SUBDIRS+= ../oss/bison
+COMMON_SUBDIRS+= ../oss/perl
+COMMON_SUBDIRS+= ../oss/gcc
+COMMON_SUBDIRS+= ../oss/binutils
+COMMON_SUBDIRS+= ../oss/sed
+COMMON_SUBDIRS+= ../oss/grep
+COMMON_SUBDIRS+= ../oss/findutils
+COMMON_SUBDIRS+= ../oss/gawk
+COMMON_SUBDIRS+= ../oss/tar
+COMMON_SUBDIRS+= ../oss/make
+COMMON_SUBDIRS+= ../oss/m4
+#COMMON_SUBDIRS+= ../oss/inetutils
+COMMON_SUBDIRS+= ../oss/xorriso
+COMMON_SUBDIRS+= ../oss/vim
+COMMON_SUBDIRS+= ../oss/bash
+COMMON_SUBDIRS+= ../oss/ntp
+COMMON_SUBDIRS+= ../oss/gzip
+COMMON_SUBDIRS+= ../oss/bzip2
+COMMON_SUBDIRS+= ../oss/openssh
+COMMON_SUBDIRS+= ../oss/top
+COMMON_SUBDIRS+= ../oss/wget
+COMMON_SUBDIRS+= ../oss/less
+COMMON_SUBDIRS+= ../oss/file
+COMMON_SUBDIRS+= ../oss/netperf
+COMMON_SUBDIRS+= ../oss/iperf
+
+backup: fs.d
+
 SUBDIRS = $(COMMON_SUBDIRS) $($(MACH)_SUBDIRS)
 
 .PARALLEL:	$(BWOSDIRS) $(SUBDIRS) $(MSGSUBDIRS) $(AUDITSUBDIRS)
 
-all install clean clobber lint: $(FIRST_SUBDIRS) .WAIT $(SUBDIRS) \
-	$(AUDITSUBDIRS)
+$(SUBDIRS): $(FIRST_SUBDIRS)
+all install clean clobber lint: $(FIRST_SUBDIRS) $(filter-out $($(MACH)_NOSUPPORT), $(SUBDIRS) \
+	$(AUDITSUBDIRS))
 
 #
 # Manifests cannot be checked in parallel, because we are using
@@ -848,7 +958,7 @@ ksh:	shcomp isaexec
 print:	lp
 fmt:	mailx
 
-$(FIRST_SUBDIRS) $(BWOSDIRS) $(SUBDIRS) $(AUDITSUBDIRS): FRC
+$(FIRST_SUBDIRS) $(BWOSDIRS) $(filter-out $($(MACH)_NOSUPPORT), $(SUBDIRS)) $(AUDITSUBDIRS): FRC
 	@if [ -f $@/Makefile  ]; then \
 		cd $@; pwd; $(MAKE) $(TARGET); \
 	else \

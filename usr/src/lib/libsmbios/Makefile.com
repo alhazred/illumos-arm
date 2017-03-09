@@ -19,6 +19,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -69,4 +70,4 @@ objs/%.o pics/%.o: ../../../common/smbios/%.c
 	$(POST_PROCESS_O)
 
 ../common/smb_tables.c: $(COMMON_SRCDIR)/mktables.sh $(COMMON_HDR)
-	sh $(COMMON_SRCDIR)/mktables.sh $(COMMON_HDR) > $@
+	ksh $(COMMON_SRCDIR)/mktables.sh $(COMMON_HDR) > $@

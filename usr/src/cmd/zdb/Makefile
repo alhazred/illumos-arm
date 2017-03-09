@@ -20,17 +20,18 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2005 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 # ident	"%Z%%M%	%I%	%E% SMI"
 #
 
-PROG:sh=	basename `pwd`
+PROG=	zdb
 
 include ../Makefile.cmd
 
-$(INTEL_BLD)SUBDIRS	= $(MACH)
+SUBDIRS	= $(MACH)
 $(BUILD64)SUBDIRS	+= $(MACH64)
 
 all	: 	TARGET = all

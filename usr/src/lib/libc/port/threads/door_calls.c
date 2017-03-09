@@ -427,6 +427,8 @@ door_return(char *data_ptr, size_t data_size,
 	reserve = SA(512);
 #elif defined(__aarch64)
 	reserve = SA(512);
+#elif defined(__riscv)
+	reserve = SA(512);
 #else
 #error need to define stack base reserve
 #endif

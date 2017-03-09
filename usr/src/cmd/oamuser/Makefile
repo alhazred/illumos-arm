@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 1990-2002 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -28,6 +29,7 @@
 
 include ../Makefile.cmd
 
+group user: lib
 SUBDIRS= lib group user
 
 all: 		TARGET= all

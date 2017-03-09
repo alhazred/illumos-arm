@@ -20,6 +20,7 @@
 #
 
 #
+# Copyright 2017 Hayashi Naoyuki
 # Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
@@ -60,7 +61,7 @@ CLEANFILES += \
 all : $(LIBS)
 
 ../common/scsi_errno.c: ../common/mkerrno.sh ../common/libscsi.h
-	sh ../common/mkerrno.sh < ../common/libscsi.h > $@
+	ksh ../common/mkerrno.sh < ../common/libscsi.h > $@
 
 pics/%.o: ../common/%.c
 	$(COMPILE.c) -o $@ $<

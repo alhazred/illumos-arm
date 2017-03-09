@@ -23,7 +23,7 @@
 # Use is subject to license terms.
 #
 
-include $(SRC)/Makefile.master
+include ../../../Makefile.master
 
 SUBDIRS =       $(MACH)
 $(BUILD64)SUBDIRS += $(MACH64)
@@ -43,7 +43,7 @@ INPUTFILES1	= $(CODESETS:%=%+UTF-8.src)
 INPUTFILES2	= $(CODESETS:%=UTF-8+%.src)
 INPUTFILES	= $(INPUTFILES1) $(INPUTFILES2)
 BINARYTABLES	= $(INPUTFILES:%.src=%.bt)
-GENICONVTBL	= /usr/bin/geniconvtbl
+GENICONVTBL	= $(CROSS_TOOLS)/bin/geniconvtbl
 GENI_SRCS	= common/binarytables/srcs
 ICONV_DIR	= $(ROOT)/usr/lib/iconv
 BTS_DIR		= $(ICONV_DIR)/geniconvtbl/binarytables
@@ -63,7 +63,7 @@ $(BTS_DIR):
 	$(INS.dir)
 
 %.bt: $(GENI_SRCS)/%.src
-	$(GENICONVTBL) -o $@ -f $<
+	$(GENICONVTBL) -I $(ROOT)/usr/include -o $@ -f $<
 
 $(ICONV_DIR)/%: %
 	$(INS.file)
@@ -85,7 +85,7 @@ install: all $(BINARYTABLES) $(BTS_DIR) $(ICONV_DIR)/alias
 		$(CHMOD) 0444 $(BTS_DIR)/$$fp; \
 	done
 
-clean:
+clean clobber:
 	$(RM) $(BINARYTABLES)
 
 all clean clobber install echo: $(SUBDIRS)

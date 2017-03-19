@@ -22,6 +22,9 @@
  * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
  * Use is subject to license terms.
  */
+/*
+ * Copyright 2017 Hayashi Naoyuki
+ */
 
 #ifndef	_SUN_FC_H
 #define	_SUN_FC_H
@@ -145,11 +148,19 @@ extern HBA_STATUS Sun_fcGetFCPStatistics(HBA_HANDLE, const HBA_SCSIID *,
 #include <netinet/in.h>
 #include <inttypes.h>
 #ifdef _BIG_ENDIAN
+#ifndef htonll
 #define htonll(x)   (x)
+#endif
+#ifndef ntohll
 #define ntohll(x)   (x)
+#endif
 #else
+#ifndef htonll
 #define htonll(x)   ((((uint64_t)htonl(x)) << 32) + htonl(x >> 32))
+#endif
+#ifndef ntohll
 #define ntohll(x)   ((((uint64_t)ntohl(x)) << 32) + ntohl(x >> 32))
+#endif
 #endif
 
 

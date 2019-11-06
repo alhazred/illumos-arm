@@ -1060,7 +1060,7 @@ read_elf64(int fd, int print, Elf64_Ehdr *elfhdrp)
 
 #ifdef	BOOTAMD64
 		if ((elfbootvecELF64->eb_un.eb_ptr =
-		    ADDR_XTND(kmem_alloc(size, 0))) == NULL) {
+		    ADDR_XTND(kmem_alloc(size, 0))) == 0) {
 			kmem_free(elfbootvecELF64, vsize);
 			goto elf64error;
 		}

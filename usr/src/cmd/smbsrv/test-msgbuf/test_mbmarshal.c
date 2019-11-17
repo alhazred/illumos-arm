@@ -22,7 +22,7 @@
 #include <sys/varargs.h>
 #include <smbsrv/smb_kproto.h>
 #include <stdio.h>
-#include <string.h>
+#include <../include/string.h>
 #include <strings.h>
 
 #include "test_defs.h"

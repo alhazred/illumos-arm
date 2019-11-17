@@ -26,7 +26,7 @@
 #include <sys/u8_textprep.h>
 #include <smbsrv/string.h>
 #include <stdio.h>
-#include <string.h>
+#include <../include/string.h>
 
 #include "test_defs.h"
 

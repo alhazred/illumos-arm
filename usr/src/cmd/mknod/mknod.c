@@ -97,18 +97,21 @@ main(int argc, char **argv)
 		default:
 			usage();
 		}
-		majno = (major_t)number(argv[3]);
-		if (majno == (major_t)-1 || majno > MAXMAJ) {
+		long n;
+		n = number(argv[3]);
+		if (n < 0 || n > MAXMAJ) {
 			(void) fprintf(stderr, "mknod: invalid major number "
 			    "'%s' - valid range is 0-%lu\n", argv[3], MAXMAJ);
 			return (2);
 		}
-		minno = (minor_t)number(argv[4]);
-		if (minno == (minor_t)-1 || minno > MAXMIN) {
+		majno = n;
+		n = number(argv[4]);
+		if (n < 0 || n > MAXMIN) {
 			(void) fprintf(stderr, "mknod: invalid minor number "
 			    "'%s' - valid range is 0-%lu\n", argv[4], MAXMIN);
 			return (2);
 		}
+		minno = n;
 		arg = makedev(majno, minno);
 	} else
 		usage();

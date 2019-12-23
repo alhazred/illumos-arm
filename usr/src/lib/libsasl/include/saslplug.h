@@ -87,7 +87,7 @@ typedef struct sasl_utils {
 
 	/* MD5 hash and HMAC functions */
     void (*MD5Init)(MD5_CTX *);
-    void (*MD5Update)(MD5_CTX *, const unsigned char *text, unsigned int len);
+    void (*MD5Update)(MD5_CTX *, const unsigned char *text, size_t len);
     void (*MD5Final)(unsigned char [16], MD5_CTX *);
     void (*hmac_md5)(const unsigned char *text, int text_len,
 			const unsigned char *key, int key_len,

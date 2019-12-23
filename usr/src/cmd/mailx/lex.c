@@ -320,7 +320,7 @@ commands(void)
 top:
 		if ((shudprompt = (intty && !sourcing)) != 0) {
 			if (prompt == NOSTR) {
-				if ((int)value("bsdcompat"))
+				if (value("bsdcompat"))
 					prompt = "& ";
 				else
 					prompt = "";

@@ -8793,7 +8793,7 @@ read_xattr_hdr()
 	    sizeof (struct xattr_hdr));
 	(void) sscanf(xattrp->h_namesz, "%7d", &namelen);
 	if (link_len > 0) {
-		xattr_linkp = (struct xattr_buf *)((int)xattrp + (int)comp_len);
+		xattr_linkp = (struct xattr_buf *)((uintptr_t)xattrp + comp_len);
 	} else {
 		xattr_linkp = NULL;
 	}
@@ -9193,7 +9193,7 @@ sl_insert(dev_t device, ino_t inode, int ftype)
 
 	if (s->bal == 0) {
 		s->bal = a;
-		head->llink = (sl_info_t *)((int)head->llink + 1);
+		head->llink = (sl_info_t *)((uintptr_t)head->llink + 1);
 		return (q);
 	} else if (s->bal == -a) {
 		s->bal = 0;

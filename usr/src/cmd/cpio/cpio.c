@@ -7661,8 +7661,8 @@ read_bar_file_hdr(void)
 	(void) sscanf(tmp_hdr->dbuf.chksum, "%8lo", &Gen.g_cksum);
 	(void) sscanf(tmp_hdr->dbuf.rdev, "%8lo", &Gen.g_rdev);
 
-#define	to_new_major(x)	(int)((unsigned)((x) & OMAXMAJ) << NBITSMINOR)
-#define	to_new_minor(x)	(int)((x) & OMAXMIN)
+#define	to_new_major(x)	(ulong_t)((ulong_t)((x) & OMAXMAJ) << NBITSMINOR)
+#define	to_new_minor(x)	(ulong_t)((x) & OMAXMIN)
 	Gen.g_rdev = to_new_major(Gen.g_rdev) | to_new_minor(Gen.g_rdev);
 	bar_linkflag = tmp_hdr->dbuf.linkflag;
 	start_of_name = &tmp_hdr->dbuf.start_of_name;

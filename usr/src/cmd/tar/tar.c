@@ -8271,7 +8271,7 @@ read_xattr_hdr(attr_data_t **attrinfo)
 	(void) sscanf(xattrp->h_namesz, "%7d", &namelen);
 	if (link_len > 0)
 		xattr_linkp = (struct xattr_buf *)
-		    ((int)xattrp + (int)comp_len);
+		    ((uintptr_t)xattrp + comp_len);
 	else
 		xattr_linkp = NULL;
 

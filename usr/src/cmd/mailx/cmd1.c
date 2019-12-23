@@ -238,19 +238,19 @@ printhead(int mesg)
 	showto = 0;
 	if ((mp->m_flag & (MREAD|MNEW)) == (MREAD|MNEW))
 		dispc = 'R';
-	if (!(int)value("bsdcompat") && (mp->m_flag & (MREAD|MNEW)) == MREAD)
+	if (!value("bsdcompat") && (mp->m_flag & (MREAD|MNEW)) == MREAD)
 		dispc = 'O';
 	if ((mp->m_flag & (MREAD|MNEW)) == MNEW)
 		dispc = 'N';
 	if ((mp->m_flag & (MREAD|MNEW)) == 0)
 		dispc = 'U';
 	if (mp->m_flag & MSAVED)
-		if ((int)value("bsdcompat"))
+		if (value("bsdcompat"))
 			dispc = '*';
 		else
 			dispc = 'S';
 	if (mp->m_flag & MPRESERVE)
-		if ((int)value("bsdcompat"))
+		if (value("bsdcompat"))
 			dispc = 'P';
 		else
 			dispc = 'H';
@@ -299,7 +299,7 @@ printhead(int mesg)
 			fromline = skin(fromline);
 	}
 	printf("%c%c%3d ", curind, dispc, mesg);
-	if ((int)value("showfull")) {
+	if (value("showfull")) {
 		if (showto)
 			printf("To %-15s ", fromline);
 		else

@@ -1991,7 +1991,7 @@ _sasl_alloc_utils(sasl_conn_t *conn,
 #ifdef _SUN_SDK_
   utils->MD5Init  = (void (*)(MD5_CTX *))&MD5Init;
   utils->MD5Update= (void (*)
-	(MD5_CTX *, const unsigned char *, unsigned int ))&MD5Update;
+	(MD5_CTX *, const unsigned char *, size_t ))&MD5Update;
   utils->MD5Final = (void (*)(unsigned char [16], MD5_CTX *))&MD5Final;
 #else
   utils->MD5Init  = &_sasl_MD5Init;

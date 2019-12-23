@@ -245,7 +245,7 @@ MD5Init(MD5_CTX *ctx)
  */
 
 void
-MD5Update(MD5_CTX *ctx, const void *inpp, unsigned int input_len)
+MD5Update(MD5_CTX *ctx, const void *inpp, size_t input_len)
 {
 	uint32_t		i, buf_index, buf_len;
 #ifdef	sun4v

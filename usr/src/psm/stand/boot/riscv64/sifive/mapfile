@@ -1,0 +1,56 @@
+OUTPUT_ARCH(riscv)
+ENTRY(_start)
+
+SECTIONS
+{
+	. = 0x80400000;
+	_BootStart = .;
+	.text : {
+		*(.text)
+		*(.text.*)
+		. = ALIGN(0x16);
+		*(.srodata)
+		*(.srodata.*)
+		*(.rodata)
+		*(.rodata.*)
+		_etext = .;
+	}
+	.sdata : {
+	 	__global_pointer$ = . + 0x800;
+		*(.sdata)
+		*(.sdata.*)
+		. = ALIGN(0x8);
+	}
+	.data : {
+		*(.data)
+		*(.data.*)
+		CONSTRUCTORS
+		*(.got)
+		*(.got.*)
+		. = ALIGN(0x8);
+		_edata = .;
+
+		*(.sbss)
+		*(.sbss.*)
+		*(.scommon)
+		*(.bss)
+		*(.bss.*)
+		*(COMMON)
+		. = ALIGN(0x8);
+		_ebss = .;
+	}
+	. = ALIGN(0x1000);
+	_end = . ;
+	. = . + 0x10000;
+	_BootStackTop = .;
+	_LogBuf       = .;
+	. = . + 0x100000;
+	_BootScratch  = .;
+	. = . + 0xe00000;
+	_RamdiskStart = .;
+	. = . + 0x10000000;
+	_RamdiskEnd  = .;
+	_dtb_start   = .;
+	. = . + 0x20000;
+	_BootEnd     = .;
+}

@@ -252,11 +252,11 @@ sdev_ncache_unpack_nvlist(nvf_handle_t fd, nvlist_t *nvl, char *name)
 	}
 
 	np->nvp_npaths = nstrs;
-	np->nvp_paths = kmem_zalloc(nstrs * sizeof (char *), KM_SLEEP);
+	np->nvp_paths = ((nstrs > 0)? kmem_zalloc(nstrs * sizeof (char *), KM_SLEEP): NULL);
 	for (i = 0; i < nstrs; i++) {
 		np->nvp_paths[i] = i_ddi_strdup(strs[i], KM_SLEEP);
 	}
-	np->nvp_expirecnts = kmem_zalloc(nstrs * sizeof (int), KM_SLEEP);
+	np->nvp_expirecnts = ((nstrs > 0)? kmem_zalloc(nstrs * sizeof (int), KM_SLEEP): NULL);
 	for (i = 0; i < nstrs; i++) {
 		np->nvp_expirecnts[i] = sdev_nc_expirecnt;
 	}
@@ -448,8 +448,8 @@ sdev_ncache_write(void)
 
 	np = kmem_zalloc(sizeof (nvp_devname_t), KM_SLEEP);
 	np->nvp_npaths = n;
-	np->nvp_paths = kmem_zalloc(n * sizeof (char *), KM_SLEEP);
-	np->nvp_expirecnts = kmem_zalloc(n * sizeof (int), KM_SLEEP);
+	np->nvp_paths = ((n > 0)? kmem_zalloc(n * sizeof (char *), KM_SLEEP): NULL);
+	np->nvp_expirecnts = ((n > 0)? kmem_zalloc(n * sizeof (int), KM_SLEEP): NULL);
 
 	i = 0;
 	for (lp = list_head(&ncl->ncl_list); lp;

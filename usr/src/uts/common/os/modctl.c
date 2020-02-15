@@ -412,11 +412,10 @@ modctl_modinfo(modid_t id, struct modinfo *umodi)
 	int retval;
 	struct modinfo modi;
 #if defined(_SYSCALL32_IMPL)
-	int nobase;
+	int nobase = 0;
 	struct modinfo32 modi32;
 #endif
 
-	nobase = 0;
 	if (get_udatamodel() == DATAMODEL_NATIVE) {
 		if (copyin(umodi, &modi, sizeof (struct modinfo)) != 0)
 			return (EFAULT);

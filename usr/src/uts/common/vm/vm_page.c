@@ -7046,7 +7046,7 @@ page_unlock_capture(page_t *pp)
 	uint_t flags = 0;
 	void *datap;
 	kmutex_t *mp;
-	extern vnode_t retired_pages;
+	extern vnode_t *retired_pages;
 
 	/*
 	 * We need to protect against a possible deadlock here where we own
@@ -7059,7 +7059,7 @@ page_unlock_capture(page_t *pp)
 	 * before they hashin to a vnode that they do not currently own the
 	 * vphm mutex otherwise there will be a panic.
 	 */
-	if (mutex_owned(page_vnode_mutex(&retired_pages))) {
+	if (mutex_owned(page_vnode_mutex(retired_pages))) {
 		page_unlock_nocapture(pp);
 		return;
 	}

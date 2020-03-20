@@ -125,7 +125,7 @@ int	setuid(uid_t);
 uintptr_t	shmsys();
 uint64_t	sidsys(int, int, int, int);
 int	sigprocmask(int, sigset_t *, sigset_t *);
-int	sigsuspend(sigset_t);
+int	sigsuspend(sigset_t *);
 int	sigaltstack(struct sigaltstack *, struct sigaltstack *);
 int	sigaction(int, struct sigaction *, struct sigaction *);
 int	sigpending(int, sigset_t *);

@@ -89,7 +89,7 @@
 	    (((cdb[4]) & 0xF0) == 0) && (((cdb[4]) & 0x01) == 0))))
 /* End of SCSI2_CONFLICT_FREE_CMDS */
 
-uint8_t HardwareAcceleratedInit = 1;
+int HardwareAcceleratedInit = 1;
 uint8_t sbd_unmap_enable = 1;		/* allow unmap by default */
 
 /*

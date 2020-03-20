@@ -81,7 +81,7 @@ static char	*netname2hashname(const char *, char *, int, keylen_t,
 extern int xdecrypt();
 
 extern int __yp_match_cflookup(char *, char *, char *, int, char **,
-			int *, int *);
+			int *, int);
 
 
 /*

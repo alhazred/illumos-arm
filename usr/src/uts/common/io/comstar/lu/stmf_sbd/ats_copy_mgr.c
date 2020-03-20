@@ -48,8 +48,8 @@
 #define	OVERLAP_HIGH 3
 uint8_t ats_overlap_check = OVERLAP_LOW; /* check for rw overlap with ATS */
 
-uint8_t HardwareAcceleratedLocking = 1; /* 0 for disabled */
-uint8_t HardwareAcceleratedMove = 1;
+int HardwareAcceleratedLocking = 1; /* 0 for disabled */
+int HardwareAcceleratedMove = 1;
 uint64_t sbd_list_length = 0;
 
 #define	SBD_ATS_MAX_NBLKS	32

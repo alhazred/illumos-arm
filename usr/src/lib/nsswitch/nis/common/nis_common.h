@@ -120,7 +120,7 @@ extern int _nss_nis_check_name_aliases(nss_XbyY_args_t *argp,
 
 /* private yp "configurable lookup persistence" interface in libnsl */
 extern int __yp_match_cflookup(char *, char *, char *, int, char **,
-			    int *, int *);
+			    int *, int);
 extern int __yp_match_rsvdport_cflookup(char *, char *, char *, int, char **,
 				    int *, int *);
 extern int __yp_first_cflookup(char *, char *, char **, int *, char **,

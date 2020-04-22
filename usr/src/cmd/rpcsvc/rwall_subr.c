@@ -54,6 +54,7 @@
 
 #define	WALL_PROG	"/usr/sbin/wall"
 
+mutex_t _svcstate_lock;
 static mutex_t wall_mutex = DEFAULTMUTEX;
 static char *oldmsg;
 

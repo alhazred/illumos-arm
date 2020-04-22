@@ -109,8 +109,8 @@ short tabsize = 8;
 /*
  *  global variables also used by expmatch
  */
-boolean	_escaped;		/* if last character was an escape */
-char	*Start;			/* start of the current string */
+extern boolean	_escaped;		/* if last character was an escape */
+extern char	*Start;			/* start of the current string */
 boolean	l_onecase;		/* upper and lower case are equivalent */
 char	*l_idchars;		/* characters legal in identifiers in addition
 				   to letters and digits (default "_") */

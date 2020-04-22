@@ -277,6 +277,7 @@ static uint8_t prop_reconfig = 0;
 #define	INITIAL_REBIND_DELAY	3
 
 pthread_mutexattr_t mutex_attrs;
+uu_list_pool_t *contract_list_pool;
 
 #ifdef DEBUG
 const char *

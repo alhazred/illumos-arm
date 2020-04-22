@@ -15,7 +15,7 @@ char	*l_idchars = "_";	/* characters legal in identifiers in addition
 				   to alphanumerics */
 
 char * Start;
-char * _escaped;
+extern boolean _escaped;
 char * convexp();
 char * expmatch();
 main()

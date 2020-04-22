@@ -30,6 +30,13 @@
 #include <sys/byteorder.h>
 #include <sun_sas.h>
 
+mutex_t		all_hbas_lock;
+mutex_t		open_handles_lock;
+mutex_t		log_file_lock;
+HBA_UINT32	hba_count;
+HBA_UINT16	open_handle_index;
+struct sun_sas_hba *global_hba_head;
+
 /*
  * creates a handle each time Sun_sas_OpenAdapter() is called.
  *

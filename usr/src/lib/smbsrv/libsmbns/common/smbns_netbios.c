@@ -44,6 +44,7 @@
 #define	SMB_NETBIOS_DUMP_FILE		"netbios"
 
 static netbios_service_t nbtd;
+char smb_node_type;
 
 static void smb_netbios_shutdown(void);
 static void *smb_netbios_service(void *);

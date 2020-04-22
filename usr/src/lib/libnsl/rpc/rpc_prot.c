@@ -52,7 +52,7 @@
 
 /* * * * * * * * * * * * * * XDR Authentication * * * * * * * * * * * */
 
-struct opaque_auth _null_auth;
+extern struct opaque_auth _null_auth;
 
 /*
  * XDR an opaque authentication struct

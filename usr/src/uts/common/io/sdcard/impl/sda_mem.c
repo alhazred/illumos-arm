@@ -290,7 +290,8 @@ sda_mem_parse_cid_csd(sda_slot_t *slot)
 		}
 
 		slot->s_mfg = sda_mem_getbits(rcid, 127, 8);
-		sda_mem_getstring(rcid, slot->s_oem, 119, 2);
+		slot->s_oem[0] = sda_mem_getbits(rcid, 119, 8);
+		slot->s_oem[1] = sda_mem_getbits(rcid, 119 - 8, 8);
 		sda_mem_getstring(rcid, slot->s_prod, 103, 5);
 		slot->s_majver = sda_mem_getbits(rcid, 63, 4);
 		slot->s_minver = sda_mem_getbits(rcid, 59, 4);
@@ -320,7 +321,8 @@ sda_mem_parse_cid_csd(sda_slot_t *slot)
 		case 3:	/* MMC 3.1 - 3.3 */
 		case 4:	/* MMC 4.x */
 			slot->s_mfg = sda_mem_getbits(rcid, 127, 8);
-			sda_mem_getstring(rcid, slot->s_oem, 119, 2);
+			slot->s_oem[0] = sda_mem_getbits(rcid, 119, 8);
+			slot->s_oem[1] = sda_mem_getbits(rcid, 119 - 8, 8);
 			sda_mem_getstring(rcid, slot->s_prod, 103, 6);
 			slot->s_majver = sda_mem_getbits(rcid, 55, 4);
 			slot->s_minver = sda_mem_getbits(rcid, 51, 4);

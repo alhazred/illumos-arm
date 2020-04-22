@@ -69,6 +69,7 @@ extern void	init_dc_locator(void);
 extern void	fini_dc_locator(void);
 
 idmapd_state_t	_idmapdstate;
+mutex_t _svcstate_lock;	/* lock for _rpcsvcstate, _rpcsvccount */
 
 SVCXPRT *xprt = NULL;
 

@@ -37,7 +37,7 @@ extern "C" {
 #include "ns_sldap.h"
 #include "ns_internal.h"
 
-ns_standalone_conf_t standaloneDefaults;
+extern ns_standalone_conf_t standaloneDefaults;
 
 int separatePort(char *peer, char **name, uint16_t *port);
 

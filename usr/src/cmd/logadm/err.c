@@ -35,6 +35,9 @@
 #include "err.h"
 
 jmp_buf	*Err_env_ptr;
+jmp_buf Err_env;
+int Debug;
+
 static const char *Myname;
 static int Exitcode;
 static FILE *Errorfile;

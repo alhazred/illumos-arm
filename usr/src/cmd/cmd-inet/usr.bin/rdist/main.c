@@ -46,7 +46,6 @@ char	host[32];	/* host name */
 int	nerrs;		/* number of errors while sending/receiving */
 char	user[10];	/* user's name */
 char	homedir[128];	/* user's home directory */
-char	buf[RDIST_BUFSIZ];	/* general purpose buffer */
 
 struct	passwd *pw;	/* pointer to static area used by getpwent */
 struct	group *gr;	/* pointer to static area used by getgrent */

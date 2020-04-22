@@ -44,6 +44,7 @@ static DAT_RETURN dapli_ib_cq_resize_internal(DAPL_EVD *, DAT_COUNT);
  */
 
 int	g_loopback_connection = 0;
+DAPL_OS_LOCK	dapls_ib_dbp_lock;
 
 /*
  * dapl_ib_cq_alloc

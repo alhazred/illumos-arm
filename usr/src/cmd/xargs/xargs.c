@@ -741,7 +741,7 @@ echoargs()
 	char	**anarg;
 	char	**tanarg;	/* tmp ptr			*/
 	int		i;
-	char		reply[LINE_MAX];
+	char		reply[LINE_MAX + 1];
 
 	tanarg = anarg = arglist-1;
 
